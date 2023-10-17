@@ -1,0 +1,51 @@
+﻿namespace NarrativeCharts.Console;
+
+public static class Characters
+{
+	public static string Angelica { get; } = "Angelica";
+	public static string Benno { get; } = "Benno";
+	public static string Bezewanst { get; } = "Bezewanst";
+	public static string Bindewald { get; } = "Bindewald";
+	public static string Brigitte { get; } = "Brigitte";
+	public static string Charlotte { get; } = "Charlotte";
+	public static string Cornelius { get; } = "Cornelius";
+	public static string Damuel { get; } = "Damuel";
+	public static string Delia { get; } = "Delia";
+	public static string Dirk { get; } = "Dirk";
+	public static string Eckhart { get; } = "Eckhart";
+	public static string Effa { get; } = "Effa";
+	public static string Egmont { get; } = "Egmont";
+	public static string Ella { get; } = "Ella";
+	public static string Elvira { get; } = "Elvira";
+	public static string Ferdinand { get; } = "Ferdinand";
+	public static string Florencia { get; } = "Florencia";
+	public static string Fran { get; } = "Fran";
+	public static string Freida { get; } = "Freida";
+	public static string Gil { get; } = "Gil";
+	public static string Gunther { get; } = "Gunther";
+	public static string Gustav { get; } = "Gustav";
+	public static string Hugo { get; } = "Hugo";
+	public static string Johann { get; } = "Johann";
+	public static string Kamil { get; } = "Kamil";
+	public static string Karstedt { get; } = "Kardstedt";
+	public static string Lamprecht { get; } = "Lamprecht";
+	public static string Leise { get; } = "Leise";
+	public static string Leon { get; } = "Leon";
+	public static string Lutz { get; } = "Lutz";
+	public static string Mark { get; } = "Mark";
+	public static string Melchior { get; } = "Melchior";
+	public static string Monika { get; } = "Monika";
+	public static string Myne { get; } = "Myne";
+	public static string Nicola { get; } = "Nicola";
+	public static string Norbert { get; } = "Norbert";
+	public static string Ottilie { get; } = "Ottilie";
+	public static string Rihyarda { get; } = "Rihyarda";
+	public static string Rosina { get; } = "Rosina";
+	public static string Sylvester { get; } = "Sylvester";
+	public static string Todd { get; } = "Todd";
+	public static string Tuuli { get; } = "Tuuli";
+	public static string Wilfried { get; } = "Wilfried";
+	public static string Wilma { get; } = "Wilma";
+	public static string Zack { get; } = "Zack";
+	public static string Zahm { get; } = "Zahm";
+}
