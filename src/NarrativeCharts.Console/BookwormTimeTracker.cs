@@ -6,16 +6,17 @@ public class BookwormTimeTracker
 {
 	private const int HOURS_PER_DAY = 24;
 
-	private readonly ImmutableArray<int> _HourToBellMap;
-	public ImmutableArray<int> Bells { get; }
-	public int CurrentBell => _HourToBellMap[CurrentHour];
+	public static ImmutableArray<int> Bells { get; }
+	public static ImmutableArray<int> HourToBellMap { get; }
+
+	public int CurrentBell => HourToBellMap[CurrentHour];
 	public int CurrentDay => CurrentTotalHours / HOURS_PER_DAY;
 	public int CurrentHour => CurrentTotalHours % HOURS_PER_DAY;
 	public int CurrentTotalHours { get; private set; }
 	public BookwormBellMover GoToCurrentDay { get; }
 	public BookwormBellMover GoToNextDay { get; }
 
-	public BookwormTimeTracker()
+	static BookwormTimeTracker()
 	{
 		// source: https://w.atwiki.jp/booklove/pages/195.html#footnote_body_2
 		Bells = new int[]
@@ -29,8 +30,6 @@ public class BookwormTimeTracker
 			17,
 			20,
 		}.ToImmutableArray();
-		GoToCurrentDay = new BookwormBellMover(this, dayDifference: 0);
-		GoToNextDay = new BookwormBellMover(this, dayDifference: 1);
 
 		var hourToBellMap = new int[HOURS_PER_DAY];
 		for (var hour = 0; hour < HOURS_PER_DAY; ++hour)
@@ -45,7 +44,13 @@ public class BookwormTimeTracker
 			}
 			hourToBellMap[hour] = bell - 1;
 		}
-		_HourToBellMap = hourToBellMap.ToImmutableArray();
+		HourToBellMap = hourToBellMap.ToImmutableArray();
+	}
+
+	public BookwormTimeTracker()
+	{
+		GoToCurrentDay = new BookwormBellMover(this, dayDifference: 0);
+		GoToNextDay = new BookwormBellMover(this, dayDifference: 1);
 	}
 
 	public void AddBell()
