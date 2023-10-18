@@ -2,17 +2,17 @@
 
 public static class Locations
 {
-	public static double Castle { get; } = 5;
-	public static double GilbertaCompany { get; } = -3;
-	public static double Hasse { get; } = 10;
-	public static double ItalianRestaurant { get; } = -2;
-	public static double KarstedtsHouse { get; } = 3;
-	public static double KnightsOrder { get; } = 4;
-	public static double LowerCityForest { get; } = -1;
-	public static double LowerCityWorkshops { get; } = -5;
-	public static double MynesHouse { get; } = -10;
-	public static double OthmarCompany { get; } = -4;
-	public static double RoyalAcademy { get; } = 25;
-	public static double Temple { get; } = 0;
-	public static double TempleFrontEntrance { get; } = 1;
+	public static int Castle { get; } = 100;
+	public static int GilbertaCompany { get; } = -100;
+	public static int Hasse { get; } = 150;
+	public static int ItalianRestaurant { get; } = -25;
+	public static int KarstedtsHouse { get; } = 50;
+	public static int KnightsOrder { get; } = 75;
+	public static int LowerCityForest { get; } = -50;
+	public static int LowerCityWorkshops { get; } = -200;
+	public static int MynesHouse { get; } = -250;
+	public static int OthmarCompany { get; } = -150;
+	public static int RoyalAcademy { get; } = 250;
+	public static int Temple { get; } = 0;
+	public static int TempleFrontEntrance { get; } = 10;
 }

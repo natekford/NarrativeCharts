@@ -10,7 +10,7 @@ public static class P3V1
 	public static NarrativeChartGenerator Generate(BookwormTimeTracker time)
 	{
 		var p3v1 = new NarrativeChartGenerator();
-		Point Scene(double location) => new(time.CurrentTotalHours, location);
+		Point Scene(int location) => new(time.CurrentTotalHours, location);
 
 		// Prologue starts with Karstedt seeing Sylvester off
 		p3v1.AddScene(Scene(Temple).With(Ferdinand, Karstedt, Myne, Sylvester));

@@ -16,18 +16,4 @@ public class NarrativeChartGenerator
 		}
 		set.Add(point);
 	}
-
-	public void AddScene(NarrativeScene scene)
-	{
-		foreach (var character in scene.Characters)
-		{
-			AddPoint(new(
-				Point: scene.Point,
-				Character: character,
-				LineModifier: default,
-				LineColor: default,
-				LineThickness: default
-			));
-		}
-	}
 }

@@ -1,8 +1,8 @@
 ﻿namespace NarrativeCharts.Models;
 
 public record struct Color(
-	byte A,
-	byte R,
-	byte G,
-	byte B
+	ushort R,
+	ushort G,
+	ushort B,
+	ushort A
 );

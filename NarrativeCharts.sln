@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarrativeCharts", "src\NarrativeCharts\NarrativeCharts.csproj", "{13908C1D-BA8B-4D29-AEB0-BAF401EDF615}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts", "src\NarrativeCharts\NarrativeCharts.csproj", "{13908C1D-BA8B-4D29-AEB0-BAF401EDF615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarrativeCharts.Console", "src\NarrativeCharts.Console\NarrativeCharts.Console.csproj", "{683BA082-84B0-48A8-9DD3-411835270F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Console", "src\NarrativeCharts.Console\NarrativeCharts.Console.csproj", "{683BA082-84B0-48A8-9DD3-411835270F05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarrativeCharts.Image", "src\NarrativeCharts.Image\NarrativeCharts.Image.csproj", "{52361B9F-041F-488F-81C6-289C206D147A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{683BA082-84B0-48A8-9DD3-411835270F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{683BA082-84B0-48A8-9DD3-411835270F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{683BA082-84B0-48A8-9DD3-411835270F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52361B9F-041F-488F-81C6-289C206D147A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52361B9F-041F-488F-81C6-289C206D147A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52361B9F-041F-488F-81C6-289C206D147A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52361B9F-041F-488F-81C6-289C206D147A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

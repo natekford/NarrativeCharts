@@ -1,20 +1,24 @@
-﻿using NarrativeCharts.Models;
+﻿using NarrativeCharts.Image;
+using NarrativeCharts.Models;
 
 namespace NarrativeCharts.Console;
 
 public static class Utils
 {
-	public static void Add(this NarrativeChartGenerator chart, NarrativeChartGenerator other)
+	public static void AddScene(this NarrativeChartGenerator chart, NarrativeScene scene)
 	{
-		foreach (var (_, points) in other.NarrativePoints)
+		foreach (var character in scene.Characters)
 		{
-			foreach (var point in points)
-			{
-				chart.AddPoint(point);
-			}
+			chart.AddPoint(new(
+				Point: scene.Point,
+				Character: character,
+				LineModifier: default,
+				LineColor: Characters.CharacterDictionary[character].Color.ToNarrativeChartColor(),
+				LineThickness: 2
+			));
 		}
 	}
 
-	public static NarrativeScene With(this Point point, params string[] characters)
-		=> new(point, characters);
+	public static NarrativeScene With(this Point point, params Character[] characters)
+		=> new(point, characters.Select(x => x.Name).ToArray());
 }

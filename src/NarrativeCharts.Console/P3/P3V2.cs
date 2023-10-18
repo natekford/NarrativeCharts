@@ -10,7 +10,7 @@ public static class P3V2
 	public static NarrativeChartGenerator Generate(BookwormTimeTracker time)
 	{
 		var p3v2 = new NarrativeChartGenerator();
-		Point Scene(double location) => new(time.CurrentTotalHours, location);
+		Point Scene(int location) => new(time.CurrentTotalHours, location);
 
 		// Chapter: Prologue
 		{
