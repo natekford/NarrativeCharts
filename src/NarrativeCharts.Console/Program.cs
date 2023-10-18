@@ -40,10 +40,14 @@ public static class Program
 		time.AddBell();
 		// Myne's health checkup
 		p3v1.AddScene(Scene(Temple).With(Ferdinand, Karstedt, Myne));
+		// SS1 of P3V1, no exact timeline but definitely in this 4 day period between kardstedt/ferdi discussion and myne arrive
+		// "Mother had said that she had important news and gathered Eckhart and I at the dinner table to discuss it over tea."
+		p3v1.AddScene(Scene(KarstedtsHouse).With(Cornelius, Eckhart, Elvira));
 		// Time: Immediately after
 		time.AddBell();
 		// Leaving Ferdinand's office and going back to Myne's room
 		p3v1.AddScene(Scene(Temple).With(Damuel, Fran, Monika, Myne, Nicola, Rosina));
+		p3v1.AddScene(Scene(KarstedtsHouse).With(Karstedt));
 
 		// Time: Next 3 days
 		time.GoToDaysAhead(3).Morning();
@@ -226,10 +230,12 @@ public static class Program
 		// todd goes to ferdi's temple kitchen at 2nd bell
 		time.GoToDaysAhead(2).Morning();
 		p3v1.AddScene(Scene(Temple).With(Todd));
-		p3v1.AddScene(Scene(Castle).With(Hugo));
+		p3v1.AddScene(Scene(Castle).With(Ella, Hugo));
 
-		// Time: during the day, idk, several days after the chefs arrive?
-		time.GoToDaysAhead(2).Meetings();
+		// Time: during the day, has to be around 17 days letter since ella went to the castle for a month and this is the only
+		// section that has an unknown timeskip (the accounted for time between now and when ella is back in the temple during
+		// elvira/lamp's visit is ~13 days)
+		time.GoToDaysAhead(17).Meetings();
 		// donation tea party with flor, elvira, and myne
 		// brigitte mentioned in next segment, so other guard knights probably also there
 		p3v1.AddScene(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Elvira, Myne));
@@ -291,8 +297,13 @@ public static class Program
 		time.AddBell();
 		p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
 
+		// Time: roughly a month after the chefs get loaned out
+		time.GoToNextDay.Morning();
+		p3v1.AddScene(Scene(Temple).With(Ella));
+		p3v1.AddScene(Scene(ItalianRestaurant).With(Hugo, Todd));
+
 		// Time: 3 days later
-		time.GoToDaysAhead(3).Meetings();
+		time.GoToDaysAhead(2).Meetings();
 		// elvira and lemprecht visit the temple to eat some of ella's food
 		p3v1.AddScene(Scene(Temple).With(Elvira, Lamprecht));
 		time.AddBell();
@@ -347,6 +358,18 @@ public static class Program
 		time.GoToDaysAhead(3).Meetings();
 		// "Ferdinand had summoned me to his lecture room just like in the old days."
 		p3v1.AddScene(Scene(Temple).With(Ferdinand, Myne));
+
+		// Time: some time after myne gets lectured
+		// "“Lutz, the customers have all left,”"
+		time.GoToDaysAhead(2).MarketClose();
+		p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Lutz, Mark));
+		// "Ingo and his wife—the owners of the carpentry workshop that Rozemyne exclusively gave business to—were currently living in the monastery in Hasse"
+		// "Deid, would also be heading there soon"
+		p3v1.AddScene(Scene(Hasse).With(Deid, Ingo));
+
+		// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director’s chambers."
+		time.GoToDaysAhead(2).Meetings();
+		p3v1.AddScene(Scene(Temple).With(Benno, Lutz, Tuuli));
 
 		return p3v1;
 	}

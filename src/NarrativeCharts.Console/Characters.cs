@@ -10,6 +10,7 @@ public static class Characters
 	public static string Charlotte { get; } = "Charlotte";
 	public static string Cornelius { get; } = "Cornelius";
 	public static string Damuel { get; } = "Damuel";
+	public static string Deid { get; } = "Deid";
 	public static string Delia { get; } = "Delia";
 	public static string Dirk { get; } = "Dirk";
 	public static string Eckhart { get; } = "Eckhart";
@@ -25,6 +26,7 @@ public static class Characters
 	public static string Gunther { get; } = "Gunther";
 	public static string Gustav { get; } = "Gustav";
 	public static string Hugo { get; } = "Hugo";
+	public static string Ingo { get; } = "Ingo";
 	public static string Johann { get; } = "Johann";
 	public static string Kamil { get; } = "Kamil";
 	public static string Karstedt { get; } = "Kardstedt";
