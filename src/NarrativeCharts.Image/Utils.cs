@@ -12,16 +12,48 @@ public static class Utils
 
 		using var image = new MagickImage(new MagickColor("#FFFFFF"), range.RangeX, range.RangeY);
 
+		var duplicateLines = new HashSet<(Point, Point)>();
 		foreach (var (character, points) in chart.NarrativePoints.OrderBy(x => x.Value.Count))
 		{
 			var pointsArr = points.ToArray();
 			for (var i = 0; i < pointsArr.Length - 1; ++i)
 			{
-				var start = range.NormalizePoint(pointsArr[i].Point);
-				var end = range.NormalizePoint(pointsArr[i + 1].Point);
+				var point = pointsArr[i];
+				var nextPoint = pointsArr[i + 1];
+				var start = range.NormalizePoint(point.Point);
+				var end = range.NormalizePoint(nextPoint.Point);
+
+				var shift = 0;
+				// try to not have lines overlap
+				while (duplicateLines.Contains((start, end)))
+				{
+					start = start with
+					{
+						Y = start.Y - point.LineThickness,
+					};
+					end = end with
+					{
+						Y = end.Y - point.LineThickness,
+					};
+					shift += point.LineThickness;
+				}
+				// account for the shift by shifting the next point up (down when normalized)
+				// otherwise the lines dont line up
+				if (shift != 0)
+				{
+					pointsArr[i + 1] = nextPoint with
+					{
+						Point = nextPoint.Point with
+						{
+							Y = nextPoint.Point.Y + shift,
+						},
+					};
+				}
+				duplicateLines.Add((start, end));
+
 				new Drawables()
-					.StrokeColor(pointsArr[i].LineColor.ToMagickColor())
-					.StrokeWidth(pointsArr[i].LineThickness)
+					.StrokeColor(point.LineColor.ToMagickColor())
+					.StrokeWidth(point.LineThickness)
 					.Line(start.X, start.Y, end.X, end.Y)
 					.Draw(image);
 			}
