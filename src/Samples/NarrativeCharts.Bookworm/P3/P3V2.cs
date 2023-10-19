@@ -1,7 +1,7 @@
-﻿using static NarrativeCharts.Console.Characters;
-using static NarrativeCharts.Console.Locations;
+﻿using static NarrativeCharts.Bookworm.BookwormCharacters;
+using static NarrativeCharts.Bookworm.BookwormLocations;
 
-namespace NarrativeCharts.Console.P3;
+namespace NarrativeCharts.Bookworm.P3;
 
 public sealed class P3V2 : BookwormNarrativeChart
 {
@@ -19,7 +19,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 			Add(Scene(Temple).With(Ferdinand, Myne, Damuel, Delia, Dirk, Egmont, Ella, Gil, Monika, Nicola, Rosina, Wilma, Zahm, Fran, Brigitte));
 			Add(Scene(KarstedtsHouse).With(Karstedt, Elvira));
 			Add(Scene(Castle).With(Sylvester, Charlotte, Florencia, Melchior, Rihyarda, Cornelius, Eckhart, Lamprecht, Wilfried, Angelica, Norbert, Ottilie));
-			Add(Scene(KnightsOrder).With(Bezewanst, Bindewald));
+			Add(Scene(KnightsOrder).With(Bindewald));
 			Add(Scene(Hasse).With(Deid, Ingo));
 			Add(Scene(LowerCityWorkshops).With(Johann, Zack));
 			Add(Scene(GilbertaCompany).With(Benno, Leon, Lutz, Mark));

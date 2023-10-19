@@ -14,11 +14,11 @@ public class NarrativeChart
 
 	public void AddPoint(NarrativePoint point)
 	{
-		if (!Points.TryGetValue(point.Character, out var set))
+		if (!Points.TryGetValue(point.Character, out var points))
 		{
-			Points[point.Character] = set = new();
+			Points[point.Character] = points = new();
 		}
 
-		set[point.Point.X] = point;
+		points[point.Point.X] = point;
 	}
 }

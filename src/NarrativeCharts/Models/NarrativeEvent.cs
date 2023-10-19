@@ -3,4 +3,4 @@
 public sealed record NarrativeEvent(
 	Point Point,
 	string Name
-) : INarrativeItem;
+);

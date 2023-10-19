@@ -1,7 +1,7 @@
-﻿using static NarrativeCharts.Console.Characters;
-using static NarrativeCharts.Console.Locations;
+﻿using static NarrativeCharts.Bookworm.BookwormCharacters;
+using static NarrativeCharts.Bookworm.BookwormLocations;
 
-namespace NarrativeCharts.Console.P3;
+namespace NarrativeCharts.Bookworm.P3;
 
 public sealed class P3V1 : BookwormNarrativeChart
 {
@@ -163,6 +163,9 @@ public sealed class P3V1 : BookwormNarrativeChart
 			Time.AddBell();
 			Add(Scene(Temple).With(Ferdinand));
 			Add(Scene(Castle).With(Florencia, Sylvester, Wilfried));
+			// no idea on the exact time bezewanst gets killed, but probably before
+			// the inaguration ceremony
+			Kill(Bezewanst);
 		}
 
 		Chapter("Inaguration Ceremony");

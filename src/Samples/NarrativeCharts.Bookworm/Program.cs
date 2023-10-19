@@ -1,6 +1,6 @@
-﻿using NarrativeCharts.Console.P3;
+﻿using NarrativeCharts.Bookworm.P3;
 
-namespace NarrativeCharts.Console;
+namespace NarrativeCharts.Bookworm;
 
 public static class Program
 {
@@ -12,9 +12,9 @@ public static class Program
 
 		var kept = new HashSet<string>
 		{
-			Characters.Myne.Name,
-			Characters.Benno.Name,
-			Characters.Lutz.Name
+			BookwormCharacters.Myne.Name,
+			BookwormCharacters.Benno.Name,
+			BookwormCharacters.Lutz.Name
 		};
 		foreach (var key in p3v1.Points.Keys.ToList())
 		{
@@ -28,6 +28,6 @@ public static class Program
 		p3v1.Export(DIR);
 		p3v2.Export(DIR);
 
-		System.Console.ReadLine();
+		Console.ReadLine();
 	}
 }

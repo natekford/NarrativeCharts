@@ -1,18 +1,26 @@
 ﻿using NarrativeCharts.Models;
 using NarrativeCharts.ScottPlot;
 
+using System.Reflection;
 using System.Text;
 
-namespace NarrativeCharts.Console;
+namespace NarrativeCharts.Bookworm;
 
 public static class Utils
 {
+	private static readonly Dictionary<int, string> LocationPropertyNames =
+		typeof(BookwormLocations)
+			.GetProperties(BindingFlags.Public | BindingFlags.Static)
+			.Where(x => x.PropertyType == typeof(Location))
+			.Select(x => (Value: (Location)x.GetValue(null)!, Prop: x.Name))
+			.ToDictionary(x => x.Value.Y, x => x.Prop);
+
 	public static void Export(this BookwormNarrativeChart chart, string dir)
 	{
 		chart.PlotChart(6000, 1000, Path.Combine(dir, $"{chart.Name}_plot.png"));
 		chart.ExportFinalCharacterPositions(Path.Combine(dir, $"{chart.Name}_chars.txt"));
 
-		System.Console.WriteLine($"{chart.Name} total points: {chart.Points.Sum(x => x.Value.Count)}");
+		Console.WriteLine($"{chart.Name} total points: {chart.Points.Sum(x => x.Value.Count)}");
 	}
 
 	public static void ExportFinalCharacterPositions(this NarrativeChart chart, string path)
@@ -29,15 +37,17 @@ public static class Utils
 			Add(Scene(OthmarCompany).With(Freida, Gustav));
 		*/
 
-		var finalPoints = chart.Points.Select(x => x.Value.Values[^1]);
-		var grouped = finalPoints.GroupBy(x => x.Point.Y);
+		var grouped = chart.Points
+			.Select(x => x.Value.Values[^1])
+			.Where(x => !x.IsEnd)
+			.GroupBy(x => x.Point.Y);
 
 		var sb = new StringBuilder();
 		foreach (var group in grouped)
 		{
-			var location = Locations.PropertyDictionary[group.Key];
+			var property = LocationPropertyNames[group.Key];
 
-			sb.Append("Add(Scene(").Append(location).Append(").With(");
+			sb.Append("Add(Scene(").Append(property).Append(").With(");
 			var first = true;
 			foreach (var character in group)
 			{

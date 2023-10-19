@@ -1,21 +1,21 @@
 ﻿using System.Collections.Immutable;
 using System.Reflection;
 
-namespace NarrativeCharts.Console;
+namespace NarrativeCharts.Bookworm;
 
-public static class Characters
+public static class BookwormCharacters
 {
 	public static Character Angelica { get; } = new("Angelica", "#53B3DB");
 	public static Character Benno { get; } = new("Benno", "#E8CB9F");
 	public static Character Bezewanst { get; } = new("Bezewanst", "#BC9A9F");
 	public static Character Bindewald { get; } = new("Bindewald", "#B1C6C1");
 	public static Character Brigitte { get; } = new("Brigitte", "#A54254");
-	public static ImmutableDictionary<string, Character> CharacterDictionary { get; }
 	public static Character Charlotte { get; } = new("Charlotte", "#D3BD96");
 	public static Character Cornelius { get; } = new("Cornelius", "#A6B455");
 	public static Character Damuel { get; } = new("Damuel", "#967B4E");
 	public static Character Deid { get; } = new("Deid", "#F3EEB6");
 	public static Character Delia { get; } = new("Delia", "#A13F34");
+	public static ImmutableDictionary<string, Character> Dictionary { get; }
 	public static Character Dirk { get; } = new("Dirk", "#AD5A48");
 	public static Character Eckhart { get; } = new("Eckhart", "#5F7D3F");
 	public static Character Effa { get; } = new("Effa", "#A0AA8F");
@@ -55,9 +55,9 @@ public static class Characters
 	public static Character Zack { get; } = new("Zack", "#E05F0E");
 	public static Character Zahm { get; } = new("Zahm", "#000000");
 
-	static Characters()
+	static BookwormCharacters()
 	{
-		CharacterDictionary = typeof(Characters)
+		Dictionary = typeof(BookwormCharacters)
 			.GetProperties(BindingFlags.Public | BindingFlags.Static)
 			.Where(x => x.PropertyType == typeof(Character))
 			.Select(x => (Character)x.GetValue(null)!)

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace NarrativeCharts.Console;
+namespace NarrativeCharts.Bookworm;
 
 public class BookwormTimeTracker
 {
