@@ -4,6 +4,7 @@ namespace NarrativeCharts.Console;
 
 public abstract class BookwormNarrativeChart : NarrativeChart
 {
+	public abstract string Name { get; }
 	protected bool AlreadyCreaated { get; set; }
 	protected BookwormTimeTracker Time { get; }
 
@@ -32,8 +33,14 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		return this;
 	}
 
+	protected void Add(NarrativeScene scene)
+	{
+		this.AddScene(scene);
+		Update();
+	}
+
 	protected void Chapter(string _)
-		=> this.UpdatePoints(Time.CurrentTotalHours);
+		=> Update();
 
 	protected void Event(string name)
 		=> this!.AddEvent(new(new(Time.CurrentTotalHours, 0), name));
@@ -42,4 +49,13 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 	protected Point Scene(Location location)
 		=> new(Time.CurrentTotalHours, location.Y);
+
+	protected void Update()
+		=> this.UpdatePoints(Time.CurrentTotalHours);
+
+	protected void UpdateAndAddBell()
+	{
+		Update();
+		Time.AddBell();
+	}
 }

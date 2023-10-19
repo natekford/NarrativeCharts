@@ -18,6 +18,7 @@ public class NarrativeChart
 		{
 			Points[point.Character] = set = new();
 		}
-		set.Add(point.Point.X, point);
+
+		set[point.Point.X] = point;
 	}
 }

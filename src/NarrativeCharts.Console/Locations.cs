@@ -5,27 +5,28 @@ namespace NarrativeCharts.Console;
 
 public static class Locations
 {
-	public static Location Castle { get; } = new("Ehrenfest Castle", 200);
-	public static Location GilbertaCompany { get; } = new("Gilberta Company", -100);
-	public static Location Hasse { get; } = new("Hasse", 225);
-	public static Location ItalianRestaurant { get; } = new("Italian Restaurant", -25);
-	public static Location KarstedtsHouse { get; } = new("Karstedt's Estate", 150);
-	public static Location KnightsOrder { get; } = new("Knight's Order", 175);
+	public static Location Castle { get; } = new("Ehrenfest Castle", 150);
+	public static Location GilbertaCompany { get; } = new("Gilberta Company", -125);
+	public static Location Hasse { get; } = new("Hasse", 250);
+	public static Location ItalianRestaurant { get; } = new("Italian Restaurant", -75);
+	public static Location KarstedtsHouse { get; } = new("Karstedt's Estate", 75);
+	public static Location KnightsOrder { get; } = new("Knight's Order", 125);
 	public static ImmutableDictionary<string, Location> LocationDictionary { get; }
-	public static Location LowerCityForest { get; } = new("Lower City Forest", -50);
-	public static Location LowerCityWorkshops { get; } = new("Lower City Workshops", -225);
-	public static Location MynesHouse { get; } = new("Myne's Family's House", -250);
-	public static Location OthmarCompany { get; } = new("Othmar Company", -150);
-	public static Location RoyalAcademy { get; } = new("Royal Academy", 250);
+	public static Location LowerCityWorkshops { get; } = new("Lower City Workshops", -175);
+	public static Location MynesHouse { get; } = new("Myne's Family's House", -200);
+	public static Location OthmarCompany { get; } = new("Othmar Company", -100);
+	public static ImmutableDictionary<int, string> PropertyDictionary { get; }
 	public static Location Temple { get; } = new("Temple", 0);
 
 	static Locations()
 	{
-		LocationDictionary = typeof(Locations)
+		var temp = typeof(Locations)
 			.GetProperties(BindingFlags.Public | BindingFlags.Static)
 			.Where(x => x.PropertyType == typeof(Location))
-			.Select(x => (Location)x.GetValue(null)!)
-			.ToImmutableDictionary(x => x.Name, x => x);
+			.Select(x => (Value: (Location)x.GetValue(null)!, Prop: x.Name));
+
+		LocationDictionary = temp.ToImmutableDictionary(x => x.Value.Name, x => x.Value);
+		PropertyDictionary = temp.ToImmutableDictionary(x => x.Value.Y, x => x.Prop);
 	}
 }
 
