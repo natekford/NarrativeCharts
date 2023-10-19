@@ -81,6 +81,13 @@ public sealed class P3V2 : BookwormNarrativeChart
 			Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
 			Time.AddHour();
 			Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));
+			Time.AddBell();
+			Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+
+			// Time: "The three days passed before I knew it"
+			Time.GoToDaysAhead(3).EarlyMorning();
+			UpdateAndAddBell();
+			Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));
 		}
 
 		Chapter("End");

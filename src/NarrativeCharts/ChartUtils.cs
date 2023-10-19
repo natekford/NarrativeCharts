@@ -20,7 +20,7 @@ public static class ChartUtils
 	{
 		foreach (var character in scene.Characters)
 		{
-			chart.AddPoint(new(Point: scene.Point, Character: character));
+			chart.AddPoint(new(Point: scene.Point, Character: character, DoNotUpdate: false));
 		}
 	}
 
@@ -41,7 +41,7 @@ public static class ChartUtils
 		{
 			var lastPoint = points.Values[^1];
 			// lastPoint already reaches up to where we're trying to update
-			if (lastPoint.Point.X == x)
+			if (lastPoint.DoNotUpdate || lastPoint.Point.X == x)
 			{
 				continue;
 			}

@@ -2,5 +2,6 @@
 
 public sealed record NarrativePoint(
 	Point Point,
-	string Character
+	string Character,
+	bool DoNotUpdate
 ) : INarrativeItem;
