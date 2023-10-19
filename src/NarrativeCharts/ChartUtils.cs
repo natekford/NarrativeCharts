@@ -16,6 +16,14 @@ public static class ChartUtils
 		}
 	}
 
+	public static void AddScene(this NarrativeChart chart, NarrativeScene scene)
+	{
+		foreach (var character in scene.Characters)
+		{
+			chart.AddPoint(new(Point: scene.Point, Character: character));
+		}
+	}
+
 	public static IEnumerable<NarrativePoint> GetAllNarrativePoints(this NarrativeChart chart)
 	{
 		foreach (var (_, points) in chart.Points)
@@ -24,6 +32,27 @@ public static class ChartUtils
 			{
 				yield return point.Value;
 			}
+		}
+	}
+
+	public static void UpdatePoints(this NarrativeChart chart, int x)
+	{
+		foreach (var (character, points) in chart.Points)
+		{
+			var lastPoint = points.Values[^1];
+			// lastPoint already reaches up to where we're trying to update
+			if (lastPoint.Point.X == x)
+			{
+				continue;
+			}
+
+			chart.Points[character].Add(x, lastPoint with
+			{
+				Point = lastPoint.Point with
+				{
+					X = x
+				},
+			});
 		}
 	}
 }

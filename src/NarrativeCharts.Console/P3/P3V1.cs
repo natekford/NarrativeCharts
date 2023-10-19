@@ -1,280 +1,285 @@
-﻿using NarrativeCharts.Models;
-
-using static NarrativeCharts.Console.Characters;
+﻿using static NarrativeCharts.Console.Characters;
 using static NarrativeCharts.Console.Locations;
 
 namespace NarrativeCharts.Console.P3;
 
-public static class P3V1
+public sealed class P3V1 : BookwormNarrativeChart
 {
-	public static NarrativeChart Generate(BookwormTimeTracker time)
+	public P3V1(BookwormTimeTracker time) : base(time)
 	{
-		var p3v1 = new NarrativeChart();
-		Point Scene(int location) => new(time.CurrentTotalHours, location);
-		NarrativeEvent Event(string name) => new(new(time.CurrentTotalHours, 0), name);
+	}
 
-		// Chapter: Prologue
+	protected override void ProtectedCreate()
+	{
+		Chapter("Prologue");
 		{
 			// Prologue starts with Karstedt seeing Sylvester off
-			p3v1.AddScene(Scene(Temple).With(Ferdinand, Karstedt, Myne, Sylvester));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Leon, Lutz, Mark));
+			this.AddScene(Scene(Temple).With(Ferdinand, Karstedt, Myne, Sylvester));
+			this.AddScene(Scene(KnightsOrder).With(Bezewanst, Bindewald));
+			this.AddScene(Scene(Temple).With(Damuel, Delia, Dirk, Egmont, Ella, Gil, Monika, Nicola, Rosina, Wilma, Zahm));
+			this.AddScene(Scene(LowerCityWorkshops).With(Deid, Ingo, Johann));
+			this.AddScene(Scene(GilbertaCompany).With(Benno, Leon, Lutz, Mark));
+			this.AddScene(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
+			this.AddScene(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
+			this.AddScene(Scene(OthmarCompany).With(Freida, Gustav));
 			// Time: Immediately after
-			time.AddHour();
+			Time.AddHour();
 			// Sylvester goes back to AD conf
-			p3v1.AddScene(Scene(RoyalAcademy).With(Sylvester));
+			this.AddScene(Scene(RoyalAcademy).With(Sylvester));
 			// Discussion about Myne
-			p3v1.AddScene(Scene(Temple).With(Ferdinand, Karstedt));
+			this.AddScene(Scene(Temple).With(Ferdinand, Karstedt));
 			// karstedt probably goes back to his house after the discussion
-			time.AddBell();
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Karstedt));
+			Time.AddBell();
+			this.AddScene(Scene(KarstedtsHouse).With(Karstedt));
 
 			// Time: Next morning
-			time.GoToNextDay.Morning();
+			Time.GoToNextDay.Morning();
 			// Karstedt interrogates these 2
-			p3v1.AddScene(Scene(KnightsOrder).With(Bezewanst, Bindewald, Karstedt));
+			this.AddScene(Scene(KnightsOrder).With(Bezewanst, Bindewald, Karstedt));
 			// Time: Dinner
-			time.GoToCurrentDay.Dinner();
+			Time.GoToCurrentDay.Dinner();
 			// Discussion about Myne's baptism
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Elvira, Ferdinand, Karstedt));
+			this.AddScene(Scene(KarstedtsHouse).With(Elvira, Ferdinand, Karstedt));
 
 			// Time: The next day
-			time.GoToNextDay.Morning();
+			Time.GoToNextDay.Morning();
 			// Karstest keeps interrogating these 2
-			p3v1.AddScene(Scene(KnightsOrder).With(Bezewanst, Bindewald, Karstedt));
+			this.AddScene(Scene(KnightsOrder).With(Bezewanst, Bindewald, Karstedt));
 			// Time: Not long after
-			time.AddBell();
+			Time.AddBell();
 			// Myne's health checkup
-			p3v1.AddEvent(Event("Myne's Health Checkup"));
-			p3v1.AddScene(Scene(Temple).With(Ferdinand, Karstedt, Myne));
+			Event("Myne's Health Checkup");
+			this.AddScene(Scene(Temple).With(Ferdinand, Karstedt, Myne));
 			// SS1 of P3V1, no exact timeline but definitely in this 4 day period between kardstedt/ferdi discussion and myne arrive
 			// "Mother had said that she had important news and gathered Eckhart and I at the dinner table to discuss it over tea."
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Cornelius, Eckhart, Elvira));
+			this.AddScene(Scene(KarstedtsHouse).With(Cornelius, Eckhart, Elvira));
 		}
 
-		// Chapter: Examination Results and the Noble's Quarter
+		Chapter("Examination Results and the Noble's Quarter");
 		{
 			// Time: Immediately after
-			time.AddBell();
+			Time.AddBell();
 			// Leaving Ferdinand's office and going back to Myne's room
-			p3v1.AddScene(Scene(Temple).With(Damuel, Fran, Monika, Myne, Nicola, Rosina));
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Karstedt));
+			this.AddScene(Scene(Temple).With(Damuel, Fran, Monika, Myne, Nicola, Rosina));
+			this.AddScene(Scene(KarstedtsHouse).With(Karstedt));
 
 			// Time: Next 3 days
-			time.GoToDaysAhead(3).Morning();
+			Time.GoToDaysAhead(3).Morning();
 			// People in the temple getting ready for Myne going to the Noble's quarter
-			p3v1.AddScene(Scene(Temple).With(Ella, Fran, Gil, Monika, Myne, Nicola, Rosina, Wilma));
+			this.AddScene(Scene(Temple).With(Ella, Fran, Gil, Monika, Myne, Nicola, Rosina, Wilma));
 			// Cooks learning with Leise at Guildmaster's house (or italian restaurant?)
-			p3v1.AddScene(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
+			this.AddScene(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
 			// Time: Immediately after
-			time.AddHour();
-			// Leaving the temple and going to the Noble's quarter
-			p3v1.AddScene(Scene(TempleFrontEntrance).With(Ella, Ferdinand, Karstedt, Myne, Rosina));
+			Time.AddHour();
+			// Leaving the temple through the front entrance and going to the Noble's quarter
+			this.AddScene(Scene(Temple).With(Ella, Ferdinand, Karstedt, Myne, Rosina));
 			// Time: Immediately after
-			time.AddHour();
+			Time.AddHour();
 			// Arriving at Karstedt's house
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Cornelius, Ella, Elvira, Ferdinand, Karstedt, Myne, Rosina));
+			this.AddScene(Scene(KarstedtsHouse).With(Cornelius, Ella, Elvira, Ferdinand, Karstedt, Myne, Rosina));
 		}
 
 		// Karstedt and Cornelius commute to the Knight's Order every day so probably add that somehow?
 
-		// Chapter: Preparing for the Baptism Ceremony
+		Chapter("Preparing for the Baptism Ceremony");
 		{
 			// Time: Ferdinand checks on Myne every 2 days so probably stays like 6 hours each time?
-			time.AddBells(2);
+			Time.AddBells(2);
 			// Ferdinand going back to the temple
-			p3v1.AddScene(Scene(Temple).With(Ferdinand));
+			this.AddScene(Scene(Temple).With(Ferdinand));
 
 			for (var i = 0; i < 2; ++i)
 			{
-				time.GoToDaysAhead(2).Meetings();
-				p3v1.AddScene(Scene(KarstedtsHouse).With(Ferdinand));
-				time.AddBells(2);
-				p3v1.AddScene(Scene(Temple).With(Ferdinand));
+				Time.GoToDaysAhead(2).Meetings();
+				this.AddScene(Scene(KarstedtsHouse).With(Ferdinand));
+				Time.AddBells(2);
+				this.AddScene(Scene(Temple).With(Ferdinand));
 			}
 
 			// Time: On a day where Ferdinand isn't there?
-			time.GoToNextDay.Meetings();
+			Time.GoToNextDay.Meetings();
 			// Gilberta company comes to sell some rinsham to Myne
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Benno, Mark));
-			time.AddBell();
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Mark));
+			this.AddScene(Scene(KarstedtsHouse).With(Benno, Mark));
+			Time.AddBell();
+			this.AddScene(Scene(GilbertaCompany).With(Benno, Mark));
 
 			// Time: A day after the Gilberta company visits?
-			time.GoToNextDay.Meetings();
+			Time.GoToNextDay.Meetings();
 			// Ferdinand promises Myne book room key if she memorizes everyone's names before baptism
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Ferdinand));
+			this.AddScene(Scene(KarstedtsHouse).With(Ferdinand));
 
 			// Gil + Gilberta company go to some city's orphanage
 			// Exact time isn't given but probably after Benno sells Elvira rinsham and definitely before Myne gets inagurated as
 			// the High Bishop
-			p3v1.AddScene(Scene(Hasse).With(Benno, Gil, Lutz));
+			this.AddScene(Scene(Hasse).With(Benno, Gil, Lutz));
 
 			for (var i = 0; i < 3; ++i)
 			{
-				time.AddBells(2);
-				p3v1.AddScene(Scene(Temple).With(Ferdinand));
-				time.GoToDaysAhead(2).Meetings();
-				p3v1.AddScene(Scene(KarstedtsHouse).With(Ferdinand));
+				Time.AddBells(2);
+				this.AddScene(Scene(Temple).With(Ferdinand));
+				Time.GoToDaysAhead(2).Meetings();
+				this.AddScene(Scene(KarstedtsHouse).With(Ferdinand));
 			}
-			time.AddBells(2);
-			p3v1.AddScene(Scene(Temple).With(Ferdinand));
+			Time.AddBells(2);
+			this.AddScene(Scene(Temple).With(Ferdinand));
 
 			// Time: The day before the baptism
-			time.GoToNextDay.Meetings();
+			Time.GoToNextDay.Meetings();
 			// Eckhart and Lemprecht come back home from the knight's barracks for Myne's baptism
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Eckhart, Lamprecht));
+			this.AddScene(Scene(KarstedtsHouse).With(Eckhart, Lamprecht));
 
 			// Gil + Gilberta company come back from some city's orphanage
 			// Exact time isn't given but definitely before Myne gets inagurated as the High Bishop
-			p3v1.AddScene(Scene(Temple).With(Gil));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Lutz));
+			this.AddScene(Scene(Temple).With(Gil));
+			this.AddScene(Scene(GilbertaCompany).With(Benno, Lutz));
 		}
 
-		// Chapter: A Noble's Baptism Ceremony
+		Chapter("A Noble's Baptism Ceremony");
 		{
-			time.GoToNextDay.Meetings();
+			Time.GoToNextDay.Meetings();
 			// Everyone arrives for Myne's baptism (SS would add a bunch of characters)
-			p3v1.AddEvent(Event("Myne's Baptism"));
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Ferdinand, Florencia, Sylvester, Wilfried));
+			Event("Myne's Baptism");
+			this.AddScene(Scene(KarstedtsHouse).With(Ferdinand, Florencia, Sylvester, Wilfried));
 		}
 
-		// Chapter: Adoption
+		Chapter("Adoption");
 		{
 			// Time: Immediately after the baptism ceremony
-			time.AddBell();
+			Time.AddBell();
 			// Guard knights get introduced to Myne and Wilf makes Myne pass out
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Brigitte, Damuel));
+			this.AddScene(Scene(KarstedtsHouse).With(Brigitte, Damuel));
 			// Time: After Myne wakes up and talks with Ferdinand/Karstedt
-			time.AddBell();
-			p3v1.AddScene(Scene(Temple).With(Ferdinand));
-			p3v1.AddScene(Scene(Castle).With(Florencia, Sylvester, Wilfried));
+			Time.AddBell();
+			this.AddScene(Scene(Temple).With(Ferdinand));
+			this.AddScene(Scene(Castle).With(Florencia, Sylvester, Wilfried));
 		}
 
-		// Chapter: Inaguration Ceremony
+		Chapter("Inaguration Ceremony");
 		{
 			// Time: "Ferdinand had told me to use the day after my baptism ceremony to rest."
-			time.GoToNextDay.Morning();
+			Time.GoToNextDay.Morning();
 			// Lamprecht gives Myne a book and goes back the castle
-			p3v1.AddScene(Scene(Castle).With(Lamprecht));
+			this.AddScene(Scene(Castle).With(Lamprecht));
 
 			// Time: The next day
-			time.GoToNextDay.Morning();
+			Time.GoToNextDay.Morning();
 			// "Karstedt and Cornelius had already headed to the Knight’s Order, so Elvira was the only one to see me off."
-			p3v1.AddScene(Scene(KnightsOrder).With(Cornelius, Karstedt));
-			p3v1.AddScene(Scene(Temple).With(Brigitte, Damuel, Ella, Myne, Rosina).Interped());
+			this.AddScene(Scene(KnightsOrder).With(Cornelius, Karstedt));
+			this.AddScene(Scene(Temple).With(Brigitte, Damuel, Ella, Myne, Rosina));
 			// Inaguration ceremony
-			time.AddBell();
+			Time.AddBell();
 			// Egmont gets crushed a bit
-			p3v1.AddScene(Scene(Temple).With(Egmont));
+			this.AddScene(Scene(Temple).With(Egmont));
 		}
 
-		// Chapter: Reunited at Last
+		Chapter("Reunited at Last");
 		{
 			// Time: "As I ate breakfast the next morning, Gil informed me ... meeting with the Gilberta Company later that day ..."
 			// "The Gilberta Company was due to arrive at third bell"
-			time.GoToNextDay.Morning();
+			Time.GoToNextDay.Morning();
 			// Zahm introduced as Arno's replacement
-			p3v1.AddScene(Scene(Temple).With(Benno, Lutz, Mark, Zahm));
+			this.AddScene(Scene(Temple).With(Benno, Lutz, Mark, Zahm));
 		}
 
-		// Chapter: How to Make Fluffy Bread
+		Chapter("How to Make Fluffy Bread");
 		{
-			time.AddBell();
+			Time.AddBell();
 			// Leaving after discussing printing/restaurant
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Lutz, Mark));
+			this.AddScene(Scene(GilbertaCompany).With(Benno, Lutz, Mark));
 		}
 
-		// Chapter: Starbind Ceremony in the Lower City
+		Chapter("Starbind Ceremony in the Lower City");
 		{
 			// Time: "As the Starbind Ceremony approached," idk, a couple days later?
-			time.GoToDaysAhead(3).Meetings();
+			Time.GoToDaysAhead(3).Meetings();
 			// "Today was a day when Benno and Lutz were visiting from the Gilberta Company"
-			p3v1.AddScene(Scene(Temple).With(Benno, Lutz));
-			time.AddBell();
+			this.AddScene(Scene(Temple).With(Benno, Lutz));
+			Time.AddBell();
 			// Leaving after discussing starbinding ceremony
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Lutz));
+			this.AddScene(Scene(GilbertaCompany).With(Benno, Lutz));
 			// Time: "And so, the day of the Starbind Ceremony arrived."
-			time.GoToDaysAhead(2).Morning();
-			p3v1.AddEvent(Event("Starbind Ceremony"));
+			Time.GoToDaysAhead(2).Morning();
+			Event("Starbind Ceremony");
 			// "I thought about him, Lutz, and the kids who were about to head to the forest."
-			p3v1.AddScene(Scene(LowerCityForest).With(Gil, Lutz));
+			this.AddScene(Scene(LowerCityForest).With(Gil, Lutz));
 			// "my whole family had come to see me as the High Bishop."
-			p3v1.AddScene(Scene(Temple).With(Effa, Gunther, Kamil, Tuuli));
+			this.AddScene(Scene(Temple).With(Effa, Gunther, Kamil, Tuuli));
 		}
 
-		// Chapter: The Archduke's Castle
+		Chapter("The Archduke's Castle");
 		{
 			// Time: lunch is between the lower city and noble starbindings
-			time.AddBell();
-			p3v1.AddScene(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
-			p3v1.AddScene(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Fran, Myne, Rosina));
+			Time.AddBell();
+			this.AddScene(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
+			this.AddScene(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Fran, Myne, Rosina));
 			// Myne gets introduced to her temp guard knights and some attendents
-			p3v1.AddScene(Scene(Castle).With(Angelica, Cornelius, Norbert, Rihyarda));
+			this.AddScene(Scene(Castle).With(Angelica, Cornelius, Norbert, Rihyarda));
 			// gil and lutz probably return from the forest fairly soon
-			p3v1.AddScene(Scene(Temple).With(Gil));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
-			time.AddBell();
+			this.AddScene(Scene(Temple).With(Gil));
+			this.AddScene(Scene(GilbertaCompany).With(Lutz));
+			Time.AddBell();
 			// kids say good night to aub
-			p3v1.AddScene(Scene(Castle).With(Charlotte, Melchior));
+			this.AddScene(Scene(Castle).With(Charlotte, Melchior));
 		}
 
-		// Chapter: Starbind Ceremony in the Noble's Quarter
+		Chapter("Starbind Ceremony in the Noble's Quarter");
 		{
+			Time.AddHour();
 			// myne gets changed into high bishop outfit
-			p3v1.AddScene(Scene(Castle).With(Ottilie));
+			this.AddScene(Scene(Castle).With(Ottilie));
 			// karstedt was behind sylvester at the ceremony
-			p3v1.AddScene(Scene(Castle).With(Karstedt));
+			this.AddScene(Scene(Castle).With(Karstedt));
 		}
 
-		// Chapter: The Archduke and the Italian Restaurant
+		Chapter("The Archduke and the Italian Restaurant");
 		{
 			// Time: the next day
-			time.GoToNextDay.Morning();
+			Time.GoToNextDay.Morning();
 			// "He sent his attendants back to the temple without him"
-			p3v1.AddScene(Scene(Temple).With(Fran, Rosina));
+			this.AddScene(Scene(Temple).With(Fran, Rosina));
 			// Time: "later that afternoon that my fever finally went down."
-			time.GoToNextDay.MarketClose();
+			Time.GoToNextDay.MarketClose();
 			// "He put me onto his highbeast and we returned to the temple accompanied by Damuel and Brigitte, who followed on either side of us."
-			p3v1.AddScene(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+			this.AddScene(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
 
 			// Time: tomorrow
-			time.GoToNextDay.Meetings();
+			Time.GoToNextDay.Meetings();
 			// "Leon will be coming by tomorrow to get the natural yeast"
-			p3v1.AddScene(Scene(Temple).With(Leon));
-			time.AddHour();
-			p3v1.AddScene(Scene(GilbertaCompany).With(Leon));
+			this.AddScene(Scene(Temple).With(Leon));
+			Time.AddHour();
+			this.AddScene(Scene(GilbertaCompany).With(Leon));
 
 			// Time: 3rd bell of the next day
-			time.GoToNextDay.Meetings();
-			p3v1.AddEvent(Event("Italian Restaurant"));
+			Time.GoToNextDay.Meetings();
+			Event("Italian Restaurant");
 			// sylvester arrives in the temple early on the day of the italian restaurant visit
-			p3v1.AddScene(Scene(Temple).With(Cornelius, Eckhart, Karstedt, Sylvester));
-			time.AddHour();
+			this.AddScene(Scene(Temple).With(Cornelius, Eckhart, Karstedt, Sylvester));
+			Time.AddHour();
 			// rosina leaves early b/c she plays music
-			p3v1.AddScene(Scene(ItalianRestaurant).With(Rosina));
-			time.AddBell();
-			p3v1.AddScene(Scene(ItalianRestaurant).With(Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Fran, Karstedt, Myne, Sylvester, Zahm));
-			p3v1.AddScene(Scene(ItalianRestaurant).With(Benno, Freida, Gustav, Leon, Mark));
+			this.AddScene(Scene(ItalianRestaurant).With(Rosina));
+			Time.AddBell();
+			this.AddScene(Scene(ItalianRestaurant).With(Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Fran, Karstedt, Myne, Sylvester, Zahm));
+			this.AddScene(Scene(ItalianRestaurant).With(Benno, Freida, Gustav, Leon, Mark));
 		}
 
-		// Chapter: Making a Monastery
+		Chapter("Making a Monastery");
 		{
 			// Time: after lunch at the italian restaurant
-			time.AddBell();
+			Time.AddBell();
 			// hasse orphanage designed, fly over with highbeasts
-			p3v1.AddScene(Scene(Hasse).With(Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester));
-			time.AddBell();
+			this.AddScene(Scene(Hasse).With(Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester));
+			Time.AddBell();
 			// hasse orphanage is built and they return to the restaurant
-			p3v1.AddScene(Scene(ItalianRestaurant).With(Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester));
-			time.AddHour();
+			this.AddScene(Scene(ItalianRestaurant).With(Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester));
+			Time.AddHour();
 			// ferdi hires todd as a chef to arrive in the tmple in 36 hours from now
 			// syl hires hugo for the castle
-			p3v1.AddScene(Scene(OthmarCompany).With(Freida, Gustav));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Leon, Mark));
-			p3v1.AddScene(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Cornelius, Karstedt));
-			p3v1.AddScene(Scene(KnightsOrder).With(Eckhart));
-			p3v1.AddScene(Scene(Castle).With(Sylvester));
+			this.AddScene(Scene(OthmarCompany).With(Freida, Gustav));
+			this.AddScene(Scene(GilbertaCompany).With(Benno, Leon, Mark));
+			this.AddScene(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+			this.AddScene(Scene(KarstedtsHouse).With(Cornelius, Karstedt));
+			this.AddScene(Scene(KnightsOrder).With(Eckhart));
+			this.AddScene(Scene(Castle).With(Sylvester));
 		}
 
 		// Background Event
@@ -282,200 +287,196 @@ public static class P3V1
 			// no transition between chapters so no idea the time difference between italian restaurant and donations chapter
 			// but hugo is in the castle kitched at that point, and we can probably assume he goes at the same time
 			// todd goes to ferdi's temple kitchen at 2nd bell
-			time.GoToDaysAhead(2).Morning();
-			p3v1.AddScene(Scene(Temple).With(Todd));
-			p3v1.AddScene(Scene(Castle).With(Ella, Hugo));
+			Time.GoToDaysAhead(2).Morning();
+			this.AddScene(Scene(Temple).With(Todd));
+			this.AddScene(Scene(Castle).With(Ella, Hugo));
 		}
 
-		// Chapter: How to Gather Donations
+		Chapter("How to Gather Donations");
 		{
 			// Time: during the day, has to be around 17 days letter since ella went to the castle for a month and this is the only
 			// section that has an unknown timeskip (the accounted for time between now and when ella is back in the temple during
 			// elvira/lamp's visit is ~13 days)
-			time.GoToDaysAhead(17).Meetings();
-			p3v1.AddEvent(Event("Gathering Donations"));
+			Time.GoToDaysAhead(17).Meetings();
+			Event("Gathering Donations");
 			// donation tea party with flor, elvira, and myne
 			// brigitte mentioned in next segment, so other guard knights probably also there
-			p3v1.AddScene(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Elvira, Myne));
-			time.AddBell();
+			this.AddScene(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Elvira, Myne));
+			Time.AddBell();
 			// elvira probably goes back after the tea party
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Elvira));
+			this.AddScene(Scene(KarstedtsHouse).With(Elvira));
 
 			// Time: "I had been bedridden for two days since the tea party"
-			time.GoToDaysAhead(2).Meetings();
+			Time.GoToDaysAhead(2).Meetings();
 			// ferdi, elvira, flor visit sick myne
-			p3v1.AddScene(Scene(Castle).With(Elvira, Ferdinand));
-			time.AddBell();
+			this.AddScene(Scene(Castle).With(Elvira, Ferdinand));
+			Time.AddBell();
 			// ferdi leaves after agreeing to play harspiel
-			p3v1.AddScene(Scene(Temple).With(Ferdinand));
+			this.AddScene(Scene(Temple).With(Ferdinand));
 		}
 
-		// Chapter: My First Magic Training Regimen
+		Chapter("My First Magic Training Regimen");
 		{
-			time.GoToNextDay.Meetings();
-			p3v1.AddScene(Scene(Castle).With(Ferdinand));
-			time.AddHour();
+			Time.GoToNextDay.Meetings();
+			this.AddScene(Scene(Castle).With(Ferdinand));
+			Time.AddHour();
 			// ferdi and myne go to some place to train magic
-			p3v1.AddScene(Scene(KnightsOrder).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Myne));
-			time.AddBells(2);
+			this.AddScene(Scene(KnightsOrder).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Myne));
+			Time.AddBells(2);
 			// myne blows up her feystone and reforms it then they go back to the castle
-			p3v1.AddScene(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Myne));
-			time.AddHour();
-			p3v1.AddScene(Scene(Temple).With(Ferdinand));
+			this.AddScene(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Myne));
+			Time.AddHour();
+			this.AddScene(Scene(Temple).With(Ferdinand));
 		}
 
-		// Chapter: Working Toward Wax Stencils
+		Chapter("Working Toward Wax Stencils");
 		{
 			// Time: "dinnertime was my one opportunity to talk to them."
-			time.GoToNextDay.Dinner();
-			p3v1.AddScene(Scene(Castle).With(Florencia, Lamprecht, Myne, Sylvester, Wilfried));
+			Time.GoToNextDay.Dinner();
+			this.AddScene(Scene(Castle).With(Florencia, Lamprecht, Myne, Sylvester, Wilfried));
 
-			time.GoToNextDay.Meetings();
-			p3v1.AddScene(Scene(Temple).With(Brigitte, Damuel, Myne));
-			p3v1.AddScene(Scene(Temple).With(Benno, Lutz));
-			time.AddBell();
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno));
+			Time.GoToNextDay.Meetings();
+			this.AddScene(Scene(Temple).With(Brigitte, Damuel, Myne));
+			this.AddScene(Scene(Temple).With(Benno, Lutz));
+			Time.AddBell();
+			this.AddScene(Scene(GilbertaCompany).With(Benno));
 		}
 
-		// Chapter: An Illustration of Ferdinand
+		Chapter("An Illustration of Ferdinand");
 		{
+			Time.AddHour();
 			// myne has dirk drain his mana with a taue fruit and cuts some trombes
-			p3v1.AddScene(Scene(Temple).With(Brigitte, Damuel, Delia, Dirk, Fran, Gil, Lutz, Monika, Myne, Rosina, Wilma));
-			time.AddBell();
-			p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
+			this.AddScene(Scene(Temple).With(Brigitte, Damuel, Delia, Dirk, Fran, Gil, Lutz, Monika, Myne, Rosina, Wilma));
+			Time.AddBell();
+			this.AddScene(Scene(GilbertaCompany).With(Lutz));
 		}
 
-		// Chapter: Johann and Zack
+		Chapter("Johann and Zack");
 		{
-			time.GoToNextDay.Meetings();
-			p3v1.AddScene(Scene(Temple).With(Johann, Lutz, Zack));
-			p3v1.AddScene(Scene(LowerCityForest).With(Gil));
-			time.AddBell();
-			p3v1.AddScene(Scene(LowerCityWorkshops).With(Johann, Zack));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
-			p3v1.AddScene(Scene(Temple).With(Gil));
+			Time.GoToNextDay.Meetings();
+			this.AddScene(Scene(Temple).With(Johann, Lutz, Zack));
+			this.AddScene(Scene(LowerCityForest).With(Gil));
+			Time.AddBell();
+			this.AddScene(Scene(LowerCityWorkshops).With(Johann, Zack));
+			this.AddScene(Scene(GilbertaCompany).With(Lutz));
+			this.AddScene(Scene(Temple).With(Gil));
 
-			time.GoToDaysAhead(3).Meetings();
+			Time.GoToDaysAhead(3).Meetings();
 			// johann and zack return with their blueprints for the wax stencil machine
-			p3v1.AddScene(Scene(Temple).With(Johann, Lutz, Zack));
-			time.AddBell();
-			p3v1.AddScene(Scene(LowerCityWorkshops).With(Johann, Zack));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
+			this.AddScene(Scene(Temple).With(Johann, Lutz, Zack));
+			Time.AddBell();
+			this.AddScene(Scene(LowerCityWorkshops).With(Johann, Zack));
+			this.AddScene(Scene(GilbertaCompany).With(Lutz));
 
-			time.GoToNextDay.Meetings();
+			Time.GoToNextDay.Meetings();
 			// tuuli gives myne a hairpin
-			p3v1.AddScene(Scene(Temple).With(Lutz, Tuuli));
-			time.AddBell();
-			p3v1.AddScene(Scene(MynesHouse).With(Tuuli));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
+			this.AddScene(Scene(Temple).With(Lutz, Tuuli));
+			Time.AddBell();
+			this.AddScene(Scene(MynesHouse).With(Tuuli));
+			this.AddScene(Scene(GilbertaCompany).With(Lutz));
 		}
 
 		// Background Event
 		{
 			// Time: roughly a month after the chefs get loaned out
-			time.GoToNextDay.Morning();
-			p3v1.AddScene(Scene(Temple).With(Ella));
-			p3v1.AddScene(Scene(ItalianRestaurant).With(Hugo, Todd));
+			Time.GoToNextDay.Morning();
+			this.AddScene(Scene(Temple).With(Ella));
+			this.AddScene(Scene(ItalianRestaurant).With(Hugo, Todd));
 		}
 
-		// Chapter: Elvira and Lamprecht Attack
+		Chapter("Elvira and Lamprecht Attack");
 		{
 			// Time: "It was the day after I had met with Tuuli."
-			time.GoToNextDay.Meetings();
-			p3v1.AddScene(Scene(Temple).With(Lutz));
-			time.AddBell();
-			p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
+			Time.GoToNextDay.Meetings();
+			this.AddScene(Scene(Temple).With(Lutz));
+			Time.AddBell();
+			this.AddScene(Scene(GilbertaCompany).With(Lutz));
 
 			// Time: 3 days later
-			time.GoToDaysAhead(2).Meetings();
+			Time.GoToDaysAhead(2).Meetings();
 			// elvira and lemprecht visit the temple to eat some of ella's food
-			p3v1.AddScene(Scene(Temple).With(Elvira, Lamprecht));
-			time.AddBell();
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Elvira));
-			p3v1.AddScene(Scene(Castle).With(Lamprecht));
+			this.AddScene(Scene(Temple).With(Elvira, Lamprecht));
+			Time.AddBell();
+			this.AddScene(Scene(KarstedtsHouse).With(Elvira));
+			this.AddScene(Scene(Castle).With(Lamprecht));
 
 			// Time: unknown, not the same day
-			time.GoToNextDay.Meetings();
+			Time.GoToNextDay.Meetings();
 			// lutz tells about johann and zack's progress
-			p3v1.AddScene(Scene(Temple).With(Lutz));
+			this.AddScene(Scene(Temple).With(Lutz));
 		}
 
-		// Chapter: Finishing My Highbeast and the Wax Stencils
+		Chapter("Finishing My Highbeast and the Wax Stencils");
 		{
-			time.AddBell();
+			Time.AddBell();
 			// myne goes to the castle to make her highbeast
-			p3v1.AddScene(Scene(KnightsOrder).With(Brigitte, Damuel, Ferdinand, Myne));
-			time.AddBell();
-			p3v1.AddEvent(Event("Myne Creates Lessy"));
+			this.AddScene(Scene(KnightsOrder).With(Brigitte, Damuel, Ferdinand, Myne));
+			Time.AddBell();
+			Event("Myne Creates Lessy");
 			// they go back to the temple after myne creates lessy
-			p3v1.AddScene(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+			this.AddScene(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
 
 			// Time: "From there, I spent my days practicing ... "
 			// "It was the evening five days before Ferdinand’s concert."
 			// 13 days since concert was said to be "in a month"
 			// so a 12 day timeskip at minimum
-			time.GoToDaysAhead(12).MarketClose();
+			Time.GoToDaysAhead(12).MarketClose();
 			// lutz and smiths visit with a wax machine
-			p3v1.AddScene(Scene(Temple).With(Lutz, Johann, Zack));
-			time.AddBell();
-			p3v1.AddScene(Scene(LowerCityWorkshops).With(Johann, Zack));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
+			this.AddScene(Scene(Temple).With(Lutz, Johann, Zack));
+			Time.AddBell();
+			this.AddScene(Scene(LowerCityWorkshops).With(Johann, Zack));
+			this.AddScene(Scene(GilbertaCompany).With(Lutz));
 
 			// Time: "“Good morning, Lady Rozemyne,”"
-			time.GoToNextDay.Morning();
-			p3v1.AddScene(Scene(Temple).With(Lutz));
-			time.AddBell();
-			p3v1.AddScene(Scene(GilbertaCompany).With(Lutz));
+			Time.GoToNextDay.Morning();
+			this.AddScene(Scene(Temple).With(Lutz));
+			Time.AddBell();
+			this.AddScene(Scene(GilbertaCompany).With(Lutz));
 		}
 
-		// Chapter: The Harspiel Concert
+		Chapter("The Harspiel Concert");
 		{
 			// Time: "I returned to the castle the day before the concert."
-			time.GoToDaysAhead(3).Morning();
+			Time.GoToDaysAhead(3).Morning();
 			// myne talks to ferdi and reminds him about the conert
-			time.AddHour();
+			Time.AddHour();
 			// "We made our way to the castle. Ella and Rosina were in the carriage for attendants, while my two guard knights and I got into the carriage for nobles."
-			p3v1.AddScene(Scene(Castle).With(Brigitte, Damuel, Ella, Myne, Rosina));
+			this.AddScene(Scene(Castle).With(Brigitte, Damuel, Ella, Myne, Rosina));
 			// "Elvira and Florencia were already waiting for me in the castle."
-			p3v1.AddScene(Scene(Castle).With(Elvira, Florencia));
+			this.AddScene(Scene(Castle).With(Elvira, Florencia));
 
 			// Time: "And so came the day of the concert." meeting time? afternoon time? no clue
-			time.GoToNextDay.MarketClose();
-			p3v1.AddEvent(Event("Harspiel Concert"));
-			p3v1.AddScene(Scene(Castle).With(Eckhart, Ferdinand, Karstedt));
-			time.AddBell();
-			p3v1.AddScene(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
-			p3v1.AddScene(Scene(KarstedtsHouse).With(Elvira, Karstedt));
+			Time.GoToNextDay.MarketClose();
+			Event("Harspiel Concert");
+			this.AddScene(Scene(Castle).With(Eckhart, Ferdinand, Karstedt));
+			Time.AddBell();
+			this.AddScene(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
+			this.AddScene(Scene(KarstedtsHouse).With(Elvira, Karstedt));
 
 			// Time: "It was several days after the concert,"
-			time.GoToDaysAhead(3).Meetings();
+			Time.GoToDaysAhead(3).Meetings();
 			// "Ferdinand had summoned me to his lecture room just like in the old days."
-			p3v1.AddScene(Scene(Temple).With(Ferdinand, Myne));
+			this.AddScene(Scene(Temple).With(Ferdinand, Myne));
 		}
 
-		// Chapter: Epilogue
+		Chapter("Epilogue");
 		{
 			// Time: some time after myne gets lectured
 			// "“Lutz, the customers have all left,”"
-			time.GoToDaysAhead(2).MarketClose();
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Lutz, Mark));
+			Time.GoToDaysAhead(2).MarketClose();
+			this.AddScene(Scene(GilbertaCompany).With(Benno, Leon, Lutz, Mark));
 			// "Ingo and his wife—the owners of the carpentry workshop that Rozemyne exclusively gave business to—were currently living in the monastery in Hasse"
 			// "Deid, would also be heading there soon"
-			p3v1.AddScene(Scene(Hasse).With(Deid, Ingo));
+			this.AddScene(Scene(Hasse).With(Deid, Ingo));
 
 			// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director’s chambers."
-			time.GoToDaysAhead(2).Meetings();
-			p3v1.AddScene(Scene(Temple).With(Benno, Lutz, Tuuli));
-			time.AddBell();
-			p3v1.AddScene(Scene(MynesHouse).With(Tuuli));
-			p3v1.AddScene(Scene(GilbertaCompany).With(Benno, Lutz));
+			Time.GoToDaysAhead(2).Meetings();
+			this.AddScene(Scene(Temple).With(Benno, Lutz, Tuuli));
+			Time.AddBell();
+			this.AddScene(Scene(MynesHouse).With(Tuuli));
+			this.AddScene(Scene(GilbertaCompany).With(Benno, Lutz));
 		}
 
-		// End
-		{
-			p3v1.AddScene(Scene(Temple).With(Ferdinand, Myne));
-		}
-
-		return p3v1;
+		Chapter("End");
 	}
 }
