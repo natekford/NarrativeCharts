@@ -96,21 +96,24 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 			for (var i = 0; i < 2; ++i)
 			{
-				Time.GoToDaysAhead(2).Meetings();
+				Time.GoToDaysAhead(2).Morning();
+				UpdateAndAddBell();
 				Add(Scene(KarstedtsHouse).With(Ferdinand));
 				Time.AddBells(2);
 				Add(Scene(Temple).With(Ferdinand));
 			}
 
 			// Time: On a day where Ferdinand isn't there?
-			Time.GoToNextDay.Meetings();
+			Time.GoToNextDay.Morning();
+			UpdateAndAddBell();
 			// Gilberta company comes to sell some rinsham to Myne
 			Add(Scene(KarstedtsHouse).With(Benno, Mark));
 			Time.AddBell();
 			Add(Scene(GilbertaCompany).With(Benno, Mark));
 
 			// Time: A day after the Gilberta company visits?
-			Time.GoToNextDay.Meetings();
+			Time.GoToNextDay.EarlyMorning();
+			UpdateAndAddBell();
 			// Ferdinand promises Myne book room key if she memorizes everyone's names before baptism
 			Add(Scene(KarstedtsHouse).With(Ferdinand));
 
@@ -124,7 +127,8 @@ public sealed class P3V1 : BookwormNarrativeChart
 			{
 				Time.AddBells(2);
 				Add(Scene(Temple).With(Ferdinand));
-				Time.GoToDaysAhead(2).Meetings();
+				Time.GoToDaysAhead(2).Morning();
+				UpdateAndAddBell();
 				Add(Scene(KarstedtsHouse).With(Ferdinand));
 			}
 			Time.AddBells(2);
@@ -183,7 +187,8 @@ public sealed class P3V1 : BookwormNarrativeChart
 		{
 			// Time: "As I ate breakfast the next morning, Gil informed me ... meeting with the Gilberta Company later that day ..."
 			// "The Gilberta Company was due to arrive at third bell"
-			Time.GoToNextDay.Morning();
+			Time.GoToNextDay.EarlyMorning();
+			UpdateAndAddBell();
 			// Zahm introduced as Arno's replacement
 			Add(Scene(Temple).With(Benno, Lutz, Mark, Zahm));
 		}
@@ -198,14 +203,16 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Chapter("Starbind Ceremony in the Lower City");
 		{
 			// Time: "As the Starbind Ceremony approached," idk, a couple days later?
-			Time.GoToDaysAhead(3).Meetings();
+			Time.GoToDaysAhead(3).Morning();
+			UpdateAndAddBell();
 			// "Today was a day when Benno and Lutz were visiting from the Gilberta Company"
 			Add(Scene(Temple).With(Benno, Lutz));
 			Time.AddBell();
 			// Leaving after discussing starbinding ceremony
 			Add(Scene(GilbertaCompany).With(Benno, Lutz));
 			// Time: "And so, the day of the Starbind Ceremony arrived."
-			Time.GoToDaysAhead(2).Morning();
+			Time.GoToDaysAhead(2).EarlyMorning();
+			UpdateAndAddBell();
 			Event("Starbind Ceremony");
 			// "I thought about him, Lutz, and the kids who were about to head to the forest."
 			Add(Scene(Temple).With(Lutz));
@@ -357,7 +364,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		{
 			Time.AddHour();
 			// myne has dirk drain his mana with a taue fruit and cuts some trombes
-			Add(Scene(Temple).With(Brigitte, Damuel, Delia, Dirk, Fran, Gil, Lutz, Monika, Myne, Rosina, Wilma));
+			Add(Scene(Temple).With(Delia, Dirk));
 			Time.AddBell();
 			Add(Scene(GilbertaCompany).With(Lutz));
 		}
@@ -373,7 +380,8 @@ public sealed class P3V1 : BookwormNarrativeChart
 			Add(Scene(GilbertaCompany).With(Lutz));
 			Add(Scene(Temple).With(Gil));
 
-			Time.GoToDaysAhead(3).Meetings();
+			Time.GoToDaysAhead(3).Morning();
+			UpdateAndAddBell();
 			// johann and zack return with their blueprints for the wax stencil machine
 			Add(Scene(Temple).With(Johann, Lutz, Zack));
 			Time.AddBell();
@@ -485,7 +493,8 @@ public sealed class P3V1 : BookwormNarrativeChart
 			Add(Scene(Hasse).With(Deid, Ingo));
 
 			// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director’s chambers."
-			Time.GoToDaysAhead(2).Meetings();
+			Time.GoToDaysAhead(2).Morning();
+			UpdateAndAddBell();
 			Add(Scene(Temple).With(Benno, Lutz, Tuuli));
 			Time.AddBell();
 			Add(Scene(MynesHouse).With(Tuuli));
