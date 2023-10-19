@@ -7,9 +7,9 @@ namespace NarrativeCharts.Console.P3;
 
 public static class P3V2
 {
-	public static NarrativeChartGenerator Generate(BookwormTimeTracker time)
+	public static NarrativeChart Generate(BookwormTimeTracker time)
 	{
-		var p3v2 = new NarrativeChartGenerator();
+		var p3v2 = new NarrativeChart();
 		Point Scene(int location) => new(time.CurrentTotalHours, location);
 
 		// Chapter: Prologue

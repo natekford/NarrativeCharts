@@ -1,5 +1,6 @@
 ﻿namespace NarrativeCharts.Models;
 
 public sealed record NarrativeEvent(
-	Point Point
-);
+	Point Point,
+	string Name
+) : INarrativeItem;

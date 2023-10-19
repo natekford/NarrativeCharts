@@ -5,7 +5,7 @@ public readonly record struct ChartRange(int MaxX, int MaxY, int MinX, int MinY)
 	public int RangeX => MaxX - MinX;
 	public int RangeY => MaxY - MinY;
 
-	public static ChartRange GetRange(NarrativeChartGenerator chart)
+	public static ChartRange GetRange(NarrativeChart chart)
 	{
 		int maxX = 0, maxY = 0, minX = 0, minY = 0;
 		foreach (var point in chart.GetAllNarrativePoints())

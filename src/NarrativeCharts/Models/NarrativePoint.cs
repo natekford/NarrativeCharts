@@ -6,4 +6,4 @@ public sealed record NarrativePoint(
 	LineModifier LineModifier,
 	Color LineColor,
 	int LineThickness
-);
+) : INarrativeItem;
