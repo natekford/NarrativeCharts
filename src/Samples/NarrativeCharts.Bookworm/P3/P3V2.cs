@@ -18,6 +18,8 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C02();
 		Chapter("Hasse's Monastery");
 		P3V2C03();
+		Chapter("The New Orphans");
+		P3V2C04();
 		Update();
 	}
 
@@ -94,6 +96,12 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "The three days passed before I knew it"
 		Time.GoToDaysAhead(3).EarlyMorning();
 		UpdateAndAddBell();
-		Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));
+		Add(Scene(Hasse).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
+		Time.AddHour();
+		Add(Scene(Hasse).With(HasseMayor, Marthe, Nora, Rick, Thore));
+	}
+
+	private void P3V2C04()
+	{
 	}
 }

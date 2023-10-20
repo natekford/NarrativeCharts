@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts", "src\Narr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Bookworm", "src\Samples\NarrativeCharts.Bookworm\NarrativeCharts.Bookworm.csproj", "{683BA082-84B0-48A8-9DD3-411835270F05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Plot", "src\NarrativeCharts.ScottPlot\NarrativeCharts.Plot.csproj", "{5D894EE9-1195-4020-8DD6-BA5FED8C1542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Plot", "src\NarrativeCharts.Plot\NarrativeCharts.Plot.csproj", "{5D894EE9-1195-4020-8DD6-BA5FED8C1542}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{015136BB-5A88-447C-A3E1-0A8755271554}"
 	ProjectSection(SolutionItems) = preProject

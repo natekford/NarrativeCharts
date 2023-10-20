@@ -29,6 +29,7 @@ public static class BookwormCharacters
 	public static Character Gil { get; } = new("Gil", "#F8EECB");
 	public static Character Gunther { get; } = new("Gunther", "#37527F");
 	public static Character Gustav { get; } = new("Gustav", "#B6A6A7");
+	public static Character HasseMayor { get; } = new("Hasse's Mayor", "#000000");
 	public static Character Hugo { get; } = new("Hugo", "#7E5951");
 	public static Character Ingo { get; } = new("Ingo", "#C1924A");
 	public static Character Johann { get; } = new("Johann", "#E4A242");
@@ -39,15 +40,19 @@ public static class BookwormCharacters
 	public static Character Leon { get; } = new("Leon", "#B26D66");
 	public static Character Lutz { get; } = new("Lutz", "#F7E3A8");
 	public static Character Mark { get; } = new("Mark", "#726249");
+	public static Character Marthe { get; } = new("Marthe", "#5C725D");
 	public static Character Melchior { get; } = new("Melchior", "#3B4C80");
 	public static Character Monika { get; } = new("Monika", "#8BBFCD");
 	public static Character Myne { get; } = new("Myne", "#39658C");
 	public static Character Nicola { get; } = new("Nicola", "#F1A14A");
+	public static Character Nora { get; } = new("Nora", "#9797CC");
 	public static Character Norbert { get; } = new("Norbert", "#656567");
 	public static Character Ottilie { get; } = new("Ottilie", "#A74D47");
+	public static Character Rick { get; } = new("Rick", "#667965");
 	public static Character Rihyarda { get; } = new("Rihyarda", "#E9DEC8");
 	public static Character Rosina { get; } = new("Rosina", "#E09C5B");
 	public static Character Sylvester { get; } = new("Sylvester", "#5366AB");
+	public static Character Thore { get; } = new("Thore", "#8888BE");
 	public static Character Todd { get; } = new("Todd", "#000000");
 	public static Character Tuuli { get; } = new("Tuuli", "#95BE82");
 	public static Character Wilfried { get; } = new("Wilfried", "#FEEFB4");

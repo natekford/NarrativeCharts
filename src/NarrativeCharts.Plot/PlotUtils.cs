@@ -26,7 +26,9 @@ public static class PlotUtils
 			{
 				var x = points.Values[p].Point.X;
 				var y = points.Values[p].Point.Y;
-				var shift = locationOrder[(y, character)];
+				// if there isn't any location order for this character it's
+				// fine to treat it as 0 so we dont care if this fails or not
+				locationOrder.TryGetValue((y, character), out var shift);
 				xs[p] = x;
 				ys[p] = y + (shift * 3);
 			}

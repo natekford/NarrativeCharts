@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\NarrativeCharts.ScottPlot\NarrativeCharts.Plot.csproj" />
+    <ProjectReference Include="..\..\NarrativeCharts.Plot\NarrativeCharts.Plot.csproj" />
     <ProjectReference Include="..\..\NarrativeCharts\NarrativeCharts.csproj" />
   </ItemGroup>
 
