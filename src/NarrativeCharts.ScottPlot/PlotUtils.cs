@@ -12,12 +12,13 @@ public static class PlotUtils
 	public static void PlotChart(this NarrativeChart chart, string path)
 	{
 		var range = chart.GetRange();
-		var width = (int)(range.RangeX * 2.5);
-		var height = (int)(range.RangeY * 2.5);
+		var width = range.RangeX * 4;
+		var height = range.RangeY * 4;
 		var plot = new ScottPlot.Plot(width, height);
 
-		var dupes = new ConcurrentDictionary<(double, double), int>();
-		foreach (var (character, points) in chart.Points)
+		var locationOrder = GetLocationOrder(chart);
+		// process in alphabetical order so the legend is in alphabetical order
+		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key))
 		{
 			var xs = new double[points.Count];
 			var ys = new double[points.Count];
@@ -25,7 +26,7 @@ public static class PlotUtils
 			{
 				var x = points.Values[p].Point.X;
 				var y = points.Values[p].Point.Y;
-				var shift = dupes.AddOrUpdate((x, y), _ => 1, (_, v) => ++v);
+				var shift = locationOrder[(y, character)];
 				xs[p] = x;
 				ys[p] = y + (shift * 3);
 			}
@@ -61,6 +62,36 @@ public static class PlotUtils
 
 		plot.Legend();
 		plot.SaveFig(path);
+	}
+
+	private static Dictionary<(int, string), int> GetLocationOrder(NarrativeChart chart)
+	{
+		var timeSpent = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
+		foreach (var (character, points) in chart.Points)
+		{
+			for (var p = 0; p < points.Count - 1; ++p)
+			{
+				var currPoint = points.Values[p].Point;
+				var nextPoint = points.Values[p + 1].Point;
+
+				var timeDiff = nextPoint.X - currPoint.X;
+				timeSpent
+					.GetOrAdd(currPoint.Y, _ => new())
+					.AddOrUpdate(character, (_, a) => a, (_, a, b) => a + b, timeDiff);
+			}
+		}
+
+		var locationOrder = new Dictionary<(int, string), int>();
+		foreach (var (location, time) in timeSpent)
+		{
+			var i = 0;
+			foreach (var (character, _) in time.OrderByDescending(x => x.Value))
+			{
+				locationOrder[(location, character)] = i++;
+			}
+		}
+
+		return locationOrder;
 	}
 
 	private static void SetTicks<TSource>(

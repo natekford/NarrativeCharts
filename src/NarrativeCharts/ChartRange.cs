@@ -7,7 +7,10 @@ public readonly record struct ChartRange(int MaxX, int MaxY, int MinX, int MinY)
 
 	public static ChartRange GetRange(NarrativeChart chart)
 	{
-		int maxX = 0, maxY = 0, minX = 0, minY = 0;
+		int maxX = int.MinValue,
+			maxY = int.MinValue,
+			minX = int.MaxValue,
+			minY = int.MaxValue;
 		foreach (var point in chart.GetAllNarrativePoints())
 		{
 			maxX = Math.Max(maxX, point.Point.X);

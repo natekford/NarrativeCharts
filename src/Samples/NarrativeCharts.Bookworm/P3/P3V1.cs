@@ -82,12 +82,13 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Prologue starts with Karstedt seeing Sylvester off
 		Add(Scene(Temple).With(Ferdinand, Karstedt, Myne, Sylvester));
 		Add(Scene(KnightsOrder).With(Bezewanst, Bindewald));
-		Add(Scene(Temple).With(Damuel, Delia, Dirk, Egmont, Ella, Gil, Monika, Nicola, Rosina, Wilma, Zahm));
+		Add(Scene(Temple).With(Damuel, Delia, Dirk, Egmont, Ella, Fran, Gil, Monika, Nicola, Rosina, Wilma, Zahm));
 		Add(Scene(LowerCityWorkshops).With(Deid, Ingo, Johann));
 		Add(Scene(GilbertaCompany).With(Benno, Leon, Lutz, Mark));
 		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
 		Add(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
 		Add(Scene(OthmarCompany).With(Freida, Gustav));
+		Add(Scene(KarstedtsHouse).With(Cornelius, Eckhart, Elvira, Lamprecht));
 		// Characters we don't know yet (there are more, but this makes Sylvester's line look less lonely)
 		Add(Scene(Castle).With(Charlotte, Florencia, Melchior, Rihyarda));
 		// Time: Immediately after
@@ -103,13 +104,16 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(KarstedtsHouse).With(Karstedt));
 
 		// Time: Next morning
-		Time.GoToNextDay.Morning();
+		Time.GoToNextDay.EarlyMorning();
+		UpdateAndAddBell();
 		// Karstedt interrogates these 2
 		Add(Scene(KnightsOrder).With(Bezewanst, Bindewald, Karstedt));
 		// Time: Dinner
 		Time.GoToCurrentDay.Dinner();
 		// Discussion about Myne's baptism
 		Add(Scene(KarstedtsHouse).With(Elvira, Ferdinand, Karstedt));
+		Time.AddBell();
+		Add(Scene(Temple).With(Ferdinand));
 
 		// Time: The next day
 		Time.GoToNextDay.Morning();
@@ -207,7 +211,8 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 	private void P3V1C04()
 	{
-		Time.GoToNextDay.Meetings();
+		Time.GoToNextDay.Morning();
+		UpdateAndAddBell();
 		// Everyone arrives for Myne's baptism (SS would add a bunch of characters)
 		Add(Scene(KarstedtsHouse).With(Ferdinand, Florencia, Sylvester, Wilfried));
 	}
