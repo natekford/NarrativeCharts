@@ -38,9 +38,12 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		Update();
 	}
 
-	protected void Chapter(string name, bool addName = true)
+	protected void Chapter(string name, bool addEvent = true)
 	{
-		this.AddEvent(new(Now(0), addName ? name : ""));
+		if (addEvent)
+		{
+			this.AddEvent(new(Now(0), name));
+		}
 		Update();
 	}
 
