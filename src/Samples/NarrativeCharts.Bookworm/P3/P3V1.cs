@@ -89,8 +89,11 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
 		Add(Scene(OthmarCompany).With(Freida, Gustav));
 		Add(Scene(KarstedtsHouse).With(Cornelius, Eckhart, Elvira, Lamprecht));
-		// Characters we don't know yet (there are more, but this makes Sylvester's line look less lonely)
-		Add(Scene(Castle).With(Charlotte, Florencia, Melchior, Rihyarda));
+		// Characters we don't know yet
+		// There are more, but this makes sylvester's line look less lonely
+		// and we know these characters are at the castle from the start
+		// Angelica/Ottilie aren't known to always be at the castle tho
+		Add(Scene(Castle).With(Charlotte, Florencia, Melchior, Norbert, Rihyarda));
 		// Time: Immediately after
 		Time.AddBell();
 		// Sylvester goes back to AD conf

@@ -13,7 +13,7 @@ public static class PlotUtils
 	{
 		var range = chart.GetRange();
 		var width = range.RangeX * 4;
-		var height = range.RangeY * 4;
+		var height = range.RangeY * 6;
 		var plot = new ScottPlot.Plot(width, height);
 
 		var locationOrder = GetLocationOrder(chart);
@@ -33,11 +33,29 @@ public static class PlotUtils
 				ys[p] = y + (shift * 3);
 			}
 
+			var labels = new string[points.Count];
+			// always label the first point
+			labels[0] = character;
+			for (var p = 1; p < points.Count - 1; ++p)
+			{
+				// only relable the line if there's a change in location
+				labels[p] = ys[p - 1] == ys[p] ? string.Empty : character;
+			}
+
 			var color = ColorTranslator.FromHtml(chart.Colors[character]);
 			// addscatter looks better than addscatterline tbh
 			// also, dont use smoothing because it makes lines go under/over
 			// where they should
-			plot.AddScatter(xs, ys, color: color, markerSize: 5, label: character);
+			var scatter = plot.AddScatter(xs, ys);
+			scatter.Label = character;
+			scatter.Color = color;
+
+			scatter.MarkerSize = 5;
+			scatter.LineWidth = 2;
+
+			scatter.DataPointLabels = labels;
+			scatter.DataPointLabelFont.Size = 10;
+			scatter.DataPointLabelFont.Color = color;
 		}
 
 		// set up the ability for the top axis to be used for labels
@@ -56,13 +74,14 @@ public static class PlotUtils
 		var evenEvents = chart.Events.Skip(0).Where((_, i) => i % 2 == 0);
 		var oddEvents = chart.Events.Skip(1).Where((_, i) => i % 2 == 0);
 
-		plot.TopAxis.Label(chart.Name);
+		plot.TopAxis.Label(chart.Name, size: 100);
 		plot.TopAxis.TickLabelStyle(rotation: LABEL_ROTATION);
 		plot.TopAxis.SetTicks(evenEvents, x => x.Key, x => x.Value.Name);
 
 		plot.BottomAxis.TickLabelStyle(rotation: LABEL_ROTATION);
 		plot.BottomAxis.SetTicks(oddEvents, x => x.Key, x => x.Value.Name);
 
+		plot.LeftAxis.TickLabelStyle(fontSize: 32);
 		plot.LeftAxis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
 
 		plot.Legend();
