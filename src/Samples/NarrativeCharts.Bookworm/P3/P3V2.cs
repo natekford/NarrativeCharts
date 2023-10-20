@@ -63,13 +63,13 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "Not long after lunch"
 		Time.GoToCurrentDay.Lunch();
 		Add(Scene(Temple).With(Ferdinand, Myne, Zahm));
-		Time.AddHour();
+		Time.AddBell();
 		// lutz and myne talk about gunther being assigned as a guard knight for the hasse carriages
 		Add(Scene(Temple).With(Damuel, Gil, Lutz, Myne));
 		Time.AddBell();
 		// lutz tells gunther that he will be able to see myne
 		Add(Scene(MynesHouse).With(Effa, Gunther, Lutz, Tuuli));
-		Time.AddHour();
+		Time.AddBell();
 		Add(Scene(GilbertaCompany).With(Lutz));
 	}
 
@@ -88,7 +88,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Time.GoToDaysAhead(2).EarlyMorning();
 		UpdateAndAddBell();
 		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
-		Time.AddHour();
+		Time.AddBell();
 		Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));
 		Time.AddBell();
 		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
@@ -97,7 +97,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Time.GoToDaysAhead(3).EarlyMorning();
 		UpdateAndAddBell();
 		Add(Scene(Hasse).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
-		Time.AddHour();
+		Time.AddBell();
 		Add(Scene(Hasse).With(HasseMayor, Marthe, Nora, Rick, Thore));
 	}
 

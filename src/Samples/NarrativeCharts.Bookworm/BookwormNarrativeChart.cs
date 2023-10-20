@@ -14,7 +14,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		{
 			Colors[character.Name] = character.Color;
 		}
-		foreach (var (_, location) in NarrativeCharts.Bookworm.BookwormLocations.Dictionary)
+		foreach (var (_, location) in BookwormLocations.Dictionary)
 		{
 			Locations[location.Name] = location.Y;
 		}

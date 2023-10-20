@@ -34,6 +34,9 @@ public static class PlotUtils
 			}
 
 			var color = ColorTranslator.FromHtml(chart.Colors[character]);
+			// addscatter looks better than addscatterline tbh
+			// also, dont use smoothing because it makes lines go under/over
+			// where they should
 			plot.AddScatter(xs, ys, color: color, markerSize: 5, label: character);
 		}
 
@@ -86,8 +89,13 @@ public static class PlotUtils
 		var locationOrder = new Dictionary<(int, string), int>();
 		foreach (var (location, time) in timeSpent)
 		{
+			// more time spent = closer to the bottom
+			// any ties? alphabetical order (A = bottom, Z = top)
+			var ordered = time
+				.OrderByDescending(x => x.Value)
+				.ThenBy(x => x.Key);
 			var i = 0;
-			foreach (var (character, _) in time.OrderByDescending(x => x.Value))
+			foreach (var (character, _) in ordered)
 			{
 				locationOrder[(location, character)] = i++;
 			}

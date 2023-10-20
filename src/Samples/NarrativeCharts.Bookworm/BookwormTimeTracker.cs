@@ -78,10 +78,14 @@ public class BookwormTimeTracker
 		=> CurrentTotalHours += HOURS_PER_DAY;
 
 	public void AddDays(int days)
-		=> CurrentTotalHours += HOURS_PER_DAY * days;
+	{
+		if (days < 0)
+		{
+			throw new InvalidOperationException("Not allowed to go back in time.");
+		}
 
-	public void AddHour()
-		=> ++CurrentTotalHours;
+		CurrentTotalHours += HOURS_PER_DAY * days;
+	}
 
 	public void GoToBellOfCurrentDay(int bell)
 	{
