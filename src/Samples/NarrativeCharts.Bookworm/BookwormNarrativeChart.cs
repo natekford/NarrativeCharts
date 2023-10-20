@@ -10,13 +10,13 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 	protected BookwormNarrativeChart(BookwormTimeTracker time)
 	{
 		Time = time;
-		foreach (var (_, character) in BookwormCharacters.Dictionary)
+		foreach (var (character, color) in BookwormCharacters.ColorValues)
 		{
-			Colors[character.Name] = character.Color;
+			Colors[character] = color;
 		}
-		foreach (var (_, location) in BookwormLocations.Dictionary)
+		foreach (var (location, y) in BookwormLocations.YValues)
 		{
-			Locations[location.Name] = location.Y;
+			Locations[location] = y;
 		}
 	}
 
@@ -67,7 +67,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 	protected abstract void ProtectedCreate();
 
 	protected Point Scene(Location location)
-		=> Now(location.Y);
+		=> Now(Locations[location.Name]);
 
 	protected void Update()
 		=> this.UpdatePoints(Time.CurrentTotalHours);

@@ -1,6 +1,6 @@
 ﻿namespace NarrativeCharts.Models;
 
-public record struct Point(
+public readonly record struct Point(
 	int X,
 	int Y
 );

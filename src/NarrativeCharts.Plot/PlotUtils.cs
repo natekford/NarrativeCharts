@@ -41,7 +41,7 @@ public static class PlotUtils
 				labels[p] = ys[p - 1] == ys[p] ? string.Empty : character;
 			}
 
-			var color = ColorTranslator.FromHtml(chart.Colors[character]);
+			var color = ColorTranslator.FromHtml(chart.Colors[character].Hex);
 			// addscatter looks better than addscatterline tbh
 			// also, dont use smoothing because it makes lines go
 			// under/over where they should
