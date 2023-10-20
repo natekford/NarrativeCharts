@@ -5,10 +5,9 @@ namespace NarrativeCharts.Bookworm.P3;
 
 public sealed class P3V2 : BookwormNarrativeChart
 {
-	public override string Name => nameof(P3V2);
-
 	public P3V2(BookwormTimeTracker time) : base(time)
 	{
+		Name = nameof(P3V2);
 	}
 
 	protected override void ProtectedCreate()
@@ -77,7 +76,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 			// Time: "I would be heading for Hasse three days from now" said the day that the grays depart
 			Time.GoToDaysAhead(2).EarlyMorning();
 			UpdateAndAddBell();
-			Event("Myne Goes To Hasse");
+			//Event("Myne Goes To Hasse");
 			Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
 			Time.AddHour();
 			Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));

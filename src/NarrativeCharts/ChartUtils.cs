@@ -16,6 +16,19 @@ public static class ChartUtils
 		}
 	}
 
+	public static void AddEvent(this NarrativeChart chart, NarrativeEvent @event)
+		=> chart.Events.Add(@event.Point.X, @event);
+
+	public static void AddPoint(this NarrativeChart chart, NarrativePoint point)
+	{
+		if (!chart.Points.TryGetValue(point.Character, out var points))
+		{
+			chart.Points[point.Character] = points = new();
+		}
+
+		points[point.Point.X] = point;
+	}
+
 	public static void AddScene(this NarrativeChart chart, NarrativeScene scene)
 	{
 		foreach (var character in scene.Characters)
@@ -34,6 +47,9 @@ public static class ChartUtils
 			}
 		}
 	}
+
+	public static ChartRange GetRange(this NarrativeChart chart)
+		=> ChartRange.GetRange(chart);
 
 	public static void UpdatePoints(this NarrativeChart chart, int x)
 	{

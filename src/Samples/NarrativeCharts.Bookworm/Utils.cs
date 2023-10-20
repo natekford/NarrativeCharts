@@ -1,5 +1,5 @@
 ﻿using NarrativeCharts.Models;
-using NarrativeCharts.ScottPlot;
+using NarrativeCharts.Plot;
 
 using System.Reflection;
 using System.Text;
@@ -17,7 +17,7 @@ public static class Utils
 
 	public static void Export(this BookwormNarrativeChart chart, string dir)
 	{
-		chart.PlotChart(6000, 1000, Path.Combine(dir, $"{chart.Name}_plot.png"));
+		chart.PlotChart(Path.Combine(dir, $"{chart.Name}_plot.png"));
 		chart.ExportFinalCharacterPositions(Path.Combine(dir, $"{chart.Name}_chars.txt"));
 
 		Console.WriteLine($"{chart.Name} total points: {chart.Points.Sum(x => x.Value.Count)}");

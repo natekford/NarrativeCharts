@@ -1,18 +1,20 @@
-﻿using ScottPlot;
-using ScottPlot.Renderable;
+﻿using ScottPlot.Renderable;
 
 using System.Collections.Concurrent;
 
-namespace NarrativeCharts.ScottPlot;
+namespace NarrativeCharts.Plot;
 
 public static class PlotUtils
 {
-	public static void PlotChart(this NarrativeChart chart, int width, int height, string path)
+	public static void PlotChart(this NarrativeChart chart, string path)
 	{
-		var plot = new Plot(width, height);
+		var range = chart.GetRange();
+		var width = (int)(range.RangeX * 2.5);
+		var height = (int)(range.RangeY * 2.5);
+		var plot = new ScottPlot.Plot(width, height);
 
 		var dupes = new ConcurrentDictionary<(double, double), int>();
-		foreach (var (character, points) in chart.Points.OrderBy(x => x.Value.Count))
+		foreach (var (character, points) in chart.Points)
 		{
 			var xs = new double[points.Count];
 			var ys = new double[points.Count];
@@ -29,12 +31,16 @@ public static class PlotUtils
 			plot.AddScatter(xs, ys, color: color, markerSize: 5, label: character);
 		}
 
-		// Y-Labels (locations)
-		plot.YAxis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
-		// X-Labels (events/chapters)
-		plot.XAxis.SetTicks(chart.Events, x => x.Key, x => x.Value.Name);
-
+		plot.Title(chart.Name);
 		plot.Legend();
+
+		plot.LeftAxis.Label("Locations");
+		plot.LeftAxis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
+
+		plot.BottomAxis.Label("Chapters");
+		plot.BottomAxis.TickLabelStyle(rotation: 15);
+		plot.BottomAxis.SetTicks(chart.Events, x => x.Key, x => x.Value.Name);
+
 		plot.SaveFig(path);
 	}
 
