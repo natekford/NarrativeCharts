@@ -17,7 +17,6 @@ public static class PlotUtils
 		var plot = new ScottPlot.Plot(width, height);
 
 		var locationOrder = GetLocationOrder(chart);
-		// process in alphabetical order so the legend is in alphabetical order
 		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key))
 		{
 			var xs = new double[points.Count];
@@ -44,13 +43,13 @@ public static class PlotUtils
 
 			var color = ColorTranslator.FromHtml(chart.Colors[character]);
 			// addscatter looks better than addscatterline tbh
-			// also, dont use smoothing because it makes lines go under/over
-			// where they should
+			// also, dont use smoothing because it makes lines go
+			// under/over where they should
 			var scatter = plot.AddScatter(xs, ys);
 			scatter.Label = character;
 			scatter.Color = color;
 
-			scatter.MarkerSize = 5;
+			scatter.MarkerSize = 6;
 			scatter.LineWidth = 2;
 
 			scatter.DataPointLabels = labels;
@@ -73,18 +72,17 @@ public static class PlotUtils
 
 		var evenEvents = chart.Events.Skip(0).Where((_, i) => i % 2 == 0);
 		var oddEvents = chart.Events.Skip(1).Where((_, i) => i % 2 == 0);
+		var titleSize = Math.Max((int)(height * 0.025), plot.TopAxis.AxisLabel.Font.Size);
 
-		plot.TopAxis.Label(chart.Name, size: 100);
+		plot.TopAxis.Label(chart.Name, size: titleSize);
 		plot.TopAxis.TickLabelStyle(rotation: LABEL_ROTATION);
 		plot.TopAxis.SetTicks(evenEvents, x => x.Key, x => x.Value.Name);
 
 		plot.BottomAxis.TickLabelStyle(rotation: LABEL_ROTATION);
 		plot.BottomAxis.SetTicks(oddEvents, x => x.Key, x => x.Value.Name);
 
-		plot.LeftAxis.TickLabelStyle(fontSize: 32);
 		plot.LeftAxis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
 
-		plot.Legend();
 		plot.SaveFig(path);
 	}
 

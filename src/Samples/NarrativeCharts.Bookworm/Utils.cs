@@ -8,12 +8,10 @@ namespace NarrativeCharts.Bookworm;
 
 public static class Utils
 {
+	private static readonly Dictionary<string, string> CharacterPropertyNames =
+		typeof(BookwormCharacters).MapPropertyNames((Character c) => c.Name);
 	private static readonly Dictionary<int, string> LocationPropertyNames =
-		typeof(BookwormLocations)
-			.GetProperties(BindingFlags.Public | BindingFlags.Static)
-			.Where(x => x.PropertyType == typeof(Location))
-			.Select(x => (Value: (Location)x.GetValue(null)!, Prop: x.Name))
-			.ToDictionary(x => x.Value.Y, x => x.Prop);
+		typeof(BookwormLocations).MapPropertyNames((Location l) => l.Y);
 
 	public static void Export(this BookwormNarrativeChart chart, string dir)
 	{
@@ -56,7 +54,7 @@ public static class Utils
 					sb.Append(", ");
 				}
 				first = false;
-				sb.Append(character.Character);
+				sb.Append(CharacterPropertyNames[character.Character]);
 			}
 			sb.AppendLine("));");
 		}
@@ -66,4 +64,15 @@ public static class Utils
 
 	public static NarrativeScene With(this Point point, params Character[] characters)
 		=> new(point, characters.Select(x => x.Name).ToArray());
+
+	private static Dictionary<TKey, string> MapPropertyNames<TKey, TProperty>(
+		this Type type,
+		Func<TProperty, TKey> keySelector) where TKey : notnull
+	{
+		return type
+			.GetProperties(BindingFlags.Public | BindingFlags.Static)
+			.Where(x => x.PropertyType == typeof(TProperty))
+			.Select(x => (Value: (TProperty)x.GetValue(null)!, Prop: x.Name))
+			.ToDictionary(x => keySelector(x.Value), x => x.Prop);
+	}
 }
