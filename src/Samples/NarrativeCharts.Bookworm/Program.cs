@@ -16,8 +16,6 @@ public static class Program
 		var kept = new HashSet<string>
 		{
 			BookwormCharacters.Myne.Name,
-			BookwormCharacters.Benno.Name,
-			BookwormCharacters.Lutz.Name
 		};
 		foreach (var book in books)
 		{
@@ -25,7 +23,7 @@ public static class Program
 			{
 				if (!kept.Contains(key))
 				{
-					//p3v1.Points.Remove(key);
+					//books[0].Points.Remove(key);
 				}
 			}
 		}

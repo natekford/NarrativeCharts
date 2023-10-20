@@ -12,7 +12,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		Time = time;
 		foreach (var (character, color) in BookwormCharacters.ColorValues)
 		{
-			Colors[character] = color;
+			Colors[character] = color.Hex;
 		}
 		foreach (var (location, y) in BookwormLocations.YValues)
 		{

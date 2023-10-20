@@ -1,6 +1,4 @@
-﻿using NarrativeCharts.Models;
-
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
 namespace NarrativeCharts.Bookworm;
 
@@ -137,3 +135,5 @@ public static class BookwormCharacters
 }
 
 public readonly record struct Character(string Name);
+
+public readonly record struct Color(string Hex);

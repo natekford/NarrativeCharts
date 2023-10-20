@@ -1,4 +1,6 @@
-﻿using ScottPlot.Renderable;
+﻿using ScottPlot;
+using ScottPlot.Plottable;
+using ScottPlot.Renderable;
 
 using System.Collections.Concurrent;
 using System.Drawing;
@@ -8,6 +10,7 @@ namespace NarrativeCharts.Plot;
 public static class PlotUtils
 {
 	private const float LABEL_ROTATION = 45;
+	private static readonly ConcurrentDictionary<string, Color> _Colors = new();
 
 	public static void PlotChart(this NarrativeChart chart, string path)
 	{
@@ -19,42 +22,50 @@ public static class PlotUtils
 		var locationOrder = GetLocationOrder(chart);
 		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key))
 		{
-			var xs = new double[points.Count];
-			var ys = new double[points.Count];
-			for (var p = 0; p < points.Count; ++p)
+			var xs = new double[2];
+			var ys = new double[2];
+			var labels = new string[2] { character, string.Empty };
+			var segmentStartX = points.Values[0].Point.X;
+			for (var p = 1; p < points.Count; ++p)
 			{
-				var x = points.Values[p].Point.X;
-				var y = points.Values[p].Point.Y;
-				// if there isn't any location order for this character it's
-				// fine to treat it as 0 so we dont care if this fails or not
-				locationOrder.TryGetValue((y, character), out var shift);
-				xs[p] = x;
-				ys[p] = y + (shift * 3);
+				var (prevX, prevY) = points.Values[p - 1].Point;
+				var (currX, currY) = points.Values[p].Point;
+				var broken = prevY != currY;
+				var last = p == points.Count - 1;
+
+				// draw the stationary location segment
+				// the start of this segment shows the character's name
+				if (broken || last)
+				{
+					xs[0] = segmentStartX;
+					// if we're at the last point don't stop before it
+					xs[1] = last ? currX : prevX;
+					ys[0] = ys[1] = locationOrder.ShiftY(character, prevY);
+					segmentStartX = currX;
+
+					// show the character's name at their last point
+					if (last)
+					{
+						labels[1] = character;
+					}
+
+					var scatter = plot.AddScatterCopy(xs, ys);
+					scatter.CustomizeScatter(chart, character);
+					scatter.DataPointLabels = labels;
+				}
+				// draw the movement segment
+				if (broken)
+				{
+					xs[0] = prevX;
+					ys[0] = locationOrder.ShiftY(character, prevY);
+					xs[1] = currX;
+					ys[1] = locationOrder.ShiftY(character, currY);
+
+					var scatter = plot.AddScatterCopy(xs, ys);
+					scatter.CustomizeScatter(chart, character);
+					scatter.LineStyle = LineStyle.DashDotDot;
+				}
 			}
-
-			var labels = new string[points.Count];
-			// always label the first point
-			labels[0] = character;
-			for (var p = 1; p < points.Count - 1; ++p)
-			{
-				// only relable the line if there's a change in location
-				labels[p] = ys[p - 1] == ys[p] ? string.Empty : character;
-			}
-
-			var color = ColorTranslator.FromHtml(chart.Colors[character].Hex);
-			// addscatter looks better than addscatterline tbh
-			// also, dont use smoothing because it makes lines go
-			// under/over where they should
-			var scatter = plot.AddScatter(xs, ys);
-			scatter.Label = character;
-			scatter.Color = color;
-
-			scatter.MarkerSize = 6;
-			scatter.LineWidth = 2;
-
-			scatter.DataPointLabels = labels;
-			scatter.DataPointLabelFont.Size = 10;
-			scatter.DataPointLabelFont.Color = color;
 		}
 
 		// set up the ability for the top axis to be used for labels
@@ -84,6 +95,22 @@ public static class PlotUtils
 		plot.LeftAxis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
 
 		plot.SaveFig(path);
+	}
+
+	private static ScatterPlot AddScatterCopy(this ScottPlot.Plot plot, double[] xs, double[] ys)
+		=> plot.AddScatter(xs.ToArray(), ys.ToArray());
+
+	private static void CustomizeScatter(this ScatterPlot scatter, NarrativeChart chart, string character)
+	{
+		var color = _Colors.GetOrAdd(chart.Colors[character], ColorTranslator.FromHtml);
+		scatter.Label = character;
+		scatter.Color = color;
+
+		scatter.MarkerSize = 6;
+		scatter.LineWidth = 2;
+
+		scatter.DataPointLabelFont.Size = 10;
+		scatter.DataPointLabelFont.Color = color;
 	}
 
 	private static Dictionary<(int, string), int> GetLocationOrder(NarrativeChart chart)
@@ -139,5 +166,13 @@ public static class PlotUtils
 		}
 
 		axis.ManualTickPositions(positions, labels);
+	}
+
+	private static int ShiftY(this Dictionary<(int, string), int> dict, string character, int y)
+	{
+		// if there isn't any location order for this character it's
+		// fine to treat it as 0 so we dont care if this fails or not
+		dict.TryGetValue((y, character), out var shift);
+		return y + (shift * 3);
 	}
 }
