@@ -49,11 +49,11 @@ public class BookwormTimeTracker
 	{
 		if (CurrentBell == Bells.Length - 1)
 		{
-			GoToStartOfNextDay();
+			SkipToStartOfNextDay();
 		}
 		else
 		{
-			GoToBellOfCurrentDay((BookwormBell)(CurrentBell + 1));
+			SkipToBellOfCurrentDay((BookwormBell)(CurrentBell + 1));
 		}
 		return this;
 	}
@@ -85,7 +85,7 @@ public class BookwormTimeTracker
 		return this;
 	}
 
-	public BookwormTimeTracker GoToBellOfCurrentDay(BookwormBell bell)
+	public BookwormTimeTracker SkipToBellOfCurrentDay(BookwormBell bell)
 	{
 		var desiredHour = Bells[(int)bell];
 		var currentHour = CurrentTotalHours % HOURS_PER_DAY;
@@ -98,17 +98,17 @@ public class BookwormTimeTracker
 		return this;
 	}
 
-	public BookwormTimeTracker GoToBellOfNextDay(BookwormBell bell)
+	public BookwormTimeTracker SkipToBellOfNextDay(BookwormBell bell)
 	{
-		GoToStartOfNextDay();
+		SkipToStartOfNextDay();
 		CurrentTotalHours += Bells[(int)bell];
 		return this;
 	}
 
-	public BookwormBellMover GoToDaysAhead(int days)
+	public BookwormBellMover SkipToDaysAhead(int days)
 		=> new(this, dayDifference: days);
 
-	public BookwormTimeTracker GoToStartOfNextDay()
+	public BookwormTimeTracker SkipToStartOfNextDay()
 	{
 		CurrentTotalHours += HOURS_PER_DAY - (CurrentTotalHours % HOURS_PER_DAY);
 		return this;

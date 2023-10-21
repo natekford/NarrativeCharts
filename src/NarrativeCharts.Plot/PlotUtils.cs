@@ -11,7 +11,7 @@ public static class PlotUtils
 {
 	private const int IMG_FLOOR = 100;
 	private const int IMG_HEIGHT_MULT = 6;
-	private const int IMG_WIDTH_MULT = 4;
+	private const int IMG_WIDTH_MULT = 6;
 	private const float LABEL_SIZE = LINE_WIDTH * 5;
 	private const float LINE_WIDTH = 2;
 	private const float MARKER_SIZE = LINE_WIDTH * 3;
@@ -20,12 +20,66 @@ public static class PlotUtils
 
 	public static void PlotChart(this NarrativeChart chart, string path)
 	{
+		var (range, plot) = chart.CreatePlot();
+		plot.ConfigureAndSavePlot(chart, range, path);
+	}
+
+	private static void ConfigureAndSavePlot(
+		this ScottPlot.Plot plot,
+		NarrativeChart chart,
+		EventRange range,
+		string path)
+	{
+		// Used to have the top and right axes show with the correct scale
+		{
+			var hack = plot.AddScatter(
+				new double[] { range.MinX, range.MaxX },
+				new double[] { range.MinY, range.MaxY },
+				color: Color.Transparent
+			);
+			hack.XAxisIndex = plot.TopAxis.AxisIndex;
+			hack.YAxisIndex = plot.RightAxis.AxisIndex;
+			plot.TopAxis.Ticks(true);
+			plot.RightAxis.Ticks(true);
+		}
+
+		var titleSize = Math.Max(
+			(int)(plot.Height * 0.025),
+			plot.TopAxis.AxisLabel.Font.Size
+		);
+		var axisLabelSize = Math.Max(
+			(int)(plot.Height * 0.01),
+			plot.BottomAxis.AxisTicks.TickLabelFont.Size
+		);
+
+		plot.TopAxis.Label(chart.Name, size: titleSize);
+
+		// Display event numbers at the top of the grid
+		var c = 0;
+		plot.TopAxis.SetTicks(chart.Events, x => x.Key, _ => (++c).ToString());
+
+		plot.BottomAxis.TickLabelStyle(rotation: 90);
+		plot.BottomAxis.SetTicks(chart.Events, x => x.Key, x => x.Value.Name);
+
+		foreach (var axis in new[] { plot.LeftAxis, plot.RightAxis })
+		{
+			axis.TickLabelStyle(fontSize: axisLabelSize);
+			axis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
+		}
+
+		plot.AxisAuto(0.015, 0.025);
+		plot.SaveFig(path);
+	}
+
+	private static (EventRange, ScottPlot.Plot) CreatePlot(this NarrativeChart chart)
+	{
 		var range = chart.GetRange();
 		var width = range.RangeX * IMG_WIDTH_MULT / IMG_FLOOR * IMG_FLOOR;
 		var height = range.RangeY * IMG_HEIGHT_MULT / IMG_FLOOR * IMG_FLOOR;
 		var plot = new ScottPlot.Plot(width, height);
 
 		var locationOrder = GetLocationOrder(chart);
+		int minY = int.MaxValue, maxY = int.MinValue;
 		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key))
 		{
 			int ShiftY(int y)
@@ -33,7 +87,10 @@ public static class PlotUtils
 				// if there isn't any location order for this character it's
 				// fine to treat it as 0 so we dont care if this fails or not
 				locationOrder.TryGetValue((y, character), out var shift);
-				return y + (shift * 3) + 2; // add additional offset
+				var shifted = y + (shift * 3) + 2; // add additional offset
+				minY = Math.Min(minY, shifted);
+				maxY = Math.Max(maxY, shifted);
+				return shifted;
 			}
 
 			double x1, x2, y1, y2, xSegmentStart = points.Values[0].Point.X;
@@ -89,46 +146,7 @@ public static class PlotUtils
 			}
 		}
 
-		{
-			var hack = plot.AddScatter(
-				new double[] { range.MinX, range.MaxX },
-				new double[] { range.MinY, range.MaxY },
-				color: Color.Transparent
-			);
-			hack.XAxisIndex = plot.TopAxis.AxisIndex;
-			hack.YAxisIndex = plot.RightAxis.AxisIndex;
-			plot.TopAxis.Ticks(true);
-			plot.RightAxis.Ticks(true);
-		}
-
-		var titleSize = Math.Max(
-			(int)(height * 0.025),
-			plot.TopAxis.AxisLabel.Font.Size
-		);
-		var axisLabelSize = Math.Max(
-			(int)(height * 0.01),
-			plot.BottomAxis.AxisTicks.TickLabelFont.Size
-		);
-
-		plot.TopAxis.Label(chart.Name, size: titleSize);
-
-		// Display event numbers at the top of the grid
-		var c = 0;
-		plot.TopAxis.SetTicks(chart.Events, x => x.Key, _ => (++c).ToString());
-
-		plot.BottomAxis.TickLabelStyle(rotation: 90);
-		plot.BottomAxis.AxisTicks.MajorGridWidth = LINE_WIDTH;
-		plot.BottomAxis.SetTicks(chart.Events, x => x.Key, x => x.Value.Name);
-
-		foreach (var axis in new[] { plot.LeftAxis, plot.RightAxis })
-		{
-			axis.TickLabelStyle(fontSize: axisLabelSize);
-			axis.AxisTicks.MajorGridWidth = LINE_WIDTH;
-			axis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
-		}
-
-		plot.AxisAuto(0.01, 0.025);
-		plot.SaveFig(path);
+		return (range with { MinY = minY, MaxY = maxY }, plot);
 	}
 
 	private static void CustomizeForNarrativeChart(
@@ -199,6 +217,8 @@ public static class PlotUtils
 			labels[i] = getLabel(items[i]);
 		}
 
+		axis.AxisTicks.MajorGridWidth = LINE_WIDTH;
+		axis.AxisTicks.MajorLineWidth = LINE_WIDTH;
 		axis.ManualTickPositions(positions, labels);
 	}
 }

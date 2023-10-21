@@ -48,8 +48,8 @@ public static class ChartUtils
 		}
 	}
 
-	public static ChartRange GetRange(this NarrativeChart chart)
-		=> ChartRange.GetRange(chart);
+	public static EventRange GetRange(this NarrativeChart chart)
+		=> EventRange.GetRange(chart);
 
 	public static void UpdatePoints(this NarrativeChart chart, int x)
 	{

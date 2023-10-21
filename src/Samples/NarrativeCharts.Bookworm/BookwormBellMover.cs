@@ -36,11 +36,11 @@ public readonly struct BookwormBellMover
 	{
 		if (_DayDifference == 0)
 		{
-			_Tracker.GoToBellOfCurrentDay(bell);
+			_Tracker.SkipToBellOfCurrentDay(bell);
 			return _Tracker;
 		}
 
-		_Tracker.GoToBellOfNextDay(bell);
+		_Tracker.SkipToBellOfNextDay(bell);
 		if (_DayDifference > 1)
 		{
 			_Tracker.AddDays(_DayDifference - 1);

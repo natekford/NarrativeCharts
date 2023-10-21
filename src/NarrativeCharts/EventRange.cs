@@ -1,11 +1,11 @@
 ﻿namespace NarrativeCharts;
 
-public readonly record struct ChartRange(int MaxX, int MaxY, int MinX, int MinY)
+public readonly record struct EventRange(int MaxX, int MaxY, int MinX, int MinY)
 {
 	public int RangeX => MaxX - MinX;
 	public int RangeY => MaxY - MinY;
 
-	public static ChartRange GetRange(NarrativeChart chart)
+	public static EventRange GetRange(NarrativeChart chart)
 	{
 		int maxX = int.MinValue,
 			maxY = int.MinValue,
