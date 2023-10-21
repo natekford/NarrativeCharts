@@ -15,7 +15,7 @@ public static class Program
 
 		var kept = new HashSet<string>
 		{
-			BookwormCharacters.Myne.Name,
+			BookwormCharacters.Ferdinand.Name,
 		};
 		foreach (var book in books)
 		{

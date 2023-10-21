@@ -22,9 +22,12 @@ public static class PlotUtils
 		var locationOrder = GetLocationOrder(chart);
 		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key))
 		{
-			var xs = new double[2];
-			var ys = new double[2];
-			var labels = new string[2] { character, string.Empty };
+			// ScottPlot does NOT make a copy of passed in arrays
+			// so use lists that force us to make the copies ourself
+			var xs = new List<double>(2) { 0, 0 };
+			var ys = new List<double>(2) { 0, 0 };
+			var labels = new List<string>(2) { character, string.Empty };
+
 			var segmentStartX = points.Values[0].Point.X;
 			for (var p = 1; p < points.Count; ++p)
 			{
@@ -33,9 +36,12 @@ public static class PlotUtils
 				var broken = prevY != currY;
 				var last = p == points.Count - 1;
 
-				// draw the stationary location segment
+				// add the previous stationary segment
+				// only do this if 1 bool is true
+				// otherwise if a movement segment is the last one
+				// 2 lines will be drawn towards the end
 				// the start of this segment shows the character's name
-				if (broken || last)
+				if (broken ^ last)
 				{
 					xs[0] = segmentStartX;
 					// if we're at the last point don't stop before it
@@ -43,27 +49,34 @@ public static class PlotUtils
 					ys[0] = ys[1] = locationOrder.ShiftY(character, prevY);
 					segmentStartX = currX;
 
+					var scatter = plot.AddScatter(xs.ToArray(), ys.ToArray());
+					scatter.CustomizeScatter(chart, character);
+
 					// show the character's name at their last point
 					if (last)
 					{
 						labels[1] = character;
 					}
-
-					var scatter = plot.AddScatterCopy(xs, ys);
-					scatter.CustomizeScatter(chart, character);
-					scatter.DataPointLabels = labels;
+					scatter.DataPointLabels = labels.ToArray();
 				}
-				// draw the movement segment
+				// add the current movement segment
 				if (broken)
 				{
 					xs[0] = prevX;
-					ys[0] = locationOrder.ShiftY(character, prevY);
 					xs[1] = currX;
+					ys[0] = locationOrder.ShiftY(character, prevY);
 					ys[1] = locationOrder.ShiftY(character, currY);
 
-					var scatter = plot.AddScatterCopy(xs, ys);
+					var scatter = plot.AddScatter(xs.ToArray(), ys.ToArray());
 					scatter.CustomizeScatter(chart, character);
 					scatter.LineStyle = LineStyle.DashDotDot;
+
+					// show the character's name at their last point
+					if (last)
+					{
+						labels[1] = character;
+						scatter.DataPointLabels = labels.ToArray();
+					}
 				}
 			}
 		}
@@ -96,9 +109,6 @@ public static class PlotUtils
 
 		plot.SaveFig(path);
 	}
-
-	private static ScatterPlot AddScatterCopy(this ScottPlot.Plot plot, double[] xs, double[] ys)
-		=> plot.AddScatter(xs.ToArray(), ys.ToArray());
 
 	private static void CustomizeScatter(this ScatterPlot scatter, NarrativeChart chart, string character)
 	{
