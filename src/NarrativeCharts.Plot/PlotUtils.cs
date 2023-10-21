@@ -4,19 +4,20 @@ using ScottPlot.Renderable;
 
 using System.Collections.Concurrent;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace NarrativeCharts.Plot;
 
 public static class PlotUtils
 {
-	private const float LABEL_ROTATION = 45;
+	private const int ROUND_TO = 100;
 	private static readonly ConcurrentDictionary<string, Color> _Colors = new();
 
 	public static void PlotChart(this NarrativeChart chart, string path)
 	{
 		var range = chart.GetRange();
-		var width = range.RangeX * 4;
-		var height = range.RangeY * 6;
+		var width = range.RangeX * 4 / ROUND_TO * ROUND_TO;
+		var height = range.RangeY * 6 / ROUND_TO * ROUND_TO;
 		var plot = new ScottPlot.Plot(width, height);
 
 		var locationOrder = GetLocationOrder(chart);
@@ -30,79 +31,61 @@ public static class PlotUtils
 				return y + (shift * 3);
 			}
 
-			// ScottPlot does NOT make a copy of passed in arrays
-			// so use lists that force us to make the copies ourself
-			var xs = new List<double>(2) { 0, 0 };
-			var ys = new List<double>(2) { 0, 0 };
-			var labels = new List<string>(2) { character, string.Empty };
-			var segmentStartX = points.Values[0].Point.X;
+			double x1, x2, y1, y2, xSegmentStart = points.Values[0].Point.X;
+			string label1 = character, label2 = string.Empty;
 			for (var p = 1; p < points.Count; ++p)
 			{
 				var (prevX, prevY) = points.Values[p - 1].Point;
 				var (currX, currY) = points.Values[p].Point;
-				var broken = prevY != currY;
-				var last = p == points.Count - 1;
+				var hasMovement = prevY != currY;
+				var isLastSegment = p == points.Count - 1;
 
-				// add the previous stationary segment
-				// only do this if 1 bool is true
-				// otherwise if a movement segment is the last one
-				// 2 lines will be drawn towards the end
-				// the start of this segment shows the character's name
-				if (broken ^ last)
+				// Add the previous stationary segment
+				// only do this if 1 bool is true, otherwise if a movement segment
+				// is the last segment 2 lines will be drawn towards the end
+				// The start of this segment shows the character's name
+				if (hasMovement ^ isLastSegment)
 				{
-					xs[0] = segmentStartX;
-					// if we're at the last point don't stop before it
-					xs[1] = last ? currX : prevX;
-					ys[0] = ys[1] = ShiftY(prevY);
-					segmentStartX = currX;
+					x1 = xSegmentStart;
+					// If we're at the last point don't stop before it
+					x2 = isLastSegment ? currX : prevX;
+					y1 = y2 = ShiftY(prevY);
+					xSegmentStart = currX;
 
-					var scatter = plot.AddScatter(xs.ToArray(), ys.ToArray());
-					scatter.CustomizeScatter(chart, character);
+					var scatter = plot
+						.AddScatter(new[] { x1, x2 }, new[] { y1, y2 })
+						.CustomizeForNarrativeChart(chart, character);
 
-					// show the character's name at their last point
-					if (last)
+					// Show the character's name at their last point
+					if (isLastSegment)
 					{
-						labels[1] = character;
+						label2 = character;
 					}
-					scatter.DataPointLabels = labels.ToArray();
+					scatter.DataPointLabels = new[] { label1, label2 };
 				}
-				// add the current movement segment
-				if (broken)
+				// Add the current movement segment
+				if (hasMovement)
 				{
-					xs[0] = prevX;
-					xs[1] = currX;
-					ys[0] = ShiftY(prevY);
-					ys[1] = ShiftY(currY);
+					x1 = prevX;
+					x2 = currX;
+					y1 = ShiftY(prevY);
+					y2 = ShiftY(currY);
 
-					var scatter = plot.AddScatter(xs.ToArray(), ys.ToArray());
-					scatter.CustomizeScatter(chart, character);
-					scatter.LineStyle = LineStyle.DashDotDot;
+					var scatter = plot
+						.AddScatter(new[] { x1, x2 }, new[] { y1, y2 })
+						.CustomizeForNarrativeChart(chart, character);
+					scatter.LineStyle = LineStyle.Dot;
 
-					// show the character's name at their last point
-					if (last)
+					// Show the character's name at their last point
+					if (isLastSegment)
 					{
-						labels[1] = character;
-						scatter.DataPointLabels = labels.ToArray();
+						label2 = character;
+						scatter.DataPointLabels = new[] { label1, label2 };
 					}
 				}
 			}
 		}
 
-		// set up the ability for the top axis to be used for labels
-		{
-			var hack = plot.AddScatter(
-				xs: new double[] { range.MinX, range.MaxX },
-				ys: new double[] { range.MinY, range.MaxY },
-				color: Color.Transparent
-			);
-			hack.YAxisIndex = plot.RightAxis.AxisIndex;
-			hack.XAxisIndex = plot.TopAxis.AxisIndex;
-			plot.TopAxis.Ticks(true);
-			plot.TopAxis.Grid(true);
-		}
-
-		var evenEvents = chart.Events.Skip(0).Where((_, i) => i % 2 == 0);
-		var oddEvents = chart.Events.Skip(1).Where((_, i) => i % 2 == 0);
 		var titleSize = Math.Max(
 			(int)(height * 0.025),
 			plot.TopAxis.AxisLabel.Font.Size
@@ -113,17 +96,9 @@ public static class PlotUtils
 		);
 
 		plot.TopAxis.Label(chart.Name, size: titleSize);
-		plot.TopAxis.TickLabelStyle(
-			fontSize: axisLabelSize,
-			rotation: LABEL_ROTATION
-		);
-		plot.TopAxis.SetTicks(evenEvents, x => x.Key, x => x.Value.Name);
 
-		plot.BottomAxis.TickLabelStyle(
-			fontSize: axisLabelSize,
-			rotation: LABEL_ROTATION
-		);
-		plot.BottomAxis.SetTicks(oddEvents, x => x.Key, x => x.Value.Name);
+		plot.BottomAxis.TickLabelStyle(rotation: 90);
+		plot.BottomAxis.SetTicks(chart.Events, x => x.Key, x => x.Value.Name);
 
 		plot.LeftAxis.TickLabelStyle(fontSize: axisLabelSize);
 		plot.LeftAxis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
@@ -131,7 +106,10 @@ public static class PlotUtils
 		plot.SaveFig(path);
 	}
 
-	private static void CustomizeScatter(this ScatterPlot scatter, NarrativeChart chart, string character)
+	private static ScatterPlot CustomizeForNarrativeChart(
+		this ScatterPlot scatter,
+		NarrativeChart chart,
+		string character)
 	{
 		var color = _Colors.GetOrAdd(chart.Colors[character], ColorTranslator.FromHtml);
 		scatter.Label = character;
@@ -142,6 +120,8 @@ public static class PlotUtils
 
 		scatter.DataPointLabelFont.Size = 10;
 		scatter.DataPointLabelFont.Color = color;
+
+		return scatter;
 	}
 
 	private static Dictionary<(int, string), int> GetLocationOrder(NarrativeChart chart)
