@@ -13,8 +13,6 @@ public class BookwormTimeTracker
 	public int CurrentDay => CurrentTotalHours / HOURS_PER_DAY;
 	public int CurrentHour => CurrentTotalHours % HOURS_PER_DAY;
 	public int CurrentTotalHours { get; private set; }
-	public BookwormBellMover GoToCurrentDay { get; }
-	public BookwormBellMover GoToNextDay { get; }
 
 	static BookwormTimeTracker()
 	{
@@ -47,13 +45,7 @@ public class BookwormTimeTracker
 		HourToBellMap = hourToBellMap.ToImmutableArray();
 	}
 
-	public BookwormTimeTracker()
-	{
-		GoToCurrentDay = new BookwormBellMover(this, dayDifference: 0);
-		GoToNextDay = new BookwormBellMover(this, dayDifference: 1);
-	}
-
-	public void AddBell()
+	public BookwormTimeTracker AddBell()
 	{
 		if (CurrentBell == Bells.Length - 1)
 		{
@@ -61,23 +53,28 @@ public class BookwormTimeTracker
 		}
 		else
 		{
-			GoToBellOfCurrentDay(CurrentBell + 1);
+			GoToBellOfCurrentDay((BookwormBell)(CurrentBell + 1));
 		}
+		return this;
 	}
 
-	public void AddBells(int bells)
+	public BookwormTimeTracker AddBells(int bells)
 	{
 		// cba to think of the logic to do this without a loop
 		for (var i = 0; i < bells; ++i)
 		{
 			AddBell();
 		}
+		return this;
 	}
 
-	public void AddDay()
-		=> CurrentTotalHours += HOURS_PER_DAY;
+	public BookwormTimeTracker AddDay()
+	{
+		CurrentTotalHours += HOURS_PER_DAY;
+		return this;
+	}
 
-	public void AddDays(int days)
+	public BookwormTimeTracker AddDays(int days)
 	{
 		if (days < 0)
 		{
@@ -85,11 +82,12 @@ public class BookwormTimeTracker
 		}
 
 		CurrentTotalHours += HOURS_PER_DAY * days;
+		return this;
 	}
 
-	public void GoToBellOfCurrentDay(int bell)
+	public BookwormTimeTracker GoToBellOfCurrentDay(BookwormBell bell)
 	{
-		var desiredHour = Bells[bell];
+		var desiredHour = Bells[(int)bell];
 		var currentHour = CurrentTotalHours % HOURS_PER_DAY;
 		if (currentHour > desiredHour)
 		{
@@ -97,65 +95,22 @@ public class BookwormTimeTracker
 		}
 
 		CurrentTotalHours += desiredHour - currentHour;
+		return this;
 	}
 
-	public void GoToBellOfNextDay(int bell)
+	public BookwormTimeTracker GoToBellOfNextDay(BookwormBell bell)
 	{
 		GoToStartOfNextDay();
-		CurrentTotalHours += Bells[bell];
+		CurrentTotalHours += Bells[(int)bell];
+		return this;
 	}
 
 	public BookwormBellMover GoToDaysAhead(int days)
 		=> new(this, dayDifference: days);
 
-	public void GoToStartOfNextDay()
-		=> CurrentTotalHours += HOURS_PER_DAY - (CurrentTotalHours % HOURS_PER_DAY);
-
-	public readonly struct BookwormBellMover
+	public BookwormTimeTracker GoToStartOfNextDay()
 	{
-		private readonly int _DayDifference;
-		private readonly BookwormTimeTracker _Tracker;
-
-		public BookwormBellMover(BookwormTimeTracker tracker, int dayDifference)
-		{
-			_Tracker = tracker;
-			_DayDifference = dayDifference;
-		}
-
-		public void Bed()
-			=> Move(7);
-
-		public void Dinner()
-			=> Move(6);
-
-		public void EarlyMorning()
-			=> Move(1);
-
-		public void Lunch()
-			=> Move(4);
-
-		public void MarketClose()
-			=> Move(5);
-
-		public void Meetings()
-			=> Move(3);
-
-		public void Morning()
-			=> Move(2);
-
-		private void Move(int bell)
-		{
-			if (_DayDifference == 0)
-			{
-				_Tracker.GoToBellOfCurrentDay(bell);
-				return;
-			}
-
-			_Tracker.GoToBellOfNextDay(bell);
-			if (_DayDifference > 1)
-			{
-				_Tracker.AddDays(_DayDifference - 1);
-			}
-		}
+		CurrentTotalHours += HOURS_PER_DAY - (CurrentTotalHours % HOURS_PER_DAY);
+		return this;
 	}
 }

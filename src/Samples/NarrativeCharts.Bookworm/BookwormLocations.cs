@@ -20,8 +20,8 @@ public static class BookwormLocations
 	{
 		YValues = new Dictionary<string, int>()
 		{
-			[Hasse.Name] = 275,
-			[Castle.Name] = 175,
+			[Hasse.Name] = 300,
+			[Castle.Name] = 200,
 			[KnightsOrder.Name] = 150,
 			[KarstedtsHouse.Name] = 100,
 			[Temple.Name] = 0,

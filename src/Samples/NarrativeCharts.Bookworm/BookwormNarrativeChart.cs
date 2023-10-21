@@ -38,12 +38,9 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		Update();
 	}
 
-	protected void Chapter(string name, bool addEvent = true)
+	protected void Chapter(string name)
 	{
-		if (addEvent)
-		{
-			this.AddEvent(new(Now(0), name));
-		}
+		this.AddEvent(new(new(Time.CurrentTotalHours, 0), name));
 		Update();
 	}
 
@@ -61,20 +58,24 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		}
 	}
 
-	protected Point Now(int y)
-		=> new(Time.CurrentTotalHours, y);
-
 	protected abstract void ProtectedCreate();
 
 	protected Point Scene(Location location)
-		=> Now(Locations[location.Name]);
+		=> new(Time.CurrentTotalHours, Locations[location.Name]);
 
-	protected void Update()
-		=> this.UpdatePoints(Time.CurrentTotalHours);
+	protected void SkipToCurrentDay(BookwormBell bell)
+		=> SkipToDaysAhead(0, bell);
 
-	protected void UpdateAndAddBell()
+	protected void SkipToDaysAhead(int days, BookwormBell bell)
 	{
+		Time.GoToDaysAhead(days).Move(bell - 1);
 		Update();
 		Time.AddBell();
 	}
+
+	protected void SkipToNextDay(BookwormBell bell)
+		=> SkipToDaysAhead(1, bell);
+
+	protected void Update()
+		=> this.UpdatePoints(Time.CurrentTotalHours);
 }
