@@ -22,12 +22,19 @@ public static class PlotUtils
 		var locationOrder = GetLocationOrder(chart);
 		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key))
 		{
+			int ShiftY(int y)
+			{
+				// if there isn't any location order for this character it's
+				// fine to treat it as 0 so we dont care if this fails or not
+				locationOrder.TryGetValue((y, character), out var shift);
+				return y + (shift * 3);
+			}
+
 			// ScottPlot does NOT make a copy of passed in arrays
 			// so use lists that force us to make the copies ourself
 			var xs = new List<double>(2) { 0, 0 };
 			var ys = new List<double>(2) { 0, 0 };
 			var labels = new List<string>(2) { character, string.Empty };
-
 			var segmentStartX = points.Values[0].Point.X;
 			for (var p = 1; p < points.Count; ++p)
 			{
@@ -46,7 +53,7 @@ public static class PlotUtils
 					xs[0] = segmentStartX;
 					// if we're at the last point don't stop before it
 					xs[1] = last ? currX : prevX;
-					ys[0] = ys[1] = locationOrder.ShiftY(character, prevY);
+					ys[0] = ys[1] = ShiftY(prevY);
 					segmentStartX = currX;
 
 					var scatter = plot.AddScatter(xs.ToArray(), ys.ToArray());
@@ -64,8 +71,8 @@ public static class PlotUtils
 				{
 					xs[0] = prevX;
 					xs[1] = currX;
-					ys[0] = locationOrder.ShiftY(character, prevY);
-					ys[1] = locationOrder.ShiftY(character, currY);
+					ys[0] = ShiftY(prevY);
+					ys[1] = ShiftY(currY);
 
 					var scatter = plot.AddScatter(xs.ToArray(), ys.ToArray());
 					scatter.CustomizeScatter(chart, character);
@@ -96,15 +103,29 @@ public static class PlotUtils
 
 		var evenEvents = chart.Events.Skip(0).Where((_, i) => i % 2 == 0);
 		var oddEvents = chart.Events.Skip(1).Where((_, i) => i % 2 == 0);
-		var titleSize = Math.Max((int)(height * 0.025), plot.TopAxis.AxisLabel.Font.Size);
+		var titleSize = Math.Max(
+			(int)(height * 0.025),
+			plot.TopAxis.AxisLabel.Font.Size
+		);
+		var axisLabelSize = Math.Max(
+			(int)(height * 0.01),
+			plot.BottomAxis.AxisTicks.TickLabelFont.Size
+		);
 
 		plot.TopAxis.Label(chart.Name, size: titleSize);
-		plot.TopAxis.TickLabelStyle(rotation: LABEL_ROTATION);
+		plot.TopAxis.TickLabelStyle(
+			fontSize: axisLabelSize,
+			rotation: LABEL_ROTATION
+		);
 		plot.TopAxis.SetTicks(evenEvents, x => x.Key, x => x.Value.Name);
 
-		plot.BottomAxis.TickLabelStyle(rotation: LABEL_ROTATION);
+		plot.BottomAxis.TickLabelStyle(
+			fontSize: axisLabelSize,
+			rotation: LABEL_ROTATION
+		);
 		plot.BottomAxis.SetTicks(oddEvents, x => x.Key, x => x.Value.Name);
 
+		plot.LeftAxis.TickLabelStyle(fontSize: axisLabelSize);
 		plot.LeftAxis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
 
 		plot.SaveFig(path);
@@ -176,13 +197,5 @@ public static class PlotUtils
 		}
 
 		axis.ManualTickPositions(positions, labels);
-	}
-
-	private static int ShiftY(this Dictionary<(int, string), int> dict, string character, int y)
-	{
-		// if there isn't any location order for this character it's
-		// fine to treat it as 0 so we dont care if this fails or not
-		dict.TryGetValue((y, character), out var shift);
-		return y + (shift * 3);
 	}
 }
