@@ -303,9 +303,8 @@ public sealed class P3V1 : BookwormNarrativeChart
 	{
 		Time.AddBell();
 		// myne gets changed into high bishop outfit
-		Add(Scene(Castle).With(Ottilie));
 		// karstedt was behind sylvester at the ceremony
-		Add(Scene(Castle).With(Karstedt));
+		Add(Scene(Castle).With(Karstedt, Ottilie));
 	}
 
 	private void P3V1C12()
@@ -318,6 +317,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToNextDay(MarketClose);
 		// "He put me onto his highbeast and we returned to the temple accompanied by Damuel and Brigitte, who followed on either side of us."
 		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+		Add(Scene(KnightsOrder).With(Angelica));
 
 		// Time: tomorrow
 		SkipToNextDay(Meetings);
@@ -407,6 +407,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 		SkipToNextDay(Meetings);
 		Add(Scene(Temple).With(Brigitte, Damuel, Myne));
+		Add(Scene(KnightsOrder).With(Angelica));
 		Add(Scene(Temple).With(Benno, Lutz));
 		Time.AddBell();
 		Add(Scene(GilbertaCompany).With(Benno));
@@ -512,6 +513,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Time.AddBell();
 		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
 		Add(Scene(KarstedtsHouse).With(Elvira, Karstedt));
+		Add(Scene(KnightsOrder).With(Eckhart));
 
 		// Time: "It was several days after the concert,"
 		SkipToDaysAhead(3, Meetings);
