@@ -4,20 +4,25 @@ using ScottPlot.Renderable;
 
 using System.Collections.Concurrent;
 using System.Drawing;
-using System.Runtime.CompilerServices;
 
 namespace NarrativeCharts.Plot;
 
 public static class PlotUtils
 {
-	private const int ROUND_TO = 100;
+	private const int IMG_FLOOR = 100;
+	private const int IMG_HEIGHT_MULT = 6;
+	private const int IMG_WIDTH_MULT = 4;
+	private const float LABEL_SIZE = LINE_WIDTH * 5;
+	private const float LINE_WIDTH = 2;
+	private const float MARKER_SIZE = LINE_WIDTH * 3;
+
 	private static readonly ConcurrentDictionary<string, Color> _Colors = new();
 
 	public static void PlotChart(this NarrativeChart chart, string path)
 	{
 		var range = chart.GetRange();
-		var width = range.RangeX * 4 / ROUND_TO * ROUND_TO;
-		var height = range.RangeY * 6 / ROUND_TO * ROUND_TO;
+		var width = range.RangeX * IMG_WIDTH_MULT / IMG_FLOOR * IMG_FLOOR;
+		var height = range.RangeY * IMG_HEIGHT_MULT / IMG_FLOOR * IMG_FLOOR;
 		var plot = new ScottPlot.Plot(width, height);
 
 		var locationOrder = GetLocationOrder(chart);
@@ -28,7 +33,7 @@ public static class PlotUtils
 				// if there isn't any location order for this character it's
 				// fine to treat it as 0 so we dont care if this fails or not
 				locationOrder.TryGetValue((y, character), out var shift);
-				return y + (shift * 3);
+				return y + (shift * 3) + 2; // add additional offset
 			}
 
 			double x1, x2, y1, y2, xSegmentStart = points.Values[0].Point.X;
@@ -38,26 +43,25 @@ public static class PlotUtils
 				var (prevX, prevY) = points.Values[p - 1].Point;
 				var (currX, currY) = points.Values[p].Point;
 				var hasMovement = prevY != currY;
-				var isLastSegment = p == points.Count - 1;
+				var isEnd = p == points.Count - 1;
 
 				// Add the previous stationary segment
-				// only do this if 1 bool is true, otherwise if a movement segment
+				// only do this if 1 bool is true, if a movement segment
 				// is the last segment 2 lines will be drawn towards the end
 				// The start of this segment shows the character's name
-				if (hasMovement ^ isLastSegment)
+				if (hasMovement ^ isEnd)
 				{
 					x1 = xSegmentStart;
 					// If we're at the last point don't stop before it
-					x2 = isLastSegment ? currX : prevX;
+					x2 = isEnd ? currX : prevX;
 					y1 = y2 = ShiftY(prevY);
 					xSegmentStart = currX;
 
-					var scatter = plot
-						.AddScatter(new[] { x1, x2 }, new[] { y1, y2 })
-						.CustomizeForNarrativeChart(chart, character);
+					var scatter = plot.AddScatter(new[] { x1, x2 }, new[] { y1, y2 });
+					scatter.CustomizeForNarrativeChart(chart, character);
 
 					// Show the character's name at their last point
-					if (isLastSegment)
+					if (isEnd)
 					{
 						label2 = character;
 					}
@@ -71,19 +75,30 @@ public static class PlotUtils
 					y1 = ShiftY(prevY);
 					y2 = ShiftY(currY);
 
-					var scatter = plot
-						.AddScatter(new[] { x1, x2 }, new[] { y1, y2 })
-						.CustomizeForNarrativeChart(chart, character);
+					var scatter = plot.AddScatter(new[] { x1, x2 }, new[] { y1, y2 });
+					scatter.CustomizeForNarrativeChart(chart, character);
 					scatter.LineStyle = LineStyle.Dot;
 
 					// Show the character's name at their last point
-					if (isLastSegment)
+					if (isEnd)
 					{
 						label2 = character;
 						scatter.DataPointLabels = new[] { label1, label2 };
 					}
 				}
 			}
+		}
+
+		{
+			var hack = plot.AddScatter(
+				new double[] { range.MinX, range.MaxX },
+				new double[] { range.MinY, range.MaxY },
+				color: Color.Transparent
+			);
+			hack.XAxisIndex = plot.TopAxis.AxisIndex;
+			hack.YAxisIndex = plot.RightAxis.AxisIndex;
+			plot.TopAxis.Ticks(true);
+			plot.RightAxis.Ticks(true);
 		}
 
 		var titleSize = Math.Max(
@@ -97,16 +112,26 @@ public static class PlotUtils
 
 		plot.TopAxis.Label(chart.Name, size: titleSize);
 
+		// Display event numbers at the top of the grid
+		var c = 0;
+		plot.TopAxis.SetTicks(chart.Events, x => x.Key, _ => (++c).ToString());
+
 		plot.BottomAxis.TickLabelStyle(rotation: 90);
+		plot.BottomAxis.AxisTicks.MajorGridWidth = LINE_WIDTH;
 		plot.BottomAxis.SetTicks(chart.Events, x => x.Key, x => x.Value.Name);
 
-		plot.LeftAxis.TickLabelStyle(fontSize: axisLabelSize);
-		plot.LeftAxis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
+		foreach (var axis in new[] { plot.LeftAxis, plot.RightAxis })
+		{
+			axis.TickLabelStyle(fontSize: axisLabelSize);
+			axis.AxisTicks.MajorGridWidth = LINE_WIDTH;
+			axis.SetTicks(chart.Locations, x => x.Value, x => x.Key);
+		}
 
+		plot.AxisAuto(0.01, 0.025);
 		plot.SaveFig(path);
 	}
 
-	private static ScatterPlot CustomizeForNarrativeChart(
+	private static void CustomizeForNarrativeChart(
 		this ScatterPlot scatter,
 		NarrativeChart chart,
 		string character)
@@ -115,13 +140,11 @@ public static class PlotUtils
 		scatter.Label = character;
 		scatter.Color = color;
 
-		scatter.MarkerSize = 6;
-		scatter.LineWidth = 2;
+		scatter.LineWidth = LINE_WIDTH;
+		scatter.MarkerSize = MARKER_SIZE;
 
-		scatter.DataPointLabelFont.Size = 10;
+		scatter.DataPointLabelFont.Size = LABEL_SIZE;
 		scatter.DataPointLabelFont.Color = color;
-
-		return scatter;
 	}
 
 	private static Dictionary<(int, string), int> GetLocationOrder(NarrativeChart chart)

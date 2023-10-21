@@ -262,6 +262,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Time.AddBell();
 		// Leaving after discussing printing/restaurant
 		Add(Scene(GilbertaCompany).With(Benno, Lutz, Mark));
+		Time.AddBell();
 	}
 
 	private void P3V1C09()
@@ -305,6 +306,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// myne gets changed into high bishop outfit
 		// karstedt was behind sylvester at the ceremony
 		Add(Scene(Castle).With(Karstedt, Ottilie));
+		Time.AddBell();
 	}
 
 	private void P3V1C12()

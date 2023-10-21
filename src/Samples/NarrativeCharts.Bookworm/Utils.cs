@@ -9,17 +9,19 @@ namespace NarrativeCharts.Bookworm;
 public static class Utils
 {
 	private static readonly Dictionary<string, string> CharacterPropertyNames =
-		typeof(BookwormCharacters).MapPropertyNames((Character c) => c.Name);
+		typeof(BookwormCharacters).MapPropertyNames(
+			(Character c) => c.Name);
 	private static readonly Dictionary<int, string> LocationPropertyNames =
 		typeof(BookwormLocations).MapPropertyNames(
 			(Location l) => BookwormLocations.YValues[l.Name]);
 
 	public static void Export(this BookwormNarrativeChart chart, string dir)
 	{
-		chart.PlotChart(Path.Combine(dir, $"{chart.Name}_plot.png"));
-		chart.ExportFinalCharacterPositions(Path.Combine(dir, $"{chart.Name}_chars.txt"));
+		chart.PlotChart(Path.Combine(dir, $"{chart.Name}_chart.png"));
+		chart.ExportFinalCharacterPositions(Path.Combine(dir, $"{chart.Name}_final_positions.txt"));
 
-		Console.WriteLine($"{chart.Name} total points: {chart.Points.Sum(x => x.Value.Count)}");
+		var points = chart.Points.Sum(x => x.Value.Count);
+		Console.WriteLine($"{chart.Name} total points: {points}");
 	}
 
 	public static void ExportFinalCharacterPositions(this NarrativeChart chart, string path)
@@ -48,14 +50,16 @@ public static class Utils
 
 			sb.Append("Add(Scene(").Append(property).Append(").With(");
 			var first = true;
-			foreach (var character in group)
+			foreach (var character in group
+				.Select(x => CharacterPropertyNames[x.Character])
+				.OrderBy(x => x))
 			{
 				if (!first)
 				{
 					sb.Append(", ");
 				}
 				first = false;
-				sb.Append(CharacterPropertyNames[character.Character]);
+				sb.Append(character);
 			}
 			sb.AppendLine("));");
 		}
