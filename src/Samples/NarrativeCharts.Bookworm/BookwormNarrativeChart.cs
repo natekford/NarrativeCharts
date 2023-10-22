@@ -68,7 +68,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 	protected void SkipToDaysAhead(int days, BookwormBell bell)
 	{
-		Time.SkipToDaysAhead(days).Move(bell - 1);
+		Time.SkipToDaysAheadStart(days).SetBell(bell - 1);
 		Update();
 		Time.AddBell();
 	}

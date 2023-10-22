@@ -2,115 +2,77 @@
 
 namespace NarrativeCharts.Bookworm;
 
-public class BookwormTimeTracker
+public class BookwormTimeTracker : TimeTracker
 {
 	private const int HOURS_PER_DAY = 24;
 
-	public static ImmutableArray<int> Bells { get; }
-	public static ImmutableArray<int> HourToBellMap { get; }
+	public static ImmutableDictionary<BookwormBell, int> BellToHourMap { get; }
+	public static ImmutableDictionary<int, BookwormBell> HourToBellMap { get; }
 
-	public int CurrentBell => HourToBellMap[CurrentHour];
-	public int CurrentDay => CurrentTotalHours / HOURS_PER_DAY;
-	public int CurrentHour => CurrentTotalHours % HOURS_PER_DAY;
-	public int CurrentTotalHours { get; private set; }
+	public BookwormBell CurrentBell => HourToBellMap[CurrentHour];
+	public override int HoursPerDay => HOURS_PER_DAY;
 
 	static BookwormTimeTracker()
 	{
 		// source: https://w.atwiki.jp/booklove/pages/195.html#footnote_body_2
-		Bells = new int[]
+		BellToHourMap = new Dictionary<BookwormBell, int>
 		{
-			0,
-			4,
-			7,
-			10,
-			12,
-			15,
-			17,
-			20,
-		}.ToImmutableArray();
+			[BookwormBell.Midnight] = 0,
+			[BookwormBell.EarlyMorning] = 4,
+			[BookwormBell.Morning] = 7,
+			[BookwormBell.Meetings] = 10,
+			[BookwormBell.Lunch] = 12,
+			[BookwormBell.MarketClose] = 15,
+			[BookwormBell.Dinner] = 17,
+			[BookwormBell.Bed] = 20,
+		}.ToImmutableDictionary();
 
-		var hourToBellMap = new int[HOURS_PER_DAY];
+		var hourToBellMap = new Dictionary<int, BookwormBell>();
 		for (var hour = 0; hour < HOURS_PER_DAY; ++hour)
 		{
-			var bell = 0;
-			for (; bell < Bells.Length; ++bell)
+			var bell = BookwormBell.Midnight;
+			for (; bell <= BookwormBell.Bed; ++bell)
 			{
-				if (Bells[bell] > hour)
+				if (BellToHourMap[bell] > hour)
 				{
 					break;
 				}
 			}
 			hourToBellMap[hour] = bell - 1;
 		}
-		HourToBellMap = hourToBellMap.ToImmutableArray();
+		HourToBellMap = hourToBellMap.ToImmutableDictionary();
 	}
 
 	public BookwormTimeTracker AddBell()
-	{
-		if (CurrentBell == Bells.Length - 1)
-		{
-			SkipToStartOfNextDay();
-		}
-		else
-		{
-			SkipToBellOfCurrentDay((BookwormBell)(CurrentBell + 1));
-		}
-		return this;
-	}
+		=> SkipToBell(CurrentBell + 1);
 
 	public BookwormTimeTracker AddBells(int bells)
 	{
-		// cba to think of the logic to do this without a loop
-		for (var i = 0; i < bells; ++i)
+		var days = bells / BellToHourMap.Count;
+		if (days != 0)
 		{
-			AddBell();
-		}
-		return this;
-	}
-
-	public BookwormTimeTracker AddDay()
-	{
-		CurrentTotalHours += HOURS_PER_DAY;
-		return this;
-	}
-
-	public BookwormTimeTracker AddDays(int days)
-	{
-		if (days < 0)
-		{
-			throw new InvalidOperationException("Not allowed to go back in time.");
+			this.AddDays(days);
 		}
 
-		CurrentTotalHours += HOURS_PER_DAY * days;
-		return this;
-	}
-
-	public BookwormTimeTracker SkipToBellOfCurrentDay(BookwormBell bell)
-	{
-		var desiredHour = Bells[(int)bell];
-		var currentHour = CurrentTotalHours % HOURS_PER_DAY;
-		if (currentHour > desiredHour)
+		bells %= BellToHourMap.Count;
+		if (bells == 0)
 		{
-			throw new InvalidOperationException("Not allowed to go back in time.");
+			return this;
 		}
 
-		CurrentTotalHours += desiredHour - currentHour;
-		return this;
+		return SkipToBell(CurrentBell + bells);
 	}
 
-	public BookwormTimeTracker SkipToBellOfNextDay(BookwormBell bell)
-	{
-		SkipToStartOfNextDay();
-		CurrentTotalHours += Bells[(int)bell];
-		return this;
-	}
+	public BookwormTimeTracker SetBell(BookwormBell bell)
+		=> this.SetCurrentHour(BellToHourMap[bell]);
 
-	public BookwormBellMover SkipToDaysAhead(int days)
-		=> new(this, dayDifference: days);
-
-	public BookwormTimeTracker SkipToStartOfNextDay()
+	private BookwormTimeTracker SkipToBell(BookwormBell bell)
 	{
-		CurrentTotalHours += HOURS_PER_DAY - (CurrentTotalHours % HOURS_PER_DAY);
-		return this;
+		if (bell > BookwormBell.Bed)
+		{
+			this.SkipToNextDayStart();
+			bell -= BellToHourMap.Count;
+		}
+		return SetBell(bell);
 	}
 }
