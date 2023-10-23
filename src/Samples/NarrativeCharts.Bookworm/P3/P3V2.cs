@@ -21,6 +21,8 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C03();
 		Chapter("The New Orphans");
 		P3V2C04();
+		Chapter("The Orphan's Treatment and Investigating the City");
+		P3V2C05();
 		Update();
 	}
 
@@ -33,10 +35,9 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(KnightsOrder).With(Bindewald));
 		Add(Scene(Hasse).With(Deid, Ingo));
 		Add(Scene(LowerCityWorkshops).With(Johann, Zack));
-		Add(Scene(GilbertaCompany).With(Benno, Leon, Lutz, Mark));
+		Add(Scene(MerchantCompanies).With(Benno, Freida, Gustav, Leon, Lutz, Mark));
 		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
 		Add(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
-		Add(Scene(OthmarCompany).With(Freida, Gustav));
 
 		// Time: After the coming of age ceremony in summer, no clue about what exact day or time of day aside from not night
 		SkipToDaysAhead(2, Lunch);
@@ -50,7 +51,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(Temple).With(Benno, Damuel, Effa, Fran, Lutz, Myne, Tuuli));
 		Time.AddBell();
 		Add(Scene(MynesHouse).With(Effa, Tuuli));
-		Add(Scene(GilbertaCompany).With(Benno, Lutz));
+		Add(Scene(MerchantCompanies).With(Benno, Lutz));
 	}
 
 	private void P3V2C02()
@@ -69,7 +70,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// lutz tells gunther that he will be able to see myne
 		Add(Scene(MynesHouse).With(Effa, Gunther, Lutz, Tuuli));
 		Time.AddBell();
-		Add(Scene(GilbertaCompany).With(Lutz));
+		Add(Scene(MerchantCompanies).With(Lutz));
 	}
 
 	private void P3V2C03()
@@ -90,8 +91,13 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Time.AddBell();
 		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
 
+		// Time: unknown, some time before myne comes back to hasse
+		SkipToDaysAhead(2, Meetings);
+		Add(Scene(MerchantCompanies).With(Benno, Mark, Lutz));
+		Add(Scene(MynesHouse).With(Gunther));
+
 		// Time: "The three days passed before I knew it"
-		SkipToDaysAhead(3, Morning);
+		SkipToNextDay(Morning);
 		Add(Scene(Hasse).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
 		Time.AddBell();
 		Add(Scene(Hasse).With(HasseMayor, Marthe, Nora, Rick, Thore));
@@ -99,5 +105,26 @@ public sealed class P3V2 : BookwormNarrativeChart
 
 	private void P3V2C04()
 	{
+		// Time: "Now, we will postpone taking you to your rooms so that we can eat lunch first."
+		SkipToCurrentDay(Lunch);
+		// everyone eats lunch at the monastery then the orphans get a tour of it
+		Time.AddBell();
+	}
+
+	private void P3V2C05()
+	{
+		// fran/ferdiand tell myne to stop being soft in the monastery's secret room
+		Time.AddBell();
+		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+
+		// "Ferdinand summoned Benno the second we got back to the temple;"
+		Add(Scene(Temple).With(Benno));
+		Time.AddBell();
+		Add(Scene(MerchantCompanies).With(Benno));
+	}
+
+	private void P3V2C06()
+	{
+		// Time: “We will visit again five days from now,” from c05
 	}
 }

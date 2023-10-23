@@ -43,10 +43,10 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 	{
 		var scatter = AddScatter(info);
 
-		// Show the character's name at their last point
 		scatter.DataPointLabels = new[]
 		{
 			info.Character.Value,
+			// Show the character's name at their last point
 			info.IsFinalSegment ? info.Character.Value : string.Empty,
 		};
 	}
