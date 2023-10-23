@@ -18,8 +18,7 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 
 	protected override ScottPlot.Plot CreateCanvas(NarrativeChart chart, YMap yMap)
 	{
-		var width = yMap.XRange * ImageWidthMultiplier / ImageSizeFloor * ImageSizeFloor;
-		var height = yMap.YRange * ImageHeightMultiplier / ImageSizeFloor * ImageSizeFloor;
+		var (width, height) = CalculateDimensions(yMap);
 		return new ScottPlot.Plot(width, height);
 	}
 

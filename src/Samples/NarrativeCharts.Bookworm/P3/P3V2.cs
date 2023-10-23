@@ -30,22 +30,15 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C04();
 		Chapter("The Orphan's Treatment and Investigating the City");
 		P3V2C05();
+		Chapter("The Monastery's Barrier");
+		P3V2C06();
+		Chapter("A New Task and Winter Preparations");
+		P3V2C07();
 		Update();
 	}
 
 	private void P3V2C01()
 	{
-		// Positions of characters at the end of the previous volume
-		Add(Scene(Temple).With(Ferdinand, Myne, Damuel, Delia, Dirk, Egmont, Ella, Gil, Monika, Nicola, Rosina, Wilma, Zahm, Fran, Brigitte));
-		Add(Scene(KarstedtsHouse).With(Karstedt, Elvira));
-		Add(Scene(Castle).With(Sylvester, Charlotte, Florencia, Melchior, Rihyarda, Cornelius, Eckhart, Lamprecht, Wilfried, Angelica, Norbert, Ottilie));
-		Add(Scene(KnightsOrder).With(Bindewald));
-		Add(Scene(Hasse).With(Deid, Ingo));
-		Add(Scene(LowerCityWorkshops).With(Johann, Zack));
-		Add(Scene(MerchantCompanies).With(Benno, Freida, Gustav, Leon, Lutz, Mark));
-		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
-		Add(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
-
 		// Time: After the coming of age ceremony in summer, no clue about what exact day or time of day aside from not night
 		SkipToDaysAhead(2, Lunch);
 		Add(Scene(MynesHouse).With(Effa, Tuuli));
@@ -122,7 +115,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		// fran/ferdiand tell myne to stop being soft in the monastery's secret room
 		Time.AddBell();
-		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+		Add(Scene(Temple).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
 
 		// "Ferdinand summoned Benno the second we got back to the temple;"
 		Add(Scene(Temple).With(Benno));
@@ -133,5 +126,35 @@ public sealed class P3V2 : BookwormNarrativeChart
 	private void P3V2C06()
 	{
 		// Time: “We will visit again five days from now,” from c05
+		// "There were three whole days before my next scheduled visit" from this chapter
+		// so the attack on the monastery either occurs 1 day after or 2
+		SkipToNextDay(Morning);
+		// wilma/myne talk about winter prep
+		Add(Scene(Temple).With(Myne, Wilma));
+		Time.AddBell();
+		// hasse monastery attacked
+		Add(Scene(Temple).With(Ferdinand, Myne));
+
+		SkipToNextDay(Morning);
+		// hasse mayor send a board
+		Add(Scene(Temple).With(Monika, Myne));
+		// myne shows it to ferdi
+		Time.AddBell();
+		Add(Scene(Temple).With(Ferdinand, Fran, Myne));
+	}
+
+	private void P3V2C07()
+	{
+		// Time: "before I returned to the monastery the day after tomorrow"
+		SkipToNextDay(Morning);
+		Add(Scene(Temple).With(Ferdinand, Myne));
+
+		// Time: "time to go to the castle the next day, my exhaustion was weighing me down just as much as the fear was."
+		SkipToNextDay(Morning);
+		Add(Scene(Temple).With(Gil, Myne));
+		Add(Scene(Temple).With(Ferdinand, Myne));
+		Time.AddBell();
+		Add(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Myne));
+		Time.AddBell();
 	}
 }

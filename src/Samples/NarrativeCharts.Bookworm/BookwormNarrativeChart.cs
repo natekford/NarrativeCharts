@@ -20,16 +20,16 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		}
 	}
 
-	public BookwormNarrativeChart Create()
+	public void Initialize()
 	{
 		if (AlreadyCreaated)
 		{
-			return this;
+			return;
 		}
 
 		ProtectedCreate();
+		this.Simplify();
 		AlreadyCreaated = true;
-		return this;
 	}
 
 	protected void Add(NarrativeScene scene)

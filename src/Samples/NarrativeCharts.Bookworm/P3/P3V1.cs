@@ -65,7 +65,9 @@ public sealed class P3V1 : BookwormNarrativeChart
 			// Time: roughly a month after the chefs get loaned out
 			SkipToNextDay(Morning);
 			Add(Scene(Temple).With(Ella));
-			Add(Scene(ItalianRestaurant).With(Hugo, Todd));
+			// Hugo doesn't come back until v2 (todd isn't mentioned but ferdinand does say chef*s*)
+			// "I planned to retrieve Hugo as well. I couldn’t foresee there being any issues with that since it was past the date we had agreed on anyway."
+			//Add(Scene(ItalianRestaurant).With(/*Hugo, */Todd));
 		}
 		Chapter("Elvira and Lamprecht Attack");
 		P3V1C19();

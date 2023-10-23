@@ -57,6 +57,22 @@ public static class ChartUtils
 		}
 	}
 
+	public static T Seed<T>(this T chart, NarrativeChart other, X start) where T : NarrativeChart
+	{
+		foreach (var (_, points) in other.Points)
+		{
+			var lastPoint = points.Values[0];
+			chart.AddPoint(lastPoint with
+			{
+				Point = lastPoint.Point with
+				{
+					X = start
+				},
+			});
+		}
+		return chart;
+	}
+
 	public static T Simplify<T>(this T chart) where T : NarrativeChart
 	{
 		foreach (var (_, points) in chart.Points)

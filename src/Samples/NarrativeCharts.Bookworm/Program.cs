@@ -10,15 +10,23 @@ public static class Program
 	{
 		var time = new BookwormTimeTracker();
 		var drawer = new PlotDrawer();
-		var books = new[]
+		var books = new BookwormNarrativeChart[]
 		{
-			new P3V1(time).Create(),
-			new P3V2(time).Create(),
+			new P3V1(time),
+			new P3V2(time),
 		};
+
+		books[0].Initialize();
+		for (var i = 1; i < books.Length; ++i)
+		{
+			books[i].Seed(books[i - 1], new(time.CurrentTotalHours));
+			books[i].Initialize();
+		}
 
 		var kept = new HashSet<Character>
 		{
 			BookwormCharacters.Ferdinand,
+			BookwormCharacters.Myne,
 		};
 		foreach (var book in books)
 		{
@@ -26,7 +34,7 @@ public static class Program
 			{
 				if (!kept.Contains(key))
 				{
-					//books[0].Points.Remove(key);
+					//book.Points.Remove(key);
 				}
 			}
 		}
@@ -34,8 +42,6 @@ public static class Program
 		const string DIR = @"C:\Users\User\Downloads\NarrativeCharts";
 		foreach (var book in books)
 		{
-			book.Simplify();
-
 			Directory.CreateDirectory(DIR);
 
 			await drawer.SaveChartAsync(book, Path.Combine(DIR, $"{book.Name}_chart.png")).ConfigureAwait(false);

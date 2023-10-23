@@ -7,6 +7,7 @@ namespace NarrativeCharts;
 public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 {
 	public int ImageHeightMultiplier { get; set; } = 6;
+	public int ImageSizeAddition { get; set; } = 500;
 	public int ImageSizeFloor { get; set; } = 100;
 	public int ImageWidthMultiplier { get; set; } = 6;
 	/// <summary>
@@ -28,6 +29,13 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 		var yMap = GetYMap(chart);
 		var image = DrawChart(chart, yMap);
 		await SaveImageAsync(chart, yMap, image, path).ConfigureAwait(false);
+	}
+
+	protected virtual (int, int) CalculateDimensions(YMap yMap)
+	{
+		var width = ImageSizeAddition + (yMap.XRange * ImageWidthMultiplier / ImageSizeFloor * ImageSizeFloor);
+		var height = ImageSizeAddition + (yMap.YRange * ImageHeightMultiplier / ImageSizeFloor * ImageSizeFloor);
+		return (width, height);
 	}
 
 	protected abstract TImage CreateCanvas(TChart chart, YMap yMap);
@@ -95,21 +103,26 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 		var timeSpent = new ConcurrentDictionary<Y, ConcurrentDictionary<Character, int>>();
 		foreach (var (character, points) in chart.Points)
 		{
-			if (points.Count > 0)
+			for (var i = 0; i < points.Count - 1; ++i)
 			{
-				xMax = Math.Max(xMax, points.Values[^1].Point.X.Value);
-				xMin = Math.Min(xMin, points.Values[0].Point.X.Value);
-			}
-
-			for (var p = 0; p < points.Count - 1; ++p)
-			{
-				var curr = points.Values[p].Point;
-				var next = points.Values[p + 1].Point;
+				var curr = points.Values[i].Point;
+				var next = points.Values[i + 1].Point;
 
 				var xDiff = next.X.Value - curr.X.Value;
 				timeSpent
 					.GetOrAdd(curr.Y, _ => new())
 					.AddOrUpdate(character, (_, a) => a, (_, a, b) => a + b, xDiff);
+			}
+
+			if (points.Count > 0)
+			{
+				xMax = Math.Max(xMax, points.Values[^1].Point.X.Value);
+				xMin = Math.Min(xMin, points.Values[0].Point.X.Value);
+
+				// prevent issues with ending on a movement segment
+				timeSpent
+					.GetOrAdd(points.Values[^1].Point.Y, _ => new())
+					.TryAdd(character, 0);
 			}
 		}
 
