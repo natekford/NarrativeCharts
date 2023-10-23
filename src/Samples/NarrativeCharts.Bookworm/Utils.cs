@@ -1,5 +1,4 @@
 ﻿using NarrativeCharts.Models;
-using NarrativeCharts.Plot;
 
 using System.Reflection;
 using System.Text;

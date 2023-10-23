@@ -1,7 +1,5 @@
 ﻿using NarrativeCharts.Models;
 
-using System.Collections.Concurrent;
-
 namespace NarrativeCharts;
 
 public static class ChartUtils
@@ -59,44 +57,6 @@ public static class ChartUtils
 		}
 	}
 
-	public static Dictionary<CharY, int> GetLocationOrder(this NarrativeChart chart)
-	{
-		var timeSpent = new ConcurrentDictionary<Y, ConcurrentDictionary<Character, int>>();
-		foreach (var (character, points) in chart.Points)
-		{
-			for (var p = 0; p < points.Count - 1; ++p)
-			{
-				var curr = points.Values[p].Point;
-				var next = points.Values[p + 1].Point;
-
-				var xDiff = next.X.Value - curr.X.Value;
-				timeSpent
-					.GetOrAdd(curr.Y, _ => new())
-					.AddOrUpdate(character, (_, a) => a, (_, a, b) => a + b, xDiff);
-			}
-		}
-
-		var locationOrder = new Dictionary<CharY, int>();
-		foreach (var (location, time) in timeSpent)
-		{
-			// more time spent = closer to the bottom
-			// any ties? alphabetical order (A = bottom, Z = top)
-			var ordered = time
-				.OrderByDescending(x => x.Value)
-				.ThenBy(x => x.Key.Value);
-			var i = 0;
-			foreach (var (character, _) in ordered)
-			{
-				locationOrder[new(character, location)] = i++;
-			}
-		}
-
-		return locationOrder;
-	}
-
-	public static EventRange GetRange(this NarrativeChart chart)
-		=> EventRange.GetRange(chart);
-
 	public static T Simplify<T>(this T chart) where T : NarrativeChart
 	{
 		foreach (var (_, points) in chart.Points)
@@ -138,6 +98,4 @@ public static class ChartUtils
 		}
 		return chart;
 	}
-
-	public readonly record struct CharY(Character Character, Y Y);
 }
