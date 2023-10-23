@@ -17,6 +17,13 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C01();
 		Chapter("Discussing the Harvest Festival");
 		P3V2C02();
+		// Background event
+		{
+			// Ingo and Deid probably come back from Hasse since the priests are
+			// able to move it, and Lutz/Myne never mention them being at the
+			// monastery when they go there
+			Add(Scene(LowerCityWorkshops).With(Deid, Ingo));
+		}
 		Chapter("Hasse's Monastery");
 		P3V2C03();
 		Chapter("The New Orphans");

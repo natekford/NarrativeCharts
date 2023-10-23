@@ -2,7 +2,6 @@
 
 using ScottPlot;
 using ScottPlot.Plottable;
-using ScottPlot.Renderable;
 
 using System.Collections.Concurrent;
 using System.Drawing;
@@ -57,7 +56,7 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 		ScottPlot.Plot image,
 		string path)
 	{
-		// Used to have the top and right axes show with the correct scale
+		// To have the top and right axes show with the correct scale
 		{
 			var hack = image.AddScatter(
 				new double[] { yMap.XMin, yMap.XMax },

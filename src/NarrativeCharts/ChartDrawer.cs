@@ -10,18 +10,18 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 	public int ImageSizeFloor { get; set; } = 100;
 	public int ImageWidthMultiplier { get; set; } = 6;
 	/// <summary>
-	/// The amount of pixels between each point on the same Y-tick.
-	/// </summary>
-	public int YShiftMultiplier { get; set; } = 3;
-	/// <summary>
 	/// The amount of pixels between a Y-tick and the first point.
 	/// </summary>
-	public int YShiftOffset { get; set; } = 2;
+	public int YOffset { get; set; } = 2;
+	/// <summary>
+	/// The amount of pixels between each point on the same Y-tick.
+	/// </summary>
+	public int YSpacing { get; set; } = 3;
 	/// <summary>
 	/// The amount of pixels to put between the highest Y value of a
 	/// previous Y-tick and the next Y-tick.
 	/// </summary>
-	public int YShiftSeperation { get; set; } = 25;
+	public int YTickSeperation { get; set; } = 25;
 
 	public async Task SaveChartAsync(TChart chart, string path)
 	{
@@ -114,6 +114,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 		}
 
 		var y = 0;
+		int yMax = int.MinValue, yMin = int.MaxValue;
 		var cMap = new Dictionary<(Character, Y), Y>();
 		var lMap = new Dictionary<Location, Y>();
 		foreach (var (location, time) in timeSpent.OrderBy(x => x.Key.Value))
@@ -125,11 +126,15 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 			var i = 0;
 			foreach (var (character, _) in time.OrderByDescending(x => x.Value).ThenBy(x => x.Key.Value))
 			{
-				cMap[new(character, location)] = new(y + (i * YShiftMultiplier) + YShiftOffset);
+				var value = y + (i * YSpacing) + YOffset;
+				yMax = Math.Max(yMax, value);
+				yMin = Math.Min(yMin, value);
+
+				cMap[new(character, location)] = new(value);
 				++i;
 			}
 
-			y += (i * YShiftMultiplier) + YShiftSeperation;
+			y += (i * YSpacing) + YTickSeperation;
 		}
 
 		return new(
@@ -137,8 +142,8 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 			Locations: lMap,
 			XMax: xMax,
 			XMin: xMin,
-			YMax: y,
-			YMin: 0
+			YMax: yMax,
+			YMin: yMin
 		);
 	}
 
