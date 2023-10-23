@@ -31,6 +31,7 @@ public static class Program
 		const string DIR = @"C:\Users\User\Downloads";
 		foreach (var book in books)
 		{
+			book.Simplify();
 			book.Export(DIR);
 		}
 
