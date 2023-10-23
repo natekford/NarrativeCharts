@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace NarrativeCharts.Plot;
 
-public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
+public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 {
 	private static readonly ConcurrentDictionary<Hex, Color> _Colors = new();
 
@@ -19,7 +19,78 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 	protected override ScottPlot.Plot CreateCanvas(NarrativeChart chart, YMap yMap)
 	{
 		var (width, height) = CalculateDimensions(yMap);
-		return new ScottPlot.Plot(width, height);
+		var plot = new ScottPlot.Plot(width, height);
+
+		// To have the top and right axes show with the correct scale
+		{
+			var hack = plot.AddScatter(
+				new double[] { yMap.XMin, yMap.XMax },
+				new double[] { yMap.YMin, yMap.YMax },
+				color: Color.Transparent
+			);
+			hack.XAxisIndex = plot.TopAxis.AxisIndex;
+			hack.YAxisIndex = plot.RightAxis.AxisIndex;
+			plot.TopAxis.Ticks(true);
+			plot.RightAxis.Ticks(true);
+		}
+
+		// Title
+		{
+			var titleSize = Math.Max(
+				(int)(plot.Height * 0.025),
+				plot.TopAxis.AxisLabel.Font.Size
+			);
+			plot.TopAxis.Label(chart.Name, size: titleSize);
+		}
+
+		// All axes
+		{
+			foreach (var axis in plot.GetSettings().Axes)
+			{
+				axis.AxisTicks.MajorGridWidth = LineWidth;
+				axis.AxisTicks.MajorLineWidth = LineWidth;
+			}
+		}
+
+		// Top/Bottom Axes
+		{
+			var (positions, nameLabels) = GetTicks(
+				chart.Events,
+				x => x.Key.Value,
+				x => x.Value.Name
+			);
+			var numberLabels = Enumerable.Range(1, nameLabels.Length)
+				.Select(x => x.ToString())
+				.ToArray();
+
+			// Display event numbers at the top of the grid
+			plot.TopAxis.ManualTickPositions(positions, numberLabels);
+
+			plot.BottomAxis.TickLabelStyle(rotation: 90);
+			plot.BottomAxis.ManualTickPositions(positions, nameLabels);
+		}
+
+		// Side axes
+		{
+			var axisLabelSize = Math.Max(
+				(int)(plot.Height * 0.01),
+				plot.BottomAxis.AxisTicks.TickLabelFont.Size
+			);
+			var (positions, labels) = GetTicks(
+				chart.Locations.Where(x => yMap.Locations.ContainsKey(x.Key)),
+				x => yMap.Locations[x.Key].Value,
+				x => x.Key.Value
+			);
+
+			foreach (var axis in new[] { plot.LeftAxis, plot.RightAxis })
+			{
+				axis.TickLabelStyle(fontSize: axisLabelSize);
+				axis.ManualTickPositions(positions, labels);
+			}
+		}
+
+		plot.AxisAuto(0.015, 0.025);
+		return plot;
 	}
 
 	protected override void DrawMovementSegment(SegmentInfo info)
@@ -55,75 +126,6 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 		ScottPlot.Plot image,
 		string path)
 	{
-		// To have the top and right axes show with the correct scale
-		{
-			var hack = image.AddScatter(
-				new double[] { yMap.XMin, yMap.XMax },
-				new double[] { yMap.YMin, yMap.YMax },
-				color: Color.Transparent
-			);
-			hack.XAxisIndex = image.TopAxis.AxisIndex;
-			hack.YAxisIndex = image.RightAxis.AxisIndex;
-			image.TopAxis.Ticks(true);
-			image.RightAxis.Ticks(true);
-		}
-
-		// Title
-		{
-			var titleSize = Math.Max(
-				(int)(image.Height * 0.025),
-				image.TopAxis.AxisLabel.Font.Size
-			);
-			image.TopAxis.Label(chart.Name, size: titleSize);
-		}
-
-		// All axes
-		{
-			foreach (var axis in image.GetSettings().Axes)
-			{
-				axis.AxisTicks.MajorGridWidth = LineWidth;
-				axis.AxisTicks.MajorLineWidth = LineWidth;
-			}
-		}
-
-		// Top/Bottom Axes
-		{
-			var (positions, nameLabels) = GetTicks(
-				chart.Events,
-				x => x.Key.Value,
-				x => x.Value.Name
-			);
-			var numberLabels = Enumerable.Range(0, nameLabels.Length)
-				.Select(x => x.ToString())
-				.ToArray();
-
-			// Display event numbers at the top of the grid
-			image.TopAxis.ManualTickPositions(positions, numberLabels);
-
-			image.BottomAxis.TickLabelStyle(rotation: 90);
-			image.BottomAxis.ManualTickPositions(positions, nameLabels);
-		}
-
-		// Side axes
-		{
-			var axisLabelSize = Math.Max(
-				(int)(image.Height * 0.01),
-				image.BottomAxis.AxisTicks.TickLabelFont.Size
-			);
-			var (positions, labels) = GetTicks(
-				chart.Locations.Where(x => yMap.Locations.ContainsKey(x.Key)),
-				x => yMap.Locations[x.Key].Value,
-				x => x.Key.Value
-			);
-
-			foreach (var axis in new[] { image.LeftAxis, image.RightAxis })
-			{
-				axis.TickLabelStyle(fontSize: axisLabelSize);
-				axis.ManualTickPositions(positions, labels);
-			}
-		}
-
-		image.AxisAuto(0.015, 0.025);
 		image.SaveFig(path);
 		return Task.CompletedTask;
 	}

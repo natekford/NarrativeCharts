@@ -9,7 +9,7 @@ public static class Program
 	private static async Task Main()
 	{
 		var time = new BookwormTimeTracker();
-		var drawer = new PlotDrawer();
+		var drawer = new ScottPlotDrawer();
 		var books = new BookwormNarrativeChart[]
 		{
 			new P3V1(time),
