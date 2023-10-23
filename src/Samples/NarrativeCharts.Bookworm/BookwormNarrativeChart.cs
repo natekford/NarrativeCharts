@@ -12,7 +12,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		Time = time;
 		foreach (var (character, color) in BookwormCharacters.ColorValues)
 		{
-			Colors[character] = color.Hex;
+			Colors[character] = color;
 		}
 		foreach (var (location, y) in BookwormLocations.YValues)
 		{
@@ -40,7 +40,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 	protected void Chapter(string name)
 	{
-		this.AddEvent(new(new(Time.CurrentTotalHours, 0), name));
+		this.AddEvent(new(new(new(Time.CurrentTotalHours), new(0)), name));
 		Update();
 	}
 
@@ -49,7 +49,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		Update();
 		foreach (var character in characters)
 		{
-			var points = Points[character.Name];
+			var points = Points[character];
 			var point = points.Values[^1];
 			points[point.Point.X] = point with
 			{
@@ -61,7 +61,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 	protected abstract void ProtectedCreate();
 
 	protected Point Scene(Location location)
-		=> new(Time.CurrentTotalHours, Locations[location.Name]);
+		=> new(new(Time.CurrentTotalHours), Locations[location]);
 
 	protected void SkipToCurrentDay(BookwormBell bell)
 		=> SkipToDaysAhead(0, bell);
@@ -77,5 +77,5 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		=> SkipToDaysAhead(1, bell);
 
 	protected void Update()
-		=> this.UpdatePoints(Time.CurrentTotalHours);
+		=> this.UpdatePoints(new(Time.CurrentTotalHours));
 }

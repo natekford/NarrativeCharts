@@ -2,5 +2,5 @@
 
 public sealed record NarrativeScene(
 	Point Point,
-	IReadOnlyList<string> Characters
+	IReadOnlyList<Character> Characters
 );

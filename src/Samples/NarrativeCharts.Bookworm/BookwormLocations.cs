@@ -1,4 +1,6 @@
-﻿using System.Collections.Immutable;
+﻿using NarrativeCharts.Models;
+
+using System.Collections.Immutable;
 
 namespace NarrativeCharts.Bookworm;
 
@@ -14,24 +16,22 @@ public static class BookwormLocations
 	public static Location MynesHouse { get; } = new("Myne's Family's House");
 	public static Location OthmarCompany { get; } = new("Othmar Company");
 	public static Location Temple { get; } = new("Temple");
-	public static ImmutableDictionary<string, int> YValues { get; }
+	public static ImmutableDictionary<Location, Y> YValues { get; }
 
 	static BookwormLocations()
 	{
-		YValues = new Dictionary<string, int>()
+		YValues = new Dictionary<Location, int>()
 		{
-			[Hasse.Name] = 300,
-			[Castle.Name] = 200,
-			[KnightsOrder.Name] = 150,
-			[KarstedtsHouse.Name] = 100,
-			[Temple.Name] = 0,
-			[ItalianRestaurant.Name] = -100,
-			[OthmarCompany.Name] = -125,
-			[GilbertaCompany.Name] = -150,
-			[LowerCityWorkshops.Name] = -200,
-			[MynesHouse.Name] = -225,
-		}.ToImmutableDictionary();
+			[Hasse] = 300,
+			[Castle] = 200,
+			[KnightsOrder] = 150,
+			[KarstedtsHouse] = 100,
+			[Temple] = 0,
+			[ItalianRestaurant] = -100,
+			[OthmarCompany] = -125,
+			[GilbertaCompany] = -150,
+			[LowerCityWorkshops] = -200,
+			[MynesHouse] = -225,
+		}.ToImmutableDictionary(x => x.Key, x => new Y(x.Value));
 	}
 }
-
-public readonly record struct Location(string Name);

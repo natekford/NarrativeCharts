@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Bookworm.P3;
+using NarrativeCharts.Models;
 using NarrativeCharts.Plot;
 
 namespace NarrativeCharts.Bookworm;
@@ -15,9 +16,9 @@ public static class Program
 			new P3V2(time).Create(),
 		};
 
-		var kept = new HashSet<string>
+		var kept = new HashSet<Character>
 		{
-			BookwormCharacters.Ferdinand.Name,
+			BookwormCharacters.Ferdinand,
 		};
 		foreach (var book in books)
 		{

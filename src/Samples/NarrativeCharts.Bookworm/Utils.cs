@@ -8,12 +8,10 @@ namespace NarrativeCharts.Bookworm;
 
 public static class Utils
 {
-	private static readonly Dictionary<string, string> CharacterPropertyNames =
-		typeof(BookwormCharacters).MapPropertyNames(
-			(Character c) => c.Name);
-	private static readonly Dictionary<int, string> LocationPropertyNames =
-		typeof(BookwormLocations).MapPropertyNames(
-			(Location l) => BookwormLocations.YValues[l.Name]);
+	private static readonly Dictionary<Character, string> CharacterPropertyNames =
+		typeof(BookwormCharacters).MapPropertyNames((Character c) => c);
+	private static readonly Dictionary<Y, string> LocationPropertyNames =
+		typeof(BookwormLocations).MapPropertyNames((Location l) => BookwormLocations.YValues[l]);
 
 	public static void ExportFinalCharacterPositions(this NarrativeChart chart, string path)
 	{
@@ -52,7 +50,7 @@ public static class Utils
 	}
 
 	public static NarrativeScene With(this Point point, params Character[] characters)
-		=> new(point, characters.Select(x => x.Name).ToArray());
+		=> new(point, characters);
 
 	private static Dictionary<TKey, string> MapPropertyNames<TKey, TProperty>(
 		this Type type,

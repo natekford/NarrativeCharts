@@ -2,6 +2,6 @@
 
 public sealed record NarrativePoint(
 	Point Point,
-	string Character,
+	Character Character,
 	bool IsEnd
 );

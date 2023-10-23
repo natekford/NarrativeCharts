@@ -6,6 +6,9 @@ namespace NarrativeCharts;
 
 public static class ChartUtils
 {
+	public static Comparer<X> XComparer { get; }
+		= Comparer<X>.Create((a, b) => a.Value.CompareTo(b.Value));
+
 	public static T AddChart<T>(this T chart, NarrativeChart other) where T : NarrativeChart
 	{
 		foreach (var @event in other.Events)
@@ -29,7 +32,7 @@ public static class ChartUtils
 	{
 		if (!chart.Points.TryGetValue(point.Character, out var points))
 		{
-			chart.Points[point.Character] = points = new();
+			chart.Points[point.Character] = points = new(XComparer);
 		}
 
 		points[point.Point.X] = point;
@@ -58,7 +61,7 @@ public static class ChartUtils
 
 	public static Dictionary<CharY, int> GetLocationOrder(this NarrativeChart chart)
 	{
-		var timeSpent = new ConcurrentDictionary<int, ConcurrentDictionary<string, int>>();
+		var timeSpent = new ConcurrentDictionary<Y, ConcurrentDictionary<Character, int>>();
 		foreach (var (character, points) in chart.Points)
 		{
 			for (var p = 0; p < points.Count - 1; ++p)
@@ -66,7 +69,7 @@ public static class ChartUtils
 				var curr = points.Values[p].Point;
 				var next = points.Values[p + 1].Point;
 
-				var xDiff = next.X - curr.X;
+				var xDiff = next.X.Value - curr.X.Value;
 				timeSpent
 					.GetOrAdd(curr.Y, _ => new())
 					.AddOrUpdate(character, (_, a) => a, (_, a, b) => a + b, xDiff);
@@ -80,7 +83,7 @@ public static class ChartUtils
 			// any ties? alphabetical order (A = bottom, Z = top)
 			var ordered = time
 				.OrderByDescending(x => x.Value)
-				.ThenBy(x => x.Key);
+				.ThenBy(x => x.Key.Value);
 			var i = 0;
 			foreach (var (character, _) in ordered)
 			{
@@ -114,7 +117,7 @@ public static class ChartUtils
 		return chart;
 	}
 
-	public static T UpdatePoints<T>(this T chart, int x) where T : NarrativeChart
+	public static T UpdatePoints<T>(this T chart, X x) where T : NarrativeChart
 	{
 		foreach (var (character, points) in chart.Points)
 		{
@@ -136,5 +139,5 @@ public static class ChartUtils
 		return chart;
 	}
 
-	public readonly record struct CharY(string Character, int Y);
+	public readonly record struct CharY(Character Character, Y Y);
 }

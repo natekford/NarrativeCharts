@@ -4,9 +4,9 @@ namespace NarrativeCharts;
 
 public class NarrativeChart
 {
-	public Dictionary<string, string> Colors { get; } = new();
-	public SortedList<int, NarrativeEvent> Events { get; } = new();
-	public Dictionary<string, int> Locations { get; } = new();
+	public Dictionary<Character, Hex> Colors { get; } = new();
+	public SortedList<X, NarrativeEvent> Events { get; } = new(ChartUtils.XComparer);
+	public Dictionary<Location, Y> Locations { get; } = new();
 	public string Name { get; set; } = "";
-	public Dictionary<string, SortedList<int, NarrativePoint>> Points { get; } = new();
+	public Dictionary<Character, SortedList<X, NarrativePoint>> Points { get; } = new();
 }

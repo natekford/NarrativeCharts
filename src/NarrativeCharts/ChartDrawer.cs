@@ -1,4 +1,6 @@
-﻿namespace NarrativeCharts;
+﻿using NarrativeCharts.Models;
+
+namespace NarrativeCharts;
 
 public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 {
@@ -21,17 +23,17 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 
 		var locationOrder = chart.GetLocationOrder();
 		int minY = int.MaxValue, maxY = int.MinValue;
-		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key))
+		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key.Value))
 		{
-			int ShiftY(int y)
+			Y ShiftY(Y y)
 			{
 				// if there isn't any location order for this character it's
 				// fine to treat it as 0 so we dont care if this fails or not
 				locationOrder.TryGetValue(new(character, y), out var shift);
-				var shifted = y + (shift * 3) + 2; // add additional offset
+				var shifted = y.Value + (shift * 3) + 2; // add additional offset
 				minY = Math.Min(minY, shifted);
 				maxY = Math.Max(maxY, shifted);
-				return shifted;
+				return new(shifted);
 			}
 
 			var xSegmentStart = points.Values[0].Point.X;
@@ -90,8 +92,8 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 	protected abstract Task SaveImageAsync(TChart chart, EventRange range, TImage image, string path);
 
 	protected readonly record struct SegmentInfo(
-		TChart Chart, TImage Canvas, string Character,
-		int X1, int X2, int Y1, int Y2,
+		TChart Chart, TImage Canvas, Character Character,
+		X X1, X X2, Y Y1, Y Y2,
 		bool IsFinalSegment
 	);
 }

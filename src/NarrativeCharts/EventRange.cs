@@ -13,10 +13,10 @@ public readonly record struct EventRange(int MaxX, int MaxY, int MinX, int MinY)
 			minY = int.MaxValue;
 		foreach (var point in chart.GetAllNarrativePoints())
 		{
-			maxX = Math.Max(maxX, point.Point.X);
-			maxY = Math.Max(maxY, point.Point.Y);
-			minX = Math.Min(minX, point.Point.X);
-			minY = Math.Min(minY, point.Point.Y);
+			maxX = Math.Max(maxX, point.Point.X.Value);
+			maxY = Math.Max(maxY, point.Point.Y.Value);
+			minX = Math.Min(minX, point.Point.X.Value);
+			minY = Math.Min(minY, point.Point.Y.Value);
 		}
 		return new(MaxX: maxX, MaxY: maxY, MinX: minX, MinY: minY);
 	}

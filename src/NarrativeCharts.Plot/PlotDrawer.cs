@@ -1,4 +1,6 @@
-﻿using ScottPlot;
+﻿using NarrativeCharts.Models;
+
+using ScottPlot;
 using ScottPlot.Plottable;
 using ScottPlot.Renderable;
 
@@ -9,7 +11,7 @@ namespace NarrativeCharts.Plot;
 
 public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 {
-	private static readonly ConcurrentDictionary<string, Color> _Colors = new();
+	private static readonly ConcurrentDictionary<Hex, Color> _Colors = new();
 
 	public float LabelSize { get; set; } = 10;
 	public float LineWidth { get; set; } = 2;
@@ -31,8 +33,8 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 		{
 			scatter.DataPointLabels = new[]
 			{
-				info.Character,
-				info.Character,
+				info.Character.Value,
+				info.Character.Value,
 			};
 		}
 	}
@@ -44,8 +46,8 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 		// Show the character's name at their last point
 		scatter.DataPointLabels = new[]
 		{
-			info.Character,
-			info.IsFinalSegment ? info.Character : string.Empty,
+			info.Character.Value,
+			info.IsFinalSegment ? info.Character.Value : string.Empty,
 		};
 	}
 
@@ -81,15 +83,15 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 
 		// Display event numbers at the top of the grid
 		var c = 0;
-		SetTicks(image.TopAxis, chart.Events, x => x.Key, _ => (++c).ToString());
+		SetTicks(image.TopAxis, chart.Events, x => x.Key.Value, _ => (++c).ToString());
 
 		image.BottomAxis.TickLabelStyle(rotation: 90);
-		SetTicks(image.BottomAxis, chart.Events, x => x.Key, x => x.Value.Name);
+		SetTicks(image.BottomAxis, chart.Events, x => x.Key.Value, x => x.Value.Name);
 
 		foreach (var axis in new[] { image.LeftAxis, image.RightAxis })
 		{
 			axis.TickLabelStyle(fontSize: axisLabelSize);
-			SetTicks(axis, chart.Locations, x => x.Value, x => x.Key);
+			SetTicks(axis, chart.Locations, x => x.Value.Value, x => x.Key.Value);
 		}
 
 		image.AxisAuto(0.015, 0.025);
@@ -99,12 +101,12 @@ public sealed class PlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
 
 	private ScatterPlot AddScatter(SegmentInfo info)
 	{
-		var xs = new double[] { info.X1, info.X2 };
-		var ys = new double[] { info.Y1, info.Y2 };
+		var xs = new double[] { info.X1.Value, info.X2.Value };
+		var ys = new double[] { info.Y1.Value, info.Y2.Value };
 		var scatter = info.Canvas.AddScatter(xs, ys);
 
-		var color = _Colors.GetOrAdd(info.Chart.Colors[info.Character], ColorTranslator.FromHtml);
-		scatter.Label = info.Character;
+		var color = _Colors.GetOrAdd(info.Chart.Colors[info.Character], x => ColorTranslator.FromHtml(x.Value));
+		scatter.Label = info.Character.Value;
 		scatter.Color = color;
 
 		scatter.LineWidth = LineWidth;
