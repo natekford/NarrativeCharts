@@ -15,15 +15,6 @@ public static class Utils
 		typeof(BookwormLocations).MapPropertyNames(
 			(Location l) => BookwormLocations.YValues[l.Name]);
 
-	public static void Export(this BookwormNarrativeChart chart, string dir)
-	{
-		chart.PlotChart(Path.Combine(dir, $"{chart.Name}_chart.png"));
-		chart.ExportFinalCharacterPositions(Path.Combine(dir, $"{chart.Name}_final_positions.txt"));
-
-		var points = chart.Points.Sum(x => x.Value.Count);
-		Console.WriteLine($"{chart.Name} total points: {points}");
-	}
-
 	public static void ExportFinalCharacterPositions(this NarrativeChart chart, string path)
 	{
 		// should output something like this:
@@ -38,30 +29,23 @@ public static class Utils
 			Add(Scene(OthmarCompany).With(Freida, Gustav));
 		*/
 
+		var sb = new StringBuilder();
 		var grouped = chart.Points
 			.Select(x => x.Value.Values[^1])
 			.Where(x => !x.IsEnd)
 			.GroupBy(x => x.Point.Y);
-
-		var sb = new StringBuilder();
 		foreach (var group in grouped)
 		{
 			var property = LocationPropertyNames[group.Key];
-
-			sb.Append("Add(Scene(").Append(property).Append(").With(");
-			var first = true;
-			foreach (var character in group
+			var characters = group
 				.Select(x => CharacterPropertyNames[x.Character])
-				.OrderBy(x => x))
-			{
-				if (!first)
-				{
-					sb.Append(", ");
-				}
-				first = false;
-				sb.Append(character);
-			}
-			sb.AppendLine("));");
+				.OrderBy(x => x);
+
+			sb.Append("Add(Scene(")
+				.Append(property)
+				.Append(").With(")
+				.AppendJoin(", ", characters)
+				.AppendLine("));");
 		}
 
 		File.WriteAllText(path, sb.ToString());
