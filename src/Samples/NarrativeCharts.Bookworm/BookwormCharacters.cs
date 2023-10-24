@@ -6,6 +6,8 @@ namespace NarrativeCharts.Bookworm;
 
 public static class BookwormCharacters
 {
+	private const string UNKNOWN = "#000000";
+
 	public static Character Angelica { get; } = new("Angelica");
 	public static Character Benno { get; } = new("Benno");
 	public static Character Bezewanst { get; } = new("Bezewanst");
@@ -34,7 +36,9 @@ public static class BookwormCharacters
 	public static Character Hugo { get; } = new("Hugo");
 	public static Character Ingo { get; } = new("Ingo");
 	public static Character Johann { get; } = new("Johann");
+	public static Character Justus { get; } = new("Justus");
 	public static Character Kamil { get; } = new("Kamil");
+	public static Character Kantna { get; } = new("Kantna");
 	public static Character Karstedt { get; } = new("Karstedt");
 	public static Character Lamprecht { get; } = new("Lamprecht");
 	public static Character Leise { get; } = new("Leise");
@@ -90,11 +94,13 @@ public static class BookwormCharacters
 			[Gil] = "#F8EECB",
 			[Gunther] = "#37527F",
 			[Gustav] = "#B6A6A7",
-			[HasseMayor] = "#000000",
+			[HasseMayor] = UNKNOWN,
 			[Hugo] = "#7E5951",
 			[Ingo] = "#C1924A",
 			[Johann] = "#E4A242",
+			[Justus] = "#A1AACB",
 			[Kamil] = "#415BA5",
+			[Kantna] = UNKNOWN,
 			[Karstedt] = "#874730",
 			[Lamprecht] = "#D18A71",
 			[Leise] = "#C87965",
@@ -104,7 +110,7 @@ public static class BookwormCharacters
 			[Marthe] = "#5C725D",
 			[Melchior] = "#3B4C80",
 			[Monika] = "#8BBFCD",
-			[Moritz] = "#000000",
+			[Moritz] = UNKNOWN,
 			[Myne] = "#39658C",
 			[Nicola] = "#F1A14A",
 			[Nora] = "#9797CC",
@@ -116,12 +122,12 @@ public static class BookwormCharacters
 			[Rosina] = "#E09C5B",
 			[Sylvester] = "#5366AB",
 			[Thore] = "#8888BE",
-			[Todd] = "#000000",
+			[Todd] = UNKNOWN,
 			[Tuuli] = "#95BE82",
 			[Wilfried] = "#FEEFB4",
 			[Wilma] = "#DF9139",
 			[Zack] = "#E05F0E",
-			[Zahm] = "#000000",
+			[Zahm] = UNKNOWN,
 		}.ToImmutableDictionary(x => x.Key, x => new Hex(x.Value));
 	}
 }

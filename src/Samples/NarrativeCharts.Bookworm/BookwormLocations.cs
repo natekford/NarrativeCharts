@@ -14,6 +14,7 @@ public static class BookwormLocations
 	public static Location LowerCityWorkshops { get; } = new("Lower City Workshops");
 	public static Location MerchantCompanies { get; } = new("Merchant Companies");
 	public static Location MynesHouse { get; } = new("Myne's Family's House");
+	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location Temple { get; } = new("Temple");
 	public static ImmutableDictionary<Location, Y> YValues { get; }
 
@@ -25,6 +26,7 @@ public static class BookwormLocations
 			[Castle] = 200,
 			[KnightsOrder] = 150,
 			[KarstedtsHouse] = 100,
+			[NoblesQuarter] = 50,
 			[Temple] = 0,
 			[ItalianRestaurant] = -100,
 			[MerchantCompanies] = -150,

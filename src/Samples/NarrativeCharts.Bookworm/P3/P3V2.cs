@@ -40,6 +40,12 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C09();
 		Chapter("Switching Places");
 		P3V2C10();
+		Chapter("Preparing for the Harvest Festival");
+		P3V2C11();
+		Chapter("Hasse's Contract");
+		P3V2C12();
+		Chapter("Starting Merchant Activities");
+		P3V2C13();
 		Update();
 	}
 
@@ -225,7 +231,43 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToCurrentDay(FifthBell);
 		// Time: "“Milady, it’s dinner time!” Rihyarda declared"
 		SkipToCurrentDay(Dinner);
-		// ferdi drops off karuta/study materials for wilf
-		Add(Scene(Castle).With(Ferdinand));
+		// ferdinand tells sylvester to disinherit wilf
+		var s1 = AddR(Scene(Castle).With(Ferdinand));
+		Time.AddBell();
+		Return(s1);
+
+		SkipToNextDay(Morning);
+		// myne shows people in the castle karuta/picture books
+		// Time: "Shortly after fourth bell, Wilfried and Lamprecht entered the room"
+		SkipToCurrentDay(FourthBell);
+		Add(Scene(Castle).With(Ferdinand, Lamprecht, Wilfried));
+	}
+
+	private void P3V2C11()
+	{
+		Add(Scene(Castle).With(Eckhart, Justus));
+		Time.AddBell();
+		Add(Scene(KnightsOrder).With(Eckhart));
+		Add(Scene(NoblesQuarter).With(Justus));
+	}
+
+	private void P3V2C12()
+	{
+		Add(Scene(Castle).With(Kantna));
+		SkipToCurrentDay(SixthBell);
+		// Time: "A little before sixth bell, Rihyarda received an ordonnanz from Ferdinand"
+		// he doesn't die, but he never shows up again
+		Kill(Kantna);
+		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+		Add(Scene(KarstedtsHouse).With(Cornelius, Karstedt));
+		Add(Scene(KnightsOrder).With(Angelica));
+
+		// Time: "The next day was a normal one; I practiced harspiel as I always did, then went to help Ferdinand."
+		SkipToNextDay(Meetings);
+		Add(Scene(Temple).With(Ferdinand, Myne));
+	}
+
+	private void P3V2C13()
+	{
 	}
 }

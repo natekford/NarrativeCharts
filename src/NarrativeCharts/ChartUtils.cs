@@ -62,6 +62,11 @@ public static class ChartUtils
 		foreach (var (_, points) in other.Points)
 		{
 			var lastPoint = points.Values[^1];
+			if (lastPoint.IsEnd)
+			{
+				continue;
+			}
+
 			chart.AddPoint(lastPoint with
 			{
 				Point = lastPoint.Point with
