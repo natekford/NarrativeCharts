@@ -6,6 +6,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 {
 	protected bool AlreadyCreaated { get; set; }
 	protected BookwormTimeTracker Time { get; }
+	protected X X => new(Time.CurrentTotalHours);
 
 	protected BookwormNarrativeChart(BookwormTimeTracker time)
 	{
@@ -29,7 +30,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 		if (seed is not null)
 		{
-			this.Seed(seed, new(Time.CurrentTotalHours));
+			this.Seed(seed, X);
 		}
 
 		ProtectedCreate();
@@ -37,15 +38,16 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		AlreadyCreaated = true;
 	}
 
-	protected void Add(NarrativeScene scene)
+	protected NarrativeScene Add(NarrativeScene scene)
 	{
 		this.AddScene(scene);
 		Update();
+		return scene;
 	}
 
 	protected void Chapter(string name)
 	{
-		this.AddEvent(new(new(new(Time.CurrentTotalHours), new(0)), name));
+		this.AddEvent(new(new(X, new(0)), name));
 		Update();
 	}
 
@@ -65,8 +67,24 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 	protected abstract void ProtectedCreate();
 
+	protected void Return(NarrativeScene scene)
+	{
+		foreach (var character in scene.Characters)
+		{
+			// should probably binary search instead of
+			// just using .Last, but LINQ go brrrr
+			var previousLocation = Points[character].Values
+				.Last(x => x.Point.X.Value < scene.Point.X.Value);
+			this.AddPoint(new(
+				Point: new(X, previousLocation.Point.Y),
+				Character: character,
+				IsEnd: false
+			));
+		}
+	}
+
 	protected Point Scene(Location location)
-		=> new(new(Time.CurrentTotalHours), Locations[location]);
+		=> new(X, Locations[location]);
 
 	protected void SkipToCurrentDay(BookwormBell bell)
 		=> SkipToDaysAhead(0, bell);
@@ -82,5 +100,5 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		=> SkipToDaysAhead(1, bell);
 
 	protected void Update()
-		=> this.UpdatePoints(new(Time.CurrentTotalHours));
+		=> this.UpdatePoints(X);
 }

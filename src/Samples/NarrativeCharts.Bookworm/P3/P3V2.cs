@@ -50,10 +50,10 @@ public sealed class P3V2 : BookwormNarrativeChart
 
 		// Time: "It’s due in three days"
 		SkipToDaysAhead(3, Meetings);
-		Add(Scene(Temple).With(Benno, Damuel, Effa, Fran, Lutz, Myne, Tuuli));
+		Add(Scene(Temple).With(Damuel, Fran, Myne));
+		var s1 = Add(Scene(Temple).With(Benno, Effa, Lutz, Tuuli));
 		Time.AddBell();
-		Add(Scene(MynesHouse).With(Effa, Tuuli));
-		Add(Scene(MerchantCompanies).With(Benno, Lutz));
+		Return(s1);
 	}
 
 	private void P3V2C02()
@@ -89,9 +89,9 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToDaysAhead(2, Morning);
 		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
 		Time.AddBell();
-		Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));
+		var s1 = Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));
 		Time.AddBell();
-		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+		Return(s1);
 
 		// Time: unknown, some time before myne comes back to hasse
 		SkipToDaysAhead(2, Meetings);
@@ -120,9 +120,9 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(Temple).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
 
 		// "Ferdinand summoned Benno the second we got back to the temple;"
-		Add(Scene(Temple).With(Benno));
+		var s1 = Add(Scene(Temple).With(Benno));
 		Time.AddBell();
-		Add(Scene(MerchantCompanies).With(Benno));
+		Return(s1);
 	}
 
 	private void P3V2C06()
@@ -156,7 +156,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(Temple).With(Gil, Myne));
 		Add(Scene(Temple).With(Ferdinand, Myne));
 		Time.AddBell();
-		Add(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Myne));
+		var s1 = Add(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Myne));
 		Time.AddBell();
 		Add(Scene(Castle).With(Myne, Rihyarda));
 		// Time: "a meeting had been arranged for teatime at fifth bell."
@@ -166,7 +166,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// myne shows sylvester lessy and gets sylvester to give hugo back
 		Add(Scene(Castle).With(Ferdinand, Myne, Sylvester));
 		Time.AddBell();
-		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+		Return(s1);
 		Add(Scene(ItalianRestaurant).With(Hugo));
 	}
 
@@ -174,12 +174,22 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		// Time: "The day I could visit Hasse’s orphanage had finally arrived."
 		SkipToNextDay(Meetings);
-		Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Fran, Gil, Myne));
+		var s1 = Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Fran, Gil, Myne));
 		Time.AddBell();
-		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Fran, Gil, Myne));
+		Return(s1);
 
 		// Time: "The day after visiting the orphans,"
 		SkipToNextDay(Meetings);
-		Add(Scene(Temple).With(Benno, Lutz, Mark));
+		var s2 = Add(Scene(Temple).With(Benno, Lutz, Mark));
+		Time.AddBell();
+		Return(s2);
+
+		// Time: "That night, I slept well for the first time in days."
+		// "spent the days leading up to the opening of the Italian restaurant relaxing,"
+		// "I started lunch early on the day of the Italian restaurant opening"
+		SkipToNextDay(Lunch);
+		var s3 = Add(Scene(ItalianRestaurant).With(Benno, Brigitte, Damuel, Fran, Freida, Gustav, Myne));
+		Time.AddBell();
+		Return(s3);
 	}
 }
