@@ -46,6 +46,12 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C12();
 		Chapter("Starting Merchant Activities");
 		P3V2C13();
+		Chapter("Hasse's Harvest Festival");
+		P3V2C14();
+		Chapter("The Harvest Festival");
+		P3V2C15();
+		Chapter("The Night of Schutzaria");
+		P3V2C16();
 		Update();
 	}
 
@@ -268,6 +274,64 @@ public sealed class P3V2 : BookwormNarrativeChart
 	}
 
 	private void P3V2C13()
+	{
+		Time.AddBell();
+		// myne updates gilberta company on hasse
+		var s1 = AddR(Scene(Temple).With(Benno, Lutz, Mark));
+		Time.AddBell();
+		Return(s1);
+
+		// Time: "Two days had passed since Mark was given permission to spread rumors."
+		// "Wine at noon?"
+		SkipToDaysAhead(2, Lunch);
+		var s2 = AddR(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Fran, Myne));
+		Add(Scene(Hasse).With(Richt));
+		Time.AddBell();
+		Return(s2);
+	}
+
+	private void P3V2C14()
+	{
+		// Time: unknown, "On the morning of the Harvest Festival"
+		SkipToDaysAhead(5, Morning);
+		// goes to hasse on highbeast
+		Add(Scene(Hasse).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
+		SkipToCurrentDay(FourthBell);
+		// goes to hasse in carriage
+		Add(Scene(Hasse).With(Ella, Monika, Nicola, Rosina));
+		Add(Scene(Hasse).With(Benno, Gil, Gunther, Lutz, Mark));
+		// Time: "Fifth bell rang just a second ago"
+		Time.AddBell();
+		// myne discusses hasse with gil/lutz
+		Time.AddBell();
+	}
+
+	private void P3V2C15()
+	{
+		// Time: "When dawn broke"
+		SkipToNextDay(Morning);
+		// monastery being closed for the winter
+		Time.AddBells(3);
+		Add(Scene(Temple).With(Gil, Marthe, Nora, Rick, Thore));
+		Add(Scene(MynesHouse).With(Gunther));
+		Add(Scene(MerchantCompanies).With(Lutz));
+		// via highbeast
+		Add(Scene(HarvestFestivalTowns).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
+		Time.AddBell();
+		// benno/mark spread rumours before leaving
+		Add(Scene(MerchantCompanies).With(Benno, Mark));
+		Time.AddBell();
+		// via carriage
+		Add(Scene(HarvestFestivalTowns).With(Ella, Monika, Nicola, Rosina));
+
+		// Time: "Justus began his work as a tax official first thing in the morning."
+		SkipToNextDay(Morning);
+		// justus sends taxes back to the castle
+		// Time: "Or so I thought until the third day."
+		SkipToDaysAhead(2, Morning);
+	}
+
+	private void P3V2C16()
 	{
 	}
 }

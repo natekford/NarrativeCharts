@@ -7,6 +7,7 @@ namespace NarrativeCharts.Bookworm;
 public static class BookwormLocations
 {
 	public static Location Castle { get; } = new("Ehrenfest Castle");
+	public static Location HarvestFestivalTowns { get; } = new("Harvest Festival Towns");
 	public static Location Hasse { get; } = new("Hasse");
 	public static Location ItalianRestaurant { get; } = new("Italian Restaurant");
 	public static Location KarstedtsHouse { get; } = new("Karstedt's Estate");
@@ -22,6 +23,7 @@ public static class BookwormLocations
 	{
 		YValues = new Dictionary<Location, int>()
 		{
+			[HarvestFestivalTowns] = 325,
 			[Hasse] = 300,
 			[Castle] = 200,
 			[KnightsOrder] = 150,

@@ -55,6 +55,7 @@ public static class BookwormCharacters
 	public static Character Norbert { get; } = new("Norbert");
 	public static Character Oswald { get; } = new("Oswald");
 	public static Character Ottilie { get; } = new("Ottilie");
+	public static Character Richt { get; } = new("Richt");
 	public static Character Rick { get; } = new("Rick");
 	public static Character Rihyarda { get; } = new("Rihyarda");
 	public static Character Rosina { get; } = new("Rosina");
@@ -117,6 +118,7 @@ public static class BookwormCharacters
 			[Norbert] = "#656567",
 			[Oswald] = "#654321",
 			[Ottilie] = "#A74D47",
+			[Richt] = UNKNOWN,
 			[Rick] = "#667965",
 			[Rihyarda] = "#E9DEC8",
 			[Rosina] = "#E09C5B",
