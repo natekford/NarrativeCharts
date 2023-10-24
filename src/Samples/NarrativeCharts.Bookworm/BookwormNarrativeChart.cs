@@ -5,8 +5,8 @@ namespace NarrativeCharts.Bookworm;
 public abstract class BookwormNarrativeChart : NarrativeChart
 {
 	protected bool AlreadyCreaated { get; set; }
-	protected BookwormTimeTracker Time { get; }
 	protected X X => new(Time.CurrentTotalHours);
+	private BookwormTimeTracker Time { get; }
 
 	protected BookwormNarrativeChart(BookwormTimeTracker time)
 	{
@@ -39,9 +39,15 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 	}
 
 	protected void Add(NarrativeScene scene)
+		=> this.AddScene(scene);
+
+	protected void AddBell(int amount = 1, bool update = true)
 	{
-		this.AddScene(scene);
-		Update();
+		if (update)
+		{
+			Update();
+		}
+		Time.AddBells(amount);
 	}
 
 	protected Dictionary<Character, Y> AddR(NarrativeScene scene)
@@ -95,8 +101,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 	protected void SkipToDaysAhead(int days, BookwormBell bell)
 	{
 		Time.SkipToDaysAheadStart(days).SetBell(bell - 1);
-		Update();
-		Time.AddBell();
+		AddBell();
 	}
 
 	protected void SkipToNextDay(BookwormBell bell)
@@ -104,4 +109,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 	protected void Update()
 		=> this.UpdatePoints(X);
+
+	protected void Update(params Character[] characters)
+		=> this.UpdatePoints(X, characters);
 }

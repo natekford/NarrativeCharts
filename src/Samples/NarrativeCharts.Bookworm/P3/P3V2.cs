@@ -68,7 +68,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToDaysAhead(3, Lunch);
 		Add(Scene(Temple).With(Damuel, Fran, Myne));
 		var s1 = AddR(Scene(Temple).With(Benno, Effa, Lutz, Tuuli));
-		Time.AddBell();
+		AddBell();
 		Return(s1);
 	}
 
@@ -79,15 +79,15 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// fran explains the harvest festival to myne then they go to a meeting with the blue priests
 		Add(Scene(Temple).With(Egmont, Ferdinand, Fran, Myne));
 		// Time: "Not long after lunch"
-		Time.AddBell();
+		AddBell();
 		Add(Scene(Temple).With(Ferdinand, Myne, Zahm));
-		Time.AddBell();
+		AddBell();
 		// lutz and myne talk about gunther being assigned as a guard knight for the hasse carriages
 		Add(Scene(Temple).With(Damuel, Gil, Lutz, Myne));
-		Time.AddBell();
+		AddBell();
 		// lutz tells gunther that he will be able to see myne
 		Add(Scene(MynesHouse).With(Effa, Gunther, Lutz, Tuuli));
-		Time.AddBell();
+		AddBell();
 		Add(Scene(MerchantCompanies).With(Lutz));
 	}
 
@@ -98,15 +98,15 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// myne sees gunther, the gray priests, and gilberta company off
 		Add(Scene(Temple).With(Benno, Gunther, Lutz, Mark, Myne));
 		// Time: the story says it's half a day or something to get to hasse via carriage?
-		Time.AddDay();
+		AddBell();
 		Add(Scene(Hasse).With(Benno, Gunther, Lutz, Mark));
 
 		// Time: "I would be heading for Hasse three days from now" said the day that the grays depart
 		SkipToDaysAhead(2, Morning);
 		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
-		Time.AddBell();
+		AddBell();
 		var s1 = AddR(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));
-		Time.AddBell();
+		AddBell();
 		Return(s1);
 
 		// Time: unknown, some time before myne comes back to hasse
@@ -117,7 +117,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "The three days passed before I knew it"
 		SkipToNextDay(Morning);
 		Add(Scene(Hasse).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
-		Time.AddBell();
+		AddBell();
 		Add(Scene(Hasse).With(HasseMayor, Marthe, Nora, Rick, Thore));
 	}
 
@@ -126,18 +126,18 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "Now, we will postpone taking you to your rooms so that we can eat lunch first."
 		SkipToCurrentDay(Lunch);
 		// everyone eats lunch at the monastery then the orphans get a tour of it
-		Time.AddBell();
+		AddBell();
 	}
 
 	private void P3V2C05()
 	{
 		// fran/ferdiand tell myne to stop being soft in the monastery's secret room
-		Time.AddBell();
+		AddBell();
 		Add(Scene(Temple).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
 
 		// "Ferdinand summoned Benno the second we got back to the temple;"
 		var s1 = AddR(Scene(Temple).With(Benno));
-		Time.AddBell();
+		AddBell();
 		Return(s1);
 	}
 
@@ -149,7 +149,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToNextDay(Morning);
 		// wilma/myne talk about winter prep
 		Add(Scene(Temple).With(Myne, Wilma));
-		Time.AddBell();
+		AddBell();
 		// hasse monastery attacked
 		Add(Scene(Temple).With(Ferdinand, Myne));
 
@@ -157,7 +157,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// hasse mayor send a board
 		Add(Scene(Temple).With(Monika, Myne));
 		// myne shows it to ferdi
-		Time.AddBell();
+		AddBell();
 		Add(Scene(Temple).With(Ferdinand, Fran, Myne));
 	}
 
@@ -171,9 +171,9 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToNextDay(Morning);
 		Add(Scene(Temple).With(Gil, Myne));
 		Add(Scene(Temple).With(Ferdinand, Myne));
-		Time.AddBell();
+		AddBell();
 		var s1 = AddR(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Myne));
-		Time.AddBell();
+		AddBell();
 		Add(Scene(Castle).With(Myne, Rihyarda));
 		// Time: "a meeting had been arranged for teatime at fifth bell."
 		SkipToCurrentDay(FifthBell);
@@ -181,7 +181,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(Castle).With(Myne, Wilfried));
 		// myne shows sylvester lessy and gets sylvester to give hugo back
 		Add(Scene(Castle).With(Ferdinand, Myne, Sylvester));
-		Time.AddBell();
+		AddBell();
 		Return(s1);
 		Add(Scene(ItalianRestaurant).With(Hugo));
 	}
@@ -191,13 +191,13 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "The day I could visit Hasse’s orphanage had finally arrived."
 		SkipToNextDay(Meetings);
 		var s1 = AddR(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Fran, Gil, Myne));
-		Time.AddBell();
+		AddBell();
 		Return(s1);
 
 		// Time: "The day after visiting the orphans,"
 		SkipToNextDay(Lunch);
 		var s2 = AddR(Scene(Temple).With(Benno, Lutz, Mark));
-		Time.AddBell();
+		AddBell();
 		Return(s2);
 
 		// Time: "That night, I slept well for the first time in days."
@@ -205,7 +205,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// "I started lunch early on the day of the Italian restaurant opening"
 		SkipToNextDay(Lunch);
 		var s3 = AddR(Scene(ItalianRestaurant).With(Benno, Brigitte, Damuel, Fran, Freida, Gustav, Myne));
-		Time.AddBell();
+		AddBell();
 		Return(s3);
 
 		// Time: "Lutz reported with a grin the next day."
@@ -215,11 +215,11 @@ public sealed class P3V2 : BookwormNarrativeChart
 
 	private void P3V2C09()
 	{
-		Time.AddBell();
+		AddBell();
 		Add(Scene(MerchantCompanies).With(Benno, Lutz, Mark));
 		// myne tells ferdi about the plan she came up with benno
 		Add(Scene(Temple).With(Ferdinand, Myne));
-		Time.AddBell();
+		AddBell();
 	}
 
 	private void P3V2C10()
@@ -229,7 +229,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToDaysAhead(3, Meetings);
 		// myne reports to sylvester and swaps places with wilfried for a day
 		Add(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Karstedt, Myne));
-		Time.AddBell();
+		AddBell();
 		// myne has lunch with wilf and talks about what to do
 		Add(Scene(Temple).With(Ferdinand, Lamprecht, Wilfried));
 		Add(Scene(Castle).With(Moritz, Oswald));
@@ -239,7 +239,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToCurrentDay(Dinner);
 		// ferdinand tells sylvester to disinherit wilf
 		var s1 = AddR(Scene(Castle).With(Ferdinand));
-		Time.AddBell();
+		AddBell();
 		Return(s1);
 
 		SkipToNextDay(Morning);
@@ -252,7 +252,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 	private void P3V2C11()
 	{
 		Add(Scene(Castle).With(Eckhart, Justus));
-		Time.AddBell();
+		AddBell();
 		Add(Scene(KnightsOrder).With(Eckhart));
 		Add(Scene(NoblesQuarter).With(Justus));
 	}
@@ -275,10 +275,10 @@ public sealed class P3V2 : BookwormNarrativeChart
 
 	private void P3V2C13()
 	{
-		Time.AddBell();
+		AddBell();
 		// myne updates gilberta company on hasse
 		var s1 = AddR(Scene(Temple).With(Benno, Lutz, Mark));
-		Time.AddBell();
+		AddBell();
 		Return(s1);
 
 		// Time: "Two days had passed since Mark was given permission to spread rumors."
@@ -286,7 +286,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToDaysAhead(2, Lunch);
 		var s2 = AddR(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Fran, Myne));
 		Add(Scene(Hasse).With(Richt));
-		Time.AddBell();
+		AddBell();
 		Return(s2);
 	}
 
@@ -294,16 +294,16 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		// Time: unknown, "On the morning of the Harvest Festival"
 		SkipToDaysAhead(5, Morning);
-		// goes to hasse on highbeast
+		// via highbeast
 		Add(Scene(Hasse).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
-		SkipToCurrentDay(FourthBell);
-		// goes to hasse in carriage
+		AddBell(1, update: false);
+		// via carriage
 		Add(Scene(Hasse).With(Ella, Monika, Nicola, Rosina));
 		Add(Scene(Hasse).With(Benno, Gil, Gunther, Lutz, Mark));
 		// Time: "Fifth bell rang just a second ago"
-		Time.AddBell();
+		AddBell();
 		// myne discusses hasse with gil/lutz
-		Time.AddBell();
+		AddBell();
 	}
 
 	private void P3V2C15()
@@ -311,16 +311,16 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "When dawn broke"
 		SkipToNextDay(Morning);
 		// monastery being closed for the winter
-		Time.AddBells(3);
+		AddBell(2);
 		Add(Scene(Temple).With(Gil, Marthe, Nora, Rick, Thore));
 		Add(Scene(MynesHouse).With(Gunther));
 		Add(Scene(MerchantCompanies).With(Lutz));
 		// via highbeast
 		Add(Scene(HarvestFestivalTowns).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
-		Time.AddBell();
+		Update(Benno, Mark);
+		AddBell(update: false);
 		// benno/mark spread rumours before leaving
 		Add(Scene(MerchantCompanies).With(Benno, Mark));
-		Time.AddBell();
 		// via carriage
 		Add(Scene(HarvestFestivalTowns).With(Ella, Monika, Nicola, Rosina));
 

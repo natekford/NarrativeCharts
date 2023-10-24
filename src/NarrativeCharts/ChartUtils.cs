@@ -1,5 +1,7 @@
 ﻿using NarrativeCharts.Models;
 
+using System.Collections.Generic;
+
 namespace NarrativeCharts;
 
 public static class ChartUtils
@@ -99,10 +101,16 @@ public static class ChartUtils
 	}
 
 	public static T UpdatePoints<T>(this T chart, X x) where T : NarrativeChart
+		=> chart.UpdatePoints(x, chart.Points.Keys);
+
+	public static T UpdatePoints<T>(
+		this T chart,
+		X x,
+		IEnumerable<Character> characters) where T : NarrativeChart
 	{
-		foreach (var (character, points) in chart.Points)
+		foreach (var character in characters)
 		{
-			var lastPoint = points.Values[^1];
+			var lastPoint = chart.Points[character].Values[^1];
 			// lastPoint already reaches up to where we're trying to update
 			if (lastPoint.IsEnd || lastPoint.Point.X == x)
 			{
