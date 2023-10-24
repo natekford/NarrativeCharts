@@ -38,11 +38,18 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		AlreadyCreaated = true;
 	}
 
-	protected NarrativeScene Add(NarrativeScene scene)
+	protected void Add(NarrativeScene scene)
 	{
 		this.AddScene(scene);
 		Update();
-		return scene;
+	}
+
+	protected Dictionary<Character, Y> AddR(NarrativeScene scene)
+	{
+		var dict = scene.Characters
+			.ToDictionary(x => x, x => Points[x].Values[^1].Point.Y);
+		Add(scene);
+		return dict;
 	}
 
 	protected void Chapter(string name)
@@ -67,16 +74,12 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 	protected abstract void ProtectedCreate();
 
-	protected void Return(NarrativeScene scene)
+	protected void Return(IEnumerable<KeyValuePair<Character, Y>> scene)
 	{
-		foreach (var character in scene.Characters)
+		foreach (var (character, y) in scene)
 		{
-			// should probably binary search instead of
-			// just using .Last, but LINQ go brrrr
-			var previousLocation = Points[character].Values
-				.Last(x => x.Point.X.Value < scene.Point.X.Value);
 			this.AddPoint(new(
-				Point: new(X, previousLocation.Point.Y),
+				Point: new(X, y),
 				Character: character,
 				IsEnd: false
 			));

@@ -347,14 +347,14 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Time: after lunch at the italian restaurant
 		Time.AddBell();
 		// hasse orphanage designed, fly over with highbeasts
-		Add(Scene(Hasse).With(Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester));
+		var s1 = AddR(Scene(Hasse).With(Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester));
 		// it didn't take this long in the book, but the chart looks really bad
 		// without this
 		Time.AddBells(2);
 		Update();
 		Time.AddBells(2);
 		// hasse orphanage is built and they return to the restaurant
-		Add(Scene(ItalianRestaurant).With(Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester));
+		Return(s1);
 		Time.AddBell();
 		// ferdi hires todd as a chef to arrive in the tmple in 36 hours from now
 		// syl hires hugo for the castle
@@ -381,11 +381,10 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Time: "I had been bedridden for two days since the tea party"
 		SkipToDaysAhead(2, Meetings);
 		// ferdi, elvira, flor visit sick myne
-		Add(Scene(Castle).With(Elvira, Ferdinand));
+		var s1 = AddR(Scene(Castle).With(Elvira, Ferdinand));
 		Time.AddBell();
 		// ferdi leaves after agreeing to play harspiel
-		Add(Scene(Temple).With(Ferdinand));
-		Add(Scene(KarstedtsHouse).With(Elvira));
+		Return(s1);
 	}
 
 	private void P3V1C15()
@@ -429,44 +428,40 @@ public sealed class P3V1 : BookwormNarrativeChart
 	private void P3V1C18()
 	{
 		SkipToNextDay(Meetings);
-		Add(Scene(Temple).With(Johann, Lutz, Zack));
+		var s1 = AddR(Scene(Temple).With(Johann, Lutz, Zack));
 		// Low usage location: 2 times in the volume
 		//Add(Scene(LowerCityForest).With(Gil));
 		Time.AddBell();
-		Add(Scene(LowerCityWorkshops).With(Johann, Zack));
-		Add(Scene(MerchantCompanies).With(Lutz));
-		Add(Scene(Temple).With(Gil));
+		Return(s1);
+		//Add(Scene(Temple).With(Gil));
 
 		SkipToDaysAhead(3, Meetings);
 		// johann and zack return with their blueprints for the wax stencil machine
-		Add(Scene(Temple).With(Johann, Lutz, Zack));
+		var s2 = AddR(Scene(Temple).With(Johann, Lutz, Zack));
 		Time.AddBell();
-		Add(Scene(LowerCityWorkshops).With(Johann, Zack));
-		Add(Scene(MerchantCompanies).With(Lutz));
+		Return(s2);
 
 		SkipToNextDay(Meetings);
 		// tuuli gives myne a hairpin
-		Add(Scene(Temple).With(Lutz, Tuuli));
+		var s3 = AddR(Scene(Temple).With(Lutz, Tuuli));
 		Time.AddBell();
-		Add(Scene(MynesHouse).With(Tuuli));
-		Add(Scene(MerchantCompanies).With(Lutz));
+		Return(s3);
 	}
 
 	private void P3V1C19()
 	{
 		// Time: "It was the day after I had met with Tuuli."
 		SkipToNextDay(Meetings);
-		Add(Scene(Temple).With(Lutz));
+		var s1 = AddR(Scene(Temple).With(Lutz));
 		Time.AddBell();
-		Add(Scene(MerchantCompanies).With(Lutz));
+		Return(s1);
 
 		// Time: 3 days later
 		SkipToDaysAhead(2, Meetings);
 		// elvira and lemprecht visit the temple to eat some of ella's food
-		Add(Scene(Temple).With(Elvira, Lamprecht));
+		var s2 = AddR(Scene(Temple).With(Elvira, Lamprecht));
 		Time.AddBell();
-		Add(Scene(KarstedtsHouse).With(Elvira));
-		Add(Scene(Castle).With(Lamprecht));
+		Return(s2);
 
 		// Time: unknown, not the same day
 		SkipToNextDay(Meetings);
@@ -478,11 +473,11 @@ public sealed class P3V1 : BookwormNarrativeChart
 	{
 		Time.AddBell();
 		// myne goes to the castle to make her highbeast
-		Add(Scene(KnightsOrder).With(Brigitte, Damuel, Ferdinand, Myne));
+		var s1 = AddR(Scene(KnightsOrder).With(Brigitte, Damuel, Ferdinand, Myne));
 		Add(Scene(MerchantCompanies).With(Lutz));
 		Time.AddBell();
 		// they go back to the temple after myne creates lessy
-		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+		Return(s1);
 
 		// Time: "From there, I spent my days practicing ... "
 		// "It was the evening five days before Ferdinand’s concert."
@@ -490,16 +485,15 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// so a 12 day timeskip at minimum
 		SkipToDaysAhead(12, MarketClose);
 		// lutz and smiths visit with a wax machine
-		Add(Scene(Temple).With(Lutz, Johann, Zack));
+		var s2 = AddR(Scene(Temple).With(Lutz, Johann, Zack));
 		Time.AddBell();
-		Add(Scene(LowerCityWorkshops).With(Johann, Zack));
-		Add(Scene(MerchantCompanies).With(Lutz));
+		Return(s2);
 
 		// Time: "“Good morning, Lady Rozemyne,”"
 		SkipToNextDay(Morning);
-		Add(Scene(Temple).With(Lutz));
+		var s3 = AddR(Scene(Temple).With(Lutz));
 		Time.AddBell();
-		Add(Scene(MerchantCompanies).With(Lutz));
+		Return(s3);
 	}
 
 	private void P3V1C21()
@@ -507,17 +501,15 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Time: "I returned to the castle the day before the concert."
 		SkipToDaysAhead(3, Meetings);
 		// "We made our way to the castle. Ella and Rosina were in the carriage for attendants, while my two guard knights and I got into the carriage for nobles."
-		Add(Scene(Castle).With(Brigitte, Damuel, Ella, Myne, Rosina));
 		// "Elvira and Florencia were already waiting for me in the castle."
-		Add(Scene(Castle).With(Elvira, Florencia));
+		var s1 = AddR(Scene(Castle).With(Brigitte, Damuel, Ella, Elvira, Florencia, Myne, Rosina));
 
 		// Time: "And so came the day of the concert." meeting time? afternoon time? no clue
 		SkipToNextDay(MarketClose);
-		Add(Scene(Castle).With(Eckhart, Ferdinand, Karstedt));
+		var s2 = AddR(Scene(Castle).With(Eckhart, Ferdinand, Karstedt));
 		Time.AddBell();
-		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
-		Add(Scene(KarstedtsHouse).With(Elvira, Karstedt));
-		Add(Scene(KnightsOrder).With(Eckhart));
+		Return(s1);
+		Return(s2);
 
 		// Time: "It was several days after the concert,"
 		SkipToDaysAhead(3, Meetings);
@@ -537,9 +529,8 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 		// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director’s chambers."
 		SkipToDaysAhead(2, Meetings);
-		Add(Scene(Temple).With(Benno, Lutz, Tuuli));
+		var s1 = AddR(Scene(Temple).With(Benno, Lutz, Tuuli));
 		Time.AddBell();
-		Add(Scene(MynesHouse).With(Tuuli));
-		Add(Scene(MerchantCompanies).With(Benno, Lutz));
+		Return(s1);
 	}
 }
