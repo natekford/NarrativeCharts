@@ -20,11 +20,16 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		}
 	}
 
-	public void Initialize()
+	public void Initialize(BookwormNarrativeChart? seed)
 	{
 		if (AlreadyCreaated)
 		{
 			return;
+		}
+
+		if (seed is not null)
+		{
+			this.Seed(seed, new(Time.CurrentTotalHours));
 		}
 
 		ProtectedCreate();

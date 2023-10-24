@@ -33,8 +33,12 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 
 	protected virtual (int, int) CalculateDimensions(YMap yMap)
 	{
-		var width = ImageSizeAddition + (yMap.XRange * ImageWidthMultiplier / ImageSizeFloor * ImageSizeFloor);
-		var height = ImageSizeAddition + (yMap.YRange * ImageHeightMultiplier / ImageSizeFloor * ImageSizeFloor);
+		// A default ImageSizeAddition is added because the ScottPlot Render method
+		// outputs a blank image if the dimensions are too small
+		// There's probably a better way to dynamically make sure the dimensions
+		// are big enough, but simply adding several hundred pixels is good enough
+		var width = (ImageSizeAddition + (yMap.XRange * ImageWidthMultiplier)) / ImageSizeFloor * ImageSizeFloor;
+		var height = (ImageSizeAddition + (yMap.YRange * ImageHeightMultiplier)) / ImageSizeFloor * ImageSizeFloor;
 		return (width, height);
 	}
 
@@ -45,7 +49,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 		var canvas = CreateCanvas(chart, yMap);
 		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key.Value))
 		{
-			var xSegmentStart = points.Values[0].Point.X;
+			var stationaryStart = points.Values[0].Point.X;
 			for (var p = 1; p < points.Count; ++p)
 			{
 				var (prevX, prevY) = points.Values[p - 1].Point;
@@ -54,24 +58,19 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 				var isFinalSegment = p == points.Count - 1;
 
 				// Add the previous stationary segment
-				// only do this if 1 bool is true, if a movement segment
-				// is the last segment 2 lines will be drawn towards the end
-				// The start of this segment shows the character's name
-				if (hasMovement ^ isFinalSegment)
+				if (hasMovement || isFinalSegment)
 				{
 					DrawStationarySegment(new(
 						Chart: chart,
 						Canvas: canvas,
 						Character: character,
-						X1: xSegmentStart,
+						X1: stationaryStart,
 						// If we're at the last point don't stop before it
-						X2: isFinalSegment ? currX : prevX,
+						X2: isFinalSegment && !hasMovement ? currX : prevX,
 						Y1: yMap.Characters[(character, prevY)],
 						Y2: yMap.Characters[(character, prevY)],
-						IsFinalSegment: isFinalSegment
+						IsFinalSegment: hasMovement ^ isFinalSegment
 					));
-
-					xSegmentStart = currX;
 				}
 				// Add the current movement segment
 				if (hasMovement)
@@ -86,6 +85,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 						Y2: yMap.Characters[(character, currY)],
 						IsFinalSegment: isFinalSegment
 					));
+					stationaryStart = currX;
 				}
 			}
 		}

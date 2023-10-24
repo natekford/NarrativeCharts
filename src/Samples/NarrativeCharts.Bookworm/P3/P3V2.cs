@@ -34,6 +34,8 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C06();
 		Chapter("A New Task and Winter Preparations");
 		P3V2C07();
+		Chapter("Opening the Italian Restaurant");
+		P3V2C08();
 		Update();
 	}
 
@@ -156,5 +158,28 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Time.AddBell();
 		Add(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Myne));
 		Time.AddBell();
+		Add(Scene(Castle).With(Myne, Rihyarda));
+		// Time: "a meeting had been arranged for teatime at fifth bell."
+		SkipToCurrentDay(FifthBell);
+		// wilfried "it's not fair" myne tells him to quit whining
+		Add(Scene(Castle).With(Myne, Wilfried));
+		// myne shows sylvester lessy and gets sylvester to give hugo back
+		Add(Scene(Castle).With(Ferdinand, Myne, Sylvester));
+		Time.AddBell();
+		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+		Add(Scene(ItalianRestaurant).With(Hugo));
+	}
+
+	private void P3V2C08()
+	{
+		// Time: "The day I could visit Hasse’s orphanage had finally arrived."
+		SkipToNextDay(Meetings);
+		Add(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Fran, Gil, Myne));
+		Time.AddBell();
+		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Fran, Gil, Myne));
+
+		// Time: "The day after visiting the orphans,"
+		SkipToNextDay(Meetings);
+		Add(Scene(Temple).With(Benno, Lutz, Mark));
 	}
 }

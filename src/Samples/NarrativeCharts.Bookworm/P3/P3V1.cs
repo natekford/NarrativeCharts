@@ -66,8 +66,9 @@ public sealed class P3V1 : BookwormNarrativeChart
 			SkipToNextDay(Morning);
 			Add(Scene(Temple).With(Ella));
 			// Hugo doesn't come back until v2 (todd isn't mentioned but ferdinand does say chef*s*)
+			// but idk, myne only retrieves hugo and todd isn't mentioned once in p3v2
 			// "I planned to retrieve Hugo as well. I couldn’t foresee there being any issues with that since it was past the date we had agreed on anyway."
-			//Add(Scene(ItalianRestaurant).With(/*Hugo, */Todd));
+			Add(Scene(ItalianRestaurant).With(/*Hugo, */Todd));
 		}
 		Chapter("Elvira and Lamprecht Attack");
 		P3V1C19();
@@ -410,6 +411,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToNextDay(Meetings);
 		Add(Scene(Temple).With(Brigitte, Damuel, Myne));
 		Add(Scene(KnightsOrder).With(Angelica));
+		Add(Scene(KarstedtsHouse).With(Cornelius));
 		Add(Scene(Temple).With(Benno, Lutz));
 		Time.AddBell();
 		Add(Scene(MerchantCompanies).With(Benno));

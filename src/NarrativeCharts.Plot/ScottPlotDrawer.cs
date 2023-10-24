@@ -102,7 +102,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		{
 			scatter.DataPointLabels = new[]
 			{
-				info.Character.Value,
+				string.Empty,
 				info.Character.Value,
 			};
 		}

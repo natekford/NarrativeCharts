@@ -16,17 +16,16 @@ public static class Program
 			new P3V2(time),
 		};
 
-		books[0].Initialize();
+		books[0].Initialize(null);
 		for (var i = 1; i < books.Length; ++i)
 		{
-			books[i].Seed(books[i - 1], new(time.CurrentTotalHours));
-			books[i].Initialize();
+			books[i].Initialize(books[i - 1]);
 		}
 
 		var kept = new HashSet<Character>
 		{
-			BookwormCharacters.Ferdinand,
-			BookwormCharacters.Myne,
+			BookwormCharacters.Benno,
+			//BookwormCharacters.Myne,
 		};
 		foreach (var book in books)
 		{
