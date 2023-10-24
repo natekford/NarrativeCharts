@@ -69,7 +69,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 						X2: isFinalSegment && !hasMovement ? currX : prevX,
 						Y1: yMap.Characters[(character, prevY)],
 						Y2: yMap.Characters[(character, prevY)],
-						IsFinalSegment: hasMovement ^ isFinalSegment
+						IsFinalSegment: isFinalSegment && !hasMovement
 					));
 				}
 				// Add the current movement segment
