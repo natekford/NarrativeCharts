@@ -36,6 +36,10 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C07();
 		Chapter("Opening the Italian Restaurant");
 		P3V2C08();
+		Chapter("Discussing How to Improve Hasse");
+		P3V2C09();
+		Chapter("Switching Places");
+		P3V2C10();
 		Update();
 	}
 
@@ -49,7 +53,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil));
 
 		// Time: "It’s due in three days"
-		SkipToDaysAhead(3, Meetings);
+		SkipToDaysAhead(3, Lunch);
 		Add(Scene(Temple).With(Damuel, Fran, Myne));
 		var s1 = AddR(Scene(Temple).With(Benno, Effa, Lutz, Tuuli));
 		Time.AddBell();
@@ -78,7 +82,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 	private void P3V2C03()
 	{
 		// Time: probably the morning? no idea how many days later tho
-		SkipToDaysAhead(2, Morning);
+		SkipToDaysAhead(2, Lunch);
 		// myne sees gunther, the gray priests, and gilberta company off
 		Add(Scene(Temple).With(Benno, Gunther, Lutz, Mark, Myne));
 		// Time: the story says it's half a day or something to get to hasse via carriage?
@@ -179,7 +183,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Return(s1);
 
 		// Time: "The day after visiting the orphans,"
-		SkipToNextDay(Meetings);
+		SkipToNextDay(Lunch);
 		var s2 = AddR(Scene(Temple).With(Benno, Lutz, Mark));
 		Time.AddBell();
 		Return(s2);
@@ -191,5 +195,37 @@ public sealed class P3V2 : BookwormNarrativeChart
 		var s3 = AddR(Scene(ItalianRestaurant).With(Benno, Brigitte, Damuel, Fran, Freida, Gustav, Myne));
 		Time.AddBell();
 		Return(s3);
+
+		// Time: "Lutz reported with a grin the next day."
+		SkipToNextDay(Lunch);
+		Add(Scene(Temple).With(Benno, Lutz, Mark));
+	}
+
+	private void P3V2C09()
+	{
+		Time.AddBell();
+		Add(Scene(MerchantCompanies).With(Benno, Lutz, Mark));
+		// myne tells ferdi about the plan she came up with benno
+		Add(Scene(Temple).With(Ferdinand, Myne));
+		Time.AddBell();
+	}
+
+	private void P3V2C10()
+	{
+		// Time: unknown, no meeting was mentioned iirc
+		// so several days after last chapter?
+		SkipToDaysAhead(3, Meetings);
+		// myne reports to sylvester and swaps places with wilfried for a day
+		Add(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Karstedt, Myne));
+		Time.AddBell();
+		// myne has lunch with wilf and talks about what to do
+		Add(Scene(Temple).With(Ferdinand, Lamprecht, Wilfried));
+		Add(Scene(Castle).With(Moritz, Oswald));
+		// Time: "Fifth bell rang and there was still no sign of Rihyarda."
+		SkipToCurrentDay(FifthBell);
+		// Time: "“Milady, it’s dinner time!” Rihyarda declared"
+		SkipToCurrentDay(Dinner);
+		// ferdi drops off karuta/study materials for wilf
+		Add(Scene(Castle).With(Ferdinand));
 	}
 }

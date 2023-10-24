@@ -44,10 +44,12 @@ public static class BookwormCharacters
 	public static Character Marthe { get; } = new("Marthe");
 	public static Character Melchior { get; } = new("Melchior");
 	public static Character Monika { get; } = new("Monika");
+	public static Character Moritz { get; } = new("Moritz");
 	public static Character Myne { get; } = new("Myne");
 	public static Character Nicola { get; } = new("Nicola");
 	public static Character Nora { get; } = new("Nora");
 	public static Character Norbert { get; } = new("Norbert");
+	public static Character Oswald { get; } = new("Oswald");
 	public static Character Ottilie { get; } = new("Ottilie");
 	public static Character Rick { get; } = new("Rick");
 	public static Character Rihyarda { get; } = new("Rihyarda");
@@ -65,73 +67,61 @@ public static class BookwormCharacters
 	{
 		ColorValues = new Dictionary<Character, string>
 		{
-			[Myne] = "#39658C",
-			[Ferdinand] = "#65B8DA",
-			// Myne's Family
-			[Tuuli] = "#95BE82",
-			[Kamil] = "#415BA5",
-			[Gunther] = "#37527F",
-			[Effa] = "#A0AA8F",
-			// Archducal Family
-			[Wilfried] = "#FEEFB4",
-			[Sylvester] = "#5366AB",
-			[Melchior] = "#3B4C80",
-			[Florencia] = "#FBF6E0",
-			[Charlotte] = "#D3BD96",
-			// Karstedt's Family
-			[Lamprecht] = "#D18A71",
-			[Karstedt] = "#874730",
-			[Elvira] = "#46523C",
-			[Eckhart] = "#5F7D3F",
-			[Cornelius] = "#A6B455",
-			// Myne's Guard Knights/Attendants
-			[Rihyarda] = "#E9DEC8",
-			[Ottilie] = "#A74D47",
-			[Damuel] = "#967B4E",
-			[Brigitte] = "#A54254",
 			[Angelica] = "#53B3DB",
-			// Temple Attendants
-			[Zahm] = "#000000",
-			[Wilma] = "#DF9139",
-			[Rosina] = "#E09C5B",
-			[Nicola] = "#F1A14A",
-			[Monika] = "#8BBFCD",
-			[Gil] = "#F8EECB",
-			[Fran] = "#5E546C",
+			[Benno] = "#E8CB9F",
+			[Bezewanst] = "#BC9A9F",
+			[Bindewald] = "#B1C6C1",
+			[Brigitte] = "#A54254",
+			[Charlotte] = "#D3BD96",
+			[Cornelius] = "#A6B455",
+			[Damuel] = "#967B4E",
+			[Deid] = "#F3EEB6",
 			[Delia] = "#A13F34",
 			[Dirk] = "#AD5A48",
-			// Gilberta Company
-			[Mark] = "#726249",
-			[Lutz] = "#F7E3A8",
-			[Leon] = "#B26D66",
-			[Benno] = "#E8CB9F",
-			// Workers
-			[Zack] = "#E05F0E",
-			[Johann] = "#E4A242",
-			[Ingo] = "#C1924A",
-			// Cooks
-			[Todd] = "#000000",
-			[Leise] = "#C87965",
-			[Hugo] = "#7E5951",
-			[Ella] = "#9A515A",
-			// Other Guard Knights/Attendants
-			[Norbert] = "#656567",
-			// Othmar Company
-			[Gustav] = "#B6A6A7",
-			[Freida] = "#E6AFB4",
-			// Lutz's Family
-			[Deid] = "#F3EEB6",
-			// Temple Priests
+			[Eckhart] = "#5F7D3F",
+			[Effa] = "#A0AA8F",
 			[Egmont] = "#947D77",
-			[Bezewanst] = "#BC9A9F",
-			// Hasse
-			[Thore] = "#8888BE",
-			[Rick] = "#667965",
-			[Nora] = "#9797CC",
-			[Marthe] = "#5C725D",
+			[Ella] = "#9A515A",
+			[Elvira] = "#46523C",
+			[Ferdinand] = "#65B8DA",
+			[Florencia] = "#FBF6E0",
+			[Fran] = "#5E546C",
+			[Freida] = "#E6AFB4",
+			[Gil] = "#F8EECB",
+			[Gunther] = "#37527F",
+			[Gustav] = "#B6A6A7",
 			[HasseMayor] = "#000000",
-			// Ahrensbach
-			[Bindewald] = "#B1C6C1",
+			[Hugo] = "#7E5951",
+			[Ingo] = "#C1924A",
+			[Johann] = "#E4A242",
+			[Kamil] = "#415BA5",
+			[Karstedt] = "#874730",
+			[Lamprecht] = "#D18A71",
+			[Leise] = "#C87965",
+			[Leon] = "#B26D66",
+			[Lutz] = "#F7E3A8",
+			[Mark] = "#726249",
+			[Marthe] = "#5C725D",
+			[Melchior] = "#3B4C80",
+			[Monika] = "#8BBFCD",
+			[Moritz] = "#000000",
+			[Myne] = "#39658C",
+			[Nicola] = "#F1A14A",
+			[Nora] = "#9797CC",
+			[Norbert] = "#656567",
+			[Oswald] = "#654321",
+			[Ottilie] = "#A74D47",
+			[Rick] = "#667965",
+			[Rihyarda] = "#E9DEC8",
+			[Rosina] = "#E09C5B",
+			[Sylvester] = "#5366AB",
+			[Thore] = "#8888BE",
+			[Todd] = "#000000",
+			[Tuuli] = "#95BE82",
+			[Wilfried] = "#FEEFB4",
+			[Wilma] = "#DF9139",
+			[Zack] = "#E05F0E",
+			[Zahm] = "#000000",
 		}.ToImmutableDictionary(x => x.Key, x => new Hex(x.Value));
 	}
 }

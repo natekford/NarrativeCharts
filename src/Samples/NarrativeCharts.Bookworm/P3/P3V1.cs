@@ -13,6 +13,12 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 	protected override void ProtectedCreate()
 	{
+		/* Daily schedule:
+		 * Once breakfast is done, I practice the harspiel until third bell,
+		 * then help Ferdinand in his office until lunch.
+		 * After lunch, I have meetings with business partners,
+		 */
+
 		Chapter("Prologue");
 		P3V1C01();
 		Chapter("Examination Results and the Noble's Quarter");
@@ -91,12 +97,6 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(MerchantCompanies).With(Benno, Freida, Gustav, Leon, Lutz, Mark));
 		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
 		Add(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
-		Add(Scene(KarstedtsHouse).With(Cornelius, Eckhart, Elvira, Lamprecht));
-		// Characters we don't know yet
-		// There are more, but this makes sylvester's line look less lonely
-		// and we know these characters are at the castle from the start
-		// Angelica/Ottilie aren't known to always be at the castle tho
-		Add(Scene(Castle).With(Charlotte, Florencia, Melchior, Norbert, Rihyarda));
 		// Time: Immediately after
 		Time.AddBell();
 		// Sylvester goes back to AD conf
@@ -254,7 +254,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 	{
 		// Time: "As I ate breakfast the next morning, Gil informed me ... meeting with the Gilberta Company later that day ..."
 		// "The Gilberta Company was due to arrive at third bell"
-		SkipToNextDay(Morning);
+		SkipToNextDay(Lunch);
 		// Zahm introduced as Arno's replacement
 		Add(Scene(Temple).With(Benno, Lutz, Mark, Zahm));
 	}
@@ -407,7 +407,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToNextDay(Dinner);
 		Add(Scene(Castle).With(Florencia, Lamprecht, Myne, Sylvester, Wilfried));
 
-		SkipToNextDay(Meetings);
+		SkipToNextDay(Lunch);
 		Add(Scene(Temple).With(Brigitte, Damuel, Myne));
 		Add(Scene(KnightsOrder).With(Angelica));
 		Add(Scene(KarstedtsHouse).With(Cornelius));
@@ -427,21 +427,22 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 	private void P3V1C18()
 	{
-		SkipToNextDay(Meetings);
-		var s1 = AddR(Scene(Temple).With(Johann, Lutz, Zack));
+		SkipToNextDay(Lunch);
+		Add(Scene(Temple).With(Johann, Lutz, Zack));
 		// Low usage location: 2 times in the volume
 		//Add(Scene(LowerCityForest).With(Gil));
 		Time.AddBell();
-		Return(s1);
+		Add(Scene(LowerCityWorkshops).With(Johann, Zack));
+		Add(Scene(MerchantCompanies).With(Lutz));
 		//Add(Scene(Temple).With(Gil));
 
-		SkipToDaysAhead(3, Meetings);
+		SkipToDaysAhead(3, Lunch);
 		// johann and zack return with their blueprints for the wax stencil machine
 		var s2 = AddR(Scene(Temple).With(Johann, Lutz, Zack));
 		Time.AddBell();
 		Return(s2);
 
-		SkipToNextDay(Meetings);
+		SkipToNextDay(Lunch);
 		// tuuli gives myne a hairpin
 		var s3 = AddR(Scene(Temple).With(Lutz, Tuuli));
 		Time.AddBell();
@@ -451,7 +452,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 	private void P3V1C19()
 	{
 		// Time: "It was the day after I had met with Tuuli."
-		SkipToNextDay(Meetings);
+		SkipToNextDay(Lunch);
 		var s1 = AddR(Scene(Temple).With(Lutz));
 		Time.AddBell();
 		Return(s1);
@@ -464,7 +465,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Return(s2);
 
 		// Time: unknown, not the same day
-		SkipToNextDay(Meetings);
+		SkipToNextDay(Lunch);
 		// lutz tells about johann and zack's progress
 		Add(Scene(Temple).With(Lutz));
 	}
@@ -528,7 +529,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(Hasse).With(Deid, Ingo));
 
 		// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director’s chambers."
-		SkipToDaysAhead(2, Meetings);
+		SkipToDaysAhead(2, Lunch);
 		var s1 = AddR(Scene(Temple).With(Benno, Lutz, Tuuli));
 		Time.AddBell();
 		Return(s1);
