@@ -17,6 +17,7 @@ public static class Program
 		{
 			new P3V1(time),
 			new P3V2(time),
+			new P3V3(time),
 		};
 
 		books[0].Initialize(null);

@@ -14,6 +14,7 @@ public static class BookwormCharacters
 	public static Character Bindewald { get; } = new("Bindewald");
 	public static Character Brigitte { get; } = new("Brigitte");
 	public static Character Charlotte { get; } = new("Charlotte");
+	public static Character Christine { get; } = new("Christine");
 	public static ImmutableDictionary<Character, Hex> Colors { get; }
 	public static Character Cornelius { get; } = new("Cornelius");
 	public static Character Damuel { get; } = new("Damuel");
@@ -30,10 +31,14 @@ public static class BookwormCharacters
 	public static Character Fran { get; } = new("Fran");
 	public static Character Freida { get; } = new("Freida");
 	public static Character Frietack { get; } = new("Frietack");
+	public static Character Fritz { get; } = new("Fritz");
 	public static Character Gil { get; } = new("Gil");
 	public static Character Gunther { get; } = new("Gunther");
 	public static Character Gustav { get; } = new("Gustav");
+	public static Character Hartmut { get; } = new("Hartmut");
 	public static Character HasseMayor { get; } = new("Hasse's Mayor");
+	public static Character Helfried { get; } = new("Helfried");
+	public static Character Henrik { get; } = new("Henrik");
 	public static Character Hugo { get; } = new("Hugo");
 	public static Character Ingo { get; } = new("Ingo");
 	public static Character Johann { get; } = new("Johann");
@@ -58,6 +63,7 @@ public static class BookwormCharacters
 	public static Character Norbert { get; } = new("Norbert");
 	public static Character Oswald { get; } = new("Oswald");
 	public static Character Ottilie { get; } = new("Ottilie");
+	public static Character Philine { get; } = new("Philine");
 	public static Character Richt { get; } = new("Richt");
 	public static Character Rick { get; } = new("Rick");
 	public static Character Rihyarda { get; } = new("Rihyarda");
@@ -81,6 +87,7 @@ public static class BookwormCharacters
 			[Bindewald] = "#B1C6C1",
 			[Brigitte] = "#A54254",
 			[Charlotte] = "#D3BD96",
+			[Christine] = UNKNOWN,
 			[Cornelius] = "#A6B455",
 			[Damuel] = "#967B4E",
 			[Deid] = "#F3EEB6",
@@ -96,10 +103,14 @@ public static class BookwormCharacters
 			[Fran] = "#5E546C",
 			[Freida] = "#E6AFB4",
 			[Frietack] = UNKNOWN,
+			[Fritz] = "#351F19",
 			[Gil] = "#F8EECB",
 			[Gunther] = "#37527F",
 			[Gustav] = "#B6A6A7",
+			[Hartmut] = "#DC602C",
 			[HasseMayor] = UNKNOWN,
+			[Helfried] = "#FF0000",
+			[Henrik] = "#5C4033",
 			[Hugo] = "#7E5951",
 			[Ingo] = "#C1924A",
 			[Johann] = "#E4A242",
@@ -124,6 +135,7 @@ public static class BookwormCharacters
 			[Norbert] = "#656567",
 			[Oswald] = "#654321",
 			[Ottilie] = "#A74D47",
+			[Philine] = "#EDBC6F",
 			[Richt] = UNKNOWN,
 			[Rick] = "#667965",
 			[Rihyarda] = "#E9DEC8",
