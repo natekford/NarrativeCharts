@@ -296,12 +296,14 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToDaysAhead(5, Morning);
 		// via highbeast
 		Add(Scene(Hasse).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
-		AddBell(1, update: false);
 		// via carriage
+		StartTravel(Ella, Monika, Nicola, Rosina);
+		StartTravel(Benno, Gil, Gunther, Lutz, Mark);
+		AddBell(2);
 		Add(Scene(Hasse).With(Ella, Monika, Nicola, Rosina));
 		Add(Scene(Hasse).With(Benno, Gil, Gunther, Lutz, Mark));
 		// Time: "Fifth bell rang just a second ago"
-		AddBell();
+		SkipToCurrentDay(FifthBell);
 		// myne discusses hasse with gil/lutz
 		AddBell();
 	}
@@ -317,8 +319,9 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(MerchantCompanies).With(Lutz));
 		// via highbeast
 		Add(Scene(HarvestFestivalTowns).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
-		Update(Benno, Mark);
-		AddBell(update: false);
+		// via carriage
+		StartTravel(Ella, Monika, Nicola, Rosina);
+		AddBell();
 		// benno/mark spread rumours before leaving
 		Add(Scene(MerchantCompanies).With(Benno, Mark));
 		// via carriage

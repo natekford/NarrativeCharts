@@ -112,7 +112,7 @@ public static class ChartUtils
 		{
 			var lastPoint = chart.Points[character].Values[^1];
 			// lastPoint already reaches up to where we're trying to update
-			if (lastPoint.IsEnd || lastPoint.Point.X == x)
+			if (lastPoint.IsEnd || lastPoint.Point.X.Value >= x.Value)
 			{
 				continue;
 			}
