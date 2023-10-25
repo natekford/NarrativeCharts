@@ -44,7 +44,6 @@ public static class Program
 			Directory.CreateDirectory(DIR);
 
 			await drawer.SaveChartAsync(book, Path.Combine(DIR, $"{book.Name}_chart.png")).ConfigureAwait(false);
-			book.ExportFinalCharacterPositions(Path.Combine(DIR, $"{book.Name}_final_positions.txt"));
 
 			var points = book.Points.Sum(x => x.Value.Count);
 			Console.WriteLine($"{book.Name} marked points: {points}");

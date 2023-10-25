@@ -1,7 +1,5 @@
 ﻿using NarrativeCharts.Models;
 
-using System.Collections.Generic;
-
 namespace NarrativeCharts;
 
 public static class ChartUtils
