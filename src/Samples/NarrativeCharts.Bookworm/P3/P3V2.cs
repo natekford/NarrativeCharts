@@ -263,7 +263,8 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(Castle).With(Eckhart, Justus));
 		AddBell();
 		Add(Scene(KnightsOrder).With(Eckhart));
-		Add(Scene(NoblesQuarter).With(Justus));
+		// "I’ve been doing scholar work in the castle ever since Lord Ferdinand entered the temple"
+		Add(Scene(Castle).With(Justus));
 	}
 
 	private void P3V2C12()
@@ -379,7 +380,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Fran, Monika, Myne, Nicola, Rosina));
 		Add(Scene(KnightsOrder).With(Eckhart));
-		Add(Scene(NoblesQuarter).With(Justus));
+		Add(Scene(Castle).With(Justus));
 
 		// Time: "And so began a series of meetings with blue priests that continued day after day."
 		SkipToDaysAhead(2, Meetings);

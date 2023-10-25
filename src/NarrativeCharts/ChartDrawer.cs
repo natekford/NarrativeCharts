@@ -136,13 +136,12 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 			}
 		}
 
-		var y = 0;
-		int yMax = int.MinValue, yMin = int.MaxValue;
-		var cMap = new Dictionary<(Character, Location), int>();
-		var lMap = new Dictionary<Location, int>();
+		int y = 0, yMax = int.MinValue, yMin = int.MaxValue;
+		var cDict = new Dictionary<(Character, Location), int>();
+		var lDict = new Dictionary<Location, int>();
 		foreach (var (location, time) in timeSpent.OrderBy(x => YIndexes[x.Key]))
 		{
-			lMap[location] = y;
+			lDict[location] = y;
 
 			// more time spent = closer to the bottom
 			// any ties? alphabetical order (A = bottom, Z = top)
@@ -153,7 +152,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 				yMax = Math.Max(yMax, value);
 				yMin = Math.Min(yMin, value);
 
-				cMap[new(character, location)] = value;
+				cDict[new(character, location)] = value;
 				++i;
 			}
 
@@ -161,8 +160,8 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 		}
 
 		return new(
-			Characters: cMap,
-			Locations: lMap,
+			Characters: cDict,
+			Locations: lDict,
 			XMax: xMax,
 			XMin: xMin,
 			YMax: yMax,
@@ -179,8 +178,8 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 	);
 
 	protected record YMap(
-		IReadOnlyDictionary<(Character, Location), int> Characters,
-		IReadOnlyDictionary<Location, int> Locations,
+		Dictionary<(Character, Location), int> Characters,
+		Dictionary<Location, int> Locations,
 		int XMax,
 		int XMin,
 		int YMax,
