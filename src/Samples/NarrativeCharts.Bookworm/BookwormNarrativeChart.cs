@@ -39,6 +39,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 		ProtectedCreate();
 
+		Locations.Remove(Frozen);
 		foreach (var points in Points.Values)
 		{
 			for (var i = points.Count - 1; i >= 0; --i)

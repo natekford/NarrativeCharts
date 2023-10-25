@@ -52,6 +52,12 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C15();
 		Chapter("The Night of Schutzaria");
 		P3V2C16();
+		Chapter("Aftermath");
+		P3V2C17();
+		Chapter("My Winter Preparations");
+		P3V2C18();
+		Chapter("Epilogue");
+		P3V2C19();
 		Update();
 	}
 
@@ -231,7 +237,10 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Karstedt, Myne));
 		AddBell();
 		// myne has lunch with wilf and talks about what to do
-		Add(Scene(Temple).With(Ferdinand, Lamprecht, Wilfried));
+		// brig/damuel go with wilf (from wilf's SS)
+		// "Lamprecht and Damuel will accompany you as guards"
+		// "Rozemyne’s female knight who had entered with Ferdinand saluted and stepped aside."
+		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried));
 		Add(Scene(Castle).With(Moritz, Oswald));
 		// Time: "Fifth bell rang and there was still no sign of Rihyarda."
 		SkipToCurrentDay(FifthBell);
@@ -246,7 +255,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// myne shows people in the castle karuta/picture books
 		// Time: "Shortly after fourth bell, Wilfried and Lamprecht entered the room"
 		SkipToCurrentDay(FourthBell);
-		Add(Scene(Castle).With(Ferdinand, Lamprecht, Wilfried));
+		Add(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried));
 	}
 
 	private void P3V2C11()
@@ -336,5 +345,69 @@ public sealed class P3V2 : BookwormNarrativeChart
 
 	private void P3V2C16()
 	{
+		// Time: "Just as I was really getting exhausted from the quick succession of festivals, we arrived at Dorvan"
+		// could be immediately after the end of the previous chapter, who knows?
+		SkipToNextDay(Lunch);
+
+		// They're at some town named Dorvan, but it doesn't need a location tbh
+		// Time: "After informing Dorvan’s mayor that we would be staying for a few days after the Harvest Festival"
+		// "“Tonight is the Night of Schutzaria.” Justus explained as we ate breakfast together."
+		SkipToDaysAhead(3, Morning);
+		// Time: "would be going to look for a ruelle tree after lunch"
+		SkipToCurrentDay(Lunch);
+		var s1 = AddR(Scene(RuelleTree).With(Damuel, Eckhart, Justus));
+		AddBell();
+		Return(s1);
+		SkipToCurrentDay(Bed);
+		// gathering ruelles, myne's gets eaten
+		Add(Scene(RuelleTree).With(Brigitte, Damuel, Eckhart, Justus, Myne));
+	}
+
+	private void P3V2C17()
+	{
+		AddBell();
+		// ferdi is contacted, he tells myne to contain the goltze
+		Add(Scene(RuelleTree).With(Ferdinand));
+		AddBell();
+		Add(Scene(HarvestFestivalTowns).With(Ferdinand));
+		Add(Scene(HarvestFestivalTowns).With(Brigitte, Damuel, Eckhart, Justus, Myne));
+		// Time: "I ended up bedridden"
+		SkipToDaysAhead(2, Meetings);
+	}
+
+	private void P3V2C18()
+	{
+		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Fran, Monika, Myne, Nicola, Rosina));
+		Add(Scene(KnightsOrder).With(Eckhart));
+		Add(Scene(NoblesQuarter).With(Justus));
+
+		// Time: "And so began a series of meetings with blue priests that continued day after day."
+		SkipToDaysAhead(2, Meetings);
+		Add(Scene(Temple).With(Kampfer, Frietack));
+
+		SkipToDaysAhead(2, Meetings);
+		var s1 = AddR(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Myne));
+		AddBell();
+		Return(s1);
+	}
+
+	private void P3V2C19()
+	{
+		// Time: "Brigitte thanked her for her concern, then got into bed."
+		SkipToCurrentDay(Bed);
+		Add(Scene(KnightsOrder).With(Brigitte, Nadine));
+
+		// karstedt talks to her about stuff, but adding him in makes the graph
+		// look very messy at that point
+		SkipToNextDay(Tea);
+		Add(Scene(KarstedtsHouse).With(Brigitte, Nadine));
+		AddBell();
+		Add(Scene(KnightsOrder).With(Nadine));
+		// brigitte probably goes back to the knights order but
+		// i haven't been bothering with any commuting points
+		Add(Scene(Temple).With(Brigitte));
+
+		// Time: "That night, Brigitte sent an ordonnanz to her brother, Giebe Illgner."
+		AddBell();
 	}
 }

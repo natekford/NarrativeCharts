@@ -29,6 +29,7 @@ public static class BookwormCharacters
 	public static Character Florencia { get; } = new("Florencia");
 	public static Character Fran { get; } = new("Fran");
 	public static Character Freida { get; } = new("Freida");
+	public static Character Frietack { get; } = new("Frietack");
 	public static Character Gil { get; } = new("Gil");
 	public static Character Gunther { get; } = new("Gunther");
 	public static Character Gustav { get; } = new("Gustav");
@@ -38,6 +39,7 @@ public static class BookwormCharacters
 	public static Character Johann { get; } = new("Johann");
 	public static Character Justus { get; } = new("Justus");
 	public static Character Kamil { get; } = new("Kamil");
+	public static Character Kampfer { get; } = new("Kampfer");
 	public static Character Kantna { get; } = new("Kantna");
 	public static Character Karstedt { get; } = new("Karstedt");
 	public static Character Lamprecht { get; } = new("Lamprecht");
@@ -50,6 +52,7 @@ public static class BookwormCharacters
 	public static Character Monika { get; } = new("Monika");
 	public static Character Moritz { get; } = new("Moritz");
 	public static Character Myne { get; } = new("Myne");
+	public static Character Nadine { get; } = new("Nadine");
 	public static Character Nicola { get; } = new("Nicola");
 	public static Character Nora { get; } = new("Nora");
 	public static Character Norbert { get; } = new("Norbert");
@@ -92,6 +95,7 @@ public static class BookwormCharacters
 			[Florencia] = "#FBF6E0",
 			[Fran] = "#5E546C",
 			[Freida] = "#E6AFB4",
+			[Frietack] = UNKNOWN,
 			[Gil] = "#F8EECB",
 			[Gunther] = "#37527F",
 			[Gustav] = "#B6A6A7",
@@ -101,6 +105,7 @@ public static class BookwormCharacters
 			[Johann] = "#E4A242",
 			[Justus] = "#A1AACB",
 			[Kamil] = "#415BA5",
+			[Kampfer] = UNKNOWN,
 			[Kantna] = UNKNOWN,
 			[Karstedt] = "#874730",
 			[Lamprecht] = "#D18A71",
@@ -113,6 +118,7 @@ public static class BookwormCharacters
 			[Monika] = "#8BBFCD",
 			[Moritz] = UNKNOWN,
 			[Myne] = "#39658C",
+			[Nadine] = UNKNOWN,
 			[Nicola] = "#F1A14A",
 			[Nora] = "#9797CC",
 			[Norbert] = "#656567",
