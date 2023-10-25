@@ -5,9 +5,9 @@ namespace NarrativeCharts.Bookworm;
 public abstract class BookwormNarrativeChart : NarrativeChart
 {
 	protected bool AlreadyCreated { get; set; }
+	protected Location Frozen { get; } = new Location(nameof(Freeze));
+	protected Y FrozenY { get; } = new(int.MinValue);
 	protected BookwormTimeTracker Time { get; }
-	protected Location Travel { get; } = new Location(nameof(StartTravel));
-	protected Y TravelY { get; } = new(int.MinValue);
 	protected X X => new(Time.CurrentTotalHours);
 
 	protected BookwormNarrativeChart(BookwormTimeTracker time)
@@ -17,7 +17,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		{
 			Colors[character] = color;
 		}
-		Locations[Travel] = TravelY;
+		Locations[Frozen] = FrozenY;
 		foreach (var (location, y) in BookwormLocations.YValues)
 		{
 			Locations[location] = y;
@@ -38,17 +38,18 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		}
 
 		ProtectedCreate();
-		this.Simplify();
+
 		foreach (var points in Points.Values)
 		{
 			for (var i = points.Count - 1; i >= 0; --i)
 			{
-				if (points.Values[i].Point.Y == TravelY)
+				if (points.Values[i].Point.Y == FrozenY)
 				{
 					points.RemoveAt(i);
 				}
 			}
 		}
+		this.Simplify();
 	}
 
 	protected void Add(NarrativeScene scene)
@@ -73,6 +74,9 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		this.AddEvent(new(new(X, new(0)), name));
 		Update();
 	}
+
+	protected void Freeze(params Character[] characters)
+		=> Add(Scene(Frozen).With(characters));
 
 	protected void Kill(params Character[] characters)
 	{
@@ -117,12 +121,6 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 	protected void SkipToNextDay(BookwormBell bell)
 		=> SkipToDaysAhead(1, bell);
 
-	protected void StartTravel(params Character[] characters)
-		=> Add(Scene(Travel).With(characters));
-
 	protected void Update()
 		=> this.UpdatePoints(X);
-
-	protected void Update(params Character[] characters)
-		=> this.UpdatePoints(X, characters);
 }

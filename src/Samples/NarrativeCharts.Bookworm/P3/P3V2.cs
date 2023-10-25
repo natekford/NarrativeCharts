@@ -297,8 +297,8 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// via highbeast
 		Add(Scene(Hasse).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
 		// via carriage
-		StartTravel(Ella, Monika, Nicola, Rosina);
-		StartTravel(Benno, Gil, Gunther, Lutz, Mark);
+		Freeze(Ella, Monika, Nicola, Rosina);
+		Freeze(Benno, Gil, Gunther, Lutz, Mark);
 		AddBell(2);
 		Add(Scene(Hasse).With(Ella, Monika, Nicola, Rosina));
 		Add(Scene(Hasse).With(Benno, Gil, Gunther, Lutz, Mark));
@@ -320,7 +320,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// via highbeast
 		Add(Scene(HarvestFestivalTowns).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
 		// via carriage
-		StartTravel(Ella, Monika, Nicola, Rosina);
+		Freeze(Ella, Monika, Nicola, Rosina);
 		AddBell();
 		// benno/mark spread rumours before leaving
 		Add(Scene(MerchantCompanies).With(Benno, Mark));
