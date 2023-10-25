@@ -16,6 +16,13 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 	public float LineWidth { get; set; } = 2;
 	public float MarkerSize { get; set; } = 6;
 
+	public ScottPlotDrawer(
+		IReadOnlyDictionary<Character, Hex> colors,
+		IReadOnlyDictionary<Location, int> yIndexes)
+		: base(colors, yIndexes)
+	{
+	}
+
 	protected override ScottPlot.Plot CreateCanvas(NarrativeChart chart, YMap yMap)
 	{
 		var (width, height) = CalculateDimensions(yMap);
@@ -56,7 +63,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		{
 			var (positions, nameLabels) = GetTicks(
 				chart.Events,
-				x => x.Key.Value,
+				x => x.Key,
 				x => x.Value.Name
 			);
 			var numberLabels = Enumerable.Range(1, nameLabels.Length)
@@ -77,8 +84,8 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 				plot.BottomAxis.AxisTicks.TickLabelFont.Size
 			);
 			var (positions, labels) = GetTicks(
-				chart.Locations.Where(x => yMap.Locations.ContainsKey(x.Key)),
-				x => yMap.Locations[x.Key].Value,
+				YIndexes.Where(x => yMap.Locations.ContainsKey(x.Key)),
+				x => yMap.Locations[x.Key],
 				x => x.Key.Value
 			);
 
@@ -151,11 +158,11 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 
 	private ScatterPlot AddScatter(SegmentInfo info)
 	{
-		var xs = new double[] { info.X1.Value, info.X2.Value };
-		var ys = new double[] { info.Y1.Value, info.Y2.Value };
+		var xs = new double[] { info.X1, info.X2 };
+		var ys = new double[] { info.Y1, info.Y2 };
 		var scatter = info.Canvas.AddScatter(xs, ys);
 
-		var color = _Colors.GetOrAdd(info.Chart.Colors[info.Character], x => ColorTranslator.FromHtml(x.Value));
+		var color = _Colors.GetOrAdd(Colors[info.Character], x => ColorTranslator.FromHtml(x.Value));
 		scatter.Label = info.Character.Value;
 		scatter.Color = color;
 

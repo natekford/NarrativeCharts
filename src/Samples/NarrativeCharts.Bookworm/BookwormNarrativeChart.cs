@@ -6,22 +6,12 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 {
 	protected bool AlreadyCreated { get; set; }
 	protected Location Frozen { get; } = new Location(nameof(Freeze));
-	protected Y FrozenY { get; } = new(int.MinValue);
 	protected BookwormTimeTracker Time { get; }
-	protected X X => new(Time.CurrentTotalHours);
+	protected int X => Time.CurrentTotalHours;
 
 	protected BookwormNarrativeChart(BookwormTimeTracker time)
 	{
 		Time = time;
-		foreach (var (character, color) in BookwormCharacters.ColorValues)
-		{
-			Colors[character] = color;
-		}
-		Locations[Frozen] = FrozenY;
-		foreach (var (location, y) in BookwormLocations.YValues)
-		{
-			Locations[location] = y;
-		}
 	}
 
 	public void Initialize(BookwormNarrativeChart? seed)
@@ -39,12 +29,11 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 		ProtectedCreate();
 
-		Locations.Remove(Frozen);
 		foreach (var points in Points.Values)
 		{
 			for (var i = points.Count - 1; i >= 0; --i)
 			{
-				if (points.Values[i].Point.Y == FrozenY)
+				if (points.Values[i].Point.Location == Frozen)
 				{
 					points.RemoveAt(i);
 				}
@@ -62,17 +51,17 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		Time.AddBells(amount);
 	}
 
-	protected Dictionary<Character, Y> AddR(NarrativeScene scene)
+	protected Dictionary<Character, Location> AddR(NarrativeScene scene)
 	{
 		var dict = scene.Characters
-			.ToDictionary(x => x, x => Points[x].Values[^1].Point.Y);
+			.ToDictionary(x => x, x => Points[x].Values[^1].Point.Location);
 		Add(scene);
 		return dict;
 	}
 
 	protected void Chapter(string name)
 	{
-		this.AddEvent(new(new(X, new(0)), name));
+		this.AddEvent(new(new(X, new()), name));
 		Update();
 	}
 
@@ -86,7 +75,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 		{
 			var points = Points[character];
 			var point = points.Values[^1];
-			points[point.Point.X] = point with
+			points[point.Point.Hour] = point with
 			{
 				IsEnd = true,
 			};
@@ -95,7 +84,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 
 	protected abstract void ProtectedCreate();
 
-	protected void Return(IEnumerable<KeyValuePair<Character, Y>> scene)
+	protected void Return(IEnumerable<KeyValuePair<Character, Location>> scene)
 	{
 		foreach (var (character, y) in scene)
 		{
@@ -108,7 +97,7 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 	}
 
 	protected Point Scene(Location location)
-		=> new(X, Locations[location]);
+		=> new(X, location);
 
 	protected void SkipToCurrentDay(BookwormBell bell)
 		=> SkipToDaysAhead(0, bell);

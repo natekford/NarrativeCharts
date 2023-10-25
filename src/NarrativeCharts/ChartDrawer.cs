@@ -6,10 +6,12 @@ namespace NarrativeCharts;
 
 public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 {
+	public IReadOnlyDictionary<Character, Hex> Colors { get; }
 	public int ImageHeightMultiplier { get; set; } = 6;
 	public int ImageSizeAddition { get; set; } = 500;
 	public int ImageSizeFloor { get; set; } = 100;
 	public int ImageWidthMultiplier { get; set; } = 6;
+	public IReadOnlyDictionary<Location, int> YIndexes { get; }
 	/// <summary>
 	/// The amount of pixels between a Y-tick and the first point.
 	/// </summary>
@@ -23,6 +25,14 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 	/// previous Y-tick and the next Y-tick.
 	/// </summary>
 	public int YTickSeperation { get; set; } = 25;
+
+	protected ChartDrawer(
+		IReadOnlyDictionary<Character, Hex> colors,
+		IReadOnlyDictionary<Location, int> yIndexes)
+	{
+		Colors = colors;
+		YIndexes = yIndexes;
+	}
 
 	public async Task SaveChartAsync(TChart chart, string path)
 	{
@@ -49,7 +59,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 		var canvas = CreateCanvas(chart, yMap);
 		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key.Value))
 		{
-			var stationaryStart = points.Values[0].Point.X;
+			var stationaryStart = points.Values[0].Point.Hour;
 			for (var p = 1; p < points.Count; ++p)
 			{
 				var (prevX, prevY) = points.Values[p - 1].Point;
@@ -100,7 +110,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 	protected virtual YMap GetYMap(TChart chart)
 	{
 		int xMax = int.MinValue, xMin = int.MaxValue;
-		var timeSpent = new ConcurrentDictionary<Y, ConcurrentDictionary<Character, int>>();
+		var timeSpent = new ConcurrentDictionary<Location, ConcurrentDictionary<Character, int>>();
 		foreach (var (character, points) in chart.Points)
 		{
 			for (var i = 0; i < points.Count - 1; ++i)
@@ -108,31 +118,31 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 				var curr = points.Values[i].Point;
 				var next = points.Values[i + 1].Point;
 
-				var xDiff = next.X.Value - curr.X.Value;
+				var xDiff = next.Hour - curr.Hour;
 				timeSpent
-					.GetOrAdd(curr.Y, _ => new())
+					.GetOrAdd(curr.Location, _ => new())
 					.AddOrUpdate(character, (_, a) => a, (_, a, b) => a + b, xDiff);
 			}
 
 			if (points.Count > 0)
 			{
-				xMax = Math.Max(xMax, points.Values[^1].Point.X.Value);
-				xMin = Math.Min(xMin, points.Values[0].Point.X.Value);
+				xMax = Math.Max(xMax, points.Values[^1].Point.Hour);
+				xMin = Math.Min(xMin, points.Values[0].Point.Hour);
 
 				// prevent issues with ending on a movement segment
 				timeSpent
-					.GetOrAdd(points.Values[^1].Point.Y, _ => new())
+					.GetOrAdd(points.Values[^1].Point.Location, _ => new())
 					.TryAdd(character, 0);
 			}
 		}
 
 		var y = 0;
 		int yMax = int.MinValue, yMin = int.MaxValue;
-		var cMap = new Dictionary<(Character, Y), Y>();
-		var lMap = new Dictionary<Location, Y>();
-		foreach (var (location, time) in timeSpent.OrderBy(x => x.Key.Value))
+		var cMap = new Dictionary<(Character, Location), int>();
+		var lMap = new Dictionary<Location, int>();
+		foreach (var (location, time) in timeSpent.OrderBy(x => YIndexes[x.Key]))
 		{
-			lMap[chart.Locations.Single(x => x.Value == location).Key] = new(y);
+			lMap[location] = y;
 
 			// more time spent = closer to the bottom
 			// any ties? alphabetical order (A = bottom, Z = top)
@@ -143,7 +153,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 				yMax = Math.Max(yMax, value);
 				yMin = Math.Min(yMin, value);
 
-				cMap[new(character, location)] = new(value);
+				cMap[new(character, location)] = value;
 				++i;
 			}
 
@@ -164,13 +174,13 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 
 	protected readonly record struct SegmentInfo(
 		TChart Chart, TImage Canvas, Character Character,
-		X X1, X X2, Y Y1, Y Y2,
+		int X1, int X2, int Y1, int Y2,
 		bool IsFinalSegment
 	);
 
 	protected record YMap(
-		IReadOnlyDictionary<(Character, Y), Y> Characters,
-		IReadOnlyDictionary<Location, Y> Locations,
+		IReadOnlyDictionary<(Character, Location), int> Characters,
+		IReadOnlyDictionary<Location, int> Locations,
 		int XMax,
 		int XMin,
 		int YMax,

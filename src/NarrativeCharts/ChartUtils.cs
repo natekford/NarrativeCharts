@@ -4,9 +4,6 @@ namespace NarrativeCharts;
 
 public static class ChartUtils
 {
-	public static Comparer<X> XComparer { get; }
-		= Comparer<X>.Create((a, b) => a.Value.CompareTo(b.Value));
-
 	public static T AddChart<T>(this T chart, NarrativeChart other) where T : NarrativeChart
 	{
 		foreach (var @event in other.Events)
@@ -22,7 +19,7 @@ public static class ChartUtils
 
 	public static T AddEvent<T>(this T chart, NarrativeEvent @event) where T : NarrativeChart
 	{
-		chart.Events.Add(@event.Point.X, @event);
+		chart.Events.Add(@event.Point.Hour, @event);
 		return chart;
 	}
 
@@ -30,10 +27,9 @@ public static class ChartUtils
 	{
 		if (!chart.Points.TryGetValue(point.Character, out var points))
 		{
-			chart.Points[point.Character] = points = new(XComparer);
+			chart.Points[point.Character] = points = new();
 		}
-
-		points[point.Point.X] = point;
+		points[point.Point.Hour] = point;
 		return chart;
 	}
 
@@ -57,7 +53,7 @@ public static class ChartUtils
 		}
 	}
 
-	public static T Seed<T>(this T chart, NarrativeChart other, X start) where T : NarrativeChart
+	public static T Seed<T>(this T chart, NarrativeChart other, int hour) where T : NarrativeChart
 	{
 		foreach (var (_, points) in other.Points)
 		{
@@ -71,7 +67,7 @@ public static class ChartUtils
 			{
 				Point = lastPoint.Point with
 				{
-					X = start
+					Hour = hour
 				},
 			});
 		}
@@ -86,40 +82,40 @@ public static class ChartUtils
 			// They will always be valid
 			for (var i = points.Count - 2; i > 0; --i)
 			{
-				var prev = points.Values[i - 1].Point.Y;
-				var curr = points.Values[i].Point.Y;
-				var next = points.Values[i + 1].Point.Y;
+				var prev = points.Values[i - 1].Point.Location;
+				var curr = points.Values[i].Point.Location;
+				var next = points.Values[i + 1].Point.Location;
 				if (prev == curr && curr == next)
 				{
-					points.Remove(points.Values[i].Point.X);
+					points.Remove(points.Values[i].Point.Hour);
 				}
 			}
 		}
 		return chart;
 	}
 
-	public static T UpdatePoints<T>(this T chart, X x) where T : NarrativeChart
-		=> chart.UpdatePoints(x, chart.Points.Keys);
+	public static T UpdatePoints<T>(this T chart, int hour) where T : NarrativeChart
+		=> chart.UpdatePoints(hour, chart.Points.Keys);
 
 	public static T UpdatePoints<T>(
 		this T chart,
-		X x,
+		int hour,
 		IEnumerable<Character> characters) where T : NarrativeChart
 	{
 		foreach (var character in characters)
 		{
 			var lastPoint = chart.Points[character].Values[^1];
 			// lastPoint already reaches up to where we're trying to update
-			if (lastPoint.IsEnd || lastPoint.Point.X.Value >= x.Value)
+			if (lastPoint.IsEnd || lastPoint.Point.Hour >= hour)
 			{
 				continue;
 			}
 
-			chart.Points[character].Add(x, lastPoint with
+			chart.Points[character].Add(hour, lastPoint with
 			{
 				Point = lastPoint.Point with
 				{
-					X = x
+					Hour = hour
 				},
 			});
 		}

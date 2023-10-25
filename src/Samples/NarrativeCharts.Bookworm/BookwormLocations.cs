@@ -18,11 +18,11 @@ public static class BookwormLocations
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location RuelleTree { get; } = new("Ruelle Tree");
 	public static Location Temple { get; } = new("Temple");
-	public static ImmutableDictionary<Location, Y> YValues { get; }
+	public static ImmutableDictionary<Location, int> YIndexes { get; }
 
 	static BookwormLocations()
 	{
-		YValues = new Dictionary<Location, int>()
+		YIndexes = new Dictionary<Location, int>()
 		{
 			[Castle] = 200,
 			[KnightsOrder] = 150,
@@ -36,6 +36,6 @@ public static class BookwormLocations
 			[Hasse] = -300,
 			[HarvestFestivalTowns] = -350,
 			[RuelleTree] = -400,
-		}.ToImmutableDictionary(x => x.Key, x => new Y(x.Value));
+		}.ToImmutableDictionary();
 	}
 }

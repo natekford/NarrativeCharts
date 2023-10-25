@@ -14,7 +14,7 @@ public static class BookwormCharacters
 	public static Character Bindewald { get; } = new("Bindewald");
 	public static Character Brigitte { get; } = new("Brigitte");
 	public static Character Charlotte { get; } = new("Charlotte");
-	public static ImmutableDictionary<Character, Hex> ColorValues { get; }
+	public static ImmutableDictionary<Character, Hex> Colors { get; }
 	public static Character Cornelius { get; } = new("Cornelius");
 	public static Character Damuel { get; } = new("Damuel");
 	public static Character Deid { get; } = new("Deid");
@@ -73,7 +73,7 @@ public static class BookwormCharacters
 
 	static BookwormCharacters()
 	{
-		ColorValues = new Dictionary<Character, string>
+		Colors = new Dictionary<Character, string>
 		{
 			[Angelica] = "#53B3DB",
 			[Benno] = "#E8CB9F",
