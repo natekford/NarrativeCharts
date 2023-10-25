@@ -46,10 +46,17 @@ public static class Program
 		{
 			Directory.CreateDirectory(DIR);
 
-			await drawer.SaveChartAsync(book, Path.Combine(DIR, $"{book.Name}_chart.png")).ConfigureAwait(false);
+			var path = Path.Combine(DIR, $"{book.Name}_chart.png");
+			await drawer.SaveChartAsync(book, path).ConfigureAwait(false);
 
 			var points = book.Points.Sum(x => x.Value.Count);
 			Console.WriteLine($"{book.Name} marked points: {points}");
+
+			var myne = book.Points[BookwormCharacters.Myne];
+			var start = myne.Values[0].Point.Hour;
+			var end = myne.Values[^1].Point.Hour;
+			var days = (end - start) / time.HoursPerDay;
+			Console.WriteLine($"{book.Name} ellapsed days: {days}");
 		}
 
 		Console.ReadLine();
