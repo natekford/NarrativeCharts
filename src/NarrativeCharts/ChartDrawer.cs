@@ -11,6 +11,9 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 	public int ImageSizeAddition { get; set; } = 500;
 	public int ImageSizeFloor { get; set; } = 100;
 	public int ImageWidthMultiplier { get; set; } = 6;
+	public int LabelSize { get; set; } = 10;
+	public int LineWidth { get; set; } = 2;
+	public int MarkerSize { get; set; } = 6;
 	public IReadOnlyDictionary<Location, int> YIndexes { get; }
 	/// <summary>
 	/// The amount of pixels between a Y-tick and the first point.
@@ -65,27 +68,28 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 				var (prevX, prevY) = points.Values[p - 1].Point;
 				var (currX, currY) = points.Values[p].Point;
 				var hasMovement = prevY != currY;
-				var isFinalSegment = p == points.Count - 1;
+				var isFinal = p == points.Count - 1;
 
 				// Add the previous stationary segment
-				if (hasMovement || isFinalSegment)
+				if (hasMovement || isFinal)
 				{
-					DrawStationarySegment(new(
+					DrawSegment(new(
 						Chart: chart,
 						Canvas: canvas,
 						Character: character,
 						X1: stationaryStart,
 						// If we're at the last point don't stop before it
-						X2: isFinalSegment && !hasMovement ? currX : prevX,
+						X2: isFinal && !hasMovement ? currX : prevX,
 						Y1: yMap.Characters[(character, prevY)],
 						Y2: yMap.Characters[(character, prevY)],
-						IsFinalSegment: isFinalSegment && !hasMovement
+						IsMovement: false,
+						IsFinal: isFinal && !hasMovement
 					));
 				}
 				// Add the current movement segment
 				if (hasMovement)
 				{
-					DrawMovementSegment(new(
+					DrawSegment(new(
 						Chart: chart,
 						Canvas: canvas,
 						Character: character,
@@ -93,7 +97,8 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 						X2: currX,
 						Y1: yMap.Characters[(character, prevY)],
 						Y2: yMap.Characters[(character, currY)],
-						IsFinalSegment: isFinalSegment
+						IsMovement: true,
+						IsFinal: isFinal
 					));
 					stationaryStart = currX;
 				}
@@ -103,9 +108,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 		return canvas;
 	}
 
-	protected abstract void DrawMovementSegment(SegmentInfo info);
-
-	protected abstract void DrawStationarySegment(SegmentInfo info);
+	protected abstract void DrawSegment(SegmentInfo info);
 
 	protected virtual YMap GetYMap(TChart chart)
 	{
@@ -174,7 +177,7 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 	protected readonly record struct SegmentInfo(
 		TChart Chart, TImage Canvas, Character Character,
 		int X1, int X2, int Y1, int Y2,
-		bool IsFinalSegment
+		bool IsMovement, bool IsFinal
 	);
 
 	protected record YMap(

@@ -12,10 +12,6 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 {
 	private static readonly ConcurrentDictionary<Hex, Color> _Colors = new();
 
-	public float LabelSize { get; set; } = 10;
-	public float LineWidth { get; set; } = 2;
-	public float MarkerSize { get; set; } = 6;
-
 	public ScottPlotDrawer(
 		IReadOnlyDictionary<Character, Hex> colors,
 		IReadOnlyDictionary<Location, int> yIndexes)
@@ -100,30 +96,15 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		return plot;
 	}
 
-	protected override void DrawMovementSegment(SegmentInfo info)
+	protected override void DrawSegment(SegmentInfo info)
 	{
 		var scatter = AddScatter(info);
-		scatter.LineStyle = LineStyle.Dot;
-
-		if (info.IsFinalSegment)
-		{
-			scatter.DataPointLabels = new[]
-			{
-				string.Empty,
-				info.Character.Value,
-			};
-		}
-	}
-
-	protected override void DrawStationarySegment(SegmentInfo info)
-	{
-		var scatter = AddScatter(info);
-
+		scatter.LineStyle = info.IsMovement ? LineStyle.Dot : LineStyle.Solid;
 		scatter.DataPointLabels = new[]
 		{
-			info.Character.Value,
+			info.IsMovement ? string.Empty : info.Character.Value,
 			// Show the character's name at their last point
-			info.IsFinalSegment ? info.Character.Value : string.Empty,
+			info.IsFinal ? info.Character.Value : string.Empty,
 		};
 	}
 
