@@ -1,6 +1,7 @@
 ﻿using NarrativeCharts.Bookworm.P3;
 using NarrativeCharts.Models;
 using NarrativeCharts.Plot;
+using NarrativeCharts.Skia;
 
 namespace NarrativeCharts.Bookworm;
 
@@ -9,7 +10,7 @@ public static class Program
 	private static async Task Main()
 	{
 		var time = new BookwormTimeTracker();
-		var drawer = new ScottPlotDrawer(
+		var drawer = new SkiaDrawer(
 			colors: BookwormCharacters.Colors,
 			yIndexes: BookwormLocations.YIndexes
 		);
