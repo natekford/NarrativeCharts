@@ -49,6 +49,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 			{
 				axis.AxisTicks.MajorGridWidth = LineWidth;
 				axis.AxisTicks.MajorLineWidth = LineWidth;
+				axis.AxisTicks.MajorTickLength = TickLength;
 			}
 		}
 
@@ -56,7 +57,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		{
 			var (positions, nameLabels) = GetTicks(
 				chart.Events,
-				x => x.Key,
+				x => x.Key - yMap.XMin,
 				x => x.Value.Name
 			);
 			var numberLabels = Enumerable.Range(1, nameLabels.Length)
@@ -95,7 +96,20 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 
 	protected override void DrawSegment(SegmentInfo info)
 	{
-		var scatter = AddScatter(info);
+		var xs = new double[] { info.X0, info.X1 };
+		var ys = new double[] { info.Y0, info.Y1 };
+		var scatter = info.Canvas.AddScatter(xs, ys);
+
+		var color = GetColor(Colors[info.Character]);
+		scatter.Label = info.Character.Value;
+		scatter.Color = color;
+
+		scatter.LineWidth = LineWidth;
+		scatter.MarkerSize = MarkerDiameter;
+
+		scatter.DataPointLabelFont.Size = LabelSize;
+		scatter.DataPointLabelFont.Color = color;
+
 		scatter.LineStyle = info.IsMovement ? LineStyle.Dot : LineStyle.Solid;
 		scatter.DataPointLabels = new[]
 		{
@@ -135,24 +149,5 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		}
 
 		return (positions, labels);
-	}
-
-	private ScatterPlot AddScatter(SegmentInfo info)
-	{
-		var xs = new double[] { info.X1, info.X2 };
-		var ys = new double[] { info.Y1, info.Y2 };
-		var scatter = info.Canvas.AddScatter(xs, ys);
-
-		var color = GetColor(Colors[info.Character]);
-		scatter.Label = info.Character.Value;
-		scatter.Color = color;
-
-		scatter.LineWidth = LineWidth;
-		scatter.MarkerSize = MarkerSize;
-
-		scatter.DataPointLabelFont.Size = LabelSize;
-		scatter.DataPointLabelFont.Color = color;
-
-		return scatter;
 	}
 }

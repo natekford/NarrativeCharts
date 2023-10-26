@@ -29,8 +29,9 @@ public static class Program
 
 		var kept = new HashSet<Character>
 		{
-			BookwormCharacters.Benno,
-			//BookwormCharacters.Myne,
+			//BookwormCharacters.Benno,
+			BookwormCharacters.Ferdinand,
+			BookwormCharacters.Myne,
 		};
 		foreach (var book in books)
 		{

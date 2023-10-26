@@ -8,12 +8,13 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 {
 	public IReadOnlyDictionary<Character, Hex> Colors { get; }
 	public int ImageHeightMultiplier { get; set; } = 6;
-	public int ImageSizeAddition { get; set; } = 500;
+	public int ImagePadding { get; set; } = 250;
 	public int ImageSizeFloor { get; set; } = 100;
 	public int ImageWidthMultiplier { get; set; } = 6;
 	public int LabelSize { get; set; } = 10;
 	public int LineWidth { get; set; } = 2;
-	public int MarkerSize { get; set; } = 6;
+	public int MarkerDiameter { get; set; } = 6;
+	public int TickLength { get; set; } = 5;
 	public IReadOnlyDictionary<Location, int> YIndexes { get; }
 	/// <summary>
 	/// The amount of pixels between a Y-tick and the first point.
@@ -52,8 +53,8 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		// outputs a blank image if the dimensions are too small
 		// There's probably a better way to dynamically make sure the dimensions
 		// are big enough, but simply adding several hundred pixels is good enough
-		var width = (ImageSizeAddition + (yMap.XRange * ImageWidthMultiplier)) / ImageSizeFloor * ImageSizeFloor;
-		var height = (ImageSizeAddition + (yMap.YRange * ImageHeightMultiplier)) / ImageSizeFloor * ImageSizeFloor;
+		var width = ((ImagePadding * 2) + (yMap.XRange * ImageWidthMultiplier)) / ImageSizeFloor * ImageSizeFloor;
+		var height = ((ImagePadding * 2) + (yMap.YRange * ImageHeightMultiplier)) / ImageSizeFloor * ImageSizeFloor;
 		return (width, height);
 	}
 
@@ -79,11 +80,11 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 						Chart: chart,
 						Canvas: canvas,
 						Character: character,
-						X1: stationaryStart,
+						X0: stationaryStart - yMap.XMin,
 						// If we're at the last point don't stop before it
-						X2: isFinal && !hasMovement ? currX : prevX,
+						X1: (isFinal && !hasMovement ? currX : prevX) - yMap.XMin,
+						Y0: yMap.Characters[(character, prevY)],
 						Y1: yMap.Characters[(character, prevY)],
-						Y2: yMap.Characters[(character, prevY)],
 						IsMovement: false,
 						IsFinal: isFinal && !hasMovement
 					));
@@ -95,10 +96,10 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 						Chart: chart,
 						Canvas: canvas,
 						Character: character,
-						X1: prevX,
-						X2: currX,
-						Y1: yMap.Characters[(character, prevY)],
-						Y2: yMap.Characters[(character, currY)],
+						X0: prevX - yMap.XMin,
+						X1: currX - yMap.XMin,
+						Y0: yMap.Characters[(character, prevY)],
+						Y1: yMap.Characters[(character, currY)],
 						IsMovement: true,
 						IsFinal: isFinal
 					));
@@ -183,7 +184,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 	protected readonly record struct SegmentInfo(
 		TChart Chart, TImage Canvas, Character Character,
-		int X1, int X2, int Y1, int Y2,
+		int X0, int X1, int Y0, int Y1,
 		bool IsMovement, bool IsFinal
 	);
 
