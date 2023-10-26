@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 
 namespace NarrativeCharts;
 
-public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
+public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : NarrativeChart
 {
 	public IReadOnlyDictionary<Character, Hex> Colors { get; }
 	public int ImageHeightMultiplier { get; set; } = 6;
@@ -28,6 +28,8 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 	/// previous Y-tick and the next Y-tick.
 	/// </summary>
 	public int YTickSeperation { get; set; } = 25;
+
+	protected static ConcurrentDictionary<Hex, TColor> ColorCache { get; } = new();
 
 	protected ChartDrawer(
 		IReadOnlyDictionary<Character, Hex> colors,
@@ -110,6 +112,9 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 
 	protected abstract void DrawSegment(SegmentInfo info);
 
+	protected virtual TColor GetColor(Hex hex)
+		=> ColorCache.GetOrAdd(hex, ParseColor);
+
 	protected virtual YMap GetYMap(TChart chart)
 	{
 		int xMax = int.MinValue, xMin = int.MaxValue;
@@ -171,6 +176,8 @@ public abstract class ChartDrawer<TChart, TImage> where TChart : NarrativeChart
 			YMin: yMin
 		);
 	}
+
+	protected abstract TColor ParseColor(Hex hex);
 
 	protected abstract Task SaveImageAsync(TChart chart, YMap yMap, TImage image, string path);
 

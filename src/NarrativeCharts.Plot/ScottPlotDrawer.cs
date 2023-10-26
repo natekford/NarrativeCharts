@@ -3,15 +3,12 @@
 using ScottPlot;
 using ScottPlot.Plottable;
 
-using System.Collections.Concurrent;
 using System.Drawing;
 
 namespace NarrativeCharts.Plot;
 
-public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot>
+public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot, Color>
 {
-	private static readonly ConcurrentDictionary<Hex, Color> _Colors = new();
-
 	public ScottPlotDrawer(
 		IReadOnlyDictionary<Character, Hex> colors,
 		IReadOnlyDictionary<Location, int> yIndexes)
@@ -108,6 +105,9 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		};
 	}
 
+	protected override Color ParseColor(Hex hex)
+		=> ColorTranslator.FromHtml(hex.Value);
+
 	protected override Task SaveImageAsync(
 		NarrativeChart chart,
 		YMap yMap,
@@ -143,7 +143,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		var ys = new double[] { info.Y1, info.Y2 };
 		var scatter = info.Canvas.AddScatter(xs, ys);
 
-		var color = _Colors.GetOrAdd(Colors[info.Character], x => ColorTranslator.FromHtml(x.Value));
+		var color = GetColor(Colors[info.Character]);
 		scatter.Label = info.Character.Value;
 		scatter.Color = color;
 
