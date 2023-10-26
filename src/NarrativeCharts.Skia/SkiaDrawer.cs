@@ -4,12 +4,13 @@ using SkiaSharp;
 
 namespace NarrativeCharts.Skia;
 
-public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKSurface, SKColor>
+public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, Grid, SKColor>
 {
 	private static SKPathEffect Dash { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
 
-	private int GridYOffset => Offset - LineWidth;
-	private int Offset => ImagePadding + (LineWidth - 1);
+	private int RealPadding => ImagePadding + (LineWidth - 1);
+	private int XPadding => RealPadding + LineWidth;
+	private int YPadding => RealPadding - LineWidth;
 
 	public SkiaDrawer(
 		IReadOnlyDictionary<Character, Hex> colors,
@@ -19,49 +20,49 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKSurface, SKColor>
 		TickLength = 25;
 	}
 
-	protected override SKSurface CreateCanvas(NarrativeChart chart, YMap yMap)
+	protected override Grid CreateCanvas(NarrativeChart chart, YMap yMap)
 	{
 		var (width, height) = CalculateDimensions(yMap);
 		var surface = SKSurface.Create(new SKImageInfo(width, height));
+		var grid = new Grid(surface, yMap, RealPadding, ImageWidthMultiplier, ImageHeightMultiplier);
 		var canvas = surface.Canvas;
-		var (grid, wMult, hMult) = GetGridBounds(canvas.DeviceClipBounds);
 
 		canvas.Clear(SKColors.White);
 
 		using (new SKAutoCanvasRestore(canvas))
 		{
-			canvas.ClipRect(grid, SKClipOperation.Intersect);
+			canvas.ClipRect(grid.Rect, SKClipOperation.Intersect);
 			using var paint = GetPaint(SKColors.Red);
 
-			canvas.Translate(Offset + LineWidth, GridYOffset);
+			canvas.Translate(XPadding, YPadding);
 			foreach (var yTick in yMap.Locations.Values)
 			{
-				var y = grid.Height - (yTick * hMult);
+				var y = grid.Y(yTick);
 				canvas.DrawLine(-1, y, grid.Width, y, paint);
 			}
 			foreach (var xTick in chart.Events.Keys)
 			{
-				var x = xTick * wMult;
+				var x = grid.X(xTick);
 				canvas.DrawLine(x, -1, x, grid.Height, paint);
 			}
 		}
 
 		using (new SKAutoCanvasRestore(canvas))
 		{
-			canvas.ClipRect(grid, SKClipOperation.Difference);
+			canvas.ClipRect(grid.Rect, SKClipOperation.Difference);
 			using var paint = GetPaint(SKColors.HotPink);
 
-			canvas.Translate(Offset - TickLength - 1, GridYOffset);
+			canvas.Translate(RealPadding - TickLength - 1, YPadding);
 			foreach (var yTick in yMap.Locations.Values)
 			{
-				var y = grid.Height - (yTick * hMult);
+				var y = grid.Y(yTick);
 				canvas.DrawLine(0, y, TickLength, y, paint);
 			}
 
 			canvas.Translate(grid.Width + TickLength + LineWidth, 0);
 			foreach (var yTick in yMap.Locations.Values)
 			{
-				var y = grid.Height - (yTick * hMult);
+				var y = grid.Y(yTick);
 				canvas.DrawLine(0, y, TickLength, y, paint);
 			}
 		}
@@ -70,35 +71,45 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKSurface, SKColor>
 			using var paint = GetPaint(SKColors.Black);
 			paint.Style = SKPaintStyle.Stroke;
 
-			canvas.DrawRect(grid, paint);
+			canvas.DrawRect(grid.Rect, paint);
 		}
 
-		return surface;
+		return grid;
 	}
 
-	protected override void DrawSegment(SegmentInfo info)
+	protected override void DrawSegment(Segment segment)
 	{
-		var canvas = info.Canvas.Canvas;
-		var (grid, wMult, hMult) = GetGridBounds(canvas.DeviceClipBounds);
+		var grid = segment.Canvas;
+		var canvas = grid.Surface.Canvas;
 
 		using (new SKAutoCanvasRestore(canvas))
-		using (var paint = GetPaint(GetColor(Colors[info.Character])))
+		using (var paint = GetPaint(GetColor(Colors[segment.Character])))
 		{
-			canvas.ClipRect(grid, SKClipOperation.Intersect);
-			canvas.Translate(Offset + LineWidth, GridYOffset);
+			canvas.ClipRect(grid.Rect, SKClipOperation.Intersect);
+			canvas.Translate(RealPadding + LineWidth, YPadding);
+
+			var p0 = new SKPoint(grid.X(segment.X0), grid.Y(segment.Y0));
+			var p1 = new SKPoint(grid.X(segment.X1), grid.Y(segment.Y1));
 
 			paint.IsAntialias = true;
-			if (info.IsMovement)
+			if (segment.IsMovement)
 			{
 				paint.PathEffect = Dash;
 			}
 
-			var p0 = new SKPoint(info.X0 * wMult, grid.Height - (info.Y0 * hMult));
-			var p1 = new SKPoint(info.X1 * wMult, grid.Height - (info.Y1 * hMult));
-
 			canvas.DrawCircle(p0, MarkerDiameter / 2f, paint);
 			canvas.DrawCircle(p1, MarkerDiameter / 2f, paint);
 			canvas.DrawLine(p0, p1, paint);
+
+			var labelOffset = new SKSize(MarkerDiameter / 4f, paint.TextSize);
+			if (!segment.IsMovement)
+			{
+				canvas.DrawText(segment.Character.Value, p0 + labelOffset, paint);
+			}
+			if (segment.IsFinal)
+			{
+				canvas.DrawText(segment.Character.Value, p1 + labelOffset, paint);
+			}
 		}
 	}
 
@@ -108,32 +119,18 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKSurface, SKColor>
 	protected override Task SaveImageAsync(
 		NarrativeChart chart,
 		YMap yMap,
-		SKSurface image,
+		Grid image,
 		string path)
 	{
-		using (var snapshot = image.Snapshot())
+		using (var snapshot = image.Surface.Snapshot())
 		using (var data = snapshot.Encode(SKEncodedImageFormat.Png, 100))
 		using (var fs = File.OpenWrite(path))
 		{
 			data.SaveTo(fs);
 		}
 
-		image.Dispose();
+		image.Surface.Dispose();
 		return Task.CompletedTask;
-	}
-
-	private (SKRect Bounds, float wMult, float hMult) GetGridBounds(SKRectI bounds)
-	{
-		var x = Offset;
-		var y = Offset;
-		var w = bounds.Width - (x * 2);
-		var h = bounds.Height - (y * 2);
-		var grid = SKRect.Create(x, y, w, h);
-
-		var wMult = (float)ImageWidthMultiplier * w / bounds.Width;
-		var hMult = (float)ImageHeightMultiplier * h / bounds.Height;
-
-		return (grid, wMult, hMult);
 	}
 
 	private SKPaint GetPaint(SKColor color)

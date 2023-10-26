@@ -111,7 +111,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		return canvas;
 	}
 
-	protected abstract void DrawSegment(SegmentInfo info);
+	protected abstract void DrawSegment(Segment segment);
 
 	protected virtual TColor GetColor(Hex hex)
 		=> ColorCache.GetOrAdd(hex, ParseColor);
@@ -182,22 +182,22 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 	protected abstract Task SaveImageAsync(TChart chart, YMap yMap, TImage image, string path);
 
-	protected readonly record struct SegmentInfo(
+	protected readonly record struct Segment(
 		TChart Chart, TImage Canvas, Character Character,
 		int X0, int X1, int Y0, int Y1,
 		bool IsMovement, bool IsFinal
 	);
+}
 
-	protected record YMap(
-		Dictionary<(Character, Location), int> Characters,
-		Dictionary<Location, int> Locations,
-		int XMax,
-		int XMin,
-		int YMax,
-		int YMin
-	)
-	{
-		public int XRange => XMax - XMin;
-		public int YRange => YMax - YMin;
-	}
+public record YMap(
+	Dictionary<(Character, Location), int> Characters,
+	Dictionary<Location, int> Locations,
+	int XMax,
+	int XMin,
+	int YMax,
+	int YMin
+)
+{
+	public int XRange => XMax - XMin;
+	public int YRange => YMax - YMin;
 }

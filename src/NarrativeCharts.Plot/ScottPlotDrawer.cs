@@ -94,14 +94,14 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		return plot;
 	}
 
-	protected override void DrawSegment(SegmentInfo info)
+	protected override void DrawSegment(Segment segment)
 	{
-		var xs = new double[] { info.X0, info.X1 };
-		var ys = new double[] { info.Y0, info.Y1 };
-		var scatter = info.Canvas.AddScatter(xs, ys);
+		var xs = new double[] { segment.X0, segment.X1 };
+		var ys = new double[] { segment.Y0, segment.Y1 };
+		var scatter = segment.Canvas.AddScatter(xs, ys);
 
-		var color = GetColor(Colors[info.Character]);
-		scatter.Label = info.Character.Value;
+		var color = GetColor(Colors[segment.Character]);
+		scatter.Label = segment.Character.Value;
 		scatter.Color = color;
 
 		scatter.LineWidth = LineWidth;
@@ -110,12 +110,12 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		scatter.DataPointLabelFont.Size = LabelSize;
 		scatter.DataPointLabelFont.Color = color;
 
-		scatter.LineStyle = info.IsMovement ? LineStyle.Dot : LineStyle.Solid;
+		scatter.LineStyle = segment.IsMovement ? LineStyle.Dot : LineStyle.Solid;
 		scatter.DataPointLabels = new[]
 		{
-			info.IsMovement ? string.Empty : info.Character.Value,
+			segment.IsMovement ? string.Empty : segment.Character.Value,
 			// Show the character's name at their last point
-			info.IsFinal ? info.Character.Value : string.Empty,
+			segment.IsFinal ? segment.Character.Value : string.Empty,
 		};
 	}
 
