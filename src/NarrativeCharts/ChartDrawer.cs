@@ -44,7 +44,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	{
 		var yMap = GetYMap(chart);
 		var image = DrawChart(chart, yMap);
-		await SaveImageAsync(chart, yMap, image, path).ConfigureAwait(false);
+		await SaveImageAsync(image, path).ConfigureAwait(false);
 	}
 
 	protected virtual (int, int) CalculateDimensions(YMap yMap)
@@ -180,7 +180,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 	protected abstract TColor ParseColor(Hex hex);
 
-	protected abstract Task SaveImageAsync(TChart chart, YMap yMap, TImage image, string path);
+	protected abstract Task SaveImageAsync(TImage image, string path);
 
 	protected readonly record struct Segment(
 		TChart Chart, TImage Canvas, Character Character,

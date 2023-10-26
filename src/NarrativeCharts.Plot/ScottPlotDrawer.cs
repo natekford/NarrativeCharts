@@ -122,11 +122,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 	protected override Color ParseColor(Hex hex)
 		=> ColorTranslator.FromHtml(hex.Value);
 
-	protected override Task SaveImageAsync(
-		NarrativeChart chart,
-		YMap yMap,
-		ScottPlot.Plot image,
-		string path)
+	protected override Task SaveImageAsync(ScottPlot.Plot image, string path)
 	{
 		image.SaveFig(path);
 		return Task.CompletedTask;
