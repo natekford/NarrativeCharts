@@ -29,12 +29,12 @@ public sealed class Grid
 		XMult = (float)wMult * w / bounds.Width;
 		YMult = (float)hMult * h / bounds.Height;
 
-		XShift = (w - (yMap.XMax * XMult)) / 2;
-		YShift = (h - (yMap.YMax * YMult)) / 2;
+		XShift = (w - (yMap.XRange * XMult)) / 2;
+		YShift = (h - (yMap.YRange * YMult)) / 2;
 	}
 
 	public float X(float x)
-		=> (x * XMult) + XShift;
+		=> ((x - YMap.XMin) * XMult) + XShift;
 
 	public float Y(float y)
 		=> Height - (y * YMult) - YShift;

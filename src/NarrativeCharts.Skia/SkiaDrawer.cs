@@ -72,21 +72,17 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, Grid, SKColor>
 
 			canvas.Translate(XPadding, RealPadding - 1);
 			var e = 0;
-			foreach (var (xTick, _) in chart.Events)
-			{
-				var x = grid.X(xTick);
-				canvas.DrawLine(x, 0, x, -TickLength, paint);
-				canvas.DrawText((++e).ToString(), x, -(TickLength + 2), paint);
-			}
-
-			canvas.Translate(0, grid.Height + LineWidth);
 			var queue = new Queue<(float, float, string)>(chart.Events.Count);
 			foreach (var (xTick, label) in chart.Events)
 			{
 				var x = grid.X(xTick);
 				queue.Enqueue((x, paint.MeasureText(label.Name), label.Name));
+
+				canvas.DrawLine(x, 0, x, -TickLength, paint);
+				canvas.DrawText((++e).ToString(), x, -(TickLength + 2), paint);
 			}
 
+			canvas.Translate(0, grid.Height + LineWidth);
 			var prevX = float.MinValue;
 			var prevLength = float.MinValue;
 			var i = 0;

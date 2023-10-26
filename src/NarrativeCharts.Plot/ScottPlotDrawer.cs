@@ -1,7 +1,6 @@
 ﻿using NarrativeCharts.Models;
 
 using ScottPlot;
-using ScottPlot.Plottable;
 
 using System.Drawing;
 
@@ -57,7 +56,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		{
 			var (positions, nameLabels) = GetTicks(
 				chart.Events,
-				x => x.Key - yMap.XMin,
+				x => x.Key,
 				x => x.Value.Name
 			);
 			var numberLabels = Enumerable.Range(1, nameLabels.Length)
