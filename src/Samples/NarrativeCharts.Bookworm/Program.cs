@@ -3,10 +3,14 @@ using NarrativeCharts.Models;
 using NarrativeCharts.Plot;
 using NarrativeCharts.Skia;
 
+using System.Diagnostics;
+
 namespace NarrativeCharts.Bookworm;
 
 public static class Program
 {
+	private const string DIR = @"C:\Users\User\Downloads\NarrativeCharts";
+
 	private static async Task Main()
 	{
 		var time = new BookwormTimeTracker();
@@ -44,23 +48,23 @@ public static class Program
 			}
 		}
 
-		const string DIR = @"C:\Users\User\Downloads\NarrativeCharts";
+		var tasks = new List<Task>();
 		foreach (var book in books)
 		{
 			Directory.CreateDirectory(DIR);
 
 			var path = Path.Combine(DIR, $"{book.Name}_chart.png");
-			await drawer.SaveChartAsync(book, path).ConfigureAwait(false);
+			tasks.Add(drawer.SaveChartAsync(book, path));
 
 			var points = book.Points.Sum(x => x.Value.Count);
-			Console.WriteLine($"{book.Name} marked points: {points}");
-
 			var myne = book.Points[BookwormCharacters.Myne];
 			var start = myne.Values[0].Point.Hour;
 			var end = myne.Values[^1].Point.Hour;
 			var days = (end - start) / time.HoursPerDay;
-			Console.WriteLine($"{book.Name} ellapsed days: {days}");
+			Console.WriteLine($"{book.Name}: Points={points}, Days={days}");
 		}
+
+		await Task.WhenAll(tasks).ConfigureAwait(false);
 
 		Console.ReadLine();
 	}

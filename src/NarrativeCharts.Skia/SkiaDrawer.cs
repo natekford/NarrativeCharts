@@ -193,20 +193,34 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 
 	protected override Task SaveImageAsync(SKContext image, string path)
 	{
-		using (var snapshot = image.Surface.Snapshot())
-		using (var data = snapshot.Encode(SKEncodedImageFormat.Png, 100))
-		using (var fs = File.OpenWrite(path))
+		var tcs = new TaskCompletionSource();
+		_ = Task.Run(() =>
 		{
-			data.SaveTo(fs);
-		}
-
-		image.Surface.Dispose();
-		foreach (var items in image.SegmentCache.Values)
-		{
-			items.Paint.Dispose();
-			items.Name.Dispose();
-		}
-		return Task.CompletedTask;
+			try
+			{
+				using (var snapshot = image.Surface.Snapshot())
+				using (var data = snapshot.Encode(SKEncodedImageFormat.Png, 100))
+				using (var fs = File.OpenWrite(path))
+				{
+					data.SaveTo(fs);
+				}
+				tcs.SetResult();
+			}
+			catch (Exception e)
+			{
+				tcs.SetException(e);
+			}
+			finally
+			{
+				image.Surface.Dispose();
+				foreach (var items in image.SegmentCache.Values)
+				{
+					items.Paint.Dispose();
+					items.Name.Dispose();
+				}
+			}
+		});
+		return tcs.Task;
 	}
 
 	private static SKAutoCanvasRestore Restrict(
