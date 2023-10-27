@@ -2,10 +2,13 @@
 
 using SkiaSharp;
 
+using System.Diagnostics;
+
 namespace NarrativeCharts.Skia;
 
 public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 {
+	private static SKFont Font { get; } = new();
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
 
 	public SkiaDrawer(
@@ -15,6 +18,7 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 	{
 		LabelSize = 20;
 		LineWidth = 4;
+		MarkerDiameter = 8;
 	}
 
 	protected override SKContext CreateCanvas(NarrativeChart chart, YMap yMap)
@@ -144,35 +148,42 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 		var context = segment.Canvas;
 		var canvas = context.Surface.Canvas;
 
+		if (!context.SegmentCache.TryGetValue(segment.Character, out var items))
+		{
+			context.SegmentCache[segment.Character] = items = new(
+				Paint: GetPaint(GetColor(Colors[segment.Character])),
+				Name: SKTextBlob.Create(segment.Character.Value, Font)
+			);
+		}
+		var (paint, name) = items;
+
 		using (Restrict(context))
-		using (var paint = GetPaint(GetColor(Colors[segment.Character])))
 		{
 			canvas.Translate(context.PaddingEnd, context.PaddingEnd);
 
 			var p0 = new SKPoint(context.X(segment.X0), context.Y(segment.Y0));
 			var p1 = new SKPoint(context.X(segment.X1), context.Y(segment.Y1));
 			var labelOffset = new SKSize(MarkerDiameter / 4f, paint.TextSize);
+
+			paint.IsAntialias = false;
+			paint.PathEffect = null;
 			if (!segment.IsMovement)
 			{
-				canvas.DrawText(segment.Character.Value, p0 + labelOffset, paint);
+				var p2 = p0 + labelOffset;
+				canvas.DrawText(name, p2.X, p2.Y, paint);
 			}
 			if (segment.IsFinal)
 			{
-				canvas.DrawText(segment.Character.Value, p1 + labelOffset, paint);
+				var p2 = p1 + labelOffset;
+				canvas.DrawText(name, p2.X, p2.Y, paint);
 			}
 
 			paint.IsAntialias = true;
 			canvas.DrawCircle(p0, MarkerDiameter / 2f, paint);
 			canvas.DrawCircle(p1, MarkerDiameter / 2f, paint);
 
-			if (segment.IsMovement)
-			{
-				paint.PathEffect = Movement;
-			}
-			else
-			{
-				paint.IsAntialias = false;
-			}
+			paint.PathEffect = segment.IsMovement ? Movement : null;
+			paint.IsAntialias = segment.IsMovement;
 			canvas.DrawLine(p0, p1, paint);
 		}
 	}
@@ -190,6 +201,11 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 		}
 
 		image.Surface.Dispose();
+		foreach (var items in image.SegmentCache.Values)
+		{
+			items.Paint.Dispose();
+			items.Name.Dispose();
+		}
 		return Task.CompletedTask;
 	}
 
@@ -203,12 +219,12 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 		return autoRestore;
 	}
 
-	private void DrawYAxis(SKContext grid, SKPaint paint, bool isLeftAxis)
+	private void DrawYAxis(SKContext context, SKPaint paint, bool isLeftAxis)
 	{
-		var canvas = grid.Surface.Canvas;
-		foreach (var (label, yTick) in grid.YMap.Locations)
+		var canvas = context.Surface.Canvas;
+		foreach (var (label, yTick) in context.YMap.Locations)
 		{
-			var y = grid.Y(yTick);
+			var y = context.Y(yTick);
 			canvas.DrawLine(0, y, TickLength, y, paint);
 
 			var x1 = isLeftAxis
@@ -223,7 +239,7 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 
 	private SKPaint GetPaint(SKColor color)
 	{
-		return new()
+		return new(Font)
 		{
 			Color = color,
 			StrokeWidth = LineWidth,

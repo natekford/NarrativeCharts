@@ -1,4 +1,6 @@
-﻿using SkiaSharp;
+﻿using NarrativeCharts.Models;
+
+using SkiaSharp;
 
 namespace NarrativeCharts.Skia;
 
@@ -9,6 +11,7 @@ public sealed class SKContext
 	public float GridWidth => Grid.Width;
 	public float PaddingEnd { get; }
 	public float PaddingStart { get; }
+	public Dictionary<Character, SKSegmentItems> SegmentCache { get; } = new();
 	public SKSurface Surface { get; }
 	public float XMult { get; }
 	public float XShift { get; }
@@ -50,3 +53,5 @@ public sealed class SKContext
 	public float Y(float y)
 		=> GridHeight - (y * YMult) - YShift;
 }
+
+public record SKSegmentItems(SKPaint Paint, SKTextBlob Name);
