@@ -30,6 +30,9 @@ public static class Program
 			books[i].Initialize(books[i - 1]);
 		}
 
+		var scripted = new BookwormScriptLoader(time, @"C:\Users\User\Downloads\NarrativeCharts\P3V3 Script.txt");
+		scripted.Initialize(books[1]);
+
 		var kept = new HashSet<Character>
 		{
 			//BookwormCharacters.Benno,
@@ -49,7 +52,7 @@ public static class Program
 
 		var sw = Stopwatch.StartNew();
 		var tasks = new List<Task>();
-		foreach (var book in books)
+		foreach (var book in books.Append(scripted))
 		{
 			Directory.CreateDirectory(DIR);
 
