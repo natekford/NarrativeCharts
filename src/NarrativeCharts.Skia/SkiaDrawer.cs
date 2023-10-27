@@ -2,8 +2,6 @@
 
 using SkiaSharp;
 
-using System.Diagnostics;
-
 namespace NarrativeCharts.Skia;
 
 public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
@@ -42,6 +40,7 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 		{
 			paint.TextSize = ImagePadding * 0.50f;
 			paint.TextAlign = SKTextAlign.Center;
+			paint.IsAntialias = true;
 
 			var x = canvas.DeviceClipBounds.Width / 2;
 			var y = paint.TextSize;
@@ -77,7 +76,9 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 				queue.Enqueue((x, paint.MeasureText(label.Name), label.Name));
 
 				canvas.DrawLine(x, 0, x, -TickLength, paint);
+				paint.IsAntialias = true;
 				canvas.DrawText((++e).ToString(), x, -(TickLength + 2), paint);
+				paint.IsAntialias = false;
 			}
 
 			canvas.Translate(0, context.GridHeight + LineWidth);
@@ -109,7 +110,9 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 
 				var offset = (TickLength + paint.TextSize) * i;
 				canvas.DrawLine(x, 0, x, offset + TickLength, paint);
+				paint.IsAntialias = true;
 				canvas.DrawText(label, x, offset + paint.TextSize + 2, paint);
+				paint.IsAntialias = false;
 				prevX = x;
 				prevLength = length;
 			}
@@ -165,7 +168,7 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 			var p1 = new SKPoint(context.X(segment.X1), context.Y(segment.Y1));
 			var labelOffset = new SKSize(MarkerDiameter / 4f, paint.TextSize);
 
-			paint.IsAntialias = false;
+			paint.IsAntialias = true;
 			paint.PathEffect = null;
 			if (!segment.IsMovement)
 			{
@@ -178,7 +181,6 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 				canvas.DrawText(name, p2.X, p2.Y, paint);
 			}
 
-			paint.IsAntialias = true;
 			canvas.DrawCircle(p0, MarkerDiameter / 2f, paint);
 			canvas.DrawCircle(p1, MarkerDiameter / 2f, paint);
 
@@ -247,7 +249,9 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 			// at least with the default font, 3/4 is above the Y level
 			// so to balance it out we add 1/4 to the other side
 			var y1 = y + (paint.TextSize / 4f);
+			paint.IsAntialias = true;
 			canvas.DrawText(label.Value, x1, y1, paint);
+			paint.IsAntialias = false;
 		}
 	}
 

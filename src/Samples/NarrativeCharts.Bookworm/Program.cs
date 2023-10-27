@@ -1,6 +1,5 @@
 ﻿using NarrativeCharts.Bookworm.P3;
 using NarrativeCharts.Models;
-using NarrativeCharts.Plot;
 using NarrativeCharts.Skia;
 
 using System.Diagnostics;
@@ -48,6 +47,7 @@ public static class Program
 			}
 		}
 
+		var sw = Stopwatch.StartNew();
 		var tasks = new List<Task>();
 		foreach (var book in books)
 		{
@@ -65,6 +65,7 @@ public static class Program
 		}
 
 		await Task.WhenAll(tasks).ConfigureAwait(false);
+		Console.WriteLine($"{books.Length} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
 
 		Console.ReadLine();
 	}

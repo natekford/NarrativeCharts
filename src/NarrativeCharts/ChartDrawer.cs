@@ -1,7 +1,6 @@
 ﻿using NarrativeCharts.Models;
 
 using System.Collections.Concurrent;
-using System.Diagnostics;
 
 namespace NarrativeCharts;
 
