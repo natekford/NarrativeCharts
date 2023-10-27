@@ -7,6 +7,7 @@ namespace NarrativeCharts.Bookworm;
 public static class BookwormLocations
 {
 	public static Location Castle { get; } = new("Ehrenfest Castle");
+	public static Location Haldenzel { get; } = new("Haldenzel");
 	public static Location HarvestFestivalTowns { get; } = new("Harvest Festival Towns");
 	public static Location Hasse { get; } = new("Hasse");
 	public static Location Illgner { get; } = new("Illgner");
@@ -24,22 +25,26 @@ public static class BookwormLocations
 
 	static BookwormLocations()
 	{
-		YIndexes = new Dictionary<Location, int>()
+		YIndexes = new[]
 		{
-			[RoyalAcademy] = 250,
-			[Castle] = 200,
-			[KnightsOrder] = 150,
-			[KarstedtsHouse] = 100,
-			[NoblesQuarter] = 50,
-			[Temple] = 0,
-			[ItalianRestaurant] = -100,
-			[MerchantCompanies] = -150,
-			[LowerCityWorkshops] = -200,
-			[MynesHouse] = -250,
-			[Hasse] = -300,
-			[HarvestFestivalTowns] = -350,
-			[RuelleTree] = -400,
-			[Illgner] = -450,
-		}.ToImmutableDictionary();
+			RoyalAcademy,
+			Haldenzel,
+			Castle,
+			KnightsOrder,
+			KarstedtsHouse,
+			NoblesQuarter,
+			Temple,
+			ItalianRestaurant,
+			MerchantCompanies,
+			LowerCityWorkshops,
+			MynesHouse,
+			Hasse,
+			HarvestFestivalTowns,
+			RuelleTree,
+			Illgner,
+		}
+		.Reverse()
+		.Select((x, i) => (Item: x, Index: i))
+		.ToImmutableDictionary(x => x.Item, x => x.Index);
 	}
 }

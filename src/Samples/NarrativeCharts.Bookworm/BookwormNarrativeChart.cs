@@ -6,8 +6,8 @@ public abstract class BookwormNarrativeChart : NarrativeChart
 {
 	protected bool AlreadyCreated { get; set; }
 	protected Location Frozen { get; } = new Location(nameof(Freeze));
-	protected BookwormTimeTracker Time { get; }
 	protected int X => Time.CurrentTotalHours;
+	private BookwormTimeTracker Time { get; }
 
 	protected BookwormNarrativeChart(BookwormTimeTracker time)
 	{

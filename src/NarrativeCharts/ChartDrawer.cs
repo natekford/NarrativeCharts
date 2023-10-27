@@ -17,16 +17,19 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	public int TickLength { get; set; } = 5;
 	public IReadOnlyDictionary<Location, int> YIndexes { get; }
 	/// <summary>
-	/// The amount of pixels between a Y-tick and the first point.
+	/// The amount of space between a Y-tick and the first point.
+	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
 	public int YOffset { get; set; } = 2;
 	/// <summary>
-	/// The amount of pixels between each point on the same Y-tick.
+	/// The amount of space between each point on the same Y-tick.
+	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
 	public int YSpacing { get; set; } = 3;
 	/// <summary>
-	/// The amount of pixels to put between the highest Y value of a
+	/// The amount of space to put between the highest Y value of a
 	/// previous Y-tick and the next Y-tick.
+	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
 	public int YTickSeperation { get; set; } = 25;
 

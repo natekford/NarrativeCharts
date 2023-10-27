@@ -29,6 +29,14 @@ public sealed class P3V3 : BookwormNarrativeChart
 		P3V3C07();
 		Chapter("The Dedication Ritual (Take Two)");
 		P3V3C08();
+		Chapter("Gathering the Winter Ingredient");
+		P3V3C09();
+		Chapter("Fighting the Schnesturm");
+		P3V3C10();
+		Chapter("To the End of Winter");
+		P3V3C11();
+		Chapter("Selling the materials");
+		P3V3C12();
 		Update();
 	}
 
@@ -169,5 +177,60 @@ public sealed class P3V3 : BookwormNarrativeChart
 
 		// Time: "On the first day of the Dedication Ritual"
 		SkipToNextDay(Morning);
+		// myne, ferdi, and 2 blues do dedication ritual
+		AddBell();
+	}
+
+	private void P3V3C09()
+	{
+		// Time: "As Ferdinand had predicted, the Dedication Ritual came to an end three days later"
+		SkipToDaysAhead(3, ThirdBell);
+		// ferdi tells myne to use the spear
+		// myne checks on the orphanage
+		// myne/ferdi informed lord of winter appeared
+		// temple people go to castle first
+		Add(Scene(Castle).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
+		AddBell();
+	}
+
+	private void P3V3C10()
+	{
+		// not explictly stated anywhere that this LOW appeard in Haldenzel
+		// eckhart probably also goes, but that's not explicitly stated
+		var s1 = AddR(Scene(Haldenzel).With(Brigitte, Damuel, Ferdinand, Karstedt, Myne));
+		AddBell(2);
+		AddBell();
+		Return(s1);
+
+		// Time: "the next day was a sunny one"
+		SkipToNextDay(Morning);
+	}
+
+	private void P3V3C11()
+	{
+		// Time: "increasing number of students coming home showed just how late into the season we were"
+		// no exact amount of days given, idk, skip ahead a month
+		SkipToDaysAhead(30, Meetings);
+		// myne meets with sylv to talk about selling study materials
+		AddBell();
+		// myne announces to the playroom that she's going to sell stuff
+		AddBell();
+	}
+
+	private void P3V3C12()
+	{
+		// Time: ".. Gil to contact Benno upon my return to the temple,
+		// ... he took a letter to the Gilberta Company on the next sunny day.
+		// ... [Benno] would be ready to meet with me that same afternoon."
+		SkipToNextDay(Lunch);
+		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
+
+		SkipToDaysAhead(2, Lunch);
+		Add(Scene(Temple).With(Benno, Lutz, Mark));
+		AddBell();
+		// Time: "Mark left partway through to begin preparations early"
+		Add(Scene(MerchantCompanies).With(Mark));
+		AddBell();
+		Add(Scene(MerchantCompanies).With(Benno, Lutz));
 	}
 }
