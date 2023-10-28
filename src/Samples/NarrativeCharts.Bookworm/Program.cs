@@ -11,7 +11,7 @@ namespace NarrativeCharts.Bookworm;
 
 public class Program
 {
-	public List<NarrativeChart> Books { get; } = new();
+	public List<NarrativeChartData> Books { get; } = new();
 	public string ChartsDir { get; }
 	public string Dir { get; }
 	public string ScriptsDir { get; }
@@ -26,13 +26,24 @@ public class Program
 
 	public async Task RunAsync()
 	{
-		Books.Add(new P3V1(Time));
-		Books.Add(new P3V2(Time));
-		Books.Add(new P3V3(Time));
-		for (var i = 0; i < Books.Count; ++i)
+		var p3 = new BookwormNarrativeChart[]
 		{
-			Books[i].Initialize(i == 0 ? null : Books[i - 1]);
+			new P3V1(Time),
+			new P3V2(Time),
+			new P3V3(Time),
+		};
+		for (var i = 0; i < p3.Length; ++i)
+		{
+			p3[i].Initialize(i == 0 ? null : p3[i - 1]);
+			Books.Add(p3[i]);
 		}
+
+		/*
+		var combined = p3.Combine();
+		combined.Name = "P3";
+		Books.Add(combined);
+		*/
+
 		await AddScriptedBookAsync().ConfigureAwait(false);
 
 #if false

@@ -24,7 +24,7 @@ public abstract class NarrativeChartUnits<TUnit> : NarrativeChart
 
 	protected void SkipToDaysAhead(int days, TUnit unit)
 	{
-		Time.SkipToDaysAheadStart(days).SetUnit(ConvertToInt(unit) - 1);
+		Time.SkipToDaysAheadStart(days).SetCurrentUnit(ConvertToInt(unit) - 1);
 		Jump();
 	}
 

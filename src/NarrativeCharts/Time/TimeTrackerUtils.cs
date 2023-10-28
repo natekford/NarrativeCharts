@@ -39,7 +39,7 @@ public static class TimeTrackerUtils
 	public static T SetCurrentHour<T>(this T time, int hour) where T : TimeTracker
 		=> time.AddHours(hour - time.CurrentHour);
 
-	public static T SetUnit<T>(this T time, int unit) where T : TimeTrackerUnits
+	public static T SetCurrentUnit<T>(this T time, int unit) where T : TimeTrackerUnits
 		=> time.SetCurrentHour(time.UnitToHourMap[unit]);
 
 	public static T SkipToDaysAheadStart<T>(this T time, int days) where T : TimeTracker
@@ -69,6 +69,6 @@ public static class TimeTrackerUtils
 			time.SkipToNextDayStart();
 			unit -= time.UnitToHourMap.Count;
 		}
-		return time.SetUnit(unit);
+		return time.SetCurrentUnit(unit);
 	}
 }

@@ -27,7 +27,7 @@ public abstract class BookwormNarrativeChart : NarrativeChartUnits<BookwormBell>
 	protected override int ConvertToInt(BookwormBell unit)
 		=> (int)unit;
 
-	protected void Return(IEnumerable<KeyValuePair<Character, Location>> scene)
+	protected void Return(Dictionary<Character, Location> scene)
 	{
 		foreach (var (character, y) in scene)
 		{

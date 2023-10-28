@@ -42,6 +42,26 @@ public static class ChartUtils
 		return chart;
 	}
 
+	public static NarrativeChartData Combine(this IEnumerable<NarrativeChartData> charts)
+	{
+		var combined = new NarrativeChartData();
+		foreach (var chart in charts)
+		{
+			combined.AddChart(chart);
+
+			foreach (var (character, color) in chart.Colors)
+			{
+				combined.Colors.TryAdd(character, color);
+			}
+			foreach (var (location, yIndex) in chart.YIndexes)
+			{
+				combined.YIndexes.TryAdd(location, yIndex);
+			}
+		}
+		combined.Simplify();
+		return combined;
+	}
+
 	public static IEnumerable<NarrativePoint> GetAllNarrativePoints(this NarrativeChartData chart)
 	{
 		foreach (var (_, points) in chart.Points)
