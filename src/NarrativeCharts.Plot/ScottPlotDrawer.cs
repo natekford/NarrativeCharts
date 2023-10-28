@@ -6,16 +6,9 @@ using System.Drawing;
 
 namespace NarrativeCharts.Plot;
 
-public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot, Color>
+public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChartData, ScottPlot.Plot, Color>
 {
-	public ScottPlotDrawer(
-		IReadOnlyDictionary<Character, Hex> colors,
-		IReadOnlyDictionary<Location, int> yIndexes)
-		: base(colors, yIndexes)
-	{
-	}
-
-	protected override ScottPlot.Plot CreateCanvas(NarrativeChart chart, YMap yMap)
+	protected override ScottPlot.Plot CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
 		var (width, height) = CalculateDimensions(yMap);
 		var plot = new ScottPlot.Plot(width, height);
@@ -77,7 +70,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 				plot.BottomAxis.AxisTicks.TickLabelFont.Size
 			);
 			var (positions, labels) = GetTicks(
-				YIndexes.Where(x => yMap.Locations.ContainsKey(x.Key)),
+				chart.YIndexes.Where(x => yMap.Locations.ContainsKey(x.Key)),
 				x => yMap.Locations[x.Key],
 				x => x.Key.Value
 			);
@@ -99,7 +92,7 @@ public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChart, ScottPlot.Plot
 		var ys = new double[] { segment.Y0, segment.Y1 };
 		var scatter = segment.Canvas.AddScatter(xs, ys);
 
-		var color = GetColor(Colors[segment.Character]);
+		var color = GetColor(segment.Chart.Colors[segment.Character]);
 		scatter.Label = segment.Character.Value;
 		scatter.Color = color;
 

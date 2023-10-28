@@ -6,8 +6,6 @@ namespace NarrativeCharts.Bookworm;
 
 public static class BookwormCharacters
 {
-	private const string UNKNOWN = "#000000";
-
 	public static Character Angelica { get; } = new("Angelica");
 	public static Character Benno { get; } = new("Benno");
 	public static Character Bezewanst { get; } = new("Bezewanst");
@@ -87,7 +85,7 @@ public static class BookwormCharacters
 			[Bindewald] = "#B1C6C1",
 			[Brigitte] = "#A54254",
 			[Charlotte] = "#D3BD96",
-			[Christine] = UNKNOWN,
+			[Christine] = Hex.Unknown.Value,
 			[Cornelius] = "#A6B455",
 			[Damuel] = "#967B4E",
 			[Deid] = "#F3EEB6",
@@ -102,13 +100,13 @@ public static class BookwormCharacters
 			[Florencia] = "#FBF6E0",
 			[Fran] = "#5E546C",
 			[Freida] = "#E6AFB4",
-			[Frietack] = UNKNOWN,
+			[Frietack] = Hex.Unknown.Value,
 			[Fritz] = "#351F19",
 			[Gil] = "#F8EECB",
 			[Gunther] = "#37527F",
 			[Gustav] = "#B6A6A7",
 			[Hartmut] = "#DC602C",
-			[HasseMayor] = UNKNOWN,
+			[HasseMayor] = Hex.Unknown.Value,
 			[Helfried] = "#FF0000",
 			[Henrik] = "#5C4033",
 			[Hugo] = "#7E5951",
@@ -116,8 +114,8 @@ public static class BookwormCharacters
 			[Johann] = "#E4A242",
 			[Justus] = "#A1AACB",
 			[Kamil] = "#415BA5",
-			[Kampfer] = UNKNOWN,
-			[Kantna] = UNKNOWN,
+			[Kampfer] = Hex.Unknown.Value,
+			[Kantna] = Hex.Unknown.Value,
 			[Karstedt] = "#874730",
 			[Lamprecht] = "#D18A71",
 			[Leise] = "#C87965",
@@ -127,27 +125,27 @@ public static class BookwormCharacters
 			[Marthe] = "#5C725D",
 			[Melchior] = "#3B4C80",
 			[Monika] = "#8BBFCD",
-			[Moritz] = UNKNOWN,
+			[Moritz] = Hex.Unknown.Value,
 			[Myne] = "#39658C",
-			[Nadine] = UNKNOWN,
+			[Nadine] = Hex.Unknown.Value,
 			[Nicola] = "#F1A14A",
 			[Nora] = "#9797CC",
 			[Norbert] = "#656567",
 			[Oswald] = "#654321",
 			[Ottilie] = "#A74D47",
 			[Philine] = "#EDBC6F",
-			[Richt] = UNKNOWN,
+			[Richt] = Hex.Unknown.Value,
 			[Rick] = "#667965",
 			[Rihyarda] = "#E9DEC8",
 			[Rosina] = "#E09C5B",
 			[Sylvester] = "#5366AB",
 			[Thore] = "#8888BE",
-			[Todd] = UNKNOWN,
+			[Todd] = Hex.Unknown.Value,
 			[Tuuli] = "#95BE82",
 			[Wilfried] = "#FEEFB4",
 			[Wilma] = "#DF9139",
 			[Zack] = "#E05F0E",
-			[Zahm] = UNKNOWN,
+			[Zahm] = Hex.Unknown.Value,
 		}.ToImmutableDictionary(x => x.Key, x => new Hex(x.Value));
 	}
 }

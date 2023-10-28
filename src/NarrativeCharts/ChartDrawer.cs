@@ -4,9 +4,8 @@ using System.Collections.Concurrent;
 
 namespace NarrativeCharts;
 
-public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : NarrativeChart
+public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : NarrativeChartData
 {
-	public IReadOnlyDictionary<Character, Hex> Colors { get; }
 	public int ImageHeightMultiplier { get; set; } = 6;
 	public int ImagePadding { get; set; } = 250;
 	public int ImageSizeFloor { get; set; } = 100;
@@ -15,7 +14,6 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	public int LineWidth { get; set; } = 2;
 	public int MarkerDiameter { get; set; } = 6;
 	public int TickLength { get; set; } = 5;
-	public IReadOnlyDictionary<Location, int> YIndexes { get; }
 	/// <summary>
 	/// The amount of space between a Y-tick and the first point.
 	/// This is NOT an exact amount of pixels, it is dynamically resized.
@@ -35,16 +33,10 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 	protected static ConcurrentDictionary<Hex, TColor> ColorCache { get; } = new();
 
-	protected ChartDrawer(
-		IReadOnlyDictionary<Character, Hex> colors,
-		IReadOnlyDictionary<Location, int> yIndexes)
-	{
-		Colors = colors;
-		YIndexes = yIndexes;
-	}
-
 	public async Task SaveChartAsync(TChart chart, string path)
 	{
+		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+
 		var yMap = GetYMap(chart);
 		var image = DrawChart(chart, yMap);
 		await SaveImageAsync(image, path).ConfigureAwait(false);
@@ -151,7 +143,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		int y = 0, yMax = int.MinValue, yMin = int.MaxValue;
 		var cDict = new Dictionary<(Character, Location), int>();
 		var lDict = new Dictionary<Location, int>();
-		foreach (var (location, time) in timeSpent.OrderBy(x => YIndexes[x.Key]))
+		foreach (var (location, time) in timeSpent.OrderBy(x => chart.YIndexes[x.Key]))
 		{
 			lDict[location] = y;
 

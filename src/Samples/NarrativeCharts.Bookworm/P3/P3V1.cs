@@ -19,33 +19,33 @@ public sealed class P3V1 : BookwormNarrativeChart
 		 * After lunch, I have meetings with business partners,
 		 */
 
-		Chapter("Prologue");
+		Event("Prologue");
 		P3V1C01();
-		Chapter("Examination Results and the Noble's Quarter");
+		Event("Examination Results and the Noble's Quarter");
 		P3V1C02();
 		// Karstedt and Cornelius commute to the Knight's Order every day
 		// no idea if it should be added
-		Chapter("Preparing for the Baptism Ceremony");
+		Event("Preparing for the Baptism Ceremony");
 		P3V1C03();
-		Chapter("A Noble's Baptism Ceremony");
+		Event("A Noble's Baptism Ceremony");
 		P3V1C04();
-		Chapter("Adoption");
+		Event("Adoption");
 		P3V1C05();
-		Chapter("Inaguration Ceremony");
+		Event("Inaguration Ceremony");
 		P3V1C06();
-		Chapter("Reunited at Last");
+		Event("Reunited at Last");
 		P3V1C07();
-		Chapter("How to Make Fluffy Bread");
+		Event("How to Make Fluffy Bread");
 		P3V1C08();
-		Chapter("Starbind Ceremony in the Lower City");
+		Event("Starbind Ceremony in the Lower City");
 		P3V1C09();
-		Chapter("The Archduke's Castle");
+		Event("The Archduke's Castle");
 		P3V1C10();
-		Chapter("Starbind Ceremony in the Noble's Quarter");
+		Event("Starbind Ceremony in the Noble's Quarter");
 		P3V1C11();
-		Chapter("The Archduke and the Italian Restaurant");
+		Event("The Archduke and the Italian Restaurant");
 		P3V1C12();
-		Chapter("Making a Monastery");
+		Event("Making a Monastery");
 		P3V1C13();
 		// Background Event
 		{
@@ -56,15 +56,15 @@ public sealed class P3V1 : BookwormNarrativeChart
 			Add(Scene(Temple).With(Todd));
 			Add(Scene(Castle).With(Ella, Hugo));
 		}
-		Chapter("How to Gather Donations");
+		Event("How to Gather Donations");
 		P3V1C14();
-		Chapter("My First Magic Training Regimen");
+		Event("My First Magic Training Regimen");
 		P3V1C15();
-		Chapter("Working Toward Wax Stencils");
+		Event("Working Toward Wax Stencils");
 		P3V1C16();
-		Chapter("An Illustration of Ferdinand");
+		Event("An Illustration of Ferdinand");
 		P3V1C17();
-		Chapter("Johann and Zack");
+		Event("Johann and Zack");
 		P3V1C18();
 		// Background Event
 		{
@@ -76,13 +76,13 @@ public sealed class P3V1 : BookwormNarrativeChart
 			// "I planned to retrieve Hugo as well. I couldn’t foresee there being any issues with that since it was past the date we had agreed on anyway."
 			Add(Scene(ItalianRestaurant).With(/*Hugo, */Todd));
 		}
-		Chapter("Elvira and Lamprecht Attack");
+		Event("Elvira and Lamprecht Attack");
 		P3V1C19();
-		Chapter("Finishing My Highbeast and the Wax Stencils");
+		Event("Finishing My Highbeast and the Wax Stencils");
 		P3V1C20();
-		Chapter("The Harspiel Concert");
+		Event("The Harspiel Concert");
 		P3V1C21();
-		Chapter("Epilogue");
+		Event("Epilogue");
 		P3V1C22();
 		Update();
 	}
@@ -98,7 +98,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
 		Add(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
 		// Time: Immediately after
-		AddBell();
+		Jump();
 		// Sylvester goes back to AD conf
 		Add(Scene(Castle).With(Sylvester));
 		// Low usage location: 1 use in the volume
@@ -106,7 +106,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Discussion about Myne
 		Add(Scene(Temple).With(Ferdinand, Karstedt));
 		// karstedt probably goes back to his house after the discussion
-		AddBell();
+		Jump();
 		Add(Scene(KarstedtsHouse).With(Karstedt));
 
 		// Time: Next morning
@@ -117,7 +117,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToCurrentDay(Dinner);
 		// Discussion about Myne's baptism
 		Add(Scene(KarstedtsHouse).With(Elvira, Ferdinand, Karstedt));
-		AddBell();
+		Jump();
 		Add(Scene(Temple).With(Ferdinand));
 
 		// Time: The next day
@@ -125,7 +125,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Karstest keeps interrogating these 2
 		Add(Scene(KnightsOrder).With(Bezewanst, Bindewald, Karstedt));
 		// Time: Not long after
-		AddBell();
+		Jump();
 		// Myne's health checkup
 		Add(Scene(Temple).With(Ferdinand, Karstedt, Myne));
 		// SS1 of P3V1, no exact timeline but definitely in this 4 day period between kardstedt/ferdi discussion and myne arrive
@@ -136,7 +136,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 	private void P3V1C02()
 	{
 		// Time: Immediately after
-		AddBell();
+		Jump();
 		// Leaving Ferdinand's office and going back to Myne's room
 		Add(Scene(Temple).With(Damuel, Fran, Monika, Myne, Nicola, Rosina));
 		Add(Scene(KarstedtsHouse).With(Karstedt));
@@ -148,11 +148,11 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Cooks learning with Leise at Guildmaster's house (or italian restaurant?)
 		Add(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
 		// Time: Immediately after
-		AddBell();
+		Jump();
 		// Leaving the temple through the front entrance and going to the Noble's quarter
 		Add(Scene(Temple).With(Ella, Ferdinand, Karstedt, Myne, Rosina));
 		// Time: Immediately after
-		AddBell();
+		Jump();
 		// Arriving at Karstedt's house
 		Add(Scene(KarstedtsHouse).With(Cornelius, Ella, Elvira, Ferdinand, Karstedt, Myne, Rosina));
 	}
@@ -160,7 +160,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 	private void P3V1C03()
 	{
 		// Time: Ferdinand checks on Myne every 2 days so probably stays like 6 hours each time?
-		AddBell(2);
+		Jump(2);
 		// Ferdinand going back to the temple
 		Add(Scene(Temple).With(Ferdinand));
 
@@ -168,7 +168,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		{
 			SkipToDaysAhead(2, Meetings);
 			Add(Scene(KarstedtsHouse).With(Ferdinand));
-			AddBell(2);
+			Jump(2);
 			Add(Scene(Temple).With(Ferdinand));
 		}
 
@@ -176,7 +176,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToNextDay(Meetings);
 		// Gilberta company comes to sell some rinsham to Myne
 		Add(Scene(KarstedtsHouse).With(Benno, Mark));
-		AddBell();
+		Jump();
 		Add(Scene(MerchantCompanies).With(Benno, Mark));
 
 		// Time: A day after the Gilberta company visits?
@@ -191,12 +191,12 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 		for (var i = 0; i < 3; ++i)
 		{
-			AddBell(2);
+			Jump(2);
 			Add(Scene(Temple).With(Ferdinand));
 			SkipToDaysAhead(2, Meetings);
 			Add(Scene(KarstedtsHouse).With(Ferdinand));
 		}
-		AddBell(2);
+		Jump(2);
 		Add(Scene(Temple).With(Ferdinand));
 
 		// Time: The day before the baptism
@@ -220,11 +220,11 @@ public sealed class P3V1 : BookwormNarrativeChart
 	private void P3V1C05()
 	{
 		// Time: Immediately after the baptism ceremony
-		AddBell();
+		Jump();
 		// Guard knights get introduced to Myne and Wilf makes Myne pass out
 		Add(Scene(KarstedtsHouse).With(Brigitte, Damuel));
 		// Time: After Myne wakes up and talks with Ferdinand/Karstedt
-		AddBell();
+		Jump();
 		Add(Scene(Temple).With(Ferdinand));
 		Add(Scene(Castle).With(Florencia, Sylvester, Wilfried));
 		// no idea on the exact time bezewanst gets killed, but probably before
@@ -245,7 +245,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(KnightsOrder).With(Cornelius, Karstedt));
 		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Myne, Rosina));
 		// Inaguration ceremony
-		AddBell();
+		Jump();
 		// Egmont gets crushed a bit
 		Add(Scene(Temple).With(Egmont));
 	}
@@ -261,10 +261,10 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 	private void P3V1C08()
 	{
-		AddBell();
+		Jump();
 		// Leaving after discussing printing/restaurant
 		Add(Scene(MerchantCompanies).With(Benno, Lutz, Mark));
-		AddBell();
+		Jump();
 	}
 
 	private void P3V1C09()
@@ -273,7 +273,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToDaysAhead(3, Meetings);
 		// "Today was a day when Benno and Lutz were visiting from the Gilberta Company"
 		Add(Scene(Temple).With(Benno, Lutz));
-		AddBell();
+		Jump();
 		// Leaving after discussing starbinding ceremony
 		Add(Scene(MerchantCompanies).With(Benno, Lutz));
 		// Time: "And so, the day of the Starbind Ceremony arrived."
@@ -289,7 +289,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 	private void P3V1C10()
 	{
 		// Time: lunch is between the lower city and noble starbindings
-		AddBell();
+		Jump();
 		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
 		Add(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Fran, Myne, Rosina));
 		// Myne gets introduced to her temp guard knights and some attendents
@@ -297,18 +297,18 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// gil and lutz probably return from the forest fairly soon
 		Add(Scene(Temple).With(Gil));
 		Add(Scene(MerchantCompanies).With(Lutz));
-		AddBell();
+		Jump();
 		// kids say good night to aub
 		Add(Scene(Castle).With(Charlotte, Melchior));
 	}
 
 	private void P3V1C11()
 	{
-		AddBell();
+		Jump();
 		// myne gets changed into high bishop outfit
 		// karstedt was behind sylvester at the ceremony
 		Add(Scene(Castle).With(Karstedt, Ottilie));
-		AddBell();
+		Jump();
 	}
 
 	private void P3V1C12()
@@ -327,17 +327,17 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToNextDay(Meetings);
 		// "Leon will be coming by tomorrow to get the natural yeast"
 		Add(Scene(Temple).With(Leon));
-		AddBell();
+		Jump();
 		Add(Scene(MerchantCompanies).With(Leon));
 
 		// Time: 3rd bell of the next day
 		SkipToNextDay(Meetings);
 		// sylvester arrives in the temple early on the day of the italian restaurant visit
 		Add(Scene(Temple).With(Cornelius, Eckhart, Karstedt, Sylvester));
-		AddBell();
+		Jump();
 		// rosina leaves early b/c she plays music
 		Add(Scene(ItalianRestaurant).With(Rosina));
-		AddBell();
+		Jump();
 		Add(Scene(ItalianRestaurant).With(Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Fran, Karstedt, Myne, Sylvester, Zahm));
 		Add(Scene(ItalianRestaurant).With(Benno, Freida, Gustav, Leon, Mark));
 	}
@@ -345,16 +345,16 @@ public sealed class P3V1 : BookwormNarrativeChart
 	private void P3V1C13()
 	{
 		// Time: after lunch at the italian restaurant
-		AddBell();
+		Jump();
 		// hasse orphanage designed, fly over with highbeasts
 		var s1 = AddR(Scene(Hasse).With(Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester));
 		// it didn't take this long in the book, but the chart looks really bad
 		// without this
-		AddBell();
-		AddBell();
+		Jump();
+		Jump();
 		// hasse orphanage is built and they return to the restaurant
 		Return(s1);
-		AddBell();
+		Jump();
 		// ferdi hires todd as a chef to arrive in the tmple in 36 hours from now
 		// syl hires hugo for the castle
 		Add(Scene(MerchantCompanies).With(Benno, Freida, Gustav, Leon, Mark));
@@ -373,7 +373,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// donation tea party with flor, elvira, and myne
 		// brigitte mentioned in next segment, so other guard knights probably also there
 		Add(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Elvira, Myne));
-		AddBell();
+		Jump();
 		// elvira probably goes back after the tea party
 		Add(Scene(KarstedtsHouse).With(Elvira));
 
@@ -381,7 +381,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToDaysAhead(2, Meetings);
 		// ferdi, elvira, flor visit sick myne
 		var s1 = AddR(Scene(Castle).With(Elvira, Ferdinand));
-		AddBell();
+		Jump();
 		// ferdi leaves after agreeing to play harspiel
 		Return(s1);
 	}
@@ -390,13 +390,13 @@ public sealed class P3V1 : BookwormNarrativeChart
 	{
 		SkipToNextDay(Meetings);
 		Add(Scene(Castle).With(Ferdinand));
-		AddBell();
+		Jump();
 		// ferdi and myne go to some place to train magic
 		Add(Scene(KnightsOrder).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Myne));
-		AddBell(2);
+		Jump(2);
 		// myne blows up her feystone and reforms it then they go back to the castle
 		Add(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Myne));
-		AddBell();
+		Jump();
 		Add(Scene(Temple).With(Ferdinand));
 	}
 
@@ -411,16 +411,16 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(KnightsOrder).With(Angelica));
 		Add(Scene(KarstedtsHouse).With(Cornelius));
 		Add(Scene(Temple).With(Benno, Lutz));
-		AddBell();
+		Jump();
 		Add(Scene(MerchantCompanies).With(Benno));
 	}
 
 	private void P3V1C17()
 	{
-		AddBell();
+		Jump();
 		// myne has dirk drain his mana with a taue fruit and cuts some trombes
 		Add(Scene(Temple).With(Delia, Dirk));
-		AddBell();
+		Jump();
 		Add(Scene(MerchantCompanies).With(Lutz));
 	}
 
@@ -430,7 +430,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(Temple).With(Johann, Lutz, Zack));
 		// Low usage location: 2 times in the volume
 		//Add(Scene(LowerCityForest).With(Gil));
-		AddBell();
+		Jump();
 		Add(Scene(LowerCityWorkshops).With(Johann, Zack));
 		Add(Scene(MerchantCompanies).With(Lutz));
 		//Add(Scene(Temple).With(Gil));
@@ -438,13 +438,13 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToDaysAhead(3, Lunch);
 		// johann and zack return with their blueprints for the wax stencil machine
 		var s2 = AddR(Scene(Temple).With(Johann, Lutz, Zack));
-		AddBell();
+		Jump();
 		Return(s2);
 
 		SkipToNextDay(Lunch);
 		// tuuli gives myne a hairpin
 		var s3 = AddR(Scene(Temple).With(Lutz, Tuuli));
-		AddBell();
+		Jump();
 		Return(s3);
 	}
 
@@ -453,14 +453,14 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Time: "It was the day after I had met with Tuuli."
 		SkipToNextDay(Lunch);
 		var s1 = AddR(Scene(Temple).With(Lutz));
-		AddBell();
+		Jump();
 		Return(s1);
 
 		// Time: 3 days later
 		SkipToDaysAhead(2, Meetings);
 		// elvira and lemprecht visit the temple to eat some of ella's food
 		var s2 = AddR(Scene(Temple).With(Elvira, Lamprecht));
-		AddBell();
+		Jump();
 		Return(s2);
 
 		// Time: unknown, not the same day
@@ -471,11 +471,11 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 	private void P3V1C20()
 	{
-		AddBell();
+		Jump();
 		// myne goes to the castle to make her highbeast
 		var s1 = AddR(Scene(KnightsOrder).With(Brigitte, Damuel, Ferdinand, Myne));
 		Add(Scene(MerchantCompanies).With(Lutz));
-		AddBell();
+		Jump();
 		// they go back to the temple after myne creates lessy
 		Return(s1);
 
@@ -486,13 +486,13 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToDaysAhead(12, MarketClose);
 		// lutz and smiths visit with a wax machine
 		var s2 = AddR(Scene(Temple).With(Lutz, Johann, Zack));
-		AddBell();
+		Jump();
 		Return(s2);
 
 		// Time: "“Good morning, Lady Rozemyne,”"
 		SkipToNextDay(Morning);
 		var s3 = AddR(Scene(Temple).With(Lutz));
-		AddBell();
+		Jump();
 		Return(s3);
 	}
 
@@ -507,7 +507,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Time: "And so came the day of the concert." meeting time? afternoon time? no clue
 		SkipToNextDay(MarketClose);
 		var s2 = AddR(Scene(Castle).With(Eckhart, Ferdinand, Karstedt));
-		AddBell();
+		Jump();
 		Return(s1);
 		Return(s2);
 
@@ -530,7 +530,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director’s chambers."
 		SkipToDaysAhead(2, Lunch);
 		var s1 = AddR(Scene(Temple).With(Benno, Lutz, Tuuli));
-		AddBell();
+		Jump();
 		Return(s1);
 	}
 }
