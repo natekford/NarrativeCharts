@@ -3,7 +3,8 @@
 #Prologue
 // starts with myne returning from the castle, but already put that into the end of p3v2
 >>Lunch
-T=Fritz,Lutz
+// ScriptLoader strips whitespace
+T=	Fritz ,  Lutz    
 >
 M=Lutz
 // fran speaks with ferdi
@@ -56,5 +57,6 @@ NQ=Ferdinand
 // Time: "Three days, you mean"
 >>3,Morning
 C=Ferdinand
+
 
 @

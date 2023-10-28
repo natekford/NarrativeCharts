@@ -10,6 +10,9 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	public const char SPLIT_ASSIGNMENT = '=';
 	public const string TITLE = "##";
 	public const char UPDATE = '@';
+	private const StringSplitOptions SPLIT_OPTIONS = 0
+		| StringSplitOptions.RemoveEmptyEntries
+		| StringSplitOptions.TrimEntries;
 
 	public ScriptDefinitions Definitions { get; }
 	public string ScriptPath { get; }
@@ -47,10 +50,10 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	}
 
 	private static string[] Args(string value)
-		=> value.Split(SPLIT_ARGS, StringSplitOptions.RemoveEmptyEntries);
+		=> value.Split(SPLIT_ARGS, SPLIT_OPTIONS);
 
 	private static string[] Assignment(string value)
-		=> value.Split(SPLIT_ASSIGNMENT, StringSplitOptions.RemoveEmptyEntries);
+		=> value.Split(SPLIT_ASSIGNMENT, SPLIT_OPTIONS);
 
 	private void ProcessLine(string line)
 	{
