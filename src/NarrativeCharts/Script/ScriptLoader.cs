@@ -47,10 +47,13 @@ public class ScriptLoader : NarrativeChartUnits<int>
 				continue;
 			}
 
-			var success = ProcessLine(line);
-			if (!success)
+			try
 			{
-				throw new ArgumentException($"Line #{i} does not match any expected format: {line}");
+				ProcessLine(line);
+			}
+			catch (Exception e)
+			{
+				throw new ArgumentException($"Error occurred while processing line #{i}: {line}", e);
 			}
 		}
 	}
@@ -61,17 +64,17 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	private static string[] Assignment(string value)
 		=> value.Split(SPLIT_ASSIGNMENT, SPLIT_OPTIONS);
 
-	private bool ProcessLine(string line)
+	private void ProcessLine(string line)
 	{
 		if (line.StartsWith(TITLE))
 		{
 			Name = line[2..];
-			return true;
+			return;
 		}
 		else if (line.StartsWith(CHAPTER))
 		{
 			Event(line[1..]);
-			return true;
+			return;
 		}
 		else if (line.StartsWith(GOTO_DAYS_AHEAD))
 		{
@@ -80,15 +83,15 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			{
 				case 0:
 					SkipToNextDay(1);
-					return true;
+					return;
 
 				case 1:
 					SkipToNextDay(Definitions.TimeAliases[split[0]]);
-					return true;
+					return;
 
 				case 2:
 					SkipToDaysAhead(int.Parse(split[0]), Definitions.TimeAliases[split[1]]);
-					return true;
+					return;
 			}
 		}
 		else if (line.StartsWith(GOTO_CURRENT_DAY))
@@ -98,17 +101,17 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			{
 				case 0:
 					Jump();
-					return true;
+					return;
 
 				case 1:
 					SkipToCurrentDay(Definitions.TimeAliases[split[0]]);
-					return true;
+					return;
 			}
 		}
 		else if (line.StartsWith(UPDATE) && line.Length == 1)
 		{
 			Update();
-			return true;
+			return;
 		}
 		else
 		{
@@ -120,10 +123,10 @@ public class ScriptLoader : NarrativeChartUnits<int>
 					.Select(x => Definitions.CharacterAliases[x])
 					.ToArray();
 				Add(Scene(location).With(characters));
-				return true;
+				return;
 			}
 		}
 
-		return false;
+		throw new ArgumentException("Line does not match any expected format.");
 	}
 }
