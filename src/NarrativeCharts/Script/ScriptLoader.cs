@@ -38,14 +38,20 @@ public class ScriptLoader : NarrativeChartUnits<int>
 
 	protected override void ProtectedCreate()
 	{
+		var i = 0;
 		foreach (var line in File.ReadLines(ScriptPath))
 		{
-			if (string.IsNullOrEmpty(line) || line.StartsWith(COMMENT))
+			++i;
+			if (string.IsNullOrWhiteSpace(line) || line.StartsWith(COMMENT))
 			{
 				continue;
 			}
 
-			ProcessLine(line);
+			var success = ProcessLine(line);
+			if (!success)
+			{
+				throw new ArgumentException($"Line #{i} does not match any expected format: {line}");
+			}
 		}
 	}
 
@@ -55,17 +61,17 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	private static string[] Assignment(string value)
 		=> value.Split(SPLIT_ASSIGNMENT, SPLIT_OPTIONS);
 
-	private void ProcessLine(string line)
+	private bool ProcessLine(string line)
 	{
 		if (line.StartsWith(TITLE))
 		{
 			Name = line[2..];
-			return;
+			return true;
 		}
 		else if (line.StartsWith(CHAPTER))
 		{
 			Event(line[1..]);
-			return;
+			return true;
 		}
 		else if (line.StartsWith(GOTO_DAYS_AHEAD))
 		{
@@ -74,15 +80,15 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			{
 				case 0:
 					SkipToNextDay(1);
-					return;
+					return true;
 
 				case 1:
 					SkipToNextDay(Definitions.TimeAliases[split[0]]);
-					return;
+					return true;
 
 				case 2:
 					SkipToDaysAhead(int.Parse(split[0]), Definitions.TimeAliases[split[1]]);
-					return;
+					return true;
 			}
 		}
 		else if (line.StartsWith(GOTO_CURRENT_DAY))
@@ -92,17 +98,17 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			{
 				case 0:
 					Jump();
-					return;
+					return true;
 
 				case 1:
 					SkipToCurrentDay(Definitions.TimeAliases[split[0]]);
-					return;
+					return true;
 			}
 		}
 		else if (line.StartsWith(UPDATE) && line.Length == 1)
 		{
 			Update();
-			return;
+			return true;
 		}
 		else
 		{
@@ -114,10 +120,10 @@ public class ScriptLoader : NarrativeChartUnits<int>
 					.Select(x => Definitions.CharacterAliases[x])
 					.ToArray();
 				Add(Scene(location).With(characters));
-				return;
+				return true;
 			}
 		}
 
-		throw new ArgumentException($"Invalid line: {line}");
+		return false;
 	}
 }
