@@ -1,12 +1,18 @@
 ﻿using NarrativeCharts.Models;
 using NarrativeCharts.Time;
 
+using System.Collections.Concurrent;
 using System.Text.Json;
 
 namespace NarrativeCharts.Script;
 
 public class ScriptDefinitions
 {
+	private static readonly JsonSerializerOptions _JsonOptions = new()
+	{
+		WriteIndented = true,
+	};
+
 	public Dictionary<string, Character> CharacterAliases { get; set; } = new();
 	public Dictionary<Character, Hex> CharacterColors { get; set; } = new();
 	public Dictionary<string, Location> LocationAliases { get; set; } = new();
@@ -14,12 +20,12 @@ public class ScriptDefinitions
 	public TimeTrackerUnits Time { get; set; } = new(Enumerable.Repeat(1, 24));
 	public Dictionary<string, int> TimeAliases { get; set; } = new();
 
-	public static async Task<ScriptDefinitions> FromFileAsync(string path)
+	public static async Task<ScriptDefinitions> LoadAsync(string path)
 	{
-		Json json;
+		DefsJson json;
 		using (var fs = File.OpenRead(path))
 		{
-			json = (await JsonSerializer.DeserializeAsync<Json>(fs).ConfigureAwait(false))!;
+			json = (await JsonSerializer.DeserializeAsync<DefsJson>(fs).ConfigureAwait(false))!;
 		}
 
 		var defs = new ScriptDefinitions();
@@ -30,11 +36,11 @@ public class ScriptDefinitions
 				var aliased = json.Time[i];
 				foreach (var alias in aliased.Aliases.Prepend(i.ToString()))
 				{
-					defs.TimeAliases[alias] = aliased.Start;
+					defs.TimeAliases[alias] = i;
 				}
 			}
 
-			defs.Time = new(json.Time.Select(x => x.Start));
+			defs.Time = new(json.Time.Select(x => x.Length));
 		}
 		foreach (var aliased in json.Characters)
 		{
@@ -63,20 +69,74 @@ public class ScriptDefinitions
 		return defs;
 	}
 
-	private record Json(
-		List<AliasedString> Characters,
-		List<AliasedString> Locations,
-		List<AliasedTime>? Time
+	public async Task SaveAsync(string path)
+	{
+		var reverseCAliases = new ConcurrentDictionary<Character, List<string>>();
+		var reverseLAliases = new ConcurrentDictionary<Location, List<string>>();
+		var reverseTAliases = new ConcurrentDictionary<int, List<string>>();
+		foreach (var (alias, character) in CharacterAliases)
+		{
+			if (alias != character.Value)
+			{
+				reverseCAliases.GetOrAdd(character, _ => new()).Add(alias);
+			}
+		}
+		foreach (var (alias, location) in LocationAliases)
+		{
+			if (alias != location.Value)
+			{
+				reverseLAliases.GetOrAdd(location, _ => new()).Add(alias);
+			}
+		}
+		foreach (var (alias, unit) in TimeAliases)
+		{
+			if (alias != unit.ToString())
+			{
+				reverseTAliases.GetOrAdd(unit, _ => new()).Add(alias);
+			}
+		}
+
+		var json = new DefsJson(
+			Characters: CharacterColors.Select(x => new CharacterJson(
+				Aliases: reverseCAliases.GetValueOrDefault(x.Key, new()),
+				Hex: x.Value == Hex.Unknown ? null : x.Value.Value,
+				Name: x.Key.Value
+			)).ToList(),
+			Locations: LocationYIndexes.OrderBy(x => x.Value).Select(x => new LocationJson(
+				Aliases: reverseLAliases.GetValueOrDefault(x.Key, new()),
+				Name: x.Key.Value
+			)).ToList(),
+			Time: Time.UnitToHourMap.OrderBy(x => x.Key).Select(x => new TimeJson(
+				Aliases: reverseTAliases.GetValueOrDefault(x.Key, new()),
+				Length: (Time.UnitToHourMap.TryGetValue(x.Key + 1, out var end)
+					? end : Time.HoursPerDay) - Time.UnitToHourMap[x.Key]
+			)).ToList()
+		);
+
+		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+		using var fs = File.Create(path);
+		await JsonSerializer.SerializeAsync(fs, json, _JsonOptions).ConfigureAwait(false);
+	}
+
+	public record DefsJson(
+		List<CharacterJson> Characters,
+		List<LocationJson> Locations,
+		List<TimeJson>? Time
 	);
 
-	private record AliasedTime(
-		int Start,
-		List<string> Aliases
-	);
-
-	private record AliasedString(
-		string Name,
+	public record TimeJson(
 		List<string> Aliases,
-		string? Hex
+		int Length
+	);
+
+	public record CharacterJson(
+		List<string> Aliases,
+		string? Hex,
+		string Name
+	);
+
+	public record LocationJson(
+		List<string> Aliases,
+		string Name
 	);
 }

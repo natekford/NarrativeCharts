@@ -2,7 +2,7 @@
 
 namespace NarrativeCharts;
 
-public class RawNarrativeChart
+public class NarrativeChartData
 {
 	public Dictionary<Character, Hex> Colors { get; } = new();
 	public SortedList<int, NarrativeEvent> Events { get; } = new();

@@ -4,7 +4,7 @@ using SkiaSharp;
 
 namespace NarrativeCharts.Skia;
 
-public sealed class SkiaDrawer : ChartDrawer<RawNarrativeChart, SKContext, SKColor>
+public sealed class SkiaDrawer : ChartDrawer<NarrativeChartData, SKContext, SKColor>
 {
 	private static SKFont Font { get; } = new();
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
@@ -16,7 +16,7 @@ public sealed class SkiaDrawer : ChartDrawer<RawNarrativeChart, SKContext, SKCol
 		MarkerDiameter = 8;
 	}
 
-	protected override SKContext CreateCanvas(RawNarrativeChart chart, YMap yMap)
+	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
 		var (width, height) = CalculateDimensions(yMap);
 		var context = new SKContext(
@@ -99,7 +99,7 @@ public sealed class SkiaDrawer : ChartDrawer<RawNarrativeChart, SKContext, SKCol
 				}
 
 				// checking for any overlap
-				if (prevX + (prevLength / 2) >= x - (length / 2))
+				if (prevX + (prevLength / 2) + 10 >= x - (length / 2))
 				{
 					queue.Enqueue(tuple);
 					continue;

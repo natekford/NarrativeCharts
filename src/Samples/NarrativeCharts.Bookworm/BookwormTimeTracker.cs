@@ -7,7 +7,7 @@ namespace NarrativeCharts.Bookworm;
 public sealed class BookwormTimeTracker : TimeTrackerUnits
 {
 	// source: https://w.atwiki.jp/booklove/pages/195.html#footnote_body_2
-	private static readonly int[] _Lengths = new[]
+	public static ImmutableArray<int> Lengths { get; } = new[]
 	{
 		4,
 		3,
@@ -17,9 +17,9 @@ public sealed class BookwormTimeTracker : TimeTrackerUnits
 		2,
 		3,
 		4,
-	};
+	}.ToImmutableArray();
 
-	public BookwormTimeTracker() : base(_Lengths)
+	public BookwormTimeTracker() : base(Lengths)
 	{
 	}
 }

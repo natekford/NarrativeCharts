@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 
 namespace NarrativeCharts;
 
-public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : RawNarrativeChart
+public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : NarrativeChartData
 {
 	public int ImageHeightMultiplier { get; set; } = 6;
 	public int ImagePadding { get; set; } = 250;
@@ -35,6 +35,8 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : RawNarr
 
 	public async Task SaveChartAsync(TChart chart, string path)
 	{
+		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+
 		var yMap = GetYMap(chart);
 		var image = DrawChart(chart, yMap);
 		await SaveImageAsync(image, path).ConfigureAwait(false);

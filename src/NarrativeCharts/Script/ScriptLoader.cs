@@ -1,9 +1,16 @@
-﻿using static NarrativeCharts.Script.ScriptLoaderConstants;
-
-namespace NarrativeCharts.Script;
+﻿namespace NarrativeCharts.Script;
 
 public class ScriptLoader : NarrativeChartUnits<int>
 {
+	public const char CHAPTER = '#';
+	public const string COMMENT = "//";
+	public const char GOTO_CURRENT_DAY = '>';
+	public const string GOTO_DAYS_AHEAD = ">>";
+	public const char SPLIT_ARGS = ',';
+	public const char SPLIT_ASSIGNMENT = '=';
+	public const string TITLE = "##";
+	public const char UPDATE = '@';
+
 	public ScriptDefinitions Definitions { get; }
 	public string ScriptPath { get; }
 
@@ -47,7 +54,12 @@ public class ScriptLoader : NarrativeChartUnits<int>
 
 	private void ProcessLine(string line)
 	{
-		if (line.StartsWith(CHAPTER))
+		if (line.StartsWith(TITLE))
+		{
+			Name = line[2..];
+			return;
+		}
+		else if (line.StartsWith(CHAPTER))
 		{
 			Event(line[1..]);
 			return;
@@ -76,13 +88,18 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			switch (split.Length)
 			{
 				case 0:
-					AddUnit();
+					Jump();
 					return;
 
 				case 1:
 					SkipToCurrentDay(Definitions.TimeAliases[split[0]]);
 					return;
 			}
+		}
+		else if (line.StartsWith(UPDATE) && line.Length == 1)
+		{
+			Update();
+			return;
 		}
 		else
 		{

@@ -6,9 +6,9 @@ using System.Drawing;
 
 namespace NarrativeCharts.Plot;
 
-public sealed class ScottPlotDrawer : ChartDrawer<RawNarrativeChart, ScottPlot.Plot, Color>
+public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChartData, ScottPlot.Plot, Color>
 {
-	protected override ScottPlot.Plot CreateCanvas(RawNarrativeChart chart, YMap yMap)
+	protected override ScottPlot.Plot CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
 		var (width, height) = CalculateDimensions(yMap);
 		var plot = new ScottPlot.Plot(width, height);

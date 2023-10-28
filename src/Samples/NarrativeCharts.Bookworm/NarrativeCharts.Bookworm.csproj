@@ -13,4 +13,10 @@
     <ProjectReference Include="..\..\NarrativeCharts\NarrativeCharts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Scripts\P3V3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

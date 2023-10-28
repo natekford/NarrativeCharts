@@ -3,7 +3,7 @@ using NarrativeCharts.Time;
 
 namespace NarrativeCharts;
 
-public abstract class NarrativeChart : RawNarrativeChart
+public abstract class NarrativeChart : NarrativeChartData
 {
 	protected bool AlreadyCreated { get; set; }
 	protected Location Frozen { get; } = new Location(nameof(Frozen));
@@ -15,7 +15,7 @@ public abstract class NarrativeChart : RawNarrativeChart
 		Time = time;
 	}
 
-	public void Initialize(RawNarrativeChart? seed)
+	public void Initialize(NarrativeChartData? seed)
 	{
 		if (AlreadyCreated)
 		{
