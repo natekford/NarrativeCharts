@@ -46,6 +46,14 @@ public abstract class NarrativeChart : NarrativeChartData
 	protected void Add(NarrativeScene scene)
 		=> this.AddScene(scene);
 
+	protected Dictionary<Character, Location> AddR(NarrativeScene scene)
+	{
+		var dict = scene.Characters
+			.ToDictionary(x => x, x => Points[x].Values[^1].Point.Location);
+		Add(scene);
+		return dict;
+	}
+
 	protected void Event(string name)
 	{
 		this.AddEvent(new(new(X, new()), name));
@@ -70,6 +78,18 @@ public abstract class NarrativeChart : NarrativeChartData
 	}
 
 	protected abstract void ProtectedCreate();
+
+	protected void Return(Dictionary<Character, Location> scene)
+	{
+		foreach (var (character, y) in scene)
+		{
+			this.AddPoint(new(
+				Point: new(X, y),
+				Character: character,
+				IsEnd: false
+			));
+		}
+	}
 
 	protected Point Scene(Location location)
 		=> new(X, location);

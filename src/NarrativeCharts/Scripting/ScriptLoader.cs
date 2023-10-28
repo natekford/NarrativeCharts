@@ -1,4 +1,6 @@
-﻿namespace NarrativeCharts.Scripting;
+﻿using NarrativeCharts.Models;
+
+namespace NarrativeCharts.Scripting;
 
 public class ScriptLoader : NarrativeChartUnits<int>
 {
@@ -6,6 +8,8 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	public const string COMMENT = "//";
 	public const char GOTO_CURRENT_DAY = '>';
 	public const string GOTO_DAYS_AHEAD = ">>";
+	public const char SCENE_ADD = '+';
+	public const char SCENE_REMOVE = '-';
 	public const char SPLIT_ARGS = ',';
 	public const char SPLIT_ASSIGNMENT = '=';
 	public const string TITLE = "##";
@@ -13,6 +17,9 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	private const StringSplitOptions SPLIT_OPTIONS = 0
 		| StringSplitOptions.RemoveEmptyEntries
 		| StringSplitOptions.TrimEntries;
+
+	private readonly Dictionary<string, Dictionary<Character, Location>> _StoredScenes = new();
+	private string? _NextSceneName;
 
 	public ScriptDefinitions Definitions { get; }
 	public string ScriptPath { get; }
@@ -113,6 +120,16 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			Update();
 			return;
 		}
+		else if (line.StartsWith(SCENE_ADD))
+		{
+			_NextSceneName = line[1..];
+			return;
+		}
+		else if (line.StartsWith(SCENE_REMOVE))
+		{
+			Return(_StoredScenes[line[1..]]);
+			return;
+		}
 		else
 		{
 			var split = Assignment(line);
@@ -122,7 +139,17 @@ public class ScriptLoader : NarrativeChartUnits<int>
 				var characters = Args(split[1])
 					.Select(x => Definitions.CharacterAliases[x])
 					.ToArray();
-				Add(Scene(location).With(characters));
+
+				if (_NextSceneName is null)
+				{
+					Add(Scene(location).With(characters));
+				}
+				else
+				{
+					var dict = AddR(Scene(location).With(characters));
+					_StoredScenes.Add(_NextSceneName, dict);
+					_NextSceneName = null;
+				}
 				return;
 			}
 		}

@@ -1,6 +1,4 @@
-﻿using NarrativeCharts.Models;
-
-namespace NarrativeCharts.Bookworm;
+﻿namespace NarrativeCharts.Bookworm;
 
 public abstract class BookwormNarrativeChart : NarrativeChartUnits<BookwormBell>
 {
@@ -16,26 +14,6 @@ public abstract class BookwormNarrativeChart : NarrativeChartUnits<BookwormBell>
 		}
 	}
 
-	protected Dictionary<Character, Location> AddR(NarrativeScene scene)
-	{
-		var dict = scene.Characters
-			.ToDictionary(x => x, x => Points[x].Values[^1].Point.Location);
-		Add(scene);
-		return dict;
-	}
-
 	protected override int ConvertToInt(BookwormBell unit)
 		=> (int)unit;
-
-	protected void Return(Dictionary<Character, Location> scene)
-	{
-		foreach (var (character, y) in scene)
-		{
-			this.AddPoint(new(
-				Point: new(X, y),
-				Character: character,
-				IsEnd: false
-			));
-		}
-	}
 }

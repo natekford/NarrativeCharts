@@ -28,9 +28,10 @@ M=Benno,Lutz
 W=Ingo
 // Time: "Ingo returned to my chambers a few days later"
 >>3,Lunch
++s
 T=Ingo,Johann,Zack
 >
-W=Ingo,Johann,Zack
+-s
 // Time: "About ten days later"
 >>10,Lunch
 // Time: "they once again arrived on the scheduled day" no clue when
