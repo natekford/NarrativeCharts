@@ -4,22 +4,19 @@ using SkiaSharp;
 
 namespace NarrativeCharts.Skia;
 
-public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
+public sealed class SkiaDrawer : ChartDrawer<RawNarrativeChart, SKContext, SKColor>
 {
 	private static SKFont Font { get; } = new();
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
 
-	public SkiaDrawer(
-		IReadOnlyDictionary<Character, Hex> colors,
-		IReadOnlyDictionary<Location, int> yIndexes)
-		: base(colors, yIndexes)
+	public SkiaDrawer()
 	{
 		LabelSize = 20;
 		LineWidth = 4;
 		MarkerDiameter = 8;
 	}
 
-	protected override SKContext CreateCanvas(NarrativeChart chart, YMap yMap)
+	protected override SKContext CreateCanvas(RawNarrativeChart chart, YMap yMap)
 	{
 		var (width, height) = CalculateDimensions(yMap);
 		var context = new SKContext(
@@ -154,7 +151,7 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChart, SKContext, SKColor>
 		if (!context.SegmentCache.TryGetValue(segment.Character, out var items))
 		{
 			context.SegmentCache[segment.Character] = items = new(
-				Paint: GetPaint(GetColor(Colors[segment.Character])),
+				Paint: GetPaint(GetColor(segment.Chart.Colors[segment.Character])),
 				Name: SKTextBlob.Create(segment.Character.Value, Font)
 			);
 		}

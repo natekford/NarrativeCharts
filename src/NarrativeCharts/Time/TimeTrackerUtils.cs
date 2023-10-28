@@ -1,21 +1,4 @@
-﻿namespace NarrativeCharts;
-
-public abstract class TimeTracker
-{
-	public int CurrentDay => CurrentTotalHours / HoursPerDay;
-	public int CurrentHour => CurrentTotalHours % HoursPerDay;
-	public int CurrentTotalHours { get; protected set; }
-	public abstract int HoursPerDay { get; }
-
-	public virtual void SetTotalHours(int totalHours)
-	{
-		if (totalHours < CurrentTotalHours)
-		{
-			throw new ArgumentException("Cannot be less than the current time.", nameof(totalHours));
-		}
-		CurrentTotalHours = totalHours;
-	}
-}
+﻿namespace NarrativeCharts.Time;
 
 public static class TimeTrackerUtils
 {
@@ -34,8 +17,30 @@ public static class TimeTrackerUtils
 		return time;
 	}
 
+	public static T AddUnit<T>(this T time) where T : TimeTrackerUnits
+		=> time.SkipToUnit(time.CurrentUnit + 1);
+
+	public static T AddUnits<T>(this T time, int units) where T : TimeTrackerUnits
+	{
+		var days = units / time.UnitToHourMap.Count;
+		if (days != 0)
+		{
+			time.AddDays(days);
+		}
+
+		units %= time.UnitToHourMap.Count;
+		if (units != 0)
+		{
+			time.SkipToUnit(time.CurrentUnit + units);
+		}
+		return time;
+	}
+
 	public static T SetCurrentHour<T>(this T time, int hour) where T : TimeTracker
 		=> time.AddHours(hour - time.CurrentHour);
+
+	public static T SetUnit<T>(this T time, int unit) where T : TimeTrackerUnits
+		=> time.SetCurrentHour(time.UnitToHourMap[unit]);
 
 	public static T SkipToDaysAheadStart<T>(this T time, int days) where T : TimeTracker
 	{
@@ -56,4 +61,14 @@ public static class TimeTrackerUtils
 
 	public static T SkipToNextDayStart<T>(this T time) where T : TimeTracker
 		=> time.SkipToDaysAheadStart(1);
+
+	private static T SkipToUnit<T>(this T time, int unit) where T : TimeTrackerUnits
+	{
+		if (unit > time.LargestUnit)
+		{
+			time.SkipToNextDayStart();
+			unit -= time.UnitToHourMap.Count;
+		}
+		return time.SetUnit(unit);
+	}
 }

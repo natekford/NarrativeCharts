@@ -4,7 +4,7 @@ namespace NarrativeCharts;
 
 public static class ChartUtils
 {
-	public static T AddChart<T>(this T chart, NarrativeChart other) where T : NarrativeChart
+	public static T AddChart<T>(this T chart, RawNarrativeChart other) where T : RawNarrativeChart
 	{
 		foreach (var @event in other.Events)
 		{
@@ -17,13 +17,13 @@ public static class ChartUtils
 		return chart;
 	}
 
-	public static T AddEvent<T>(this T chart, NarrativeEvent @event) where T : NarrativeChart
+	public static T AddEvent<T>(this T chart, NarrativeEvent @event) where T : RawNarrativeChart
 	{
 		chart.Events.Add(@event.Point.Hour, @event);
 		return chart;
 	}
 
-	public static T AddPoint<T>(this T chart, NarrativePoint point) where T : NarrativeChart
+	public static T AddPoint<T>(this T chart, NarrativePoint point) where T : RawNarrativeChart
 	{
 		if (!chart.Points.TryGetValue(point.Character, out var points))
 		{
@@ -33,7 +33,7 @@ public static class ChartUtils
 		return chart;
 	}
 
-	public static T AddScene<T>(this T chart, NarrativeScene scene) where T : NarrativeChart
+	public static T AddScene<T>(this T chart, NarrativeScene scene) where T : RawNarrativeChart
 	{
 		foreach (var character in scene.Characters)
 		{
@@ -42,7 +42,7 @@ public static class ChartUtils
 		return chart;
 	}
 
-	public static IEnumerable<NarrativePoint> GetAllNarrativePoints(this NarrativeChart chart)
+	public static IEnumerable<NarrativePoint> GetAllNarrativePoints(this RawNarrativeChart chart)
 	{
 		foreach (var (_, points) in chart.Points)
 		{
@@ -53,7 +53,7 @@ public static class ChartUtils
 		}
 	}
 
-	public static T Seed<T>(this T chart, NarrativeChart other, int hour) where T : NarrativeChart
+	public static T Seed<T>(this T chart, RawNarrativeChart other, int hour) where T : RawNarrativeChart
 	{
 		foreach (var (_, points) in other.Points)
 		{
@@ -74,7 +74,7 @@ public static class ChartUtils
 		return chart;
 	}
 
-	public static T Simplify<T>(this T chart) where T : NarrativeChart
+	public static T Simplify<T>(this T chart) where T : RawNarrativeChart
 	{
 		foreach (var (_, points) in chart.Points)
 		{
@@ -94,13 +94,13 @@ public static class ChartUtils
 		return chart;
 	}
 
-	public static T UpdatePoints<T>(this T chart, int hour) where T : NarrativeChart
+	public static T UpdatePoints<T>(this T chart, int hour) where T : RawNarrativeChart
 		=> chart.UpdatePoints(hour, chart.Points.Keys);
 
 	public static T UpdatePoints<T>(
 		this T chart,
 		int hour,
-		IEnumerable<Character> characters) where T : NarrativeChart
+		IEnumerable<Character> characters) where T : RawNarrativeChart
 	{
 		foreach (var character in characters)
 		{
@@ -121,4 +121,7 @@ public static class ChartUtils
 		}
 		return chart;
 	}
+
+	public static NarrativeScene With(this Point point, params Character[] characters)
+		=> new(point, characters);
 }

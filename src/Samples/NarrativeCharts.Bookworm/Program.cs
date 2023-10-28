@@ -1,5 +1,6 @@
 ﻿using NarrativeCharts.Bookworm.P3;
 using NarrativeCharts.Models;
+using NarrativeCharts.Script;
 using NarrativeCharts.Skia;
 
 using System.Diagnostics;
@@ -13,10 +14,7 @@ public static class Program
 	private static async Task Main()
 	{
 		var time = new BookwormTimeTracker();
-		var drawer = new SkiaDrawer(
-			colors: BookwormCharacters.Colors,
-			yIndexes: BookwormLocations.YIndexes
-		);
+		var drawer = new SkiaDrawer();
 		var books = new BookwormNarrativeChart[]
 		{
 			new P3V1(time),
@@ -30,12 +28,11 @@ public static class Program
 			books[i].Initialize(books[i - 1]);
 		}
 
-		var scripted = new BookwormScriptLoader(time, @"C:\Users\User\Downloads\NarrativeCharts\P3V3 Script.txt");
-		scripted.Initialize(books[1]);
+		//var scripted = new ScriptLoader(@"C:\Users\User\Downloads\NarrativeCharts\P3V3 Script.txt");
+		//scripted.Initialize(books[1]);
 
 		var kept = new HashSet<Character>
 		{
-			//BookwormCharacters.Benno,
 			BookwormCharacters.Ferdinand,
 			BookwormCharacters.Myne,
 		};
@@ -52,7 +49,7 @@ public static class Program
 
 		var sw = Stopwatch.StartNew();
 		var tasks = new List<Task>();
-		foreach (var book in books.Append(scripted))
+		foreach (var book in books)
 		{
 			Directory.CreateDirectory(DIR);
 
