@@ -4,7 +4,7 @@ using NarrativeCharts.Time;
 using System.Collections.Concurrent;
 using System.Text.Json;
 
-namespace NarrativeCharts.Script;
+namespace NarrativeCharts.Scripting;
 
 public class ScriptDefinitions
 {
@@ -97,7 +97,7 @@ public class ScriptDefinitions
 		}
 
 		var json = new DefsJson(
-			Characters: CharacterColors.Select(x => new CharacterJson(
+			Characters: CharacterColors.OrderBy(x => x.Key.Value).Select(x => new CharacterJson(
 				Aliases: reverseCAliases.GetValueOrDefault(x.Key, new()),
 				Hex: x.Value == Hex.Unknown ? null : x.Value.Value,
 				Name: x.Key.Value

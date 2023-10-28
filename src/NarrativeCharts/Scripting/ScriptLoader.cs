@@ -1,4 +1,4 @@
-﻿namespace NarrativeCharts.Script;
+﻿namespace NarrativeCharts.Scripting;
 
 public class ScriptLoader : NarrativeChartUnits<int>
 {

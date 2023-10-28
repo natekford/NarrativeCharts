@@ -1,5 +1,5 @@
 ﻿using NarrativeCharts.Bookworm.P3;
-using NarrativeCharts.Script;
+using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 
 using System.Diagnostics;
@@ -124,12 +124,16 @@ public class Program
 
 			AddAliases(defs.LocationAliases, new()
 			{
+				[RoyalAcademy] = new[] { "RA" },
+				[Castle] = new[] { "C" },
+				[KnightsOrder] = new[] { "KO" },
+				[KarstedtsHouse] = new[] { "KE" },
+				[NoblesQuarter] = new[] { "NQ" },
 				[Temple] = new[] { "T" },
+				[ItalianRestaurant] = new[] { "IR" },
 				[MerchantCompanies] = new[] { "M" },
 				[LowerCityWorkshops] = new[] { "W" },
 				[MynesHouse] = new[] { "MF" },
-				[Castle] = new[] { "C" },
-				[NoblesQuarter] = new[] { "NQ" }
 			});
 		}
 
