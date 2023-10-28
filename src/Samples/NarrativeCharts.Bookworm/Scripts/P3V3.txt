@@ -20,35 +20,35 @@ T=Lutz
 >
 M=Lutz
 >>Lunch
++s1
 T=Benno,Ingo,Lutz
 
 #The Gathering of the Gutenbergs
 >
-M=Benno,Lutz
-W=Ingo
+-s1
 // Time: "Ingo returned to my chambers a few days later"
 >>3,Lunch
-+s
++s2
 T=Ingo,Johann,Zack
 >
--s
+-s2
 // Time: "About ten days later"
 >>10,Lunch
 // Time: "they once again arrived on the scheduled day" no clue when
 >>2,Lunch
++s3
 T=Benno,Ingo,Johann,Lutz,Zack
 >
-M=Benno,Lutz
-W=Ingo,Johann,Zack
+-s3
 
 
 #The Start of Winter Socializing
 // Time: "I would be going to my hidden room after fifth bell to receive it"
 >>2,FifthBell
++s4
 T=Effa,Lutz,Tuuli
 >
-M=Lutz
-MF=Effa,Tuuli
+-s4
 >>3,Morning
 // ella leaves the castle in The Dedication Ritual (Take Two)
 C=Angelica,Brigitte,Cornelius,Damuel,Ella,Ferdinand,Myne,Rosina

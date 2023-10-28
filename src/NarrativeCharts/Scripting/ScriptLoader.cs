@@ -127,7 +127,9 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 		else if (line.StartsWith(SCENE_REMOVE))
 		{
-			Return(_StoredScenes[line[1..]]);
+			var name = line[1..];
+			Return(_StoredScenes[name]);
+			_StoredScenes.Remove(name);
 			return;
 		}
 		else
