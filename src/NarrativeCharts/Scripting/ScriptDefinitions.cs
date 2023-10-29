@@ -2,6 +2,7 @@
 using NarrativeCharts.Time;
 
 using System.Collections.Concurrent;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 
 namespace NarrativeCharts.Scripting;
@@ -10,6 +11,8 @@ public class ScriptDefinitions
 {
 	private static readonly JsonSerializerOptions _JsonOptions = new()
 	{
+		// so characters like > and + don't get escaped
+		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
 		WriteIndented = true,
 	};
 
@@ -17,6 +20,7 @@ public class ScriptDefinitions
 	public Dictionary<Character, Hex> CharacterColors { get; set; } = new();
 	public Dictionary<string, Location> LocationAliases { get; set; } = new();
 	public Dictionary<Location, int> LocationYIndexes { get; set; } = new();
+	public ScriptSymbols Symbols { get; set; } = new();
 	public TimeTrackerUnits Time { get; set; } = new(Enumerable.Repeat(1, 24));
 	public Dictionary<string, int> TimeAliases { get; set; } = new();
 
@@ -40,7 +44,11 @@ public class ScriptDefinitions
 				}
 			}
 
-			defs.Time = new(json.Time.Select(x => x.Length));
+			defs.Time = new(json.Time.Select(x => x.DurationInHours));
+		}
+		if (json.Symbols is not null)
+		{
+			defs.Symbols = json.Symbols;
 		}
 		foreach (var aliased in json.Characters)
 		{
@@ -97,46 +105,47 @@ public class ScriptDefinitions
 		}
 
 		var json = new DefsJson(
-			Characters: CharacterColors.OrderBy(x => x.Key.Value).Select(x => new CharacterJson(
-				Aliases: reverseCAliases.GetValueOrDefault(x.Key, new()),
-				Hex: x.Value == Hex.Unknown ? null : x.Value.Value,
-				Name: x.Key.Value
+			Symbols: new(),
+			Time: Time.UnitToHourMap.OrderBy(x => x.Key).Select(x => new TimeJson(
+				DurationInHours: (Time.UnitToHourMap.TryGetValue(x.Key + 1, out var end)
+					? end : Time.HoursPerDay) - Time.UnitToHourMap[x.Key],
+				Aliases: reverseTAliases.GetValueOrDefault(x.Key, new())
 			)).ToList(),
 			Locations: LocationYIndexes.OrderBy(x => x.Value).Select(x => new LocationJson(
-				Aliases: reverseLAliases.GetValueOrDefault(x.Key, new()),
-				Name: x.Key.Value
+				Name: x.Key.Value,
+				Aliases: reverseLAliases.GetValueOrDefault(x.Key, new())
 			)).ToList(),
-			Time: Time.UnitToHourMap.OrderBy(x => x.Key).Select(x => new TimeJson(
-				Aliases: reverseTAliases.GetValueOrDefault(x.Key, new()),
-				Length: (Time.UnitToHourMap.TryGetValue(x.Key + 1, out var end)
-					? end : Time.HoursPerDay) - Time.UnitToHourMap[x.Key]
-			)).ToList()
-		);
+			Characters: CharacterColors.OrderBy(x => x.Key.Value).Select(x => new CharacterJson(
+				Name: x.Key.Value,
+				Hex: x.Value == Hex.Unknown ? null : x.Value.Value,
+				Aliases: reverseCAliases.GetValueOrDefault(x.Key, new())
+			)).ToList());
 
 		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 		using var fs = File.Create(path);
 		await JsonSerializer.SerializeAsync(fs, json, _JsonOptions).ConfigureAwait(false);
 	}
 
-	public record DefsJson(
-		List<CharacterJson> Characters,
+	private record DefsJson(
+		ScriptSymbols? Symbols,
+		List<TimeJson>? Time,
 		List<LocationJson> Locations,
-		List<TimeJson>? Time
+		List<CharacterJson> Characters
 	);
 
-	public record TimeJson(
-		List<string> Aliases,
-		int Length
+	private record TimeJson(
+		int DurationInHours,
+		List<string> Aliases
 	);
 
-	public record CharacterJson(
-		List<string> Aliases,
+	private record CharacterJson(
+		string Name,
 		string? Hex,
-		string Name
+		List<string> Aliases
 	);
 
-	public record LocationJson(
-		List<string> Aliases,
-		string Name
+	private record LocationJson(
+		string Name,
+		List<string> Aliases
 	);
 }

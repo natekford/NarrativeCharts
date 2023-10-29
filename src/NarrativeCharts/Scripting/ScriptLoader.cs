@@ -1,19 +1,11 @@
 ﻿using NarrativeCharts.Models;
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace NarrativeCharts.Scripting;
 
 public class ScriptLoader : NarrativeChartUnits<int>
 {
-	public const char CHAPTER = '#';
-	public const string COMMENT = "//";
-	public const char GOTO_CURRENT_DAY = '>';
-	public const string GOTO_DAYS_AHEAD = ">>";
-	public const char SCENE_ADD = '+';
-	public const char SCENE_REMOVE = '-';
-	public const char SPLIT_ARGS = ',';
-	public const char SPLIT_ASSIGNMENT = '=';
-	public const string TITLE = "##";
-	public const char UPDATE = '@';
 	private const StringSplitOptions SPLIT_OPTIONS = 0
 		| StringSplitOptions.RemoveEmptyEntries
 		| StringSplitOptions.TrimEntries;
@@ -23,6 +15,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 
 	public ScriptDefinitions Definitions { get; }
 	public string ScriptPath { get; }
+	private ScriptSymbols Symbols => Definitions.Symbols;
 
 	public ScriptLoader(ScriptDefinitions definitions, string path)
 		: base(definitions.Time)
@@ -49,7 +42,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		foreach (var line in File.ReadLines(ScriptPath))
 		{
 			++i;
-			if (string.IsNullOrWhiteSpace(line) || line.StartsWith(COMMENT))
+			if (string.IsNullOrWhiteSpace(line))
 			{
 				continue;
 			}
@@ -65,80 +58,83 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 	}
 
-	private static string[] Args(string value)
-		=> value.Split(SPLIT_ARGS, SPLIT_OPTIONS);
+	private string[] Args(string value)
+			=> value.Split(Definitions.Symbols.Args, SPLIT_OPTIONS);
 
-	private static string[] Assignment(string value)
-		=> value.Split(SPLIT_ASSIGNMENT, SPLIT_OPTIONS);
+	private string[] Assignment(string value)
+		=> value.Split(Definitions.Symbols.Assignment, SPLIT_OPTIONS);
 
 	private void ProcessLine(string line)
 	{
-		if (line.StartsWith(TITLE))
+		if (line.MatchesSymbol(Symbols.Comment, out _))
 		{
-			Name = line[2..];
 			return;
 		}
-		else if (line.StartsWith(CHAPTER))
+		else if (line.MatchesSymbol(Symbols.Title, out var remainder))
 		{
-			Event(line[1..]);
+			Name = remainder;
 			return;
 		}
-		else if (line.StartsWith(GOTO_DAYS_AHEAD))
+		else if (line.MatchesSymbol(Symbols.Chapter, out remainder))
 		{
-			var split = Args(line[2..]);
-			switch (split.Length)
+			Event(remainder);
+			return;
+		}
+		else if (line.MatchesSymbol(Symbols.SkipToNextDay, out remainder))
+		{
+			var args = Args(remainder);
+			switch (args.Length)
 			{
 				case 0:
 					SkipToNextDay(1);
 					return;
 
 				case 1:
-					SkipToNextDay(Definitions.TimeAliases[split[0]]);
+					SkipToNextDay(Definitions.TimeAliases[args[0]]);
 					return;
 
 				case 2:
-					SkipToDaysAhead(int.Parse(split[0]), Definitions.TimeAliases[split[1]]);
+					SkipToDaysAhead(int.Parse(args[0]), Definitions.TimeAliases[args[1]]);
 					return;
 			}
 		}
-		else if (line.StartsWith(GOTO_CURRENT_DAY))
+		else if (line.MatchesSymbol(Symbols.SkipToCurrentDay, out remainder))
 		{
-			var split = Args(line[1..]);
-			switch (split.Length)
+			var args = Args(remainder);
+			switch (args.Length)
 			{
 				case 0:
 					Jump();
 					return;
 
 				case 1:
-					SkipToCurrentDay(Definitions.TimeAliases[split[0]]);
+					SkipToCurrentDay(Definitions.TimeAliases[args[0]]);
 					return;
 			}
 		}
-		else if (line.StartsWith(UPDATE) && line.Length == 1)
+		else if (line.MatchesSymbol(Symbols.Update, out remainder) && remainder.Length == 0)
 		{
 			Update();
 			return;
 		}
-		else if (line.StartsWith(SCENE_ADD))
+		else if (line.MatchesSymbol(Symbols.AddScene, out remainder))
 		{
-			_NextSceneName = line[1..];
+			_NextSceneName = remainder;
 			return;
 		}
-		else if (line.StartsWith(SCENE_REMOVE))
+		else if (line.MatchesSymbol(Symbols.RemoveScene, out remainder))
 		{
-			var name = line[1..];
-			Return(_StoredScenes[name]);
-			_StoredScenes.Remove(name);
+			Return(_StoredScenes[remainder]);
+			_StoredScenes.Remove(remainder);
 			return;
 		}
 		else
 		{
-			var split = Assignment(line);
-			if (split.Length == 2)
+			var assignment = Assignment(line);
+			if (assignment.Length == 2)
 			{
-				var location = Definitions.LocationAliases[split[0]];
-				var characters = Args(split[1])
+				var location = Definitions.LocationAliases[assignment[0]];
+				var characters = Args(assignment[1])
 					.Select(x => Definitions.CharacterAliases[x])
 					.ToArray();
 
@@ -157,5 +153,18 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 
 		throw new ArgumentException("Line does not match any expected format.");
+	}
+}
+
+internal static class ScriptLoaderUtils
+{
+	public static bool MatchesSymbol(
+		this string line,
+		string symbol,
+		[NotNullWhen(true)] out string? remainder)
+	{
+		var matches = line.StartsWith(symbol);
+		remainder = matches ? line[symbol.Length..] : null;
+		return matches;
 	}
 }
