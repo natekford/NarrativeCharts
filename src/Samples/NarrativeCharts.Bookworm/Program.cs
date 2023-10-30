@@ -26,23 +26,23 @@ public class Program
 
 	public async Task RunAsync()
 	{
-		var p3 = new BookwormNarrativeChart[]
+		var books = new BookwormNarrativeChart[]
 		{
 			new P3V1(Time),
 			new P3V2(Time),
 			new P3V3(Time),
 		};
-		for (var i = 0; i < p3.Length; ++i)
+		for (var i = 0; i < books.Length; ++i)
 		{
-			p3[i].Initialize(i == 0 ? null : p3[i - 1]);
-			Books.Add(p3[i]);
+			books[i].Initialize(i == 0 ? null : books[i - 1]);
+			Books.Add(books[i]);
 		}
 
-		/*
-		var combined = p3.Combine();
-		combined.Name = "P3";
+#if false
+		var combined = books.Combine();
+		combined.Name = "Combined";
 		Books.Add(combined);
-		*/
+#endif
 
 		await AddScriptedBookAsync().ConfigureAwait(false);
 
@@ -161,7 +161,7 @@ public class Program
 	{
 		var sw = Stopwatch.StartNew();
 		var tasks = new List<Task>();
-		var drawer = new SkiaDrawer();
+		var drawer = new SKChartDrawer();
 		foreach (var book in Books)
 		{
 			var outputPath = Path.Combine(ChartsDir, $"{book.Name}.png");

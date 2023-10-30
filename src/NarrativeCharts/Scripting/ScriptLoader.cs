@@ -13,9 +13,10 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	private readonly Dictionary<string, Dictionary<Character, Location>> _StoredScenes = new();
 	private string? _NextSceneName;
 
+	private SortedDictionary<string, Action<string>>? _SymbolHandlers;
+	private ScriptSymbols? _Symbols;
 	public ScriptDefinitions Definitions { get; }
 	public string ScriptPath { get; }
-	private ScriptSymbols Symbols => Definitions.Symbols;
 
 	public ScriptLoader(ScriptDefinitions definitions, string path)
 		: base(definitions.Time)
@@ -59,112 +60,130 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	}
 
 	private string[] Args(string value)
-			=> value.Split(Definitions.Symbols.Args, SPLIT_OPTIONS);
+		=> value.Split(Definitions.Symbols.Args, SPLIT_OPTIONS);
 
 	private string[] Assignment(string value)
 		=> value.Split(Definitions.Symbols.Assignment, SPLIT_OPTIONS);
 
+	private SortedDictionary<string, Action<string>> GetSymbolHandlers()
+	{
+		if (_Symbols != Definitions.Symbols)
+		{
+			_Symbols = Definitions.Symbols;
+			// Sort in reverse order so something like "##" shows up before "#"
+			// Otherwise "#" would always steal "##" items
+			_SymbolHandlers = new(Comparer<string>.Create((a, b) => b.CompareTo(a)))
+			{
+				[_Symbols.Comment] = HandleComment,
+				[_Symbols.Title] = HandleTitle,
+				[_Symbols.Chapter] = HandleChapter,
+				[_Symbols.SkipToCurrentDay] = HandleSkipToCurrentDay,
+				[_Symbols.SkipToNextDay] = HandleSkipToNextDay,
+				[_Symbols.Update] = HandleUpdate,
+				[_Symbols.AddScene] = HandleAddScene,
+				[_Symbols.RemoveScene] = HandleRemoveScene,
+			};
+		}
+		return _SymbolHandlers!;
+	}
+
+	private void HandleAddScene(string name)
+		=> _NextSceneName = name;
+
+	private void HandleChapter(string chapter)
+		=> Event(chapter);
+
+	private void HandleComment(string _)
+	{
+	}
+
+	private void HandleRemoveScene(string name)
+	{
+		Return(_StoredScenes[name]);
+		_StoredScenes.Remove(name);
+	}
+
+	private void HandleSkipToCurrentDay(string input)
+	{
+		var args = Args(input);
+		switch (args.Length)
+		{
+			case 0:
+				Jump();
+				return;
+
+			case 1:
+				SkipToCurrentDay(Definitions.TimeAliases[args[0]]);
+				return;
+
+			default:
+				throw new ArgumentException("Cannot handle more than 1 argument.");
+		}
+	}
+
+	private void HandleSkipToNextDay(string input)
+	{
+		var args = Args(input);
+		switch (args.Length)
+		{
+			case 0:
+				SkipToNextDay(1);
+				return;
+
+			case 1:
+				SkipToNextDay(Definitions.TimeAliases[args[0]]);
+				return;
+
+			case 2:
+				SkipToDaysAhead(int.Parse(args[0]), Definitions.TimeAliases[args[1]]);
+				return;
+
+			default:
+				throw new ArgumentException("Cannot handle more than 2 arguments.");
+		}
+	}
+
+	private void HandleTitle(string title)
+		=> Name = title;
+
+	private void HandleUpdate(string _)
+		=> Update();
+
 	private void ProcessLine(string line)
 	{
-		if (line.MatchesSymbol(Symbols.Comment, out _))
+		foreach (var (symbol, action) in GetSymbolHandlers())
 		{
-			return;
-		}
-		else if (line.MatchesSymbol(Symbols.Title, out var remainder))
-		{
-			Name = remainder;
-			return;
-		}
-		else if (line.MatchesSymbol(Symbols.Chapter, out remainder))
-		{
-			Event(remainder);
-			return;
-		}
-		else if (line.MatchesSymbol(Symbols.SkipToNextDay, out remainder))
-		{
-			var args = Args(remainder);
-			switch (args.Length)
+			if (!line.StartsWith(symbol))
 			{
-				case 0:
-					SkipToNextDay(1);
-					return;
-
-				case 1:
-					SkipToNextDay(Definitions.TimeAliases[args[0]]);
-					return;
-
-				case 2:
-					SkipToDaysAhead(int.Parse(args[0]), Definitions.TimeAliases[args[1]]);
-					return;
+				continue;
 			}
+
+			action.Invoke(line[symbol.Length..]);
+			return;
 		}
-		else if (line.MatchesSymbol(Symbols.SkipToCurrentDay, out remainder))
+
+		// Scene creation (character movement)
+		var assignment = Assignment(line);
+		if (assignment.Length == 2)
 		{
-			var args = Args(remainder);
-			switch (args.Length)
+			var location = Definitions.LocationAliases[assignment[0]];
+			var characters = Args(assignment[1])
+				.Select(x => Definitions.CharacterAliases[x])
+				.ToArray();
+
+			if (_NextSceneName is null)
 			{
-				case 0:
-					Jump();
-					return;
-
-				case 1:
-					SkipToCurrentDay(Definitions.TimeAliases[args[0]]);
-					return;
+				Add(Scene(location).With(characters));
 			}
-		}
-		else if (line.MatchesSymbol(Symbols.Update, out remainder) && remainder.Length == 0)
-		{
-			Update();
-			return;
-		}
-		else if (line.MatchesSymbol(Symbols.AddScene, out remainder))
-		{
-			_NextSceneName = remainder;
-			return;
-		}
-		else if (line.MatchesSymbol(Symbols.RemoveScene, out remainder))
-		{
-			Return(_StoredScenes[remainder]);
-			_StoredScenes.Remove(remainder);
-			return;
-		}
-		else
-		{
-			var assignment = Assignment(line);
-			if (assignment.Length == 2)
+			else
 			{
-				var location = Definitions.LocationAliases[assignment[0]];
-				var characters = Args(assignment[1])
-					.Select(x => Definitions.CharacterAliases[x])
-					.ToArray();
-
-				if (_NextSceneName is null)
-				{
-					Add(Scene(location).With(characters));
-				}
-				else
-				{
-					var dict = AddR(Scene(location).With(characters));
-					_StoredScenes.Add(_NextSceneName, dict);
-					_NextSceneName = null;
-				}
-				return;
+				var dict = AddR(Scene(location).With(characters));
+				_StoredScenes.Add(_NextSceneName, dict);
+				_NextSceneName = null;
 			}
+			return;
 		}
 
 		throw new ArgumentException("Line does not match any expected format.");
-	}
-}
-
-internal static class ScriptLoaderUtils
-{
-	public static bool MatchesSymbol(
-		this string line,
-		string symbol,
-		[NotNullWhen(true)] out string? remainder)
-	{
-		var matches = line.StartsWith(symbol);
-		remainder = matches ? line[symbol.Length..] : null;
-		return matches;
 	}
 }

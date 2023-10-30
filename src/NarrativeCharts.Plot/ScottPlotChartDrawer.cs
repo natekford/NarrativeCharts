@@ -1,4 +1,5 @@
-﻿using NarrativeCharts.Models;
+﻿using NarrativeCharts.Drawing;
+using NarrativeCharts.Models;
 
 using ScottPlot;
 
@@ -6,7 +7,7 @@ using System.Drawing;
 
 namespace NarrativeCharts.Plot;
 
-public sealed class ScottPlotDrawer : ChartDrawer<NarrativeChartData, ScottPlot.Plot, Color>
+public sealed class ScottPlotChartDrawer : ChartDrawer<NarrativeChartData, ScottPlot.Plot, Color>
 {
 	protected override ScottPlot.Plot CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{

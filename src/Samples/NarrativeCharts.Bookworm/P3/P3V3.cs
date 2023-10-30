@@ -35,7 +35,7 @@ public sealed class P3V3 : BookwormNarrativeChart
 		P3V3C10();
 		Event("To the End of Winter");
 		P3V3C11();
-		Event("Selling the materials");
+		Event("Selling the Materials");
 		P3V3C12();
 		Update();
 	}

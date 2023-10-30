@@ -1,19 +1,43 @@
-﻿using NarrativeCharts.Models;
+﻿using NarrativeCharts.Drawing;
+using NarrativeCharts.Models;
 
 using SkiaSharp;
 
 namespace NarrativeCharts.Skia;
 
-public sealed class SkiaDrawer : ChartDrawer<NarrativeChartData, SKContext, SKColor>
+public sealed class SKChartDrawer
+	: ChartDrawer<NarrativeChartData, SKContext, SKColor>, IDisposable
 {
+	private readonly Dictionary<Hex, SKPaint> _PaintCache = new();
+	private readonly Dictionary<string, SKTextBlob> _TextCache = new();
+	private bool _Disposed;
+
 	private static SKFont Font { get; } = new();
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
 
-	public SkiaDrawer()
+	public SKChartDrawer()
 	{
 		LabelSize = 20;
 		LineWidth = 4;
 		MarkerDiameter = 8;
+	}
+
+	public void Dispose()
+	{
+		if (_Disposed)
+		{
+			return;
+		}
+
+		foreach (var (_, paint) in _PaintCache)
+		{
+			paint.Dispose();
+		}
+		foreach (var (_, text) in _TextCache)
+		{
+			text.Dispose();
+		}
+		_Disposed = true;
 	}
 
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
@@ -148,14 +172,16 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChartData, SKContext, SKCo
 		var context = segment.Canvas;
 		var canvas = context.Surface.Canvas;
 
-		if (!context.SegmentCache.TryGetValue(segment.Character, out var items))
+		var hex = segment.Chart.Colors[segment.Character];
+		if (!_PaintCache.TryGetValue(hex, out var paint))
 		{
-			context.SegmentCache[segment.Character] = items = new(
-				Paint: GetPaint(GetColor(segment.Chart.Colors[segment.Character])),
-				Name: SKTextBlob.Create(segment.Character.Value, Font)
-			);
+			_PaintCache[hex] = paint = GetPaint(GetColor(hex));
 		}
-		var (paint, name) = items;
+		var text = segment.Character.Value;
+		if (!_TextCache.TryGetValue(text, out var name))
+		{
+			_TextCache[text] = name = SKTextBlob.Create(text, Font);
+		}
 
 		using (Restrict(context))
 		{
@@ -212,11 +238,6 @@ public sealed class SkiaDrawer : ChartDrawer<NarrativeChartData, SKContext, SKCo
 			finally
 			{
 				image.Surface.Dispose();
-				foreach (var items in image.SegmentCache.Values)
-				{
-					items.Paint.Dispose();
-					items.Name.Dispose();
-				}
 			}
 		});
 		return tcs.Task;

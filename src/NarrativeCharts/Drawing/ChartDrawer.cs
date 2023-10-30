@@ -2,36 +2,34 @@
 
 using System.Collections.Concurrent;
 
-namespace NarrativeCharts;
+namespace NarrativeCharts.Drawing;
 
 public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : NarrativeChartData
 {
-	public int ImageHeightMultiplier { get; set; } = 6;
-	public int ImagePadding { get; set; } = 250;
-	public int ImageSizeFloor { get; set; } = 100;
-	public int ImageWidthMultiplier { get; set; } = 6;
-	public int LabelSize { get; set; } = 10;
-	public int LineWidth { get; set; } = 2;
-	public int MarkerDiameter { get; set; } = 6;
-	public int TickLength { get; set; } = 5;
+	public int ImageHeightMultiplier { get; init; } = 6;
+	public int ImagePadding { get; init; } = 250;
+	public int ImageSizeFloor { get; init; } = 100;
+	public int ImageWidthMultiplier { get; init; } = 6;
+	public int LabelSize { get; init; } = 10;
+	public int LineWidth { get; init; } = 2;
+	public int MarkerDiameter { get; init; } = 6;
+	public int TickLength { get; init; } = 5;
 	/// <summary>
 	/// The amount of space between a Y-tick and the first point.
 	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
-	public int YOffset { get; set; } = 2;
+	public int YOffset { get; init; } = 2;
 	/// <summary>
 	/// The amount of space between each point on the same Y-tick.
 	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
-	public int YSpacing { get; set; } = 3;
+	public int YSpacing { get; init; } = 3;
 	/// <summary>
 	/// The amount of space to put between the highest Y value of a
 	/// previous Y-tick and the next Y-tick.
 	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
-	public int YTickSeperation { get; set; } = 25;
-
-	protected static ConcurrentDictionary<Hex, TColor> ColorCache { get; } = new();
+	public int YTickSeperation { get; init; } = 25;
 
 	public async Task SaveChartAsync(TChart chart, string path)
 	{
@@ -109,7 +107,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	protected abstract void DrawSegment(Segment segment);
 
 	protected virtual TColor GetColor(Hex hex)
-		=> ColorCache.GetOrAdd(hex, ParseColor);
+		=> ColorCache<TColor>.Cache.GetOrAdd(hex, ParseColor);
 
 	protected virtual YMap GetYMap(TChart chart)
 	{
@@ -182,17 +180,4 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		int X0, int X1, int Y0, int Y1,
 		bool IsMovement, bool IsFinal
 	);
-}
-
-public record YMap(
-	Dictionary<(Character, Location), int> Characters,
-	Dictionary<Location, int> Locations,
-	int XMax,
-	int XMin,
-	int YMax,
-	int YMin
-)
-{
-	public int XRange => XMax - XMin;
-	public int YRange => YMax - YMin;
 }
