@@ -8,6 +8,7 @@ public record ScriptSymbols(
 	string Chapter = "#",
 	string SkipToNextDay = ">>",
 	string SkipToCurrentDay = ">",
+	string AddUnits = ">+",
 	string Update = "@",
 	string AddScene = "+",
 	string RemoveScene = "-"

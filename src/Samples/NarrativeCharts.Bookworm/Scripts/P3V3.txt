@@ -146,8 +146,7 @@ T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 // eckhart probably also goes, but that's not explicitly stated
 +s6
 Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
->
->
+>+2
 >
 -s6
 // Time: "the next day was a sunny one"

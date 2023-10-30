@@ -79,6 +79,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			_SymbolHandlers.Add(_Symbols.Chapter, HandleChapter);
 			_SymbolHandlers.Add(_Symbols.SkipToCurrentDay, HandleSkipToCurrentDay);
 			_SymbolHandlers.Add(_Symbols.SkipToNextDay, HandleSkipToNextDay);
+			_SymbolHandlers.Add(_Symbols.AddUnits, HandleAddUnits);
 			_SymbolHandlers.Add(_Symbols.Update, HandleUpdate);
 			_SymbolHandlers.Add(_Symbols.AddScene, HandleAddScene);
 			_SymbolHandlers.Add(_Symbols.RemoveScene, HandleRemoveScene);
@@ -88,6 +89,25 @@ public class ScriptLoader : NarrativeChartUnits<int>
 
 	private void HandleAddScene(string name)
 		=> _NextSceneName = name;
+
+	private void HandleAddUnits(string input)
+	{
+		var args = Args(input);
+		switch (args.Length)
+		{
+			// Does the same thing as SkipToCurrentDay no args
+			case 0:
+				Jump();
+				return;
+
+			case 1:
+				Jump(int.Parse(args[0]));
+				return;
+
+			default:
+				throw new ArgumentException("Cannot handle more than 1 argument.");
+		}
+	}
 
 	private void HandleChapter(string chapter)
 		=> Event(chapter);
@@ -107,6 +127,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		var args = Args(input);
 		switch (args.Length)
 		{
+			// Does the same thing as AddUnits no args
 			case 0:
 				Jump();
 				return;
