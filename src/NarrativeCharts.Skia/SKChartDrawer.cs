@@ -42,14 +42,14 @@ public sealed class SKChartDrawer
 
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
-		var (width, height) = CalculateDimensions(yMap);
+		var dims = CalculateDimensions(yMap);
 		var context = new SKContext(
-			surface: SKSurface.Create(new SKImageInfo(width, height)),
+			surface: SKSurface.Create(new SKImageInfo(dims.Width, dims.Height)),
 			yMap: yMap,
 			padding: ImagePadding,
 			lineWidth: LineWidth,
-			wMult: ImageWidthMultiplier,
-			hMult: ImageHeightMultiplier
+			wMult: dims.WMult,
+			hMult: dims.HMult
 		);
 
 		var canvas = context.Surface.Canvas;
@@ -103,18 +103,21 @@ public sealed class SKChartDrawer
 			}
 
 			canvas.Translate(0, context.GridHeight + LineWidth);
-			var i = 0;
+			int iterations = 0, processed = 0, queueCount = queue.Count;
 			float prevX = float.MinValue, prevLength = float.MinValue;
 			while (queue.TryDequeue(out var tuple))
 			{
 				var (x, length, label) = tuple;
-				if (x < prevX)
+				if (processed == queueCount)
 				{
-					++i;
+					++iterations;
+					processed = 0;
+					// add 1 because if we're in the loop 1 has been taken out
+					queueCount = queue.Count + 1;
 					prevX = prevLength = float.MinValue;
 				}
 
-				if (i > 0 && paint.PathEffect is null)
+				if (iterations > 0 && paint.PathEffect is null)
 				{
 					paint.PathEffect = SKPathEffect.CreateDash(
 						new float[] { TickLength, TickLength },
@@ -122,6 +125,7 @@ public sealed class SKChartDrawer
 					);
 				}
 
+				++processed;
 				// checking for any overlap
 				if (prevX + (prevLength / 2) + 10 >= x - (length / 2))
 				{
@@ -129,7 +133,7 @@ public sealed class SKChartDrawer
 					continue;
 				}
 
-				var offset = (TickLength + paint.TextSize) * i;
+				var offset = (TickLength + paint.TextSize) * iterations;
 				canvas.DrawLine(x, 0, x, offset + TickLength, paint);
 				paint.IsAntialias = true;
 				canvas.DrawText(label, x, offset + paint.TextSize + 2, paint);

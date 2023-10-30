@@ -11,8 +11,8 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<NarrativeChartData, Scott
 {
 	protected override ScottPlot.Plot CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
-		var (width, height) = CalculateDimensions(yMap);
-		var plot = new ScottPlot.Plot(width, height);
+		var dims = CalculateDimensions(yMap);
+		var plot = new ScottPlot.Plot(dims.Width, dims.Height);
 
 		// To have the top and right axes show with the correct scale
 		{

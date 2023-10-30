@@ -197,8 +197,8 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			}
 			else
 			{
-				var dict = AddR(Scene(location).With(characters));
-				_StoredScenes.Add(_NextSceneName, dict);
+				var scene = AddR(Scene(location).With(characters));
+				_StoredScenes.Add(_NextSceneName, scene);
 				_NextSceneName = null;
 			}
 			return;

@@ -6,10 +6,10 @@ namespace NarrativeCharts.Drawing;
 
 public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : NarrativeChartData
 {
-	public int ImageHeightMultiplier { get; init; } = 6;
 	public int ImagePadding { get; init; } = 250;
+	public float? ImageSizeAspectRatio { get; init; }
 	public int ImageSizeFloor { get; init; } = 100;
-	public int ImageWidthMultiplier { get; init; } = 6;
+	public float ImageSizeMult { get; init; } = 6;
 	public int LabelSize { get; init; } = 10;
 	public int LineWidth { get; init; } = 2;
 	public int MarkerDiameter { get; init; } = 6;
@@ -40,15 +40,37 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		await SaveImageAsync(image, path).ConfigureAwait(false);
 	}
 
-	protected virtual (int, int) CalculateDimensions(YMap yMap)
+	protected virtual Dimensions CalculateDimensions(YMap yMap)
 	{
 		// A default ImageSizeAddition is added because the ScottPlot Render method
 		// outputs a blank image if the dimensions are too small
 		// There's probably a better way to dynamically make sure the dimensions
 		// are big enough, but simply adding several hundred pixels is good enough
-		var width = ((ImagePadding * 2) + (yMap.XRange * ImageWidthMultiplier)) / ImageSizeFloor * ImageSizeFloor;
-		var height = ((ImagePadding * 2) + (yMap.YRange * ImageHeightMultiplier)) / ImageSizeFloor * ImageSizeFloor;
-		return (width, height);
+		var padding = ImagePadding * 2; // on both sides
+
+		var widthMult = ImageSizeMult;
+		var heightMult = ImageSizeMult;
+		if (ImageSizeAspectRatio is float ar)
+		{
+			var arDiff = ar / ((float)yMap.XRange / yMap.YRange);
+			if (Math.Abs(arDiff - 1) > 0.01)
+			{
+				if (arDiff > 1)
+				{
+					widthMult *= arDiff;
+				}
+				else
+				{
+					heightMult *= 1f / arDiff;
+				}
+			}
+		}
+
+		var width = padding + (yMap.XRange * widthMult);
+		var widthF = (int)width / ImageSizeFloor * ImageSizeFloor;
+		var height = padding + (yMap.YRange * heightMult);
+		var heightF = (int)height / ImageSizeFloor * ImageSizeFloor;
+		return new(widthF, widthMult, heightF, heightMult);
 	}
 
 	protected abstract TImage CreateCanvas(TChart chart, YMap yMap);
@@ -180,4 +202,6 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		int X0, int X1, int Y0, int Y1,
 		bool IsMovement, bool IsFinal
 	);
+
+	protected record Dimensions(int Width, float WMult, int Height, float HMult);
 }

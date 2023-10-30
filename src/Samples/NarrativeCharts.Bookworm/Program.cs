@@ -38,7 +38,7 @@ public class Program
 			Books.Add(books[i]);
 		}
 
-#if false
+#if true
 		var combined = books.Combine();
 		combined.Name = "Combined";
 		Books.Add(combined);
