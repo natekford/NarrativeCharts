@@ -11,10 +11,13 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		| StringSplitOptions.TrimEntries;
 
 	private readonly Dictionary<string, Dictionary<Character, Location>> _StoredScenes = new();
+	// Sort in reverse order so something like "##" shows up before "#"
+	// Otherwise "#" would always steal "##" items
+	private readonly SortedDictionary<string, Action<string>> _SymbolHandlers
+		= new(Comparer<string>.Create((a, b) => b.CompareTo(a)));
 	private string? _NextSceneName;
-
-	private SortedDictionary<string, Action<string>>? _SymbolHandlers;
 	private ScriptSymbols? _Symbols;
+
 	public ScriptDefinitions Definitions { get; }
 	public string ScriptPath { get; }
 
@@ -70,19 +73,15 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		if (_Symbols != Definitions.Symbols)
 		{
 			_Symbols = Definitions.Symbols;
-			// Sort in reverse order so something like "##" shows up before "#"
-			// Otherwise "#" would always steal "##" items
-			_SymbolHandlers = new(Comparer<string>.Create((a, b) => b.CompareTo(a)))
-			{
-				[_Symbols.Comment] = HandleComment,
-				[_Symbols.Title] = HandleTitle,
-				[_Symbols.Chapter] = HandleChapter,
-				[_Symbols.SkipToCurrentDay] = HandleSkipToCurrentDay,
-				[_Symbols.SkipToNextDay] = HandleSkipToNextDay,
-				[_Symbols.Update] = HandleUpdate,
-				[_Symbols.AddScene] = HandleAddScene,
-				[_Symbols.RemoveScene] = HandleRemoveScene,
-			};
+			_SymbolHandlers.Clear();
+			_SymbolHandlers.Add(_Symbols.Comment, HandleComment);
+			_SymbolHandlers.Add(_Symbols.Title, HandleTitle);
+			_SymbolHandlers.Add(_Symbols.Chapter, HandleChapter);
+			_SymbolHandlers.Add(_Symbols.SkipToCurrentDay, HandleSkipToCurrentDay);
+			_SymbolHandlers.Add(_Symbols.SkipToNextDay, HandleSkipToNextDay);
+			_SymbolHandlers.Add(_Symbols.Update, HandleUpdate);
+			_SymbolHandlers.Add(_Symbols.AddScene, HandleAddScene);
+			_SymbolHandlers.Add(_Symbols.RemoveScene, HandleRemoveScene);
 		}
 		return _SymbolHandlers!;
 	}

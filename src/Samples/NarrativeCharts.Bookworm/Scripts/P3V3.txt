@@ -11,6 +11,7 @@ M=Lutz
 T=Ferdinand,Fran
 
 
+
 #Ingo and Improving the Printing Press
 // Time: "once he had finished today’s before-bed report"
 >Bed
@@ -22,6 +23,8 @@ M=Lutz
 >>Lunch
 +s1
 T=Benno,Ingo,Lutz
+
+
 
 #The Gathering of the Gutenbergs
 >
@@ -42,6 +45,7 @@ T=Benno,Ingo,Johann,Lutz,Zack
 -s3
 
 
+
 #The Start of Winter Socializing
 // Time: "I would be going to my hidden room after fifth bell to receive it"
 >>2,FifthBell
@@ -57,6 +61,125 @@ NQ=Ferdinand
 // Time: "Three days, you mean"
 >>3,Morning
 C=Ferdinand
+
+
+
+#The Baptism Ceremony and Our Winter Debut
+C=Eckhart,Elvira,Justus,Karstedt
+C=Philine
+// Time: "we’ve moved straight onto lunch"
+>Lunch
+C=Christine
+>
+// not gonna bother including all of the commuting
+
+
+
+#A Class for Kids
+// Time: "Rihyarda said after breakfast as she explained"
+>>Morning
+C=Hartmut
+// myne passes out after thinking she can't become a librarian
+>
+// Time: "The day after all the students had left for the Academy—Angelica and Cornelius included"
+// idr what the exact schedule is, i think it's 1 year of students per day?
+>>4,Morning
+RA=Angelica,Christine,Cornelius,Hartmut
+
+
+
+#A Tea Party
+// Time: "Around the time that the kids were getting used to the playroom’s schedule"
+>>3,Morning
+// myne looks through meeting requests
+// sets up meetings with guards' families
+C=Myne,Rihyarda
+// Time: "A few days later, I was given permission"
+>>3,Meetings
+C=Henrik
+>
+NQ=Henrik
+// Time: "Two days after my meeting with Henrik"
+>>2,Meetings
+C=Helfried
+>
+NQ=Helfried
+// Time: "Next arrived the day I was scheduled to meet Angelica’s family"
+>>2,Meetings
+// they dont have names
+// Time: "Yet more days passed after meeting Angelica’s parents"
+>>4,Meetings
+// tea party with flor/elvira about the harspiel concert
+// scret ferdinand illustration
+>
+
+
+
+#The Dedication Ritual (Take Two)
+>>Morning
+// myne tells wilf dedication cere in 3 days
+// Time: "The Dedication Ritual begins three days from now"
+>>3,Morning
++s5
+T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
+// Time: "On the first day of the Dedication Ritual"
+>>Morning
+// myne, ferdi, and 2 blues do dedication ritual
+>
+
+
+
+#Gathering the Winter Ingredient
+// Time: "As Ferdinand had predicted, the Dedication Ritual came to an end three days later"
+>>3,ThirdBell
+// ferdi tells myne to use the spear
+// myne checks on the orphanage
+// myne/ferdi informed lord of winter appeared
+// temple people go to castle first
+-s5
+>
+
+
+
+#Fighting the Schnesturm
+// not explictly stated anywhere that this LOW appeard in Haldenzel
+// eckhart probably also goes, but that's not explicitly stated
++s6
+Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
+>
+>
+>
+-s6
+// Time: "the next day was a sunny one"
+>>Morning
+
+
+
+#To the End of Winter
+// Time: "increasing number of students coming home showed just how late into the season we were"
+// no exact amount of days given, idk, skip ahead a month
+>>30,Meetings
+// myne meets with sylv to talk about selling study materials
+>
+// myne announces to the playroom that she's going to sell stuff
+>
+
+
+
+#Selling the Materials
+// Time: ".. Gil to contact Benno upon my return to the temple,
+// ... he took a letter to the Gilberta Company on the next sunny day.
+// ... [Benno] would be ready to meet with me that same afternoon."
+>>Lunch
+T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
+>>2,Lunch
+T=Benno,Lutz,Mark
+>
+// Time: "Mark left partway through to begin preparations early"
+M=Mark
+>
+M=Benno,Lutz
+
 
 
 @
