@@ -51,8 +51,11 @@ public sealed class SKChartDrawer
 		// 1600mb when Rgba8888, 800mb when Rgb565
 		// 12.5s when Rgba8888, 9.5s when Rgb565
 		var info = new SKImageInfo(dims.Width, dims.Height, SKColorType.Rgb565);
+		var bitmap = new SKBitmap(info);
+		var canvas = new SKCanvas(bitmap);
 		var context = new SKContext(
-			surface: SKSurface.Create(info),
+			bitmap: bitmap,
+			canvas: canvas,
 			yMap: yMap,
 			padding: ImagePadding,
 			lineWidth: LineWidth,
@@ -60,7 +63,6 @@ public sealed class SKChartDrawer
 			hMult: dims.HMult
 		);
 
-		var canvas = context.Surface.Canvas;
 		canvas.Clear(SKColors.White);
 
 		// Title
@@ -182,7 +184,7 @@ public sealed class SKChartDrawer
 	protected override void DrawSegment(Segment segment)
 	{
 		var context = segment.Canvas;
-		var canvas = context.Surface.Canvas;
+		var canvas = context.Canvas;
 
 		var hex = segment.Chart.Colors[segment.Character];
 		if (!_PaintCache.TryGetValue(hex, out var paint))
@@ -235,12 +237,37 @@ public sealed class SKChartDrawer
 		{
 			try
 			{
-				using (var snapshot = image.Surface.Snapshot())
-				using (var data = snapshot.Encode(SKEncodedImageFormat.Png, 100))
-				using (var fs = File.OpenWrite(path))
-				{
-					data.SaveTo(fs);
-				}
+				using var fs = File.Create(path);
+
+				/* Image format summaries:
+				 * Png, works for everything so far
+				 * Webp, ~25% faster than png but max size is 16k x 16k
+				 * Jpeg, ~60% faster but looks awful
+				 *
+				 * The rest don't encode a single image successfully
+				 *
+				 * Conditionally encoding into webp if the size is under 16k x 16k
+				 * is maybe worth it, but I think people would prefer to have a
+				 * consistent file type
+				 */
+
+#if true
+				image.Bitmap.Encode(fs, SKEncodedImageFormat.Png, 100);
+#else
+				// with 1, 2, or 3 compression: ~33% faster, file ~66% bigger
+				// with 0 it's actually slower probably because either my ram or
+				// ssd can't keep up with the 250x size increase
+				var options = new SKPngEncoderOptions(
+					filterFlags: SKPngEncoderFilterFlags.AllFilters,
+					zLibLevel: 3
+				);
+
+				using var pixmap = image.Bitmap.PeekPixels();
+				using var data = pixmap.Encode(options);
+				using var ds = data.AsStream();
+				ds.CopyTo(fs);
+#endif
+
 				tcs.SetResult();
 			}
 			catch (Exception e)
@@ -249,7 +276,8 @@ public sealed class SKChartDrawer
 			}
 			finally
 			{
-				image.Surface.Dispose();
+				image.Bitmap.Dispose();
+				image.Canvas.Dispose();
 			}
 		});
 		return tcs.Task;
@@ -259,7 +287,7 @@ public sealed class SKChartDrawer
 		SKContext context,
 		SKClipOperation op = SKClipOperation.Intersect)
 	{
-		var canvas = context.Surface.Canvas;
+		var canvas = context.Canvas;
 		var autoRestore = new SKAutoCanvasRestore(canvas);
 		canvas.ClipRect(context.Grid, op);
 		return autoRestore;
@@ -267,7 +295,7 @@ public sealed class SKChartDrawer
 
 	private void DrawYAxis(SKContext context, SKPaint paint, bool isLeftAxis)
 	{
-		var canvas = context.Surface.Canvas;
+		var canvas = context.Canvas;
 		foreach (var (label, yTick) in context.YMap.Locations)
 		{
 			var y = context.Y(yTick);

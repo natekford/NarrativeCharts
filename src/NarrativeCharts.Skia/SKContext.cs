@@ -6,12 +6,13 @@ namespace NarrativeCharts.Skia;
 
 public sealed class SKContext
 {
+	public SKBitmap Bitmap { get; }
+	public SKCanvas Canvas { get; }
 	public SKRect Grid { get; }
 	public float GridHeight => Grid.Height;
 	public float GridWidth => Grid.Width;
 	public float PaddingEnd { get; }
 	public float PaddingStart { get; }
-	public SKSurface Surface { get; }
 	public float XMult { get; }
 	public float XShift { get; }
 	public YMap YMap { get; }
@@ -19,20 +20,22 @@ public sealed class SKContext
 	public float YShift { get; }
 
 	public SKContext(
-		SKSurface surface,
+		SKBitmap bitmap,
+		SKCanvas canvas,
 		YMap yMap,
 		float padding,
 		float lineWidth,
 		float wMult,
 		float hMult)
 	{
-		Surface = surface;
+		Bitmap = bitmap;
+		Canvas = canvas;
 		YMap = yMap;
 
 		PaddingStart = padding;
 		PaddingEnd = padding + lineWidth;
 
-		var bounds = surface.Canvas.DeviceClipBounds;
+		var bounds = canvas.DeviceClipBounds;
 		var x = PaddingStart + (lineWidth / 2);
 		var y = PaddingStart + (lineWidth / 2);
 		var w = bounds.Width - (x * 2);
