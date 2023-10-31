@@ -7,19 +7,20 @@ namespace NarrativeCharts.Scripting;
 public class ScriptLoader : NarrativeChartUnits<int>
 {
 	private const StringSplitOptions SPLIT_OPTIONS = 0
-		| StringSplitOptions.RemoveEmptyEntries
-		| StringSplitOptions.TrimEntries;
+			| StringSplitOptions.RemoveEmptyEntries
+			| StringSplitOptions.TrimEntries;
 
-	private readonly Dictionary<string, Dictionary<Character, Location>> _StoredScenes = new();
-	// Sort in reverse order so something like "##" shows up before "#"
-	// Otherwise "#" would always steal "##" items
-	private readonly SortedDictionary<string, Action<string>> _SymbolHandlers
-		= new(Comparer<string>.Create((a, b) => b.CompareTo(a)));
-	private string? _NextSceneName;
 	private ScriptSymbols? _Symbols;
 
 	public ScriptDefinitions Definitions { get; }
 	public string ScriptPath { get; }
+	protected string? NextSceneName { get; set; }
+	protected Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; }
+		= new();
+	// Sort in reverse order so something like "##" shows up before "#"
+	// Otherwise "#" would always steal "##" items
+	protected SortedDictionary<string, Action<string>> SymbolHandlers { get; }
+		= new(Comparer<string>.Create((a, b) => b.CompareTo(a)));
 
 	public ScriptLoader(ScriptDefinitions definitions, string path)
 		: base(definitions.Time)
@@ -37,60 +38,38 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 	}
 
-	protected override int ConvertToInt(int unit)
-		=> unit;
-
-	protected override void ProtectedCreate()
-	{
-		var i = 0;
-		foreach (var line in File.ReadLines(ScriptPath))
-		{
-			++i;
-			if (string.IsNullOrWhiteSpace(line))
-			{
-				continue;
-			}
-
-			try
-			{
-				ProcessLine(line);
-			}
-			catch (Exception e)
-			{
-				throw new ArgumentException($"Error occurred while processing line #{i}: {line}", e);
-			}
-		}
-	}
-
-	private string[] Args(string value)
+	protected virtual string[] Args(string value)
 		=> value.Split(Definitions.Symbols.Args, SPLIT_OPTIONS);
 
-	private string[] Assignment(string value)
+	protected virtual string[] Assignment(string value)
 		=> value.Split(Definitions.Symbols.Assignment, SPLIT_OPTIONS);
 
-	private SortedDictionary<string, Action<string>> GetSymbolHandlers()
+	protected override int ConvertToInt(int unit)
+				=> unit;
+
+	protected virtual SortedDictionary<string, Action<string>> GetSymbolHandlers()
 	{
 		if (_Symbols != Definitions.Symbols)
 		{
 			_Symbols = Definitions.Symbols;
-			_SymbolHandlers.Clear();
-			_SymbolHandlers.Add(_Symbols.Comment, HandleComment);
-			_SymbolHandlers.Add(_Symbols.Title, HandleTitle);
-			_SymbolHandlers.Add(_Symbols.Chapter, HandleChapter);
-			_SymbolHandlers.Add(_Symbols.SkipToCurrentDay, HandleSkipToCurrentDay);
-			_SymbolHandlers.Add(_Symbols.SkipToNextDay, HandleSkipToNextDay);
-			_SymbolHandlers.Add(_Symbols.AddUnits, HandleAddUnits);
-			_SymbolHandlers.Add(_Symbols.Update, HandleUpdate);
-			_SymbolHandlers.Add(_Symbols.AddScene, HandleAddScene);
-			_SymbolHandlers.Add(_Symbols.RemoveScene, HandleRemoveScene);
+			SymbolHandlers.Clear();
+			SymbolHandlers.Add(_Symbols.Comment, HandleComment);
+			SymbolHandlers.Add(_Symbols.Title, HandleTitle);
+			SymbolHandlers.Add(_Symbols.Chapter, HandleChapter);
+			SymbolHandlers.Add(_Symbols.SkipToCurrentDay, HandleSkipToCurrentDay);
+			SymbolHandlers.Add(_Symbols.SkipToNextDay, HandleSkipToNextDay);
+			SymbolHandlers.Add(_Symbols.AddUnits, HandleAddUnits);
+			SymbolHandlers.Add(_Symbols.Update, HandleUpdate);
+			SymbolHandlers.Add(_Symbols.AddScene, HandleAddScene);
+			SymbolHandlers.Add(_Symbols.RemoveScene, HandleRemoveScene);
 		}
-		return _SymbolHandlers!;
+		return SymbolHandlers!;
 	}
 
-	private void HandleAddScene(string name)
-		=> _NextSceneName = name;
+	protected virtual void HandleAddScene(string name)
+		=> NextSceneName = name;
 
-	private void HandleAddUnits(string input)
+	protected virtual void HandleAddUnits(string input)
 	{
 		var args = Args(input);
 		switch (args.Length)
@@ -109,20 +88,34 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 	}
 
-	private void HandleChapter(string chapter)
+	protected virtual void HandleChapter(string chapter)
 		=> Event(chapter);
 
-	private void HandleComment(string _)
+	protected virtual void HandleComment(string _)
 	{
 	}
 
-	private void HandleRemoveScene(string name)
+	protected virtual void HandleRemoveScene(string name)
 	{
-		Return(_StoredScenes[name]);
-		_StoredScenes.Remove(name);
+		Return(StoredScenes[name]);
+		StoredScenes.Remove(name);
 	}
 
-	private void HandleSkipToCurrentDay(string input)
+	protected virtual void HandleScene(Location location, Character[] characters)
+	{
+		if (NextSceneName is null)
+		{
+			Add(Scene(location).With(characters));
+		}
+		else
+		{
+			var scene = AddR(Scene(location).With(characters));
+			StoredScenes.Add(NextSceneName, scene);
+			NextSceneName = null;
+		}
+	}
+
+	protected virtual void HandleSkipToCurrentDay(string input)
 	{
 		var args = Args(input);
 		switch (args.Length)
@@ -141,7 +134,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 	}
 
-	private void HandleSkipToNextDay(string input)
+	protected virtual void HandleSkipToNextDay(string input)
 	{
 		var args = Args(input);
 		switch (args.Length)
@@ -163,13 +156,13 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 	}
 
-	private void HandleTitle(string title)
+	protected virtual void HandleTitle(string title)
 		=> Name = title;
 
-	private void HandleUpdate(string _)
+	protected virtual void HandleUpdate(string _)
 		=> Update();
 
-	private void ProcessLine(string line)
+	protected virtual void ProcessLine(string line)
 	{
 		foreach (var (symbol, action) in GetSymbolHandlers())
 		{
@@ -190,20 +183,32 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			var characters = Args(assignment[1])
 				.Select(x => Definitions.CharacterAliases[x])
 				.ToArray();
-
-			if (_NextSceneName is null)
-			{
-				Add(Scene(location).With(characters));
-			}
-			else
-			{
-				var scene = AddR(Scene(location).With(characters));
-				_StoredScenes.Add(_NextSceneName, scene);
-				_NextSceneName = null;
-			}
+			HandleScene(location, characters);
 			return;
 		}
 
 		throw new ArgumentException("Line does not match any expected format.");
+	}
+
+	protected override void ProtectedCreate()
+	{
+		var i = 0;
+		foreach (var line in File.ReadLines(ScriptPath))
+		{
+			++i;
+			if (string.IsNullOrWhiteSpace(line))
+			{
+				continue;
+			}
+
+			try
+			{
+				ProcessLine(line);
+			}
+			catch (Exception e)
+			{
+				throw new ArgumentException($"Error occurred while processing line #{i}: {line}", e);
+			}
+		}
 	}
 }

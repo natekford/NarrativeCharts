@@ -26,11 +26,14 @@ public class Program
 
 	public async Task RunAsync()
 	{
-		var books = new BookwormNarrativeChart[]
+		var defs = await GetScriptDefinitionsAsync().ConfigureAwait(false);
+		defs.Time = Time;
+
+		var books = new NarrativeChart[]
 		{
 			new P3V1(Time),
 			new P3V2(Time),
-			new P3V3(Time),
+			new ScriptLoader(defs, Path.Combine(ScriptsDir, "P3V3.txt")),
 		};
 		for (var i = 0; i < books.Length; ++i)
 		{
@@ -43,8 +46,6 @@ public class Program
 		combined.Name = "Combined";
 		Books.Add(combined);
 #endif
-
-		await AddScriptedBookAsync().ConfigureAwait(false);
 
 #if false
 		var kept = new HashSet<Character>
@@ -70,23 +71,6 @@ public class Program
 
 	private static Task Main()
 		=> new Program(Directory.GetCurrentDirectory()).RunAsync();
-
-	private async Task AddScriptedBookAsync()
-	{
-		var p3v2 = Books[1];
-
-		var defsPath = Path.Combine(ScriptsDir, "ScriptDefinitions.json");
-		var orgDefs = CreateBookwormScriptDefinitions();
-		await orgDefs.SaveAsync(defsPath).ConfigureAwait(false);
-		var defs = await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
-		defs.Time.SetTotalHours(p3v2.Points[BookwormCharacters.Myne].Keys[^1]);
-
-		var scriptPath = Path.Combine(ScriptsDir, "P3V3.txt");
-		var scripted = new ScriptLoader(defs, scriptPath);
-		scripted.Initialize(p3v2);
-
-		Books.Add(scripted);
-	}
 
 	private ScriptDefinitions CreateBookwormScriptDefinitions()
 	{
@@ -175,5 +159,13 @@ public class Program
 
 		await Task.WhenAll(tasks).ConfigureAwait(false);
 		Console.WriteLine($"{Books.Count} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
+	}
+
+	private async Task<ScriptDefinitions> GetScriptDefinitionsAsync()
+	{
+		var defsPath = Path.Combine(ScriptsDir, "ScriptDefinitions.json");
+		var defs = CreateBookwormScriptDefinitions();
+		await defs.SaveAsync(defsPath).ConfigureAwait(false);
+		return await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
 	}
 }

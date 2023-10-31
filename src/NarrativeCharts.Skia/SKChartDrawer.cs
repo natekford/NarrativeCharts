@@ -242,7 +242,7 @@ public sealed class SKChartDrawer
 				/* Image format summaries:
 				 * Png, works for everything so far
 				 * Webp, ~25% faster than png but max size is 16k x 16k
-				 * Jpeg, ~60% faster but looks awful
+				 * Jpeg, ~60% faster than png but looks awful
 				 *
 				 * The rest don't encode a single image successfully
 				 *
