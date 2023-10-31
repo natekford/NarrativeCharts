@@ -94,7 +94,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Scene(KnightsOrder).With(Bezewanst, Bindewald));
 		Add(Scene(Temple).With(Damuel, Delia, Dirk, Egmont, Ella, Fran, Gil, Monika, Nicola, Rosina, Wilma, Zahm));
 		Add(Scene(LowerCityWorkshops).With(Deid, Ingo, Johann));
-		Add(Scene(MerchantCompanies).With(Benno, Freida, Gustav, Leon, Lutz, Mark));
+		Add(Scene(MerchantCompanies).With(Benno, Corinna, Freida, Gustav, Leon, Lutz, Mark, Otto));
 		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil, Tuuli));
 		Add(Scene(ItalianRestaurant).With(Hugo, Leise, Todd));
 		// Time: Immediately after

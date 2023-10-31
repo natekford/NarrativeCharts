@@ -158,6 +158,8 @@ Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
 // Time: "increasing number of students coming home showed just how late into the season we were"
 // no exact amount of days given, idk, skip ahead a month
 >>30,Meetings
+// Cornelius speaks, so he's back. idk, just assume everyone but angelica is back
+C=Christine,Cornelius,Hartmut
 // myne meets with sylv to talk about selling study materials
 >
 // myne announces to the playroom that she's going to sell stuff
@@ -178,6 +180,82 @@ T=Benno,Lutz,Mark
 M=Mark
 >
 M=Benno,Lutz
+// Time: The day that we were due to sell our products came in what felt like the blink of an eye.
+// no clue how many days apart
+>>3,Morning
+// merchants arrive at the temple, get into lessy, go to the castle
+T=Benno,Leon,Mark
+>
+C=Benno,Brigitte,Damuel,Ferdinand,Fran,Fritz,Leon,Mark,Myne
+>
+// Brunhilde isn't introduced by name
+C=Brunhilde,GiebeGroschel,GiebeKirnberger
+
+
+
+#Angelica and the Coming of Spring
+>
+C=Elvira
+>
+// Time: "I took the Gilberta Company back to the temple, along with Fran and Fritz."
+// "I stayed there for just one night, then immediately returned to the castle."
+T=Brigitte,Damuel,Fran,Fritz,Myne
+M=Benno,Leon,Mark
+>>Meetings
+C=Brigitte,Damuel,Myne
+// Time: "there were far more sunny days than before." who knows when
+// myne gets hit by the snowball
+// i guess around 100 days after the semester started
+// so 50-60 day timeskip?
+>>50,Meetings
+// Angelica's parents tell myne angelica failed her classes
+C=Angelica
+>
+// raise angelica's grades squadron created
+>
+
+
+
+#Upcoming Spring Prayer
+>>Lunch
+// Time: "Once the feast was over, the kids got together for one last gathering as they sadly prepared to leave."
+Groschel=Brunhilde,GiebeGroschel
+Kirnberger=GiebeKirnberger
+NQ=Christine,Hartmut,Philine
+KE=Cornelius,Elvira,Karstedt
+KO=Eckhart
+RA=Angelica
+>
+T=Brigitte,Damuel,Ferdinand,Myne
+>>Lunch
++s7
+T=Benno,Corinna,Lutz,Mark,Tuuli
+>
+-s7
+
+
+
+#Hasse's Punishment
+>>Morning
+T=Gunther
+>
+Hasse=Benno,Gunther,Mark,Marthe,Nora,Rick,Thore
+// Time: "The two-day gap was to account for a letter"
+// "I would be heading to Hasse by highbeast come fifth bell"
+>>2,Morning
+@?Ella,Monika,Rosina
+// hugo comes from the restaurant to cook since ella went to hasse
+T=Hugo
+>Lunch
+T=Eckhart,Justus
+>FifthBell
+Hasse=Ella,Monika,Rosina
+Hasse=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Justus,Myne,Zahm
+IR=Hugo
+
+
+
+#The Door of Judgment
 
 
 

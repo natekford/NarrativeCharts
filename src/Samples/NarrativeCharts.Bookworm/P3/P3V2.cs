@@ -272,8 +272,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Scene(Castle).With(Kantna));
 		SkipToCurrentDay(SixthBell);
 		// Time: "A little before sixth bell, Rihyarda received an ordonnanz from Ferdinand"
-		// he doesn't die, but he never shows up again
-		Kill(Kantna);
+		Add(Scene(NoblesQuarter).With(Kantna));
 		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
 		Add(Scene(KarstedtsHouse).With(Cornelius, Karstedt));
 		Add(Scene(KnightsOrder).With(Angelica));

@@ -5,6 +5,7 @@ using NarrativeCharts.Skia;
 using System.Diagnostics;
 
 using static NarrativeCharts.Bookworm.BookwormBell;
+using static NarrativeCharts.Bookworm.BookwormCharacters;
 using static NarrativeCharts.Bookworm.BookwormLocations;
 
 namespace NarrativeCharts.Bookworm;
@@ -41,7 +42,7 @@ public class Program
 			Books.Add(books[i]);
 		}
 
-#if true
+#if false
 		var combined = books.Combine();
 		combined.Name = "Combined";
 		Books.Add(combined);
@@ -97,6 +98,12 @@ public class Program
 			{
 				defs.CharacterColors.Add(key, value);
 			}
+
+			AddAliases(defs.CharacterAliases, new()
+			{
+				[GiebeGroschel] = new[] { nameof(GiebeGroschel) },
+				[GiebeKirnberger] = new[] { nameof(GiebeKirnberger) },
+			});
 		}
 
 		// Locations

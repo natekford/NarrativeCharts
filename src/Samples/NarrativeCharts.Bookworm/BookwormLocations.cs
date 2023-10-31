@@ -7,12 +7,14 @@ namespace NarrativeCharts.Bookworm;
 public static class BookwormLocations
 {
 	public static Location Castle { get; } = new("Ehrenfest Castle");
+	public static Location Groschel { get; } = new("Groschel");
 	public static Location Haldenzel { get; } = new("Haldenzel");
 	public static Location HarvestFestivalTowns { get; } = new("Harvest Festival Towns");
 	public static Location Hasse { get; } = new("Hasse");
 	public static Location Illgner { get; } = new("Illgner");
 	public static Location ItalianRestaurant { get; } = new("Italian Restaurant");
 	public static Location KarstedtsHouse { get; } = new("Karstedt's Estate");
+	public static Location Kirnberger { get; } = new("Kirnberger");
 	public static Location KnightsOrder { get; } = new("Knight's Order");
 	public static Location LowerCityWorkshops { get; } = new("Lower City Workshops");
 	public static Location MerchantCompanies { get; } = new("Merchant Companies");
@@ -29,6 +31,8 @@ public static class BookwormLocations
 		{
 			RoyalAcademy,
 			Haldenzel,
+			Kirnberger,
+			Groschel,
 			Castle,
 			KnightsOrder,
 			KarstedtsHouse,

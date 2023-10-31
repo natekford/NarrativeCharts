@@ -60,6 +60,8 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			SymbolHandlers.Add(_Symbols.SkipToNextDay, HandleSkipToNextDay);
 			SymbolHandlers.Add(_Symbols.AddUnits, HandleAddUnits);
 			SymbolHandlers.Add(_Symbols.Update, HandleUpdate);
+			SymbolHandlers.Add(_Symbols.Freeze, HandleFreeze);
+			SymbolHandlers.Add(_Symbols.Kill, HandleKill);
 			SymbolHandlers.Add(_Symbols.AddScene, HandleAddScene);
 			SymbolHandlers.Add(_Symbols.RemoveScene, HandleRemoveScene);
 		}
@@ -93,6 +95,22 @@ public class ScriptLoader : NarrativeChartUnits<int>
 
 	protected virtual void HandleComment(string _)
 	{
+	}
+
+	protected virtual void HandleFreeze(string input)
+	{
+		var characters = Args(input)
+			.Select(x => Definitions.CharacterAliases[x])
+			.ToArray();
+		Freeze(characters);
+	}
+
+	protected virtual void HandleKill(string input)
+	{
+		var characters = Args(input)
+			.Select(x => Definitions.CharacterAliases[x])
+			.ToArray();
+		Kill(characters);
 	}
 
 	protected virtual void HandleRemoveScene(string name)

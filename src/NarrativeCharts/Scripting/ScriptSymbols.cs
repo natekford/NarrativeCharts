@@ -10,6 +10,8 @@ public record ScriptSymbols(
 	string SkipToCurrentDay = ">",
 	string AddUnits = ">+",
 	string Update = "@",
+	string Freeze = "@?",
+	string Kill = "@!",
 	string AddScene = "+",
 	string RemoveScene = "-"
 );

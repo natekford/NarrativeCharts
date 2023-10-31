@@ -11,9 +11,11 @@ public static class BookwormCharacters
 	public static Character Bezewanst { get; } = new("Bezewanst");
 	public static Character Bindewald { get; } = new("Bindewald");
 	public static Character Brigitte { get; } = new("Brigitte");
+	public static Character Brunhilde { get; } = new("Brunhilde");
 	public static Character Charlotte { get; } = new("Charlotte");
 	public static Character Christine { get; } = new("Christine");
 	public static ImmutableDictionary<Character, Hex> Colors { get; }
+	public static Character Corinna { get; } = new("Corinna");
 	public static Character Cornelius { get; } = new("Cornelius");
 	public static Character Damuel { get; } = new("Damuel");
 	public static Character Deid { get; } = new("Deid");
@@ -30,6 +32,8 @@ public static class BookwormCharacters
 	public static Character Freida { get; } = new("Freida");
 	public static Character Frietack { get; } = new("Frietack");
 	public static Character Fritz { get; } = new("Fritz");
+	public static Character GiebeGroschel { get; } = new("Giebe Groschel");
+	public static Character GiebeKirnberger { get; } = new("Giebe Kirnberger");
 	public static Character Gil { get; } = new("Gil");
 	public static Character Gunther { get; } = new("Gunther");
 	public static Character Gustav { get; } = new("Gustav");
@@ -61,6 +65,7 @@ public static class BookwormCharacters
 	public static Character Norbert { get; } = new("Norbert");
 	public static Character Oswald { get; } = new("Oswald");
 	public static Character Ottilie { get; } = new("Ottilie");
+	public static Character Otto { get; } = new("Otto");
 	public static Character Philine { get; } = new("Philine");
 	public static Character Richt { get; } = new("Richt");
 	public static Character Rick { get; } = new("Rick");
@@ -84,9 +89,11 @@ public static class BookwormCharacters
 			[Bezewanst] = "#BC9A9F",
 			[Bindewald] = "#B1C6C1",
 			[Brigitte] = "#A54254",
+			[Brunhilde] = "#C1533A",
 			[Charlotte] = "#D3BD96",
 			[Christine] = Hex.Unknown.Value,
 			[Cornelius] = "#A6B455",
+			[Corinna] = "#F7E3C0",
 			[Damuel] = "#967B4E",
 			[Deid] = "#F3EEB6",
 			[Delia] = "#A13F34",
@@ -102,6 +109,8 @@ public static class BookwormCharacters
 			[Freida] = "#E6AFB4",
 			[Frietack] = Hex.Unknown.Value,
 			[Fritz] = "#351F19",
+			[GiebeGroschel] = Hex.Unknown.Value,
+			[GiebeKirnberger] = Hex.Unknown.Value,
 			[Gil] = "#F8EECB",
 			[Gunther] = "#37527F",
 			[Gustav] = "#B6A6A7",
@@ -133,6 +142,7 @@ public static class BookwormCharacters
 			[Norbert] = "#656567",
 			[Oswald] = "#654321",
 			[Ottilie] = "#A74D47",
+			[Otto] = "#B78155",
 			[Philine] = "#EDBC6F",
 			[Richt] = Hex.Unknown.Value,
 			[Rick] = "#667965",
