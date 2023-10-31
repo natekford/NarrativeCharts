@@ -43,8 +43,16 @@ public sealed class SKChartDrawer
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
 		var dims = CalculateDimensions(yMap);
+		// Default color type is Rgba8888 which is 32 bits, Rgb565 is 16 bits
+		// I don't use transparency in any of the drawing and the colors I use for
+		// characters don't include any alpha so there's no harm in ignoring alpha
+		// The images this program creates are big, the Bookworm sample project
+		// (P3V1, P3V2, part P3V3 x2, combined) use the following memory + time:
+		// 1600mb when Rgba8888, 800mb when Rgb565
+		// 12.5s when Rgba8888, 9.5s when Rgb565
+		var info = new SKImageInfo(dims.Width, dims.Height, SKColorType.Rgb565);
 		var context = new SKContext(
-			surface: SKSurface.Create(new SKImageInfo(dims.Width, dims.Height)),
+			surface: SKSurface.Create(info),
 			yMap: yMap,
 			padding: ImagePadding,
 			lineWidth: LineWidth,
