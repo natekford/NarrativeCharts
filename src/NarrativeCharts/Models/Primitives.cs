@@ -6,4 +6,3 @@ public readonly record struct Hex(string Value)
 {
 	public static Hex Unknown { get; } = new("#000000");
 };
-public readonly record struct Point(int Hour, Location Location);

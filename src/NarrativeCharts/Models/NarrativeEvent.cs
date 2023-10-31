@@ -1,6 +1,6 @@
 ﻿namespace NarrativeCharts.Models;
 
 public sealed record NarrativeEvent(
-	Point Point,
+	int Hour,
 	string Name
 );

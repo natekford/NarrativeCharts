@@ -45,38 +45,38 @@ public sealed class P3V3 : BookwormNarrativeChart
 		// starts with myne returning from the castle,
 		// but already put that into the end of p3v2
 		SkipToNextDay(Lunch);
-		Add(Scene(Temple).With(Fritz, Lutz));
+		Add(Temple, Fritz, Lutz);
 		Jump();
-		Add(Scene(MerchantCompanies).With(Lutz));
+		Add(MerchantCompanies, Lutz);
 
 		// fran speaks with ferdi
-		Add(Scene(Temple).With(Ferdinand, Fran));
+		Add(Temple, Ferdinand, Fran);
 	}
 
 	private void P3V3C02()
 	{
 		// Time: "once he had finished today’s before-bed report"
 		SkipToCurrentDay(Bed);
-		Add(Scene(Temple).With(Gil, Myne));
+		Add(Temple, Gil, Myne);
 
 		SkipToNextDay(Lunch);
-		var s1 = AddR(Scene(Temple).With(Lutz));
+		var s1 = AddR(Temple, Lutz);
 		Jump();
 		Return(s1);
 
 		SkipToNextDay(Lunch);
-		Add(Scene(Temple).With(Benno, Ingo, Lutz));
+		Add(Temple, Benno, Ingo, Lutz);
 	}
 
 	private void P3V3C03()
 	{
 		Jump();
-		Add(Scene(MerchantCompanies).With(Benno, Lutz));
-		Add(Scene(LowerCityWorkshops).With(Ingo));
+		Add(MerchantCompanies, Benno, Lutz);
+		Add(LowerCityWorkshops, Ingo);
 
 		// Time: "Ingo returned to my chambers a few days later"
 		SkipToDaysAhead(3, Lunch);
-		var s1 = AddR(Scene(Temple).With(Ingo, Johann, Zack));
+		var s1 = AddR(Temple, Ingo, Johann, Zack);
 		Jump();
 		Return(s1);
 
@@ -86,7 +86,7 @@ public sealed class P3V3 : BookwormNarrativeChart
 		// Time: "they once again arrived on the scheduled day"
 		// no clue when
 		SkipToDaysAhead(2, Lunch);
-		var s2 = AddR(Scene(Temple).With(Benno, Ingo, Johann, Lutz, Zack));
+		var s2 = AddR(Temple, Benno, Ingo, Johann, Lutz, Zack);
 		Jump();
 		Return(s2);
 	}
@@ -95,28 +95,28 @@ public sealed class P3V3 : BookwormNarrativeChart
 	{
 		// Time: "I would be going to my hidden room after fifth bell to receive it"
 		SkipToDaysAhead(2, FifthBell);
-		var s1 = AddR(Scene(Temple).With(Effa, Lutz, Tuuli));
+		var s1 = AddR(Temple, Effa, Lutz, Tuuli);
 		Jump();
 		Return(s1);
 
 		SkipToDaysAhead(3, Morning);
 		// ella leaves the castle in The Dedication Ritual (Take Two)
-		Add(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Ella, Ferdinand, Myne, Rosina));
+		Add(Castle, Angelica, Brigitte, Cornelius, Damuel, Ella, Ferdinand, Myne, Rosina);
 		Jump();
-		Add(Scene(NoblesQuarter).With(Ferdinand));
+		Add(NoblesQuarter, Ferdinand);
 
 		// Time: "Three days, you mean"
 		SkipToDaysAhead(3, Morning);
-		Add(Scene(Castle).With(Ferdinand));
+		Add(Castle, Ferdinand);
 	}
 
 	private void P3V3C05()
 	{
-		Add(Scene(Castle).With(Eckhart, Elvira, Justus, Karstedt));
-		Add(Scene(Castle).With(Philine));
+		Add(Castle, Eckhart, Elvira, Justus, Karstedt);
+		Add(Castle, Philine);
 		// Time: "we’ve moved straight onto lunch"
 		SkipToCurrentDay(Lunch);
-		Add(Scene(Castle).With(Christine));
+		Add(Castle, Christine);
 		Jump();
 		// not gonna bother including all of the commuting
 	}
@@ -125,14 +125,14 @@ public sealed class P3V3 : BookwormNarrativeChart
 	{
 		// Time: "Rihyarda said after breakfast as she explained"
 		SkipToNextDay(Morning);
-		Add(Scene(Castle).With(Hartmut));
+		Add(Castle, Hartmut);
 		// myne passes out after thinking she can't become a librarian
 		Jump();
 
 		// Time: "The day after all the students had left for the Academy—Angelica and Cornelius included"
 		// idr what the exact schedule is, i think it's 1 year of students per day?
 		SkipToDaysAhead(4, Morning);
-		Add(Scene(RoyalAcademy).With(Angelica, Christine, Cornelius, Hartmut));
+		Add(RoyalAcademy, Angelica, Christine, Cornelius, Hartmut);
 	}
 
 	private void P3V3C07()
@@ -141,19 +141,19 @@ public sealed class P3V3 : BookwormNarrativeChart
 		SkipToDaysAhead(3, Morning);
 		// myne looks through meeting requests
 		// sets up meetings with guards' families
-		Add(Scene(Castle).With(Myne, Rihyarda));
+		Add(Castle, Myne, Rihyarda);
 
 		// Time: "A few days later, I was given permission"
 		SkipToDaysAhead(3, Meetings);
-		Add(Scene(Castle).With(Henrik));
+		Add(Castle, Henrik);
 		Jump();
-		Add(Scene(NoblesQuarter).With(Henrik));
+		Add(NoblesQuarter, Henrik);
 
 		// Time: "Two days after my meeting with Henrik"
 		SkipToDaysAhead(2, Meetings);
-		Add(Scene(Castle).With(Helfried));
+		Add(Castle, Helfried);
 		Jump();
-		Add(Scene(NoblesQuarter).With(Helfried));
+		Add(NoblesQuarter, Helfried);
 
 		// Time: "Next arrived the day I was scheduled to meet Angelica’s family"
 		SkipToDaysAhead(2, Meetings);
@@ -173,7 +173,7 @@ public sealed class P3V3 : BookwormNarrativeChart
 
 		// Time: "The Dedication Ritual begins three days from now"
 		SkipToDaysAhead(3, Morning);
-		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
+		Add(Temple, Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina);
 
 		// Time: "On the first day of the Dedication Ritual"
 		SkipToNextDay(Morning);
@@ -189,7 +189,7 @@ public sealed class P3V3 : BookwormNarrativeChart
 		// myne checks on the orphanage
 		// myne/ferdi informed lord of winter appeared
 		// temple people go to castle first
-		Add(Scene(Castle).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
+		Add(Castle, Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina);
 		Jump();
 	}
 
@@ -197,7 +197,7 @@ public sealed class P3V3 : BookwormNarrativeChart
 	{
 		// not explictly stated anywhere that this LOW appeard in Haldenzel
 		// eckhart probably also goes, but that's not explicitly stated
-		var s1 = AddR(Scene(Haldenzel).With(Brigitte, Damuel, Ferdinand, Karstedt, Myne));
+		var s1 = AddR(Haldenzel, Brigitte, Damuel, Ferdinand, Karstedt, Myne);
 		Jump(2);
 		Jump();
 		Return(s1);
@@ -223,14 +223,14 @@ public sealed class P3V3 : BookwormNarrativeChart
 		// ... he took a letter to the Gilberta Company on the next sunny day.
 		// ... [Benno] would be ready to meet with me that same afternoon."
 		SkipToNextDay(Lunch);
-		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina));
+		Add(Temple, Brigitte, Damuel, Ella, Ferdinand, Myne, Rosina);
 
 		SkipToDaysAhead(2, Lunch);
-		Add(Scene(Temple).With(Benno, Lutz, Mark));
+		Add(Temple, Benno, Lutz, Mark);
 		Jump();
 		// Time: "Mark left partway through to begin preparations early"
-		Add(Scene(MerchantCompanies).With(Mark));
+		Add(MerchantCompanies, Mark);
 		Jump();
-		Add(Scene(MerchantCompanies).With(Benno, Lutz));
+		Add(MerchantCompanies, Benno, Lutz);
 	}
 }

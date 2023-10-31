@@ -1,6 +1,7 @@
 ﻿namespace NarrativeCharts.Models;
 
 public sealed record NarrativeScene(
-	Point Point,
+	int Hour,
+	Location Location,
 	IReadOnlyList<Character> Characters
 );

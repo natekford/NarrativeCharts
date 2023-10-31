@@ -80,11 +80,13 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		var canvas = CreateCanvas(chart, yMap);
 		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key.Value))
 		{
-			var stationaryStart = points.Values[0].Point.Hour;
+			var stationaryStart = points.Values[0].Hour;
 			for (var p = 1; p < points.Count; ++p)
 			{
-				var (prevX, prevY) = points.Values[p - 1].Point;
-				var (currX, currY) = points.Values[p].Point;
+				var prev = points.Values[p - 1];
+				var curr = points.Values[p];
+				var (prevX, prevY) = (prev.Hour, prev.Location);
+				var (currX, currY) = (curr.Hour, curr.Location);
 				var hasMovement = prevY != currY;
 				var isFinal = p == points.Count - 1;
 
@@ -139,8 +141,8 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		{
 			for (var i = 0; i < points.Count - 1; ++i)
 			{
-				var curr = points.Values[i].Point;
-				var next = points.Values[i + 1].Point;
+				var curr = points.Values[i];
+				var next = points.Values[i + 1];
 
 				var xDiff = next.Hour - curr.Hour;
 				timeSpent
@@ -150,12 +152,12 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 			if (points.Count > 0)
 			{
-				xMax = Math.Max(xMax, points.Values[^1].Point.Hour);
-				xMin = Math.Min(xMin, points.Values[0].Point.Hour);
+				xMax = Math.Max(xMax, points.Values[^1].Hour);
+				xMin = Math.Min(xMin, points.Values[0].Hour);
 
 				// prevent issues with ending on a movement segment
 				timeSpent
-					.GetOrAdd(points.Values[^1].Point.Location, _ => new())
+					.GetOrAdd(points.Values[^1].Location, _ => new())
 					.TryAdd(character, 0);
 			}
 		}

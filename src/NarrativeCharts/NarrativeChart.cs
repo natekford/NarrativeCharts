@@ -34,7 +34,7 @@ public abstract class NarrativeChart : NarrativeChartData
 		{
 			for (var i = points.Count - 1; i >= 0; --i)
 			{
-				if (points.Values[i].Point.Location == Frozen)
+				if (points.Values[i].Location == Frozen)
 				{
 					points.RemoveAt(i);
 				}
@@ -43,25 +43,24 @@ public abstract class NarrativeChart : NarrativeChartData
 		this.Simplify();
 	}
 
-	protected void Add(NarrativeScene scene)
-		=> this.AddScene(scene);
+	protected void Add(Location location, params Character[] characters)
+		=> this.AddScene(new(X, location, characters));
 
-	protected Dictionary<Character, Location> AddR(NarrativeScene scene)
+	protected Dictionary<Character, Location> AddR(Location location, params Character[] characters)
 	{
-		var dict = scene.Characters
-			.ToDictionary(x => x, x => Points[x].Values[^1].Point.Location);
-		Add(scene);
+		var dict = characters.ToDictionary(x => x, x => Points[x].Values[^1].Location);
+		Add(location, characters);
 		return dict;
 	}
 
 	protected void Event(string name)
 	{
-		this.AddEvent(new(new(X, new()), name));
+		this.AddEvent(new(X, name));
 		Update();
 	}
 
 	protected void Freeze(params Character[] characters)
-		=> Add(Scene(Frozen).With(characters));
+		=> Add(Frozen, characters);
 
 	protected void Kill(params Character[] characters)
 	{
@@ -69,8 +68,8 @@ public abstract class NarrativeChart : NarrativeChartData
 		foreach (var character in characters)
 		{
 			var points = Points[character];
-			var point = points.Values[^1];
-			points[point.Point.Hour] = point with
+			var lastPoint = points.Values[^1];
+			points[lastPoint.Hour] = lastPoint with
 			{
 				IsEnd = true,
 			};
@@ -84,15 +83,13 @@ public abstract class NarrativeChart : NarrativeChartData
 		foreach (var (character, y) in scene)
 		{
 			this.AddPoint(new(
-				Point: new(X, y),
+				Hour: X,
+				Location: y,
 				Character: character,
 				IsEnd: false
 			));
 		}
 	}
-
-	protected Point Scene(Location location)
-		=> new(X, location);
 
 	protected void Update()
 		=> this.UpdatePoints(X);

@@ -123,11 +123,11 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	{
 		if (NextSceneName is null)
 		{
-			Add(Scene(location).With(characters));
+			Add(location, characters);
 		}
 		else
 		{
-			var scene = AddR(Scene(location).With(characters));
+			var scene = AddR(location, characters);
 			StoredScenes.Add(NextSceneName, scene);
 			NextSceneName = null;
 		}

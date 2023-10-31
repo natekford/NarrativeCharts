@@ -19,7 +19,7 @@ public static class ChartUtils
 
 	public static T AddEvent<T>(this T chart, NarrativeEvent @event) where T : NarrativeChartData
 	{
-		chart.Events.Add(@event.Point.Hour, @event);
+		chart.Events.Add(@event.Hour, @event);
 		return chart;
 	}
 
@@ -29,7 +29,7 @@ public static class ChartUtils
 		{
 			chart.Points[point.Character] = points = new();
 		}
-		points[point.Point.Hour] = point;
+		points[point.Hour] = point;
 		return chart;
 	}
 
@@ -37,7 +37,12 @@ public static class ChartUtils
 	{
 		foreach (var character in scene.Characters)
 		{
-			chart.AddPoint(new(Point: scene.Point, Character: character, IsEnd: false));
+			chart.AddPoint(new(
+				Hour: scene.Hour,
+				Location: scene.Location,
+				Character: character,
+				IsEnd: false
+			));
 		}
 		return chart;
 	}
@@ -85,10 +90,7 @@ public static class ChartUtils
 
 			chart.AddPoint(lastPoint with
 			{
-				Point = lastPoint.Point with
-				{
-					Hour = hour
-				},
+				Hour = hour,
 			});
 		}
 		return chart;
@@ -102,12 +104,12 @@ public static class ChartUtils
 			// They will always be valid
 			for (var i = points.Count - 2; i > 0; --i)
 			{
-				var prev = points.Values[i - 1].Point.Location;
-				var curr = points.Values[i].Point.Location;
-				var next = points.Values[i + 1].Point.Location;
+				var prev = points.Values[i - 1].Location;
+				var curr = points.Values[i].Location;
+				var next = points.Values[i + 1].Location;
 				if (prev == curr && curr == next)
 				{
-					points.Remove(points.Values[i].Point.Hour);
+					points.Remove(points.Values[i].Hour);
 				}
 			}
 		}
@@ -126,22 +128,16 @@ public static class ChartUtils
 		{
 			var lastPoint = chart.Points[character].Values[^1];
 			// lastPoint already reaches up to where we're trying to update
-			if (lastPoint.IsEnd || lastPoint.Point.Hour >= hour)
+			if (lastPoint.IsEnd || lastPoint.Hour >= hour)
 			{
 				continue;
 			}
 
 			chart.Points[character].Add(hour, lastPoint with
 			{
-				Point = lastPoint.Point with
-				{
-					Hour = hour
-				},
+				Hour = hour
 			});
 		}
 		return chart;
 	}
-
-	public static NarrativeScene With(this Point point, params Character[] characters)
-		=> new(point, characters);
 }

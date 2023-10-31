@@ -22,7 +22,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 			// Ingo and Deid probably come back from Hasse since the priests are
 			// able to move it, and Lutz/Myne never mention them being at the
 			// monastery when they go there
-			Add(Scene(LowerCityWorkshops).With(Deid, Ingo));
+			Add(LowerCityWorkshops, Deid, Ingo);
 		}
 		Event("Hasse's Monastery");
 		P3V2C03();
@@ -65,15 +65,15 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		// Time: After the coming of age ceremony in summer, no clue about what exact day or time of day aside from not night
 		SkipToDaysAhead(2, Lunch);
-		Add(Scene(MynesHouse).With(Effa, Tuuli));
+		Add(MynesHouse, Effa, Tuuli);
 		// Time: "That night, while Gunther was drinking"
 		SkipToCurrentDay(Bed);
-		Add(Scene(MynesHouse).With(Effa, Gunther, Kamil));
+		Add(MynesHouse, Effa, Gunther, Kamil);
 
 		// Time: "It’s due in three days"
 		SkipToDaysAhead(3, Lunch);
-		Add(Scene(Temple).With(Damuel, Fran, Myne));
-		var s1 = AddR(Scene(Temple).With(Benno, Effa, Lutz, Tuuli));
+		Add(Temple, Damuel, Fran, Myne);
+		var s1 = AddR(Temple, Benno, Effa, Lutz, Tuuli);
 		Jump();
 		Return(s1);
 	}
@@ -83,18 +83,18 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "There will be a meeting at third bell today." on the day after the autumn coming of age ceremony
 		SkipToDaysAhead(2, Meetings);
 		// fran explains the harvest festival to myne then they go to a meeting with the blue priests
-		Add(Scene(Temple).With(Egmont, Ferdinand, Fran, Myne));
+		Add(Temple, Egmont, Ferdinand, Fran, Myne);
 		// Time: "Not long after lunch"
 		Jump();
-		Add(Scene(Temple).With(Ferdinand, Myne, Zahm));
+		Add(Temple, Ferdinand, Myne, Zahm);
 		Jump();
 		// lutz and myne talk about gunther being assigned as a guard knight for the hasse carriages
-		Add(Scene(Temple).With(Damuel, Gil, Lutz, Myne));
+		Add(Temple, Damuel, Gil, Lutz, Myne);
 		Jump();
 		// lutz tells gunther that he will be able to see myne
-		Add(Scene(MynesHouse).With(Effa, Gunther, Lutz, Tuuli));
+		Add(MynesHouse, Effa, Gunther, Lutz, Tuuli);
 		Jump();
-		Add(Scene(MerchantCompanies).With(Lutz));
+		Add(MerchantCompanies, Lutz);
 	}
 
 	private void P3V2C03()
@@ -102,29 +102,29 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: probably the morning? no idea how many days later tho
 		SkipToDaysAhead(2, Lunch);
 		// myne sees gunther, the gray priests, and gilberta company off
-		Add(Scene(Temple).With(Benno, Gunther, Lutz, Mark, Myne));
+		Add(Temple, Benno, Gunther, Lutz, Mark, Myne);
 		// Time: the story says it's half a day or something to get to hasse via carriage?
 		Jump();
-		Add(Scene(Hasse).With(Benno, Gunther, Lutz, Mark));
+		Add(Hasse, Benno, Gunther, Lutz, Mark);
 
 		// Time: "I would be heading for Hasse three days from now" said the day that the grays depart
 		SkipToDaysAhead(2, Morning);
-		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
+		Add(Temple, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
-		var s1 = AddR(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Myne));
+		var s1 = AddR(Hasse, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
 		Return(s1);
 
 		// Time: unknown, some time before myne comes back to hasse
 		SkipToDaysAhead(2, Meetings);
-		Add(Scene(MerchantCompanies).With(Benno, Mark, Lutz));
-		Add(Scene(MynesHouse).With(Gunther));
+		Add(MerchantCompanies, Benno, Mark, Lutz);
+		Add(MynesHouse, Gunther);
 
 		// Time: "The three days passed before I knew it"
 		SkipToNextDay(Morning);
-		Add(Scene(Hasse).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
+		Add(Hasse, Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola);
 		Jump();
-		Add(Scene(Hasse).With(HasseMayor, Marthe, Nora, Rick, Thore));
+		Add(Hasse, HasseMayor, Marthe, Nora, Rick, Thore);
 	}
 
 	private void P3V2C04()
@@ -139,10 +139,10 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		// fran/ferdiand tell myne to stop being soft in the monastery's secret room
 		Jump();
-		Add(Scene(Temple).With(Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola));
+		Add(Temple, Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola);
 
 		// "Ferdinand summoned Benno the second we got back to the temple;"
-		var s1 = AddR(Scene(Temple).With(Benno));
+		var s1 = AddR(Temple, Benno);
 		Jump();
 		Return(s1);
 	}
@@ -154,55 +154,55 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// so the attack on the monastery either occurs 1 day after or 2
 		SkipToNextDay(Morning);
 		// wilma/myne talk about winter prep
-		Add(Scene(Temple).With(Myne, Wilma));
+		Add(Temple, Myne, Wilma);
 		Jump();
 		// hasse monastery attacked
-		Add(Scene(Temple).With(Ferdinand, Myne));
+		Add(Temple, Ferdinand, Myne);
 
 		SkipToNextDay(Morning);
 		// hasse mayor send a board
-		Add(Scene(Temple).With(Monika, Myne));
+		Add(Temple, Monika, Myne);
 		// myne shows it to ferdi
 		Jump();
-		Add(Scene(Temple).With(Ferdinand, Fran, Myne));
+		Add(Temple, Ferdinand, Fran, Myne);
 	}
 
 	private void P3V2C07()
 	{
 		// Time: "before I returned to the monastery the day after tomorrow"
 		SkipToNextDay(Morning);
-		Add(Scene(Temple).With(Ferdinand, Myne));
+		Add(Temple, Ferdinand, Myne);
 
 		// Time: "time to go to the castle the next day, my exhaustion was weighing me down just as much as the fear was."
 		SkipToNextDay(Morning);
-		Add(Scene(Temple).With(Gil, Myne));
-		Add(Scene(Temple).With(Ferdinand, Myne));
+		Add(Temple, Gil, Myne);
+		Add(Temple, Ferdinand, Myne);
 		Jump();
-		var s1 = AddR(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Myne));
+		var s1 = AddR(Castle, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
-		Add(Scene(Castle).With(Myne, Rihyarda));
+		Add(Castle, Myne, Rihyarda);
 		// Time: "a meeting had been arranged for teatime at fifth bell."
 		SkipToCurrentDay(FifthBell);
 		// wilfried "it's not fair" myne tells him to quit whining
-		Add(Scene(Castle).With(Myne, Wilfried));
+		Add(Castle, Myne, Wilfried);
 		// myne shows sylvester lessy and gets sylvester to give hugo back
-		Add(Scene(Castle).With(Ferdinand, Myne, Sylvester));
+		Add(Castle, Ferdinand, Myne, Sylvester);
 		Jump();
 		Return(s1);
-		Add(Scene(ItalianRestaurant).With(Hugo));
+		Add(ItalianRestaurant, Hugo);
 	}
 
 	private void P3V2C08()
 	{
 		// Time: "The day I could visit Hasse’s orphanage had finally arrived."
 		SkipToNextDay(Meetings);
-		var s1 = AddR(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Fran, Gil, Myne));
+		var s1 = AddR(Hasse, Brigitte, Damuel, Ferdinand, Fran, Gil, Myne);
 		Jump();
 		Return(s1);
 
 		// Time: "The day after visiting the orphans,"
 		SkipToNextDay(Lunch);
-		var s2 = AddR(Scene(Temple).With(Benno, Lutz, Mark));
+		var s2 = AddR(Temple, Benno, Lutz, Mark);
 		Jump();
 		Return(s2);
 
@@ -210,21 +210,21 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// "spent the days leading up to the opening of the Italian restaurant relaxing,"
 		// "I started lunch early on the day of the Italian restaurant opening"
 		SkipToNextDay(Lunch);
-		var s3 = AddR(Scene(ItalianRestaurant).With(Benno, Brigitte, Damuel, Fran, Freida, Gustav, Myne));
+		var s3 = AddR(ItalianRestaurant, Benno, Brigitte, Damuel, Fran, Freida, Gustav, Myne);
 		Jump();
 		Return(s3);
 
 		// Time: "Lutz reported with a grin the next day."
 		SkipToNextDay(Lunch);
-		Add(Scene(Temple).With(Benno, Lutz, Mark));
+		Add(Temple, Benno, Lutz, Mark);
 	}
 
 	private void P3V2C09()
 	{
 		Jump();
-		Add(Scene(MerchantCompanies).With(Benno, Lutz, Mark));
+		Add(MerchantCompanies, Benno, Lutz, Mark);
 		// myne tells ferdi about the plan she came up with benno
-		Add(Scene(Temple).With(Ferdinand, Myne));
+		Add(Temple, Ferdinand, Myne);
 		Jump();
 	}
 
@@ -234,20 +234,20 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// so several days after last chapter?
 		SkipToDaysAhead(3, Meetings);
 		// myne reports to sylvester and swaps places with wilfried for a day
-		Add(Scene(Castle).With(Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Karstedt, Myne));
+		Add(Castle, Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Karstedt, Myne);
 		Jump();
 		// myne has lunch with wilf and talks about what to do
 		// brig/damuel go with wilf (from wilf's SS)
 		// "Lamprecht and Damuel will accompany you as guards"
 		// "Rozemyne’s female knight who had entered with Ferdinand saluted and stepped aside."
-		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried));
-		Add(Scene(Castle).With(Moritz, Oswald));
+		Add(Temple, Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried);
+		Add(Castle, Moritz, Oswald);
 		// Time: "Fifth bell rang and there was still no sign of Rihyarda."
 		SkipToCurrentDay(FifthBell);
 		// Time: "“Milady, it’s dinner time!” Rihyarda declared"
 		SkipToCurrentDay(Dinner);
 		// ferdinand tells sylvester to disinherit wilf
-		var s1 = AddR(Scene(Castle).With(Ferdinand));
+		var s1 = AddR(Castle, Ferdinand);
 		Jump();
 		Return(s1);
 
@@ -255,46 +255,46 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// myne shows people in the castle karuta/picture books
 		// Time: "Shortly after fourth bell, Wilfried and Lamprecht entered the room"
 		SkipToCurrentDay(FourthBell);
-		Add(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried));
+		Add(Castle, Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried);
 	}
 
 	private void P3V2C11()
 	{
-		Add(Scene(Castle).With(Eckhart, Justus));
+		Add(Castle, Eckhart, Justus);
 		Jump();
-		Add(Scene(KnightsOrder).With(Eckhart));
+		Add(KnightsOrder, Eckhart);
 		// "I’ve been doing scholar work in the castle ever since Lord Ferdinand entered the temple"
-		Add(Scene(Castle).With(Justus));
+		Add(Castle, Justus);
 	}
 
 	private void P3V2C12()
 	{
-		Add(Scene(Castle).With(Kantna));
+		Add(Castle, Kantna);
 		SkipToCurrentDay(SixthBell);
 		// Time: "A little before sixth bell, Rihyarda received an ordonnanz from Ferdinand"
-		Add(Scene(NoblesQuarter).With(Kantna));
-		Add(Scene(Temple).With(Brigitte, Damuel, Ferdinand, Myne));
-		Add(Scene(KarstedtsHouse).With(Cornelius, Karstedt));
-		Add(Scene(KnightsOrder).With(Angelica));
+		Add(NoblesQuarter, Kantna);
+		Add(Temple, Brigitte, Damuel, Ferdinand, Myne);
+		Add(KarstedtsHouse, Cornelius, Karstedt);
+		Add(KnightsOrder, Angelica);
 
 		// Time: "The next day was a normal one; I practiced harspiel as I always did, then went to help Ferdinand."
 		SkipToNextDay(Meetings);
-		Add(Scene(Temple).With(Ferdinand, Myne));
+		Add(Temple, Ferdinand, Myne);
 	}
 
 	private void P3V2C13()
 	{
 		Jump();
 		// myne updates gilberta company on hasse
-		var s1 = AddR(Scene(Temple).With(Benno, Lutz, Mark));
+		var s1 = AddR(Temple, Benno, Lutz, Mark);
 		Jump();
 		Return(s1);
 
 		// Time: "Two days had passed since Mark was given permission to spread rumors."
 		// "Wine at noon?"
 		SkipToDaysAhead(2, Lunch);
-		var s2 = AddR(Scene(Hasse).With(Brigitte, Damuel, Ferdinand, Fran, Myne));
-		Add(Scene(Hasse).With(Richt));
+		var s2 = AddR(Hasse, Brigitte, Damuel, Ferdinand, Fran, Myne);
+		Add(Hasse, Richt);
 		Jump();
 		Return(s2);
 	}
@@ -304,13 +304,13 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: unknown, "On the morning of the Harvest Festival"
 		SkipToDaysAhead(5, Morning);
 		// via highbeast
-		Add(Scene(Hasse).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
+		Add(Hasse, Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne);
 		// via carriage
 		Freeze(Ella, Monika, Nicola, Rosina);
 		Freeze(Benno, Gil, Gunther, Lutz, Mark);
 		Jump(2);
-		Add(Scene(Hasse).With(Ella, Monika, Nicola, Rosina));
-		Add(Scene(Hasse).With(Benno, Gil, Gunther, Lutz, Mark));
+		Add(Hasse, Ella, Monika, Nicola, Rosina);
+		Add(Hasse, Benno, Gil, Gunther, Lutz, Mark);
 		// Time: "Fifth bell rang just a second ago"
 		SkipToCurrentDay(FifthBell);
 		// myne discusses hasse with gil/lutz
@@ -323,18 +323,18 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToNextDay(Morning);
 		// monastery being closed for the winter
 		Jump(2);
-		Add(Scene(Temple).With(Gil, Marthe, Nora, Rick, Thore));
-		Add(Scene(MynesHouse).With(Gunther));
-		Add(Scene(MerchantCompanies).With(Lutz));
+		Add(Temple, Gil, Marthe, Nora, Rick, Thore);
+		Add(MynesHouse, Gunther);
+		Add(MerchantCompanies, Lutz);
 		// via highbeast
-		Add(Scene(HarvestFestivalTowns).With(Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne));
+		Add(HarvestFestivalTowns, Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne);
 		// via carriage
 		Freeze(Ella, Monika, Nicola, Rosina);
 		Jump();
 		// benno/mark spread rumours before leaving
-		Add(Scene(MerchantCompanies).With(Benno, Mark));
+		Add(MerchantCompanies, Benno, Mark);
 		// via carriage
-		Add(Scene(HarvestFestivalTowns).With(Ella, Monika, Nicola, Rosina));
+		Add(HarvestFestivalTowns, Ella, Monika, Nicola, Rosina);
 
 		// Time: "Justus began his work as a tax official first thing in the morning."
 		SkipToNextDay(Morning);
@@ -355,38 +355,38 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToDaysAhead(3, Morning);
 		// Time: "would be going to look for a ruelle tree after lunch"
 		SkipToCurrentDay(Lunch);
-		var s1 = AddR(Scene(RuelleTree).With(Damuel, Eckhart, Justus));
+		var s1 = AddR(RuelleTree, Damuel, Eckhart, Justus);
 		Jump();
 		Return(s1);
 		SkipToCurrentDay(Bed);
 		// gathering ruelles, myne's gets eaten
-		Add(Scene(RuelleTree).With(Brigitte, Damuel, Eckhart, Justus, Myne));
+		Add(RuelleTree, Brigitte, Damuel, Eckhart, Justus, Myne);
 	}
 
 	private void P3V2C17()
 	{
 		Jump();
 		// ferdi is contacted, he tells myne to contain the goltze
-		Add(Scene(RuelleTree).With(Ferdinand));
+		Add(RuelleTree, Ferdinand);
 		Jump();
-		Add(Scene(HarvestFestivalTowns).With(Ferdinand));
-		Add(Scene(HarvestFestivalTowns).With(Brigitte, Damuel, Eckhart, Justus, Myne));
+		Add(HarvestFestivalTowns, Ferdinand);
+		Add(HarvestFestivalTowns, Brigitte, Damuel, Eckhart, Justus, Myne);
 		// Time: "I ended up bedridden"
 		SkipToDaysAhead(2, Meetings);
 	}
 
 	private void P3V2C18()
 	{
-		Add(Scene(Temple).With(Brigitte, Damuel, Ella, Ferdinand, Fran, Monika, Myne, Nicola, Rosina));
-		Add(Scene(KnightsOrder).With(Eckhart));
-		Add(Scene(Castle).With(Justus));
+		Add(Temple, Brigitte, Damuel, Ella, Ferdinand, Fran, Monika, Myne, Nicola, Rosina);
+		Add(KnightsOrder, Eckhart);
+		Add(Castle, Justus);
 
 		// Time: "And so began a series of meetings with blue priests that continued day after day."
 		SkipToDaysAhead(2, Meetings);
-		Add(Scene(Temple).With(Kampfer, Frietack));
+		Add(Temple, Kampfer, Frietack);
 
 		SkipToDaysAhead(2, Meetings);
-		var s1 = AddR(Scene(Castle).With(Brigitte, Damuel, Ferdinand, Myne));
+		var s1 = AddR(Castle, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
 		Return(s1);
 	}
@@ -395,17 +395,17 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		// Time: "Brigitte thanked her for her concern, then got into bed."
 		SkipToCurrentDay(Bed);
-		Add(Scene(KnightsOrder).With(Brigitte, Nadine));
+		Add(KnightsOrder, Brigitte, Nadine);
 
 		// karstedt talks to her about stuff, but adding him in makes the graph
 		// look very messy at that point
 		SkipToNextDay(Tea);
-		Add(Scene(KarstedtsHouse).With(Brigitte, Nadine));
+		Add(KarstedtsHouse, Brigitte, Nadine);
 		Jump();
-		Add(Scene(KnightsOrder).With(Nadine));
+		Add(KnightsOrder, Nadine);
 		// brigitte probably goes back to the knights order but
 		// i haven't been bothering with any commuting points
-		Add(Scene(Temple).With(Brigitte));
+		Add(Temple, Brigitte);
 
 		// Time: "That night, Brigitte sent an ordonnanz to her brother, Giebe Illgner."
 		Jump();
