@@ -133,7 +133,7 @@ public static class ChartUtils
 				continue;
 			}
 
-			chart.Points[character].Add(hour, lastPoint with
+			chart.AddPoint(lastPoint with
 			{
 				Hour = hour
 			});

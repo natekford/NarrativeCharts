@@ -73,7 +73,27 @@ public class Program
 	private static Task Main()
 		=> new Program(Directory.GetCurrentDirectory()).RunAsync();
 
-	private ScriptDefinitions CreateBookwormScriptDefinitions()
+	private async Task DrawChartsAsync()
+	{
+		var sw = Stopwatch.StartNew();
+		var tasks = new List<Task>();
+		var drawer = new SKChartDrawer();
+		foreach (var book in Books)
+		{
+			var outputPath = Path.Combine(ChartsDir, $"{book.Name}.png");
+			tasks.Add(drawer.SaveChartAsync(book, outputPath));
+
+			var points = book.Points.Sum(x => x.Value.Count);
+			var myne = book.Points[BookwormCharacters.Myne].Keys;
+			var days = (myne[^1] - myne[0]) / Time.HoursPerDay;
+			Console.WriteLine($"{book.Name}: Points={points}, Days={days}");
+		}
+
+		await Task.WhenAll(tasks).ConfigureAwait(false);
+		Console.WriteLine($"{Books.Count} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
+	}
+
+	private async Task<ScriptDefinitions> GetScriptDefinitionsAsync()
 	{
 		static void AddAliases<TKey, TValue>(
 			Dictionary<TKey, TValue> dest,
@@ -145,33 +165,7 @@ public class Program
 			});
 		}
 
-		return defs;
-	}
-
-	private async Task DrawChartsAsync()
-	{
-		var sw = Stopwatch.StartNew();
-		var tasks = new List<Task>();
-		var drawer = new SKChartDrawer();
-		foreach (var book in Books)
-		{
-			var outputPath = Path.Combine(ChartsDir, $"{book.Name}.png");
-			tasks.Add(drawer.SaveChartAsync(book, outputPath));
-
-			var points = book.Points.Sum(x => x.Value.Count);
-			var myne = book.Points[BookwormCharacters.Myne].Keys;
-			var days = (myne[^1] - myne[0]) / Time.HoursPerDay;
-			Console.WriteLine($"{book.Name}: Points={points}, Days={days}");
-		}
-
-		await Task.WhenAll(tasks).ConfigureAwait(false);
-		Console.WriteLine($"{Books.Count} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
-	}
-
-	private async Task<ScriptDefinitions> GetScriptDefinitionsAsync()
-	{
 		var defsPath = Path.Combine(ScriptsDir, "ScriptDefinitions.json");
-		var defs = CreateBookwormScriptDefinitions();
 		await defs.SaveAsync(defsPath).ConfigureAwait(false);
 		return await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
 	}

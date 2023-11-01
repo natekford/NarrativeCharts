@@ -67,9 +67,8 @@ public abstract class NarrativeChart : NarrativeChartData
 		Update();
 		foreach (var character in characters)
 		{
-			var points = Points[character];
-			var lastPoint = points.Values[^1];
-			points[lastPoint.Hour] = lastPoint with
+			var lastPoint = Points[character].Values[^1];
+			Points[character][lastPoint.Hour] = lastPoint with
 			{
 				IsEnd = true,
 			};
