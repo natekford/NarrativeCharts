@@ -1,5 +1,6 @@
 ﻿using NarrativeCharts.Models;
 
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace NarrativeCharts.Scripting;
@@ -13,7 +14,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	private ScriptSymbols? _Symbols;
 
 	public ScriptDefinitions Definitions { get; }
-	public string ScriptPath { get; }
+	protected IEnumerable<string> Lines { get; }
 	protected string? NextSceneName { get; set; }
 	protected Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; }
 		= new();
@@ -22,11 +23,11 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	protected SortedDictionary<string, Action<string>> SymbolHandlers { get; }
 		= new(Comparer<string>.Create((a, b) => b.CompareTo(a)));
 
-	public ScriptLoader(ScriptDefinitions definitions, string path)
+	public ScriptLoader(ScriptDefinitions definitions, IEnumerable<string> lines)
 		: base(definitions.Time)
 	{
 		Definitions = definitions;
-		ScriptPath = path;
+		Lines = lines;
 
 		foreach (var (key, value) in definitions.CharacterColors)
 		{
@@ -211,7 +212,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	protected override void ProtectedCreate()
 	{
 		var i = 0;
-		foreach (var line in File.ReadLines(ScriptPath))
+		foreach (var line in Lines)
 		{
 			++i;
 			if (string.IsNullOrWhiteSpace(line))

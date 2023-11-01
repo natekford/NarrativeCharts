@@ -34,7 +34,7 @@ public class Program
 		{
 			new P3V1(Time),
 			new P3V2(Time),
-			new ScriptLoader(defs, Path.Combine(ScriptsDir, "P3V3.txt")),
+			Script(defs, "P3V3.txt"),
 		};
 		for (var i = 0; i < books.Length; ++i)
 		{
@@ -169,4 +169,7 @@ public class Program
 		await defs.SaveAsync(defsPath).ConfigureAwait(false);
 		return await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
 	}
+
+	private ScriptLoader Script(ScriptDefinitions defs, string fileName)
+		=> new(defs, File.ReadLines(Path.Combine(ScriptsDir, fileName)));
 }
