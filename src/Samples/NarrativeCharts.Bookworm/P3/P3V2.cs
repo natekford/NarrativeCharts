@@ -327,14 +327,14 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(MynesHouse, Gunther);
 		Add(MerchantCompanies, Lutz);
 		// via highbeast
-		Add(HarvestFestivalTowns, Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne);
+		Add(SmallTowns, Brigitte, Damuel, Eckhart, Ferdinand, Fran, Justus, Myne);
 		// via carriage
 		Freeze(Ella, Monika, Nicola, Rosina);
 		Jump();
 		// benno/mark spread rumours before leaving
 		Add(MerchantCompanies, Benno, Mark);
 		// via carriage
-		Add(HarvestFestivalTowns, Ella, Monika, Nicola, Rosina);
+		Add(SmallTowns, Ella, Monika, Nicola, Rosina);
 
 		// Time: "Justus began his work as a tax official first thing in the morning."
 		SkipToNextDay(Morning);
@@ -369,8 +369,8 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// ferdi is contacted, he tells myne to contain the goltze
 		Add(RuelleTree, Ferdinand);
 		Jump();
-		Add(HarvestFestivalTowns, Ferdinand);
-		Add(HarvestFestivalTowns, Brigitte, Damuel, Eckhart, Justus, Myne);
+		Add(SmallTowns, Ferdinand);
+		Add(SmallTowns, Brigitte, Damuel, Eckhart, Justus, Myne);
 		// Time: "I ended up bedridden"
 		SkipToDaysAhead(2, Meetings);
 	}

@@ -239,7 +239,7 @@ $T=Benno,Corinna,Lutz,Mark,Tuuli
 >>Morning
 $T=Gunther
 >
-$Hasse=Benno,Gunther,Mark,Marthe,Nora,Rick,Thore
+$Hasse=Benno,Gunther,Lutz,Mark,Marthe,Nora,Rick,Thore
 // Time: "The two-day gap was to account for a letter"
 // "I would be heading to Hasse by highbeast come fifth bell"
 >>2,Morning
@@ -256,6 +256,30 @@ $IR=Hugo
 
 
 #The Door of Judgment
+>
+
+
+
+#The Execution
+@!HasseMayor
+>
+
+
+#The Spring Ingredient and Discussing Spring Prayer
+// Time: "Eventually, I woke up from my peaceful slumber"
+>>Morning
+>
+$M=Benno,Lutz,Mark
+$MF=Gunther
+// "he needed to return the box of medals back to the castle"
+$C=Justus
+$SmallTowns=Brigitte,Damuel,Eckhart,Ella,Ferdinand,Fran,Monika,Myne,Rosina,Zahm
+// Time: "The next day, at both winter mansions we visited for Spring Prayer"
+>>FifthBell
+
+
+
+#The Goddesses' Bath
 
 
 

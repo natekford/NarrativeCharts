@@ -9,7 +9,6 @@ public static class BookwormLocations
 	public static Location Castle { get; } = new("Ehrenfest Castle");
 	public static Location Groschel { get; } = new("Groschel");
 	public static Location Haldenzel { get; } = new("Haldenzel");
-	public static Location HarvestFestivalTowns { get; } = new("Harvest Festival Towns");
 	public static Location Hasse { get; } = new("Hasse");
 	public static Location Illgner { get; } = new("Illgner");
 	public static Location ItalianRestaurant { get; } = new("Italian Restaurant");
@@ -22,6 +21,7 @@ public static class BookwormLocations
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location RoyalAcademy { get; } = new("Royal Academy");
 	public static Location RuelleTree { get; } = new("Ruelle Tree");
+	public static Location SmallTowns { get; } = new("Miscellaneous Towns");
 	public static Location Temple { get; } = new("Temple");
 	public static ImmutableDictionary<Location, int> YIndexes { get; }
 
@@ -43,7 +43,7 @@ public static class BookwormLocations
 			LowerCityWorkshops,
 			MynesHouse,
 			Hasse,
-			HarvestFestivalTowns,
+			SmallTowns,
 			RuelleTree,
 			Illgner,
 		}

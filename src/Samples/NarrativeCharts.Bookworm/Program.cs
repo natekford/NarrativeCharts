@@ -139,6 +139,7 @@ public class Program
 			{
 				[GiebeGroschel] = [nameof(GiebeGroschel)],
 				[GiebeKirnberger] = [nameof(GiebeKirnberger)],
+				[HasseMayor] = [nameof(HasseMayor)],
 			});
 		}
 
@@ -161,6 +162,7 @@ public class Program
 				[MerchantCompanies] = ["M"],
 				[LowerCityWorkshops] = ["W"],
 				[MynesHouse] = ["MF"],
+				[SmallTowns] = ["SmallTowns"],
 			});
 		}
 
