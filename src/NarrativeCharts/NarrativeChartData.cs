@@ -4,9 +4,9 @@ namespace NarrativeCharts;
 
 public class NarrativeChartData
 {
-	public Dictionary<Character, Hex> Colors { get; } = new();
-	public SortedList<int, NarrativeEvent> Events { get; } = new();
+	public Dictionary<Character, Hex> Colors { get; } = [];
+	public SortedList<int, NarrativeEvent> Events { get; } = [];
 	public string Name { get; set; } = "";
-	public Dictionary<Character, SortedList<int, NarrativePoint>> Points { get; } = new();
-	public Dictionary<Location, int> YIndexes { get; } = new();
+	public Dictionary<Character, SortedList<int, NarrativePoint>> Points { get; } = [];
+	public Dictionary<Location, int> YIndexes { get; } = [];
 }

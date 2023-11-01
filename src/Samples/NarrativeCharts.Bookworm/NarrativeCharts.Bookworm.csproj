@@ -1,22 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>preview</LangVersion>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\NarrativeCharts.Plot\NarrativeCharts.Plot.csproj" />
+		<ProjectReference Include="..\..\NarrativeCharts.Skia\NarrativeCharts.Skia.csproj" />
+		<ProjectReference Include="..\..\NarrativeCharts\NarrativeCharts.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\NarrativeCharts.Plot\NarrativeCharts.Plot.csproj" />
-    <ProjectReference Include="..\..\NarrativeCharts.Skia\NarrativeCharts.Skia.csproj" />
-    <ProjectReference Include="..\..\NarrativeCharts\NarrativeCharts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Scripts\P3V3.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
+	<ItemGroup>
+		<None Update="Scripts\P3V3.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>

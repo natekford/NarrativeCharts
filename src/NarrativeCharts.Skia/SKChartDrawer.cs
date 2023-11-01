@@ -8,8 +8,8 @@ namespace NarrativeCharts.Skia;
 public sealed class SKChartDrawer
 	: ChartDrawer<NarrativeChartData, SKContext, SKColor>, IDisposable
 {
-	private readonly Dictionary<Hex, SKPaint> _PaintCache = new();
-	private readonly Dictionary<string, SKTextBlob> _TextCache = new();
+	private readonly Dictionary<Hex, SKPaint> _PaintCache = [];
+	private readonly Dictionary<string, SKTextBlob> _TextCache = [];
 	private bool _Disposed;
 
 	private static SKFont Font { get; } = new();

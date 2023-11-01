@@ -14,7 +14,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	protected IEnumerable<string> Lines { get; }
 	protected string? NextSceneName { get; set; }
 	protected Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; }
-		= new();
+		= [];
 	// Sort in reverse order so something like "##" shows up before "#"
 	// Otherwise "#" would always steal "##" items
 	protected SortedDictionary<string, Action<string>> SymbolHandlers { get; }

@@ -8,7 +8,7 @@ public abstract class ScriptConverter : ScriptLoader
 {
 	public string ClassName { get; protected set; } = "";
 	protected StringBuilder Chapter => Chapters[^1];
-	protected List<StringBuilder> Chapters { get; } = new();
+	protected List<StringBuilder> Chapters { get; } = [];
 
 	protected ScriptConverter(ScriptDefinitions definitions, IEnumerable<string> lines)
 		: base(definitions, lines)
@@ -168,6 +168,7 @@ public abstract class ScriptConverter : ScriptLoader
 	protected override void HandleTitle(string input)
 	{
 		ClassName = input.Replace(" ", "");
+
 		base.HandleTitle(input);
 	}
 

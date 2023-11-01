@@ -12,7 +12,7 @@ namespace NarrativeCharts.Bookworm;
 
 public class Program
 {
-	public List<NarrativeChartData> Books { get; } = new();
+	public List<NarrativeChartData> Books { get; } = [];
 	public string ChartsDir { get; }
 	public string Dir { get; }
 	public string ScriptsDir { get; }
@@ -137,8 +137,8 @@ public class Program
 
 			AddAliases(defs.CharacterAliases, new()
 			{
-				[GiebeGroschel] = new[] { nameof(GiebeGroschel) },
-				[GiebeKirnberger] = new[] { nameof(GiebeKirnberger) },
+				[GiebeGroschel] = [nameof(GiebeGroschel)],
+				[GiebeKirnberger] = [nameof(GiebeKirnberger)],
 			});
 		}
 
@@ -151,16 +151,16 @@ public class Program
 
 			AddAliases(defs.LocationAliases, new()
 			{
-				[RoyalAcademy] = new[] { "RA" },
-				[Castle] = new[] { "C" },
-				[KnightsOrder] = new[] { "KO" },
-				[KarstedtsHouse] = new[] { "KE" },
-				[NoblesQuarter] = new[] { "NQ" },
-				[Temple] = new[] { "T" },
-				[ItalianRestaurant] = new[] { "IR" },
-				[MerchantCompanies] = new[] { "M" },
-				[LowerCityWorkshops] = new[] { "W" },
-				[MynesHouse] = new[] { "MF" },
+				[RoyalAcademy] = ["RA"],
+				[Castle] = ["C"],
+				[KnightsOrder] = ["KO"],
+				[KarstedtsHouse] = ["KE"],
+				[NoblesQuarter] = ["NQ"],
+				[Temple] = ["T"],
+				[ItalianRestaurant] = ["IR"],
+				[MerchantCompanies] = ["M"],
+				[LowerCityWorkshops] = ["W"],
+				[MynesHouse] = ["MF"],
 			});
 		}
 
@@ -170,14 +170,14 @@ public class Program
 
 			AddAliases(defs.TimeAliases, new()
 			{
-				[0] = new[] { nameof(Midnight) },
-				[1] = new[] { nameof(FirstBell), nameof(EarlyMorning) },
-				[2] = new[] { nameof(SecondBell), nameof(Morning) },
-				[3] = new[] { nameof(ThirdBell), nameof(Meetings) },
-				[4] = new[] { nameof(FourthBell), nameof(Lunch) },
-				[5] = new[] { nameof(FifthBell), nameof(MarketClose), nameof(Tea) },
-				[6] = new[] { nameof(SixthBell), nameof(Dinner) },
-				[7] = new[] { nameof(SeventhBell), nameof(Bed) },
+				[0] = [nameof(Midnight)],
+				[1] = [nameof(FirstBell), nameof(EarlyMorning)],
+				[2] = [nameof(SecondBell), nameof(Morning)],
+				[3] = [nameof(ThirdBell), nameof(Meetings)],
+				[4] = [nameof(FourthBell), nameof(Lunch)],
+				[5] = [nameof(FifthBell), nameof(MarketClose), nameof(Tea)],
+				[6] = [nameof(SixthBell), nameof(Dinner)],
+				[7] = [nameof(SeventhBell), nameof(Bed)],
 			});
 		}
 

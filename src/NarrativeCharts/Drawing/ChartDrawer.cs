@@ -146,7 +146,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 				var xDiff = next.Hour - curr.Hour;
 				timeSpent
-					.GetOrAdd(curr.Location, _ => new())
+					.GetOrAdd(curr.Location, _ => [])
 					.AddOrUpdate(character, (_, a) => a, (_, a, b) => a + b, xDiff);
 			}
 
@@ -157,7 +157,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 				// prevent issues with ending on a movement segment
 				timeSpent
-					.GetOrAdd(points.Values[^1].Location, _ => new())
+					.GetOrAdd(points.Values[^1].Location, _ => [])
 					.TryAdd(character, 0);
 			}
 		}

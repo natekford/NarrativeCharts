@@ -16,13 +16,13 @@ public class ScriptDefinitions
 		WriteIndented = true,
 	};
 
-	public Dictionary<string, Character> CharacterAliases { get; set; } = new();
-	public Dictionary<Character, Hex> CharacterColors { get; set; } = new();
-	public Dictionary<string, Location> LocationAliases { get; set; } = new();
-	public Dictionary<Location, int> LocationYIndexes { get; set; } = new();
+	public Dictionary<string, Character> CharacterAliases { get; set; } = [];
+	public Dictionary<Character, Hex> CharacterColors { get; set; } = [];
+	public Dictionary<string, Location> LocationAliases { get; set; } = [];
+	public Dictionary<Location, int> LocationYIndexes { get; set; } = [];
 	public ScriptSymbols Symbols { get; set; } = new();
 	public TimeTrackerUnits Time { get; set; } = new(Enumerable.Repeat(1, 24));
-	public Dictionary<string, int> TimeAliases { get; set; } = new();
+	public Dictionary<string, int> TimeAliases { get; set; } = [];
 
 	public static async Task<ScriptDefinitions> LoadAsync(string path)
 	{
@@ -86,21 +86,21 @@ public class ScriptDefinitions
 		{
 			if (alias != character.Value)
 			{
-				reverseCAliases.GetOrAdd(character, _ => new()).Add(alias);
+				reverseCAliases.GetOrAdd(character, _ => []).Add(alias);
 			}
 		}
 		foreach (var (alias, location) in LocationAliases)
 		{
 			if (alias != location.Value)
 			{
-				reverseLAliases.GetOrAdd(location, _ => new()).Add(alias);
+				reverseLAliases.GetOrAdd(location, _ => []).Add(alias);
 			}
 		}
 		foreach (var (alias, unit) in TimeAliases)
 		{
 			if (alias != unit.ToString())
 			{
-				reverseTAliases.GetOrAdd(unit, _ => new()).Add(alias);
+				reverseTAliases.GetOrAdd(unit, _ => []).Add(alias);
 			}
 		}
 
@@ -109,16 +109,16 @@ public class ScriptDefinitions
 			Time: Time.UnitToHourMap.OrderBy(x => x.Key).Select(x => new TimeJson(
 				DurationInHours: (Time.UnitToHourMap.TryGetValue(x.Key + 1, out var end)
 					? end : Time.HoursPerDay) - Time.UnitToHourMap[x.Key],
-				Aliases: reverseTAliases.GetValueOrDefault(x.Key, new())
+				Aliases: reverseTAliases.GetValueOrDefault(x.Key, [])
 			)).ToList(),
 			Locations: LocationYIndexes.OrderBy(x => x.Value).Select(x => new LocationJson(
 				Name: x.Key.Value,
-				Aliases: reverseLAliases.GetValueOrDefault(x.Key, new())
+				Aliases: reverseLAliases.GetValueOrDefault(x.Key, [])
 			)).ToList(),
 			Characters: CharacterColors.OrderBy(x => x.Key.Value).Select(x => new CharacterJson(
 				Name: x.Key.Value,
 				Hex: x.Value == Hex.Unknown ? null : x.Value.Value,
-				Aliases: reverseCAliases.GetValueOrDefault(x.Key, new())
+				Aliases: reverseCAliases.GetValueOrDefault(x.Key, [])
 			)).ToList());
 
 		Directory.CreateDirectory(Path.GetDirectoryName(path)!);

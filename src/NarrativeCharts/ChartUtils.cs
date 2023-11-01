@@ -27,7 +27,7 @@ public static class ChartUtils
 	{
 		if (!chart.Points.TryGetValue(point.Character, out var points))
 		{
-			chart.Points[point.Character] = points = new();
+			chart.Points[point.Character] = points = [];
 		}
 		points[point.Hour] = point;
 		return chart;
