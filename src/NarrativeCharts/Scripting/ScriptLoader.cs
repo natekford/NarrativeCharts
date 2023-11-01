@@ -1,8 +1,5 @@
 ﻿using NarrativeCharts.Models;
 
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-
 namespace NarrativeCharts.Scripting;
 
 public class ScriptLoader : NarrativeChartUnits<int>
@@ -39,14 +36,8 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 	}
 
-	protected virtual string[] Args(string value)
-		=> value.Split(Definitions.Symbols.Args, SPLIT_OPTIONS);
-
-	protected virtual string[] Assignment(string value)
-		=> value.Split(Definitions.Symbols.Assignment, SPLIT_OPTIONS);
-
 	protected override int ConvertToInt(int unit)
-				=> unit;
+		=> unit;
 
 	protected virtual SortedDictionary<string, Action<string>> GetSymbolHandlers()
 	{
@@ -63,18 +54,19 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			SymbolHandlers.Add(_Symbols.Update, HandleUpdate);
 			SymbolHandlers.Add(_Symbols.Freeze, HandleFreeze);
 			SymbolHandlers.Add(_Symbols.Kill, HandleKill);
-			SymbolHandlers.Add(_Symbols.AddScene, HandleAddScene);
-			SymbolHandlers.Add(_Symbols.RemoveScene, HandleRemoveScene);
+			SymbolHandlers.Add(_Symbols.Scene, HandleScene);
+			SymbolHandlers.Add(_Symbols.AddReturnableScene, HandleAddReturnableScene);
+			SymbolHandlers.Add(_Symbols.RemoveReturnableScene, HandleRemoveReturnableScene);
 		}
 		return SymbolHandlers!;
 	}
 
-	protected virtual void HandleAddScene(string name)
-		=> NextSceneName = name;
+	protected virtual void HandleAddReturnableScene(string input)
+		=> NextSceneName = input;
 
 	protected virtual void HandleAddUnits(string input)
 	{
-		var args = Args(input);
+		var args = SplitArgs(input);
 		switch (args.Length)
 		{
 			// Does the same thing as SkipToCurrentDay no args
@@ -91,52 +83,53 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 	}
 
-	protected virtual void HandleChapter(string chapter)
-		=> Event(chapter);
+	protected virtual void HandleChapter(string input)
+		=> Event(input);
 
-	protected virtual void HandleComment(string _)
+	protected virtual void HandleComment(string input)
 	{
 	}
 
 	protected virtual void HandleFreeze(string input)
-	{
-		var characters = Args(input)
-			.Select(x => Definitions.CharacterAliases[x])
-			.ToArray();
-		Freeze(characters);
-	}
+		=> Freeze(ParseCharacters(input));
 
 	protected virtual void HandleKill(string input)
+		=> Kill(ParseCharacters(input));
+
+	protected virtual void HandleRemoveReturnableScene(string input)
 	{
-		var characters = Args(input)
-			.Select(x => Definitions.CharacterAliases[x])
-			.ToArray();
-		Kill(characters);
+		Return(StoredScenes[input]);
+		StoredScenes.Remove(input);
 	}
 
-	protected virtual void HandleRemoveScene(string name)
+	protected virtual void HandleScene(string input)
 	{
-		Return(StoredScenes[name]);
-		StoredScenes.Remove(name);
-	}
+		var args = SplitAssignment(input);
+		switch (args.Length)
+		{
+			case 2:
+				var location = ParseLocation(args[0]);
+				var characters = ParseCharacters(args[1]);
+				if (NextSceneName is null)
+				{
+					Add(location, characters);
+				}
+				else
+				{
+					var locations = AddR(location, characters);
+					StoredScenes.Add(NextSceneName, locations);
+					NextSceneName = null;
+				}
+				return;
 
-	protected virtual void HandleScene(Location location, Character[] characters)
-	{
-		if (NextSceneName is null)
-		{
-			Add(location, characters);
-		}
-		else
-		{
-			var scene = AddR(location, characters);
-			StoredScenes.Add(NextSceneName, scene);
-			NextSceneName = null;
+			default:
+				throw new ArgumentException("Invalid scene assignment.");
 		}
 	}
 
 	protected virtual void HandleSkipToCurrentDay(string input)
 	{
-		var args = Args(input);
+		var args = SplitArgs(input);
 		switch (args.Length)
 		{
 			// Does the same thing as AddUnits no args
@@ -155,7 +148,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 
 	protected virtual void HandleSkipToNextDay(string input)
 	{
-		var args = Args(input);
+		var args = SplitArgs(input);
 		switch (args.Length)
 		{
 			case 0:
@@ -175,11 +168,21 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		}
 	}
 
-	protected virtual void HandleTitle(string title)
-		=> Name = title;
+	protected virtual void HandleTitle(string input)
+		=> Name = input;
 
-	protected virtual void HandleUpdate(string _)
+	protected virtual void HandleUpdate(string input)
 		=> Update();
+
+	protected virtual Character[] ParseCharacters(string input)
+	{
+		return SplitArgs(input)
+			.Select(x => Definitions.CharacterAliases[x])
+			.ToArray();
+	}
+
+	protected virtual Location ParseLocation(string input)
+		=> Definitions.LocationAliases[input];
 
 	protected virtual void ProcessLine(string line)
 	{
@@ -191,18 +194,6 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			}
 
 			action.Invoke(line[symbol.Length..]);
-			return;
-		}
-
-		// Scene creation (character movement)
-		var assignment = Assignment(line);
-		if (assignment.Length == 2)
-		{
-			var location = Definitions.LocationAliases[assignment[0]];
-			var characters = Args(assignment[1])
-				.Select(x => Definitions.CharacterAliases[x])
-				.ToArray();
-			HandleScene(location, characters);
 			return;
 		}
 
@@ -230,4 +221,10 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			}
 		}
 	}
+
+	protected virtual string[] SplitArgs(string value)
+		=> value.Split(Definitions.Symbols.Args, SPLIT_OPTIONS);
+
+	protected virtual string[] SplitAssignment(string value)
+		=> value.Split(Definitions.Symbols.Assignment, SPLIT_OPTIONS);
 }

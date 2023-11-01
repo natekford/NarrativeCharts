@@ -12,6 +12,7 @@ public record ScriptSymbols(
 	string Update = "@",
 	string Freeze = "@?",
 	string Kill = "@!",
-	string AddScene = "+",
-	string RemoveScene = "-"
+	string Scene = "$",
+	string AddReturnableScene = "+",
+	string RemoveReturnableScene = "-"
 );

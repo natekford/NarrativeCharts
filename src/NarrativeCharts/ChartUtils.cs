@@ -78,6 +78,16 @@ public static class ChartUtils
 		}
 	}
 
+	public static Dictionary<Character, Location> GetCurrentLocations(
+		this NarrativeChartData chart,
+		IEnumerable<Character> characters)
+	{
+		return characters.ToDictionary(
+			x => x,
+			x => chart.Points[x].Values[^1].Location
+		);
+	}
+
 	public static T Seed<T>(this T chart, NarrativeChartData other, int hour) where T : NarrativeChartData
 	{
 		foreach (var (_, points) in other.Points)

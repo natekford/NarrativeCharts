@@ -34,13 +34,26 @@ public class Program
 		{
 			new P3V1(Time),
 			new P3V2(Time),
-			Script(defs, "P3V3.txt"),
+			FromScript(defs, "P3V3.txt"),
 		};
 		for (var i = 0; i < books.Length; ++i)
 		{
 			books[i].Initialize(i == 0 ? null : books[i - 1]);
 			Books.Add(books[i]);
 		}
+
+#if true
+		foreach (var book in books)
+		{
+			if (book is not BookwormScriptConverter scriptConverter)
+			{
+				continue;
+			}
+
+			var path = Path.Combine(ScriptsDir, $"{scriptConverter.ClassName}.cs");
+			File.WriteAllText(path, scriptConverter.Write());
+		}
+#endif
 
 #if false
 		var combined = books.Combine();
@@ -92,6 +105,9 @@ public class Program
 		await Task.WhenAll(tasks).ConfigureAwait(false);
 		Console.WriteLine($"{Books.Count} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
 	}
+
+	private BookwormScriptConverter FromScript(ScriptDefinitions defs, string fileName)
+		=> new(defs, File.ReadLines(Path.Combine(ScriptsDir, fileName)));
 
 	private async Task<ScriptDefinitions> GetScriptDefinitionsAsync()
 	{
@@ -169,7 +185,4 @@ public class Program
 		await defs.SaveAsync(defsPath).ConfigureAwait(false);
 		return await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
 	}
-
-	private ScriptLoader Script(ScriptDefinitions defs, string fileName)
-		=> new(defs, File.ReadLines(Path.Combine(ScriptsDir, fileName)));
 }

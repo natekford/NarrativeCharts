@@ -4,25 +4,25 @@
 // starts with myne returning from the castle, but already put that into the end of p3v2
 >>Lunch
 // ScriptLoader strips whitespace
-T=	Fritz ,  Lutz    
+$T=	Fritz ,  Lutz    
 >
-M=Lutz
+$M=Lutz
 // fran speaks with ferdi
-T=Ferdinand,Fran
+$T=Ferdinand,Fran
 
 
 
 #Ingo and Improving the Printing Press
 // Time: "once he had finished today’s before-bed report"
 >Bed
-T=Gil,Myne
+$T=Gil,Myne
 >>Lunch
-T=Lutz
+$T=Lutz
 >
-M=Lutz
+$M=Lutz
 >>Lunch
 +s1
-T=Benno,Ingo,Lutz
+$T=Benno,Ingo,Lutz
 
 
 
@@ -32,7 +32,7 @@ T=Benno,Ingo,Lutz
 // Time: "Ingo returned to my chambers a few days later"
 >>3,Lunch
 +s2
-T=Ingo,Johann,Zack
+$T=Ingo,Johann,Zack
 >
 -s2
 // Time: "About ten days later"
@@ -40,7 +40,7 @@ T=Ingo,Johann,Zack
 // Time: "they once again arrived on the scheduled day" no clue when
 >>2,Lunch
 +s3
-T=Benno,Ingo,Johann,Lutz,Zack
+$T=Benno,Ingo,Johann,Lutz,Zack
 >
 -s3
 
@@ -50,26 +50,26 @@ T=Benno,Ingo,Johann,Lutz,Zack
 // Time: "I would be going to my hidden room after fifth bell to receive it"
 >>2,FifthBell
 +s4
-T=Effa,Lutz,Tuuli
+$T=Effa,Lutz,Tuuli
 >
 -s4
 >>3,Morning
 // ella leaves the castle in The Dedication Ritual (Take Two)
-C=Angelica,Brigitte,Cornelius,Damuel,Ella,Ferdinand,Myne,Rosina
+$C=Angelica,Brigitte,Cornelius,Damuel,Ella,Ferdinand,Myne,Rosina
 >
-NQ=Ferdinand
+$NQ=Ferdinand
 // Time: "Three days, you mean"
 >>3,Morning
-C=Ferdinand
+$C=Ferdinand
 
 
 
 #The Baptism Ceremony and Our Winter Debut
-C=Eckhart,Elvira,Justus,Karstedt
-C=Philine
+$C=Eckhart,Elvira,Justus,Karstedt
+$C=Philine
 // Time: "we’ve moved straight onto lunch"
 >Lunch
-C=Christine
+$C=Christine
 >
 // not gonna bother including all of the commuting
 
@@ -78,13 +78,13 @@ C=Christine
 #A Class for Kids
 // Time: "Rihyarda said after breakfast as she explained"
 >>Morning
-C=Hartmut
+$C=Hartmut
 // myne passes out after thinking she can't become a librarian
 >
 // Time: "The day after all the students had left for the Academy—Angelica and Cornelius included"
 // idr what the exact schedule is, i think it's 1 year of students per day?
 >>4,Morning
-RA=Angelica,Christine,Cornelius,Hartmut
+$RA=Angelica,Christine,Cornelius,Hartmut
 
 
 
@@ -93,17 +93,17 @@ RA=Angelica,Christine,Cornelius,Hartmut
 >>3,Morning
 // myne looks through meeting requests
 // sets up meetings with guards' families
-C=Myne,Rihyarda
+$C=Myne,Rihyarda
 // Time: "A few days later, I was given permission"
 >>3,Meetings
-C=Henrik
+$C=Henrik
 >
-NQ=Henrik
+$NQ=Henrik
 // Time: "Two days after my meeting with Henrik"
 >>2,Meetings
-C=Helfried
+$C=Helfried
 >
-NQ=Helfried
+$NQ=Helfried
 // Time: "Next arrived the day I was scheduled to meet Angelica’s family"
 >>2,Meetings
 // they dont have names
@@ -121,7 +121,7 @@ NQ=Helfried
 // Time: "The Dedication Ritual begins three days from now"
 >>3,Morning
 +s5
-T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
+$T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 // Time: "On the first day of the Dedication Ritual"
 >>Morning
 // myne, ferdi, and 2 blues do dedication ritual
@@ -145,7 +145,7 @@ T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 // not explictly stated anywhere that this LOW appeard in Haldenzel
 // eckhart probably also goes, but that's not explicitly stated
 +s6
-Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
+$Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
 >+2
 >
 -s6
@@ -159,7 +159,7 @@ Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
 // no exact amount of days given, idk, skip ahead a month
 >>30,Meetings
 // Cornelius speaks, so he's back. idk, just assume everyone but angelica is back
-C=Christine,Cornelius,Hartmut
+$C=Christine,Cornelius,Hartmut
 // myne meets with sylv to talk about selling study materials
 >
 // myne announces to the playroom that she's going to sell stuff
@@ -172,44 +172,44 @@ C=Christine,Cornelius,Hartmut
 // ... he took a letter to the Gilberta Company on the next sunny day.
 // ... [Benno] would be ready to meet with me that same afternoon."
 >>Lunch
-T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
+$T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 >>2,Lunch
-T=Benno,Lutz,Mark
+$T=Benno,Lutz,Mark
 >
 // Time: "Mark left partway through to begin preparations early"
-M=Mark
+$M=Mark
 >
-M=Benno,Lutz
+$M=Benno,Lutz
 // Time: The day that we were due to sell our products came in what felt like the blink of an eye.
 // no clue how many days apart
 >>3,Morning
 // merchants arrive at the temple, get into lessy, go to the castle
-T=Benno,Leon,Mark
+$T=Benno,Leon,Mark
 >
-C=Benno,Brigitte,Damuel,Ferdinand,Fran,Fritz,Leon,Mark,Myne
+$C=Benno,Brigitte,Damuel,Ferdinand,Fran,Fritz,Leon,Mark,Myne
 >
 // Brunhilde isn't introduced by name
-C=Brunhilde,GiebeGroschel,GiebeKirnberger
+$C=Brunhilde,GiebeGroschel,GiebeKirnberger
 
 
 
 #Angelica and the Coming of Spring
 >
-C=Elvira
+$C=Elvira
 >
 // Time: "I took the Gilberta Company back to the temple, along with Fran and Fritz."
 // "I stayed there for just one night, then immediately returned to the castle."
-T=Brigitte,Damuel,Fran,Fritz,Myne
-M=Benno,Leon,Mark
+$T=Brigitte,Damuel,Fran,Fritz,Myne
+$M=Benno,Leon,Mark
 >>Meetings
-C=Brigitte,Damuel,Myne
+$C=Brigitte,Damuel,Myne
 // Time: "there were far more sunny days than before." who knows when
 // myne gets hit by the snowball
 // i guess around 100 days after the semester started
 // so 50-60 day timeskip?
 >>50,Meetings
 // Angelica's parents tell myne angelica failed her classes
-C=Angelica
+$C=Angelica
 >
 // raise angelica's grades squadron created
 >
@@ -219,17 +219,17 @@ C=Angelica
 #Upcoming Spring Prayer
 >>Lunch
 // Time: "Once the feast was over, the kids got together for one last gathering as they sadly prepared to leave."
-Groschel=Brunhilde,GiebeGroschel
-Kirnberger=GiebeKirnberger
-NQ=Christine,Hartmut,Philine
-KE=Cornelius,Elvira,Karstedt
-KO=Eckhart
-RA=Angelica
+$Groschel=Brunhilde,GiebeGroschel
+$Kirnberger=GiebeKirnberger
+$NQ=Christine,Hartmut,Philine
+$KE=Cornelius,Elvira,Karstedt
+$KO=Eckhart
+$RA=Angelica
 >
-T=Brigitte,Damuel,Ferdinand,Myne
+$T=Brigitte,Damuel,Ferdinand,Myne
 >>Lunch
 +s7
-T=Benno,Corinna,Lutz,Mark,Tuuli
+$T=Benno,Corinna,Lutz,Mark,Tuuli
 >
 -s7
 
@@ -237,21 +237,21 @@ T=Benno,Corinna,Lutz,Mark,Tuuli
 
 #Hasse's Punishment
 >>Morning
-T=Gunther
+$T=Gunther
 >
-Hasse=Benno,Gunther,Mark,Marthe,Nora,Rick,Thore
+$Hasse=Benno,Gunther,Mark,Marthe,Nora,Rick,Thore
 // Time: "The two-day gap was to account for a letter"
 // "I would be heading to Hasse by highbeast come fifth bell"
 >>2,Morning
 @?Ella,Monika,Rosina
 // hugo comes from the restaurant to cook since ella went to hasse
-T=Hugo
+$T=Hugo
 >Lunch
-T=Eckhart,Justus
+$T=Eckhart,Justus
 >FifthBell
-Hasse=Ella,Monika,Rosina
-Hasse=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Justus,Myne,Zahm
-IR=Hugo
+$Hasse=Ella,Monika,Rosina
+$Hasse=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Justus,Myne,Zahm
+$IR=Hugo
 
 
 

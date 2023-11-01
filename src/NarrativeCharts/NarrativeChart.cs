@@ -48,9 +48,9 @@ public abstract class NarrativeChart : NarrativeChartData
 
 	protected Dictionary<Character, Location> AddR(Location location, params Character[] characters)
 	{
-		var dict = characters.ToDictionary(x => x, x => Points[x].Values[^1].Location);
+		var locations = this.GetCurrentLocations(characters);
 		Add(location, characters);
-		return dict;
+		return locations;
 	}
 
 	protected void Event(string name)
