@@ -29,7 +29,23 @@ $KE=Karstedt
 $KO=Eckhart
 // Time: "A few days later, I completed the reasonably thin knight short story. Come seventh bell,"
 >>3,SeventhBell
+// Time: "The next afternoon,"
+>>Lunch
+// Time: "The day had finally arrived. I completed my morning work,"
+>>2,Lunch
+$T=Lutz
+>
+$M=Lutz
+// Time: "came over to the workshop the next day."
+>>Lunch
++$1
+$T=Ingo,Johann,Lutz,Zack
 
+
+
+#Benno's Request
+>
+-$1
 
 
 @

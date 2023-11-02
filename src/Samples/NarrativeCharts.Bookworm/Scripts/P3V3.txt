@@ -21,38 +21,38 @@ $T=Lutz
 >
 $M=Lutz
 >>Lunch
-+s1
++$1
 $T=Benno,Ingo,Lutz
 
 
 
 #The Gathering of the Gutenbergs
 >
--s1
+-$1
 // Time: "Ingo returned to my chambers a few days later"
 >>3,Lunch
-+s2
++$2
 $T=Ingo,Johann,Zack
 >
--s2
+-$2
 // Time: "About ten days later"
 >>10,Lunch
 // Time: "they once again arrived on the scheduled day" no clue when
 >>2,Lunch
-+s3
++$3
 $T=Benno,Ingo,Johann,Lutz,Zack
 >
--s3
+-$3
 
 
 
 #The Start of Winter Socializing
 // Time: "I would be going to my hidden room after fifth bell to receive it"
 >>2,FifthBell
-+s4
++$4
 $T=Effa,Lutz,Tuuli
 >
--s4
+-$4
 >>3,Morning
 // ella leaves the castle in The Dedication Ritual (Take Two)
 $C=Angelica,Brigitte,Cornelius,Damuel,Ella,Ferdinand,Myne,Rosina
@@ -120,7 +120,7 @@ $NQ=Helfried
 // myne tells wilf dedication cere in 3 days
 // Time: "The Dedication Ritual begins three days from now"
 >>3,Morning
-+s5
++$5
 $T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 // Time: "On the first day of the Dedication Ritual"
 >>Morning
@@ -136,7 +136,7 @@ $T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 // myne checks on the orphanage
 // myne/ferdi informed lord of winter appeared
 // temple people go to castle first
--s5
+-$5
 >
 
 
@@ -144,11 +144,11 @@ $T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 #Fighting the Schnesturm
 // not explictly stated anywhere that this LOW appeard in Haldenzel
 // eckhart probably also goes, but that's not explicitly stated
-+s6
++$6
 $Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
 >+2
 >
--s6
+-$6
 // Time: "the next day was a sunny one"
 >>Morning
 
@@ -228,10 +228,10 @@ $RA=Angelica
 >
 $T=Brigitte,Damuel,Ferdinand,Myne
 >>Lunch
-+s7
++$7
 $T=Benno,Corinna,Lutz,Mark,Tuuli
 >
--s7
+-$7
 
 
 
@@ -287,7 +287,7 @@ $SmallTowns=Brigitte,Damuel,Eckhart,Ella,Ferdinand,Fran,Monika,Myne,Nicola,Rosin
 // Time: "arrive at the entrance to the forest before fifth bell."
 >>FifthBell
 // "I would be bringing Fran, Monika, Nicola, Ella, and Rosina."
-+s8
++$8
 $GBath=Brigitte,Damuel,Eckhart,Ella,Ferdinand,Fran,Monika,Myne,Nicola,Rosina
 
 
@@ -304,7 +304,7 @@ $GBath=Brigitte,Damuel,Eckhart,Ella,Ferdinand,Fran,Monika,Myne,Nicola,Rosina
 
 #The End of Spring Prayer
 >
--s8
+-$8
 >Morning
 // eat breakfast and talk about the spring
 // Time: "we would be leaving Fontedorf and returning to Spring Prayer"
