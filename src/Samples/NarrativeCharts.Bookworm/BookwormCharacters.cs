@@ -10,6 +10,7 @@ public static class BookwormCharacters
 	public static Character Benno { get; } = new("Benno");
 	public static Character Bezewanst { get; } = new("Bezewanst");
 	public static Character Bindewald { get; } = new("Bindewald");
+	public static Character Bonifatius { get; } = new("Bonifatius");
 	public static Character Brigitte { get; } = new("Brigitte");
 	public static Character Brunhilde { get; } = new("Brunhilde");
 	public static Character Charlotte { get; } = new("Charlotte");
@@ -17,6 +18,7 @@ public static class BookwormCharacters
 	public static ImmutableDictionary<Character, Hex> Colors { get; }
 	public static Character Corinna { get; } = new("Corinna");
 	public static Character Cornelius { get; } = new("Cornelius");
+	public static Character Damian { get; } = new("Damian");
 	public static Character Damuel { get; } = new("Damuel");
 	public static Character Deid { get; } = new("Deid");
 	public static Character Delia { get; } = new("Delia");
@@ -90,12 +92,14 @@ public static class BookwormCharacters
 			[Benno] = "#E8CB9F",
 			[Bezewanst] = "#BC9A9F",
 			[Bindewald] = "#B1C6C1",
+			[Bonifatius] = "#BE856A",
 			[Brigitte] = "#A54254",
 			[Brunhilde] = "#C1533A",
 			[Charlotte] = "#D3BD96",
 			[Christine] = Hex.Unknown.Value,
 			[Cornelius] = "#A6B455",
 			[Corinna] = "#F7E3C0",
+			[Damian] = "#96574E",
 			[Damuel] = "#967B4E",
 			[Deid] = "#F3EEB6",
 			[Delia] = "#A13F34",

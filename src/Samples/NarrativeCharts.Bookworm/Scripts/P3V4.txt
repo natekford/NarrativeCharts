@@ -46,6 +46,111 @@ $T=Ingo,Johann,Lutz,Zack
 #Benno's Request
 >
 -$1
+// Time: "Three days later, Benno and Lutz visited the orphanage director’s chambers with Hugo in tow."
+>>3,Lunch
+$T=Benno,Hugo,Lutz
+// myne hires hugo
+>
+$M=Benno,Lutz
+
+
+
+#Staying Home During the Archduke Conference
+// Time: "the archduke and archduchess were staying in the Sovereignty for the Archduke Conference"
+// AD occurs in "Late Spring"
+// So far ~60 days are "accounted" for between the end of winter and current time
+// I guess add 2 weeks and ~75 days is close enough to "Late Spring"
+>>11,Morning
+$T=Otto,Theo
+$C=Brigitte,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Hugo,Myne,Rosina
+// myne meets with syl and wilf
+// they get registered and go into the mana room
+// bonifatius gets mentioned
+$C=Bonifatius
+// Time: "After finishing supper with us,"
+>FifthBell
+$T=Ferdinand
+$KO=Eckhart
+// Time: "Three days after my arrival at the castle"
+>>3,Lunch
+$C=Elvira,Karstedt
+// myne seeing archducal family off
+// has tea with elvira
+>
+$RA=Florencia,Karstedt,Sylvester
+$KE=Elvira
+
+
+
+#Payment and Unveiling the Dress
+// Time: "Angelica came home from her supplementary lessons on Earthdays"
+// so at most 6 days after the start of the AD conf
+// future events seem very cramped if we use 6 days
+// considering the AD conf is only 2 weeks long?
+>>6,Lunch
+$C=Angelica
+>>Morning
+$RA=Angelica
+>>3,Lunch
++$2
+$C=Benno,Corinna,Elvira,Otto
+>
+-$2
+// Time: "As the end of spring approached,"
+>>2,Lunch
+// myne gets informed that angellca passed her classes
+
+
+
+#Angelica's Manablade
+// Time: "After breakfast,"
+>>Morning
+$KO=Brigitte,Cornelius,Damuel,Myne
+>
+$KO=Angelica
+>
+$KO=Eckhart,Ferdinand
+// stenluke is created
+>
+$C=Angelica,Brigitte,Cornelius,Damuel,Myne
+$T=Ferdinand
+
+
+
+#Let's Print More Stuff
+// Time: "Several days had passed"
+>>2,Lunch
+// study plans with angelica and stenluke
+// Time: "And so came Fruitday. ... it was late enough for seventh bell."
+// has to be 6 days after angelica's weekly earthday returns
+// or any number that matches 7x + 6 but AD only 2 weeks long
+>>SeventhBell
+$T=Brigitte,Damuel,Ella,Hugo,Myne,Rosina
+$KE=Cornelius
+$KO=Angelica
+// Time: "At third bell,"
+>>ThirdBell
+// myne talks about recipe books and sheet music with ferdi
+>
+// she eats lunch
+
+
+
+#Meeting with the Plantin Company
++$3
+$T=Benno,Lutz,Mark,Otto
+// damian is mentioned
+$M=Damian
+>
+-$3
+
+
+
+#The Archducal Couple Returns
+>
+$C=Angelica,Brigitte,Cornelius,Damuel,Ella,Hugo,Myne,Rosina
+// Time: "Several days had passed since I ... returned to the castle"
+>>2,Morning
 
 
 @

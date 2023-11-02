@@ -205,8 +205,8 @@ $M=Benno,Leon,Mark
 $C=Brigitte,Damuel,Myne
 // Time: "there were far more sunny days than before." who knows when
 // myne gets hit by the snowball
-// i guess around 100 days after the semester started
-// so 50-60 day timeskip?
+// i guess around 100 days (the entire season) after the semester started
+// so 40-60 day timeskip?
 >>50,Meetings
 // Angelica's parents tell myne angelica failed her classes
 $C=Angelica
@@ -219,6 +219,7 @@ $C=Angelica
 #Upcoming Spring Prayer
 >>Lunch
 // Time: "Once the feast was over, the kids got together for one last gathering as they sadly prepared to leave."
+// the feast takes place in "Late Winter" according to the wiki
 $Groschel=Brunhilde,GiebeGroschel
 $Kirnberger=GiebeKirnberger
 $NQ=Christine,Hartmut,Philine
@@ -227,7 +228,8 @@ $KO=Eckhart
 $RA=Angelica
 >
 $T=Brigitte,Damuel,Ferdinand,Myne
->>Lunch
+// Spring Prayer takes place in "Early Spring", idk, add 3 weeks
+>>21,Lunch
 +$7
 $T=Benno,Corinna,Lutz,Mark,Tuuli
 >
