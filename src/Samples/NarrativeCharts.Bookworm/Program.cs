@@ -35,6 +35,7 @@ public class Program
 			new P3V1(Time),
 			new P3V2(Time),
 			FromScript(defs, "P3V3.txt"),
+			FromScript(defs, "P3V4.txt"),
 		};
 		for (var i = 0; i < books.Length; ++i)
 		{
@@ -155,6 +156,7 @@ public class Program
 				[RoyalAcademy] = ["RA"],
 				[Castle] = ["C"],
 				[KnightsOrder] = ["KO"],
+				[FerdinandsHouse] = ["FE"],
 				[KarstedtsHouse] = ["KE"],
 				[NoblesQuarter] = ["NQ"],
 				[Temple] = ["T"],
@@ -163,6 +165,7 @@ public class Program
 				[LowerCityWorkshops] = ["W"],
 				[MynesHouse] = ["MF"],
 				[SmallTowns] = ["SmallTowns"],
+				[GoddessesBath] = ["GBath"],
 			});
 		}
 

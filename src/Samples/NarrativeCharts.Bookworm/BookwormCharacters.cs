@@ -50,6 +50,7 @@ public static class BookwormCharacters
 	public static Character Kantna { get; } = new("Kantna");
 	public static Character Karstedt { get; } = new("Karstedt");
 	public static Character Lamprecht { get; } = new("Lamprecht");
+	public static Character Lasfam { get; } = new("Lasfam");
 	public static Character Leise { get; } = new("Leise");
 	public static Character Leon { get; } = new("Leon");
 	public static Character Lutz { get; } = new("Lutz");
@@ -72,6 +73,7 @@ public static class BookwormCharacters
 	public static Character Rihyarda { get; } = new("Rihyarda");
 	public static Character Rosina { get; } = new("Rosina");
 	public static Character Sylvester { get; } = new("Sylvester");
+	public static Character Theo { get; } = new("Theo");
 	public static Character Thore { get; } = new("Thore");
 	public static Character Todd { get; } = new("Todd");
 	public static Character Tuuli { get; } = new("Tuuli");
@@ -127,6 +129,7 @@ public static class BookwormCharacters
 			[Kantna] = Hex.Unknown.Value,
 			[Karstedt] = "#874730",
 			[Lamprecht] = "#D18A71",
+			[Lasfam] = "#228B22",
 			[Leise] = "#C87965",
 			[Leon] = "#B26D66",
 			[Lutz] = "#F7E3A8",
@@ -149,6 +152,7 @@ public static class BookwormCharacters
 			[Rihyarda] = "#E9DEC8",
 			[Rosina] = "#E09C5B",
 			[Sylvester] = "#5366AB",
+			[Theo] = Hex.Unknown.Value,
 			[Thore] = "#8888BE",
 			[Todd] = Hex.Unknown.Value,
 			[Tuuli] = "#95BE82",

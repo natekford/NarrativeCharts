@@ -1,0 +1,35 @@
+﻿##P3V4
+
+#Prologue
+// buying stuff for tuuli's leherl move
+$M=Effa,Lutz,Tuuli
+>
+
+
+
+#A New Dress
+// still assuming v3 last chapt, v3 epilogue, v4 prologue, and v4c1 heppen on the same day 
+// myne meets with the gilberta company
+$MF=Effa
+$T=Benno,Corinna,Lutz,Tuuli
+// seamstresses start making brigitte's dress
+// myne and benno discuss illgner
+// benno asks to have otto and theo to be trained by the priests
+$M=Theo
+>+2
+
+
+
+#The New Printing Press's Trial Run
+$M=Benno,Corinna,Lutz
+$MF=Tuuli
+// ferdi's meeting in the epilogue is probably done by now
+$T=Ferdinand
+$KE=Karstedt
+$KO=Eckhart
+// Time: "A few days later, I completed the reasonably thin knight short story. Come seventh bell,"
+>>3,SeventhBell
+
+
+
+@
