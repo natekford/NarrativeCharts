@@ -1,3 +1,96 @@
 ﻿##P3V5
 
 #Prologue
+>>Lunch
++$1
+$T=Benno,Lutz,Mark
+>
+-$1
+
+
+
+#The New Orphans and Operation Grimm
+// Time: "we were leaving the temple after lunch."
+>>Lunch
++$2
+$Hasse=Brigitte,Damuel,Eckhart,Ferdinand,Justus,Myne
+>
+-$2
+// Time: "The days sped past at an alarming speed"
+// "it was almost time for the Harvest Festival"
+// the prologue should be roughly around ~90 days into
+// summer at most and Harvest Festival occurs in "Late Autumn"
+// so this timeskip should be around ~75 days
+// at minimum, but that will make the chart look
+// really bad
+//>>75,Morning
+>>15,Morning
+// 2 grays are named in the story and sent to hasse
+$T=Achim,Egon
+// Time: "The day ... carriage ... ahead of the Harvest Festival."
+>>7,Morning
+$T=Gunther
+@?Gunther
+>U4
+$Hasse=Gunther
+>>2,Morning
+// 2 grays go to hasse in myne's highbeast
+$Hasse=Achim,Egon,Fran,Hugo,Monika,Nicola,Rosina
+$Hasse=Brigitte,Eckhart,Justus,Myne
+// ferdi goes to dorvan, eckhart stays with myne to control justus
+$SmallTowns=Damuel,Ferdinand
+
+
+
+#Hasse and the Gray Priests
+// myne meets with richt
+// introduces the 2 grays
+// lets hasse play warf
+// goes to the monastery and gets some stories
+// goes to bed
+>Bed
+
+
+
+#Ruelle Gathering (Take Two)
+>>Morning
+// via carriage back to ehrenfest
+@?Gunther
+// Time: "After finishing a lunch ... we set out ..."
+>Lunch
+// I think myne's attendants go in her highbeast?
+// it sounded like only their possessions went in carriages
+$SmallTowns=Brigitte,Eckhart,Fran,Hugo,Justus,Monika,Myne,Nicola,Rosina
+>U2
+$MF=Gunther
+// Time: "the day before the Night of Schutzaria"
+// idk, harvest festival is probably like 2 weeks long?
+>>12,Morning
+// meet up with ferdi in dorvan
+>>Morning
+// Time: "I’m almost there. Have lunch ready."
+>Lunch
+$SmallTowns=Karstedt
+>Bed
+$RTree=Brigitte,Damuel,Eckhart,Ferdinand,Justus,Karstedt,Myne
+
+
+
+#Damuel's Growth
+// ruelle gathered successfully and goes back to dorvan
+>
+$SmallTowns=Brigitte,Damuel,Eckhart,Ferdinand,Justus,Karstedt,Myne
+>Morning
+// start to talk about rmcm
+
+
+
+#Conditions for Compressing Mana
+
+
+
+
+
+
+>H24
+@

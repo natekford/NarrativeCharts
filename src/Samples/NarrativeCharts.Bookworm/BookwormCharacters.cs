@@ -6,6 +6,7 @@ namespace NarrativeCharts.Bookworm;
 
 public static class BookwormCharacters
 {
+	public static Character Achim { get; } = new("Achim");
 	public static Character Angelica { get; } = new("Angelica");
 	public static Character Benno { get; } = new("Benno");
 	public static Character Bezewanst { get; } = new("Bezewanst");
@@ -26,6 +27,7 @@ public static class BookwormCharacters
 	public static Character Eckhart { get; } = new("Eckhart");
 	public static Character Effa { get; } = new("Effa");
 	public static Character Egmont { get; } = new("Egmont");
+	public static Character Egon { get; } = new("Egon");
 	public static Character Ella { get; } = new("Ella");
 	public static Character Elvira { get; } = new("Elvira");
 	public static Character Ferdinand { get; } = new("Ferdinand");
@@ -94,6 +96,7 @@ public static class BookwormCharacters
 	{
 		Colors = new Dictionary<Character, string>
 		{
+			[Achim] = Hex.Unknown.Value,
 			[Angelica] = "#53B3DB",
 			[Benno] = "#E8CB9F",
 			[Bezewanst] = "#BC9A9F",
@@ -113,6 +116,7 @@ public static class BookwormCharacters
 			[Eckhart] = "#5F7D3F",
 			[Effa] = "#A0AA8F",
 			[Egmont] = "#947D77",
+			[Egon] = Hex.Unknown.Value,
 			[Ella] = "#9A515A",
 			[Elvira] = "#46523C",
 			[Ferdinand] = "#65B8DA",

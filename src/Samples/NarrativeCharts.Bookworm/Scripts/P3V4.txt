@@ -172,6 +172,8 @@ $KO=Angelica
 // and the previous chapter ended basically right at the start of summer
 // so in theory we should skip ~50 days
 >>45,Morning
+// tuuli turns 10 at some point and starts to spend most of her week at gilberta company
+$M=Tuuli
 $FE=Ferdinand
 >>5,Morning
 $C=Angelica,Brigitte,Corinna,Cornelius,Damuel,Eckhart,Elvira,Ferdinand,Karstedt,Myne

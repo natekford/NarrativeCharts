@@ -167,6 +167,7 @@ public class Program
 				[LowerCityWorkshops] = ["W"],
 				[MynesHouse] = ["MF"],
 				[SmallTowns] = ["SmallTowns"],
+				[RuelleTree] = ["RTree"],
 				[GoddessesBath] = ["GBath"],
 				[MountLohenberg] = ["Lohenberg"],
 				[AhrensbachCastle] = ["AC"],
