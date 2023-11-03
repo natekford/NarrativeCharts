@@ -166,6 +166,7 @@ public class Program
 				[MynesHouse] = ["MF"],
 				[SmallTowns] = ["SmallTowns"],
 				[GoddessesBath] = ["GBath"],
+				[MountLohenberg] = ["Lohenberg"],
 			});
 		}
 

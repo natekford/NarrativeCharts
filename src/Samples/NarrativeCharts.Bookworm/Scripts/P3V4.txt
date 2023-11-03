@@ -192,13 +192,13 @@ $M=Corinna
 // "I was also having a lunchtime meeting with Giebe Illgner"
 >>Lunch
 // discussing illgner paper
-$C=Helfried
-$C=Benno,Damian,Mark
++$4
+$C=Benno,Damian,Helfried,Mark
 // Time: "it is almost fifth bell."
 >FifthBell
 // selling books and other stuff
-$Illgner=Helfried
 >
+-$4
 
 
 
@@ -207,6 +207,82 @@ $Illgner=Helfried
 $T=Brigitte,Damuel,Eckhart,Ferdinand,Myne
 $KO=Angelica
 $KE=Cornelius,Elvira
+>Lunch
+$T=Lutz
+>
+// lutz shows damian the workshop
+$T=Damian
+>
+$M=Damian,Lutz
+// Time: "And so came the morning we were due to leave."
+// unknown amount of days
+>>5,Morning
+// preparing to take people/tools to illgner
+$T=Benno,Damian,Freida,Gustav,Lutz
+>
+$M=Freida,Gustav
+$Illgner=Benno,Brigitte,Damian,Damuel,Fran,Gil,Hugo,Lutz,Monika
+
+
+
+#Illgner's Brigitte
+>Dinner
+// Time: "The next day"
+>>Morning
+// goes to the forest to look for potential materials
+>>Morning
+$T=Benno,Brigitte,Damuel,Fran,Hugo,Monika,Myne
+
+
+
+#Mount Lohenberg
+// Time: "One day had passed"
+// "Ferdinand’s chambers at third bell"
+>>ThirdBell
+>
+$T=Justus
+>
+// Time: "Four days passed. After finishing lunch,"
+>>4,Lunch
+$C=Justus
+$Lohenberg=Brigitte,Damuel,Eckhart,Ferdinand,Myne
+>>EarlyMorning
+// they go into the volcano to get an egg
+
+
+
+#The Riesefalke Egg
+// myne fights a monke
+>>Morning
+
+
+
+#Hand Pumps
+$T=Brigitte,Damuel,Eckhart,Ferdinand,Myne
+>>Lunch
+$T=Benno,Mark
+// meeting about hand pump prototype
+>
+$M=Benno,Mark
+// ferdi scolds myne then says to have a prototype made for the castle
+>>Lunch
+$T=Johann,Zack
+>
+$W=Johann,Zack
+// Time: "Once we had settled on a date for the audience, ... come to the temple after second bell"
+>>4,SecondBell
+$T=Zack
+>
+$C=Brigitte,Damuel,Eckhart,Ferdinand,Myne,Zack
+>
+$T=Brigitte,Damuel,Eckhart,Ferdinand,Myne
+$W=Zack
+
+
+
+#Georgine's Visit
+
+
 
 
 

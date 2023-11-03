@@ -19,6 +19,7 @@ public static class BookwormLocations
 	public static Location KnightsOrder { get; } = new("Knight's Order");
 	public static Location LowerCityWorkshops { get; } = new("Lower City Workshops");
 	public static Location MerchantCompanies { get; } = new("Merchant Companies");
+	public static Location MountLohenberg { get; } = new("Mount Lohenberg");
 	public static Location MynesHouse { get; } = new("Myne's Family's House");
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location RoyalAcademy { get; } = new("Royal Academy");
@@ -50,6 +51,7 @@ public static class BookwormLocations
 			RuelleTree,
 			GoddessesBath,
 			Illgner,
+			MountLohenberg,
 		}
 		.Reverse()
 		.Select((x, i) => (Item: x, Index: i))
