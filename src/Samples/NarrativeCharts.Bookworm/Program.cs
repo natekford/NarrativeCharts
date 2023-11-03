@@ -36,6 +36,7 @@ public class Program
 			new P3V2(Time),
 			FromScript(defs, "P3V3.txt"),
 			FromScript(defs, "P3V4.txt"),
+			FromScript(defs, "P3V5.txt"),
 		};
 		for (var i = 0; i < books.Length; ++i)
 		{

@@ -10,6 +10,7 @@ public abstract class ScriptConverter : ScriptLoader
 	public string ClassName { get; protected set; } = "";
 	protected StringBuilder Chapter => Chapters[^1];
 	protected List<StringBuilder> Chapters { get; } = [];
+	protected bool LineConverted { get; set; }
 
 	protected ScriptConverter(ScriptDefinitions definitions, IEnumerable<string> lines)
 		: base(definitions, lines)
@@ -37,7 +38,16 @@ public abstract class ScriptConverter : ScriptLoader
 				break;
 		}
 
+		LineConverted = true;
 		base.HandleAddHours(input);
+	}
+
+	protected override void HandleAddReturnableScene(string input)
+	{
+		// no code equivalent
+
+		LineConverted = true;
+		base.HandleAddReturnableScene(input);
 	}
 
 	protected override void HandleAddUnits(string input)
@@ -58,6 +68,7 @@ public abstract class ScriptConverter : ScriptLoader
 				break;
 		}
 
+		LineConverted = true;
 		base.HandleAddUnits(input);
 	}
 
@@ -70,6 +81,7 @@ public abstract class ScriptConverter : ScriptLoader
 			.AppendLine("\");");
 		Chapters.Add(sb);
 
+		LineConverted = true;
 		base.HandleChapter(input);
 	}
 
@@ -79,6 +91,7 @@ public abstract class ScriptConverter : ScriptLoader
 			.Append("//")
 			.AppendLine(input);
 
+		LineConverted = true;
 		base.HandleComment(input);
 	}
 
@@ -90,6 +103,7 @@ public abstract class ScriptConverter : ScriptLoader
 			.AppendJoin(", ", characters)
 			.AppendLine(");");
 
+		LineConverted = true;
 		base.HandleFreeze(input);
 	}
 
@@ -101,6 +115,7 @@ public abstract class ScriptConverter : ScriptLoader
 			.AppendJoin(", ", characters)
 			.AppendLine(");");
 
+		LineConverted = true;
 		base.HandleKill(input);
 	}
 
@@ -115,6 +130,7 @@ public abstract class ScriptConverter : ScriptLoader
 			);
 		}
 
+		LineConverted = true;
 		base.HandleRemoveReturnableScene(input);
 	}
 
@@ -131,6 +147,7 @@ public abstract class ScriptConverter : ScriptLoader
 				break;
 		}
 
+		LineConverted = true;
 		base.HandleScene(input);
 	}
 
@@ -152,6 +169,7 @@ public abstract class ScriptConverter : ScriptLoader
 				break;
 		}
 
+		LineConverted = true;
 		base.HandleSkipToCurrentDay(input);
 	}
 
@@ -187,6 +205,7 @@ public abstract class ScriptConverter : ScriptLoader
 				break;
 		}
 
+		LineConverted = true;
 		base.HandleSkipToNextDay(input);
 	}
 
@@ -194,6 +213,7 @@ public abstract class ScriptConverter : ScriptLoader
 	{
 		ClassName = input.Replace(" ", "");
 
+		LineConverted = true;
 		base.HandleTitle(input);
 	}
 
@@ -201,7 +221,19 @@ public abstract class ScriptConverter : ScriptLoader
 	{
 		Chapter.AppendLine($"{nameof(Update)}();");
 
+		LineConverted = true;
 		base.HandleUpdate(input);
+	}
+
+	protected override void ProcessLine(string line)
+	{
+		LineConverted = false;
+		base.ProcessLine(line);
+
+		if (!LineConverted)
+		{
+			throw new InvalidOperationException("Line not converted.");
+		}
 	}
 
 	protected abstract IEnumerable<string> ToProperties(IEnumerable<Character> characters);

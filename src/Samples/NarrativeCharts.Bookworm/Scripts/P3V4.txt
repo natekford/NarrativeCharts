@@ -304,7 +304,7 @@ $NQ=Gloria
 
 #Dirk's Mana and Submission Contract
 // Time: unknown amount of days later
->>5,FourthBell
+>>2,FourthBell
 // fritz tells myne about dirk
 >>FifthBell
 // myne meets ferdi to talk about dirk
