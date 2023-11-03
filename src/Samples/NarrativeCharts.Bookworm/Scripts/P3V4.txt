@@ -25,7 +25,7 @@ $M=Benno,Corinna,Lutz
 $MF=Tuuli
 // ferdi's meeting in the epilogue is probably done by now
 $T=Ferdinand
-$KE=Karstedt
+$C=Karstedt
 $KO=Eckhart
 // Time: "A few days later, I completed the reasonably thin knight short story. Come seventh bell,"
 >>3,SeventhBell
@@ -87,7 +87,7 @@ $KE=Elvira
 // so at most 6 days after the start of the AD conf
 // future events seem very cramped if we use 6 days
 // considering the AD conf is only 2 weeks long?
->>6,Lunch
+>>4,Lunch
 $C=Angelica
 >>Morning
 $RA=Angelica
@@ -151,6 +151,63 @@ $M=Damian
 $C=Angelica,Brigitte,Cornelius,Damuel,Ella,Hugo,Myne,Rosina
 // Time: "Several days had passed since I ... returned to the castle"
 >>2,Morning
+$C=Florencia,Karstedt,Sylvester
+>FifthBell
+// sylv tells myne that georgine learned about bezewanst's death
+>
+// Time: "The next day,"
+>>Meetings
+$T=Brigitte,Damuel,Ella,Hugo,Myne,Rosina
+$KE=Cornelius
+$KO=Angelica
+// myne tells ferdi that sylv wants him to return to noble society
+>
+
+
+
+#The Dress Debut and Ferdinand's Return
+// Time: "I was faced with a barrage of extremely busy days."
+// "In the final few days leading up to the [Starbind Ceremoney]"
+// The Starbind Ceremony takes place in "Midsummer"
+// and the previous chapter ended basically right at the start of summer
+// so in theory we should skip ~50 days
+>>45,Morning
+$FE=Ferdinand
+>>5,Morning
+$C=Angelica,Brigitte,Corinna,Cornelius,Damuel,Eckhart,Elvira,Ferdinand,Karstedt,Myne
+>
+$M=Corinna
+// Time: "At seventh bell,"
+>SeventhBell
+// starbinding ceremony happens
+// Time: "tea party planned for tomorrow afternoon."
+>>Tea
+// elvira tells myne about damuel's proposal
+
+
+
+#Lunch Meeting and Business Day
+// Time: "It was two days after the Starbind Ceremony"
+// so 1 day after the end of prev chapter
+// "I was also having a lunchtime meeting with Giebe Illgner"
+>>Lunch
+// discussing illgner paper
+$C=Helfried
+$C=Benno,Damian,Mark
+// Time: "it is almost fifth bell."
+>FifthBell
+// selling books and other stuff
+$Illgner=Helfried
+>
+
+
+
+#Heading to Illgner
+>>Morning
+$T=Brigitte,Damuel,Eckhart,Ferdinand,Myne
+$KO=Angelica
+$KE=Cornelius,Elvira
+
 
 
 @

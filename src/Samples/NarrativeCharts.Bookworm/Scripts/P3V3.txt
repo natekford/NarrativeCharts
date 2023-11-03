@@ -222,8 +222,9 @@ $C=Angelica
 // the feast takes place in "Late Winter" according to the wiki
 $Groschel=Brunhilde,GiebeGroschel
 $Kirnberger=GiebeKirnberger
+$Illgner=Helfried
 $NQ=Christine,Hartmut,Philine
-$KE=Cornelius,Elvira,Karstedt
+$KE=Cornelius,Elvira
 $KO=Eckhart
 $RA=Angelica
 >

@@ -274,7 +274,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "A little before sixth bell, Rihyarda received an ordonnanz from Ferdinand"
 		Add(NoblesQuarter, Kantna);
 		Add(Temple, Brigitte, Damuel, Ferdinand, Myne);
-		Add(KarstedtsHouse, Cornelius, Karstedt);
+		Add(KarstedtsHouse, Cornelius);
 		Add(KnightsOrder, Angelica);
 
 		// Time: "The next day was a normal one; I practiced harspiel as I always did, then went to help Ferdinand."

@@ -359,9 +359,9 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// syl hires hugo for the castle
 		Add(MerchantCompanies, Benno, Freida, Gustav, Leon, Mark);
 		Add(Temple, Brigitte, Damuel, Ferdinand, Fran, Myne, Rosina, Zahm);
-		Add(KarstedtsHouse, Cornelius, Karstedt);
+		Add(KarstedtsHouse, Cornelius);
 		Add(KnightsOrder, Eckhart);
-		Add(Castle, Sylvester);
+		Add(Castle, Karstedt, Sylvester);
 	}
 
 	private void P3V1C14()
