@@ -16,7 +16,7 @@ $T=Benno,Corinna,Lutz,Tuuli
 // myne and benno discuss illgner
 // benno asks to have otto and theo to be trained by the priests
 $M=Theo
->+2
+>U2
 
 
 
@@ -281,9 +281,64 @@ $W=Zack
 
 
 #Georgine's Visit
+// Time: "Third bell rang"
+// no clue how many days later
+>>ThirdBell
+// ferdi learns about georgine's planned visit
+// Time: "On a day toward the end of summer,"
+// roughly ~70 days into summer at this point
+// idk, add 2 weeks
+>>14,Morning
+// georgine arrives
+$C=Georgine
+// Time: "feast is to be held two days from now"
+>>2,Lunch
++$5
+$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
+$C=Gloria
+>
+-$5
+$NQ=Gloria
 
 
 
+#Dirk's Mana and Submission Contract
+// Time: unknown amount of days later
+>>5,FourthBell
+// fritz tells myne about dirk
+>>FifthBell
+// myne meets ferdi to talk about dirk
+>
+// dirk's mana gets drained and myne gives delia the contract
+>
 
 
-@
+
+#Georgine Departs
+// Time: unknown amount of days later
+>>2,FourthBell
+// ferdi gets ord saying georgine leaving tomorrow
+// Time: "We arrived ... much sooner than third bell."
+>>SecondBell
++$6
+$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
+>
+// wilfried invites georgine back
+-$6
+$NQ=Gloria
+@?Georgine,Gloria
+
+
+
+#Epilogue
+// Time: some day later
+>>2,Morning
+$Dahldolf=GiebeDahldolf,Jeremias
+$AC=Georgine
+$Gerlach=Gloria,Grausam,Royella
+>
+$Dahldolf=Gloria
+
+
+
+>H24

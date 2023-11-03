@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Models;
+using NarrativeCharts.Time;
 
 namespace NarrativeCharts.Scripting;
 
@@ -51,6 +52,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			SymbolHandlers.Add(_Symbols.SkipToCurrentDay, HandleSkipToCurrentDay);
 			SymbolHandlers.Add(_Symbols.SkipToNextDay, HandleSkipToNextDay);
 			SymbolHandlers.Add(_Symbols.AddUnits, HandleAddUnits);
+			SymbolHandlers.Add(_Symbols.AddHours, HandleAddHours);
 			SymbolHandlers.Add(_Symbols.Update, HandleUpdate);
 			SymbolHandlers.Add(_Symbols.Freeze, HandleFreeze);
 			SymbolHandlers.Add(_Symbols.Kill, HandleKill);
@@ -59,6 +61,27 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			SymbolHandlers.Add(_Symbols.RemoveReturnableScene, HandleRemoveReturnableScene);
 		}
 		return SymbolHandlers!;
+	}
+
+	protected virtual void HandleAddHours(string input)
+	{
+		var args = SplitArgs(input);
+		switch (args.Length)
+		{
+			// Does the same thing as SkipToCurrentDay no args
+			case 0:
+				Time.AddHour();
+				Update();
+				return;
+
+			case 1:
+				Time.AddHours(int.Parse(args[0]));
+				Update();
+				return;
+
+			default:
+				throw new ArgumentException("Cannot handle more than 1 argument.");
+		}
 	}
 
 	protected virtual void HandleAddReturnableScene(string input)

@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Models;
+using NarrativeCharts.Time;
 
 using System.Text;
 
@@ -13,6 +14,30 @@ public abstract class ScriptConverter : ScriptLoader
 	protected ScriptConverter(ScriptDefinitions definitions, IEnumerable<string> lines)
 		: base(definitions, lines)
 	{
+	}
+
+	protected override void HandleAddHours(string input)
+	{
+		var args = SplitArgs(input);
+		switch (args.Length)
+		{
+			case 0:
+				Chapter
+					.AppendLine($"{nameof(Time)}.{nameof(TimeTrackerUtils.AddHour)}();")
+					.AppendLine($"{nameof(Update)}();");
+				break;
+
+			case 1:
+				Chapter
+					.Append($"{nameof(Time)}.{nameof(TimeTrackerUtils.AddHours)}")
+					.Append('(')
+					.Append(args[0])
+					.AppendLine(");")
+					.AppendLine($"{nameof(Update)}();");
+				break;
+		}
+
+		base.HandleAddHours(input);
 	}
 
 	protected override void HandleAddUnits(string input)

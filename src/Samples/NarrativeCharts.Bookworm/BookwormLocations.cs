@@ -6,8 +6,11 @@ namespace NarrativeCharts.Bookworm;
 
 public static class BookwormLocations
 {
-	public static Location Castle { get; } = new("Ehrenfest Castle");
+	public static Location AhrensbachCastle { get; } = new("Ahrensbach Castle");
+	public static Location Dahldolf { get; } = new("Dahldolf");
+	public static Location EhrenfestCastle { get; } = new("Ehrenfest Castle");
 	public static Location FerdinandsHouse { get; } = new("Ferdinand's Estate");
+	public static Location Gerlach { get; } = new("Gerlach");
 	public static Location GoddessesBath { get; } = new("Goddesses' Bath");
 	public static Location Groschel { get; } = new("Groschel");
 	public static Location Haldenzel { get; } = new("Haldenzel");
@@ -36,7 +39,7 @@ public static class BookwormLocations
 			Haldenzel,
 			Kirnberger,
 			Groschel,
-			Castle,
+			EhrenfestCastle,
 			KnightsOrder,
 			FerdinandsHouse,
 			KarstedtsHouse,
@@ -51,7 +54,10 @@ public static class BookwormLocations
 			RuelleTree,
 			GoddessesBath,
 			Illgner,
+			Dahldolf,
+			Gerlach,
 			MountLohenberg,
+			AhrensbachCastle,
 		}
 		.Reverse()
 		.Select((x, i) => (Item: x, Index: i))

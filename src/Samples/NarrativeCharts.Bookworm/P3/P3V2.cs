@@ -1,4 +1,6 @@
-﻿using static NarrativeCharts.Bookworm.BookwormBell;
+﻿using NarrativeCharts.Time;
+
+using static NarrativeCharts.Bookworm.BookwormBell;
 using static NarrativeCharts.Bookworm.BookwormCharacters;
 using static NarrativeCharts.Bookworm.BookwormLocations;
 
@@ -58,6 +60,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		P3V2C18();
 		Event("Epilogue");
 		P3V2C19();
+		Time.AddHours(24);
 		Update();
 	}
 
@@ -178,15 +181,15 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Temple, Gil, Myne);
 		Add(Temple, Ferdinand, Myne);
 		Jump();
-		var s1 = AddR(Castle, Brigitte, Damuel, Ferdinand, Myne);
+		var s1 = AddR(EhrenfestCastle, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
-		Add(Castle, Myne, Rihyarda);
+		Add(EhrenfestCastle, Myne, Rihyarda);
 		// Time: "a meeting had been arranged for teatime at fifth bell."
 		SkipToCurrentDay(FifthBell);
 		// wilfried "it's not fair" myne tells him to quit whining
-		Add(Castle, Myne, Wilfried);
+		Add(EhrenfestCastle, Myne, Wilfried);
 		// myne shows sylvester lessy and gets sylvester to give hugo back
-		Add(Castle, Ferdinand, Myne, Sylvester);
+		Add(EhrenfestCastle, Ferdinand, Myne, Sylvester);
 		Jump();
 		Return(s1);
 		Add(ItalianRestaurant, Hugo);
@@ -234,20 +237,20 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// so several days after last chapter?
 		SkipToDaysAhead(3, Meetings);
 		// myne reports to sylvester and swaps places with wilfried for a day
-		Add(Castle, Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Karstedt, Myne);
+		Add(EhrenfestCastle, Angelica, Brigitte, Cornelius, Damuel, Ferdinand, Karstedt, Myne);
 		Jump();
 		// myne has lunch with wilf and talks about what to do
 		// brig/damuel go with wilf (from wilf's SS)
 		// "Lamprecht and Damuel will accompany you as guards"
 		// "Rozemyne’s female knight who had entered with Ferdinand saluted and stepped aside."
 		Add(Temple, Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried);
-		Add(Castle, Moritz, Oswald);
+		Add(EhrenfestCastle, Moritz, Oswald);
 		// Time: "Fifth bell rang and there was still no sign of Rihyarda."
 		SkipToCurrentDay(FifthBell);
 		// Time: "“Milady, it’s dinner time!” Rihyarda declared"
 		SkipToCurrentDay(Dinner);
 		// ferdinand tells sylvester to disinherit wilf
-		var s1 = AddR(Castle, Ferdinand);
+		var s1 = AddR(EhrenfestCastle, Ferdinand);
 		Jump();
 		Return(s1);
 
@@ -255,21 +258,21 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// myne shows people in the castle karuta/picture books
 		// Time: "Shortly after fourth bell, Wilfried and Lamprecht entered the room"
 		SkipToCurrentDay(FourthBell);
-		Add(Castle, Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried);
+		Add(EhrenfestCastle, Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried);
 	}
 
 	private void P3V2C11()
 	{
-		Add(Castle, Eckhart, Justus);
+		Add(EhrenfestCastle, Eckhart, Justus);
 		Jump();
 		Add(KnightsOrder, Eckhart);
 		// "I’ve been doing scholar work in the castle ever since Lord Ferdinand entered the temple"
-		Add(Castle, Justus);
+		Add(EhrenfestCastle, Justus);
 	}
 
 	private void P3V2C12()
 	{
-		Add(Castle, Kantna);
+		Add(EhrenfestCastle, Kantna);
 		SkipToCurrentDay(SixthBell);
 		// Time: "A little before sixth bell, Rihyarda received an ordonnanz from Ferdinand"
 		Add(NoblesQuarter, Kantna);
@@ -379,14 +382,14 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		Add(Temple, Brigitte, Damuel, Ella, Ferdinand, Fran, Monika, Myne, Nicola, Rosina);
 		Add(KnightsOrder, Eckhart);
-		Add(Castle, Justus);
+		Add(EhrenfestCastle, Justus);
 
 		// Time: "And so began a series of meetings with blue priests that continued day after day."
 		SkipToDaysAhead(2, Meetings);
 		Add(Temple, Kampfer, Frietack);
 
 		SkipToDaysAhead(2, Meetings);
-		var s1 = AddR(Castle, Brigitte, Damuel, Ferdinand, Myne);
+		var s1 = AddR(EhrenfestCastle, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
 		Return(s1);
 	}

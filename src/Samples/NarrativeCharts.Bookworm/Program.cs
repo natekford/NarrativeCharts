@@ -138,6 +138,7 @@ public class Program
 
 			AddAliases(defs.CharacterAliases, new()
 			{
+				[GiebeDahldolf] = [nameof(GiebeDahldolf)],
 				[GiebeGroschel] = [nameof(GiebeGroschel)],
 				[GiebeKirnberger] = [nameof(GiebeKirnberger)],
 				[HasseMayor] = [nameof(HasseMayor)],
@@ -154,7 +155,7 @@ public class Program
 			AddAliases(defs.LocationAliases, new()
 			{
 				[RoyalAcademy] = ["RA"],
-				[Castle] = ["C"],
+				[EhrenfestCastle] = ["C"],
 				[KnightsOrder] = ["KO"],
 				[FerdinandsHouse] = ["FE"],
 				[KarstedtsHouse] = ["KE"],
@@ -167,6 +168,7 @@ public class Program
 				[SmallTowns] = ["SmallTowns"],
 				[GoddessesBath] = ["GBath"],
 				[MountLohenberg] = ["Lohenberg"],
+				[AhrensbachCastle] = ["AC"],
 			});
 		}
 
