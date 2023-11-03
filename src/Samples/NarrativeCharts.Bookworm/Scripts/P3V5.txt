@@ -86,8 +86,42 @@ $SmallTowns=Brigitte,Damuel,Eckhart,Ferdinand,Justus,Karstedt,Myne
 
 
 #Conditions for Compressing Mana
+>
+$C=Justus,Karstedt
 
 
+
+#Illgner's harvest Festival
+// Time: "I arrived at Illgner the next day"
+>>Morning
+$Illgner=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Hugo,Monika,Myne,Nicola,Rosina
+// other grays are named (and nolte is named a 2nd time), but they aren't important
+$Illgner=Carya,Volk
+// Time: "it was time for dinner"
+>Dinner
+// volk's price gets mentioned
+>>Lunch
+// myne has a meeting with lutz/gil
+// myne tells volk to work hard for a year to make enough money
+>>Morning
+$T=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Gil,Hugo,Monika,Myne,Nicola,Rosina
+$M=Damian,Lutz
+
+
+
+#My First-Ever Little Sister
+>>Meetings
+$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Myne
+// myne meets charlotte
+>
+// myne and syl talk about rmcm
+>FifthBell
+// tea party with charlotte
+// angelica owns wilf
+
+
+
+#Wilfried's Actions
 
 
 
