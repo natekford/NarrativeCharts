@@ -185,7 +185,8 @@ $T=Ferdinand,Myne
 
 
 
-// #Grandfather on the Day of the Baptism
+// Chapters get out of order, but whatever
+#Grandfather on the Day of the Baptism
 >
 $KE=Elvira,Cornelius
 $KO=Angelica
@@ -197,11 +198,14 @@ $Gerlach=Grausam
 
 
 
-// #In Place of My Older Sister
+#In Place of My Older Sister
 // Probably right after the interrogation of grausam
 // archducal couple + ferdi talk to charlotte and wilf
 >
-$T=Eckhart,Ferdinand
+// in ss No Rest for Us lutz delivers letters to myne's family
+$MF=Lutz
+>
+$M=Lutz
 // Time: "Good evening, everyone."
 >>FifthBell
 // myne's guard knights come to the winter playroom
@@ -210,15 +214,109 @@ $C=Angelica,Cornelius
 $C=Ernesta
 // playroom kids
 $C=Hartmut,Philine
+>>3,Morning
++$6
+$M=Fritz,Gil,Heidi,Ingo,Johann,Josef,Zack
+>
+-$6
 // Time: "Once the students had departed for the Royal Academy"
->>5,Morning
+>>2,Morning
 $RA=Angelica,Cornelius,Hartmut
+// ~50 days after jureve, ferdi returns to temple and justus helps him
+>>>2
+>
+$T=Eckhart,Ferdinand
+// RA students probably also return (not angelica)
+$KE=Cornelius
+$NQ=Hartmut
+>>Morning
+$T=Justus
+// ~90 days after jureve char and wilf go on spring prayer
+>>>1
+>
+$KO=Angelica
+$Hasse=Charlotte,Fran,Gunther,Wilfried
+>>Morning
+$SmallTowns=Charlotte,Fran,Wilfried
+$T=Achim,Egon
+$MF=Gunther
+// would be more like 2 weeks, but not large enough to bother with timeskipping
+>>Morning
+$C=Charlotte,Wilfried
+$T=Fran
+
+
+
+#Two Marriages
+// ~210 days after jureve to starbind ceremony
+>>>4
+>
+$NQ=Helfried
+>>Morning
+$T=Benno,Damian,Helfried
+>
+$M=Benno,Damian
+$NQ=Brigitte,Helfried
+// Time: "And so came the night of the Starbind Ceremony."
+>>SixthBell
+$C=Brigitte,Damuel,Elvira,Ferdinand,Helfried
+>
+// "Halfway through summer, sometime after the Starbind Ceremony,"
+$Illgner=Brigitte,Helfried
+$KE=Elvira
+$T=Ferdinand,Lily
+
+
+
+#Meanwhile at the Temple
+// ~300 days after jureve to harvest festival
+>>>3
+>
+// lily gets sent to hasse in preparation for childbirth
+$Hasse=Charlotte,Fran,Gunther,Lily,Wilfried
+>>Morning
+$SmallTowns=Charlotte,Fran,Wilfried
+$MF=Gunther
+>>Morning
+$C=Charlotte,Wilfried
+$T=Fran
+>>Morning
++$6
+$T=Benno,Elvira
+>
+-$6
+
+
+
+#No Rest for Us
+// ~400 days after jureve
+// "about a year after Myne had gone to sleep, ... summoned the Gutenbergs"
+>>>3
+>
++$7
+$M=Fritz,Gil,Heidi,Ingo,Johann,Josef,Zack
+>
+-$7
+// ~530 days after jureve
+>>>4
+>
+// gutenbergs go to haldenzel
+$Haldenzel=Benno,Fritz,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
+$Hasse=Wilma
+// ~600 days after jureve
+>>>2
+>
+$T=Lily,Wilma
 
 
 
 #And So, the Future
-// the chart would look AWFUL with a 2 year timeskip.
->>>7
+// the chart would look AWFUL with an 840 day timeskip
+// and with the other timeskips factored in, having each unit be
+// worth roughly 30 days is best
+>>>10
+>
+
 
 
 #Epilogue

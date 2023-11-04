@@ -93,7 +93,8 @@ public abstract class NarrativeChart : NarrativeChartData
 		{
 			points.ModifyLastPoint(x => x with { IsTimeSkip = true });
 		}
-		Time.AddDays(days);
+		Time.SkipToNextDayStart();
+		Time.AddDays(days - 1);
 		Update();
 	}
 

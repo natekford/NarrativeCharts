@@ -96,7 +96,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(Temple, Ferdinand, Karstedt, Myne, Sylvester);
 		Add(KnightsOrder, Bezewanst, Bindewald);
 		Add(Temple, Damuel, Delia, Dirk, Egmont, Ella, Fran, Gil, Monika, Nicola, Rosina, Wilma, Zahm);
-		Add(LowerCityWorkshops, Deid, Ingo, Johann);
+		Add(LowerCityWorkshops, Deid, Heidi, Ingo, Johann, Josef);
 		Add(MerchantCompanies, Benno, Corinna, Freida, Gustav, Leon, Lutz, Mark, Otto);
 		Add(MynesHouse, Effa, Gunther, Kamil, Tuuli);
 		Add(ItalianRestaurant, Hugo, Leise, Todd);

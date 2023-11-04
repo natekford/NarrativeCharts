@@ -50,12 +50,14 @@ public static class BookwormCharacters
 	public static Character Gustav { get; } = new("Gustav");
 	public static Character Hartmut { get; } = new("Hartmut");
 	public static Character HasseMayor { get; } = new("Hasse's Mayor");
+	public static Character Heidi { get; } = new("Heidi");
 	public static Character Helfried { get; } = new("Helfried");
 	public static Character Henrik { get; } = new("Henrik");
 	public static Character Hugo { get; } = new("Hugo");
 	public static Character Ingo { get; } = new("Ingo");
 	public static Character Jeremias { get; } = new("Jeremias");
 	public static Character Johann { get; } = new("Johann");
+	public static Character Josef { get; } = new("Josef");
 	public static Character Justus { get; } = new("Justus");
 	public static Character Kamil { get; } = new("Kamil");
 	public static Character Kampfer { get; } = new("Kampfer");
@@ -65,6 +67,7 @@ public static class BookwormCharacters
 	public static Character Lasfam { get; } = new("Lasfam");
 	public static Character Leise { get; } = new("Leise");
 	public static Character Leon { get; } = new("Leon");
+	public static Character Lily { get; } = new("Lily");
 	public static Character Lutz { get; } = new("Lutz");
 	public static Character Mark { get; } = new("Mark");
 	public static Character Marthe { get; } = new("Marthe");
@@ -143,12 +146,14 @@ public static class BookwormCharacters
 			[Gustav] = "#B6A6A7",
 			[Hartmut] = "#DC602C",
 			[HasseMayor] = Hex.Unknown.Value,
+			[Heidi] = "#BB5435",
 			[Helfried] = "#FF0000",
 			[Henrik] = "#5C4033",
 			[Hugo] = "#7E5951",
 			[Ingo] = "#C1924A",
 			[Jeremias] = Hex.Unknown.Value,
 			[Johann] = "#E4A242",
+			[Josef] = "#FAD273",
 			[Justus] = "#A1AACB",
 			[Kamil] = "#415BA5",
 			[Kampfer] = Hex.Unknown.Value,
@@ -158,6 +163,7 @@ public static class BookwormCharacters
 			[Lasfam] = "#228B22",
 			[Leise] = "#C87965",
 			[Leon] = "#B26D66",
+			[Lily] = Hex.Unknown.Value,
 			[Lutz] = "#F7E3A8",
 			[Mark] = "#726249",
 			[Marthe] = "#5C725D",
