@@ -53,6 +53,7 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			SymbolHandlers.Add(_Symbols.SkipToNextDay, HandleSkipToNextDay);
 			SymbolHandlers.Add(_Symbols.AddUnits, HandleAddUnits);
 			SymbolHandlers.Add(_Symbols.AddHours, HandleAddHours);
+			SymbolHandlers.Add(_Symbols.TimeSkip, HandleTimeSkip);
 			SymbolHandlers.Add(_Symbols.Update, HandleUpdate);
 			SymbolHandlers.Add(_Symbols.Freeze, HandleFreeze);
 			SymbolHandlers.Add(_Symbols.Kill, HandleKill);
@@ -190,6 +191,9 @@ public class ScriptLoader : NarrativeChartUnits<int>
 				throw new ArgumentException("Cannot handle more than 2 arguments.");
 		}
 	}
+
+	protected virtual void HandleTimeSkip(string input)
+		=> TimeSkip(int.Parse(input));
 
 	protected virtual void HandleTitle(string input)
 		=> Name = input;

@@ -87,7 +87,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 				var curr = points.Values[p];
 				var (prevX, prevY) = (prev.Hour, prev.Location);
 				var (currX, currY) = (curr.Hour, curr.Location);
-				var hasMovement = prevY != currY;
+				var hasMovement = prev.IsTimeSkip || prevY != currY;
 				var isFinal = p == points.Count - 1;
 
 				// Add the previous stationary segment
@@ -205,5 +205,5 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		bool IsMovement, bool IsFinal
 	);
 
-	protected record Dimensions(int Width, float WMult, int Height, float HMult);
+	protected record Dimensions(int Width, float WidthMult, int Height, float HeightMult);
 }

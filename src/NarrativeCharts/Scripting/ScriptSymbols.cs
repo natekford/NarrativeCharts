@@ -10,6 +10,7 @@ public record ScriptSymbols(
 	string SkipToCurrentDay = ">",
 	string AddUnits = ">U",
 	string AddHours = ">H",
+	string TimeSkip = ">>>",
 	string Update = "@",
 	string Freeze = "@?",
 	string Kill = "@!",

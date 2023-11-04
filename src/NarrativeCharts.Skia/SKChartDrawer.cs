@@ -59,8 +59,8 @@ public sealed class SKChartDrawer
 			yMap: yMap,
 			padding: ImagePadding,
 			lineWidth: LineWidth,
-			wMult: dims.WMult,
-			hMult: dims.HMult
+			wMult: dims.WidthMult,
+			hMult: dims.HeightMult
 		);
 
 		canvas.Clear(SKColors.White);
@@ -209,13 +209,13 @@ public sealed class SKChartDrawer
 			paint.PathEffect = null;
 			if (!segment.IsMovement)
 			{
-				var p2 = p0 + labelOffset;
-				canvas.DrawText(name, p2.X, p2.Y, paint);
+				var p0Label = p0 + labelOffset;
+				canvas.DrawText(name, p0Label.X, p0Label.Y, paint);
 			}
 			if (segment.IsFinal)
 			{
-				var p2 = p1 + labelOffset;
-				canvas.DrawText(name, p2.X, p2.Y, paint);
+				var p1Label = p1 + labelOffset;
+				canvas.DrawText(name, p1Label.X, p1Label.Y, paint);
 			}
 
 			canvas.DrawCircle(p0, MarkerDiameter / 2f, paint);

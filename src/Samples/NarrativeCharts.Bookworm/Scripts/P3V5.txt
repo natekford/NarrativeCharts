@@ -218,8 +218,7 @@ $RA=Angelica,Cornelius,Hartmut
 
 #And So, the Future
 // the chart would look AWFUL with a 2 year timeskip.
-//>>840,Morning
->
+>>>7
 
 
 #Epilogue

@@ -209,6 +209,18 @@ public abstract class ScriptConverter : ScriptLoader
 		base.HandleSkipToNextDay(input);
 	}
 
+	protected override void HandleTimeSkip(string input)
+	{
+		Chapter
+			.Append(nameof(TimeSkip))
+			.Append('(')
+			.Append(input)
+			.AppendLine(");");
+
+		LineConverted = true;
+		base.HandleTimeSkip(input);
+	}
+
 	protected override void HandleTitle(string input)
 	{
 		ClassName = input.Replace(" ", "");
@@ -232,7 +244,7 @@ public abstract class ScriptConverter : ScriptLoader
 
 		if (!LineConverted)
 		{
-			throw new InvalidOperationException("Line not converted.");
+			throw new InvalidOperationException("Line not converted from script to class.");
 		}
 	}
 

@@ -5,27 +5,26 @@ namespace NarrativeCharts;
 
 public abstract class NarrativeChart : NarrativeChartData
 {
-	protected bool AlreadyCreated { get; set; }
-	protected Location Frozen { get; } = new Location(nameof(Frozen));
+	protected int Hour => Time.CurrentTotalHours;
+	protected bool IsInitialized { get; set; }
 	protected TimeTracker Time { get; }
-	protected int X => Time.CurrentTotalHours;
 
 	protected NarrativeChart(TimeTracker time)
 	{
 		Time = time;
 	}
 
-	public void Initialize(NarrativeChartData? seed)
+	public virtual void Initialize(NarrativeChartData? seed)
 	{
-		if (AlreadyCreated)
+		if (IsInitialized)
 		{
 			return;
 		}
-		AlreadyCreated = true;
+		IsInitialized = true;
 
 		if (seed is not null)
 		{
-			this.Seed(seed, X);
+			this.Seed(seed, Hour);
 		}
 
 		ProtectedCreate();
@@ -34,7 +33,7 @@ public abstract class NarrativeChart : NarrativeChartData
 		{
 			for (var i = points.Count - 1; i >= 0; --i)
 			{
-				if (points.Values[i].Location == Frozen)
+				if (points.Values[i].Location == Location.Frozen)
 				{
 					points.RemoveAt(i);
 				}
@@ -43,53 +42,61 @@ public abstract class NarrativeChart : NarrativeChartData
 		this.Simplify();
 	}
 
-	protected void Add(Location location, params Character[] characters)
-		=> this.AddScene(new(X, location, characters));
+	protected virtual void Add(Location location, params Character[] characters)
+		=> this.AddScene(new(Hour, location, characters));
 
-	protected Dictionary<Character, Location> AddR(Location location, params Character[] characters)
+	protected virtual Dictionary<Character, Location> AddR(Location location, params Character[] characters)
 	{
 		var locations = this.GetCurrentLocations(characters);
 		Add(location, characters);
 		return locations;
 	}
 
-	protected void Event(string name)
+	protected virtual void Event(string name)
 	{
-		this.AddEvent(new(X, name));
+		this.AddEvent(new(Hour, name));
 		Update();
 	}
 
-	protected void Freeze(params Character[] characters)
-		=> Add(Frozen, characters);
+	protected virtual void Freeze(params Character[] characters)
+		=> Add(Location.Frozen, characters);
 
-	protected void Kill(params Character[] characters)
+	protected virtual void Kill(params Character[] characters)
 	{
 		Update();
 		foreach (var character in characters)
 		{
-			var lastPoint = Points[character].Values[^1];
-			Points[character][lastPoint.Hour] = lastPoint with
-			{
-				IsEnd = true,
-			};
+			Points[character].ModifyLastPoint(x => x with { IsEnd = true });
 		}
 	}
 
 	protected abstract void ProtectedCreate();
 
-	protected void Return(Dictionary<Character, Location> scene)
+	protected virtual void Return(Dictionary<Character, Location> scene)
 	{
 		foreach (var (character, y) in scene)
 		{
 			this.AddPoint(new(
-				Hour: X,
+				Hour: Hour,
 				Location: y,
 				Character: character,
-				IsEnd: false
+				IsEnd: false,
+				IsTimeSkip: false
 			));
 		}
 	}
 
-	protected void Update()
-		=> this.UpdatePoints(X);
+	protected virtual void TimeSkip(int days)
+	{
+		Update();
+		foreach (var points in Points.Values)
+		{
+			points.ModifyLastPoint(x => x with { IsTimeSkip = true });
+		}
+		Time.AddDays(days);
+		Update();
+	}
+
+	protected virtual void Update()
+		=> this.UpdatePoints(Hour);
 }

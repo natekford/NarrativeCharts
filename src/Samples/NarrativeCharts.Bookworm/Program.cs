@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Bookworm.P3;
+using NarrativeCharts.Models;
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 
@@ -66,8 +67,8 @@ public class Program
 #if false
 		var kept = new HashSet<Character>
 		{
-			BookwormCharacters.Ferdinand,
 			BookwormCharacters.Myne,
+			BookwormCharacters.Georgine,
 		};
 		foreach (var book in books)
 		{
@@ -99,8 +100,7 @@ public class Program
 			tasks.Add(drawer.SaveChartAsync(book, outputPath));
 
 			var points = book.Points.Sum(x => x.Value.Count);
-			var myne = book.Points[BookwormCharacters.Myne].Keys;
-			var days = (myne[^1] - myne[0]) / Time.HoursPerDay;
+			var days = GetDays(book);
 			Console.WriteLine($"{book.Name}: Points={points}, Days={days}");
 		}
 
@@ -110,6 +110,17 @@ public class Program
 
 	private BookwormScriptConverter FromScript(ScriptDefinitions defs, string fileName)
 		=> new(defs, File.ReadLines(Path.Combine(ScriptsDir, fileName)));
+
+	private int GetDays(NarrativeChartData chart)
+	{
+		int max = int.MinValue, min = int.MaxValue;
+		foreach (var point in chart.GetAllNarrativePoints())
+		{
+			max = Math.Max(max, point.Hour);
+			min = Math.Min(min, point.Hour);
+		}
+		return (max - min) / Time.HoursPerDay;
+	}
 
 	private async Task<ScriptDefinitions> GetScriptDefinitionsAsync()
 	{

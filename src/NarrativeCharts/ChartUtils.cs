@@ -41,7 +41,8 @@ public static class ChartUtils
 				Hour: scene.Hour,
 				Location: scene.Location,
 				Character: character,
-				IsEnd: false
+				IsEnd: false,
+				IsTimeSkip: false
 			));
 		}
 		return chart;
@@ -88,6 +89,14 @@ public static class ChartUtils
 		);
 	}
 
+	public static void ModifyLastPoint(
+		this SortedList<int, NarrativePoint> points,
+		Func<NarrativePoint, NarrativePoint> modification)
+	{
+		var lastPoint = points.Values[^1];
+		points[lastPoint.Hour] = modification.Invoke(lastPoint);
+	}
+
 	public static T Seed<T>(this T chart, NarrativeChartData other, int hour) where T : NarrativeChartData
 	{
 		foreach (var (_, points) in other.Points)
@@ -114,10 +123,20 @@ public static class ChartUtils
 			// They will always be valid
 			for (var i = points.Count - 2; i > 0; --i)
 			{
-				var prev = points.Values[i - 1].Location;
-				var curr = points.Values[i].Location;
-				var next = points.Values[i + 1].Location;
-				if (prev == curr && curr == next)
+				var prev = points.Values[i - 1];
+				var curr = points.Values[i];
+				var next = points.Values[i + 1];
+
+				// keep a point at the start and end of each timeskip
+				if (prev.IsTimeSkip || curr.IsTimeSkip)
+				{
+					continue;
+				}
+
+				var pLoc = prev.Location;
+				var cLoc = curr.Location;
+				var nLoc = next.Location;
+				if (pLoc == cLoc && cLoc == nLoc)
 				{
 					points.Remove(points.Values[i].Hour);
 				}
@@ -145,7 +164,8 @@ public static class ChartUtils
 
 			chart.AddPoint(lastPoint with
 			{
-				Hour = hour
+				Hour = hour,
+				IsTimeSkip = false,
 			});
 		}
 		return chart;
