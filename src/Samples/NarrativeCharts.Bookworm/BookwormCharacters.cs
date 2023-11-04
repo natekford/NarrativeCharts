@@ -31,6 +31,7 @@ public static class BookwormCharacters
 	public static Character Egon { get; } = new("Egon");
 	public static Character Ella { get; } = new("Ella");
 	public static Character Elvira { get; } = new("Elvira");
+	public static Character Ernesta { get; } = new("Ernesta");
 	public static Character Ferdinand { get; } = new("Ferdinand");
 	public static Character Florencia { get; } = new("Florencia");
 	public static Character Fran { get; } = new("Fran");
@@ -40,6 +41,7 @@ public static class BookwormCharacters
 	public static Character Georgine { get; } = new("Georgine");
 	public static Character GiebeDahldolf { get; } = new("Giebe Dahldolf");
 	public static Character GiebeGroschel { get; } = new("Giebe Groschel");
+	public static Character GiebeJoisontak { get; } = new("Giebe Joisontak");
 	public static Character GiebeKirnberger { get; } = new("Giebe Kirnberger");
 	public static Character Gil { get; } = new("Gil");
 	public static Character Gloria { get; } = new("Gloria");
@@ -122,6 +124,7 @@ public static class BookwormCharacters
 			[Egon] = Hex.Unknown.Value,
 			[Ella] = "#9A515A",
 			[Elvira] = "#46523C",
+			[Ernesta] = Hex.Unknown.Value,
 			[Ferdinand] = "#65B8DA",
 			[Florencia] = "#FBF6E0",
 			[Fran] = "#5E546C",
@@ -131,6 +134,7 @@ public static class BookwormCharacters
 			[Georgine] = "#324AB2",
 			[GiebeDahldolf] = Hex.Unknown.Value,
 			[GiebeGroschel] = Hex.Unknown.Value,
+			[GiebeJoisontak] = Hex.Unknown.Value,
 			[GiebeKirnberger] = Hex.Unknown.Value,
 			[Gil] = "#F8EECB",
 			[Gloria] = "#3B4834",

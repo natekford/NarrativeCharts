@@ -141,6 +141,7 @@ public class Program
 			{
 				[GiebeDahldolf] = [nameof(GiebeDahldolf)],
 				[GiebeGroschel] = [nameof(GiebeGroschel)],
+				[GiebeJoisontak] = [nameof(GiebeJoisontak)],
 				[GiebeKirnberger] = [nameof(GiebeKirnberger)],
 				[HasseMayor] = [nameof(HasseMayor)],
 			});
@@ -156,6 +157,7 @@ public class Program
 			AddAliases(defs.LocationAliases, new()
 			{
 				[RoyalAcademy] = ["RA"],
+				[NoblesForest] = ["NF"],
 				[EhrenfestCastle] = ["C"],
 				[KnightsOrder] = ["KO"],
 				[FerdinandsHouse] = ["FE"],

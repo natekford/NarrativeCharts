@@ -91,7 +91,7 @@ $C=Justus,Karstedt
 
 
 
-#Illgner's harvest Festival
+#Illgner's Harvest Festival
 // Time: "I arrived at Illgner the next day"
 >>Morning
 $Illgner=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Hugo,Monika,Myne,Nicola,Rosina
@@ -111,6 +111,7 @@ $M=Damian,Lutz
 
 #My First-Ever Little Sister
 >>Meetings
++$3
 $C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Myne
 // myne meets charlotte
 >
@@ -122,7 +123,106 @@ $C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Myne
 
 
 #Wilfried's Actions
+>
 
+
+
+#Wilfried's Punishment
+>
+
+
+
+#The Jureve and Mana Compression
+>>Morning
+-$3
+// Time: "Several days after Wilfried’s fate had been decided"
+>>2,Meetings
+// Time: "we would make my potion tomorrow, from third to fourth bell"
+>>ThirdBell
+// jureve brewed
+>
+// Time: "during the afternoon the next day."
++$4
+$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
+>
+-$4
+
+
+
+#Charlotte's Baptism Ceremony
+// Time: Winter Baptism, so ~2 weeks after ruelle harvest
+>>2,Morning
++$5
+$T=Effa,Gunther,Kamil,Tuuli
+>
+-$5
+// Time: "days passed"
+// "we were going to arrive the day before the baptism ceremony"
+>>3,Meetings
+$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
+>>Morning
+// she shows up in ss1
+$C=Elvira
+// charlotte's baptism
+// Time: "After lunch"
+>Lunch
+// Time: "seventh bell mercilessly rang"
+>SeventhBell
+
+
+
+#Kidnapped Daughter
+$NF=Angelica,Charlotte,Cornelius,Myne
+>
+
+
+
+#Rescue
+$NF=Bonifatius,Ferdinand,GiebeJoisontak
+>
+$C=Angelica,Bonifatius,Charlotte,Cornelius,GiebeJoisontak
+$T=Ferdinand,Myne
+
+
+
+// #Grandfather on the Day of the Baptism
+>
+$KE=Elvira,Cornelius
+$KO=Angelica
+>>Morning
+@!GiebeJoisontak
+$C=Ferdinand,Grausam
+>
+$Gerlach=Grausam
+
+
+
+// #In Place of My Older Sister
+// Probably right after the interrogation of grausam
+// archducal couple + ferdi talk to charlotte and wilf
+>
+$T=Eckhart,Ferdinand
+// Time: "Good evening, everyone."
+>>FifthBell
+// myne's guard knights come to the winter playroom
+$C=Angelica,Cornelius
+// charlotte's retainers
+$C=Ernesta
+// playroom kids
+$C=Hartmut,Philine
+// Time: "Once the students had departed for the Royal Academy"
+>>5,Morning
+$RA=Angelica,Cornelius,Hartmut
+
+
+
+#And So, the Future
+// the chart would look AWFUL with a 2 year timeskip.
+//>>840,Morning
+>
+
+
+#Epilogue
 
 
 

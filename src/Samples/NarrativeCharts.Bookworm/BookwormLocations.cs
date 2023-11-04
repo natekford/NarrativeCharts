@@ -24,6 +24,7 @@ public static class BookwormLocations
 	public static Location MerchantCompanies { get; } = new("Merchant Companies");
 	public static Location MountLohenberg { get; } = new("Mount Lohenberg");
 	public static Location MynesHouse { get; } = new("Myne's Family's House");
+	public static Location NoblesForest { get; } = new("Noble's Forest");
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location RoyalAcademy { get; } = new("Royal Academy");
 	public static Location RuelleTree { get; } = new("Ruelle Tree");
@@ -39,6 +40,7 @@ public static class BookwormLocations
 			Haldenzel,
 			Kirnberger,
 			Groschel,
+			NoblesForest,
 			EhrenfestCastle,
 			KnightsOrder,
 			FerdinandsHouse,
