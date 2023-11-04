@@ -1,0 +1,25 @@
+﻿##P4V1
+
+#Prologue
+// ferdi tells myne about what's happened
+>
+
+
+
+#Just Call me Urashima Taro
+>>SecondBell
+$T=Damuel
+>Lunch
++$1
+$T=Benno,Lutz,Mark
+>
+-$1
+
+
+
+#Moving to the Castle
+
+
+
+>H24
+@

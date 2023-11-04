@@ -231,6 +231,7 @@ $KE=Cornelius
 $NQ=Hartmut
 >>Morning
 $T=Justus
+$NQ=Philine
 // ~90 days after jureve char and wilf go on spring prayer
 >>>1
 >
@@ -262,9 +263,11 @@ $NQ=Brigitte,Helfried
 $C=Brigitte,Damuel,Elvira,Ferdinand,Helfried
 >
 // "Halfway through summer, sometime after the Starbind Ceremony,"
-$Illgner=Brigitte,Helfried
+// nadine is brigitte's attendant so she probably goes with her
+$Illgner=Brigitte,Helfried,Nadine
 $KE=Elvira
 $T=Ferdinand,Lily
+$KO=Damuel
 
 
 
@@ -301,12 +304,16 @@ $M=Fritz,Gil,Heidi,Ingo,Johann,Josef,Zack
 >>>4
 >
 // gutenbergs go to haldenzel
++$8
 $Haldenzel=Benno,Fritz,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
 $Hasse=Wilma
 // ~600 days after jureve
 >>>2
 >
 $T=Lily,Wilma
+// the gutenbergs probably stay in haldenzel for longer than 70 days
+// but im not adding in another timeskip just for that
+-$8
 
 
 

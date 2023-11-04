@@ -38,6 +38,7 @@ public class Program
 			FromScript(defs, "P3V3.txt"),
 			FromScript(defs, "P3V4.txt"),
 			FromScript(defs, "P3V5.txt"),
+			FromScript(defs, "P4V1.txt"),
 		};
 		for (var i = 0; i < books.Length; ++i)
 		{
