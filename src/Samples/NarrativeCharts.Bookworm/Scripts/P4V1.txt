@@ -217,8 +217,33 @@ $RA_SB=Hirschur
 +$7
 $RA_L=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Oswald,Philine,Rihyarda,Roderick,Wilfried
 $RA_L=Schwartz,Weiss
+
+
+
+#Schwartz and Weiss
+// schwartz/weiss get animated
+// solange explains them
 >
 -$7
+$RA_C=Myne,Wilfried
+$RA_A=Judithe,Philine,Roderick
+$RA_C=Primevere
+>
+>
+$RA_DE=Judithe,Myne,Philine,Roderick,Wilfried
+$RA_DO=Primevere
+$RA_DE=Hirschur
+>H1
+$RA_SB=Hirschur
+
+
+
+#Schtappe Acquisition
+>>Morning
+
+
+
+
 
 
 

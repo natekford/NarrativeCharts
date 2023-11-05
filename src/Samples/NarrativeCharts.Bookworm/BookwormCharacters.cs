@@ -97,6 +97,7 @@ public static class BookwormCharacters
 	public static Character Ottilie { get; } = new("Ottilie");
 	public static Character Otto { get; } = new("Otto");
 	public static Character Philine { get; } = new("Philine");
+	public static Character Primevere { get; } = new("Primevere");
 	public static Character Rauffen { get; } = new("Rauffen");
 	public static Character Richt { get; } = new("Richt");
 	public static Character Rick { get; } = new("Rick");
@@ -214,6 +215,7 @@ public static class BookwormCharacters
 			[Ottilie] = "#A74D47",
 			[Otto] = "#B78155",
 			[Philine] = "#EDBC6F",
+			[Primevere] = Hex.Unknown.Value,
 			[Rauffen] = "#F1B582",
 			[Richt] = Hex.Unknown.Value,
 			[Rick] = "#667965",
