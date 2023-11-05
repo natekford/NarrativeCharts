@@ -155,7 +155,7 @@ public class Program
 			{
 				[RA_Royals] = ["RA_RV"],
 				[RA_FarthestHall] = ["RA_FH"],
-				[RA_Scholars] = ["RA_SB"],
+				[RA_DormSovereignty] = ["RA_S"],
 				[RA_Library] = ["RA_L"],
 				[RA_Classroom] = ["RA_C"],
 				[RA_Auditorium] = ["RA_A"],

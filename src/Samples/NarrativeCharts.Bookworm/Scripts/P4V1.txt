@@ -94,7 +94,7 @@ $RA_DE=Ella,Myne,Rihyarda,Rosina
 $RA_DE=Oswald,Wilfried
 $RA_DE=Hirschur
 >
-$RA_SB=Hirschur
+$RA_S=Hirschur
 
 
 
@@ -110,7 +110,7 @@ $RA_SB=Hirschur
 >>Morning
 $RA_DE=Hirschur
 >
-$RA_SB=Hirschur
+$RA_S=Hirschur
 // Time: "head to the auditorium at third bell"
 >>ThirdBell
 $RA_A=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
@@ -190,7 +190,7 @@ $RA_C=Hirschur
 $RA_DO=Fraularm
 >
 $RA_DE=Myne,Philine,Rihyarda,Wilfried
-$RA_SB=Hirschur
+$RA_S=Hirschur
 // Time: "We had mana compression lessons the next evening."
 >>FifthBell
 $RA_C=Fraularm,Hirschur,Myne,Rihyarda,Wilfried
@@ -205,7 +205,7 @@ $RA_C=Rauffen
 $RA_DO=Fraularm,Rauffen
 $RA_DE=Hirschur,Myne,Philine,Rihyarda,Wilfried
 >H1
-$RA_SB=Hirschur
+$RA_S=Hirschur
 
 
 
@@ -234,7 +234,7 @@ $RA_DE=Judithe,Myne,Philine,Roderick,Wilfried
 $RA_DO=Primevere
 $RA_DE=Hirschur
 >H1
-$RA_SB=Hirschur
+$RA_S=Hirschur
 
 
 
@@ -250,7 +250,7 @@ $RA_FH=Hirschur,Rauffen
 >
 $RA_DE=Myne
 $RA_DO=Primevere,Rauffen
-$RA_SB=Hirschur
+$RA_S=Hirschur
 
 
 

@@ -30,11 +30,64 @@ $RA_L=Leonore,Myne,Philine,Rihyarda
 >
 -$2
 // Time: "The next day, Cornelius and Hartmut were going to join us in the library."
->>Morning
+>>ThirdBell
 +$3
 $RA_L=Cornelius,Hartmut,Leonore,Myne,Philine,Rihyarda
+>FifthBell
+$RA_A=Philine
+$RA_DE=Leonore
+$RA_L=Traugott
+>
+-$3
+$RA_DE=Traugott
+// myne tells brunhilde library tea party arranged for 2 days from now
 
 
+
+#My First Tea Party at the Royal Academy
+// Time: "It was the day of my tea party with Solange."
+>>2,ThirdBell
+// "All of my retainers were accompanying me to this tea party."
+// "Rosina was coming as well"
++$4
+$RA_A=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Lieseleta,Myne,Philine,Rihyarda,Rosina,Traugott
+// w/s outfit measuring scheduled for 3 days from now
+>
+-$4
+
+
+
+#Tea Party with the Music Professors
+>
+$RA_DE=Hirschur
+>
+$RA_S=Hirschur
+// not stated if it's only 1 or 2 days after
+>>ThirdBell
++$5a
+$RA_S=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Lieseleta,Myne,Philine,Rihyarda,Rosina,Traugott
++$5b
+$RA_S=Ana,Eggy
+$RA_S=Pauline
+>
+-$5b
+>
+-$5a
+
+
+
+#Measuring Schwartz and Weiss
+>>2,Morning
+$RA_DE=Hirschur
+>
++$6
+$RA_L=Angelica,Brunhilde,Cornelius,Hartmut,Hirschur,Leonore,Lieseleta,Myne,Philine,Rihyarda,Rosina,Traugott
+>
+-$6
+
+
+
+// "We decided on taking Schwartz and Weiss to be measured three days from now"
 
 
 
