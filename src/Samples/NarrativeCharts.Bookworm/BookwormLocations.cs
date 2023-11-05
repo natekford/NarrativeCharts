@@ -24,7 +24,10 @@ public static class BookwormLocations
 	public static Location MynesHouse { get; } = new("Myne's Family's House");
 	public static Location NoblesForest { get; } = new("Noble's Forest");
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
-	public static Location RA_Ehrenfest { get; } = new("RA - Ehrenfest Dorm");
+	public static Location RA_Auditorium { get; } = new("RA - Auditorium");
+	public static Location RA_CArchduke { get; } = new("RA - ADC Classroom");
+	public static Location RA_COther { get; } = new("RA - Other Classrooms");
+	public static Location RA_DEhrenfest { get; } = new("RA - Ehrenfest Dorm");
 	public static Location RA_Scholars { get; } = new("RA - Scholar Building");
 	public static Location RoyalAcademy { get; } = new("Royal Academy");
 	public static Location RuelleTree { get; } = new("Ruelle Tree");
@@ -38,8 +41,11 @@ public static class BookwormLocations
 	{
 		YIndexes = new[]
 		{
+			RA_CArchduke,
+			RA_COther,
+			RA_Auditorium,
 			RA_Scholars,
-			RA_Ehrenfest,
+			RA_DEhrenfest,
 			RoyalAcademy,
 			Haldenzel,
 			Kirnberger,

@@ -150,8 +150,11 @@ public class Program
 
 			AddAliases(defs.LocationAliases, new()
 			{
+				[RA_CArchduke] = ["RA_CA"],
+				[RA_COther] = ["RA_CO"],
+				[RA_Auditorium] = ["RA_A"],
 				[RA_Scholars] = ["RA_SB"],
-				[RA_Ehrenfest] = ["RA_ED"],
+				[RA_DEhrenfest] = ["RA_ED"],
 				[RoyalAcademy] = ["RA"],
 				[NoblesForest] = ["NF"],
 				[EhrenfestCastle] = ["C"],

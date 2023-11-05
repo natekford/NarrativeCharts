@@ -94,14 +94,43 @@ $RA_ED=Ella,Myne,Rihyarda,Rosina
 $RA_ED=Oswald,Wilfried
 $RA_ED=Hirschur
 >
-$RA_SB = Hirschur
+$RA_SB=Hirschur
 
 
 
 #The Better Grades Committee
+// Time: "meeting with the boys during the announcement after dinner"
+>Dinner
 
 
 
+#The Advancement Ceremony and Fellowship Gatherings
 // Time: "The advancement ceremony and fellowship gatherings will be held two days from now, with classes beginning the day after."
+// - Hirschur on the day Myne arrives
+>>Morning
+$RA_ED=Hirschur
+>
+$RA_SB=Hirschur
+// Time: "head to the auditorium at third bell"
+>>ThirdBell
+$RA_A=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
+$RA_A=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
+// Info: "First- and second-years had only shared lessons, which were all carried out here in the auditorium."
+// "This was also where the first-years were due to take their written lessons in the morning 
+// before moving to practical lessons in different classrooms based on their status."
+>
+// "archduke candidates, who of course kept their retainers"
+$RA_CA=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
+$RA_CO=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
+$RA_CA=Anastasius,Detlinde
+
+
+
+#Royalty and Nobles from Other Duchies
+
+
+
+
+
 
 >H24
