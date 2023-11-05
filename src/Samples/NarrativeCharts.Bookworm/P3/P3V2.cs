@@ -8,7 +8,7 @@ namespace NarrativeCharts.Bookworm.P3;
 
 public sealed class P3V2 : BookwormNarrativeChart
 {
-	public P3V2(BookwormTimeTracker time) : base(time)
+	public P3V2(TimeTrackerUnits time) : base(time)
 	{
 		Name = nameof(P3V2);
 	}

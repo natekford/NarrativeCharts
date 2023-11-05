@@ -1,8 +1,10 @@
-﻿namespace NarrativeCharts.Bookworm;
+﻿using NarrativeCharts.Time;
+
+namespace NarrativeCharts.Bookworm;
 
 public abstract class BookwormNarrativeChart : NarrativeChartUnits<BookwormBell>
 {
-	protected BookwormNarrativeChart(BookwormTimeTracker time) : base(time)
+	protected BookwormNarrativeChart(TimeTrackerUnits time) : base(time)
 	{
 		foreach (var (key, value) in BookwormCharacters.Colors)
 		{

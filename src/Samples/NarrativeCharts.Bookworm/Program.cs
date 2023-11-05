@@ -1,7 +1,7 @@
 ﻿using NarrativeCharts.Bookworm.P3;
-using NarrativeCharts.Models;
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
+using NarrativeCharts.Time;
 
 using System.Diagnostics;
 
@@ -15,9 +15,10 @@ public class Program
 {
 	public List<NarrativeChartData> Books { get; } = [];
 	public string ChartsDir { get; }
+	public ScriptDefinitions Defs { get; private set; } = null!;
 	public string Dir { get; }
+	public SKChartDrawer Drawer { get; } = new();
 	public string ScriptsDir { get; }
-	public BookwormTimeTracker Time { get; } = new();
 
 	public Program(string dir)
 	{
@@ -28,17 +29,16 @@ public class Program
 
 	public async Task RunAsync()
 	{
-		var defs = await GetScriptDefinitionsAsync().ConfigureAwait(false);
-		defs.Time = Time;
+		Defs = await GetScriptDefinitionsAsync().ConfigureAwait(false);
 
 		var books = new NarrativeChart[]
 		{
-			new P3V1(Time),
-			new P3V2(Time),
-			FromScript(defs, "P3V3.txt"),
-			FromScript(defs, "P3V4.txt"),
-			FromScript(defs, "P3V5.txt"),
-			FromScript(defs, "P4V1.txt"),
+			new P3V1(Defs.Time),
+			new P3V2(Defs.Time),
+			Script("P3V3.txt"),
+			Script("P3V4.txt"),
+			Script("P3V5.txt"),
+			Script("P4V1.txt"),
 		};
 		for (var i = 0; i < books.Length; ++i)
 		{
@@ -94,33 +94,15 @@ public class Program
 	{
 		var sw = Stopwatch.StartNew();
 		var tasks = new List<Task>();
-		var drawer = new SKChartDrawer();
 		foreach (var book in Books)
 		{
 			var outputPath = Path.Combine(ChartsDir, $"{book.Name}.png");
-			tasks.Add(drawer.SaveChartAsync(book, outputPath));
-
-			var points = book.Points.Sum(x => x.Value.Count);
-			var days = GetDays(book);
-			Console.WriteLine($"{book.Name}: Points={points}, Days={days}");
+			tasks.Add(Drawer.SaveChartAsync(book, outputPath));
+			PrintBookInfo(book);
 		}
 
 		await Task.WhenAll(tasks).ConfigureAwait(false);
 		Console.WriteLine($"{Books.Count} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
-	}
-
-	private BookwormScriptConverter FromScript(ScriptDefinitions defs, string fileName)
-		=> new(defs, File.ReadLines(Path.Combine(ScriptsDir, fileName)));
-
-	private int GetDays(NarrativeChartData chart)
-	{
-		int max = int.MinValue, min = int.MaxValue;
-		foreach (var point in chart.GetAllNarrativePoints())
-		{
-			max = Math.Max(max, point.Hour);
-			min = Math.Min(min, point.Hour);
-		}
-		return (max - min) / Time.HoursPerDay;
 	}
 
 	private async Task<ScriptDefinitions> GetScriptDefinitionsAsync()
@@ -190,7 +172,7 @@ public class Program
 
 		// Time
 		{
-			defs.Time = Time;
+			defs.Time = new TimeTrackerUnits(BookwormTime.Lengths);
 
 			AddAliases(defs.TimeAliases, new()
 			{
@@ -209,4 +191,20 @@ public class Program
 		await defs.SaveAsync(defsPath).ConfigureAwait(false);
 		return await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
 	}
+
+	private void PrintBookInfo(NarrativeChartData chart)
+	{
+		var points = chart.Points.Sum(x => x.Value.Count);
+		int max = int.MinValue, min = int.MaxValue;
+		foreach (var point in chart.GetAllNarrativePoints())
+		{
+			max = Math.Max(max, point.Hour);
+			min = Math.Min(min, point.Hour);
+		}
+		var days = (max - min) / Defs.Time.HoursPerDay;
+		Console.WriteLine($"{chart.Name}: Points={points}, Days={days}");
+	}
+
+	private BookwormScriptConverter Script(string fileName)
+		=> new(Defs, File.ReadLines(Path.Combine(ScriptsDir, fileName)));
 }

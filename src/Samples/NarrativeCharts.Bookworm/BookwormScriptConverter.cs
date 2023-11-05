@@ -1,5 +1,6 @@
 ﻿using NarrativeCharts.Models;
 using NarrativeCharts.Scripting;
+using NarrativeCharts.Time;
 
 using System.Reflection;
 
@@ -44,7 +45,7 @@ namespace {nameof(NarrativeCharts)}.{nameof(Bookworm)}.*;
 
 public sealed class {ClassName} : {nameof(BookwormNarrativeChart)}
 {{
-	public {ClassName}({nameof(BookwormTimeTracker)} time) : base(time)
+	public {ClassName}({nameof(TimeTrackerUnits)} time) : base(time)
 	{{
 		Name = nameof({ClassName});
 	}}
