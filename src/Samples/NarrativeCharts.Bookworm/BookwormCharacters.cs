@@ -6,6 +6,7 @@ namespace NarrativeCharts.Bookworm;
 
 public static class BookwormCharacters
 {
+	// no q, u, x, or y names to complete the alphabet
 	public static Character Achim { get; } = new("Achim");
 	public static Character Anastasius { get; } = new("Anastasius");
 	public static Character Angelica { get; } = new("Angelica");
@@ -38,6 +39,7 @@ public static class BookwormCharacters
 	public static Character Ferdinand { get; } = new("Ferdinand");
 	public static Character Florencia { get; } = new("Florencia");
 	public static Character Fran { get; } = new("Fran");
+	public static Character Fraularm { get; } = new("Fraularm");
 	public static Character Freida { get; } = new("Freida");
 	public static Character Frietack { get; } = new("Frietack");
 	public static Character Fritz { get; } = new("Fritz");
@@ -95,12 +97,16 @@ public static class BookwormCharacters
 	public static Character Ottilie { get; } = new("Ottilie");
 	public static Character Otto { get; } = new("Otto");
 	public static Character Philine { get; } = new("Philine");
+	public static Character Rauffen { get; } = new("Rauffen");
 	public static Character Richt { get; } = new("Richt");
 	public static Character Rick { get; } = new("Rick");
 	public static Character Rihyarda { get; } = new("Rihyarda");
 	public static Character Roderick { get; } = new("Roderick");
 	public static Character Rosina { get; } = new("Rosina");
 	public static Character Royella { get; } = new("Royella");
+	public static Character Rudiger { get; } = new("Rudiger");
+	public static Character Schwartz { get; } = new("Schwartz");
+	public static Character Solange { get; } = new("Solange");
 	public static Character Sylvester { get; } = new("Sylvester");
 	public static Character Theo { get; } = new("Theo");
 	public static Character Thore { get; } = new("Thore");
@@ -109,6 +115,7 @@ public static class BookwormCharacters
 	public static Character Trudeliede { get; } = new("Trudeliede");
 	public static Character Tuuli { get; } = new("Tuuli");
 	public static Character Volk { get; } = new("Volk");
+	public static Character Weiss { get; } = new("Weiss");
 	public static Character Wilfried { get; } = new("Wilfried");
 	public static Character Wilma { get; } = new("Wilma");
 	public static Character Zack { get; } = new("Zack");
@@ -149,6 +156,7 @@ public static class BookwormCharacters
 			[Ferdinand] = "#65B8DA",
 			[Florencia] = "#FBF6E0",
 			[Fran] = "#5E546C",
+			[Fraularm] = "##8B0000",
 			[Freida] = "#E6AFB4",
 			[Frietack] = Hex.Unknown.Value,
 			[Fritz] = "#351F19",
@@ -206,12 +214,16 @@ public static class BookwormCharacters
 			[Ottilie] = "#A74D47",
 			[Otto] = "#B78155",
 			[Philine] = "#EDBC6F",
+			[Rauffen] = "#F1B582",
 			[Richt] = Hex.Unknown.Value,
 			[Rick] = "#667965",
 			[Rihyarda] = "#E9DEC8",
 			[Roderick] = "#D58141",
 			[Rosina] = "#E09C5B",
 			[Royella] = Hex.Unknown.Value,
+			[Rudiger] = "#F1CC8F",
+			[Schwartz] = "#634926",
+			[Solange] = "#A17CB2",
 			[Sylvester] = "#5366AB",
 			[Theo] = Hex.Unknown.Value,
 			[Thore] = "#8888BE",
@@ -220,6 +232,7 @@ public static class BookwormCharacters
 			[Trudeliede] = Hex.Unknown.Value,
 			[Tuuli] = "#95BE82",
 			[Volk] = Hex.Unknown.Value,
+			[Weiss] = "#E3C8BD",
 			[Wilfried] = "#FEEFB4",
 			[Wilma] = "#DF9139",
 			[Zack] = "#E05F0E",

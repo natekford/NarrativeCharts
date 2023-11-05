@@ -88,6 +88,7 @@ $KE=Elvira
 // future events seem very cramped if we use 6 days
 // considering the AD conf is only 2 weeks long?
 >>4,Lunch
+$M=Otto,Theo
 $C=Angelica
 >>Morning
 $RA=Angelica

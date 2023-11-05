@@ -22,7 +22,7 @@ $T=Benno,Lutz,Mark
 // Time: "In three days’ time"
 // 1 day has already passed
 >>2,Morning
-$C=Angelica,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Hugo,Myne,Rosina
+$C=Angelica,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Hugo,Justus,Myne,Rosina
 
 
 
@@ -65,34 +65,34 @@ $KE=Trudeliede
 // Time: "People would start leaving for the Royal Academy today"
 >>Morning
 // 5th years (and hugo)
-$RA_ED=Angelica,Hugo
+$RA_DE=Angelica,Hugo
 $C=Bertilde
 >Lunch
 // myne pays the kids who have gathered information
 >>Morning
 // 4th years
-$RA_ED=Cornelius,Hartmut,Leonore
+$RA_DE=Cornelius,Hartmut,Leonore
 >>Morning
 // 3rd years
-$RA_ED=Brunhilde,Isidore,Lieseleta,Traugott
+$RA_DE=Brunhilde,Isidore,Lieseleta,Traugott
 >>Morning
 //2nd years
-$RA_ED=Judithe,Ignaz,Laurenz
+$RA_DE=Judithe,Ignaz,Laurenz
 >>Morning
 $C=Elvira
 >
 $KE=Elvira
 // 1st years
-$RA_ED=Philine,Roderick
-$RA_ED=Ella,Myne,Rihyarda,Rosina
+$RA_DE=Philine,Roderick
+$RA_DE=Ella,Myne,Rihyarda,Rosina
 
 
 
 #My Retainers and Entering the Dormitory
 >
 // i assume oswald goes as wilf's adult attendant
-$RA_ED=Oswald,Wilfried
-$RA_ED=Hirschur
+$RA_DE=Oswald,Wilfried
+$RA_DE=Hirschur
 >
 $RA_SB=Hirschur
 
@@ -108,7 +108,7 @@ $RA_SB=Hirschur
 // Time: "The advancement ceremony and fellowship gatherings will be held two days from now, with classes beginning the day after."
 // - Hirschur on the day Myne arrives
 >>Morning
-$RA_ED=Hirschur
+$RA_DE=Hirschur
 >
 $RA_SB=Hirschur
 // Time: "head to the auditorium at third bell"
@@ -119,18 +119,115 @@ $RA_A=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
 // "This was also where the first-years were due to take their written lessons in the morning 
 // before moving to practical lessons in different classrooms based on their status."
 >
+>
 // "archduke candidates, who of course kept their retainers"
-$RA_CA=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
-$RA_CO=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
-$RA_CA=Anastasius,Detlinde
+$RA_C=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
+$RA_C=Anastasius,Detlinde
 
 
 
 #Royalty and Nobles from Other Duchies
+$RA_C=Rudiger
+>
+// they eat pure sugar
 
 
 
+#Math, Theology, and Controlling Mana
+$RA_DE=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
+$RA_DE=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
+$RA_DO=Detlinde,Rudiger
+$RA_RV=Anastasius
+>>Morning
+// first day of classes
++$3a
+$RA_A=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Rihyarda,Wilfried
++$3b
+$RA_A=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
+$RA_L=Solange
+// Time: "returned to the dormitory for lunch at fourth bell."
+>FourthBell
+-$3a
+-$3b
+>
+// idk who goes with myne and wilf
+// cornelius and rihyarda are waiting for myne when she finishes tho
++$4
+$RA_C=Cornelius,Hirschur,Myne,Rihyarda,Wilfried
+// myne breaks a lot of feystones
 
 
 
+#History, Geography, and Music
+>
+>
+-$4
+>>Morning
++$5a
+$RA_A=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
++$5b
+$RA_A=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
+>FourthBell
+-$5a
+-$5b
+>
++$6
+$RA_C=Myne,Wilfried
+>
+-$6
+
+
+
+#Mana Compression and Creating a Highbeast
+// Time: "Two whole days to go"
+>>Lunch
+// "During the afternoon, we had practical lessons on creating highbeasts."
+>
+$RA_C=Fraularm,Myne,Rihyarda,Wilfried
+$RA_A=Philine
+>
+$RA_C=Hirschur
+$RA_DO=Fraularm
+>
+$RA_DE=Myne,Philine,Rihyarda,Wilfried
+$RA_SB=Hirschur
+// Time: "We had mana compression lessons the next evening."
+>>FifthBell
+$RA_C=Fraularm,Hirschur,Myne,Rihyarda,Wilfried
+$RA_A=Philine
+
+
+
+#The Fourth Step of Mana Compression
+$RA_C=Rauffen
+>
+>
+$RA_DO=Fraularm,Rauffen
+$RA_DE=Hirschur,Myne,Philine,Rihyarda,Wilfried
+>H1
+$RA_SB=Hirschur
+
+
+
+#Register at the Library
+// myne gets invited by the music teachers
+>>FourthBell
+// "we gathered all the first-years and our retainers and prepared to leave for the library."
+// "Rihyarda had the money to cover our fees, and Oswald was joining us as the adult attendant"
++$7
+$RA_L=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Oswald,Philine,Rihyarda,Roderick,Wilfried
+$RA_L=Schwartz,Weiss
+>
+-$7
+
+
+
+// Royal Academy schedule: (probably wont follow this)
+// Second bell apparently marked the start of breakfast
+// second-and-a-half bell then marking the start of morning classes.
+// Third bell signaled a change in subject, as did third-and-a-half bell
+// fourth bell we would return to our dormitories for lunch.
+// Afternoon classes would begin at fourth-and-a-half bell
+// dinner at sixth bell.
+// Seventh bell was curfew
 >H24
