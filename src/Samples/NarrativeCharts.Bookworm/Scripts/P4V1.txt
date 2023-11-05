@@ -64,15 +64,44 @@ $NQ=GiebeDahldolf,GiebeGroschel,Gloria
 $KE=Trudeliede
 // Time: "People would start leaving for the Royal Academy today"
 >>Morning
+// 5th years (and hugo)
 $RA_ED=Angelica,Hugo
 $C=Bertilde
-
-
-
+>Lunch
+// myne pays the kids who have gathered information
 >>Morning
-$RA_ED=Cornelius,Hartmut
+// 4th years
+$RA_ED=Cornelius,Hartmut,Leonore
+>>Morning
+// 3rd years
+$RA_ED=Brunhilde,Isidore,Lieseleta,Traugott
+>>Morning
+//2nd years
+$RA_ED=Judithe,Ignaz,Laurenz
+>>Morning
+$C=Elvira
+>
+$KE=Elvira
+// 1st years
+$RA_ED=Philine,Roderick
+$RA_ED=Ella,Myne,Rihyarda,Rosina
 
 
+
+#My Retainers and Entering the Dormitory
+>
+// i assume oswald goes as wilf's adult attendant
+$RA_ED=Oswald,Wilfried
+$RA_ED=Hirschur
+>
+$RA_SB = Hirschur
+
+
+
+#The Better Grades Committee
+
+
+
+// Time: "The advancement ceremony and fellowship gatherings will be held two days from now, with classes beginning the day after."
 
 >H24
-@

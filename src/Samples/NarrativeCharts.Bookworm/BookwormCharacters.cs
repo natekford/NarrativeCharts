@@ -54,6 +54,7 @@ public static class BookwormCharacters
 	public static Character Heidi { get; } = new("Heidi");
 	public static Character Helfried { get; } = new("Helfried");
 	public static Character Henrik { get; } = new("Henrik");
+	public static Character Hirschur { get; } = new("Hirschur");
 	public static Character Hugo { get; } = new("Hugo");
 	public static Character Ignaz { get; } = new("Ignaz");
 	public static Character Ingo { get; } = new("Ingo");
@@ -61,6 +62,7 @@ public static class BookwormCharacters
 	public static Character Jeremias { get; } = new("Jeremias");
 	public static Character Johann { get; } = new("Johann");
 	public static Character Josef { get; } = new("Josef");
+	public static Character Judithe { get; } = new("Judithe");
 	public static Character Justus { get; } = new("Justus");
 	public static Character Kamil { get; } = new("Kamil");
 	public static Character Kampfer { get; } = new("Kampfer");
@@ -71,6 +73,8 @@ public static class BookwormCharacters
 	public static Character Laurenz { get; } = new("Laurenz");
 	public static Character Leise { get; } = new("Leise");
 	public static Character Leon { get; } = new("Leon");
+	public static Character Leonore { get; } = new("Leonore");
+	public static Character Lieseleta { get; } = new("Lieseleta");
 	public static Character Lily { get; } = new("Lily");
 	public static Character Linhardt { get; } = new("Linhardt");
 	public static Character Lutz { get; } = new("Lutz");
@@ -159,6 +163,7 @@ public static class BookwormCharacters
 			[Heidi] = "#BB5435",
 			[Helfried] = "#FF0000",
 			[Henrik] = "#5C4033",
+			[Hirschur] = "#4D4A41",
 			[Hugo] = "#7E5951",
 			[Ignaz] = Hex.Unknown.Value,
 			[Ingo] = "#C1924A",
@@ -166,6 +171,7 @@ public static class BookwormCharacters
 			[Jeremias] = Hex.Unknown.Value,
 			[Johann] = "#E4A242",
 			[Josef] = "#FAD273",
+			[Judithe] = "#E59B5C",
 			[Justus] = "#A1AACB",
 			[Kamil] = "#415BA5",
 			[Kampfer] = Hex.Unknown.Value,
@@ -176,6 +182,8 @@ public static class BookwormCharacters
 			[Laurenz] = "#CC5500",
 			[Leise] = "#C87965",
 			[Leon] = "#B26D66",
+			[Leonore] = "#B5658A",
+			[Lieseleta] = "#B8D7B8",
 			[Lily] = Hex.Unknown.Value,
 			[Linhardt] = Hex.Unknown.Value,
 			[Lutz] = "#F7E3A8",

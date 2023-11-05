@@ -25,6 +25,7 @@ public static class BookwormLocations
 	public static Location NoblesForest { get; } = new("Noble's Forest");
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location RA_Ehrenfest { get; } = new("RA - Ehrenfest Dorm");
+	public static Location RA_Scholars { get; } = new("RA - Scholar Building");
 	public static Location RoyalAcademy { get; } = new("Royal Academy");
 	public static Location RuelleTree { get; } = new("Ruelle Tree");
 	public static Location SmallTowns { get; } = new("Ehrenfest Towns");
@@ -37,6 +38,7 @@ public static class BookwormLocations
 	{
 		YIndexes = new[]
 		{
+			RA_Scholars,
 			RA_Ehrenfest,
 			RoyalAcademy,
 			Haldenzel,
