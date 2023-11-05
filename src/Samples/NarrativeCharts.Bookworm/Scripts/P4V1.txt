@@ -292,7 +292,25 @@ $RA_C=Fraularm,Hirschur,Myne,Wilfried
 
 
 #Schtappe Fundamentals
+// Time: "There were still a number of days left before it was time for my schtappe usage lesson"
+// wow, the first instance in about 16 chapters with an indeterminate timespan
+>>3,FifthBell
++$9
+$RA_C=Hirschur,Myne,Rauffen,Wilfried
+>
+>
+-$9
 
+
+
+//#Epilogue
+//no time advancement or character movement
+
+
+
+//#A Productive Earthday
+//i am not going to include Emerika and Friedel
+//they show up once. i didn't even remember they existed before i reread this
 
 
 
