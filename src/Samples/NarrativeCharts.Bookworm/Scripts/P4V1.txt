@@ -240,9 +240,58 @@ $RA_SB=Hirschur
 
 #Schtappe Acquisition
 >>Morning
+$RA_FH=Myne,Philine,Roderick,Wilfried
+$RA_FH=Primevere
+>
+// myne has to go to the tree to get her divine will
+// teachers come in b/c she takes so long
+$RA_DE=Philine,Roderick,Wilfried
+$RA_FH=Hirschur,Rauffen
+>
+$RA_DE=Myne
+$RA_DO=Primevere,Rauffen
+$RA_SB=Hirschur
 
 
 
+#My First Earthday
+// Time: "It was now Earthday morning"
+>>Morning
+
+
+
+#Dedication Whirl
+// Time: "by lunch, we were all gathered together"
+>>Lunch
+// first years schtappe's all finished
+>
+$RA_C=Ana,Detlinde,Eggy,Myne,Rihyarda,Rudiger,Wilfried
+>
+$RA_RV=Ana
+$RA_DO=Detlinde,Eggy,Rudiger
+$RA_DE=Myne,Rihyarda,Wilfried
+
+
+
+#Passing Highbeast Creation
+// Time: "The next day, I had practical music lessons in the afternoon."
+>>FifthBell
+// myne music class
+$RA_C=Myne,Wilfried
+>
+$RA_DE=Myne,Wilfried
+// Time: "Another day passed,"
+>>Morning
+// Time: "We had our practical highbeast creation lesson in the afternoon."
+>FifthBell
++$8
+$RA_C=Fraularm,Hirschur,Myne,Wilfried
+>
+-$8
+
+
+
+#Schtappe Fundamentals
 
 
 

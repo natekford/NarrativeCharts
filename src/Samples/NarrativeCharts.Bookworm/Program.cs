@@ -133,6 +133,8 @@ public class Program
 
 			AddAliases(defs.CharacterAliases, new()
 			{
+				[Anastasius] = ["Ana"],
+				[Eglantine] = ["Eggy"],
 				[GiebeDahldolf] = [nameof(GiebeDahldolf)],
 				[GiebeGroschel] = [nameof(GiebeGroschel)],
 				[GiebeJoisontak] = [nameof(GiebeJoisontak)],
@@ -151,12 +153,13 @@ public class Program
 			AddAliases(defs.LocationAliases, new()
 			{
 				[RA_Royals] = ["RA_RV"],
+				[RA_FarthestHall] = ["RA_FH"],
 				[RA_Scholars] = ["RA_SB"],
+				[RA_Library] = ["RA_L"],
 				[RA_Classroom] = ["RA_C"],
 				[RA_Auditorium] = ["RA_A"],
-				[RA_Library] = ["RA_L"],
-				[RA_DOther] = ["RA_DO"],
-				[RA_DEhrenfest] = ["RA_DE"],
+				[RA_DormOther] = ["RA_DO"],
+				[RA_DormEhrenfest] = ["RA_DE"],
 				[RoyalAcademy] = ["RA"],
 				[NoblesForest] = ["NF"],
 				[EhrenfestCastle] = ["C"],

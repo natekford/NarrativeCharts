@@ -31,6 +31,7 @@ public static class BookwormCharacters
 	public static Character Dirk { get; } = new("Dirk");
 	public static Character Eckhart { get; } = new("Eckhart");
 	public static Character Effa { get; } = new("Effa");
+	public static Character Eglantine { get; } = new("Eglantine");
 	public static Character Egmont { get; } = new("Egmont");
 	public static Character Egon { get; } = new("Egon");
 	public static Character Ella { get; } = new("Ella");
@@ -149,6 +150,7 @@ public static class BookwormCharacters
 			[Dirk] = "#AD5A48",
 			[Eckhart] = "#5F7D3F",
 			[Effa] = "#A0AA8F",
+			[Eglantine] = "#F5DEAC",
 			[Egmont] = "#947D77",
 			[Egon] = Hex.Unknown.Value,
 			[Ella] = "#9A515A",
