@@ -328,18 +328,14 @@ $C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
 // wilfried invites georgine back
 -$6
 $NQ=Gloria
-@?Georgine,Gloria
 
 
 
 #Epilogue
 // Time: some day later
 >>2,Morning
-$Dahldolf=GiebeDahldolf,Jeremias
+$SP=GiebeDahldolf,Gloria,Grausam,Jeremias,Royella
 $AC=Georgine
-$Gerlach=Gloria,Grausam,Royella
->
-$Dahldolf=Gloria
 
 
 

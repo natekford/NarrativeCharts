@@ -9,6 +9,7 @@ public static class BookwormCharacters
 	public static Character Achim { get; } = new("Achim");
 	public static Character Angelica { get; } = new("Angelica");
 	public static Character Benno { get; } = new("Benno");
+	public static Character Bertilde { get; } = new("Bertilde");
 	public static Character Bezewanst { get; } = new("Bezewanst");
 	public static Character Bindewald { get; } = new("Bindewald");
 	public static Character Bonifatius { get; } = new("Bonifatius");
@@ -54,7 +55,9 @@ public static class BookwormCharacters
 	public static Character Helfried { get; } = new("Helfried");
 	public static Character Henrik { get; } = new("Henrik");
 	public static Character Hugo { get; } = new("Hugo");
+	public static Character Ignaz { get; } = new("Ignaz");
 	public static Character Ingo { get; } = new("Ingo");
+	public static Character Isidore { get; } = new("Isidore");
 	public static Character Jeremias { get; } = new("Jeremias");
 	public static Character Johann { get; } = new("Johann");
 	public static Character Josef { get; } = new("Josef");
@@ -65,9 +68,11 @@ public static class BookwormCharacters
 	public static Character Karstedt { get; } = new("Karstedt");
 	public static Character Lamprecht { get; } = new("Lamprecht");
 	public static Character Lasfam { get; } = new("Lasfam");
+	public static Character Laurenz { get; } = new("Laurenz");
 	public static Character Leise { get; } = new("Leise");
 	public static Character Leon { get; } = new("Leon");
 	public static Character Lily { get; } = new("Lily");
+	public static Character Linhardt { get; } = new("Linhardt");
 	public static Character Lutz { get; } = new("Lutz");
 	public static Character Mark { get; } = new("Mark");
 	public static Character Marthe { get; } = new("Marthe");
@@ -77,6 +82,7 @@ public static class BookwormCharacters
 	public static Character Myne { get; } = new("Myne");
 	public static Character Nadine { get; } = new("Nadine");
 	public static Character Nicola { get; } = new("Nicola");
+	public static Character Nikolaus { get; } = new("Nikolaus");
 	public static Character Nora { get; } = new("Nora");
 	public static Character Norbert { get; } = new("Norbert");
 	public static Character Oswald { get; } = new("Oswald");
@@ -86,12 +92,15 @@ public static class BookwormCharacters
 	public static Character Richt { get; } = new("Richt");
 	public static Character Rick { get; } = new("Rick");
 	public static Character Rihyarda { get; } = new("Rihyarda");
+	public static Character Roderick { get; } = new("Roderick");
 	public static Character Rosina { get; } = new("Rosina");
 	public static Character Royella { get; } = new("Royella");
 	public static Character Sylvester { get; } = new("Sylvester");
 	public static Character Theo { get; } = new("Theo");
 	public static Character Thore { get; } = new("Thore");
 	public static Character Todd { get; } = new("Todd");
+	public static Character Traugott { get; } = new("Traugott");
+	public static Character Trudeliede { get; } = new("Trudeliede");
 	public static Character Tuuli { get; } = new("Tuuli");
 	public static Character Volk { get; } = new("Volk");
 	public static Character Wilfried { get; } = new("Wilfried");
@@ -106,6 +115,7 @@ public static class BookwormCharacters
 			[Achim] = Hex.Unknown.Value,
 			[Angelica] = "#53B3DB",
 			[Benno] = "#E8CB9F",
+			[Bertilde] = "#FF66CC",
 			[Bezewanst] = "#BC9A9F",
 			[Bindewald] = "#B1C6C1",
 			[Bonifatius] = "#BE856A",
@@ -150,7 +160,9 @@ public static class BookwormCharacters
 			[Helfried] = "#FF0000",
 			[Henrik] = "#5C4033",
 			[Hugo] = "#7E5951",
+			[Ignaz] = Hex.Unknown.Value,
 			[Ingo] = "#C1924A",
+			[Isidore] = Hex.Unknown.Value,
 			[Jeremias] = Hex.Unknown.Value,
 			[Johann] = "#E4A242",
 			[Josef] = "#FAD273",
@@ -161,9 +173,11 @@ public static class BookwormCharacters
 			[Karstedt] = "#874730",
 			[Lamprecht] = "#D18A71",
 			[Lasfam] = "#228B22",
+			[Laurenz] = "#CC5500",
 			[Leise] = "#C87965",
 			[Leon] = "#B26D66",
 			[Lily] = Hex.Unknown.Value,
+			[Linhardt] = Hex.Unknown.Value,
 			[Lutz] = "#F7E3A8",
 			[Mark] = "#726249",
 			[Marthe] = "#5C725D",
@@ -173,6 +187,7 @@ public static class BookwormCharacters
 			[Myne] = "#39658C",
 			[Nadine] = Hex.Unknown.Value,
 			[Nicola] = "#F1A14A",
+			[Nikolaus] = "#96574E",
 			[Nora] = "#9797CC",
 			[Norbert] = "#656567",
 			[Oswald] = "#654321",
@@ -182,12 +197,15 @@ public static class BookwormCharacters
 			[Richt] = Hex.Unknown.Value,
 			[Rick] = "#667965",
 			[Rihyarda] = "#E9DEC8",
+			[Roderick] = "#D58141",
 			[Rosina] = "#E09C5B",
 			[Royella] = Hex.Unknown.Value,
 			[Sylvester] = "#5366AB",
 			[Theo] = Hex.Unknown.Value,
 			[Thore] = "#8888BE",
 			[Todd] = Hex.Unknown.Value,
+			[Traugott] = "#E1C178",
+			[Trudeliede] = Hex.Unknown.Value,
 			[Tuuli] = "#95BE82",
 			[Volk] = Hex.Unknown.Value,
 			[Wilfried] = "#FEEFB4",

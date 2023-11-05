@@ -100,6 +100,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Add(MerchantCompanies, Benno, Corinna, Freida, Gustav, Leon, Lutz, Mark, Otto);
 		Add(MynesHouse, Effa, Gunther, Kamil, Tuuli);
 		Add(ItalianRestaurant, Hugo, Leise, Todd);
+		Add(KarstedtsHouse, Elvira, Trudeliede);
 		// Time: Immediately after
 		Jump();
 		// Sylvester goes back to AD conf

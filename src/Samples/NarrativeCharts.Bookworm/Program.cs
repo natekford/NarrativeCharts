@@ -150,6 +150,7 @@ public class Program
 
 			AddAliases(defs.LocationAliases, new()
 			{
+				[RA_Ehrenfest] = ["RA_ED"],
 				[RoyalAcademy] = ["RA"],
 				[NoblesForest] = ["NF"],
 				[EhrenfestCastle] = ["C"],
@@ -165,6 +166,7 @@ public class Program
 				[SmallTowns] = ["SmallTowns"],
 				[RuelleTree] = ["RTree"],
 				[GoddessesBath] = ["GBath"],
+				[SouthernProvinces] = ["SP"],
 				[MountLohenberg] = ["Lohenberg"],
 				[AhrensbachCastle] = ["AC"],
 			});

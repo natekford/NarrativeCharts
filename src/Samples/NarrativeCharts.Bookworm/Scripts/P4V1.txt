@@ -7,6 +7,7 @@
 
 
 #Just Call me Urashima Taro
+// Time: "held tomorrow afternoon"
 >>SecondBell
 $T=Damuel
 >Lunch
@@ -18,6 +19,58 @@ $T=Benno,Lutz,Mark
 
 
 #Moving to the Castle
+// Time: "In three days’ time"
+// 1 day has already passed
+>>2,Morning
+$C=Angelica,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Hugo,Myne,Rosina
+
+
+
+#Dinnertime
+>Dinner
+$C=Elvira
+>
+$KE=Elvira
+
+
+
+#Cramming and Preparations
+// Time: unknown amount of days later
+>>7,Morning
+// getting myne some new clothes
++$2
+$C=Corinna,Elvira
+>
+-$2
+
+
+
+#The Gifting Ceremony
+// Time: "The winter feast was being held today."
+// idk how many days
+>>7,Morning
+// adults
+$C=GiebeDahldolf,GiebeGroschel,Gloria,Trudeliede
+// playroom kids
+$C=Brunhilde,Hartmut,Ignaz,Isidore,Laurenz,Nikolaus,Philine,Roderick,Traugott
+// baptisms,debuts, gifting happen
+
+
+
+#The Winter Playroom and Our Departure
+// Time: "Lunch followed the Gifting Ceremony"
+>Lunch
+$NQ=GiebeDahldolf,GiebeGroschel,Gloria
+$KE=Trudeliede
+// Time: "People would start leaving for the Royal Academy today"
+>>Morning
+$RA_ED=Angelica,Hugo
+$C=Bertilde
+
+
+
+>>Morning
+$RA_ED=Cornelius,Hartmut
 
 
 

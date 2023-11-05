@@ -79,6 +79,13 @@ $C=Christine
 // Time: "Rihyarda said after breakfast as she explained"
 >>Morning
 $C=Hartmut
+// characters introduced in ss WinterDebut and the Playroom
+// wilf retainers
+$C=Linhardt
+// wilf future retainers
+$C=Ignaz,Isidore
+// myne future retainers
+$C=Laurenz,Roderick,Traugott
 // myne passes out after thinking she can't become a librarian
 >
 // Time: "The day after all the students had left for the Academy—Angelica and Cornelius included"
@@ -196,6 +203,7 @@ $C=Brunhilde,GiebeGroschel,GiebeKirnberger
 #Angelica and the Coming of Spring
 >
 $C=Elvira
+$NQ=GiebeGroschel,GiebeKirnberger
 >
 // Time: "I took the Gilberta Company back to the temple, along with Fran and Fritz."
 // "I stayed there for just one night, then immediately returned to the castle."
@@ -223,7 +231,8 @@ $C=Angelica
 $Groschel=Brunhilde,GiebeGroschel
 $Kirnberger=GiebeKirnberger
 $Illgner=Helfried
-$NQ=Christine,Hartmut,Philine
+$NQ=Christine,Hartmut,Ignaz,Isidore,Philine,Roderick,Traugott
+$SP=Laurenz
 $KE=Cornelius,Elvira
 $KO=Eckhart
 $RA=Angelica

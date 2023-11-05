@@ -194,7 +194,7 @@ $KO=Angelica
 @!GiebeJoisontak
 $C=Ferdinand,Grausam
 >
-$Gerlach=Grausam
+$SP=Grausam
 
 
 
@@ -213,7 +213,7 @@ $C=Angelica,Cornelius
 // charlotte's retainers
 $C=Ernesta
 // playroom kids
-$C=Hartmut,Philine
+$C=Hartmut,Ignaz,Isidore,Laurenz,Philine,Roderick,Traugott
 >>3,Morning
 +$6
 $M=Fritz,Gil,Heidi,Ingo,Johann,Josef,Zack
@@ -231,19 +231,20 @@ $KE=Cornelius
 $NQ=Hartmut
 >>Morning
 $T=Justus
-$NQ=Philine
+$NQ=Ignaz,Isidore,Philine,Roderick,Traugott
+$SP=Laurenz
 // ~90 days after jureve char and wilf go on spring prayer
 >>>1
 >
 $KO=Angelica
 $Hasse=Charlotte,Fran,Gunther,Wilfried
 >>Morning
-$SmallTowns=Charlotte,Fran,Wilfried
+$SmallTowns=Charlotte,Fran,Lamprecht,Wilfried
 $T=Achim,Egon
 $MF=Gunther
 // would be more like 2 weeks, but not large enough to bother with timeskipping
 >>Morning
-$C=Charlotte,Wilfried
+$C=Charlotte,Lamprecht,Wilfried
 $T=Fran
 
 
@@ -278,10 +279,10 @@ $KO=Damuel
 // lily gets sent to hasse in preparation for childbirth
 $Hasse=Charlotte,Fran,Gunther,Lily,Wilfried
 >>Morning
-$SmallTowns=Charlotte,Fran,Wilfried
+$SmallTowns=Charlotte,Fran,Lamprecht,Wilfried
 $MF=Gunther
 >>Morning
-$C=Charlotte,Wilfried
+$C=Charlotte,Lamprecht,Wilfried
 $T=Fran
 >>Morning
 +$6
