@@ -304,13 +304,14 @@ $RA_C=Hirschur,Myne,Rauffen,Wilfried
 
 
 //#Epilogue
-//no time advancement or character movement
+// no time advancement or character movement
 
 
 
 //#A Productive Earthday
-//i am not going to include Emerika and Friedel
-//they show up once. i didn't even remember they existed before i reread this
+// i am not going to include Emerika and Friedel
+// they are mentioned once in the entire series
+// i am not going to deal with making sure they follow angelica/rieserator
 
 
 

@@ -18,6 +18,7 @@ public static class BookwormCharacters
 	public static Character Brigitte { get; } = new("Brigitte");
 	public static Character Brunhilde { get; } = new("Brunhilde");
 	public static Character Carya { get; } = new("Carya");
+	public static Character Catherine { get; } = new("Catherine");
 	public static Character Charlotte { get; } = new("Charlotte");
 	public static Character Christine { get; } = new("Christine");
 	public static ImmutableDictionary<Character, Hex> Colors { get; }
@@ -138,6 +139,7 @@ public static class BookwormCharacters
 			[Brigitte] = "#A54254",
 			[Brunhilde] = "#C1533A",
 			[Carya] = Hex.Unknown.Value,
+			[Catherine] = Hex.Unknown.Value,
 			[Charlotte] = "#D3BD96",
 			[Christine] = Hex.Unknown.Value,
 			[Cornelius] = "#A6B455",

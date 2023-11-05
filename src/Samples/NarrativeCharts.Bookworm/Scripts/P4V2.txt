@@ -1,0 +1,49 @@
+﻿##P4V2
+
+#Prologue
+$RA_L=Catherine
+>
+
+
+
+#Meeting for the Tea Party
+// myne gathers information from the other ehrenfest students
+>
+
+
+
+#Onward to the Library
+// Time: "Today was my first opportunity to go there during my free time,"
+// not sure if this means the day immediately after Myne passes her classes
+>>Morning
++$1
+$RA_L=Leonore,Myne,Philine,Rihyarda
+>Lunch
+-$1
+
+
+
+#I Want to Found the Library Committee
+>
++$2
+$RA_L=Leonore,Myne,Philine,Rihyarda
+>
+-$2
+// Time: "The next day, Cornelius and Hartmut were going to join us in the library."
+>>Morning
++$3
+$RA_L=Cornelius,Hartmut,Leonore,Myne,Philine,Rihyarda
+
+
+
+
+
+// Royal Academy schedule: (probably wont follow this)
+// Second bell apparently marked the start of breakfast
+// second-and-a-half bell then marking the start of morning classes.
+// Third bell signaled a change in subject, as did third-and-a-half bell
+// fourth bell we would return to our dormitories for lunch.
+// Afternoon classes would begin at fourth-and-a-half bell
+// dinner at sixth bell.
+// Seventh bell was curfew
+>H24
