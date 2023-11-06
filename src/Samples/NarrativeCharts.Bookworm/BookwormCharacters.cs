@@ -8,6 +8,7 @@ public static class BookwormCharacters
 {
 	// no q, u, x, or y names to complete the alphabet
 	public static Character Achim { get; } = new("Achim");
+	public static Character Alexis { get; } = new("Alexis");
 	public static Character Anastasius { get; } = new("Anastasius");
 	public static Character Angelica { get; } = new("Angelica");
 	public static Character Benno { get; } = new("Benno");
@@ -131,6 +132,7 @@ public static class BookwormCharacters
 		Colors = new Dictionary<Character, string>
 		{
 			[Achim] = Hex.Unknown.Value,
+			[Alexis] = Hex.Unknown.Value,
 			[Anastasius] = "#D7BE96",
 			[Angelica] = "#53B3DB",
 			[Benno] = "#E8CB9F",

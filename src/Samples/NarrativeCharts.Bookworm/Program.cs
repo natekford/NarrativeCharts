@@ -43,6 +43,7 @@ public class Program
 			Script("P3V5.txt"),
 			Script("P4V1.txt"),
 			Script("P4V2.txt"),
+			Script("P4V3.txt"),
 		};
 		for (var i = 0; i < books.Length; ++i)
 		{

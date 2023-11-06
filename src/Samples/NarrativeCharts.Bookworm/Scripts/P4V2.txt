@@ -170,13 +170,19 @@ $RA_L=Ana
 $RA_RV=Ana,Cornelius,Hartmut,Leonore,Myne,Rihyarda
 >
 -$10
+$RA_DE=Hartmut
 // oswin gets mentioned but idc to include it
 
 
 
 #An Order to Return to Ehrenfest
 // Time: "it took three full days for me to recover."
->>3,Morning
+>>2,Morning
+$RA_RV=Eggy
+// eggy meets with ana and they speak openly
+>
+$RA_DO=Eggy
+>>1,Morning
 >>ThirdBell
 // "“Three days. Please, just three more days. Give her time to prepare,” pleaded a third."
 // myne convinces rihyarda to let her stay for 3 more days
@@ -206,16 +212,47 @@ $C=Elvira
 #Returning to the Temple
 // dinner with archducal family
 $KE=Elvira
+// Time: "The next day, I was told we were waiting for the blizzard to ease before we departed for the temple."
+>>Lunch
+$T=Angelica,Damuel,Eckhart,Ella,Ferdinand,Justus,Myne
+$KO=Cornelius
+// Time: "I spent the next day looking over the orphanage, starting at third bell."
+>>ThirdBell
+// she returns to RA in a SS
+$RA_DE=Leonore
+// next chapter eckhart says he went back
+$C=Justus
+// myne checks on the orphanage
 
 
 
+#Ferdinand and Hirschur's Gifts
+// Time: "we are now approaching fifth bell."
+>FifthBell
+>Dinner
+// discussion about rmcm step 4
+>
 
-// Royal Academy schedule: (probably wont follow this)
-// Second bell apparently marked the start of breakfast
-// second-and-a-half bell then marking the start of morning classes.
-// Third bell signaled a change in subject, as did third-and-a-half bell
-// fourth bell we would return to our dormitories for lunch.
-// Afternoon classes would begin at fourth-and-a-half bell
-// dinner at sixth bell.
-// Seventh bell was curfew
+
+
+#The Summoned Merchants
+// Time: "One morning several days later,"
+>>3,Lunch
+// in a SS alexis is introduced
+// "Rudolf" is also introduced, i think he only shows up once in the series so not including him
+$RA_DE=Alexis
++$12
+$T=Benno,Gustav,Leon,Lutz,Mark,Otto,Theo
+>
+-$12
+
+
+
+#Epilogue
+>
+// she comes back in the same SS she went back to the RA
+$C=Leonore
+
+
+
 >H24
