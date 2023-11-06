@@ -1,5 +1,5 @@
 ﻿##P4V2
-+%MYNE_GUARDS=Angelica,Cornelius,Leonore,Myne
++%MYNE_GUARDS=Angelica,Cornelius,Judithe,Leonore,Myne
 +%MYNE_RETAINERS=MYNE_GUARDS,Brunhilde,Hartmut,Lieseleta,Philine,Rihyarda
 
 #Prologue
@@ -147,7 +147,65 @@ $RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
 
 
 #A Tea Party with Eglantine
+// From Rihyarda's Wrath: "I was due to return to Ehrenfest in less than three weeks."
+// Time: "Days passed with Cornelius following me to the library"
+// "The afternoon three days from now"
+>>4,ThirdBell
++$9
+$RA_DO=Brunhilde,Judithe,Leonore,Myne,Philine,Rihyarda,Rosina
+>
+-$9
 
+
+
+#Reporting to the Prince
+// "I only had two more weeks to spend in this heaven"
+// "Your tea party with Eglantine was three whole days ago."
+>>3,ThirdBell
++$10
+$RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
+>
+$RA_L=Ana
+>
+$RA_RV=Ana,Cornelius,Hartmut,Leonore,Myne,Rihyarda
+>
+-$10
+// oswin gets mentioned but idc to include it
+
+
+
+#An Order to Return to Ehrenfest
+// Time: "it took three full days for me to recover."
+>>3,Morning
+>>ThirdBell
+// "“Three days. Please, just three more days. Give her time to prepare,” pleaded a third."
+// myne convinces rihyarda to let her stay for 3 more days
+// Time: "The day after Brunhilde had sent the letters for me,"
+>>Morning
+// ana sends an ord saying what eggy likes
+>ThirdBell
++$11
+$RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
+>
+-$11
+$RA_DE=Hirschur
+>
+$RA_S=Hirschur
+// angelica announces she passed her classes, so probably afternoon
+>>2,FifthBell
+$C=Angelica,Cornelius,Ella,Leonore,Myne,Rihyarda
+$C=Elvira
+
+
+
+#Interrogation
+>
+
+
+
+#Returning to the Temple
+// dinner with archducal family
+$KE=Elvira
 
 
 
