@@ -200,7 +200,6 @@ $RA_S=Hirschur
 // angelica announces she passed her classes, so probably afternoon
 >>2,FifthBell
 $C=Angelica,Cornelius,Ella,Leonore,Myne,Rihyarda
-$C=Elvira
 
 
 
@@ -211,7 +210,6 @@ $C=Elvira
 
 #Returning to the Temple
 // dinner with archducal family
-$KE=Elvira
 // Time: "The next day, I was told we were waiting for the blizzard to ease before we departed for the temple."
 >>Lunch
 $T=Angelica,Damuel,Eckhart,Ella,Ferdinand,Justus,Myne
@@ -245,13 +243,12 @@ $RA_DE=Alexis
 $T=Benno,Gustav,Leon,Lutz,Mark,Otto,Theo
 >
 -$12
+// she comes back in the same SS she went back to the RA
+$C=Leonore
 
 
 
 #Epilogue
->
-// she comes back in the same SS she went back to the RA
-$C=Leonore
 
 
 

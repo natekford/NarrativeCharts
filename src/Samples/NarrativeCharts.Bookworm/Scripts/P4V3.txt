@@ -1,6 +1,106 @@
 ﻿##P4V3
 
 #Prologue
+>
+
+
+
+#The Dedication Ritual and Returning to the Castle
+>>SecondBell
+$T=Angelica
+// Time: "The morning of the Dedication Ritual was busy."
+// p4v1 and p4v2 are around 60 days in total
+// and start about a week before winter starts
+// so we're about ~53 days into winter at this point
+// Dedication Ritual is in the middle of winter
+// so while there is an unknown timeskip, it can't be
+// that big
+>>4,Morning
+// Time: "the process took us only three days to complete"
+>>3,Lunch
+// idk if it's the same day or the next, doesn't really matter i guess
+$C=Angelica,Damuel,Eckhart,Ella,Ferdinand,Myne
+
+
+
+#Mother and Printing in Haldenzel
+>
+
+
+
+#Winter Socializing
+// no idea how many days
+>>7,Lunch
+$C=Brigitte,Helfried,Viktor,Volk
+>
+$NQ=Brigitte,Helfried,Viktor,Volk
+
+
+
+#The End of Winter and the Summoned Merchants
+$KO=Angelica,Cornelius,Damuel,Eckhart,Ferdinand,Karstedt,Lamprecht,Myne,Rihyarda
+// lord of winter fight
+>
+$C=Angelica,Cornelius,Myne,Rihyarda
+$Haldenzel=Damuel,Ferdinand,Karstedt,Lamprecht
+// Time: "After several days"
+>>3,Morning
+$C=Damuel,Ferdinand,Karstedt,Lamprecht
+// Time: "Several more days passed"
+>>2,Morning
+// Time: "one full week after I had given the Knight’s Order my blessing"
+>>2,Lunch
+// Time: "Several days had passed"
+>>2,Lunch
++$1
+$C=Benno,Gustav,Helfried,Lutz,Otto,Viktor
+
+
+
+#A Place to Call Home
+>
+-$1
+>
+>>EarlyMorning
+// myne nightmare
+>
+$KE=Cornelius
+$T=Angelica,Benno,Damuel,Eckhart,Ferdinand,Lutz,Mark,Myne
+>
+$M=Benno,Lutz,Mark
+
+
+
+#The Meeting with Giebe Haldenzel
+// idk if the previous chapter and this one are the same day
+>
+$C=Angelica,Damuel,Eckhart,Ferdinand,Myne
+// Time: "in the afternoon two days later"
+>>2,Lunch
+$C=Claudio
+>
+$NQ=Claudio
+
+
+
+#Returning to the Royal Academy
+// Time: "I participated in winter socializing."
+// idk how long
+>>5,Lunch
+>
+$T=Eckhart,Ferdinand
+>>2,Lunch
+$T=Angelica,Damuel,Myne
+$T=Otto,Tuuli
+>
+$M=Otto,Tuuli
+>>2,Morning
+$C=Angelica,Cornelius,Damuel,Eckhart,Ferdinand,Myne,Rihyarda
+>
+$RA_DE=Angelica,Cornelius,Justus,Myne,Rihyarda
+
+
+
 
 
 

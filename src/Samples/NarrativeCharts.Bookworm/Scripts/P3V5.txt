@@ -104,7 +104,7 @@ $Illgner=Carya,Volk
 // myne has a meeting with lutz/gil
 // myne tells volk to work hard for a year to make enough money
 >>Morning
-$T=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Gil,Hugo,Monika,Myne,Nicola,Rosina
+$T=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Gil,Hugo,Monika,Myne,Nicola,Rosina,Selim
 $M=Damian,Lutz
 
 

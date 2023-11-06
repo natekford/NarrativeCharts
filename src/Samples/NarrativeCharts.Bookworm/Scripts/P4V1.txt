@@ -30,7 +30,6 @@ $C=Angelica,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Hugo,Justus,Myne,Rosina
 >Dinner
 $C=Elvira
 >
-$KE=Elvira
 
 
 
@@ -39,7 +38,7 @@ $KE=Elvira
 >>7,Morning
 // getting myne some new clothes
 +$2
-$C=Corinna,Elvira
+$C=Corinna
 >
 -$2
 
@@ -49,8 +48,10 @@ $C=Corinna,Elvira
 // Time: "The winter feast was being held today."
 // idk how many days
 >>7,Morning
-// adults
+// adults (explicitly mentioned)
 $C=GiebeDahldolf,GiebeGroschel,Gloria,Trudeliede
+// adults (not mentioned)
+$NQ=Brigitte,Grausam,Helfried,Jeremias,Nadine,Royella,Volk
 // playroom kids
 $C=Brunhilde,Hartmut,Ignaz,Isidore,Laurenz,Nikolaus,Philine,Roderick,Traugott
 // baptisms,debuts, gifting happen
@@ -79,9 +80,7 @@ $RA_DE=Brunhilde,Isidore,Lieseleta,Traugott
 //2nd years
 $RA_DE=Judithe,Ignaz,Laurenz
 >>Morning
-$C=Elvira
 >
-$KE=Elvira
 // 1st years
 $RA_DE=Philine,Roderick
 $RA_DE=Ella,Myne,Rihyarda,Rosina
@@ -303,8 +302,7 @@ $RA_C=Hirschur,Myne,Rauffen,Wilfried
 
 
 
-//#Epilogue
-// no time advancement or character movement
+#Epilogue
 
 
 
