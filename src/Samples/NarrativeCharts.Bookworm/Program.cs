@@ -70,10 +70,9 @@ public class Program
 #endif
 
 #if false
-		var kept = new HashSet<Character>
+		var kept = new HashSet<Models.Character>
 		{
 			BookwormCharacters.Myne,
-			BookwormCharacters.Georgine,
 		};
 		foreach (var book in books)
 		{

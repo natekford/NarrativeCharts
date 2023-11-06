@@ -1,5 +1,5 @@
 ﻿##P4V2
-+%MYNE_GUARDS=Angelica,Cornelius,Leonore,Myne,Traugott
++%MYNE_GUARDS=Angelica,Cornelius,Leonore,Myne
 +%MYNE_RETAINERS=MYNE_GUARDS,Brunhilde,Hartmut,Lieseleta,Philine,Rihyarda
 
 #Prologue
@@ -93,11 +93,11 @@ $RA_S=Hirschur
 
 
 #The Battle for Schwartz and Weiss
-$RA_L=MYNE_GUARDS,Rihyarda,Schwartz,Weiss
+$RA_L=MYNE_GUARDS,Rihyarda,Schwartz,Traugott,Weiss
 $RA_L=Ana,Lestilaut
 >H1
 $RA_A=Ana,Lestilaut,Rauffen
-$RA_A=MYNE_GUARDS,Hirschur,Rihyarda
+$RA_A=MYNE_GUARDS,Hirschur,Rihyarda,Traugott
 
 
 
@@ -105,8 +105,49 @@ $RA_A=MYNE_GUARDS,Hirschur,Rihyarda
 >H1
 $RA_RV=Ana
 $RA_DE=Rihyarda
-$RA_ST=MYNE_GUARDS,Hirschur,Lestilaut,Rauffen
+$RA_ST=MYNE_GUARDS,Hirschur,Lestilaut,Rauffen,Traugott
 >
+
+
+
+#The Prince's Summons
+$RA_ST=Ana
+>H1
+$RA_RV=Ana
+$RA_S=Hirschur
+$RA_DO=Lestilaut,Rauffen
+$RA_DE=MYNE_GUARDS,Traugott
+// Time: "tomorrow at third bell"
+>>ThirdBell
++$7
+$RA_RV=MYNE_GUARDS,Brunhilde,Solange
+>
+$RA_L=Solange
+>H1
+-$7
+
+
+
+#Rihyarda's Wrath
+// Time: "Two days had passed since Anastasius summoned me."
+>>2,ThirdBell
++$8
+$RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
+>FifthBell
+-$8
+// dinner then traugott conversation starts
+>
+
+
+
+#Traugott's Thoughts
+// traugott fired
+>
+
+
+
+#A Tea Party with Eglantine
+
 
 
 
