@@ -124,14 +124,18 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 				}
 			}
 		}
-
+		FinishImage(canvas);
 		return canvas;
 	}
 
 	protected abstract void DrawSegment(Segment segment);
 
+	protected virtual void FinishImage(TImage image)
+	{
+	}
+
 	protected virtual TColor GetColor(Hex hex)
-		=> ColorCache<TColor>.Cache.GetOrAdd(hex, ParseColor);
+			=> ColorCache<TColor>.Cache.GetOrAdd(hex, ParseColor);
 
 	protected virtual YMap GetYMap(TChart chart)
 	{

@@ -1,5 +1,6 @@
 ﻿##P4V2
-+%MYNE_RETAINERS=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Lieseleta,Myne,Philine,Rihyarda
++%MYNE_GUARDS=Angelica,Cornelius,Leonore,Myne,Traugott
++%MYNE_RETAINERS=MYNE_GUARDS,Brunhilde,Hartmut,Lieseleta,Philine,Rihyarda
 
 #Prologue
 $RA_L=Catherine
@@ -80,15 +81,33 @@ $RA_S=Pauline
 #Measuring Schwartz and Weiss
 >>2,Morning
 $RA_DE=Hirschur
->
+>ThirdBell
 +$6
 $RA_L=MYNE_RETAINERS,Hirschur
->
+>H1
 -$6
+$RA_DE=Schwartz,Weiss
+>
+$RA_S=Hirschur
 
 
 
-// "We decided on taking Schwartz and Weiss to be measured three days from now"
+#The Battle for Schwartz and Weiss
+$RA_L=MYNE_GUARDS,Rihyarda,Schwartz,Weiss
+$RA_L=Ana,Lestilaut
+>H1
+$RA_A=Ana,Lestilaut,Rauffen
+$RA_A=MYNE_GUARDS,Hirschur,Rihyarda
+
+
+
+#Treasure-Stealing Ditter
+>H1
+$RA_RV=Ana
+$RA_DE=Rihyarda
+$RA_ST=MYNE_GUARDS,Hirschur,Lestilaut,Rauffen
+>
+
 
 
 

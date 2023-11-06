@@ -17,7 +17,10 @@ public class Program
 	public string ChartsDir { get; }
 	public ScriptDefinitions Defs { get; private set; } = null!;
 	public string Dir { get; }
-	public SKChartDrawer Drawer { get; } = new();
+	public SKChartDrawer Drawer { get; } = new()
+	{
+		ImageSizeAspectRatio = 32f / 9f
+	};
 	public string ScriptsDir { get; }
 
 	public Program(string dir)
@@ -156,6 +159,7 @@ public class Program
 				[RA_Royals] = ["RA_RV"],
 				[RA_FarthestHall] = ["RA_FH"],
 				[RA_DormSovereignty] = ["RA_S"],
+				[RA_Stadium] = ["RA_ST"],
 				[RA_Library] = ["RA_L"],
 				[RA_Classroom] = ["RA_C"],
 				[RA_Auditorium] = ["RA_A"],

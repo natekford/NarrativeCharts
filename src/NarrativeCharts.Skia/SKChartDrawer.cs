@@ -56,6 +56,7 @@ public sealed class SKChartDrawer
 		var context = new SKContext(
 			bitmap: bitmap,
 			canvas: canvas,
+			chart: chart,
 			yMap: yMap,
 			padding: ImagePadding,
 			lineWidth: LineWidth,
@@ -191,10 +192,9 @@ public sealed class SKChartDrawer
 		{
 			_PaintCache[hex] = paint = GetPaint(GetColor(hex));
 		}
-		var text = segment.Character.Value;
-		if (!_TextCache.TryGetValue(text, out var name))
+		if (!context.Labels.TryGetValue(segment.Character, out var positions))
 		{
-			_TextCache[text] = name = SKTextBlob.Create(text, Font);
+			context.Labels[segment.Character] = positions = [];
 		}
 
 		using (Restrict(context))
@@ -205,19 +205,17 @@ public sealed class SKChartDrawer
 			var p1 = new SKPoint(context.X(segment.X1), context.Y(segment.Y1));
 			var labelOffset = new SKSize(MarkerDiameter / 4f, paint.TextSize);
 
-			paint.IsAntialias = true;
-			paint.PathEffect = null;
 			if (!segment.IsMovement)
 			{
-				var p0Label = p0 + labelOffset;
-				canvas.DrawText(name, p0Label.X, p0Label.Y, paint);
+				positions.Add(p0 + labelOffset);
 			}
 			if (segment.IsFinal)
 			{
-				var p1Label = p1 + labelOffset;
-				canvas.DrawText(name, p1Label.X, p1Label.Y, paint);
+				positions.Add(p1 + labelOffset);
 			}
 
+			paint.IsAntialias = true;
+			paint.PathEffect = null;
 			canvas.DrawCircle(p0, MarkerDiameter / 2f, paint);
 			canvas.DrawCircle(p1, MarkerDiameter / 2f, paint);
 
@@ -227,8 +225,38 @@ public sealed class SKChartDrawer
 		}
 	}
 
+	protected override void FinishImage(SKContext image)
+	{
+		// draw labels after all of the lines have been drawn
+		using (Restrict(image))
+		{
+			image.Canvas.Translate(image.PaddingEnd, image.PaddingEnd);
+
+			foreach (var (character, positions) in image.Labels)
+			{
+				var text = character.Value;
+				if (!_TextCache.TryGetValue(text, out var name))
+				{
+					_TextCache[text] = name = SKTextBlob.Create(text, Font);
+				}
+				var hex = image.Chart.Colors[character];
+				if (!_PaintCache.TryGetValue(hex, out var paint))
+				{
+					_PaintCache[hex] = paint = GetPaint(GetColor(hex));
+				}
+
+				paint.IsAntialias = true;
+				paint.PathEffect = null;
+				foreach (var position in positions)
+				{
+					image.Canvas.DrawText(name, position.X, position.Y, paint);
+				}
+			}
+		}
+	}
+
 	protected override SKColor ParseColor(Hex hex)
-		=> SKColor.Parse(hex.Value);
+			=> SKColor.Parse(hex.Value);
 
 	protected override Task SaveImageAsync(SKContext image, string path)
 	{

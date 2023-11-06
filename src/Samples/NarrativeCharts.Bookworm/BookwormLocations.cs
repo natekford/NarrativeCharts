@@ -32,6 +32,7 @@ public static class BookwormLocations
 	public static Location RA_FarthestHall { get; } = new("RA - Farthest Hall");
 	public static Location RA_Library { get; } = new("RA - Library");
 	public static Location RA_Royals { get; } = new("RA - Royal Villas");
+	public static Location RA_Stadium { get; } = new("RA - Stadium");
 	public static Location RoyalAcademy { get; } = new("Royal Academy");
 	public static Location RuelleTree { get; } = new("Ruelle Tree");
 	public static Location SmallTowns { get; } = new("Ehrenfest Towns");
@@ -47,6 +48,7 @@ public static class BookwormLocations
 			RA_Royals,
 			RA_FarthestHall,
 			RA_DormSovereignty,
+			RA_Stadium,
 			RA_Library,
 			RA_Classroom,
 			RA_Auditorium,

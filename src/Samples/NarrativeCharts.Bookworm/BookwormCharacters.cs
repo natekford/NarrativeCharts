@@ -80,6 +80,7 @@ public static class BookwormCharacters
 	public static Character Leise { get; } = new("Leise");
 	public static Character Leon { get; } = new("Leon");
 	public static Character Leonore { get; } = new("Leonore");
+	public static Character Lestilaut { get; } = new("Lestilaut");
 	public static Character Lieseleta { get; } = new("Lieseleta");
 	public static Character Lily { get; } = new("Lily");
 	public static Character Linhardt { get; } = new("Linhardt");
@@ -201,6 +202,7 @@ public static class BookwormCharacters
 			[Leise] = "#C87965",
 			[Leon] = "#B26D66",
 			[Leonore] = "#B5658A",
+			[Lestilaut] = "#D2C6C8",
 			[Lieseleta] = "#B8D7B8",
 			[Lily] = Hex.Unknown.Value,
 			[Linhardt] = Hex.Unknown.Value,

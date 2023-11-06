@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Drawing;
+using NarrativeCharts.Models;
 
 using SkiaSharp;
 
@@ -8,9 +9,11 @@ public sealed class SKContext
 {
 	public SKBitmap Bitmap { get; }
 	public SKCanvas Canvas { get; }
+	public NarrativeChartData Chart { get; }
 	public SKRect Grid { get; }
 	public float GridHeight => Grid.Height;
 	public float GridWidth => Grid.Width;
+	public Dictionary<Character, List<SKPoint>> Labels { get; } = [];
 	public float PaddingEnd { get; }
 	public float PaddingStart { get; }
 	public float XMult { get; }
@@ -22,6 +25,7 @@ public sealed class SKContext
 	public SKContext(
 		SKBitmap bitmap,
 		SKCanvas canvas,
+		NarrativeChartData chart,
 		YMap yMap,
 		float padding,
 		float lineWidth,
@@ -30,6 +34,7 @@ public sealed class SKContext
 	{
 		Bitmap = bitmap;
 		Canvas = canvas;
+		Chart = chart;
 		YMap = yMap;
 
 		PaddingStart = padding;
