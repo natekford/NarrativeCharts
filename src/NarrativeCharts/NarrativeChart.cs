@@ -42,10 +42,20 @@ public abstract class NarrativeChart : NarrativeChartData
 		this.Simplify();
 	}
 
-	protected virtual void Add(Location location, params Character[] characters)
+	protected void Add(Location location, params Character[] characters)
+		=> Add(location, (IEnumerable<Character>)characters);
+
+	protected virtual void Add(Location location, IEnumerable<Character> characters)
 		=> this.AddScene(new(Hour, location, characters));
 
-	protected virtual Dictionary<Character, Location> AddR(Location location, params Character[] characters)
+	protected Dictionary<Character, Location> AddR(
+		Location location,
+		params Character[] characters)
+		=> AddR(location, (IEnumerable<Character>)characters);
+
+	protected virtual Dictionary<Character, Location> AddR(
+		Location location,
+		IEnumerable<Character> characters)
 	{
 		var locations = this.GetCurrentLocations(characters);
 		Add(location, characters);
@@ -58,10 +68,16 @@ public abstract class NarrativeChart : NarrativeChartData
 		Update();
 	}
 
-	protected virtual void Freeze(params Character[] characters)
+	protected void Freeze(params Character[] characters)
+		=> Freeze((IEnumerable<Character>)characters);
+
+	protected virtual void Freeze(IEnumerable<Character> characters)
 		=> Add(Location.Frozen, characters);
 
-	protected virtual void Kill(params Character[] characters)
+	protected void Kill(params Character[] characters)
+		=> Kill((IEnumerable<Character>)characters);
+
+	protected virtual void Kill(IEnumerable<Character> characters)
 	{
 		Update();
 		foreach (var character in characters)

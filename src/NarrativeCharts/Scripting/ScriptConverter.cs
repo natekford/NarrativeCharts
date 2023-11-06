@@ -17,6 +17,14 @@ public abstract class ScriptConverter : ScriptLoader
 	{
 	}
 
+	protected override void HandleAddCharacterGroup(string input)
+	{
+		// no code equivalent
+
+		LineConverted = true;
+		base.HandleAddCharacterGroup(input);
+	}
+
 	protected override void HandleAddHours(string input)
 	{
 		var args = SplitArgs(input);

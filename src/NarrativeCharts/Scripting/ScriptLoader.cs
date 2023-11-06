@@ -12,10 +12,10 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	private ScriptSymbols? _Symbols;
 
 	public ScriptDefinitions Definitions { get; }
+	protected Dictionary<string, IEnumerable<Character>> CharacterGroups { get; } = [];
 	protected IEnumerable<string> Lines { get; }
 	protected string? NextSceneName { get; set; }
-	protected Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; }
-		= [];
+	protected Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; } = [];
 	// Sort in reverse order so something like "##" shows up before "#"
 	// Otherwise "#" would always steal "##" items
 	protected SortedDictionary<string, Action<string>> SymbolHandlers { get; }
@@ -60,8 +60,25 @@ public class ScriptLoader : NarrativeChartUnits<int>
 			SymbolHandlers.Add(_Symbols.Scene, HandleScene);
 			SymbolHandlers.Add(_Symbols.AddReturnableScene, HandleAddReturnableScene);
 			SymbolHandlers.Add(_Symbols.RemoveReturnableScene, HandleRemoveReturnableScene);
+			SymbolHandlers.Add(_Symbols.AddCharacterGroup, HandleAddCharacterGroup);
 		}
 		return SymbolHandlers!;
+	}
+
+	protected virtual void HandleAddCharacterGroup(string input)
+	{
+		var args = SplitAssignment(input);
+		switch (args.Length)
+		{
+			case 2:
+				var name = args[0];
+				var characters = ParseCharacters(args[1]);
+				CharacterGroups.Add(name, characters);
+				return;
+
+			default:
+				throw new ArgumentException("Invalid character group assignment.");
+		}
 	}
 
 	protected virtual void HandleAddHours(string input)
@@ -201,11 +218,25 @@ public class ScriptLoader : NarrativeChartUnits<int>
 	protected virtual void HandleUpdate(string input)
 		=> Update();
 
-	protected virtual Character[] ParseCharacters(string input)
+	protected virtual HashSet<Character> ParseCharacters(string input)
 	{
-		return SplitArgs(input)
-			.Select(x => Definitions.CharacterAliases[x])
-			.ToArray();
+		var args = SplitArgs(input);
+		var set = new HashSet<Character>(args.Length);
+		foreach (var arg in args)
+		{
+			if (CharacterGroups.TryGetValue(arg, out var group))
+			{
+				foreach (var character in group)
+				{
+					set.Add(character);
+				}
+			}
+			else
+			{
+				set.Add(Definitions.CharacterAliases[arg]);
+			}
+		}
+		return set;
 	}
 
 	protected virtual Location ParseLocation(string input)

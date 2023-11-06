@@ -16,5 +16,6 @@ public record ScriptSymbols(
 	string Kill = "@!",
 	string Scene = "$",
 	string AddReturnableScene = "+$",
-	string RemoveReturnableScene = "-$"
+	string RemoveReturnableScene = "-$",
+	string AddCharacterGroup = "+%"
 );

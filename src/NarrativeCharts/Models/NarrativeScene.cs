@@ -3,5 +3,5 @@
 public sealed record NarrativeScene(
 	int Hour,
 	Location Location,
-	IReadOnlyList<Character> Characters
+	IEnumerable<Character> Characters
 );

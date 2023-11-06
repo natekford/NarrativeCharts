@@ -28,7 +28,7 @@ public static class BookwormLocations
 	public static Location RA_Classroom { get; } = new("RA - Classroom");
 	public static Location RA_DormEhrenfest { get; } = new("RA - Ehrenfest Dorm");
 	public static Location RA_DormOther { get; } = new("RA - Other Duchy Dorms");
-	public static Location RA_DormSovereignty { get; } = new("RA - Sovereignty Dorm");
+	public static Location RA_DormSovereignty { get; } = new("RA - Sovereignty Dorms");
 	public static Location RA_FarthestHall { get; } = new("RA - Farthest Hall");
 	public static Location RA_Library { get; } = new("RA - Library");
 	public static Location RA_Royals { get; } = new("RA - Royal Villas");

@@ -1,4 +1,5 @@
 ﻿##P4V2
++%MYNE_RETAINERS=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Lieseleta,Myne,Philine,Rihyarda
 
 #Prologue
 $RA_L=Catherine
@@ -50,7 +51,7 @@ $RA_DE=Traugott
 // "All of my retainers were accompanying me to this tea party."
 // "Rosina was coming as well"
 +$4
-$RA_A=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Lieseleta,Myne,Philine,Rihyarda,Rosina,Traugott
+$RA_A=MYNE_RETAINERS,Rosina
 // w/s outfit measuring scheduled for 3 days from now
 >
 -$4
@@ -65,7 +66,7 @@ $RA_S=Hirschur
 // not stated if it's only 1 or 2 days after
 >>ThirdBell
 +$5a
-$RA_S=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Lieseleta,Myne,Philine,Rihyarda,Rosina,Traugott
+$RA_S=MYNE_RETAINERS,Rosina
 +$5b
 $RA_S=Ana,Eggy
 $RA_S=Pauline
@@ -81,7 +82,7 @@ $RA_S=Pauline
 $RA_DE=Hirschur
 >
 +$6
-$RA_L=Angelica,Brunhilde,Cornelius,Hartmut,Hirschur,Leonore,Lieseleta,Myne,Philine,Rihyarda,Rosina,Traugott
+$RA_L=MYNE_RETAINERS,Hirschur
 >
 -$6
 
