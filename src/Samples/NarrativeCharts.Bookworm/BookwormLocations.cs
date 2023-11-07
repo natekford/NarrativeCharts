@@ -22,6 +22,7 @@ public static class BookwormLocations
 	public static Location Kirnberger { get; } = new("Kirnberger");
 	public static Location Klassenberg { get; } = new("Klassenberg");
 	public static Location KnightsOrder { get; } = new("Knight's Order");
+	public static Location Leisegang { get; } = new("Leisegang");
 	public static Location LowerCityWorkshops { get; } = new("Lower City Workshops");
 	public static Location MerchantCompanies { get; } = new("Merchant Companies");
 	public static Location MountLohenberg { get; } = new("Mount Lohenberg");
@@ -77,6 +78,7 @@ public static class BookwormLocations
 			SmallTowns,
 			RuelleTree,
 			GoddessesBath,
+			Leisegang,
 			Illgner,
 			SouthernProvinces,
 			MountLohenberg,

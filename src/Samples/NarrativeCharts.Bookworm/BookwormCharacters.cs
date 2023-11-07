@@ -53,6 +53,8 @@ public static class BookwormCharacters
 	public static Character GiebeGroschel { get; } = new("Giebe Groschel");
 	public static Character GiebeJoisontak { get; } = new("Giebe Joisontak");
 	public static Character GiebeKirnberger { get; } = new("Giebe Kirnberger");
+	public static Character GiebeLeisegang { get; } = new("Giebe Leisegang");
+	public static Character GiebeLeisegangSr { get; } = new("Giebe Leisegang Emeritus");
 	public static Character Gil { get; } = new("Gil");
 	public static Character Gloria { get; } = new("Gloria");
 	public static Character Grausam { get; } = new("Grausam");
@@ -72,6 +74,7 @@ public static class BookwormCharacters
 	public static Character Isidore { get; } = new("Isidore");
 	public static Character Jeremias { get; } = new("Jeremias");
 	public static Character Johann { get; } = new("Johann");
+	public static Character Jonsara { get; } = new("Jonsara");
 	public static Character Josef { get; } = new("Josef");
 	public static Character Judithe { get; } = new("Judithe");
 	public static Character Justus { get; } = new("Justus");
@@ -80,6 +83,8 @@ public static class BookwormCharacters
 	public static Character Kampfer { get; } = new("Kampfer");
 	public static Character Kantna { get; } = new("Kantna");
 	public static Character Karstedt { get; } = new("Karstedt");
+	public static Character Kashick { get; } = new("Kashick");
+	public static Character Konrad { get; } = new("Konrad");
 	public static Character Lamprecht { get; } = new("Lamprecht");
 	public static Character Lasfam { get; } = new("Lasfam");
 	public static Character Laurenz { get; } = new("Laurenz");
@@ -185,6 +190,8 @@ public static class BookwormCharacters
 			[GiebeGroschel] = Hex.Unknown.Value,
 			[GiebeJoisontak] = Hex.Unknown.Value,
 			[GiebeKirnberger] = Hex.Unknown.Value,
+			[GiebeLeisegang] = Hex.Unknown.Value,
+			[GiebeLeisegangSr] = Hex.Unknown.Value,
 			[Gil] = "#F8EECB",
 			[Gloria] = "#3B4834",
 			[Grausam] = "#A5629D",
@@ -204,6 +211,7 @@ public static class BookwormCharacters
 			[Isidore] = Hex.Unknown.Value,
 			[Jeremias] = Hex.Unknown.Value,
 			[Johann] = "#E4A242",
+			[Jonsara] = Hex.Unknown.Value,
 			[Josef] = "#FAD273",
 			[Judithe] = "#E59B5C",
 			[Justus] = "#A1AACB",
@@ -212,6 +220,8 @@ public static class BookwormCharacters
 			[Kampfer] = Hex.Unknown.Value,
 			[Kantna] = Hex.Unknown.Value,
 			[Karstedt] = "#874730",
+			[Kashick] = Hex.Unknown.Value,
+			[Konrad] = "#7CFC00",
 			[Lamprecht] = "#D18A71",
 			[Lasfam] = "#228B22",
 			[Laurenz] = "#CC5500",

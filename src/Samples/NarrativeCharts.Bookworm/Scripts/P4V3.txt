@@ -231,12 +231,69 @@ $C=Eckhart,Ferdinand,Justus
 $C=Florencia,Karstedt,Sylvester
 $C=Alexis,Ignaz,Isidore,Oswald,Wilfried
 $C=Laurenz,Roderick,Traugott
-
 $Klassenberg=Eggy
 $Ditter=Hannelore,Heisshitze,Lestilaut
 $Drewanchel=Adolphine,Ortwin
 $Ahrensbach=Detlinde
 $Frenbeltag=Rudiger
+>
+$NQ=Laurenz,Roderick
+// Time: "Two days later, it was time to pay those"
+>>2,Morning
+>
+// Time: "The next day, when I was due to teach my mana compression method"
+>>Morning
+$NQ=Philine
+$C=Claudio,GiebeLeisegang,OldLeisegang
+>
+$NQ=Claudio,GiebeLeisegang,OldLeisegang
+
+
+
+#Philine's Family Circumstances
+>
+$NQ=Jonsara,Kashick,Konrad
+$NQ=MYNE_GUARDS,Damuel,Eckhart,Ferdinand,Lieseleta,Hartmut
+// myne saves konrad
+>
+$C=Cornelius,Judithe,Leonore,Lieseleta
+$T=Angelica,Damuel,Eckhart,Ferdinand,Hartmut,Konrad,Myne,Philine
+>U2
+$C=Angelica,Damuel,Eckhart,Ferdinand,Hartmut,Myne,Philine
+
+
+
+#The Book Fair and the Follow-Up Meeting
+>>3,Morning
++$10
+$C=Benno,OldLeisegang,Lutz,Mark
+>
+-$10
+>>Morning
+$T=Angelica,Damuel,Eckhart,Ferdinand,Justus,Myne
+>FourthBell
++$11
+$T=Benno,Lutz,Mark
+>
+
+
+
+#A Promise
+// myne says she can't keep meeting benno/lutz/mark in hidden room
+>
+-$11
+
+
+
+#Ferdinand and I
+>
+
+
+
+#Epilogue
+// furniture talk
+>
+$C=Angelica,Damuel,Eckhart,Ferdinand,Justus,Myne
 
 
 

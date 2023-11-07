@@ -150,6 +150,8 @@ public class Program
 				[GiebeGroschel] = [nameof(GiebeGroschel)],
 				[GiebeJoisontak] = [nameof(GiebeJoisontak)],
 				[GiebeKirnberger] = [nameof(GiebeKirnberger)],
+				[GiebeLeisegang] = [nameof(GiebeLeisegang)],
+				[GiebeLeisegangSr] = ["OldLeisegang"],
 				[HasseMayor] = [nameof(HasseMayor)],
 			});
 		}
