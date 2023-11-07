@@ -8,6 +8,7 @@ public static class BookwormCharacters
 {
 	// no q, u, x, or y names to complete the alphabet
 	public static Character Achim { get; } = new("Achim");
+	public static Character Adolphine { get; } = new("Adolphine");
 	public static Character Alexis { get; } = new("Alexis");
 	public static Character Anastasius { get; } = new("Anastasius");
 	public static Character Angelica { get; } = new("Angelica");
@@ -57,6 +58,7 @@ public static class BookwormCharacters
 	public static Character Grausam { get; } = new("Grausam");
 	public static Character Gunther { get; } = new("Gunther");
 	public static Character Gustav { get; } = new("Gustav");
+	public static Character Hannelore { get; } = new("Hannelore");
 	public static Character Hartmut { get; } = new("Hartmut");
 	public static Character HasseMayor { get; } = new("Hasse's Mayor");
 	public static Character Heidi { get; } = new("Heidi");
@@ -99,7 +101,9 @@ public static class BookwormCharacters
 	public static Character Nikolaus { get; } = new("Nikolaus");
 	public static Character Nora { get; } = new("Nora");
 	public static Character Norbert { get; } = new("Norbert");
+	public static Character Ortwin { get; } = new("Ortwin");
 	public static Character Oswald { get; } = new("Oswald");
+	public static Character Oswin { get; } = new("Oswin");
 	public static Character Ottilie { get; } = new("Ottilie");
 	public static Character Otto { get; } = new("Otto");
 	public static Character Pauline { get; } = new("Pauline");
@@ -136,6 +140,7 @@ public static class BookwormCharacters
 		Colors = new Dictionary<Character, string>
 		{
 			[Achim] = Hex.Unknown.Value,
+			[Adolphine] = "#D86C9D",
 			[Alexis] = Hex.Unknown.Value,
 			[Anastasius] = "#D7BE96",
 			[Angelica] = "#53B3DB",
@@ -184,6 +189,7 @@ public static class BookwormCharacters
 			[Grausam] = "#A5629D",
 			[Gunther] = "#37527F",
 			[Gustav] = "#B6A6A7",
+			[Hannelore] = "#D4B7D3",
 			[Hartmut] = "#DC602C",
 			[HasseMayor] = Hex.Unknown.Value,
 			[Heidi] = "#BB5435",
@@ -226,7 +232,9 @@ public static class BookwormCharacters
 			[Nikolaus] = "#96574E",
 			[Nora] = "#9797CC",
 			[Norbert] = "#656567",
+			[Ortwin] = "#9C3677",
 			[Oswald] = "#654321",
+			[Oswin] = Hex.Unknown.Value,
 			[Ottilie] = "#A74D47",
 			[Otto] = "#B78155",
 			[Pauline] = Hex.Unknown.Value,

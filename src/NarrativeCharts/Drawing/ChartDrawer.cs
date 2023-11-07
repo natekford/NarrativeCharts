@@ -135,7 +135,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	}
 
 	protected virtual TColor GetColor(Hex hex)
-			=> ColorCache<TColor>.Cache.GetOrAdd(hex, ParseColor);
+		=> ColorCache<TColor>.Cache.GetOrAdd(hex, ParseColor);
 
 	protected virtual YMap GetYMap(TChart chart)
 	{

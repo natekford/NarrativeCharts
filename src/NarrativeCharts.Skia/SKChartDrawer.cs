@@ -12,6 +12,7 @@ public sealed class SKChartDrawer
 	private readonly Dictionary<string, SKTextBlob> _TextCache = [];
 	private bool _Disposed;
 
+	public SKColor? CharacterLabelColor { get; init; }
 	private static SKFont Font { get; } = new();
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
 
@@ -240,6 +241,10 @@ public sealed class SKChartDrawer
 					_TextCache[text] = name = SKTextBlob.Create(text, Font);
 				}
 				var hex = image.Chart.Colors[character];
+				if (CharacterLabelColor.HasValue)
+				{
+					hex = new(CharacterLabelColor.Value.ToString());
+				}
 				if (!_PaintCache.TryGetValue(hex, out var paint))
 				{
 					_PaintCache[hex] = paint = GetPaint(GetColor(hex));

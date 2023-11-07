@@ -3,6 +3,8 @@ using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 using NarrativeCharts.Time;
 
+using SkiaSharp;
+
 using System.Diagnostics;
 
 using static NarrativeCharts.Bookworm.BookwormBell;
@@ -19,7 +21,8 @@ public class Program
 	public string Dir { get; }
 	public SKChartDrawer Drawer { get; } = new()
 	{
-		ImageSizeAspectRatio = 32f / 9f
+		ImageSizeAspectRatio = 32f / 9f,
+		CharacterLabelColor = SKColors.Black,
 	};
 	public string ScriptsDir { get; }
 

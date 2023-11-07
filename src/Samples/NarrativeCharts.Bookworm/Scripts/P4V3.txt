@@ -1,4 +1,6 @@
 ﻿##P4V3
++%MYNE_GUARDS=Angelica,Cornelius,Judithe,Leonore,Myne
++%MYNE_RETAINERS=MYNE_GUARDS,Brunhilde,Hartmut,Lieseleta,Philine,Rihyarda
 
 #Prologue
 >
@@ -97,8 +99,48 @@ $M=Otto,Tuuli
 >>2,Morning
 $C=Angelica,Cornelius,Damuel,Eckhart,Ferdinand,Myne,Rihyarda
 >
-$RA_DE=Angelica,Cornelius,Justus,Myne,Rihyarda
+$RA_DE=Angelica,Cornelius,Ella,Leonore,Justus,Myne,Rihyarda
 
+
+
+#A Week of Socializing
+>
+$RA_DE=Hirschur
+>
+$RA_S=Hirschur
+
+
+
+#Justus and Preparing for the Interduchy Tournament
+>>ThirdBell
++$2
+$RA_L=MYNE_RETAINERS,Justus
+>
+-$2
+
+
+
+#Meeting with the Prince
+// Time: "Fifth bell rang."
+>FifthBell
++$3
+$RA_RV=MYNE_RETAINERS,Justus
+>
+-$3
+// Time: "While we were preparing for the large-scale tea party, I received a summons from Eglantine."
+// who knows?
+>>3,ThirdBell
++$4
+$RA_DO=MYNE_RETAINERS,Justus
+// "Hartmut and Cornelius would need to stay behind"
+$RA_DE=Cornelius,Hartmut
+>
+-$4
+
+
+
+#The Tea Party for All Duchies
+$RA_DO=Adolphine,Hannelore,Ortwin
 
 
 

@@ -167,11 +167,10 @@ $RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
 >
 $RA_L=Ana
 >
-$RA_RV=Ana,Cornelius,Hartmut,Leonore,Myne,Rihyarda
+$RA_RV=Ana,Cornelius,Hartmut,Leonore,Myne,Oswin,Rihyarda
 >
 -$10
 $RA_DE=Hartmut
-// oswin gets mentioned but idc to include it
 
 
 
