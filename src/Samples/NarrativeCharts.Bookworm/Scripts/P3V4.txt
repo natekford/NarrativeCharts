@@ -336,7 +336,7 @@ $NQ=Gloria
 // Time: some day later
 >>2,Morning
 $SP=GiebeDahldolf,Gloria,Grausam,Jeremias,Royella
-$AC=Georgine
+$Ahrensbach=Georgine
 
 
 

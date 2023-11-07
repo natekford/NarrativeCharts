@@ -51,7 +51,7 @@ $C=Corinna
 // adults (explicitly mentioned)
 $C=GiebeDahldolf,GiebeGroschel,Gloria,Trudeliede
 // adults (not mentioned)
-$NQ=Brigitte,Grausam,Helfried,Jeremias,Nadine,Royella,Volk
+$NQ=Brigitte,GiebeKirnberger,Grausam,Helfried,Jeremias,Nadine,Royella,Volk
 // playroom kids
 $C=Brunhilde,Hartmut,Ignaz,Isidore,Laurenz,Nikolaus,Philine,Roderick,Traugott
 // baptisms,debuts, gifting happen

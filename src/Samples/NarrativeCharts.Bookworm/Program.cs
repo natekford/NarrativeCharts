@@ -22,6 +22,10 @@ public class Program
 	public SKChartDrawer Drawer { get; } = new()
 	{
 		ImageSizeAspectRatio = 32f / 9f,
+		// smaller images in debug so they render faster
+#if DEBUG
+		ImageSizeMult = 3,
+#endif
 		CharacterLabelColor = SKColors.Black,
 	};
 	public string ScriptsDir { get; }
@@ -185,7 +189,7 @@ public class Program
 				[GoddessesBath] = ["GBath"],
 				[SouthernProvinces] = ["SP"],
 				[MountLohenberg] = ["Lohenberg"],
-				[AhrensbachCastle] = ["AC"],
+				[Dunkelfelger] = ["Ditter"],
 			});
 		}
 

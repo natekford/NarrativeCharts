@@ -62,6 +62,7 @@ public static class BookwormCharacters
 	public static Character Hartmut { get; } = new("Hartmut");
 	public static Character HasseMayor { get; } = new("Hasse's Mayor");
 	public static Character Heidi { get; } = new("Heidi");
+	public static Character Heisshitze { get; } = new("Heisshitze");
 	public static Character Helfried { get; } = new("Helfried");
 	public static Character Henrik { get; } = new("Henrik");
 	public static Character Hirschur { get; } = new("Hirschur");
@@ -193,6 +194,7 @@ public static class BookwormCharacters
 			[Hartmut] = "#DC602C",
 			[HasseMayor] = Hex.Unknown.Value,
 			[Heidi] = "#BB5435",
+			[Heisshitze] = Hex.Unknown.Value,
 			[Helfried] = "#FF0000",
 			[Henrik] = "#5C4033",
 			[Hirschur] = "#4D4A41",

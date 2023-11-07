@@ -128,8 +128,7 @@ $RA_RV=MYNE_RETAINERS,Justus
 >
 -$3
 // Time: "While we were preparing for the large-scale tea party, I received a summons from Eglantine."
-// who knows?
->>3,ThirdBell
+>>2,ThirdBell
 +$4
 $RA_DO=MYNE_RETAINERS,Justus
 // "Hartmut and Cornelius would need to stay behind"
@@ -140,9 +139,104 @@ $RA_DE=Cornelius,Hartmut
 
 
 #The Tea Party for All Duchies
+// these characters get mentioned for the first time
 $RA_DO=Adolphine,Hannelore,Ortwin
+// Time: "it was the day of the tea party."
+// at most a week after myne comes back to the RA
+// 1 day is accounted for, then there are 2 unknowns
+// the next chapter says the IDT is 1 day after myne wakes up
+// so 1 day + 2 unknowns + 2 days = 6 days
+// idk, just gonna keep it at 1, 2, 2, 2 for 7 days
+// to have better spacing
+>>2,ThirdBell
++$5
+$RA_DE=Adolphine,Detlinde,Eggy,Hannelore,Rudiger
+// myne passes out after meeting hannelore
+>
+-$5
 
 
+
+#Interduchy Tournament
+// Time: "You were asleep for two whole days,"
+>>2,Morning
+$RA_DE=Eckhart,Ferdinand
+// Time: "It was the day of the Interduchy Tournament"
+>>Morning
+// "Wilfried was currently out by the stadium"
+// probably has his retainers with him
++$6a
+$RA_ST=Alexis,Ignaz,Isidore,Wilfried
+$RA_DE=Florencia,Karstedt,Sylvester
+>
++$6b
+$RA_ST=Angelica,Cornelius,Laurenz,Leonore,Traugott
++$6c
+$RA_ST=Florencia,Hirschur,Karstedt,Sylvester
++$6d
+$RA_ST=Adolphine,Detlinde,Eggy,Hannelore,Lestilaut,Ortwin,Rudiger
+$RA_ST=Heisshitze
+>
+-$6b
+>U2
+-$6a
+-$6c
+-$6d
+$RA_DO=Heisshitze
+
+
+
+#Angelica’s Graduation Ceremony
+>
+$RA_DE=Hirschur
+// Time: "The graduation ceremony would take place the day after the Interduchy Tournament."
+>>Morning
+$RA_S=Hirschur
+$RA_DE=Damuel
+>
++$7a
+$RA_A=Alexis,Angelica,Brunhilde,Cornelius,Eckhart,Florencia,Hartmut,Ignaz,Isidore,Judithe,Karstedt,Laurenz,Leonore,Lieseleta,Philine,Roderick,Sylvester,Traugott,Wilfried
++$7b
+$RA_A=Adolphine,Ana,Detlinde,Eggy,Hannelore,Heisshitze,Lestilaut,Ortwin,Rudiger
+// dances and other stuff idk
+// Time: "Everyone returned after fourth bell."
+>FourthBell
+-$7a
+-$7b
+>
++$8
+$RA_A=Ana,Angelica,Eckhart,Eggy,Florencia,Karstedt,Sylvester
+// graduation ceremony
+// myne blesses ana and eggy
+
+
+
+#Year One: Complete
+>
+-$8
+>>Morning
+// "the two of us headed for the library with our retainers."
++$9
+$RA_L=MYNE_RETAINERS,Eckhart,Ferdinand,Justus
+// they spend a while getting all of the books back
+>FifthBell
+-$9
+
+
+
+#Buying Information and the Mana Compression Lecture
+>>Morning
+$C=MYNE_RETAINERS,Damuel,Ella,Hugo,Rosina
+$C=Eckhart,Ferdinand,Justus
+$C=Florencia,Karstedt,Sylvester
+$C=Alexis,Ignaz,Isidore,Oswald,Wilfried
+$C=Laurenz,Roderick,Traugott
+
+$Klassenberg=Eggy
+$Ditter=Hannelore,Heisshitze,Lestilaut
+$Drewanchel=Adolphine,Ortwin
+$Ahrensbach=Detlinde
+$Frenbeltag=Rudiger
 
 
 
