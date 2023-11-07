@@ -7,8 +7,30 @@
 
 
 #The Feast Celebrating Spring
-// Time: "a few days after I said my goodbyes to Lutz"
->>3,Morning
+// tea party with charlotte
+>>Lunch
+// Time: "The feast celebrating spring was held the day after our tea party.""
+>>Morning
+// only including the explicitly mentioned characters because I'm lazy
++$1
+$C=GiebeLeisegang,Gloria
+>
+-$1
+
+
+
+#Meeting the Scholars
+>>Morning
+$T=Eckhart,Ferdinand
+>ThirdBell
+$C=Henrik
+>
+$NQ=Henrik
+$T=MYNE_GUARDS,Ella,Hugo,Rosina
+
+
+
+#Life in the Temple
 
 
 
