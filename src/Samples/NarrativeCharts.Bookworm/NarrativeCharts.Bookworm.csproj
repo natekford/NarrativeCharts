@@ -14,23 +14,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Scripts\P3V3.txt">
+		<None Update="Scripts\*.txt">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Scripts\P3V4.txt">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Scripts\P3V5.txt">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Scripts\P4V1.txt">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Scripts\P4V2.txt">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Scripts\P4V3.txt">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 </Project>

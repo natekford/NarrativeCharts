@@ -1,0 +1,15 @@
+﻿##P4V4
++%MYNE_GUARDS=Angelica,Damuel,Myne
+
+#Prologue
+>
+
+
+
+#The Feast Celebrating Spring
+// Time: "a few days after I said my goodbyes to Lutz"
+>>3,Morning
+
+
+
+>H24

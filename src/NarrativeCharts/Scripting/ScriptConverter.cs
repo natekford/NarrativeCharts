@@ -91,6 +91,9 @@ public abstract class ScriptConverter : ScriptLoader
 	protected override void HandleChapter(string input)
 	{
 		var sb = new StringBuilder()
+			.Append("// ")
+			.Append(Hour)
+			.AppendLine(" hours")
 			.Append(nameof(Event))
 			.Append("(\"")
 			.Append(input)

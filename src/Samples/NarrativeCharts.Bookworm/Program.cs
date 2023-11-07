@@ -41,18 +41,8 @@ public class Program
 	{
 		Defs = await GetScriptDefinitionsAsync().ConfigureAwait(false);
 
-		var books = new NarrativeChart[]
-		{
-			new P3V1(Defs.Time),
-			new P3V2(Defs.Time),
-			Script("P3V3.txt"),
-			Script("P3V4.txt"),
-			Script("P3V5.txt"),
-			Script("P4V1.txt"),
-			Script("P4V2.txt"),
-			Script("P4V3.txt"),
-		};
-		for (var i = 0; i < books.Length; ++i)
+		var books = GetBooks();
+		for (var i = 0; i < books.Count; ++i)
 		{
 			books[i].Initialize(i == 0 ? null : books[i - 1]);
 			Books.Add(books[i]);
@@ -114,6 +104,24 @@ public class Program
 
 		await Task.WhenAll(tasks).ConfigureAwait(false);
 		Console.WriteLine($"{Books.Count} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
+	}
+
+	private List<NarrativeChart> GetBooks()
+	{
+		var books = new List<NarrativeChart>()
+		{
+			new P3V1(Defs.Time),
+			new P3V2(Defs.Time),
+		};
+		// use a natural sort so V30 shows up between V29 and V31
+		// and not between V3 and V4
+		var scripts = Directory.GetFiles(ScriptsDir, "*.txt")
+			.OrderBy(x => x, NaturalSortStringComparer.Ordinal);
+		foreach (var script in scripts)
+		{
+			books.Add(new BookwormScriptConverter(Defs, File.ReadLines(script)));
+		}
+		return books;
 	}
 
 	private async Task<ScriptDefinitions> GetScriptDefinitionsAsync()
@@ -229,7 +237,4 @@ public class Program
 		var days = (max - min) / Defs.Time.HoursPerDay;
 		Console.WriteLine($"{chart.Name}: Points={points}, Days={days}");
 	}
-
-	private BookwormScriptConverter Script(string fileName)
-		=> new(Defs, File.ReadLines(Path.Combine(ScriptsDir, fileName)));
 }
