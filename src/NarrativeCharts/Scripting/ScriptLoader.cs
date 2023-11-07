@@ -27,14 +27,8 @@ public class ScriptLoader : NarrativeChartUnits<int>
 		Definitions = definitions;
 		Lines = lines;
 
-		foreach (var (key, value) in definitions.CharacterColors)
-		{
-			Colors.Add(key, value);
-		}
-		foreach (var (key, value) in definitions.LocationYIndexes)
-		{
-			YIndexes.Add(key, value);
-		}
+		Colors = new(definitions.CharacterColors);
+		YIndexes = new(definitions.LocationYIndexes);
 	}
 
 	protected override int ConvertToInt(int unit)

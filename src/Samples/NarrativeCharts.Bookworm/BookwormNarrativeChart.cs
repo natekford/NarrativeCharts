@@ -6,14 +6,8 @@ public abstract class BookwormNarrativeChart : NarrativeChartUnits<BookwormBell>
 {
 	protected BookwormNarrativeChart(TimeTrackerUnits time) : base(time)
 	{
-		foreach (var (key, value) in BookwormCharacters.Colors)
-		{
-			Colors.Add(key, value);
-		}
-		foreach (var (key, value) in BookwormLocations.YIndexes)
-		{
-			YIndexes.Add(key, value);
-		}
+		Colors = new(BookwormCharacters.Colors);
+		YIndexes = new(BookwormLocations.YIndexes);
 	}
 
 	protected override int ConvertToInt(BookwormBell unit)

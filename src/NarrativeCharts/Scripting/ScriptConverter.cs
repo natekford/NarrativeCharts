@@ -5,6 +5,14 @@ using System.Text;
 
 namespace NarrativeCharts.Scripting;
 
+// pretty much all parsing is done twice because the methods in ScriptLoader
+// deal with the raw strings. I could make it so there are ScriptLoader methods
+// that deal with the already parsed time/characters/locations, but that'd
+// add 20+ methods which would make ScriptLoader seem even more bloated
+// and make it more confusing when it comes to what methods have to be
+// overriden to affect functionality.
+// worrying about the efficiency of this class also seems worthless when
+// image processing takes 100x longer and has much bigger allocations.
 public abstract class ScriptConverter : ScriptLoader
 {
 	public string ClassName { get; protected set; } = "";

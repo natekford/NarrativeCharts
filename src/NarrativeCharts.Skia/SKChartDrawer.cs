@@ -261,7 +261,7 @@ public sealed class SKChartDrawer
 	}
 
 	protected override SKColor ParseColor(Hex hex)
-			=> SKColor.Parse(hex.Value);
+		=> SKColor.Parse(hex.Value);
 
 	protected override Task SaveImageAsync(SKContext image, string path)
 	{
