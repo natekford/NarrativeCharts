@@ -255,7 +255,7 @@ $NF=Alexis,Angelica,Bonifatius,Cornelius,Damuel,Hartmut,Judithe,Lamprecht,Myne,P
 
 #Report on the Archduke Conference
 $C=Florencia,Karstedt,Sylvester
-$Ahrensbach=Gieselfried
+$Ahrensbach=Georgine,Gieselfried
 >>FifthBell
 
 

@@ -48,12 +48,14 @@ $C=Corinna,Elvira
 $T=MYNE_GUARDS,Hartmut,Philine
 // Time: "scheduled the day of our visit for five days from now"
 >>5,FourthBell
++$3
 $IR=MYNE_GUARDS,Benno,Eckhart,Ferdinand,Fran,Freida,Gustav,Justus,Otto,Rosina
 
 
 
 #Evolved Cooking
 >
+-$3
 
 
 
@@ -74,18 +76,90 @@ $T=Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
 >
 $C=MYNE_GUARDS,Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
 >
-$Groschel=MYNE_GUARDS,Benno,Damian,Heidi,Ingo,Johann,Josef,Lutz,Zack
-+$3
+$Groschel=MYNE_GUARDS,Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
++$4
 $Groschel=Brunhilde,Elvira,Hartmut,Henrik,Philine
 // Time: "The next day,"
 >>Morning
 // Time: "On my last day in Groschel,"
 // unknown
 >>4,Morning
--$3
+-$4
 $T=MYNE_GUARDS,Benno
 >
 $M=Benno
+// Time: "Hugo and Ella have their Starbinding tomorrow"
+// Starbinding = midsummer and we only have ~7 days so far
+>>>1
+>
+
+
+
+#My Brother Lamprecht’s Wedding
++$5
+$C=MYNE_GUARDS,Eckhart,Ferdinand,Hartmut,Philine
+>>Morning
+>>3,ThirdBell
++$6
+$KE=Angelica,Cornelius,Eckhart,Karstedt,Lamprecht,Myne
+// talk about aurelia
+>
+>>ThirdBell
+// talk about damuel
+>
+-$6
+-$5
+
+
+
+#The Wedding on the Border
+// Time: "we arrived in Leisegang at noon"
+>>FourthBell
++%W_MYNE=Angelica,Brunhilde,Ferdinand,Fran,Hartmut,Hugo,Leonore,Monika,Myne,Nicola,Ottilie
++%W_FAM=Cornelius,Eckhart,Elvira,Karstedt,Lamprecht
++%W_AD=Alexis,Charlotte,Ernesta,Florencia,Oswald,Sylvester,Wilfried
++%W_EHR=W_MYNE,W_FAM,W_AD
++$7
+$Leisegang=W_EHR
+// the book doesnt mention there being a day between arriving at leisegang and not
+// but the graph looks better with one
+>>Morning
+$SP=W_MYNE
+// hugo probably stays in leisegang kitchen while the grays go to the wedding
+$Leisegang=Hugo
+>
+$SP=W_FAM,W_AD
+$SP=Aurelia,Bettina,Detlinde,Georgine,Gieselfried,Letizia,Martina
+>
+>
+$KE=Aurelia
+$Ahrensbach=Bettina,Detlinde,Georgine,Gieselfried,Letizia,Martina
+-$7
+
+
+
+#Pre-Meeting for the Dyeing Competition
+// Time: "After making a full recovery,"
+// who knows
+>>5,Morning
+// meeting with gilberta company scheduled
+// another unknown timespan
+>>3,ThirdBell
+$T=Brunhilde,Elvira,Otto
+>
+$C=Brunhilde
+$M=Otto
+>
+$KE=Elvira
+
+
+
+#The Dyeing Competition
+>>>1
+>
+$C=MYNE_GUARDS,Hartmut,Philine
+
+
 
 
 
