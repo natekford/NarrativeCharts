@@ -24,7 +24,7 @@ public class Program
 		ImageSizeAspectRatio = 32f / 9f,
 		// smaller images in debug so they render faster
 #if DEBUG
-		ImageSizeMult = 3,
+		ImageSizeMult = 3.5f,
 #endif
 		CharacterLabelColor = SKColors.Black,
 	};

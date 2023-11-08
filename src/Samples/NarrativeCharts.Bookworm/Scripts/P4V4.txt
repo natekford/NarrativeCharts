@@ -27,6 +27,16 @@ $C=Henrik
 >
 $NQ=Henrik
 $T=MYNE_GUARDS,Ella,Hugo,Rosina
+// it isn't announced exactly when the giebes go back to their provinces
+// but I assume it's after their scholars meet with myne
+// not exactly known when they return, but these should be their destinations
+$Haldenzel=Claudio
+$Kirnberger=GiebeKirnberger
+$Groschel=Bertilde,GiebeGroschel
+$Leisegang=GiebeLeisegang,OldLeisegang
+$Illgner=Brigitte,Helfried,Nadine,Viktor,Volk
+$SP=GiebeDahldolf,Gloria,Grausam,Jeremias,Laurenz,Royella
+$KE=Elvira,Nikolaus
 
 
 
