@@ -230,6 +230,41 @@ $M=Angelica,Damuel,Ferdinand,Karstedt
 
 
 #Left at Home
+// Time: "two days of rest"
+>>2,Morning
+$RA=Florencia,Karstedt,Sylvester
+$RA=Georgine,Gieselfried
+// Time: "During dinner that day,"
+>Dinner
+// Time: unknown, a couple days probably
+>>4,Morning
+// judithe says she doesnt have any more rejuv potions
+// bonifatius convinces ferdi to let them gather in the forest
+>>4,Morning
++$7
+$NF=Alexis,Angelica,Bonifatius,Cornelius,Damuel,Hartmut,Judithe,Lamprecht,Myne,Philine,Wilfried
+>
+-$7
+>>Morning
+// myne brews with her retainers and teaches them the 4th step
+>>5,Morning
+
+
+
+#Report on the Archduke Conference
+$C=Florencia,Karstedt,Sylvester
+$Ahrensbach=Gieselfried
+>>FifthBell
+
+
+
+#A More Private Meeting
+>
+
+
+
+#Epilogue
+>
 
 
 >H24

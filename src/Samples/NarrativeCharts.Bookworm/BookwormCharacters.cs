@@ -56,6 +56,7 @@ public static class BookwormCharacters
 	public static Character GiebeKirnberger { get; } = new("Giebe Kirnberger");
 	public static Character GiebeLeisegang { get; } = new("Giebe Leisegang");
 	public static Character GiebeLeisegangSr { get; } = new("Giebe Leisegang Emeritus");
+	public static Character Gieselfried { get; } = new("Gieselfried");
 	public static Character Gil { get; } = new("Gil");
 	public static Character Gloria { get; } = new("Gloria");
 	public static Character Grausam { get; } = new("Grausam");
@@ -194,6 +195,7 @@ public static class BookwormCharacters
 			[GiebeKirnberger] = Hex.Unknown.Value,
 			[GiebeLeisegang] = Hex.Unknown.Value,
 			[GiebeLeisegangSr] = Hex.Unknown.Value,
+			[Gieselfried] = "#A49AA2",
 			[Gil] = "#F8EECB",
 			[Gloria] = "#3B4834",
 			[Grausam] = "#A5629D",
