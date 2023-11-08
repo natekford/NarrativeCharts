@@ -30,17 +30,171 @@ $T=MYNE_GUARDS,Ella,Hugo,Rosina
 // it isn't announced exactly when the giebes go back to their provinces
 // but I assume it's after their scholars meet with myne
 // not exactly known when they return, but these should be their destinations
+// Giebe Leisegang does not leave at this point b/c Disappearing Ink and ...
+// says he's still in the NQ
 $Haldenzel=Claudio
 $Kirnberger=GiebeKirnberger
 $Groschel=Bertilde,GiebeGroschel
-$Leisegang=GiebeLeisegang,OldLeisegang
 $Illgner=Brigitte,Helfried,Nadine,Viktor,Volk
 $SP=GiebeDahldolf,Gloria,Grausam,Jeremias,Laurenz,Royella
 $KE=Elvira,Nikolaus
+// ferdi thinks cinderella is shameless
+>
 
 
 
 #Life in the Temple
+// myne talks to ella/hugo about their marriage
+>>Morning
+// Time: "The winter coming-of-age ceremony was the next day,"
+>>Morning
++$2
+$T=Effa,Gunther
+>
+-$2
+
+
+
+#Schwartz's and Weiss's Outfits
+// Time: "The week between the coming-of-age ceremony and the spring baptisms"
+// unknown days later aside from not more than a week
+>>2,FourthBell
+>
+
+
+#Magic Ink
+// myne brews some ink
+>
+// Time: "the next day."
+>>FourthBell
+>
+// finds out about invisible ink
+
+
+
+#Request for the Gilberta Company
+>>ThirdBell
++$3
+$T=Corinna,Leon,Otto,Theo,Tuuli
+// talk about hairpins and dyeing
+>
+
+
+
+#Another Gathering of the Gutenbergs
+>
+-$3
+// Time: "The Gutenbergs would be gathering on the day before the baptisms in the orphanage director’s chambers"
+// I think this means 3 days later? since 3 have passed since COA ceremony
+>>3,ThirdBell
++$4
+$T=Benno,Heidi,Ingo,Johann,Josef,Lutz,Mark,Zack
+// he gets mentioned
+$W=Danilo
+>
+-$4
+
+
+
+#Disappearing Ink and Returning to the Castle
+// Time: "The spring baptism ceremony had begun."
+>>Morning
+// ceremony gets done
+// "Justus was absent, since he was visiting the Noble’s Quarter"
+$NQ=Justus
+>FourthBell
+>>Morning
+$Leisegang=GiebeLeisegang,OldLeisegang
+// Time: "For the two days we needed to wait for Justus to return"
+>>ThirdBell
+$T=Justus
+>>Morning
+$C=MYNE_GUARDS,Eckhart,Ferdinand,Justus
+>
+
+
+
+#The Archduke Conference Approaches
+// Time: "tea party at fifth bell today"
+>FifthBell
+$C=Elvira
+>
+$KE=Elvira
+// Time: "The day after we discussed Spring Prayer, I had a tea party"
+>>Tea
+$C=Elvira
+>
+$KE=Elvira
+// Time: "The next day, following the tea party"
+>>Morning
+// Time: "the next day"
+>>ThirdBell
++$5
+$C=Corinna,Otto,Theo
+>
+-$5
+
+
+
+#Spring Prayer in the Central District
+// Time: "Once it was the week before Spring Prayer,"
+// unknown time skip, currently at Spring Baptism + 8 days
+// probably add a week
+>>4,Morning
+$T=MYNE_GUARDS,Eckhart,Ferdinand,Justus
+// Time: "a number of days later, it was time for Spring Prayer."
+>>3,EarlyMorning
+$T=Gunther
+>
+@?Gil,Gunther,Hugo
+>
+$Hasse=MYNE_GUARDS,Fran,Monika
+>
+$Hasse=Hugo,Gil,Gunther
+>>Morning
+$MF=Gunther
+@?Gil,Hugo
+>
+$SmallTowns=MYNE_GUARDS,Fran,Gil,Hugo,Monika
+>>3,Morning
+$T=MYNE_GUARDS,Fran,Gil,Hugo,Monika
+$T=Charlotte,Ernesta
+>
+$SmallTowns=Charlotte,Ernesta
+// Time: "I returned to my normal life the next day"
+>>Morning
+// myne gets some brewing lessons from ferdi
+
+
+
+#Haldenzel's Craftspeople
+// Time: "Charlotte had returned from Spring Prayer"
+>>4,Morning
+$T=Charlotte,Lamprecht,Wilfried
+>
+$C=Charlotte,Ernesta
+$SmallTowns=Lamprecht,Wilfried
+>>4,Morning
+$T=Lamprecht,Wilfried
+>
+$C=Lamprecht,Wilfried
+$SmallTowns=Eckhart,Ferdinand,Justus
+// Time: "Several days had passed since Ferdinand departed for Spring Prayer"
+>>3,Morning
+$T=Benno,Damian,Johann,Lutz,Zack
+>
+$M=Lutz
+$C=MYNE_GUARDS,Benno,Damian,Elvira,Johann,Zack
+>U3
+$Haldenzel=Angelica,Benno,Charlotte,Damian,Elvira,Ernesta,Johann,Karstedt,Lamprecht,Lieseleta,Myne,Philine,Wilfried,Zack
+// they get a look at haldenzel's printing press usage
+>
+
+
+
+#Haldenzel's Spring Prayer
+
+
 
 
 

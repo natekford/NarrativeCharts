@@ -29,6 +29,7 @@ public static class BookwormCharacters
 	public static Character Cornelius { get; } = new("Cornelius");
 	public static Character Damian { get; } = new("Damian");
 	public static Character Damuel { get; } = new("Damuel");
+	public static Character Danilo { get; } = new("Danilo");
 	public static Character Deid { get; } = new("Deid");
 	public static Character Delia { get; } = new("Delia");
 	public static Character Detlinde { get; } = new("Detlinde");
@@ -166,6 +167,7 @@ public static class BookwormCharacters
 			[Corinna] = "#F7E3C0",
 			[Damian] = "#96574E",
 			[Damuel] = "#967B4E",
+			[Danilo] = Hex.Unknown.Value,
 			[Deid] = "#F3EEB6",
 			[Delia] = "#A13F34",
 			[Detlinde] = "#E2C96D",
