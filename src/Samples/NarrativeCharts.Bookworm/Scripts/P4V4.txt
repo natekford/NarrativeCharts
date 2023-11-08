@@ -180,22 +180,56 @@ $T=Lamprecht,Wilfried
 $C=Lamprecht,Wilfried
 $SmallTowns=Eckhart,Ferdinand,Justus
 // Time: "Several days had passed since Ferdinand departed for Spring Prayer"
->>3,Morning
+>>2,Morning
 $T=Benno,Damian,Johann,Lutz,Zack
 >
 $M=Lutz
 $C=MYNE_GUARDS,Benno,Damian,Elvira,Johann,Zack
->U3
+>U2
 $Haldenzel=Angelica,Benno,Charlotte,Damian,Elvira,Ernesta,Johann,Karstedt,Lamprecht,Lieseleta,Myne,Philine,Wilfried,Zack
 // they get a look at haldenzel's printing press usage
->
 
 
 
 #Haldenzel's Spring Prayer
+// Time: "Spring Prayer was going to start at sixth bell."
+>SixthBell
+// Time: "It was just as I started dozing off"
+>
+>>Morning
+// myne sees all the melted snow
+>
+>>Morning
+$T=Eckhart,Ferdinand,Justus
+// Time: "we couldn’t leave before the Plantin Company finished their work, which was due to take a few more days"
+>>Lunch
+$C=Charlotte,Ernesta,Karstedt,Lamprecht,Lieseleta,Philine,Wilfried
+$KE=Elvira
+$T=Angelica,Benno,Damian,Johann,Myne,Zack
 
 
 
+#Entwickeln
+>
+$T=Damuel
+// Time: "Ferdinand spent several days in his workshop"
+>>2,Lunch
+$C=Angelica,Damuel,Eckhart,Ferdinand,Justus,Myne
+// archducal family adds a lot of mana to the foundation
+// Time: "on fifth bell, three days from now"
+>>3,FifthBell
+// sewers added
+>
++$6
+$M=Angelica,Damuel,Ferdinand,Karstedt
+// they go to look at the lower city and see it's still poopy
+// cast washing machine on it
+>
+-$6
+
+
+
+#Left at Home
 
 
 >H24
