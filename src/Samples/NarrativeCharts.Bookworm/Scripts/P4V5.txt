@@ -1,0 +1,92 @@
+﻿##P4V5
++%MYNE_GUARDS=Angelica,Damuel,Myne
+
+#Prologue
+// i don't think Sidonius is in the castle in this scene
+// but it is worded kind of ambiguously that he could 
+// have been in the castle
+// i'm already not including most commuting, what more
+// is having a character in the wrong place
+$SP=Freuden,Janrik,Matthias,Sidonius
+>
+
+
+
+#Apprentices and the Temple
+>>Morning
+$T=MYNE_GUARDS,Cornelius,Hartmut,Judithe,Leonore,Philine
+$T=Eckhart,Ferdinand,Justus
+
+
+
+#A Discussion with the Lower City
+// Time: "scheduled for the afternoon three days after my retainers first arrived at the temple"
+>>3,ThirdBell
+$C=Judithe,Leonore
++$1
+$T=Benno,Freida,Gustav,Lutz,Mark,Otto,Theo,Tuuli
+// talk about dyeing competition
+// get hairpins from tuuli
+>
+-$1
+
+
+
+#Going to the Italian Restaurant
+// Time: "The next day,"
+>>Morning
+// Time: "until fourth bell,"
+>FourthBell
+$C=MYNE_GUARDS,Cornelius,Hartmut,Philine
+// unknown amount of days later
+>>2,Morning
++$2
+$C=Corinna,Elvira
+>
+-$2
+>>Morning
+$T=MYNE_GUARDS,Hartmut,Philine
+// Time: "scheduled the day of our visit for five days from now"
+>>5,FourthBell
+$IR=MYNE_GUARDS,Benno,Eckhart,Ferdinand,Fran,Freida,Gustav,Justus,Otto,Rosina
+
+
+
+#Evolved Cooking
+>
+
+
+
+#Visiting Groschel and the Starbind Ceremony
+// Time: "right after the spring coming-of-age ceremony was over."
+// ~16 days have passed between AD conf and now
+// but only 76 days have passed between spring baptism and now
+// so some time should probably be laundered in between
+// spring baptism and ad conf instead of laundering it now
+>>7,Morning
+// Time: "two days after the summer baptism ceremony"
+// Either 4 or 11 days later
+// Spring COA happens on last 1st day of the week
+// Summer bap happens on first 3rd day of the week
+// so the difference will always either be 2 or 9 days
+>>11,Morning
+$T=Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
+>
+$C=MYNE_GUARDS,Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
+>
+$Groschel=MYNE_GUARDS,Benno,Damian,Heidi,Ingo,Johann,Josef,Lutz,Zack
++$3
+$Groschel=Brunhilde,Elvira,Hartmut,Henrik,Philine
+// Time: "The next day,"
+>>Morning
+// Time: "On my last day in Groschel,"
+// unknown
+>>4,Morning
+-$3
+$T=MYNE_GUARDS,Benno
+>
+$M=Benno
+
+
+
+>H24

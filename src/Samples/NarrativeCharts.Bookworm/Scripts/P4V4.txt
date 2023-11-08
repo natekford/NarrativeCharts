@@ -214,7 +214,9 @@ $T=Angelica,Benno,Damian,Johann,Myne,Zack
 $T=Damuel
 // Time: "Ferdinand spent several days in his workshop"
 >>2,Lunch
-$C=Angelica,Damuel,Eckhart,Ferdinand,Justus,Myne
+// hugo and rosina get brought back from the castle in the next volume
+// so they probably arrive at this point
+$C=Angelica,Damuel,Eckhart,Ferdinand,Hugo,Justus,Myne,Rosina
 // archducal family adds a lot of mana to the foundation
 // Time: "on fifth bell, three days from now"
 >>3,FifthBell
@@ -264,7 +266,10 @@ $Ahrensbach=Gieselfried
 
 
 #Epilogue
+// these 2 get mentioned
+$Ahrensbach=Aurelia,Bettina
 >
+
 
 
 >H24
