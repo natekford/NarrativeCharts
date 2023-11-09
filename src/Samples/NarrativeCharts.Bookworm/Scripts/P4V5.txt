@@ -16,6 +16,7 @@ $SP=Freuden,Janrik,Matthias,Sidonius
 >>Morning
 $T=MYNE_GUARDS,Cornelius,Hartmut,Judithe,Leonore,Philine
 $T=Eckhart,Ferdinand,Justus
+$T=Hugo,Rosina
 
 
 
@@ -151,13 +152,140 @@ $C=Brunhilde
 $M=Otto
 >
 $KE=Elvira
+>>
 
 
 
 #The Dyeing Competition
+// Time: "Starbindings had taken place at the end of summer, "
+// "the summer coming-of-age and the autumn baptism ceremonies came right after."
 >>>1
 >
+$C=MYNE_GUARDS,Aurelia,Elvira,Hartmut,Philine
+// Time: "bringing in the cloth at third bell."
+>ThirdBell
+$C=Otto
+// myne/aurelia/brunhilde look at dyed cloth
+>
+// myne talks about fish
+>
+$KE=Aurelia,Elvira
+$M=Otto
+
+
+
+#Post-Competition and the Harvest Festival
+// Time: "The next day,"
+>>Morning
+$C=Corinna,Otto
+>
+$M=Corinna,Otto
+$T=MYNE_GUARDS,Hugo,Rosina
+// myne and ferdi talk about fish
+>
+// Time: "I spent the next few days"
+>>>1
+>>Morning
+$T=Gunther
+>
+@?Ella,Gunther,Hugo,Monika,Rosina
+>
+$Hasse=MYNE_GUARDS,Fran
++$8
+$SmallTowns=Eckhart,Ferdinand,Justus,Charlotte,Ernesta,Lamprecht,Wilfried
+>
+$Hasse=Ella,Gunther,Hugo,Monika,Rosina
+>
+
+
+
+#Groschel and the Harvest Festival
+// Time: "After finishing my breakfast,"
+>>Morning
+@?Ella,Gunther,Hugo,Monika,Rosina
+>
+$SmallTowns=MYNE_GUARDS,Fran
+>
+$MF=Gunther
+$SmallTowns=Ella,Hugo,Monika,Rosina
+>>Morning
+// Time: "I was the last one to complete my duties,"
+// i guess myne/ferdi/charlotte/wilf did it at the same time
+// instead of sequentially like the spring prayer
+>>2,Morning
+-$8
+$T=MYNE_GUARDS,Ella,Fran,Hugo,Monika,Rosina
+// Time: "I ended up bedridden again soon after my return to the temple."
+>>Morning
+// myne contacts elvira and says it's time to go to groschel
+// Time: "we would be leaving three days from now."
+>>3,Morning
++$9
+$Groschel=MYNE_GUARDS,Brunhilde,Elvira,Fran,Hartmut,Hugo,Monika,Philine
+
+
+
+#Groschel Nobles and the Printing Industry
+// Time: "That evening, we had dinner"
+>Dinner
+>>Morning
+-$9
+$W=Heidi,Ingo,Johann,Josef,Zack
+$M=Damian,Lutz
+$T=Gil
+
+
+
+#The Library Plan and Completed Outfits
+$T=Hartmut,Philine
+// Time: "Upon returning to the temple, my normal daily life resumed"
+// so unknown amount of days
+>>5,Morning
+// myne asks lieseleta about schumil outfits
+// she says they are ready to be inspected by ferdi
+>>Morning
++$10
+$T=Brunhilde,Cornelius,Judithe,Leonore,Lieseleta
+>
+-$10
+// Time: "Three short days after Ferdinand approved the embroidery,"
+>>3,Morning
+// outfits finished
+
+
+
+#The Start of Winter Socializing (Second Year)
+// Time: "Days after Schwartz’s and Weiss’s outfits were completed,"
+>>3,Morning
+>>ThirdBell
++$11
+$T=Otto,Theo,Tuuli
+>
+-$11
+>>>1
+>>Morning
 $C=MYNE_GUARDS,Hartmut,Philine
+// Time: "The day after I returned to the castle,"
+>>Morning
+// myne asks ferdi to save the fish
+// Time: "Winter socializing began with the winter baptism ceremony"
+>>2,Morning
+$C=Eckhart,Ferdinand,Justus
+$C=Aurelia,Elvira
+$C=Brigitte,Claudio,GiebeGroschel,GiebeLeisegang,Helfried,OldLeisegang,Viktor
+$NQ=Freuden,GiebeDahldolf,Gloria,Grausam,Janrik,Jeremias,Laurenz,Matthias,Royella,Sidonius
+$NQ=Bertilde,GiebeKirnberger,Nadine,Volk
+>
+$NQ=Brigitte,Claudio,GiebeGroschel,GiebeLeisegang,Helfried,OldLeisegang,Viktor
+$KE=Aurelia
+
+
+#Leaving for the Royal Academy
+// Time: "We spent the days leading up to our departure for the Royal Academy in the playroom"
+>>Morning
+$C=Bertilde,Nikolaus
+>>2,Morning
+
 
 
 

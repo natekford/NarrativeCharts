@@ -24,7 +24,7 @@ public class Program
 		ImageSizeAspectRatio = 32f / 9f,
 		// smaller images in debug so they render faster
 #if DEBUG
-		ImageSizeMult = 3.5f,
+		ImageSizeMult = 3f,
 #endif
 		CharacterLabelColor = SKColors.Black,
 	};
@@ -70,7 +70,10 @@ public class Program
 #if false
 		var kept = new HashSet<Models.Character>
 		{
-			BookwormCharacters.Myne,
+			BookwormCharacters.Ella,
+			BookwormCharacters.Hugo,
+			BookwormCharacters.Rosina,
+			BookwormCharacters.Myne
 		};
 		foreach (var book in books)
 		{
