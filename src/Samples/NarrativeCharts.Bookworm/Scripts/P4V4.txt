@@ -25,7 +25,7 @@ $T=Eckhart,Ferdinand
 >ThirdBell
 $C=Henrik
 >
-$NQ=Henrik
+$NQ=Henrik,Traugott
 $T=MYNE_GUARDS,Ella,Hugo,Rosina
 // it isn't announced exactly when the giebes go back to their provinces
 // but I assume it's after their scholars meet with myne

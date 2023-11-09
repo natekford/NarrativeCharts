@@ -264,7 +264,7 @@ $T=Otto,Theo,Tuuli
 -$11
 >>>1
 >>Morning
-$C=MYNE_GUARDS,Hartmut,Philine
+$C=MYNE_GUARDS,Ella,Hartmut,Hugo,Philine,Rosina
 // Time: "The day after I returned to the castle,"
 >>Morning
 // myne asks ferdi to save the fish
@@ -283,10 +283,27 @@ $KE=Aurelia
 #Leaving for the Royal Academy
 // Time: "We spent the days leading up to our departure for the Royal Academy in the playroom"
 >>Morning
-$C=Bertilde,Nikolaus
+$C=Bertilde,Laurenz,Matthias,Nikolaus,Roderick
 >>2,Morning
-
-
+// "The playroom’s population decreased by the day as the students gradually departed for the Royal Academy."
+// 6th years
+$RA_DE=Cornelius,Hartmut,Leonore
+>>Morning
+// 5th years
+$RA_DE=Alexis,Brunhilde,Isidore,Lieseleta,Traugott
+>>Morning
+// 4th years (and hugo, not explicitly stated exact day he goes)
+$RA_DE=Kathrein,Matthias,Hugo
+>>Morning
+// 3rd years
+$RA_DE=Judithe,Ignaz,Laurenz
+>>Morning
+// 2nd years
+$RA_DE=Philine,Roderick
+$RA_DE=Ella,Myne,Rihyarda,Rosina
+>>Morning
+// 1st years
+$RA_DE=Charlotte,Ernesta
 
 
 

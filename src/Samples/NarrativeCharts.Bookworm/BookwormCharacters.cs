@@ -90,6 +90,7 @@ public static class BookwormCharacters
 	public static Character Kantna { get; } = new("Kantna");
 	public static Character Karstedt { get; } = new("Karstedt");
 	public static Character Kashick { get; } = new("Kashick");
+	public static Character Kathrein { get; } = new("Kathrein");
 	public static Character Konrad { get; } = new("Konrad");
 	public static Character Lamprecht { get; } = new("Lamprecht");
 	public static Character Lasfam { get; } = new("Lasfam");
@@ -237,6 +238,7 @@ public static class BookwormCharacters
 			[Kantna] = Hex.Unknown.Value,
 			[Karstedt] = "#874730",
 			[Kashick] = Hex.Unknown.Value,
+			[Kathrein] = Hex.Unknown.Value,
 			[Konrad] = "#7CFC00",
 			[Lamprecht] = "#D18A71",
 			[Lasfam] = "#228B22",

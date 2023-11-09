@@ -65,16 +65,16 @@ $NQ=GiebeDahldolf,GiebeGroschel,Gloria
 $KE=Trudeliede
 // Time: "People would start leaving for the Royal Academy today"
 >>Morning
-// 5th years (and hugo)
+// 6th years (and hugo)
 $RA_DE=Angelica,Hugo
 $C=Bertilde
 >Lunch
 // myne pays the kids who have gathered information
 >>Morning
-// 4th years
+// 5th years
 $RA_DE=Cornelius,Hartmut,Leonore
 >>Morning
-// 3rd years
+// 4th years
 $RA_DE=Brunhilde,Isidore,Lieseleta,Traugott
 >>Morning
 //2nd years
@@ -303,13 +303,14 @@ $RA_C=Hirschur,Myne,Rauffen,Wilfried
 
 
 #Epilogue
+>
 
 
-
-//#A Productive Earthday
+#A Productive Earthday
 // i am not going to include Emerika and Friedel
 // they are mentioned once in the entire series
 // i am not going to deal with making sure they follow angelica/rieserator
+$RA_DE=Kathrein
 
 
 
