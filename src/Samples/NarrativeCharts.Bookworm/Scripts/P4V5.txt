@@ -134,7 +134,7 @@ $SP=Aurelia,Bettina,Detlinde,Georgine,Gieselfried,Letizia,Martina
 >
 >
 $KE=Aurelia
-$Ahrensbach=Bettina,Detlinde,Georgine,Gieselfried,Letizia,Martina
+$Ahrensbach=Detlinde,Georgine,Gieselfried,Letizia,Martina
 -$7
 
 
@@ -283,13 +283,15 @@ $KE=Aurelia
 #Leaving for the Royal Academy
 // Time: "We spent the days leading up to our departure for the Royal Academy in the playroom"
 >>Morning
-$C=Bertilde,Laurenz,Matthias,Nikolaus,Roderick
+$C=Bertilde,Laurenz,Matthias,Nikolaus,Roderick,Traugott
 >>2,Morning
 // "The playroom’s population decreased by the day as the students gradually departed for the Royal Academy."
 // 6th years
+$RA_DO=Adolphine,Rudiger
 $RA_DE=Cornelius,Hartmut,Leonore
 >>Morning
 // 5th years
+$RA_DO=Detlinde,Lestilaut
 $RA_DE=Alexis,Brunhilde,Isidore,Lieseleta,Traugott
 >>Morning
 // 4th years (and hugo, not explicitly stated exact day he goes)
@@ -299,13 +301,31 @@ $RA_DE=Kathrein,Matthias,Hugo
 $RA_DE=Judithe,Ignaz,Laurenz
 >>Morning
 // 2nd years
+$RA_DO=Hannelore,Ortwin
 $RA_DE=Philine,Roderick
 $RA_DE=Ella,Myne,Rihyarda,Rosina
+
+
+
+#Fealty and the Dormitory
+>
+$RA_DE=Oswald,Wilfried
+>
++$12
+$RA_GE=Alexis,Cornelius,Judithe,Laurenz,Leonore,Matthias,Myne,Philine,Traugott,Wilfried
+>
+>
+-$12
 >>Morning
 // 1st years
-$RA_DE=Charlotte,Ernesta
+$RA_DE=Charlotte
+>
 
 
+
+#Hirschur’s Visit and the Advancement Ceremony
+// Time: "dinner today"
+>Dinner
 
 
 >H24

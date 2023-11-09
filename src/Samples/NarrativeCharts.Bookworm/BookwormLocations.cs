@@ -31,10 +31,11 @@ public static class BookwormLocations
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location RA_Auditorium { get; } = new("RA - Auditorium");
 	public static Location RA_Classroom { get; } = new("RA - Classroom");
-	public static Location RA_DormEhrenfest { get; } = new("RA - Ehrenfest Dorm");
+	public static Location RA_DormEhr { get; } = new("RA - Ehrenfest Dorm");
 	public static Location RA_DormOther { get; } = new("RA - Other Duchy Dorms");
-	public static Location RA_DormSovereignty { get; } = new("RA - Sovereignty Dorms");
+	public static Location RA_DormSov { get; } = new("RA - Sovereignty Dorms");
 	public static Location RA_FarthestHall { get; } = new("RA - Farthest Hall");
+	public static Location RA_GatherEhr { get; } = new("RA - Ehr. Gathering Spot");
 	public static Location RA_Library { get; } = new("RA - Library");
 	public static Location RA_Royals { get; } = new("RA - Royal Villas");
 	public static Location RA_Stadium { get; } = new("RA - Stadium");
@@ -52,13 +53,14 @@ public static class BookwormLocations
 		{
 			RA_Royals,
 			RA_FarthestHall,
-			RA_DormSovereignty,
+			RA_DormSov,
 			RA_Stadium,
 			RA_Library,
 			RA_Classroom,
 			RA_Auditorium,
 			RA_DormOther,
-			RA_DormEhrenfest,
+			RA_DormEhr,
+			RA_GatherEhr,
 			RoyalAcademy,
 			Haldenzel,
 			Kirnberger,
