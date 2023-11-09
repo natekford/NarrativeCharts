@@ -133,7 +133,7 @@ $SP=W_FAM,W_AD
 $SP=Aurelia,Bettina,Detlinde,Georgine,Gieselfried,Letizia,Martina
 >
 >
-$KE=Aurelia
+$KE=Aurelia,Riadina
 $Ahrensbach=Detlinde,Georgine,Gieselfried,Letizia,Martina
 -$7
 
@@ -295,6 +295,7 @@ $RA_DO=Detlinde,Lestilaut
 $RA_DE=Alexis,Brunhilde,Isidore,Lieseleta,Traugott
 >>Morning
 // 4th years (and hugo, not explicitly stated exact day he goes)
+$RA_DO=Martina
 $RA_DE=Kathrein,Matthias,Hugo
 >>Morning
 // 3rd years
@@ -318,7 +319,7 @@ $RA_GE=Alexis,Cornelius,Judithe,Laurenz,Leonore,Matthias,Myne,Philine,Traugott,W
 -$12
 >>Morning
 // 1st years
-$RA_DE=Charlotte
+$RA_DE=Charlotte,Vanessa
 >
 
 
@@ -326,6 +327,41 @@ $RA_DE=Charlotte
 #Hirschur’s Visit and the Advancement Ceremony
 // Time: "dinner today"
 >Dinner
+// Time: "The next day,"
+>>ThirdBell
+$RA_DE=Hirschur
+>
+>
+$RA_S=Hirschur
+// Time: "auditorium by third bell"
+>>ThirdBell
+$RA_RV=Arthur,Dankmar,Hildebrand
++$13a
+$RA_A=Brunhilde,Cornelius,Hartmut,Judithe,Leonore,Lieseleta,Myne,Philine
++$13b
+$RA_A=Alexis,Charlotte,Ignaz,Isidore,Kathrein,Wilfried
++$13c
+$RA_A=Laurenz,Matthias,Roderick,Traugott
++$13d
+$RA_A=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
+>
+>
+$RA_C=Brunhilde,Cornelius,Hartmut,Leonore,Myne
+$RA_C=Charlotte,Wilfried
+$RA_C=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
++$13e
+$RA_C=Arthur,Dankmar,Hildebrand
+
+
+#The Second-Year Fellowship Gathering
+>
+>
+
+
+
+#Epilogue
+-$13a,13b,13c,13d,13e
+
 
 
 >H24

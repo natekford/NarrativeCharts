@@ -133,8 +133,11 @@ public class ScriptLoader : NarrativeChartUnits<int>
 
 	protected virtual void HandleRemoveReturnableScene(string input)
 	{
-		Return(StoredScenes[input]);
-		StoredScenes.Remove(input);
+		foreach (var scene in SplitArgs(input))
+		{
+			Return(StoredScenes[scene]);
+			StoredScenes.Remove(scene);
+		}
 	}
 
 	protected virtual void HandleScene(string input)

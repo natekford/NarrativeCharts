@@ -12,6 +12,7 @@ public static class BookwormCharacters
 	public static Character Alexis { get; } = new("Alexis");
 	public static Character Anastasius { get; } = new("Anastasius");
 	public static Character Angelica { get; } = new("Angelica");
+	public static Character Arther { get; } = new("Arthur");
 	public static Character Aurelia { get; } = new("Aurelia");
 	public static Character Benno { get; } = new("Benno");
 	public static Character Bertilde { get; } = new("Bertilde");
@@ -32,6 +33,7 @@ public static class BookwormCharacters
 	public static Character Damian { get; } = new("Damian");
 	public static Character Damuel { get; } = new("Damuel");
 	public static Character Danilo { get; } = new("Danilo");
+	public static Character Dankmar { get; } = new("Dankmar");
 	public static Character Deid { get; } = new("Deid");
 	public static Character Delia { get; } = new("Delia");
 	public static Character Detlinde { get; } = new("Detlinde");
@@ -72,6 +74,7 @@ public static class BookwormCharacters
 	public static Character Heisshitze { get; } = new("Heisshitze");
 	public static Character Helfried { get; } = new("Helfried");
 	public static Character Henrik { get; } = new("Henrik");
+	public static Character Hildebrand { get; } = new("Hildebrand");
 	public static Character Hirschur { get; } = new("Hirschur");
 	public static Character Hugo { get; } = new("Hugo");
 	public static Character Ignaz { get; } = new("Ignaz");
@@ -126,6 +129,7 @@ public static class BookwormCharacters
 	public static Character Philine { get; } = new("Philine");
 	public static Character Primevere { get; } = new("Primevere");
 	public static Character Rauffen { get; } = new("Rauffen");
+	public static Character Riadina { get; } = new("Riadina");
 	public static Character Richt { get; } = new("Richt");
 	public static Character Rick { get; } = new("Rick");
 	public static Character Rihyarda { get; } = new("Rihyarda");
@@ -144,6 +148,7 @@ public static class BookwormCharacters
 	public static Character Traugott { get; } = new("Traugott");
 	public static Character Trudeliede { get; } = new("Trudeliede");
 	public static Character Tuuli { get; } = new("Tuuli");
+	public static Character Vanessa { get; } = new("Vanessa");
 	public static Character Viktor { get; } = new("Viktor");
 	public static Character Volk { get; } = new("Volk");
 	public static Character Weiss { get; } = new("Weiss");
@@ -161,6 +166,7 @@ public static class BookwormCharacters
 			[Alexis] = Hex.Unknown.Value,
 			[Anastasius] = "#D7BE96",
 			[Angelica] = "#53B3DB",
+			[Arther] = Hex.Unknown.Value,
 			[Aurelia] = "#FFD700",
 			[Benno] = "#E8CB9F",
 			[Bertilde] = "#FF66CC",
@@ -180,6 +186,7 @@ public static class BookwormCharacters
 			[Damian] = "#96574E",
 			[Damuel] = "#967B4E",
 			[Danilo] = Hex.Unknown.Value,
+			[Dankmar] = Hex.Unknown.Value,
 			[Deid] = "#F3EEB6",
 			[Delia] = "#A13F34",
 			[Detlinde] = "#E2C96D",
@@ -220,6 +227,7 @@ public static class BookwormCharacters
 			[Heisshitze] = Hex.Unknown.Value,
 			[Helfried] = "#FF0000",
 			[Henrik] = "#5C4033",
+			[Hildebrand] = "#BDC4D4",
 			[Hirschur] = "#4D4A41",
 			[Hugo] = "#7E5951",
 			[Ignaz] = Hex.Unknown.Value,
@@ -274,6 +282,7 @@ public static class BookwormCharacters
 			[Philine] = "#EDBC6F",
 			[Primevere] = Hex.Unknown.Value,
 			[Rauffen] = "#F1B582",
+			[Riadina] = Hex.Unknown.Value,
 			[Richt] = Hex.Unknown.Value,
 			[Rick] = "#667965",
 			[Rihyarda] = "#E9DEC8",
@@ -292,6 +301,7 @@ public static class BookwormCharacters
 			[Traugott] = "#E1C178",
 			[Trudeliede] = Hex.Unknown.Value,
 			[Tuuli] = "#95BE82",
+			[Vanessa] = Hex.Unknown.Value,
 			[Viktor] = Hex.Unknown.Value,
 			[Volk] = Hex.Unknown.Value,
 			[Weiss] = "#E3C8BD",

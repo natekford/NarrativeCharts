@@ -140,13 +140,15 @@ public abstract class ScriptConverter : ScriptLoader
 
 	protected override void HandleRemoveReturnableScene(string input)
 	{
-		var scene = StoredScenes[input];
-		foreach (var group in scene.GroupBy(x => x.Value))
+		foreach (var scene in SplitArgs(input))
 		{
-			WriteScene(
-				ToProperty(group.Key),
-				ToProperties(group.Select(x => x.Key))
-			);
+			foreach (var group in StoredScenes[scene].GroupBy(x => x.Value))
+			{
+				WriteScene(
+					ToProperty(group.Key),
+					ToProperties(group.Select(x => x.Key))
+				);
+			}
 		}
 
 		LineConverted = true;
