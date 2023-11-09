@@ -1,0 +1,84 @@
+﻿##P4V6
++%MYNE_GUARDS=Cornelius,Leonore,Myne
++%MYNE_GUARDS_ALL=MYNE_GUARDS,Judithe
++%MYNE_RETAINERS=MYNE_GUARDS_ALL,Brunhilde,Hartmut,Lieseleta,Philine
++%WILF_RETAINERS=Alexis,Ignaz,Isidore,Wilfried
++%CHAR_RETAINERS=Charlotte,Kathrein,Marianne,Natalie
++%MISC_EHR=Laurenz,Matthias,Roderick,Traugott
++%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,MISC_EHR
++%OTHER_DUCHIES=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
++%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
+
+#Prologue
+>
+
+
+
+#The Beginning of Classes
+// Time: "It was the day after"
+>>ThirdBell
++$1
+$RA_A=ALL_STUDENTS,Fraularm,Rihyarda
+$RA_C=Charlotte
+>H1
+>
+$RA_A=Charlotte
+$RA_C=Hannelore,Myne,Ortwin,Wilfried
+$RA_C=Fraularm,Hirschur,Primevere,Rauffen
+>H1
+>
+-$1
+$RA_S=Fraularm,Hirschur,Primevere,Rauffen
+
+
+
+#Library Committee Member Get!
+>>ThirdBell
++$2
+$RA_A=ALL_STUDENTS,Rihyarda
+$RA_C=Charlotte
+>H1
+>
+$RA_A=Charlotte
+$RA_C=Hannelore,Myne,Ortwin,Wilfried
+$RA_C=Pauline
+>H1
+>
+-$2
+$RA_S=Pauline
+// Time: "We easily passed the next day’s written lessons as well."
+>>ThirdBell
++$3
+$RA_A=ALL_STUDENTS,Rihyarda
+$RA_C=Charlotte
+>H1
+>
+
+
+
+#Registering for the Library and Supplying Mana
++$4
+$RA_L=MYNE_GUARDS_ALL,Charlotte,Lieseleta,Natalie,Rihyarda
+>H1
+>
+-$4
+$RA_A=Charlotte
+$RA_C=Hannelore,Myne,Ortwin,Wilfried
+
+
+
+#Schtappe Transformation
+$RA_C=Rauffen,Primevere
+// myne makes shield and spear
+>H1
+>
+
+
+
+#Strengthening the Weapon
+-$3
+$RA_S=Rauffen,Primevere
+
+
+
+>H24

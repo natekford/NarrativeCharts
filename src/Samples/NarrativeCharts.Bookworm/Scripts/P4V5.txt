@@ -296,10 +296,10 @@ $RA_DE=Alexis,Brunhilde,Isidore,Lieseleta,Traugott
 >>Morning
 // 4th years (and hugo, not explicitly stated exact day he goes)
 $RA_DO=Martina
-$RA_DE=Kathrein,Matthias,Hugo
+$RA_DE=Kathrein,Matthias,Natalie,Hugo
 >>Morning
 // 3rd years
-$RA_DE=Judithe,Ignaz,Laurenz
+$RA_DE=Judithe,Ignaz,Laurenz,Marianne
 >>Morning
 // 2nd years
 $RA_DO=Hannelore,Ortwin
@@ -339,7 +339,7 @@ $RA_RV=Arthur,Dankmar,Hildebrand
 +$13a
 $RA_A=Brunhilde,Cornelius,Hartmut,Judithe,Leonore,Lieseleta,Myne,Philine
 +$13b
-$RA_A=Alexis,Charlotte,Ignaz,Isidore,Kathrein,Wilfried
+$RA_A=Alexis,Charlotte,Ignaz,Isidore,Kathrein,Marianne,Natalie,Wilfried
 +$13c
 $RA_A=Laurenz,Matthias,Roderick,Traugott
 +$13d
