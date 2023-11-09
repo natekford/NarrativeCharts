@@ -78,6 +78,69 @@ $RA_C=Rauffen,Primevere
 #Strengthening the Weapon
 -$3
 $RA_S=Rauffen,Primevere
+// Time: "breakfast the next morning"
+>>Morning
++$4
+$RA_GE=MYNE_GUARDS_ALL,Hartmut,Philine
+// myne debuts her water gun
+>
+-$4
+
+
+
+#Everyone Passing on the First Day
++$5
+$RA_A=ALL_STUDENTS,Fraularm,Rihyarda
+$RA_C=Charlotte
+>H1
+>
+
+
+
+#Brewing and Recovery Potions
+$RA_A=Charlotte
+$RA_C=Hannelore,Myne,Ortwin,Wilfried
+$RA_C=Hirschur
+>H1
+>
+-$5
+$RA_S=Hirschur
+// myne + others have praticals earlier due to divine wills for 1st years
+>>ThirdBell
++$6
+$RA_A=ALL_STUDENTS,Rihyarda
+$RA_C=Hannelore,Myne,Ortwin,Wilfried
+$RA_FH=Charlotte
+>H1
+>
+
+
+
+#Roderick’s Wish
+$RA_DO=Hannelore,Ortwin
+$RA_DE=Judithe,Myne,Philine,Rihyarda,Roderick,Wilfried
+>
+$RA_DE=Charlotte
+>
+-$6
+>>Morning
+// they go off to socialize, idk where exactly
+$RA_DO=Brunhilde,Lieseleta
+$RA_GE=Cornelius,Leonore
+>H1
+$RA_DO=Hartmut
+>H1
+>
+$RA_DE=Cornelius,Leonore
+>H1
+>
+$RA_DE=Hartmut
+>H1
+$RA_DE=Brunhilde,Lieseleta
+
+
+
+#Dedication Whirling and Ordonnanz Brewing
 
 
 
