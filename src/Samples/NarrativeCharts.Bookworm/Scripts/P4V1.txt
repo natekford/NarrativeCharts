@@ -120,13 +120,13 @@ $RA_A=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
 >
 >
 // "archduke candidates, who of course kept their retainers"
-$RA_C=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
-$RA_C=Anastasius,Detlinde
+$RA_SH=Angelica,Brunhilde,Cornelius,Hartmut,Leonore,Myne,Wilfried
+$RA_SH=Anastasius,Detlinde
 
 
 
 #Royalty and Nobles from Other Duchies
-$RA_C=Rudiger
+$RA_SH=Rudiger
 >
 // they eat pure sugar
 
@@ -152,7 +152,7 @@ $RA_L=Solange
 // idk who goes with myne and wilf
 // cornelius and rihyarda are waiting for myne when she finishes tho
 +$4
-$RA_C=Cornelius,Hirschur,Myne,Rihyarda,Wilfried
+$RA_SH=Cornelius,Hirschur,Myne,Rihyarda,Wilfried
 // myne breaks a lot of feystones
 
 
@@ -171,7 +171,7 @@ $RA_A=Ignaz,Isidore,Judithe,Laurenz,Lieseleta,Philine,Roderick,Traugott
 -$5b
 >
 +$6
-$RA_C=Myne,Wilfried
+$RA_SH=Myne,Wilfried
 >
 -$6
 
@@ -182,23 +182,23 @@ $RA_C=Myne,Wilfried
 >>Lunch
 // "During the afternoon, we had practical lessons on creating highbeasts."
 >
-$RA_C=Fraularm,Myne,Rihyarda,Wilfried
+$RA_SH=Fraularm,Myne,Rihyarda,Wilfried
 $RA_A=Philine
 >
-$RA_C=Hirschur
+$RA_SH=Hirschur
 $RA_DO=Fraularm
 >
 $RA_DE=Myne,Philine,Rihyarda,Wilfried
 $RA_S=Hirschur
 // Time: "We had mana compression lessons the next evening."
 >>FifthBell
-$RA_C=Fraularm,Hirschur,Myne,Rihyarda,Wilfried
+$RA_SH=Fraularm,Hirschur,Myne,Rihyarda,Wilfried
 $RA_A=Philine
 
 
 
 #The Fourth Step of Mana Compression
-$RA_C=Rauffen
+$RA_SH=Rauffen
 >
 >
 $RA_DO=Fraularm,Rauffen
@@ -224,9 +224,9 @@ $RA_L=Schwartz,Weiss
 // solange explains them
 >
 -$7
-$RA_C=Myne,Wilfried
+$RA_SH=Myne,Wilfried
 $RA_A=Judithe,Philine,Roderick
-$RA_C=Primevere
+$RA_SH=Primevere
 >
 >
 $RA_DE=Judithe,Myne,Philine,Roderick,Wilfried
@@ -264,7 +264,7 @@ $RA_S=Hirschur
 >>Lunch
 // first years schtappe's all finished
 >
-$RA_C=Ana,Detlinde,Eggy,Myne,Rihyarda,Rudiger,Wilfried
+$RA_SH=Ana,Detlinde,Eggy,Myne,Rihyarda,Rudiger,Wilfried
 >
 $RA_RV=Ana
 $RA_DO=Detlinde,Eggy,Rudiger
@@ -276,7 +276,7 @@ $RA_DE=Myne,Rihyarda,Wilfried
 // Time: "The next day, I had practical music lessons in the afternoon."
 >>FifthBell
 // myne music class
-$RA_C=Myne,Wilfried
+$RA_SH=Myne,Wilfried
 >
 $RA_DE=Myne,Wilfried
 // Time: "Another day passed,"
@@ -284,7 +284,7 @@ $RA_DE=Myne,Wilfried
 // Time: "We had our practical highbeast creation lesson in the afternoon."
 >FifthBell
 +$8
-$RA_C=Fraularm,Hirschur,Myne,Wilfried
+$RA_SH=Fraularm,Hirschur,Myne,Wilfried
 >
 -$8
 
@@ -295,7 +295,7 @@ $RA_C=Fraularm,Hirschur,Myne,Wilfried
 // wow, the first instance in about 16 chapters with an indeterminate timespan
 >>3,FifthBell
 +$9
-$RA_C=Hirschur,Myne,Rauffen,Wilfried
+$RA_SH=Hirschur,Myne,Rauffen,Wilfried
 >
 >
 -$9

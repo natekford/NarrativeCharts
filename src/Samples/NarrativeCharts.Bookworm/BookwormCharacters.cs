@@ -81,6 +81,7 @@ public static class BookwormCharacters
 	public static Character Hirschur { get; } = new("Hirschur");
 	public static Character Hugo { get; } = new("Hugo");
 	public static Character Ignaz { get; } = new("Ignaz");
+	public static Character Immanuel { get; } = new("Immanuel");
 	public static Character Ingo { get; } = new("Ingo");
 	public static Character Isidore { get; } = new("Isidore");
 	public static Character Janrik { get; } = new("Janrik");
@@ -136,7 +137,9 @@ public static class BookwormCharacters
 	public static Character Philine { get; } = new("Philine");
 	public static Character Primevere { get; } = new("Primevere");
 	public static Character Raimund { get; } = new("Raimund");
+	public static Character Raublut { get; } = new("Raublut");
 	public static Character Rauffen { get; } = new("Rauffen");
+	public static Character Relichion { get; } = new("Relichion");
 	public static Character Riadina { get; } = new("Riadina");
 	public static Character Richt { get; } = new("Richt");
 	public static Character Rick { get; } = new("Rick");
@@ -242,6 +245,7 @@ public static class BookwormCharacters
 			[Hirschur] = "#4D4A41",
 			[Hugo] = "#7E5951",
 			[Ignaz] = Hex.Unknown.Value,
+			[Immanuel] = Hex.Unknown.Value,
 			[Ingo] = "#C1924A",
 			[Isidore] = Hex.Unknown.Value,
 			[Janrik] = Hex.Unknown.Value,
@@ -297,7 +301,9 @@ public static class BookwormCharacters
 			[Philine] = "#EDBC6F",
 			[Primevere] = Hex.Unknown.Value,
 			[Raimund] = "#324C51",
+			[Raublut] = Hex.Unknown.Value,
 			[Rauffen] = "#F1B582",
+			[Relichion] = Hex.Unknown.Value,
 			[Riadina] = Hex.Unknown.Value,
 			[Richt] = Hex.Unknown.Value,
 			[Rick] = "#667965",

@@ -1,13 +1,22 @@
 ﻿##P4V7
-+%MYNE_GUARDS=Angelica,Damuel,Myne
++%MYNE_ADULT_GUARDS=Angelica,Damuel,Myne
++%MYNE_GUARDS=Cornelius,Leonore,Myne
++%MYNE_GUARDS_ALL=MYNE_GUARDS,Judithe
++%MYNE_RETAINERS=MYNE_GUARDS_ALL,Brunhilde,Hartmut,Lieseleta,Philine
++%WILF_RETAINERS=Alexis,Ignaz,Isidore,Wilfried
++%CHAR_RETAINERS=Charlotte,Kathrein,Marianne,Natalie
++%MISC_EHR=Laurenz,Matthias,Roderick,Traugott
++%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,MISC_EHR
++%OTHER_DUCHIES=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
++%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 
-//#Prologue
+#Prologue
 //takes place entirely in the end of p4v6
+>
 
 
 
 #Post-Return Discussion
->
 $RA_DE=Cornelius
 >
 
@@ -34,7 +43,7 @@ $RA_DE=Cornelius
 
 #Investigating the Bible
 >>Morning
-$T=MYNE_GUARDS,Ella
+$T=MYNE_ADULT_GUARDS,Ella
 $M=Karin
 // Time: "Having finished reviewing the bible again,"
 // "I decided to spend the afternoon"
@@ -71,7 +80,7 @@ $T=Corinna,Leon,Otto,Theo,Tuuli
 // Time: "Once I finished the Dedication Ritual,"
 // idk
 >>3,Morning
-$C=MYNE_GUARDS,Cornelius,Eckhart,Ella,Ferdinand,Justus,Leonore
+$C=MYNE_ADULT_GUARDS,Cornelius,Eckhart,Ella,Ferdinand,Justus,Leonore
 // Time: "I went to the knights’ training grounds at third bell."
 >>ThirdBell
 // myne shows syl/ferdi/boni water gun
@@ -88,10 +97,48 @@ $RA_DE=Ella,Myne,Rihyarda
 
 
 #The Ternisbefallen Inquiry
+// myne gets caught up with her retainers/charlotte
+>
+// Time: "I spent the next few days"
+>>3,Morning
+// myne refuses all tea party invitations
+// Time: "This continued for three days"
+>>3,Morning
+// Time: "Three days from now, at third bell"
+>>3,ThirdBell
+// myne's retainers aren't allowed in the inquiry with her
++$2a
+$RA_A=MYNE_RETAINERS,Rihyarda
+$Sovereignty=Raublut,Immanuel
++$2b
+$RA_SH=Arthur,Fraularm,Gundolf,Hildebrand,Hirschur,Immanuel,Raublut,Rauffen
+$RA_SH=Myne
+>
+>
+-$2a,2b
 
 
 
+#The Bible Inspection Meeting
+// Time: "At fifth bell on the day before the meeting,"
+// "the morning three days from now."
+>>2,FifthBell
+$RA_DE=Eckhart,Ferdinand,Justus
+// Time: "third bell the next day"
+>>ThirdBell
++$3a
+$RA_A=MYNE_RETAINERS,Eckhart,Justus,Rihyarda
+$Sovereignty=Relichion
++$3b
+$RA_SH=Arthur,Ferdinand,Fraularm,Gundolf,Hildebrand,Hirschur,Immanuel,Raublut,Rauffen,Relichion
+$RA_SH=Myne
+>
+>
+-$3a,3b
 
+
+
+#Planning for the Tea Party
 
 
 

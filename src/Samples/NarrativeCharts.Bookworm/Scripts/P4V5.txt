@@ -346,11 +346,11 @@ $RA_A=Laurenz,Matthias,Roderick,Traugott
 $RA_A=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
 >
 >
-$RA_C=Brunhilde,Cornelius,Hartmut,Leonore,Myne
-$RA_C=Charlotte,Wilfried
-$RA_C=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
+$RA_SH=Brunhilde,Cornelius,Hartmut,Leonore,Myne
+$RA_SH=Charlotte,Wilfried
+$RA_SH=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
 +$13e
-$RA_C=Arthur,Dankmar,Hildebrand
+$RA_SH=Arthur,Dankmar,Hildebrand
 
 
 

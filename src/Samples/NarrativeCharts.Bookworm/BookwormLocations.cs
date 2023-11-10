@@ -30,7 +30,7 @@ public static class BookwormLocations
 	public static Location NoblesForest { get; } = new("Noble's Forest");
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location RA_Auditorium { get; } = new("RA - Auditorium");
-	public static Location RA_Classroom { get; } = new("RA - Classroom");
+	public static Location RA_Classroom { get; } = new("RA - Small Hall");
 	public static Location RA_DormEhr { get; } = new("RA - Ehrenfest Dorm");
 	public static Location RA_DormOther { get; } = new("RA - Other Duchy Dorms");
 	public static Location RA_DormSov { get; } = new("RA - Sovereignty Dorms");
@@ -45,6 +45,7 @@ public static class BookwormLocations
 	public static Location SmallTowns { get; } = new("Ehrenfest Towns");
 	// dahldolf, gerlach, wiltord, griebel
 	public static Location SouthernProvinces { get; } = new("Southern Provinces");
+	public static Location Sovereignty { get; } = new("Sovereignty");
 	public static Location Temple { get; } = new("Temple");
 	public static ImmutableDictionary<Location, int> YIndexes { get; }
 
@@ -63,6 +64,7 @@ public static class BookwormLocations
 			RA_DormEhr,
 			RA_DormWerk,
 			RA_GatherEhr,
+			Sovereignty,
 			RoyalAcademy,
 			Haldenzel,
 			Kirnberger,

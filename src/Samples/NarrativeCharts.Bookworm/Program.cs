@@ -181,7 +181,7 @@ public class Program
 				[RA_DormSov] = ["RA_S"],
 				[RA_Stadium] = ["RA_ST"],
 				[RA_Library] = ["RA_L"],
-				[RA_Classroom] = ["RA_C"],
+				[RA_Classroom] = ["RA_SH"],
 				[RA_Auditorium] = ["RA_A"],
 				[RA_DormOther] = ["RA_DO"],
 				[RA_DormEhr] = ["RA_DE"],

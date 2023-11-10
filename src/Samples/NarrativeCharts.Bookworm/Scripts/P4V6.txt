@@ -19,12 +19,12 @@
 >>ThirdBell
 +$1
 $RA_A=ALL_STUDENTS,Fraularm,Rihyarda
-$RA_C=Charlotte
+$RA_SH=Charlotte
 >H1
 >
 $RA_A=Charlotte
-$RA_C=Hannelore,Myne,Ortwin,Wilfried
-$RA_C=Fraularm,Hirschur,Primevere,Rauffen
+$RA_SH=Hannelore,Myne,Ortwin,Wilfried
+$RA_SH=Fraularm,Hirschur,Primevere,Rauffen
 >H1
 >
 -$1
@@ -36,12 +36,12 @@ $RA_S=Fraularm,Hirschur,Primevere,Rauffen
 >>ThirdBell
 +$2
 $RA_A=ALL_STUDENTS,Rihyarda
-$RA_C=Charlotte
+$RA_SH=Charlotte
 >H1
 >
 $RA_A=Charlotte
-$RA_C=Hannelore,Myne,Ortwin,Wilfried
-$RA_C=Pauline
+$RA_SH=Hannelore,Myne,Ortwin,Wilfried
+$RA_SH=Pauline
 >H1
 >
 -$2
@@ -50,7 +50,7 @@ $RA_S=Pauline
 >>ThirdBell
 +$3
 $RA_A=ALL_STUDENTS,Rihyarda
-$RA_C=Charlotte
+$RA_SH=Charlotte
 >H1
 >
 
@@ -63,12 +63,12 @@ $RA_L=MYNE_GUARDS_ALL,Charlotte,Lieseleta,Natalie,Rihyarda
 >
 -$4
 $RA_A=Charlotte
-$RA_C=Hannelore,Myne,Ortwin,Wilfried
+$RA_SH=Hannelore,Myne,Ortwin,Wilfried
 
 
 
 #Schtappe Transformation
-$RA_C=Rauffen,Primevere
+$RA_SH=Rauffen,Primevere
 // myne makes shield and spear
 >H1
 >
@@ -91,7 +91,7 @@ $RA_GE=MYNE_GUARDS_ALL,Hartmut,Philine
 #Everyone Passing on the First Day
 +$5
 $RA_A=ALL_STUDENTS,Fraularm,Rihyarda
-$RA_C=Charlotte
+$RA_SH=Charlotte
 >H1
 >
 
@@ -99,8 +99,8 @@ $RA_C=Charlotte
 
 #Brewing and Recovery Potions
 $RA_A=Charlotte
-$RA_C=Hannelore,Myne,Ortwin,Wilfried
-$RA_C=Hirschur
+$RA_SH=Hannelore,Myne,Ortwin,Wilfried
+$RA_SH=Hirschur
 >H1
 >
 -$5
@@ -109,7 +109,7 @@ $RA_S=Hirschur
 >>ThirdBell
 +$6
 $RA_A=ALL_STUDENTS,Rihyarda
-$RA_C=Hannelore,Myne,Ortwin,Wilfried
+$RA_SH=Hannelore,Myne,Ortwin,Wilfried
 $RA_FH=Charlotte
 >H1
 >
@@ -145,7 +145,7 @@ $RA_DE=Brunhilde,Lieseleta
 >>Lunch
 +$7
 $RA_A=ALL_STUDENTS,Rihyarda
-$RA_C=Adolphine,Charlotte,Detlinde,Hannelore,Lestilaut,Myne,Ortwin,Rudiger,Wilfried
+$RA_SH=Adolphine,Charlotte,Detlinde,Hannelore,Lestilaut,Myne,Ortwin,Rudiger,Wilfried
 >H1
 >
 -$7
@@ -154,7 +154,7 @@ $RA_C=Adolphine,Charlotte,Detlinde,Hannelore,Lestilaut,Myne,Ortwin,Rudiger,Wilfr
 >>Lunch
 +$8
 $RA_A=ALL_STUDENTS,Rihyarda
-$RA_C=Hirschur,Myne,Wilfried
+$RA_SH=Hirschur,Myne,Wilfried
 >H1
 >
 -$8
@@ -172,7 +172,7 @@ $RA_S=MYNE_GUARDS,Philine,Rosina
 >>Lunch
 +$10
 $RA_A=ALL_STUDENTS,Rihyarda
-$RA_C=Hannelore,Hirschur,Myne,Ortwin,Wilfried
+$RA_SH=Hannelore,Hirschur,Myne,Ortwin,Wilfried
 >H1
 >
 -$10
@@ -312,7 +312,7 @@ $RA_L=Hirschur,Raimund
 $RA_DE=MYNE_RETAINERS
 $RA_S=Hirschur,Raimund
 >
-$RA_C=Cornelius,Ella,Myne,Rihyarda
+$C=Cornelius,Ella,Myne,Rihyarda
 
 
 
