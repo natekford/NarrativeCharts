@@ -26,6 +26,7 @@ public static class BookwormCharacters
 	public static Character Catherine { get; } = new("Catherine");
 	public static Character Charlotte { get; } = new("Charlotte");
 	public static Character Christine { get; } = new("Christine");
+	public static Character Clarissa { get; } = new("Clarissa");
 	public static Character Claudio { get; } = new("Claudio");
 	public static ImmutableDictionary<Character, Hex> Colors { get; }
 	public static Character Corinna { get; } = new("Corinna");
@@ -65,6 +66,7 @@ public static class BookwormCharacters
 	public static Character Gil { get; } = new("Gil");
 	public static Character Gloria { get; } = new("Gloria");
 	public static Character Grausam { get; } = new("Grausam");
+	public static Character Gundolf { get; } = new("Gundolf");
 	public static Character Gunther { get; } = new("Gunther");
 	public static Character Gustav { get; } = new("Gustav");
 	public static Character Hannelore { get; } = new("Hannelore");
@@ -130,6 +132,7 @@ public static class BookwormCharacters
 	public static Character Pauline { get; } = new("Pauline");
 	public static Character Philine { get; } = new("Philine");
 	public static Character Primevere { get; } = new("Primevere");
+	public static Character Raimund { get; } = new("Raimund");
 	public static Character Rauffen { get; } = new("Rauffen");
 	public static Character Riadina { get; } = new("Riadina");
 	public static Character Richt { get; } = new("Richt");
@@ -182,6 +185,7 @@ public static class BookwormCharacters
 			[Catherine] = Hex.Unknown.Value,
 			[Charlotte] = "#D3BD96",
 			[Christine] = Hex.Unknown.Value,
+			[Clarissa] = "#894C3A",
 			[Claudio] = "#012B32",
 			[Cornelius] = "#A6B455",
 			[Corinna] = "#F7E3C0",
@@ -220,6 +224,7 @@ public static class BookwormCharacters
 			[Gil] = "#F8EECB",
 			[Gloria] = "#3B4834",
 			[Grausam] = "#A5629D",
+			[Gundolf] = Hex.Unknown.Value,
 			[Gunther] = "#37527F",
 			[Gustav] = "#B6A6A7",
 			[Hannelore] = "#D4B7D3",
@@ -285,6 +290,7 @@ public static class BookwormCharacters
 			[Pauline] = Hex.Unknown.Value,
 			[Philine] = "#EDBC6F",
 			[Primevere] = Hex.Unknown.Value,
+			[Raimund] = "#324C51",
 			[Rauffen] = "#F1B582",
 			[Riadina] = Hex.Unknown.Value,
 			[Richt] = Hex.Unknown.Value,

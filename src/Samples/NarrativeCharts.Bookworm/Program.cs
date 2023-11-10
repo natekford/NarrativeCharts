@@ -1,5 +1,4 @@
 ﻿using NarrativeCharts.Bookworm.P3;
-using NarrativeCharts.Models;
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 using NarrativeCharts.Time;
@@ -186,6 +185,7 @@ public class Program
 				[RA_Auditorium] = ["RA_A"],
 				[RA_DormOther] = ["RA_DO"],
 				[RA_DormEhr] = ["RA_DE"],
+				[RA_DormWerk] = ["RA_DW"],
 				[RA_GatherEhr] = ["RA_GE"],
 				[RoyalAcademy] = ["RA"],
 				[NoblesForest] = ["NF"],

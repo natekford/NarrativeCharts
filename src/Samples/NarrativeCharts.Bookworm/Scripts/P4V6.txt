@@ -135,12 +135,197 @@ $RA_DE=Cornelius,Leonore
 >H1
 >
 $RA_DE=Hartmut
->H1
-$RA_DE=Brunhilde,Lieseleta
+>
 
 
 
 #Dedication Whirling and Ordonnanz Brewing
+$RA_DE=Brunhilde,Lieseleta
+// Time: "in time to have lunch with us"
+>>Lunch
++$7
+$RA_A=ALL_STUDENTS,Rihyarda
+$RA_C=Adolphine,Charlotte,Detlinde,Hannelore,Lestilaut,Myne,Ortwin,Rudiger,Wilfried
+>H1
+>
+-$7
+// Time: "I spent the next morning"
+// "After lunch,"
+>>Lunch
++$8
+$RA_A=ALL_STUDENTS,Rihyarda
+$RA_C=Hirschur,Myne,Wilfried
+>H1
+>
+-$8
+$RA_S=Hirschur
+
+
+
+#The Music Tea Party and the End of Classes
+>>Morning
++$9
+$RA_S=MYNE_GUARDS,Philine,Rosina
+>H1
+>
+-$9
+>>Lunch
++$10
+$RA_A=ALL_STUDENTS,Rihyarda
+$RA_C=Hannelore,Hirschur,Myne,Ortwin,Wilfried
+>H1
+>
+-$10
+$RA_S=Hirschur
+
+
+
+#I Want to Do Library Committee Work
+>>Morning
+$RA_ST=Cornelius,Judithe,Laurenz,Leonore,Matthias
+>Lunch
+$RA_DE=Judithe
+>
+$RA_DE=Cornelius,Laurenz,Leonore,Matthias
+>>Morning
++$11
+$RA_L=Hartmut,Judithe,Leonore,Lieseleta,Myne,Philine,Rihyarda
+>
+$RA_L=Hildebrand
+>H1
+>
+$RA_RV=Hildebrand
+
+
+
+#Professor Hirschur’s Laboratory
+>
+-$11
+>>Morning
++$12
+$RA_S=Brunhilde,Cornelius,Hartmut,Leonore,Lieseleta,Myne,Philine
+$RA_S=Raimund
+$RA_DO=Gundolf
+>
+
+
+
+#Professor Hirschur’s Disciple
+-$12
+// Time: "Ferdinand is coming here tomorrow afternoon,"
+>>Lunch
++$13
+$RA_DE=Eckhart,Ferdinand,Justus
+>Dinner
+$RA_DE=Hirschur
+>
+$RA_S=Eckhart,Ferdinand,Hirschur,Justus
+>H1
+-$13
+
+
+
+#Changing Schwartz and Weiss
+// Time: "three days from now, during the afternoon."
+>>Lunch
++$14
+$RA_L=MYNE_GUARDS,Brunhilde,Charlotte,Hartmut,Lieseleta,Natalie,Philine
+>H1
+$RA_L=Hildebrand
+>
+-$14
+$RA_RV=Hildebrand
+
+
+
+#Gathering Feystones
+// Time: "over the past few days"
+// unknown amount of time
+>>3,Morning
++$15
+$RA_L=MYNE_GUARDS,Brunhilde,Hildebrand,Philine
+>
+$RA_RV=Hildebrand
+>
+$RA_L=Raimund
+>
+$RA_S=Raimund
+-$15
+// Time: "that Earthday after breakfast."
+// "Yesterday, we had reported my inviting Hildebrand to a tea party,"
+// idk if their reports are on the same day as the invitation
+>>Morning
+$RA_GE=Laurenz,Matthias,Roderick
+>H1
+$RA_DE=Roderick
+$RA_GE=Alexis,Traugott,Wilfried
+>
+$RA_GE=Cornelius,Hartmut,Judithe,Leonore,Myne,Philine,Roderick
+
+
+
+#Hunting a Ternisbefallen
+>
+
+
+
+#Healing and Reinforcements
+$RA_GE=Hirschur,Rauffen
+>
+$RA_DE=Alexis,Laurenz,Matthias,Roderick,Traugott,Wilfried
+$RA_DE=Cornelius,Hartmut,Judithe,Leonore,Myne,Philine
+$RA_S=Hirschur,Rauffen
+
+
+
+#A Tea Party of Bookworms
+// Time: "Four days from now"
+// said before the attack and there hasn't been a day jump yet
+>>4,ThirdBell
+$RA_DO=Clarissa
++$16
+$RA_L=MYNE_RETAINERS,Arthur,Clarissa,Hannelore,Hildebrand,Rihyarda,Rosina
+>
+// myne passes out after being invited to the palace library
+>
+
+
+
+#Going Home
+$RA_L=Alexis,Charlotte,Natalie,Wilfried
+>H1
+>
+-$16
+$RA_DE=Alexis,Charlotte,Natalie,Wilfried
+// Time: "Two days ago"
+>>2,Morning
+// Time: "I must go to the library tomorrow morning"
+>>Morning
+$RA_L=MYNE_RETAINERS
+>H1
+$RA_L=Arthur,Hildebrand
+>H1
+$RA_RV=Arthur,Hildebrand
+$RA_L=Hirschur,Raimund
+>
+$RA_DE=MYNE_RETAINERS
+$RA_S=Hirschur,Raimund
+>
+$RA_C=Cornelius,Myne,Rihyarda
+
+
+
+#Epilogue
+>
+
+
+
+#Investigating the Former Werkestock Dormitory
++$17
+$RA_DW=Fraularm,Gundolf,Hirschur,Rauffen
+>
+>
+-$17
 
 
 
