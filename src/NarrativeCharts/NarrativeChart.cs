@@ -39,7 +39,8 @@ public abstract class NarrativeChart : NarrativeChartData
 				}
 			}
 		}
-		this.Simplify();
+
+		Simplify();
 	}
 
 	protected void Add(Location location, params Character[] characters)
