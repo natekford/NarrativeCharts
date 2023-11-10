@@ -204,7 +204,7 @@ public static class BookwormCharacters
 			[Ferdinand] = "#65B8DA",
 			[Florencia] = "#FBF6E0",
 			[Fran] = "#5E546C",
-			[Fraularm] = "##8B0000",
+			[Fraularm] = "#8B0000",
 			[Freida] = "#E6AFB4",
 			[Freuden] = Hex.Unknown.Value,
 			[Frietack] = Hex.Unknown.Value,

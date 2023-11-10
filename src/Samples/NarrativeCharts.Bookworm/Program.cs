@@ -21,7 +21,7 @@ public class Program
 	public string Dir { get; }
 	public SKChartDrawer Drawer { get; } = new()
 	{
-		ImageSizeAspectRatio = 32f / 9f,
+		ImageAspectRatio = 32f / 9f,
 		// smaller images in debug so they render faster
 #if DEBUG
 		ImageSizeMult = 3f,

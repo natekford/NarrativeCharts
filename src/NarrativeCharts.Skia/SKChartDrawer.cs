@@ -18,9 +18,9 @@ public sealed class SKChartDrawer
 
 	public SKChartDrawer()
 	{
-		LabelSize = 20;
+		AxisLabelSize = 20;
 		LineWidth = 4;
-		MarkerDiameter = 8;
+		LineMarkerDiameter = 8;
 	}
 
 	public void Dispose()
@@ -59,7 +59,7 @@ public sealed class SKChartDrawer
 			canvas: canvas,
 			chart: chart,
 			yMap: yMap,
-			padding: ImagePadding,
+			padding: AxisPadding,
 			lineWidth: LineWidth,
 			wMult: dims.WidthMult,
 			hMult: dims.HeightMult
@@ -71,7 +71,7 @@ public sealed class SKChartDrawer
 		using (Restrict(context, SKClipOperation.Difference))
 		using (var paint = GetPaint(SKColors.Black))
 		{
-			paint.TextSize = ImagePadding * 0.50f;
+			paint.TextSize = AxisPadding * 0.50f;
 			paint.TextAlign = SKTextAlign.Center;
 			paint.IsAntialias = true;
 
@@ -84,7 +84,7 @@ public sealed class SKChartDrawer
 		using (Restrict(context, SKClipOperation.Difference))
 		using (var paint = GetPaint(SKColors.Black))
 		{
-			paint.TextSize = LabelSize;
+			paint.TextSize = AxisLabelSize;
 
 			canvas.Translate(context.PaddingStart - TickLength, context.PaddingEnd);
 			DrawYAxis(context, paint, isLeftAxis: true);
@@ -97,7 +97,7 @@ public sealed class SKChartDrawer
 		using (Restrict(context, SKClipOperation.Difference))
 		using (var paint = GetPaint(SKColors.Black))
 		{
-			paint.TextSize = LabelSize;
+			paint.TextSize = AxisLabelSize;
 			paint.TextAlign = SKTextAlign.Center;
 
 			canvas.Translate(context.PaddingEnd, context.PaddingStart);
@@ -204,7 +204,7 @@ public sealed class SKChartDrawer
 
 			var p0 = new SKPoint(context.X(segment.X0), context.Y(segment.Y0));
 			var p1 = new SKPoint(context.X(segment.X1), context.Y(segment.Y1));
-			var labelOffset = new SKSize(MarkerDiameter / 4f, paint.TextSize);
+			var labelOffset = new SKSize(LineMarkerDiameter / 4f, paint.TextSize);
 
 			if (!segment.IsMovement)
 			{
@@ -217,8 +217,8 @@ public sealed class SKChartDrawer
 
 			paint.IsAntialias = true;
 			paint.PathEffect = null;
-			canvas.DrawCircle(p0, MarkerDiameter / 2f, paint);
-			canvas.DrawCircle(p1, MarkerDiameter / 2f, paint);
+			canvas.DrawCircle(p0, LineMarkerDiameter / 2f, paint);
+			canvas.DrawCircle(p1, LineMarkerDiameter / 2f, paint);
 
 			paint.PathEffect = segment.IsMovement ? Movement : null;
 			paint.IsAntialias = segment.IsMovement;

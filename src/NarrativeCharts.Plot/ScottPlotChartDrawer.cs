@@ -7,6 +7,13 @@ using System.Drawing;
 
 namespace NarrativeCharts.Plot;
 
+/* this class seems to crash when making images with a side larger than 32k pixels
+ * this probably is only an issue in ScottPlot 4 since the crash seems to happen
+ * in System.Drawing.Common's Bitmap constructor, and ScottPlot 5 uses SkiaSharp,
+ * but at this point SKChartDrawer exists so I don't see a reason to move to
+ * ScottPlot 5, and will probably remove this class eventually
+ */
+
 public sealed class ScottPlotChartDrawer : ChartDrawer<NarrativeChartData, ScottPlot.Plot, Color>
 {
 	protected override ScottPlot.Plot CreateCanvas(NarrativeChartData chart, YMap yMap)
@@ -98,9 +105,9 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<NarrativeChartData, Scott
 		scatter.Color = color;
 
 		scatter.LineWidth = LineWidth;
-		scatter.MarkerSize = MarkerDiameter;
+		scatter.MarkerSize = LineMarkerDiameter;
 
-		scatter.DataPointLabelFont.Size = LabelSize;
+		scatter.DataPointLabelFont.Size = AxisLabelSize;
 		scatter.DataPointLabelFont.Color = color;
 
 		scatter.LineStyle = segment.IsMovement ? LineStyle.Dot : LineStyle.Solid;

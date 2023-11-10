@@ -6,13 +6,39 @@ namespace NarrativeCharts.Drawing;
 
 public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : NarrativeChartData
 {
-	public int ImagePadding { get; init; } = 250;
-	public float? ImageSizeAspectRatio { get; init; }
+	/// <summary>
+	/// The text size to use for axes labels.
+	/// </summary>
+	public int AxisLabelSize { get; init; } = 10;
+	/// <summary>
+	/// The pixel count to put on each side for axes.
+	/// </summary>
+	public int AxisPadding { get; init; } = 250;
+	/// <summary>
+	/// The desired aspect ratio to use. If null, no modifications are made to the
+	/// calculated size.
+	/// </summary>
+	public float? ImageAspectRatio { get; init; }
+	/// <summary>
+	/// The pixel count to round down to the nearest value for each image dimension.
+	/// E.G. a value of 100 would round 1234 to 1200.
+	/// </summary>
 	public int ImageSizeFloor { get; init; } = 100;
+	/// <summary>
+	/// Every point in the image is multiplied by this value.
+	/// </summary>
 	public float ImageSizeMult { get; init; } = 6;
-	public int LabelSize { get; init; } = 10;
+	/// <summary>
+	/// The pixel count to use for each segment start/end marker.
+	/// </summary>
+	public int LineMarkerDiameter { get; init; } = 6;
+	/// <summary>
+	/// The pixel count to use for each segment width.
+	/// </summary>
 	public int LineWidth { get; init; } = 2;
-	public int MarkerDiameter { get; init; } = 6;
+	/// <summary>
+	/// The pixel length of an axis tick.
+	/// </summary>
 	public int TickLength { get; init; } = 5;
 	/// <summary>
 	/// The amount of space between a Y-tick and the first point.
@@ -46,11 +72,11 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 		// outputs a blank image if the dimensions are too small
 		// There's probably a better way to dynamically make sure the dimensions
 		// are big enough, but simply adding several hundred pixels is good enough
-		var padding = ImagePadding * 2; // on both sides
+		var padding = AxisPadding * 2; // on both sides
 
 		var widthMult = ImageSizeMult;
 		var heightMult = ImageSizeMult;
-		if (ImageSizeAspectRatio is float ar)
+		if (ImageAspectRatio is float ar)
 		{
 			var arDiff = ar / ((float)yMap.XRange / yMap.YRange);
 			if (Math.Abs(arDiff - 1) > 0.01)
