@@ -1,6 +1,97 @@
 ﻿##P4V7
++%MYNE_GUARDS=Angelica,Damuel,Myne
 
-#Prologue
+//#Prologue
+//takes place entirely in the end of p4v6
+
+
+
+#Post-Return Discussion
+>
+$RA_DE=Cornelius
+>
+
+
+
+#Dinner and a Tea Party
+>
+// Time: "I spent the next few days reading"
+>>3,Morning
+// tea party with flor/elvira
+// myne learns about cornelius/leonore marriage
+>
+
+
+
+#Sylvester’s Order
+// Time: "I would start my mornings"
+// who knows, probably long enough for a timeskip
+>>>1
+// Time: "Reports arrived from the Royal Academy on a daily basis"
+// even more unknown time lengths
+
+
+
+#Investigating the Bible
+>>Morning
+$T=MYNE_GUARDS,Ella
+$M=Karin
+// Time: "Having finished reviewing the bible again,"
+// "I decided to spend the afternoon"
+// i assume this is the same day but it could be the next
+>FifthBell
+// ferdi finds out myne left the castle
+$T=Eckhart,Ferdinand,Justus
+// myne shows him the magic circle in the bible
+>H1
+>
+$C=Eckhart,Ferdinand,Justus
+
+
+
+#Winter Life in the Temple
+// Time: "Ferdinand finished socializing and returned to the temple as I was reading the borrowed stories."
+// myne reads through fey species book and ditter love stories
+// idk, probably 4 days tops?
+>>3,Morning
+$T=Eckhart,Ferdinand,Justus
+// Time: "I would gaze out my window every morning to check the weather"
+// even more unknown timespans
+>>7,Lunch
+// Time: "every lunchtime for three days"
+>>3,Lunch
++$1
+$T=Corinna,Leon,Otto,Theo,Tuuli
+>
+-$1
+
+
+
+#This and That in the Castle
+// Time: "Once I finished the Dedication Ritual,"
+// idk
+>>3,Morning
+$C=MYNE_GUARDS,Cornelius,Eckhart,Ella,Ferdinand,Justus,Leonore
+// Time: "I went to the knights’ training grounds at third bell."
+>>ThirdBell
+// myne shows syl/ferdi/boni water gun
+>
+// Time: "Life in the castle continued normally from that point onward."
+>>3,Morning
+// justus talks about roderick with myne
+// Time: "The Lord of Winter appeared the day before I was scheduled to return to the Royal Academy"
+>>3,Morning
+$RA_DE=Cornelius,Leonore
+>
+$RA_DE=Ella,Myne,Rihyarda
+
+
+
+#The Ternisbefallen Inquiry
+
+
+
+
 
 
 

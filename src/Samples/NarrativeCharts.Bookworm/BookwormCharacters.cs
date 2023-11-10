@@ -29,6 +29,7 @@ public static class BookwormCharacters
 	public static Character Clarissa { get; } = new("Clarissa");
 	public static Character Claudio { get; } = new("Claudio");
 	public static ImmutableDictionary<Character, Hex> Colors { get; }
+	public static Character Cordula { get; } = new("Cordula");
 	public static Character Corinna { get; } = new("Corinna");
 	public static Character Cornelius { get; } = new("Cornelius");
 	public static Character Damian { get; } = new("Damian");
@@ -93,9 +94,11 @@ public static class BookwormCharacters
 	public static Character Kamil { get; } = new("Kamil");
 	public static Character Kampfer { get; } = new("Kampfer");
 	public static Character Kantna { get; } = new("Kantna");
+	public static Character Karin { get; } = new("Karin");
 	public static Character Karstedt { get; } = new("Karstedt");
 	public static Character Kashick { get; } = new("Kashick");
 	public static Character Kathrein { get; } = new("Kathrein");
+	public static Character Kenntrips { get; } = new("Kenntrips");
 	public static Character Konrad { get; } = new("Konrad");
 	public static Character Lamprecht { get; } = new("Lamprecht");
 	public static Character Lasfam { get; } = new("Lasfam");
@@ -187,6 +190,7 @@ public static class BookwormCharacters
 			[Christine] = Hex.Unknown.Value,
 			[Clarissa] = "#894C3A",
 			[Claudio] = "#012B32",
+			[Cordula] = Hex.Unknown.Value,
 			[Cornelius] = "#A6B455",
 			[Corinna] = "#F7E3C0",
 			[Damian] = "#96574E",
@@ -251,9 +255,11 @@ public static class BookwormCharacters
 			[Kamil] = "#415BA5",
 			[Kampfer] = Hex.Unknown.Value,
 			[Kantna] = Hex.Unknown.Value,
+			[Karin] = Hex.Unknown.Value,
 			[Karstedt] = "#874730",
 			[Kashick] = Hex.Unknown.Value,
 			[Kathrein] = Hex.Unknown.Value,
+			[Kenntrips] = "#90EE90",
 			[Konrad] = "#7CFC00",
 			[Lamprecht] = "#D18A71",
 			[Lasfam] = "#228B22",

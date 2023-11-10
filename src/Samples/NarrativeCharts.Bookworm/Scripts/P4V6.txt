@@ -282,9 +282,9 @@ $RA_S=Hirschur,Rauffen
 // Time: "Four days from now"
 // said before the attack and there hasn't been a day jump yet
 >>4,ThirdBell
-$RA_DO=Clarissa
+$RA_DO=Clarissa,Cordula
 +$16
-$RA_L=MYNE_RETAINERS,Arthur,Clarissa,Hannelore,Hildebrand,Rihyarda,Rosina
+$RA_L=MYNE_RETAINERS,Arthur,Clarissa,Cordula,Hannelore,Hildebrand,Rihyarda,Rosina
 >
 // myne passes out after being invited to the palace library
 >
@@ -296,6 +296,7 @@ $RA_L=Alexis,Charlotte,Natalie,Wilfried
 >H1
 >
 -$16
+$RA_DO=Kenntrips
 $RA_DE=Alexis,Charlotte,Natalie,Wilfried
 // Time: "Two days ago"
 >>2,Morning
@@ -311,7 +312,7 @@ $RA_L=Hirschur,Raimund
 $RA_DE=MYNE_RETAINERS
 $RA_S=Hirschur,Raimund
 >
-$RA_C=Cornelius,Myne,Rihyarda
+$RA_C=Cornelius,Ella,Myne,Rihyarda
 
 
 
