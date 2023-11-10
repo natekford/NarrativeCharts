@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Bookworm.P3;
+using NarrativeCharts.Models;
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 using NarrativeCharts.Time;
@@ -26,7 +27,7 @@ public class Program
 #if DEBUG
 		ImageSizeMult = 3f,
 #endif
-		CharacterLabelColor = SKColors.Black,
+		CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
 	};
 	public string ScriptsDir { get; }
 

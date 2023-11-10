@@ -8,11 +8,11 @@ namespace NarrativeCharts.Skia;
 public sealed class SKChartDrawer
 	: ChartDrawer<NarrativeChartData, SKContext, SKColor>, IDisposable
 {
-	private readonly Dictionary<Hex, SKPaint> _PaintCache = [];
-	private readonly Dictionary<string, SKTextBlob> _TextCache = [];
+	private readonly Dictionary<Hex, SKPaint> _Paint = [];
+	private readonly Dictionary<string, SKTextBlob> _Text = [];
 	private bool _Disposed;
 
-	public SKColor? CharacterLabelColor { get; init; }
+	public Func<Hex, Hex>? CharacterLabelColorConverter { get; init; }
 	private static SKFont Font { get; } = new();
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
 
@@ -30,11 +30,11 @@ public sealed class SKChartDrawer
 			return;
 		}
 
-		foreach (var (_, paint) in _PaintCache)
+		foreach (var (_, paint) in _Paint)
 		{
 			paint.Dispose();
 		}
-		foreach (var (_, text) in _TextCache)
+		foreach (var (_, text) in _Text)
 		{
 			text.Dispose();
 		}
@@ -189,9 +189,9 @@ public sealed class SKChartDrawer
 		var canvas = context.Canvas;
 
 		var hex = segment.Chart.Colors[segment.Character];
-		if (!_PaintCache.TryGetValue(hex, out var paint))
+		if (!_Paint.TryGetValue(hex, out var paint))
 		{
-			_PaintCache[hex] = paint = GetPaint(GetColor(hex));
+			_Paint[hex] = paint = GetPaint(GetColor(hex));
 		}
 		if (!context.Labels.TryGetValue(segment.Character, out var positions))
 		{
@@ -236,18 +236,18 @@ public sealed class SKChartDrawer
 			foreach (var (character, positions) in image.Labels)
 			{
 				var text = character.Value;
-				if (!_TextCache.TryGetValue(text, out var name))
+				if (!_Text.TryGetValue(text, out var name))
 				{
-					_TextCache[text] = name = SKTextBlob.Create(text, Font);
+					_Text[text] = name = SKTextBlob.Create(text, Font);
 				}
 				var hex = image.Chart.Colors[character];
-				if (CharacterLabelColor.HasValue)
+				if (CharacterLabelColorConverter is not null)
 				{
-					hex = new(CharacterLabelColor.Value.ToString());
+					hex = CharacterLabelColorConverter.Invoke(hex);
 				}
-				if (!_PaintCache.TryGetValue(hex, out var paint))
+				if (!_Paint.TryGetValue(hex, out var paint))
 				{
-					_PaintCache[hex] = paint = GetPaint(GetColor(hex));
+					_Paint[hex] = paint = GetPaint(GetColor(hex));
 				}
 
 				paint.IsAntialias = true;
