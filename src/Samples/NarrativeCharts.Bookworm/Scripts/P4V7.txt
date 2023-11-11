@@ -10,6 +10,7 @@
 +%OTHER_DUCHIES=Adolphine,Clarissa,Detlinde,Hannelore,Kenntrips,Lestilaut,Luzinde,Martina,Ortwin,Raimund,Rudiger
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 +%TEACHERS=Fraularm,Gundolf,Hirschur,Primevere,Rauffen
++%RETAINERS_STUDENTS_TEACHERS=ALL_STUDENTS,TEACHERS,Cordula,Oswald,Rihyarda,Vanessa
 
 #Prologue
 //takes place entirely in the end of p4v6
@@ -186,13 +187,15 @@ $RA_DE=MYNE_RETAINERS,CHAR_RETAINERS
 // around ~75 days + unknown timeskip have passed between start of classes and now
 >>4,Morning
 +$4a
-$RA_ST=ALL_STUDENTS,TEACHERS,Cordula,Oswald,Rihyarda,Vanessa
+$RA_ST=RETAINERS_STUDENTS_TEACHERS
 >H1
-$RA_DE=Charlotte,Eckhart,Ferdinand,Florencia,Justus,Rihyarda,Sylvester,Wilfried
->
-$RA_ST=Charlotte,Eckhart,Ferdinand,Florencia,Justus,Rihyarda,Sylvester,Wilfried
-$Ditter=AubDitter
 +$4b
+$RA_DE=Eckhart,Elvira,Ferdinand,Florencia,Justus,Karstedt,Sylvester
+$RA_DE=Charlotte,Myne,Rihyarda,Wilfried
+>
+$RA_ST=Charlotte,Eckhart,Elvira,Ferdinand,Florencia,Justus,Karstedt,Myne,Rihyarda,Sylvester,Wilfried
+$Ditter=AubDitter
++$4c
 $RA_ST=Ana,AubDitter,Eggy,Georgine,Gieselfried,Heisshitze
 // ana and eggy talk about bible
 // ditterland challenges ferdinand to ditter
@@ -210,6 +213,35 @@ $RA_DO=AubDitter,Eckhart,Ferdinand,Hannelore,Heisshitze,Justus,Myne
 
 
 #Ditter at the Interduchy Tournament
+>H1
+
+
+
+#Hartmut’s Marriage Partner
+// Time: "No sooner had fifth bell rung"
+>
+
+
+
+#Unforeseen Consequences
+$RA_ST=Nahelache,Raublut,Sigi,Trauerqual
+// ternisbefallen attack
+>
+
+
+
+#The Graduation Ceremony
+-$4a
+$RA_RV=Ana,Eggy,Nahelache,Raublut,Sigi,Trauerqual
+$RA_DE=Eckhart,Elvira,Ferdinand,Florencia,Justus,Karstedt,Sylvester
+$RA_DO=AubDitter,Georgine,Gieselfried
+>>Morning
+$RA_DE=Leberecht,Ottilie
+$RA_DE=Angelica,Lamprecht
+
+
+
+
 
 
 >H24

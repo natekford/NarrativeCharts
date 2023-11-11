@@ -237,6 +237,7 @@ $C=Justus
 >>3,Lunch
 // in a SS alexis is introduced
 // "Rudolf" is also introduced, i think he only shows up once in the series so not including him
+// his name get mentioned again in p4v7 Ditter at the Interduchy Tournament, still probably wont add him
 $RA_DE=Alexis
 +$12
 $T=Benno,Gustav,Leon,Lutz,Mark,Otto,Theo
