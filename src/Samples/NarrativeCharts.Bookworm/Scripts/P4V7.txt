@@ -224,6 +224,8 @@ $RA_DO=AubDitter,Eckhart,Ferdinand,Hannelore,Heisshitze,Justus,Myne
 
 
 #Unforeseen Consequences
+$RA_RV=Nahelache,Sigi,Trauerqual
++$4d
 $RA_ST=Nahelache,Raublut,Sigi,Trauerqual
 // ternisbefallen attack
 >
@@ -236,9 +238,13 @@ $RA_RV=Ana,Eggy,Nahelache,Raublut,Sigi,Trauerqual
 $RA_DE=Eckhart,Elvira,Ferdinand,Florencia,Justus,Karstedt,Sylvester
 $RA_DO=AubDitter,Georgine,Gieselfried
 >>Morning
-$RA_DE=Leberecht,Ottilie
-$RA_DE=Angelica,Lamprecht
-
+$C=Leberecht
++$4e
+$RA_DE=Angelica,Lamprecht,Leberecht,Ottilie
+// Time: "It was second-and-a-half bell"
+>ThirdBell
++$6
+$RA_A=RETAINERS_STUDENTS_TEACHERS,4b,4c,4d,4e,Immanuel,Relichion
 
 
 

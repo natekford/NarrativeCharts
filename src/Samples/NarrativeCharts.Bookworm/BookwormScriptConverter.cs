@@ -61,7 +61,7 @@ public sealed class {ClassName} : {nameof(BookwormNarrativeChart)}
 	}
 
 	protected override IEnumerable<string> ToProperties(IEnumerable<Character> characters)
-		=> characters.Select(x => CharacterProperties[x.Value]);
+		=> characters.Select(x => CharacterProperties[x.Value]).OrderBy(x => x);
 
 	protected override string ToProperty(Location location)
 		=> LocationProperties[location.Value];

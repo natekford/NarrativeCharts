@@ -228,6 +228,13 @@ public class ScriptLoader : NarrativeChartWithUnits<int>
 					set.Add(character);
 				}
 			}
+			else if (StoredScenes.TryGetValue(arg, out var dict))
+			{
+				foreach (var character in dict.Keys)
+				{
+					set.Add(character);
+				}
+			}
 			else
 			{
 				set.Add(Definitions.CharacterAliases[arg]);
