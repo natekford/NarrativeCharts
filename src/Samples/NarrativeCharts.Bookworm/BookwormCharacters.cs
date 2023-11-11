@@ -13,6 +13,7 @@ public static class BookwormCharacters
 	public static Character Anastasius { get; } = new("Anastasius");
 	public static Character Angelica { get; } = new("Angelica");
 	public static Character Arther { get; } = new("Arthur");
+	public static Character AubDunkelfelger { get; } = new("Aub Dunkelfelger");
 	public static Character Aurelia { get; } = new("Aurelia");
 	public static Character Benno { get; } = new("Benno");
 	public static Character Bertilde { get; } = new("Bertilde");
@@ -113,6 +114,7 @@ public static class BookwormCharacters
 	public static Character Lily { get; } = new("Lily");
 	public static Character Linhardt { get; } = new("Linhardt");
 	public static Character Lutz { get; } = new("Lutz");
+	public static Character Luzinde { get; } = new("Luzinde");
 	public static Character Marianne { get; } = new("Marianne");
 	public static Character Mark { get; } = new("Mark");
 	public static Character Marthe { get; } = new("Marthe");
@@ -178,6 +180,7 @@ public static class BookwormCharacters
 			[Anastasius] = "#D7BE96",
 			[Angelica] = "#53B3DB",
 			[Arther] = Hex.Unknown.Value,
+			[AubDunkelfelger] = Hex.Unknown.Value,
 			[Aurelia] = "#FFD700",
 			[Benno] = "#E8CB9F",
 			[Bertilde] = "#FF66CC",
@@ -277,6 +280,7 @@ public static class BookwormCharacters
 			[Lily] = Hex.Unknown.Value,
 			[Linhardt] = Hex.Unknown.Value,
 			[Lutz] = "#F7E3A8",
+			[Luzinde] = Hex.Unknown.Value,
 			[Marianne] = Hex.Unknown.Value,
 			[Mark] = "#726249",
 			[Marthe] = "#5C725D",

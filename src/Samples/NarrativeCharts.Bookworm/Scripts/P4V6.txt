@@ -24,11 +24,13 @@ $RA_SH=Charlotte
 >
 $RA_A=Charlotte
 $RA_SH=Hannelore,Myne,Ortwin,Wilfried
++$1b
 $RA_SH=Fraularm,Hirschur,Primevere,Rauffen
 >H1
 >
 -$1
-$RA_S=Fraularm,Hirschur,Primevere,Rauffen
+$RA_S=Hirschur
+$RA_DO=Fraularm,Primevere,Rauffen
 
 
 
@@ -77,7 +79,7 @@ $RA_SH=Rauffen,Primevere
 
 #Strengthening the Weapon
 -$3
-$RA_S=Rauffen,Primevere
+$RA_DO=Rauffen,Primevere
 // Time: "breakfast the next morning"
 >>Morning
 +$4
@@ -274,7 +276,8 @@ $RA_GE=Hirschur,Rauffen
 >
 $RA_DE=Alexis,Laurenz,Matthias,Roderick,Traugott,Wilfried
 $RA_DE=Cornelius,Hartmut,Judithe,Leonore,Myne,Philine
-$RA_S=Hirschur,Rauffen
+$RA_S=Hirschur
+$RA_DO=Rauffen
 
 
 

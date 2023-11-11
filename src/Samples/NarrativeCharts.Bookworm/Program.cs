@@ -26,6 +26,7 @@ public class Program
 #if DEBUG
 		ImageSizeMult = 3f,
 #endif
+		IgnoreNonMovingCharacters = false,
 		CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
 	};
 	public string ScriptsDir { get; }
@@ -155,6 +156,7 @@ public class Program
 
 			AddAliases(defs.CharacterAliases, new()
 			{
+				[AubDunkelfelger] = ["Werdekraf", "AubDitter"],
 				[Anastasius] = ["Ana"],
 				[Eglantine] = ["Eggy"],
 				[GiebeDahldolf] = [nameof(GiebeDahldolf)],

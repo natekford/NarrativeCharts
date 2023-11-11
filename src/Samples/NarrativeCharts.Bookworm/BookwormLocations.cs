@@ -12,6 +12,7 @@ public static class BookwormLocations
 	public static Location EhrenfestCastle { get; } = new("Ehrenfest Castle");
 	public static Location FerdinandsHouse { get; } = new("Ferdinand's Estate");
 	public static Location Frenbeltag { get; } = new("Frenbeltag");
+	public static Location Gilessenmeyer { get; } = new("Gilessenmeyer");
 	public static Location GoddessesBath { get; } = new("Goddesses' Bath");
 	public static Location Groschel { get; } = new("Groschel");
 	public static Location Haldenzel { get; } = new("Haldenzel");
@@ -91,6 +92,7 @@ public static class BookwormLocations
 			Klassenberg,
 			Dunkelfelger,
 			Drewanchel,
+			Gilessenmeyer,
 			Ahrensbach,
 			Frenbeltag,
 		}

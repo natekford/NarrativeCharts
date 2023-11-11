@@ -7,8 +7,9 @@
 +%CHAR_RETAINERS=Charlotte,Kathrein,Marianne,Natalie
 +%MISC_EHR=Laurenz,Matthias,Roderick,Traugott
 +%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,MISC_EHR
-+%OTHER_DUCHIES=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
++%OTHER_DUCHIES=Adolphine,Clarissa,Detlinde,Hannelore,Kenntrips,Lestilaut,Luzinde,Martina,Ortwin,Raimund,Rudiger
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
++%TEACHERS=Fraularm,Gundolf,Hirschur,Primevere,Rauffen
 
 #Prologue
 //takes place entirely in the end of p4v6
@@ -132,14 +133,83 @@ $Sovereignty=Relichion
 +$3b
 $RA_SH=Arthur,Ferdinand,Fraularm,Gundolf,Hildebrand,Hirschur,Immanuel,Raublut,Rauffen,Relichion
 $RA_SH=Myne
->
+>H1
 >
 -$3a,3b
 
 
 
 #Planning for the Tea Party
+>
+// ferdi gives myne a necklace of feystones
+// tells her to take charlotte with her to tea parties
+$C=Eckhart,Ferdinand,Justus
+// Time: "We consulted Dunkelfelger about a tea party and received a positive response."
+// idk, a few days
+>>3,ThirdBell
+$RA_DO=MYNE_RETAINERS,CHAR_RETAINERS
+>H1
+>
+$RA_DE=MYNE_RETAINERS
+>
+$RA_DE=CHAR_RETAINERS
 
+
+
+#The Tea Party with Drewanchel
+// adolphine's hairpin arrives
+>>Morning
+// Time: "We probed Drewanchel about a tea party, and they invited us to one they were planning to hold soon."
+>>2,ThirdBell
+$RA_DO=MYNE_RETAINERS,CHAR_RETAINERS
+$RA_DO=Luzinde
+>
+>
+$RA_DE=MYNE_RETAINERS,CHAR_RETAINERS
+
+
+
+#Roderick's Name-Swearing
+// myne writes a letter describing the tea party to ferdi
+// then has her retainers talk with hildebrand's retainers
+// and schedules the armband delivery
+>>2,Morning
+// Time: "Two days after that"
+>>2,Morning
+>
+
+
+
+#Interduchy Tournament (Second Year)
+// Time: "The day of the Interduchy Tournament had arrived in the blink of an eye."
+// who knows
+// around ~75 days + unknown timeskip have passed between start of classes and now
+>>4,Morning
++$4a
+$RA_ST=ALL_STUDENTS,TEACHERS,Cordula,Oswald,Rihyarda,Vanessa
+>H1
+$RA_DE=Charlotte,Eckhart,Ferdinand,Florencia,Justus,Rihyarda,Sylvester,Wilfried
+>
+$RA_ST=Charlotte,Eckhart,Ferdinand,Florencia,Justus,Rihyarda,Sylvester,Wilfried
+$Ditter=AubDitter
++$4b
+$RA_ST=Ana,AubDitter,Eggy,Georgine,Gieselfried,Heisshitze
+// ana and eggy talk about bible
+// ditterland challenges ferdinand to ditter
+>H1
+
+
+
+#The Ditter Match
++$5
+$RA_DO=AubDitter,Eckhart,Ferdinand,Hannelore,Heisshitze,Justus,Myne
+>H1
+>
+-$5
+
+
+
+#Ditter at the Interduchy Tournament
 
 
 >H24
