@@ -15,6 +15,10 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	/// </summary>
 	public int AxisPadding { get; init; } = 250;
 	/// <summary>
+	/// Whether or not to draw characters that never move.
+	/// </summary>
+	public bool IgnoreNonMovingCharacters { get; init; }
+	/// <summary>
 	/// The desired aspect ratio to use. If null, no modifications are made to the
 	/// calculated size.
 	/// </summary>
@@ -104,13 +108,19 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	protected virtual TImage DrawChart(TChart chart, YMap yMap)
 	{
 		var canvas = CreateCanvas(chart, yMap);
-		foreach (var (character, points) in chart.Points.OrderBy(x => x.Key.Value))
+		foreach (var (character, temp) in chart.Points.OrderBy(x => x.Key.Value))
 		{
-			var stationaryStart = points.Values[0].Hour;
+			var points = temp.Values;
+			if (ShouldIgnore(character, points))
+			{
+				continue;
+			}
+
+			var stationaryStart = points[0].Hour;
 			for (var p = 1; p < points.Count; ++p)
 			{
-				var prev = points.Values[p - 1];
-				var curr = points.Values[p];
+				var prev = points[p - 1];
+				var curr = points[p];
 				var (prevX, prevY) = (prev.Hour, prev.Location);
 				var (currX, currY) = (curr.Hour, curr.Location);
 				var hasMovement = prev.IsTimeSkip || prevY != currY;
@@ -167,12 +177,18 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	{
 		int xMax = int.MinValue, xMin = int.MaxValue;
 		var timeSpent = new ConcurrentDictionary<Location, ConcurrentDictionary<Character, int>>();
-		foreach (var (character, points) in chart.Points)
+		foreach (var (character, temp) in chart.Points)
 		{
+			var points = temp.Values;
+			if (ShouldIgnore(character, points))
+			{
+				continue;
+			}
+
 			for (var i = 0; i < points.Count - 1; ++i)
 			{
-				var curr = points.Values[i];
-				var next = points.Values[i + 1];
+				var curr = points[i];
+				var next = points[i + 1];
 
 				var xDiff = next.Hour - curr.Hour;
 				timeSpent
@@ -182,12 +198,12 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 			if (points.Count > 0)
 			{
-				xMax = Math.Max(xMax, points.Values[^1].Hour);
-				xMin = Math.Min(xMin, points.Values[0].Hour);
+				xMax = Math.Max(xMax, points[^1].Hour);
+				xMin = Math.Min(xMin, points[0].Hour);
 
 				// prevent issues with ending on a movement segment
 				timeSpent
-					.GetOrAdd(points.Values[^1].Location, _ => [])
+					.GetOrAdd(points[^1].Location, _ => [])
 					.TryAdd(character, 0);
 			}
 		}
@@ -228,6 +244,12 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	protected abstract TColor ParseColor(Hex hex);
 
 	protected abstract Task SaveImageAsync(TImage image, string path);
+
+	protected virtual bool ShouldIgnore(Character character, IList<NarrativePoint> points)
+	{
+		return IgnoreNonMovingCharacters
+			&& points.All(x => x.Location == points[0].Location);
+	}
 
 	protected readonly record struct Segment(
 		TChart Chart, TImage Canvas, Character Character,

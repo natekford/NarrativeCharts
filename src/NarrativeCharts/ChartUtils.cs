@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Models;
+using NarrativeCharts.Time;
 
 namespace NarrativeCharts;
 
@@ -50,7 +51,7 @@ public static class ChartUtils
 
 	public static NarrativeChartData Combine(this IEnumerable<NarrativeChartData> charts)
 	{
-		var combined = new NarrativeChartData();
+		var combined = new CombinedNarrativeChart();
 		foreach (var chart in charts)
 		{
 			combined.AddChart(chart);
@@ -64,7 +65,7 @@ public static class ChartUtils
 				combined.YIndexes.TryAdd(location, yIndex);
 			}
 		}
-		combined.Simplify();
+		combined.Initialize(null);
 		return combined;
 	}
 
@@ -139,5 +140,16 @@ public static class ChartUtils
 			});
 		}
 		return chart;
+	}
+
+	private class CombinedNarrativeChart : NarrativeChart
+	{
+		public CombinedNarrativeChart() : base(null!)
+		{
+		}
+
+		protected override void ProtectedCreate()
+		{
+		}
 	}
 }
