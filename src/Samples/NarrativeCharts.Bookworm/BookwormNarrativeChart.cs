@@ -2,9 +2,9 @@
 
 namespace NarrativeCharts.Bookworm;
 
-public abstract class BookwormNarrativeChart : NarrativeChartUnits<BookwormBell>
+public abstract class BookwormNarrativeChart : NarrativeChartWithUnits<BookwormBell>
 {
-	protected BookwormNarrativeChart(TimeTrackerUnits time) : base(time)
+	protected BookwormNarrativeChart(TimeTrackerWithUnits time) : base(time)
 	{
 		Colors = new(BookwormCharacters.Colors);
 		YIndexes = new(BookwormLocations.YIndexes);

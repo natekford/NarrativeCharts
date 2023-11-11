@@ -17,10 +17,10 @@ public static class TimeTrackerUtils
 		return time;
 	}
 
-	public static T AddUnit<T>(this T time) where T : TimeTrackerUnits
+	public static T AddUnit<T>(this T time) where T : TimeTrackerWithUnits
 		=> time.SkipToUnit(time.CurrentUnit + 1);
 
-	public static T AddUnits<T>(this T time, int units) where T : TimeTrackerUnits
+	public static T AddUnits<T>(this T time, int units) where T : TimeTrackerWithUnits
 	{
 		var days = units / time.UnitToHourMap.Count;
 		if (days != 0)
@@ -39,7 +39,7 @@ public static class TimeTrackerUtils
 	public static T SetCurrentHour<T>(this T time, int hour) where T : TimeTracker
 		=> time.AddHours(hour - time.CurrentHour);
 
-	public static T SetCurrentUnit<T>(this T time, int unit) where T : TimeTrackerUnits
+	public static T SetCurrentUnit<T>(this T time, int unit) where T : TimeTrackerWithUnits
 		=> time.SetCurrentHour(time.UnitToHourMap[unit]);
 
 	public static T SkipToDaysAheadStart<T>(this T time, int days) where T : TimeTracker
@@ -62,7 +62,7 @@ public static class TimeTrackerUtils
 	public static T SkipToNextDayStart<T>(this T time) where T : TimeTracker
 		=> time.SkipToDaysAheadStart(1);
 
-	private static T SkipToUnit<T>(this T time, int unit) where T : TimeTrackerUnits
+	private static T SkipToUnit<T>(this T time, int unit) where T : TimeTrackerWithUnits
 	{
 		if (unit > time.LargestUnit)
 		{

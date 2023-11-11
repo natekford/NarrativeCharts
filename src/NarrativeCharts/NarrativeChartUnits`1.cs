@@ -2,11 +2,11 @@
 
 namespace NarrativeCharts;
 
-public abstract class NarrativeChartUnits<TUnit> : NarrativeChart
+public abstract class NarrativeChartWithUnits<TUnit> : NarrativeChart
 {
-	protected new TimeTrackerUnits Time { get; }
+	protected new TimeTrackerWithUnits Time { get; }
 
-	protected NarrativeChartUnits(TimeTrackerUnits time) : base(time)
+	protected NarrativeChartWithUnits(TimeTrackerWithUnits time) : base(time)
 	{
 		Time = time;
 	}

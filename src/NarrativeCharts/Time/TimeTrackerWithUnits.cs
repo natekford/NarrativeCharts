@@ -2,7 +2,7 @@
 
 namespace NarrativeCharts.Time;
 
-public class TimeTrackerUnits : TimeTracker
+public class TimeTrackerWithUnits : TimeTracker
 {
 	public int CurrentUnit => HourToUnitMap[CurrentHour];
 	public override int HoursPerDay { get; }
@@ -10,7 +10,7 @@ public class TimeTrackerUnits : TimeTracker
 	public int LargestUnit { get; }
 	public IReadOnlyDictionary<int, int> UnitToHourMap { get; }
 
-	public TimeTrackerUnits(IEnumerable<int> lengths)
+	public TimeTrackerWithUnits(IEnumerable<int> lengths)
 	{
 		var i = -1;
 		var sum = 0;

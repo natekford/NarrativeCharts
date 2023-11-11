@@ -21,7 +21,7 @@ public class ScriptDefinitions
 	public Dictionary<string, Location> LocationAliases { get; set; } = [];
 	public Dictionary<Location, int> LocationYIndexes { get; set; } = [];
 	public ScriptSymbols Symbols { get; set; } = new();
-	public TimeTrackerUnits Time { get; set; } = new(Enumerable.Repeat(1, 24));
+	public TimeTrackerWithUnits Time { get; set; } = new(Enumerable.Repeat(1, 24));
 	public Dictionary<string, int> TimeAliases { get; set; } = [];
 
 	public static async Task<ScriptDefinitions> LoadAsync(string path)

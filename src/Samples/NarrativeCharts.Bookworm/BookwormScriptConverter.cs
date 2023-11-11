@@ -45,7 +45,7 @@ namespace {nameof(NarrativeCharts)}.{nameof(Bookworm)}.*;
 
 public sealed class {ClassName} : {nameof(BookwormNarrativeChart)}
 {{
-	public {ClassName}({nameof(TimeTrackerUnits)} time) : base(time)
+	public {ClassName}({nameof(TimeTrackerWithUnits)} time) : base(time)
 	{{
 		Name = nameof({ClassName});
 	}}

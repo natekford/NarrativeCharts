@@ -210,7 +210,7 @@ public class Program
 
 		// Time
 		{
-			defs.Time = new TimeTrackerUnits(BookwormTime.Lengths);
+			defs.Time = new TimeTrackerWithUnits(BookwormTime.Lengths);
 
 			AddAliases(defs.TimeAliases, new()
 			{

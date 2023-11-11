@@ -3,7 +3,7 @@ using NarrativeCharts.Time;
 
 namespace NarrativeCharts.Scripting;
 
-public class ScriptLoader : NarrativeChartUnits<int>
+public class ScriptLoader : NarrativeChartWithUnits<int>
 {
 	private const StringSplitOptions SPLIT_OPTIONS = 0
 			| StringSplitOptions.RemoveEmptyEntries
