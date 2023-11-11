@@ -248,6 +248,37 @@ $RA_A=RETAINERS_STUDENTS_TEACHERS,4b,4c,4d,4e,Immanuel,Relichion
 
 
 
+#The Library and Going Home
+>
+>
+$RA_DE=Angelica,Lamprecht,Myne,Rihyarda
+>
+// there's a lunch break, but putting that in for
+// every duchy would make the chart look worse than it already does
+$RA_DE=Ferdinand
+-$6
+// Time: "On the day after the ceremonies"
+>>Morning
+$RA_L=Ferdinand,Myne,Raimund
+>
+$RA_L=Raublut
+>
+$RA_DE=Ferdinand,Myne
+$RA_S=Raimund
+$RA_RV=Raublut
+
+
+
+#Epilogue
+>
+-$4b,4c,4d,4e
+$Dunkelfelger=Cordula,Hannelore,Kenntrips,Lestilaut
+$Drewanchel=Adolphine,Ortwin
+$Gilessenmeyer=Luzinde
+$Ahrensbach=Detlinde,Martina,Raimund
+$Frenbeltag=Rudiger
+$C=ALL_EHR,Ella,Hugo,Oswald,Rihyarda,Rosina,Vanessa
+
 
 
 >H24
