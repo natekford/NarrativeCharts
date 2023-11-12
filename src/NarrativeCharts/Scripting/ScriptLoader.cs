@@ -34,6 +34,25 @@ public class ScriptLoader : NarrativeChartWithUnits<int>
 	protected override int ConvertToInt(int unit)
 		=> unit;
 
+	protected virtual void EnsureNameNotUsed(string name)
+	{
+		static ArgumentException AlreadyInUse(string type, string name)
+			=> new($"There is already a {type} with the name '{name}'");
+
+		if (CharacterGroups.ContainsKey(name))
+		{
+			throw AlreadyInUse("character group", name);
+		}
+		if (StoredScenes.ContainsKey(name))
+		{
+			throw AlreadyInUse("stored scene", name);
+		}
+		if (Definitions.CharacterAliases.ContainsKey(name))
+		{
+			throw AlreadyInUse("character", name);
+		}
+	}
+
 	protected virtual SortedDictionary<string, Action<string>> GetSymbolHandlers()
 	{
 		if (_Symbols != Definitions.Symbols)
@@ -67,6 +86,7 @@ public class ScriptLoader : NarrativeChartWithUnits<int>
 			case 2:
 				var name = args[0];
 				var characters = ParseCharacters(args[1]);
+				EnsureNameNotUsed(name);
 				CharacterGroups.Add(name, characters);
 				return;
 
@@ -97,7 +117,10 @@ public class ScriptLoader : NarrativeChartWithUnits<int>
 	}
 
 	protected virtual void HandleAddReturnableScene(string input)
-		=> NextSceneName = input;
+	{
+		EnsureNameNotUsed(input);
+		NextSceneName = input;
+	}
 
 	protected virtual void HandleAddUnits(string input)
 	{

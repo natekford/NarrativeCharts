@@ -1,5 +1,8 @@
 ﻿##P4V8
 +%MYNE_GUARDS=Angelica,Damuel,Myne
++%MYNE_GUARDS_ALL=MYNE_GUARDS,Cornelius,Judithe,Leonore
++%MYNE_SCHOLARS=Hartmut,Philine,Roderick
++%FERDI_GUARDS=Eckhart,Ferdinand,Justus
 
 #Prologue
 // Sargerecht does not even have a wiki page
@@ -73,19 +76,77 @@ $Groschel=Bertilde,GiebeGroschel
 $Leisegang=GiebeLeisegang,OldLeisegang
 $Illgner=Brigitte,Helfried,Nadine,Viktor,Volk
 $SP=Bettina,Freuden,GiebeDahldolf,Gloria,Grausam,Janrik,Jeremias,Laurenz,Matthias,Royella,Sidonius
-$KE=Nikolaus
+$KE=Elvira,Nikolaus
+>
+$C=FERDI_GUARDS
+>Dinner
 
 
 
+#Returning to the Temple and the Meeting with the Gutenbergs
+// Time: nothing is mentioned about this being a different day
+>
+// lieseleta gets mentioned in the next chapter
+// brunhilde isn't mentioned again until myne's out of the temple again
+$T=FERDI_GUARDS,MYNE_GUARDS_ALL,MYNE_SCHOLARS,Lieseleta
+// Time: "The date of the meeting had arrived"
+// not stated exactly when aside from before winter COA
+// and myne acts like the available date is very soon
+// with no preparation
+>>2,ThirdBell
++$2
+$T=Benno,Damian,Ingo,Johann,Josef,Lutz,Mark,Zack
+// Gido gets mentioned (one of ferdi's attendants)
+// not gonna include him
+>
+-$2
 
 
 
+#Dissecting Fish
+// Time: "It wasn’t until the third day that he gave me an answer"
+// "Two days from now"
+>>5,Morning
+// fish time
 
 
 
+#Spring Prayer and Leaving for Leisegang
+// it's been 11 days since the start of the spring celebration feast
+>>2,Morning
+$T=Alexis,Wilfried
+>
+>
+$Leisegang=Alexis,Wilfried
+>>Morning
+$Hasse=MYNE_GUARDS,Gunther
+>>Morning
+$MF=Gunther
+$SmallTowns=MYNE_GUARDS
+>>Morning
+$C=Alexis,Wilfried
+>>Morning
+$T=MYNE_GUARDS
+$T=Charlotte,Natalie
+>
+$SmallTowns=Charlotte,Natalie
+>>3,Morning
+$C=Charlotte,Natalie
++$3a
+$T=Damian,Heidi,Ingo,Johann,Josef,Lutz,Mark,Zack
+>
++$3b
+$C=MYNE_SCHOLARS,Angelica,Cornelius,Elvira,Fran,Karstedt,Leonore,Monika,Myne,Ottilie,Philine,Roderick
+$C=3a,Eckhart,Ferdinand,Judithe,Justus,Lieseleta
+>
+>
 
 
 
+#Giebe Leisegang
+$Haldenzel=Eckhart,Ferdinand,Justus
++$3d
+$Leisegang=3a,3b,Alexis,Charlotte,Natalie,Wilfried
 
 
 
