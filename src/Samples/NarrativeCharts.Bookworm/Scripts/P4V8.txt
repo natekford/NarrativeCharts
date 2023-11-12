@@ -13,8 +13,7 @@
 // fvf and traugott probably go back to noble's quarter
 // instead of chilling in the castle
 // roderick lives in the knight dorm now
-$RA_NQ=Laurenz,Matthias,Traugott
->Dinner
+$NQ=Laurenz,Matthias,Traugott
 // Time: "The next day"
 >>ThirdBell
 // Time: "“I would appreciate having two days to plan with the scholars first.”"
@@ -59,9 +58,22 @@ $C=Brunhilde,Lieseleta
 
 
 #Ahrensbach’s Fish Cuisine
-
-
-
+// Time: "The feast celebrating spring marked the end of winter socializing."
+// i think melchior's baptism happens at the start of the feast?
+// idk how long it lasts
+// Time: "after dinner"
+>>3,Dinner
+// Time: "during breakfast the very next morning"
+>>Morning
+// not explicitly stated when all of the giebes leave
+// so gonna put it here
+$Haldenzel=Claudio
+$Kirnberger=GiebeKirnberger,Theodore
+$Groschel=Bertilde,GiebeGroschel
+$Leisegang=GiebeLeisegang,OldLeisegang
+$Illgner=Brigitte,Helfried,Nadine,Viktor,Volk
+$SP=Bettina,Freuden,GiebeDahldolf,Gloria,Grausam,Janrik,Jeremias,Laurenz,Matthias,Royella,Sidonius
+$KE=Nikolaus
 
 
 

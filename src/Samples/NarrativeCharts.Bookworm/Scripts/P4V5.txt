@@ -273,7 +273,7 @@ $C=MYNE_GUARDS,Ella,Hartmut,Hugo,Philine,Rosina
 $C=Eckhart,Ferdinand,Justus
 $C=Aurelia,Elvira
 $C=Brigitte,Claudio,GiebeGroschel,GiebeLeisegang,Helfried,OldLeisegang,Viktor
-$NQ=Freuden,GiebeDahldolf,Gloria,Grausam,Janrik,Jeremias,Laurenz,Matthias,Royella,Sidonius
+$NQ=Bettina,Freuden,GiebeDahldolf,Gloria,Grausam,Janrik,Jeremias,Laurenz,Matthias,Royella,Sidonius
 $NQ=Bertilde,GiebeKirnberger,Nadine,Volk
 >
 $NQ=Brigitte,Claudio,GiebeGroschel,GiebeLeisegang,Helfried,OldLeisegang,Viktor
