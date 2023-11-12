@@ -1,6 +1,80 @@
 ﻿##P4V8
++%MYNE_GUARDS=Angelica,Damuel,Myne
 
 #Prologue
+// Sargerecht does not even have a wiki page
+// he is flor/melchior's retainer so he would
+// basically never leave the castle tho
+>
+
+
+
+#The Return and a Dinner Meeting
+// fvf and traugott probably go back to noble's quarter
+// instead of chilling in the castle
+// roderick lives in the knight dorm now
+$RA_NQ=Laurenz,Matthias,Traugott
+>Dinner
+// Time: "The next day"
+>>ThirdBell
+// Time: "“I would appreciate having two days to plan with the scholars first.”"
+// "After finishing the mana compression class"
+// first quote was said before "the next day" so at least a 2 day skip
+// no clue on when the mana compression class is
+>>3,Morning
+
+
+
+#The Winter Playroom and Judithe’s Younger Brother
+$C=Theodore
+>
+
+
+
+#Discussion with the Plantin Company
+// Time: "It is time for your meeting with the Plantin Company"
+// i think probably 2 days after ferdi gets mad at myne
+// for asking theodore to be a guard knight only at the RA
+>>2,ThirdBell
++$1
+$C=Benno,Damian,Mark
+// Time: "During the book sale that afternoon"
+>FifthBell
+>
+-$1
+
+
+
+#Melchior’s Baptism
+// "so Lieseleta and Brunhilde had gone to the temple to fetch"
+>>Morning
+$T=Brunhilde,Lieseleta
+>
+$C=Brunhilde,Lieseleta
+// tea party with melchior
+// Time: "Thus came the day of Melchior’s baptism."
+// idk
+>>3,Morning
+
+
+
+#Ahrensbach’s Fish Cuisine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

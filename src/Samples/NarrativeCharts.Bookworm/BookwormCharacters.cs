@@ -159,6 +159,7 @@ public static class BookwormCharacters
 	public static Character Solange { get; } = new("Solange");
 	public static Character Sylvester { get; } = new("Sylvester");
 	public static Character Theo { get; } = new("Theo");
+	public static Character Theodore { get; } = new("Theodore");
 	public static Character Thore { get; } = new("Thore");
 	public static Character Todd { get; } = new("Todd");
 	public static Character Trauerqual { get; } = new("Trauerqual");
@@ -329,6 +330,7 @@ public static class BookwormCharacters
 			[Solange] = "#A17CB2",
 			[Sylvester] = "#5366AB",
 			[Theo] = Hex.Unknown.Value,
+			[Theodore] = "#BF8BFF",
 			[Thore] = "#8888BE",
 			[Todd] = Hex.Unknown.Value,
 			[Trauerqual] = "#B2BAB3",
