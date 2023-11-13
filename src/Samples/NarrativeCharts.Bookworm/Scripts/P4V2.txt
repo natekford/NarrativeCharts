@@ -18,8 +18,7 @@ $RA_L=Catherine
 // Time: "Today was my first opportunity to go there during my free time,"
 // not sure if this means the day immediately after Myne passes her classes
 >>Morning
-+$1
-$RA_L=Leonore,Myne,Philine,Rihyarda
++$1,RA_L=Leonore,Myne,Philine,Rihyarda
 >Lunch
 -$1
 
@@ -27,14 +26,12 @@ $RA_L=Leonore,Myne,Philine,Rihyarda
 
 #I Want to Found the Library Committee
 >
-+$2
-$RA_L=Leonore,Myne,Philine,Rihyarda
++$2,RA_L=Leonore,Myne,Philine,Rihyarda
 >
 -$2
 // Time: "The next day, Cornelius and Hartmut were going to join us in the library."
 >>ThirdBell
-+$3
-$RA_L=Cornelius,Hartmut,Leonore,Myne,Philine,Rihyarda
++$3,RA_L=Cornelius,Hartmut,Leonore,Myne,Philine,Rihyarda
 >FifthBell
 $RA_A=Philine
 $RA_DE=Leonore
@@ -51,8 +48,7 @@ $RA_DE=Traugott
 >>2,ThirdBell
 // "All of my retainers were accompanying me to this tea party."
 // "Rosina was coming as well"
-+$4
-$RA_A=MYNE_RETAINERS,Rosina
++$4,RA_A=MYNE_RETAINERS,Rosina
 // w/s outfit measuring scheduled for 3 days from now
 >
 -$4
@@ -66,10 +62,8 @@ $RA_DE=Hirschur
 $RA_S=Hirschur
 // not stated if it's only 1 or 2 days after
 >>ThirdBell
-+$5a
-$RA_S=MYNE_RETAINERS,Rosina
-+$5b
-$RA_S=Ana,Eggy
++$5a,RA_S=MYNE_RETAINERS,Rosina
++$5b,RA_S=Ana,Eggy
 $RA_S=Pauline
 >
 -$5b
@@ -82,8 +76,7 @@ $RA_S=Pauline
 >>2,Morning
 $RA_DE=Hirschur
 >ThirdBell
-+$6
-$RA_L=MYNE_RETAINERS,Hirschur
++$6,RA_L=MYNE_RETAINERS,Hirschur
 >H1
 -$6
 $RA_DE=Schwartz,Weiss
@@ -119,8 +112,7 @@ $RA_DO=Lestilaut,Rauffen
 $RA_DE=MYNE_GUARDS,Traugott
 // Time: "tomorrow at third bell"
 >>ThirdBell
-+$7
-$RA_RV=MYNE_GUARDS,Brunhilde,Solange
++$7,RA_RV=MYNE_GUARDS,Brunhilde,Solange
 >
 $RA_L=Solange
 >H1
@@ -131,8 +123,7 @@ $RA_L=Solange
 #Rihyarda's Wrath
 // Time: "Two days had passed since Anastasius summoned me."
 >>2,ThirdBell
-+$8
-$RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
++$8,RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
 >FifthBell
 -$8
 // dinner then traugott conversation starts
@@ -151,8 +142,7 @@ $RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
 // Time: "Days passed with Cornelius following me to the library"
 // "The afternoon three days from now"
 >>4,ThirdBell
-+$9
-$RA_DO=Brunhilde,Judithe,Leonore,Myne,Philine,Rihyarda,Rosina
++$9,RA_DO=Brunhilde,Judithe,Leonore,Myne,Philine,Rihyarda,Rosina
 >
 -$9
 
@@ -162,8 +152,7 @@ $RA_DO=Brunhilde,Judithe,Leonore,Myne,Philine,Rihyarda,Rosina
 // "I only had two more weeks to spend in this heaven"
 // "Your tea party with Eglantine was three whole days ago."
 >>3,ThirdBell
-+$10
-$RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
++$10,RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
 >
 $RA_L=Ana
 >
@@ -189,8 +178,7 @@ $RA_DO=Eggy
 >>Morning
 // ana sends an ord saying what eggy likes
 >ThirdBell
-+$11
-$RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
++$11,RA_L=Brunhilde,Cornelius,Judithe,Leonore,Myne,Philine
 >
 -$11
 $RA_DE=Hirschur
@@ -239,8 +227,7 @@ $C=Justus
 // "Rudolf" is also introduced, i think he only shows up once in the series so not including him
 // his name get mentioned again in p4v7 Ditter at the Interduchy Tournament, still probably wont add him
 $RA_DE=Alexis
-+$12
-$T=Benno,Gustav,Leon,Lutz,Mark,Otto,Theo
++$12,T=Benno,Gustav,Leon,Lutz,Mark,Otto,Theo
 >
 -$12
 // she comes back in the same SS she went back to the RA

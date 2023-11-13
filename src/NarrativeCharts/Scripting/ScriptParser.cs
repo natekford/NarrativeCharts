@@ -3,7 +3,7 @@ using NarrativeCharts.Time;
 
 namespace NarrativeCharts.Scripting;
 
-public class ScriptLoader : NarrativeChartWithUnits<int>
+public class ScriptParser : NarrativeChartWithUnits<int>
 {
 	private const StringSplitOptions SPLIT_OPTIONS = 0
 			| StringSplitOptions.RemoveEmptyEntries
@@ -14,14 +14,13 @@ public class ScriptLoader : NarrativeChartWithUnits<int>
 	public ScriptDefinitions Definitions { get; }
 	protected Dictionary<string, IEnumerable<Character>> CharacterGroups { get; } = [];
 	protected IEnumerable<string> Lines { get; }
-	protected string? NextSceneName { get; set; }
 	protected Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; } = [];
 	// Sort in reverse order so something like "##" shows up before "#"
 	// Otherwise "#" would always steal "##" items
 	protected SortedDictionary<string, Action<string>> SymbolHandlers { get; }
 		= new(Comparer<string>.Create((a, b) => b.CompareTo(a)));
 
-	public ScriptLoader(ScriptDefinitions definitions, IEnumerable<string> lines)
+	public ScriptParser(ScriptDefinitions definitions, IEnumerable<string> lines)
 		: base(definitions.Time)
 	{
 		Definitions = definitions;
@@ -118,8 +117,32 @@ public class ScriptLoader : NarrativeChartWithUnits<int>
 
 	protected virtual void HandleAddReturnableScene(string input)
 	{
-		EnsureNameNotUsed(input);
-		NextSceneName = input;
+		// split only up to 2 strings
+		// since 1 string is the name, and the other is the scene assignment
+		// and the scene assignment itself contains the arg splitter
+		var returnableScene = SplitArgs(input, 2);
+		switch (returnableScene.Length)
+		{
+			case 2:
+				var name = returnableScene[0];
+				EnsureNameNotUsed(name);
+
+				var scene = SplitAssignment(returnableScene[1]);
+				switch (scene.Length)
+				{
+					case 2:
+						var (location, characters) = SceneAssignment(scene);
+						var previousLocations = AddR(location, characters);
+						StoredScenes.Add(name, previousLocations);
+						return;
+
+					default:
+						throw new ArgumentException("Invalid returnable scene assignment.");
+				}
+
+			default:
+				throw new ArgumentException("Invalid returnable scene, missing a scene assignment or name.");
+		}
 	}
 
 	protected virtual void HandleAddUnits(string input)
@@ -165,22 +188,12 @@ public class ScriptLoader : NarrativeChartWithUnits<int>
 
 	protected virtual void HandleScene(string input)
 	{
-		var args = SplitAssignment(input);
-		switch (args.Length)
+		var scene = SplitAssignment(input);
+		switch (scene.Length)
 		{
 			case 2:
-				var location = ParseLocation(args[0]);
-				var characters = ParseCharacters(args[1]);
-				if (NextSceneName is null)
-				{
-					Add(location, characters);
-				}
-				else
-				{
-					var locations = AddR(location, characters);
-					StoredScenes.Add(NextSceneName, locations);
-					NextSceneName = null;
-				}
+				var (location, characters) = SceneAssignment(scene);
+				Add(location, characters);
 				return;
 
 			default:
@@ -307,9 +320,16 @@ public class ScriptLoader : NarrativeChartWithUnits<int>
 		}
 	}
 
-	protected virtual string[] SplitArgs(string value)
-		=> value.Split(Definitions.Symbols.Args, SPLIT_OPTIONS);
+	protected virtual string[] SplitArgs(string value, int count = int.MaxValue)
+		=> value.Split(Definitions.Symbols.Args, count, SPLIT_OPTIONS);
 
-	protected virtual string[] SplitAssignment(string value)
-		=> value.Split(Definitions.Symbols.Assignment, SPLIT_OPTIONS);
+	protected virtual string[] SplitAssignment(string value, int count = int.MaxValue)
+		=> value.Split(Definitions.Symbols.Assignment, count, SPLIT_OPTIONS);
+
+	private (Location, HashSet<Character>) SceneAssignment(string[] input)
+	{
+		var location = ParseLocation(input[0]);
+		var characters = ParseCharacters(input[1]);
+		return (location, characters);
+	}
 }

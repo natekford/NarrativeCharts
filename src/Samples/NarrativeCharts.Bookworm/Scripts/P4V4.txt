@@ -12,8 +12,7 @@
 // Time: "The feast celebrating spring was held the day after our tea party.""
 >>Morning
 // only including the explicitly mentioned characters because I'm lazy
-+$1
-$C=GiebeLeisegang,Gloria
++$1,C=GiebeLeisegang,Gloria
 >
 -$1
 
@@ -48,8 +47,7 @@ $KE=Elvira,Nikolaus
 >>Morning
 // Time: "The winter coming-of-age ceremony was the next day,"
 >>Morning
-+$2
-$T=Effa,Gunther
++$2,T=Effa,Gunther
 >
 -$2
 
@@ -74,8 +72,7 @@ $T=Effa,Gunther
 
 #Request for the Gilberta Company
 >>ThirdBell
-+$3
-$T=Corinna,Leon,Otto,Theo,Tuuli
++$3,T=Corinna,Leon,Otto,Theo,Tuuli
 // talk about hairpins and dyeing
 >
 
@@ -87,8 +84,7 @@ $T=Corinna,Leon,Otto,Theo,Tuuli
 // Time: "The Gutenbergs would be gathering on the day before the baptisms in the orphanage director’s chambers"
 // I think this means 3 days later? since 3 have passed since COA ceremony
 >>3,ThirdBell
-+$4
-$T=Benno,Heidi,Ingo,Johann,Josef,Lutz,Mark,Zack
++$4,T=Benno,Heidi,Ingo,Johann,Josef,Lutz,Mark,Zack
 // he gets mentioned
 $W=Danilo
 >
@@ -129,8 +125,7 @@ $KE=Elvira
 >>Morning
 // Time: "the next day"
 >>ThirdBell
-+$5
-$C=Corinna,Otto,Theo
++$5,C=Corinna,Otto,Theo
 >
 -$5
 
@@ -222,8 +217,7 @@ $C=Angelica,Damuel,Eckhart,Ferdinand,Hugo,Justus,Myne,Rosina
 >>3,FifthBell
 // sewers added
 >
-+$6
-$M=Angelica,Damuel,Ferdinand,Karstedt
++$6,M=Angelica,Damuel,Ferdinand,Karstedt
 // they go to look at the lower city and see it's still poopy
 // cast washing machine on it
 >
@@ -243,8 +237,7 @@ $RA=Georgine,Gieselfried
 // judithe says she doesnt have any more rejuv potions
 // bonifatius convinces ferdi to let them gather in the forest
 >>4,Morning
-+$7
-$NF=Alexis,Angelica,Bonifatius,Cornelius,Damuel,Hartmut,Judithe,Lamprecht,Myne,Philine,Wilfried
++$7,NF=Alexis,Angelica,Bonifatius,Cornelius,Damuel,Hartmut,Judithe,Lamprecht,Myne,Philine,Wilfried
 >
 -$7
 >>Morning

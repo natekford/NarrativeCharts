@@ -38,8 +38,7 @@ $C=Theodore
 // i think probably 2 days after ferdi gets mad at myne
 // for asking theodore to be a guard knight only at the RA
 >>2,ThirdBell
-+$1
-$C=Benno,Damian,Mark
++$1,C=Benno,Damian,Mark
 // Time: "During the book sale that afternoon"
 >FifthBell
 >
@@ -94,8 +93,7 @@ $T=FERDI_GUARDS,MYNE_GUARDS_ALL,MYNE_SCHOLARS,Ella,Lieseleta
 // and myne acts like the available date is very soon
 // with no preparation
 >>2,ThirdBell
-+$2
-$T=Benno,Damian,Ingo,Johann,Josef,Lutz,Mark,Zack
++$2,T=Benno,Damian,Ingo,Johann,Josef,Lutz,Mark,Zack
 // Gido gets mentioned (one of ferdi's attendants)
 // not gonna include him
 >
@@ -131,12 +129,10 @@ $T=Charlotte,Natalie
 $SmallTowns=Charlotte,Natalie
 >>3,Morning
 $C=Charlotte,Natalie
-+$3a
-$T=Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
++$3a,T=Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
 >H1
 >
-+$3b
-$C=MYNE_SCHOLARS,Angelica,Brunhilde,Cornelius,Elvira,Fran,Hugo,Karstedt,Leonore,Monika,Myne,Ottilie,Philine,Roderick
++$3b,C=MYNE_SCHOLARS,Angelica,Brunhilde,Cornelius,Elvira,Fran,Hugo,Karstedt,Leonore,Monika,Myne,Ottilie,Philine,Roderick
 $C=3a,Eckhart,Ferdinand,Judithe,Justus,Lieseleta
 >H1
 >
@@ -145,8 +141,7 @@ $C=3a,Eckhart,Ferdinand,Judithe,Justus,Lieseleta
 
 #Giebe Leisegang
 $Haldenzel=FERDI_GUARDS
-+$3c
-$Leisegang=Alexis,Charlotte,Natalie,Wilfried
++$3c,Leisegang=Alexis,Charlotte,Natalie,Wilfried
 $Leisegang=3a,3b
 >
 
@@ -167,10 +162,9 @@ $M=Benno
 // Time: "discussion at the Italian restaurant with Ehrenfest’s major store owners"
 >>2,Lunch
 $C=FERDI_GUARDS
-+$4
 // benno/gustav explicitly mentioned
 // freida/mark/otto are just educated guesses
-$IR=MYNE_GUARDS,MYNE_SCHOLARS,Benno,Freida,Gustav,Mark,Otto
++$4,IR=MYNE_GUARDS,MYNE_SCHOLARS,Benno,Freida,Gustav,Mark,Otto
 >
 >
 -$4
@@ -181,14 +175,12 @@ $C=MYNE_GUARDS_ALL,MYNE_SCHOLARS,Ella,Hugo
 // that's no where near enough to launder in a bunch of days, so timeskip it is
 >>>1
 >
-+$5a
-$RA=Elvira,Florencia,Hartmut,Karstedt,Norbert,Sylvester
++$5a,RA=Elvira,Florencia,Hartmut,Karstedt,Norbert,Sylvester
 // magdalena gets name dropped in a ss set during the ad conf
 $RA_RV=Eggy,Magdalena
 // sieglinde also gets name dropped in the same ss
 $Ditter=Sieglinde
-+$5b
-$RA=Ana,AnaFather,AubDitter,Eggy,Georgine,Gieselfried,Heisshitze,Hildebrand,Sieglinde,Sigi
++$5b,RA=Ana,AnaFather,AubDitter,Eggy,Georgine,Gieselfried,Heisshitze,Hildebrand,Sieglinde,Sigi
 >>Morning
 // mana seperation lesson
 >>Morning
@@ -263,8 +255,7 @@ $KE=Elvira
 #Another Discussion and Making Rejuvenation Potions
 // Time: "The day of our talk with the lower-city merchants had arrived,"
 >>2,Lunch
-+$6
-$T=Benno,Freida,Gustav,Mark,Otto,Theo,Tuuli
++$6,T=Benno,Freida,Gustav,Mark,Otto,Theo,Tuuli
 >
 -$6
 // brewing potions
@@ -298,8 +289,7 @@ $MF=Effa,Gunther
 // gutenbergs probably come at some point during this timeskip
 -$3a
 >>Morning
-+$7
-$KE=Angelica,Bonifatius,Cornelius,Eckhart,Elvira,Karstedt,Lamprecht,Myne
++$7,KE=Angelica,Bonifatius,Cornelius,Eckhart,Elvira,Karstedt,Lamprecht,Myne
 >
 >
 -$7
@@ -317,22 +307,18 @@ $C=Detlinde,Georgine,Martina,Raimund
 >>Morning
 $T=MYNE_GUARDS
 >
-+$8a
-$FE=Fran,Zahm
++$8a,FE=Fran,Zahm
 $C=MYNE_GUARDS
 
 
 #Ferdinand’s Estate
 // Time: "It was the day of our trip"
 >>2,Lunch
-+$8b
-$FE=MYNE_GUARDS_ALL,MYNE_SCHOLARS,FERDI_GUARDS,Alexis,Brunhilde,Charlotte,Ella,Hugo,Lieseleta,Melchior,Natalie,Raimund,Vanessa,Wilfried
++$8b,FE=MYNE_GUARDS_ALL,MYNE_SCHOLARS,FERDI_GUARDS,Alexis,Brunhilde,Charlotte,Ella,Hugo,Lieseleta,Melchior,Natalie,Raimund,Vanessa,Wilfried
 >H1
-+$8c
-$FE=Detlinde,Martina,Raimund
++$8c,FE=Detlinde,Martina,Raimund
 >H1
-+$8d
-$FE=Corinna,Otto
++$8d,FE=Corinna,Otto
 >
 >
 -$8c,8d

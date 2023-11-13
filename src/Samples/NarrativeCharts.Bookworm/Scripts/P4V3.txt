@@ -54,8 +54,7 @@ $C=Damuel,Ferdinand,Karstedt,Lamprecht
 >>2,Lunch
 // Time: "Several days had passed"
 >>2,Lunch
-+$1
-$C=Benno,Gustav,Helfried,Lutz,Otto,Viktor
++$1,C=Benno,Gustav,Helfried,Lutz,Otto,Viktor
 
 
 
@@ -113,8 +112,7 @@ $RA_S=Hirschur
 
 #Justus and Preparing for the Interduchy Tournament
 >>ThirdBell
-+$2
-$RA_L=MYNE_RETAINERS,Justus
++$2,RA_L=MYNE_RETAINERS,Justus
 >
 -$2
 
@@ -123,14 +121,12 @@ $RA_L=MYNE_RETAINERS,Justus
 #Meeting with the Prince
 // Time: "Fifth bell rang."
 >FifthBell
-+$3
-$RA_RV=MYNE_RETAINERS,Justus
++$3,RA_RV=MYNE_RETAINERS,Justus
 >
 -$3
 // Time: "While we were preparing for the large-scale tea party, I received a summons from Eglantine."
 >>2,ThirdBell
-+$4
-$RA_DO=MYNE_RETAINERS,Justus
++$4,RA_DO=MYNE_RETAINERS,Justus
 // "Hartmut and Cornelius would need to stay behind"
 $RA_DE=Cornelius,Hartmut
 >
@@ -149,8 +145,7 @@ $RA_DO=Adolphine,Hannelore,Ortwin
 // idk, just gonna keep it at 1, 2, 2, 2 for 7 days
 // to have better spacing
 >>2,ThirdBell
-+$5
-$RA_DE=Adolphine,Detlinde,Eggy,Hannelore,Rudiger
++$5,RA_DE=Adolphine,Detlinde,Eggy,Hannelore,Rudiger
 // myne passes out after meeting hannelore
 >
 -$5
@@ -165,16 +160,12 @@ $RA_DE=Eckhart,Ferdinand
 >>Morning
 // "Wilfried was currently out by the stadium"
 // probably has his retainers with him
-+$6a
-$RA_ST=Alexis,Ignaz,Isidore,Wilfried
++$6a,RA_ST=Alexis,Ignaz,Isidore,Wilfried
 $RA_DE=Florencia,Karstedt,Sylvester
 >
-+$6b
-$RA_ST=Angelica,Cornelius,Laurenz,Leonore,Traugott
-+$6c
-$RA_ST=Florencia,Hirschur,Karstedt,Sylvester
-+$6d
-$RA_ST=Adolphine,Detlinde,Eggy,Hannelore,Lestilaut,Ortwin,Rudiger
++$6b,RA_ST=Angelica,Cornelius,Laurenz,Leonore,Traugott
++$6c,RA_ST=Florencia,Hirschur,Karstedt,Sylvester
++$6d,RA_ST=Adolphine,Detlinde,Eggy,Hannelore,Lestilaut,Ortwin,Rudiger
 $RA_ST=Heisshitze
 >
 -$6b
@@ -194,18 +185,15 @@ $RA_DE=Hirschur
 $RA_S=Hirschur
 $RA_DE=Damuel
 >
-+$7a
-$RA_A=Alexis,Angelica,Brunhilde,Cornelius,Eckhart,Florencia,Hartmut,Ignaz,Isidore,Judithe,Karstedt,Laurenz,Leonore,Lieseleta,Philine,Roderick,Sylvester,Traugott,Wilfried
-+$7b
-$RA_A=Adolphine,Ana,Detlinde,Eggy,Hannelore,Heisshitze,Lestilaut,Ortwin,Rudiger
++$7a,RA_A=Alexis,Angelica,Brunhilde,Cornelius,Eckhart,Florencia,Hartmut,Ignaz,Isidore,Judithe,Karstedt,Laurenz,Leonore,Lieseleta,Philine,Roderick,Sylvester,Traugott,Wilfried
++$7b,RA_A=Adolphine,Ana,Detlinde,Eggy,Hannelore,Heisshitze,Lestilaut,Ortwin,Rudiger
 // dances and other stuff idk
 // Time: "Everyone returned after fourth bell."
 >FourthBell
 -$7a
 -$7b
 >
-+$8
-$RA_A=Ana,Angelica,Eckhart,Eggy,Florencia,Karstedt,Sylvester
++$8,RA_A=Ana,Angelica,Eckhart,Eggy,Florencia,Karstedt,Sylvester
 // graduation ceremony
 // myne blesses ana and eggy
 
@@ -216,8 +204,7 @@ $RA_A=Ana,Angelica,Eckhart,Eggy,Florencia,Karstedt,Sylvester
 -$8
 >>Morning
 // "the two of us headed for the library with our retainers."
-+$9
-$RA_L=MYNE_RETAINERS,Eckhart,Ferdinand,Justus
++$9,RA_L=MYNE_RETAINERS,Eckhart,Ferdinand,Justus
 // they spend a while getting all of the books back
 >FifthBell
 -$9
@@ -265,15 +252,13 @@ $C=Angelica,Damuel,Eckhart,Ferdinand,Hartmut,Myne,Philine
 
 #The Book Fair and the Follow-Up Meeting
 >>3,Morning
-+$10
-$C=Benno,OldLeisegang,Lutz,Mark
++$10,C=Benno,OldLeisegang,Lutz,Mark
 >
 -$10
 >>Morning
 $T=Angelica,Damuel,Eckhart,Ferdinand,Justus,Myne
 >FourthBell
-+$11
-$T=Benno,Lutz,Mark
++$11,T=Benno,Lutz,Mark
 
 
 

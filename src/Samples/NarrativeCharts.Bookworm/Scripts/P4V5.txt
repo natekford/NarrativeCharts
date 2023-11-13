@@ -24,8 +24,7 @@ $T=Hugo,Rosina
 // Time: "scheduled for the afternoon three days after my retainers first arrived at the temple"
 >>3,ThirdBell
 $C=Judithe,Leonore
-+$1
-$T=Benno,Freida,Gustav,Lutz,Mark,Otto,Theo,Tuuli
++$1,T=Benno,Freida,Gustav,Lutz,Mark,Otto,Theo,Tuuli
 // talk about dyeing competition
 // get hairpins from tuuli
 >
@@ -41,16 +40,14 @@ $T=Benno,Freida,Gustav,Lutz,Mark,Otto,Theo,Tuuli
 $C=MYNE_GUARDS,Cornelius,Hartmut,Philine
 // unknown amount of days later
 >>2,Morning
-+$2
-$C=Corinna,Elvira
++$2,C=Corinna,Elvira
 >
 -$2
 >>Morning
 $T=MYNE_GUARDS,Hartmut,Philine
 // Time: "scheduled the day of our visit for five days from now"
 >>5,FourthBell
-+$3
-$IR=MYNE_GUARDS,Benno,Eckhart,Ferdinand,Fran,Freida,Gustav,Justus,Otto,Rosina
++$3,IR=MYNE_GUARDS,Benno,Eckhart,Ferdinand,Fran,Freida,Gustav,Justus,Otto,Rosina
 
 
 
@@ -78,8 +75,7 @@ $T=Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
 $C=MYNE_GUARDS,Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
 >
 $Groschel=MYNE_GUARDS,Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
-+$4
-$Groschel=Brunhilde,Elvira,Hartmut,Henrik,Philine
++$4,Groschel=Brunhilde,Elvira,Hartmut,Henrik,Philine
 // Time: "The next day,"
 >>Morning
 // Time: "On my last day in Groschel,"
@@ -97,12 +93,10 @@ $M=Benno
 
 
 #My Brother Lamprecht’s Wedding
-+$5
-$C=MYNE_GUARDS,Eckhart,Ferdinand,Hartmut,Philine
++$5,C=MYNE_GUARDS,Eckhart,Ferdinand,Hartmut,Philine
 >>Morning
 >>3,ThirdBell
-+$6
-$KE=Angelica,Cornelius,Eckhart,Karstedt,Lamprecht,Myne
++$6,KE=Angelica,Cornelius,Eckhart,Karstedt,Lamprecht,Myne
 // talk about aurelia
 >
 >>ThirdBell
@@ -120,8 +114,7 @@ $KE=Angelica,Cornelius,Eckhart,Karstedt,Lamprecht,Myne
 +%W_FAM=Cornelius,Eckhart,Elvira,Karstedt,Lamprecht
 +%W_AD=Alexis,Charlotte,Ernesta,Florencia,Oswald,Sylvester,Wilfried
 +%W_EHR=W_MYNE,W_FAM,W_AD
-+$7
-$Leisegang=W_EHR
++$7,Leisegang=W_EHR
 // the book doesnt mention there being a day between arriving at leisegang and not
 // but the graph looks better with one
 >>Morning
@@ -191,8 +184,7 @@ $T=Gunther
 @?Ella,Gunther,Hugo,Monika,Rosina
 >
 $Hasse=MYNE_GUARDS,Fran
-+$8
-$SmallTowns=Eckhart,Ferdinand,Justus,Charlotte,Ernesta,Lamprecht,Wilfried
++$8,SmallTowns=Eckhart,Ferdinand,Justus,Charlotte,Ernesta,Lamprecht,Wilfried
 >
 $Hasse=Ella,Gunther,Hugo,Monika,Rosina
 >
@@ -220,8 +212,7 @@ $T=MYNE_GUARDS,Ella,Fran,Hugo,Monika,Rosina
 // myne contacts elvira and says it's time to go to groschel
 // Time: "we would be leaving three days from now."
 >>3,Morning
-+$9
-$Groschel=MYNE_GUARDS,Brunhilde,Elvira,Fran,Hartmut,Hugo,Monika,Philine
++$9,Groschel=MYNE_GUARDS,Brunhilde,Elvira,Fran,Hartmut,Hugo,Monika,Philine
 
 
 
@@ -244,8 +235,7 @@ $T=Hartmut,Philine
 // myne asks lieseleta about schumil outfits
 // she says they are ready to be inspected by ferdi
 >>Morning
-+$10
-$T=Brunhilde,Cornelius,Judithe,Leonore,Lieseleta
++$10,T=Brunhilde,Cornelius,Judithe,Leonore,Lieseleta
 >
 -$10
 // Time: "Three short days after Ferdinand approved the embroidery,"
@@ -258,8 +248,7 @@ $T=Brunhilde,Cornelius,Judithe,Leonore,Lieseleta
 // Time: "Days after Schwartz’s and Weiss’s outfits were completed,"
 >>3,Morning
 >>ThirdBell
-+$11
-$T=Otto,Theo,Tuuli
++$11,T=Otto,Theo,Tuuli
 >
 -$11
 >>>1
@@ -312,8 +301,7 @@ $RA_DE=Ella,Myne,Rihyarda,Rosina
 >
 $RA_DE=Oswald,Wilfried
 >
-+$12
-$RA_GE=Alexis,Cornelius,Judithe,Laurenz,Leonore,Matthias,Myne,Philine,Traugott,Wilfried
++$12,RA_GE=Alexis,Cornelius,Judithe,Laurenz,Leonore,Matthias,Myne,Philine,Traugott,Wilfried
 >
 >
 -$12
@@ -336,21 +324,16 @@ $RA_S=Hirschur
 // Time: "auditorium by third bell"
 >>ThirdBell
 $RA_RV=Arthur,Dankmar,Hildebrand
-+$13a
-$RA_A=Brunhilde,Cornelius,Hartmut,Judithe,Leonore,Lieseleta,Myne,Philine
-+$13b
-$RA_A=Alexis,Charlotte,Ignaz,Isidore,Kathrein,Marianne,Natalie,Wilfried
-+$13c
-$RA_A=Laurenz,Matthias,Roderick,Traugott
-+$13d
-$RA_A=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
++$13a,RA_A=Brunhilde,Cornelius,Hartmut,Judithe,Leonore,Lieseleta,Myne,Philine
++$13b,RA_A=Alexis,Charlotte,Ignaz,Isidore,Kathrein,Marianne,Natalie,Wilfried
++$13c,RA_A=Laurenz,Matthias,Roderick,Traugott
++$13d,RA_A=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
 >
 >
 $RA_SH=Brunhilde,Cornelius,Hartmut,Leonore,Myne
 $RA_SH=Charlotte,Wilfried
 $RA_SH=Adolphine,Detlinde,Hannelore,Lestilaut,Martina,Ortwin,Rudiger
-+$13e
-$RA_SH=Arthur,Dankmar,Hildebrand
++$13e,RA_SH=Arthur,Dankmar,Hildebrand
 
 
 

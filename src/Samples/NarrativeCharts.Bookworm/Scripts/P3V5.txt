@@ -2,8 +2,7 @@
 
 #Prologue
 >>Lunch
-+$1
-$T=Benno,Lutz,Mark
++$1,T=Benno,Lutz,Mark
 >
 -$1
 
@@ -12,8 +11,7 @@ $T=Benno,Lutz,Mark
 #The New Orphans and Operation Grimm
 // Time: "we were leaving the temple after lunch."
 >>Lunch
-+$2
-$Hasse=Brigitte,Damuel,Eckhart,Ferdinand,Justus,Myne
++$2,Hasse=Brigitte,Damuel,Eckhart,Ferdinand,Justus,Myne
 >
 -$2
 // Time: "The days sped past at an alarming speed"
@@ -111,8 +109,7 @@ $M=Damian,Lutz
 
 #My First-Ever Little Sister
 >>Meetings
-+$3
-$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Myne
++$3,C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Myne
 // myne meets charlotte
 >
 // myne and syl talk about rmcm
@@ -142,8 +139,7 @@ $C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Myne
 // jureve brewed
 >
 // Time: "during the afternoon the next day."
-+$4
-$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
++$4,C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
 >
 -$4
 
@@ -152,8 +148,7 @@ $C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
 #Charlotte's Baptism Ceremony
 // Time: Winter Baptism, so ~2 weeks after ruelle harvest
 >>2,Morning
-+$5
-$T=Effa,Gunther,Kamil,Tuuli
++$5,T=Effa,Gunther,Kamil,Tuuli
 >
 -$5
 // Time: "days passed"
@@ -215,8 +210,7 @@ $C=Ernesta
 // playroom kids
 $C=Hartmut,Ignaz,Isidore,Laurenz,Philine,Roderick,Traugott
 >>3,Morning
-+$6
-$M=Fritz,Gil,Heidi,Ingo,Johann,Josef,Zack
++$6,M=Fritz,Gil,Heidi,Ingo,Johann,Josef,Zack
 >
 -$6
 // Time: "Once the students had departed for the Royal Academy"
@@ -285,8 +279,7 @@ $MF=Gunther
 $C=Charlotte,Lamprecht,Wilfried
 $T=Fran
 >>Morning
-+$6
-$T=Benno,Elvira
++$6,T=Benno,Elvira
 >
 -$6
 
@@ -297,16 +290,14 @@ $T=Benno,Elvira
 // "about a year after Myne had gone to sleep, ... summoned the Gutenbergs"
 >>>3
 >
-+$7
-$M=Fritz,Gil,Heidi,Ingo,Johann,Josef,Zack
++$7,M=Fritz,Gil,Heidi,Ingo,Johann,Josef,Zack
 >
 -$7
 // ~530 days after jureve
 >>>4
 >
 // gutenbergs go to haldenzel
-+$8
-$Haldenzel=Benno,Fritz,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
++$8,Haldenzel=Benno,Fritz,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
 $Hasse=Wilma
 // ~600 days after jureve
 >>>2

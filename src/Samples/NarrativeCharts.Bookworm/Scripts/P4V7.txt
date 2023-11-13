@@ -71,8 +71,7 @@ $T=Eckhart,Ferdinand,Justus
 >>7,Lunch
 // Time: "every lunchtime for three days"
 >>3,Lunch
-+$1
-$T=Corinna,Leon,Otto,Theo,Tuuli
++$1,T=Corinna,Leon,Otto,Theo,Tuuli
 >
 -$1
 
@@ -109,11 +108,9 @@ $RA_DE=Ella,Myne,Rihyarda
 // Time: "Three days from now, at third bell"
 >>3,ThirdBell
 // myne's retainers aren't allowed in the inquiry with her
-+$2a
-$RA_A=MYNE_RETAINERS,Rihyarda
++$2a,RA_A=MYNE_RETAINERS,Rihyarda
 $Sovereignty=Raublut,Immanuel
-+$2b
-$RA_SH=Arthur,Fraularm,Gundolf,Hildebrand,Hirschur,Immanuel,Raublut,Rauffen
++$2b,RA_SH=Arthur,Fraularm,Gundolf,Hildebrand,Hirschur,Immanuel,Raublut,Rauffen
 $RA_SH=Myne
 >
 >
@@ -128,11 +125,9 @@ $RA_SH=Myne
 $RA_DE=Eckhart,Ferdinand,Justus
 // Time: "third bell the next day"
 >>ThirdBell
-+$3a
-$RA_A=MYNE_RETAINERS,Eckhart,Justus,Rihyarda
++$3a,RA_A=MYNE_RETAINERS,Eckhart,Justus,Rihyarda
 $Sovereignty=Relichion
-+$3b
-$RA_SH=Arthur,Ferdinand,Fraularm,Gundolf,Hildebrand,Hirschur,Immanuel,Raublut,Rauffen,Relichion
++$3b,RA_SH=Arthur,Ferdinand,Fraularm,Gundolf,Hildebrand,Hirschur,Immanuel,Raublut,Rauffen,Relichion
 $RA_SH=Myne
 >H1
 >
@@ -186,17 +181,14 @@ $RA_DE=MYNE_RETAINERS,CHAR_RETAINERS
 // who knows
 // around ~75 days + unknown timeskip have passed between start of classes and now
 >>4,Morning
-+$4a
-$RA_ST=RETAINERS_STUDENTS_TEACHERS
++$4a,RA_ST=RETAINERS_STUDENTS_TEACHERS
 >H1
-+$4b
-$RA_DE=Eckhart,Elvira,Ferdinand,Florencia,Justus,Karstedt,Sylvester
++$4b,RA_DE=Eckhart,Elvira,Ferdinand,Florencia,Justus,Karstedt,Sylvester
 $RA_DE=Charlotte,Myne,Rihyarda,Wilfried
 >
 $RA_ST=Charlotte,Eckhart,Elvira,Ferdinand,Florencia,Justus,Karstedt,Myne,Rihyarda,Sylvester,Wilfried
 $Ditter=AubDitter
-+$4c
-$RA_ST=Ana,AubDitter,Eggy,Georgine,Gieselfried,Heisshitze
++$4c,RA_ST=Ana,AubDitter,Eggy,Georgine,Gieselfried,Heisshitze
 // ana and eggy talk about bible
 // ditterland challenges ferdinand to ditter
 >H1
@@ -204,8 +196,7 @@ $RA_ST=Ana,AubDitter,Eggy,Georgine,Gieselfried,Heisshitze
 
 
 #The Ditter Match
-+$5
-$RA_DO=AubDitter,Eckhart,Ferdinand,Hannelore,Heisshitze,Justus,Myne
++$5,RA_DO=AubDitter,Eckhart,Ferdinand,Hannelore,Heisshitze,Justus,Myne
 >H1
 >
 -$5
@@ -225,8 +216,7 @@ $RA_DO=AubDitter,Eckhart,Ferdinand,Hannelore,Heisshitze,Justus,Myne
 
 #Unforeseen Consequences
 $RA_RV=Nahelache,Sigi,Trauerqual
-+$4d
-$RA_ST=Nahelache,Raublut,Sigi,Trauerqual
++$4d,RA_ST=Nahelache,Raublut,Sigi,Trauerqual
 // ternisbefallen attack
 >
 
@@ -239,12 +229,10 @@ $RA_DE=Eckhart,Elvira,Ferdinand,Florencia,Justus,Karstedt,Sylvester
 $RA_DO=AubDitter,Georgine,Gieselfried
 >>Morning
 $C=Leberecht
-+$4e
-$RA_DE=Angelica,Lamprecht,Leberecht,Ottilie
++$4e,RA_DE=Angelica,Lamprecht,Leberecht,Ottilie
 // Time: "It was second-and-a-half bell"
 >ThirdBell
-+$6
-$RA_A=RETAINERS_STUDENTS_TEACHERS,4b,4c,4d,4e,Immanuel,Relichion
++$6,RA_A=RETAINERS_STUDENTS_TEACHERS,4b,4c,4d,4e,Immanuel,Relichion
 
 
 

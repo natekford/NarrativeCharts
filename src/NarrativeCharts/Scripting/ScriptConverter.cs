@@ -13,7 +13,7 @@ namespace NarrativeCharts.Scripting;
 // overriden to affect functionality.
 // worrying about the efficiency of this class also seems worthless when
 // image processing takes 100x longer and has much bigger allocations.
-public abstract class ScriptConverter : ScriptLoader
+public abstract class ScriptConverter : ScriptParser
 {
 	public string ClassName { get; protected set; } = "";
 	protected StringBuilder Chapter => Chapters[^1];
@@ -60,7 +60,26 @@ public abstract class ScriptConverter : ScriptLoader
 
 	protected override void HandleAddReturnableScene(string input)
 	{
-		// no code equivalent
+		// split only up to 2 strings
+		// since 1 string is the name, and the other is the scene assignment
+		// and the scene assignment itself contains the arg splitter
+		var returnableScene = SplitArgs(input, 2);
+		switch (returnableScene.Length)
+		{
+			case 2:
+				// maybe deal with creating properties for these at some point
+				var scene = SplitAssignment(returnableScene[1]);
+				switch (scene.Length)
+				{
+					case 2:
+						WriteScene(
+							ToProperty(ParseLocation(scene[0])),
+							ToProperties(ParseCharacters(scene[1]))
+						);
+						break;
+				}
+				break;
+		}
 
 		LineConverted = true;
 		base.HandleAddReturnableScene(input);
@@ -157,13 +176,13 @@ public abstract class ScriptConverter : ScriptLoader
 
 	protected override void HandleScene(string input)
 	{
-		var args = SplitAssignment(input);
-		switch (args.Length)
+		var scene = SplitAssignment(input);
+		switch (scene.Length)
 		{
 			case 2:
 				WriteScene(
-					ToProperty(ParseLocation(args[0])),
-					ToProperties(ParseCharacters(args[1]))
+					ToProperty(ParseLocation(scene[0])),
+					ToProperties(ParseCharacters(scene[1]))
 				);
 				break;
 		}

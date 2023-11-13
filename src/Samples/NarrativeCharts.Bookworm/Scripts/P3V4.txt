@@ -38,8 +38,7 @@ $T=Lutz
 $M=Lutz
 // Time: "came over to the workshop the next day."
 >>Lunch
-+$1
-$T=Ingo,Johann,Lutz,Zack
++$1,T=Ingo,Johann,Lutz,Zack
 
 
 
@@ -93,8 +92,7 @@ $C=Angelica
 >>Morning
 $RA=Angelica
 >>3,Lunch
-+$2
-$C=Benno,Corinna,Elvira,Otto
++$2,C=Benno,Corinna,Elvira,Otto
 >
 -$2
 // Time: "As the end of spring approached,"
@@ -138,8 +136,7 @@ $KO=Angelica
 
 
 #Meeting with the Plantin Company
-+$3
-$T=Benno,Lutz,Mark,Otto
++$3,T=Benno,Lutz,Mark,Otto
 // damian is mentioned
 $M=Damian
 >
@@ -195,8 +192,7 @@ $M=Corinna
 // "I was also having a lunchtime meeting with Giebe Illgner"
 >>Lunch
 // discussing illgner paper
-+$4
-$C=Benno,Damian,Helfried,Mark
++$4,C=Benno,Damian,Helfried,Mark
 // Time: "it is almost fifth bell."
 >FifthBell
 // selling books and other stuff
@@ -296,8 +292,7 @@ $W=Zack
 $C=Georgine
 // Time: "feast is to be held two days from now"
 >>2,Lunch
-+$5
-$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
++$5,C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
 $C=Gloria
 >
 -$5
@@ -323,8 +318,7 @@ $NQ=Gloria
 // ferdi gets ord saying georgine leaving tomorrow
 // Time: "We arrived ... much sooner than third bell."
 >>SecondBell
-+$6
-$C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
++$6,C=Angelica,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Myne
 >
 // wilfried invites georgine back
 -$6

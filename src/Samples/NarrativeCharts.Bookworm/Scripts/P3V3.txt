@@ -21,8 +21,7 @@ $T=Lutz
 >
 $M=Lutz
 >>Lunch
-+$1
-$T=Benno,Ingo,Lutz
++$1,T=Benno,Ingo,Lutz
 
 
 
@@ -31,16 +30,14 @@ $T=Benno,Ingo,Lutz
 -$1
 // Time: "Ingo returned to my chambers a few days later"
 >>3,Lunch
-+$2
-$T=Ingo,Johann,Zack
++$2,T=Ingo,Johann,Zack
 >
 -$2
 // Time: "About ten days later"
 >>10,Lunch
 // Time: "they once again arrived on the scheduled day" no clue when
 >>2,Lunch
-+$3
-$T=Benno,Ingo,Johann,Lutz,Zack
++$3,T=Benno,Ingo,Johann,Lutz,Zack
 >
 -$3
 
@@ -49,8 +46,7 @@ $T=Benno,Ingo,Johann,Lutz,Zack
 #The Start of Winter Socializing
 // Time: "I would be going to my hidden room after fifth bell to receive it"
 >>2,FifthBell
-+$4
-$T=Effa,Lutz,Tuuli
++$4,T=Effa,Lutz,Tuuli
 >
 -$4
 >>3,Morning
@@ -127,8 +123,7 @@ $NQ=Helfried
 // myne tells wilf dedication cere in 3 days
 // Time: "The Dedication Ritual begins three days from now"
 >>3,Morning
-+$5
-$T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
++$5,T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 // Time: "On the first day of the Dedication Ritual"
 >>Morning
 // myne, ferdi, and 2 blues do dedication ritual
@@ -151,8 +146,7 @@ $T=Brigitte,Damuel,Ella,Ferdinand,Myne,Rosina
 #Fighting the Schnesturm
 // not explictly stated anywhere that this LOW appeard in Haldenzel
 // eckhart probably also goes, but that's not explicitly stated
-+$6
-$Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
++$6,Haldenzel=Brigitte,Damuel,Ferdinand,Karstedt,Myne
 >U2
 >
 -$6
@@ -240,8 +234,7 @@ $RA=Angelica
 $T=Brigitte,Damuel,Ferdinand,Myne
 // Spring Prayer takes place in "Early Spring", idk, add 3 weeks
 >>21,Lunch
-+$7
-$T=Benno,Corinna,Lutz,Mark,Tuuli
++$7,T=Benno,Corinna,Lutz,Mark,Tuuli
 >
 -$7
 
@@ -299,8 +292,7 @@ $SmallTowns=Brigitte,Damuel,Eckhart,Ella,Ferdinand,Fran,Monika,Myne,Nicola,Rosin
 // Time: "arrive at the entrance to the forest before fifth bell."
 >>FifthBell
 // "I would be bringing Fran, Monika, Nicola, Ella, and Rosina."
-+$8
-$GBath=Brigitte,Damuel,Eckhart,Ella,Ferdinand,Fran,Monika,Myne,Nicola,Rosina
++$8,GBath=Brigitte,Damuel,Eckhart,Ella,Ferdinand,Fran,Monika,Myne,Nicola,Rosina
 
 
 
