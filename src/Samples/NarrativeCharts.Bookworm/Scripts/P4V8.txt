@@ -116,7 +116,6 @@ $T=Benno,Damian,Ingo,Johann,Josef,Lutz,Mark,Zack
 >>2,Morning
 $T=Alexis,Wilfried
 >
->
 $Leisegang=Alexis,Wilfried
 >>Morning
 $Hasse=MYNE_GUARDS,Gunther
@@ -133,20 +132,52 @@ $SmallTowns=Charlotte,Natalie
 >>3,Morning
 $C=Charlotte,Natalie
 +$3a
-$T=Damian,Heidi,Ingo,Johann,Josef,Lutz,Mark,Zack
+$T=Benno,Damian,Gil,Heidi,Hugo,Ingo,Johann,Josef,Lutz,Zack
+>H1
 >
 +$3b
-$C=MYNE_SCHOLARS,Angelica,Cornelius,Elvira,Fran,Karstedt,Leonore,Monika,Myne,Ottilie,Philine,Roderick
+$C=MYNE_SCHOLARS,Angelica,Brunhilde,Cornelius,Elvira,Fran,Karstedt,Leonore,Monika,Myne,Ottilie,Philine,Roderick
 $C=3a,Eckhart,Ferdinand,Judithe,Justus,Lieseleta
->
+>H1
 >
 
 
 
 #Giebe Leisegang
 $Haldenzel=Eckhart,Ferdinand,Justus
-+$3d
-$Leisegang=3a,3b,Alexis,Charlotte,Natalie,Wilfried
++$3c
+$Leisegang=Alexis,Charlotte,Natalie,Wilfried
+$Leisegang=3a,3b
+>
+
+
+
+
+#Visiting Great-Grandfather
+// Time: "we scheduled a date for us to meet with Great-Grandfather."
+>>2,ThirdBell
+>
+-$3b,3c
+$M=Benno
+// there's no transition between this chapter and the next
+
+
+
+#Sitting Out the Archduke Conference
+// Time: "discussion at the Italian restaurant with Ehrenfest’s major store owners"
+>>2,Lunch
+$C=Eckhart,Ferdinand,Justus
++$4
+// benno/gustav explicitly mentioned
+// freida/mark/otto are just educated guesses
+$IR=MYNE_GUARDS,MYNE_SCHOLARS,Benno,Freida,Gustav,Mark,Otto
+>
+>
+-$4
+>>Morning
+$C=MYNE_GUARDS_ALL,MYNE_SCHOLARS
+
+
 
 
 
