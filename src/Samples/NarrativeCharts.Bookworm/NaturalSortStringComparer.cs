@@ -1,7 +1,7 @@
 ﻿namespace NarrativeCharts.Bookworm;
 
 // Copied from https://stackoverflow.com/a/66354540/17760972
-public class NaturalSortStringComparer : IComparer<string>
+internal class NaturalSortStringComparer : IComparer<string>
 {
 	private readonly StringComparison _comparison;
 
