@@ -167,6 +167,7 @@ public class Program
 				[GiebeLeisegangSr] = ["OldLeisegang"],
 				[HasseMayor] = [nameof(HasseMayor)],
 				[Sigiswald] = ["Sigi"],
+				[Trauerqual] = ["AnaFather"],
 			});
 		}
 

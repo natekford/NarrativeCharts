@@ -272,7 +272,7 @@ $RA_RV=Raublut
 #Epilogue
 >
 -$4b,4c,4d,4e
-$Dunkelfelger=Cordula,Hannelore,Kenntrips,Lestilaut
+$Dunkelfelger=Clarissa,Cordula,Hannelore,Kenntrips,Lestilaut
 $Drewanchel=Adolphine,Ortwin
 $Gilessenmeyer=Luzinde
 $Ahrensbach=Detlinde,Martina,Raimund

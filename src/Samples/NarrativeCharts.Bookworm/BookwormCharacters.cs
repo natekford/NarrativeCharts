@@ -116,6 +116,7 @@ public static class BookwormCharacters
 	public static Character Linhardt { get; } = new("Linhardt");
 	public static Character Lutz { get; } = new("Lutz");
 	public static Character Luzinde { get; } = new("Luzinde");
+	public static Character Magdalena { get; } = new("Magdalena");
 	public static Character Marianne { get; } = new("Marianne");
 	public static Character Mark { get; } = new("Mark");
 	public static Character Marthe { get; } = new("Marthe");
@@ -154,7 +155,9 @@ public static class BookwormCharacters
 	public static Character Rudiger { get; } = new("Rudiger");
 	public static Character Schwartz { get; } = new("Schwartz");
 	public static Character Selim { get; } = new("Selim");
+	public static Character Seltier { get; } = new("Seltier");
 	public static Character Sidonius { get; } = new("Sidonius");
+	public static Character Sieglinde { get; } = new("Sieglinde");
 	public static Character Sigiswald { get; } = new("Sigiswald");
 	public static Character Solange { get; } = new("Solange");
 	public static Character Sylvester { get; } = new("Sylvester");
@@ -287,6 +290,7 @@ public static class BookwormCharacters
 			[Linhardt] = Hex.Unknown.Value,
 			[Lutz] = "#F7E3A8",
 			[Luzinde] = Hex.Unknown.Value,
+			[Magdalena] = "#D8DCDF",
 			[Marianne] = Hex.Unknown.Value,
 			[Mark] = "#726249",
 			[Marthe] = "#5C725D",
@@ -325,7 +329,9 @@ public static class BookwormCharacters
 			[Rudiger] = "#F1CC8F",
 			[Schwartz] = "#634926",
 			[Selim] = Hex.Unknown.Value,
+			[Seltier] = Hex.Unknown.Value,
 			[Sidonius] = Hex.Unknown.Value,
+			[Sieglinde] = "#DC143C",
 			[Sigiswald] = "#DABF78",
 			[Solange] = "#A17CB2",
 			[Sylvester] = "#5366AB",

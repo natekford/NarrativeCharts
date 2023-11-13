@@ -88,7 +88,7 @@ $C=FERDI_GUARDS
 >
 // lieseleta gets mentioned in the next chapter
 // brunhilde isn't mentioned again until myne's out of the temple again
-$T=FERDI_GUARDS,MYNE_GUARDS_ALL,MYNE_SCHOLARS,Lieseleta
+$T=FERDI_GUARDS,MYNE_GUARDS_ALL,MYNE_SCHOLARS,Ella,Lieseleta
 // Time: "The date of the meeting had arrived"
 // not stated exactly when aside from before winter COA
 // and myne acts like the available date is very soon
@@ -132,11 +132,11 @@ $SmallTowns=Charlotte,Natalie
 >>3,Morning
 $C=Charlotte,Natalie
 +$3a
-$T=Benno,Damian,Gil,Heidi,Hugo,Ingo,Johann,Josef,Lutz,Zack
+$T=Benno,Damian,Gil,Heidi,Ingo,Johann,Josef,Lutz,Zack
 >H1
 >
 +$3b
-$C=MYNE_SCHOLARS,Angelica,Brunhilde,Cornelius,Elvira,Fran,Karstedt,Leonore,Monika,Myne,Ottilie,Philine,Roderick
+$C=MYNE_SCHOLARS,Angelica,Brunhilde,Cornelius,Elvira,Fran,Hugo,Karstedt,Leonore,Monika,Myne,Ottilie,Philine,Roderick
 $C=3a,Eckhart,Ferdinand,Judithe,Justus,Lieseleta
 >H1
 >
@@ -144,7 +144,7 @@ $C=3a,Eckhart,Ferdinand,Judithe,Justus,Lieseleta
 
 
 #Giebe Leisegang
-$Haldenzel=Eckhart,Ferdinand,Justus
+$Haldenzel=FERDI_GUARDS
 +$3c
 $Leisegang=Alexis,Charlotte,Natalie,Wilfried
 $Leisegang=3a,3b
@@ -166,7 +166,7 @@ $M=Benno
 #Sitting Out the Archduke Conference
 // Time: "discussion at the Italian restaurant with Ehrenfest’s major store owners"
 >>2,Lunch
-$C=Eckhart,Ferdinand,Justus
+$C=FERDI_GUARDS
 +$4
 // benno/gustav explicitly mentioned
 // freida/mark/otto are just educated guesses
@@ -175,10 +175,188 @@ $IR=MYNE_GUARDS,MYNE_SCHOLARS,Benno,Freida,Gustav,Mark,Otto
 >
 -$4
 >>Morning
-$C=MYNE_GUARDS_ALL,MYNE_SCHOLARS
+$C=MYNE_GUARDS_ALL,MYNE_SCHOLARS,Ella,Hugo
+// Time: "up until the day before everyone was due to leave for the Archduke Conference."
+// spring prayer (early spring) until ad conf (late spring) only has 10 days accounted for
+// that's no where near enough to launder in a bunch of days, so timeskip it is
+>>>1
+>
++$5a
+$RA=Elvira,Florencia,Hartmut,Karstedt,Norbert,Sylvester
+// magdalena gets name dropped in a ss set during the ad conf
+$RA_RV=Eggy,Magdalena
+// sieglinde also gets name dropped in the same ss
+$Ditter=Sieglinde
++$5b
+$RA=Ana,AnaFather,AubDitter,Eggy,Georgine,Gieselfried,Heisshitze,Hildebrand,Sieglinde,Sigi
+>>Morning
+// mana seperation lesson
+>>Morning
+// blueprints lesson
+>Dinner
+// ferdi summoned to RA
+$RA=FERDI_GUARDS
+>H2
+>
+$C=FERDI_GUARDS
+>>Morning
+>Lunch
+// ferdi tells myne and boni about why he was summoned
+// Time: "several days later"
+>>3,Morning
+$RA=FERDI_GUARDS
+// Time: "Two days had passed since Ferdinand had been summoned,"
+>>2,Morning
+// Time: "Bonifatius joined us for dinner"
+>Dinner
+// Time: "afternoon the very next day"
+>>Lunch
+// all archducal family entourages do paperwork in a meeting room
+// Time: "over the next few days"
+>>3,Morning
+// Time: "on another day"
+>>Morning
+// myne asks boni about his past at the RA
 
 
 
+#Report on the Archduke Conference (Second Year)
+// Time: "soon enough, the Archduke Conference came to an end"
+// so far 13 days since the start of the AC
+>>3,Morning
+$C=FERDI_GUARDS
+-$5a,5b
+// Time: "the day after everyone returned"
+>>Lunch
+>
+
+
+
+#A More Private Meeting (Second Year)
+>
+
+
+
+#Decisions
+// "I was being forced to partake in tea parties with Elvira and her friends"
+$C=Elvira
+// Time: "returned to the temple once he had worked through his meetings"
+>>3,Morning
+$T=MYNE_GUARDS_ALL,MYNE_SCHOLARS,FERDI_GUARDS,Ella,Hugo
+$KE=Elvira
+>
+
+
+
+#Successors
+// gil is mentioned in this chapter but i thought he stayed with
+// the gutenbergs in leisegang, gonna leave him there
+// Time: "After lunch"
+>Lunch
+// Time: "the day of the assignment ceremony had arrived"
+>>4,Morning
+// hartmut assignment ceremony
+>
+
+
+
+#Another Discussion and Making Rejuvenation Potions
+// Time: "The day of our talk with the lower-city merchants had arrived,"
+>>2,Lunch
++$6
+$T=Benno,Freida,Gustav,Mark,Otto,Theo,Tuuli
+>
+-$6
+// brewing potions
+// Time: "The next day"
+>>Lunch
+
+
+
+#Hartmut’s First Ceremony and Another Jureve
+// jureve brewed
+>
+// Time: "“Four days, as I expected.”"
+>>4,Morning
+// Time: "I continued my studies every day until the end of spring."
+// "It was almost time for the coming-of-age ceremony"
+>>>1
+>>Morning
+$T=Effa,Gunther
+>
+$MF=Effa,Gunther
+// myne blesses hartmut
+
+
+
+#A Visitor and Counterstrategies
+// Time: "The summer baptism ceremony was now over and done with"
+// "soon enough, it was time for the Starbinding."
+// myne and ferdi have a conversation between summer baptism and
+// starbinding, but since they don't move it doesn't need to be put in
+>>>1
+// gutenbergs probably come at some point during this timeskip
+-$3a
+>>Morning
++$7
+$KE=Angelica,Bonifatius,Cornelius,Eckhart,Elvira,Karstedt,Lamprecht,Myne
+>
+>
+-$7
+>>Morning
+$C=MYNE_GUARDS_ALL,MYNE_SCHOLARS,FERDI_GUARDS,Ella,Elvira,Hugo
+// myne asks about ferdi's proposal feystone
+
+
+
+#The Welcoming Feast
+// Time: "A short while after the peak of summer"
+>>4,Morning
+$C=Detlinde,Georgine,Martina,Raimund
+// Time: "the next day to inform me that Detlinde had asked for a hairpin."
+>>Morning
+$T=MYNE_GUARDS
+>
++$8a
+$FE=Fran,Zahm
+$C=MYNE_GUARDS
+
+
+#Ferdinand’s Estate
+// Time: "It was the day of our trip"
+>>2,Lunch
++$8b
+$FE=MYNE_GUARDS_ALL,MYNE_SCHOLARS,FERDI_GUARDS,Alexis,Brunhilde,Charlotte,Ella,Hugo,Lieseleta,Melchior,Natalie,Raimund,Vanessa,Wilfried
+>H1
++$8c
+$FE=Detlinde,Martina,Raimund
+>H1
++$8d
+$FE=Corinna,Otto
+>
+>
+-$8c,8d
+>
+-$8a,8b
+// Time: "an urgent message had arrived from Ahrensbach, forcing her and Georgine to hurry back."
+>>2,Morning
+
+
+
+#Epilogue
+// not sure if raimund just highbeasts all the way back
+// or if he takes a carriage because he doesn't have a lot of mana
+@?Raimund
+$C=Seltier
+>FifthBell
+$SmallTowns=Detlinde,Georgine,Martina,Seltier
+>>Morning
+>U2
+$SP=Detlinde,Georgine,Martina,Seltier
+$Ahrensbach=Raimund
+// Time: no idea how long georgine stays at gerlach
+>>2,Morning
+$Ahrensbach=Detlinde,Georgine,Martina,Seltier
 
 
 
