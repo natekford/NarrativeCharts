@@ -52,6 +52,7 @@ public static class BookwormLocations
 
 	static BookwormLocations()
 	{
+		// attributes don't work for this as well as they do for character colors
 		YIndexes = new[]
 		{
 			RA_Royals,
