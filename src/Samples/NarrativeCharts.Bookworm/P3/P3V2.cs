@@ -73,7 +73,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToCurrentDay(Bed);
 		Add(MynesHouse, Effa, Gunther, Kamil);
 
-		// Time: "It’s due in three days"
+		// Time: "It's due in three days"
 		SkipToDaysAhead(3, Lunch);
 		Add(Temple, Damuel, Fran, Myne);
 		var s1 = AddR(Temple, Benno, Effa, Lutz, Tuuli);
@@ -197,7 +197,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 
 	private void P3V2C08()
 	{
-		// Time: "The day I could visit Hasse’s orphanage had finally arrived."
+		// Time: "The day I could visit Hasse's orphanage had finally arrived."
 		SkipToNextDay(Meetings);
 		var s1 = AddR(Hasse, Brigitte, Damuel, Ferdinand, Fran, Gil, Myne);
 		Jump();
@@ -242,12 +242,12 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// myne has lunch with wilf and talks about what to do
 		// brig/damuel go with wilf (from wilf's SS)
 		// "Lamprecht and Damuel will accompany you as guards"
-		// "Rozemyne’s female knight who had entered with Ferdinand saluted and stepped aside."
+		// "Rozemyne's female knight who had entered with Ferdinand saluted and stepped aside."
 		Add(Temple, Brigitte, Damuel, Ferdinand, Lamprecht, Wilfried);
 		Add(EhrenfestCastle, Moritz, Oswald);
 		// Time: "Fifth bell rang and there was still no sign of Rihyarda."
 		SkipToCurrentDay(FifthBell);
-		// Time: "“Milady, it’s dinner time!” Rihyarda declared"
+		// Time: "“Milady, it's dinner time!” Rihyarda declared"
 		SkipToCurrentDay(Dinner);
 		// ferdinand tells sylvester to disinherit wilf
 		var s1 = AddR(EhrenfestCastle, Ferdinand);
@@ -266,7 +266,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(EhrenfestCastle, Eckhart, Justus);
 		Jump();
 		Add(KnightsOrder, Eckhart);
-		// "I’ve been doing scholar work in the castle ever since Lord Ferdinand entered the temple"
+		// "I've been doing scholar work in the castle ever since Lord Ferdinand entered the temple"
 		Add(EhrenfestCastle, Justus);
 	}
 
@@ -353,7 +353,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToNextDay(Lunch);
 
 		// They're at some town named Dorvan, but it doesn't need a location tbh
-		// Time: "After informing Dorvan’s mayor that we would be staying for a few days after the Harvest Festival"
+		// Time: "After informing Dorvan's mayor that we would be staying for a few days after the Harvest Festival"
 		// "“Tonight is the Night of Schutzaria.” Justus explained as we ate breakfast together."
 		SkipToDaysAhead(3, Morning);
 		// Time: "would be going to look for a ruelle tree after lunch"

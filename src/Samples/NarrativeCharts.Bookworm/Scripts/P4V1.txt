@@ -18,7 +18,7 @@ $T=Damuel
 
 
 #Moving to the Castle
-// Time: "In three days’ time"
+// Time: "In three days' time"
 // 1 day has already passed
 >>2,Morning
 $C=Angelica,Cornelius,Damuel,Eckhart,Ella,Ferdinand,Hugo,Justus,Myne,Rosina

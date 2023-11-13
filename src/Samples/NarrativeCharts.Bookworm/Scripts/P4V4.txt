@@ -81,7 +81,7 @@ $KE=Elvira,Nikolaus
 #Another Gathering of the Gutenbergs
 >
 -$3
-// Time: "The Gutenbergs would be gathering on the day before the baptisms in the orphanage director’s chambers"
+// Time: "The Gutenbergs would be gathering on the day before the baptisms in the orphanage director's chambers"
 // I think this means 3 days later? since 3 have passed since COA ceremony
 >>3,ThirdBell
 +$4,T=Benno,Heidi,Ingo,Johann,Josef,Lutz,Mark,Zack
@@ -96,7 +96,7 @@ $W=Danilo
 // Time: "The spring baptism ceremony had begun."
 >>Morning
 // ceremony gets done
-// "Justus was absent, since he was visiting the Noble’s Quarter"
+// "Justus was absent, since he was visiting the Noble's Quarter"
 $NQ=Justus
 >FourthBell
 >>Morning
@@ -196,7 +196,7 @@ $Haldenzel=Angelica,Benno,Charlotte,Damian,Elvira,Ernesta,Johann,Karstedt,Lampre
 >
 >>Morning
 $T=Eckhart,Ferdinand,Justus
-// Time: "we couldn’t leave before the Plantin Company finished their work, which was due to take a few more days"
+// Time: "we couldn't leave before the Plantin Company finished their work, which was due to take a few more days"
 >>Lunch
 $C=Charlotte,Ernesta,Karstedt,Lamprecht,Lieseleta,Philine,Wilfried
 $KE=Elvira

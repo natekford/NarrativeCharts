@@ -92,7 +92,7 @@ $M=Benno
 
 
 
-#My Brother Lamprecht’s Wedding
+#My Brother Lamprecht's Wedding
 +$5,C=MYNE_GUARDS,Eckhart,Ferdinand,Hartmut,Philine
 >>Morning
 >>3,ThirdBell
@@ -245,7 +245,7 @@ $T=Hartmut,Philine
 
 
 #The Start of Winter Socializing (Second Year)
-// Time: "Days after Schwartz’s and Weiss’s outfits were completed,"
+// Time: "Days after Schwartz's and Weiss's outfits were completed,"
 >>3,Morning
 >>ThirdBell
 +$11,T=Otto,Theo,Tuuli
@@ -274,7 +274,7 @@ $KE=Aurelia
 >>Morning
 $C=Bertilde,Laurenz,Matthias,Nikolaus,Roderick,Traugott
 >>2,Morning
-// "The playroom’s population decreased by the day as the students gradually departed for the Royal Academy."
+// "The playroom's population decreased by the day as the students gradually departed for the Royal Academy."
 // 6th years
 $RA_DO=Adolphine,Rudiger
 $RA_DE=Cornelius,Hartmut,Leonore
@@ -312,7 +312,7 @@ $RA_DE=Charlotte,Vanessa
 
 
 
-#Hirschur’s Visit and the Advancement Ceremony
+#Hirschur's Visit and the Advancement Ceremony
 // Time: "dinner today"
 >Dinner
 // Time: "The next day,"

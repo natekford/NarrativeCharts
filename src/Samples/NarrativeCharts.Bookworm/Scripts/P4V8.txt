@@ -27,7 +27,7 @@ $NQ=Laurenz,Matthias,Traugott
 
 
 
-#The Winter Playroom and Judithe’s Younger Brother
+#The Winter Playroom and Judithe's Younger Brother
 $C=Theodore
 >
 
@@ -46,20 +46,20 @@ $C=Theodore
 
 
 
-#Melchior’s Baptism
+#Melchior's Baptism
 // "so Lieseleta and Brunhilde had gone to the temple to fetch"
 >>Morning
 $T=Brunhilde,Lieseleta
 >
 $C=Brunhilde,Lieseleta
 // tea party with melchior
-// Time: "Thus came the day of Melchior’s baptism."
+// Time: "Thus came the day of Melchior's baptism."
 // idk
 >>3,Morning
 
 
 
-#Ahrensbach’s Fish Cuisine
+#Ahrensbach's Fish Cuisine
 // Time: "The feast celebrating spring marked the end of winter socializing."
 // i think melchior's baptism happens at the start of the feast?
 // idk how long it lasts
@@ -102,7 +102,7 @@ $T=FERDI_GUARDS,MYNE_GUARDS_ALL,MYNE_SCHOLARS,Ella,Lieseleta
 
 
 #Dissecting Fish
-// Time: "It wasn’t until the third day that he gave me an answer"
+// Time: "It wasn't until the third day that he gave me an answer"
 // "Two days from now"
 >>5,Morning
 // fish time
@@ -147,19 +147,20 @@ $Leisegang=3a,3b
 
 
 
-
 #Visiting Great-Grandfather
 // Time: "we scheduled a date for us to meet with Great-Grandfather."
 >>2,ThirdBell
 >
 -$3b,3c
 $M=Benno
+// gil shows up in a later chapter despite the gutenbergs not coming back yet
+$T=Gil
 // there's no transition between this chapter and the next
 
 
 
 #Sitting Out the Archduke Conference
-// Time: "discussion at the Italian restaurant with Ehrenfest’s major store owners"
+// Time: "discussion at the Italian restaurant with Ehrenfest's major store owners"
 >>2,Lunch
 $C=FERDI_GUARDS
 // benno/gustav explicitly mentioned
@@ -264,7 +265,7 @@ $KE=Elvira
 
 
 
-#Hartmut’s First Ceremony and Another Jureve
+#Hartmut's First Ceremony and Another Jureve
 // jureve brewed
 >
 // Time: "“Four days, as I expected.”"
@@ -286,8 +287,6 @@ $MF=Effa,Gunther
 // myne and ferdi have a conversation between summer baptism and
 // starbinding, but since they don't move it doesn't need to be put in
 >>>1
-// gutenbergs probably come at some point during this timeskip
--$3a
 >>Morning
 +$7,KE=Angelica,Bonifatius,Cornelius,Eckhart,Elvira,Karstedt,Lamprecht,Myne
 >
@@ -311,10 +310,11 @@ $T=MYNE_GUARDS
 $C=MYNE_GUARDS
 
 
-#Ferdinand’s Estate
+
+#Ferdinand's Estate
 // Time: "It was the day of our trip"
 >>2,Lunch
-+$8b,FE=MYNE_GUARDS_ALL,MYNE_SCHOLARS,FERDI_GUARDS,Alexis,Brunhilde,Charlotte,Ella,Hugo,Lieseleta,Melchior,Natalie,Raimund,Vanessa,Wilfried
++$8b,FE=MYNE_GUARDS_ALL,MYNE_SCHOLARS,FERDI_GUARDS,Alexis,Brunhilde,Charlotte,Ella,Hugo,Lieseleta,Melchior,Natalie,Vanessa,Wilfried
 >H1
 +$8c,FE=Detlinde,Martina,Raimund
 >H1

@@ -50,7 +50,7 @@ $Haldenzel=Damuel,Ferdinand,Karstedt,Lamprecht
 $C=Damuel,Ferdinand,Karstedt,Lamprecht
 // Time: "Several more days passed"
 >>2,Morning
-// Time: "one full week after I had given the Knight’s Order my blessing"
+// Time: "one full week after I had given the Knight's Order my blessing"
 >>2,Lunch
 // Time: "Several days had passed"
 >>2,Lunch
@@ -177,7 +177,7 @@ $RA_DO=Heisshitze
 
 
 
-#Angelica’s Graduation Ceremony
+#Angelica's Graduation Ceremony
 >
 $RA_DE=Hirschur
 // Time: "The graduation ceremony would take place the day after the Interduchy Tournament."

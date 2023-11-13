@@ -75,7 +75,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 			Add(Temple, Ella);
 			// Hugo doesn't come back until v2 (todd isn't mentioned but ferdinand does say chef*s*)
 			// but idk, myne only retrieves hugo and todd isn't mentioned once in p3v2
-			// "I planned to retrieve Hugo as well. I couldn’t foresee there being any issues with that since it was past the date we had agreed on anyway."
+			// "I planned to retrieve Hugo as well. I couldn't foresee there being any issues with that since it was past the date we had agreed on anyway."
 			Add(ItalianRestaurant, /*Hugo, */Todd);
 		}
 		Event("Elvira and Lamprecht Attack");
@@ -245,7 +245,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 		// Time: The next day
 		SkipToNextDay(Morning);
-		// "Karstedt and Cornelius had already headed to the Knight’s Order, so Elvira was the only one to see me off."
+		// "Karstedt and Cornelius had already headed to the Knight's Order, so Elvira was the only one to see me off."
 		Add(KnightsOrder, Cornelius, Karstedt);
 		Add(Temple, Brigitte, Damuel, Ella, Myne, Rosina);
 		// Inaguration ceremony
@@ -484,7 +484,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Return(s1);
 
 		// Time: "From there, I spent my days practicing ... "
-		// "It was the evening five days before Ferdinand’s concert."
+		// "It was the evening five days before Ferdinand's concert."
 		// 13 days since concert was said to be "in a month"
 		// so a 12 day timeskip at minimum
 		SkipToDaysAhead(12, MarketClose);
@@ -531,7 +531,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// "Deid, would also be heading there soon"
 		Add(Hasse, Deid, Ingo);
 
-		// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director’s chambers."
+		// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director's chambers."
 		SkipToDaysAhead(2, Lunch);
 		var s1 = AddR(Temple, Benno, Lutz, Tuuli);
 		Jump();

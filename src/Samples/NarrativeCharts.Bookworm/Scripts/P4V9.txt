@@ -1,0 +1,80 @@
+﻿##P4V9
++%MYNE_GUARDS=Angelica,Damuel,Myne
++%MYNE_GUARDS_ALL=MYNE_GUARDS,Cornelius,Judithe,Leonore
++%MYNE_SCHOLARS=Hartmut,Philine,Roderick
++%MYNE_ATTEND=Brunhilde,Lieseleta
++%FERDI_GUARDS=Eckhart,Ferdinand,Justus
+
+#Prologue
+>
+
+
+
+#Rewarding Hartmut's Hard Work
+>>Morning
+$T=MYNE_GUARDS_ALL,MYNE_ATTEND,MYNE_SCHOLARS,FERDI_GUARDS
+// Time: "before I knew it, the summer coming-of-age ceremony had arrived."
+// starbinding is mid summer and summer COA is final week of summer
+// only ~15 days accounted for, so timeskip time
+>>>1
+// Time: "The autumn baptisms came soon after,"
+// either 2 days or 9 days, 2 seems more "soon after"
+// than 9
+>>2,Morning
+// hartmut gets more work
+
+
+
+#The Harvest Festival and a Meeting
+// Time: "The Harvest Festival arrived seemingly out of nowhere."
+// ok this one really is deserving of a timeskip
+// this is legitimately like 70+ days in a single chapter
+// "so after traveling through the Central District"
+// the pattern of this is pretty known but i'm not
+// gonna bother putting it in because the book basically
+// skipped over it at this point, which is understandable
+// after 4? times of going through it
+>>>1
+>
+$Leisegang=MYNE_GUARDS
+>
+$T=MYNE_GUARDS
+$W=Heidi,Ingo,Johann,Josef,Zack
+$M=Damian,Lutz
+// Time: "I promptly summoned the Gilberta, Plantin, and Othmar Companies for a meeting."
+>>2,ThirdBell
++$1,T=Benno,Freida,Gustav,Lutz,Mark,Otto,Theo,Tuuli
+>
+// not sure exactly when she goes back, but it's mentioned in this chapter
+$Klassenberg=Karin
+// one of othmar company's attendants is mentioned (cosimo)
+// idr if they were mentioned in p1/p2 and im not gonna bother including
+// them anyways
+-$1
+// myne invites ferdi to a farewell dinner at the IR
+
+
+
+#The Farewell Dinner
+// Time: "Ten days from now"
+>>10,Lunch
++$2,IR=MYNE_GUARDS_ALL,MYNE_ATTND,MYNE_SCHOLARS,FERDI_GUARDS,Fran,Freida,Monika,Rosina,Zahm
+>
+>
+-$2
+
+
+
+#Farewell Gifts
+
+
+
+
+
+
+
+
+
+
+
+>H24

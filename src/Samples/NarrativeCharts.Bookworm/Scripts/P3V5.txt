@@ -66,7 +66,7 @@ $MF=Gunther
 >>12,Morning
 // meet up with ferdi in dorvan
 >>Morning
-// Time: "I’m almost there. Have lunch ready."
+// Time: "I'm almost there. Have lunch ready."
 >Lunch
 $SmallTowns=Karstedt
 >Bed
@@ -132,7 +132,7 @@ $M=Damian,Lutz
 #The Jureve and Mana Compression
 >>Morning
 -$3
-// Time: "Several days after Wilfried’s fate had been decided"
+// Time: "Several days after Wilfried's fate had been decided"
 >>2,Meetings
 // Time: "we would make my potion tomorrow, from third to fourth bell"
 >>ThirdBell

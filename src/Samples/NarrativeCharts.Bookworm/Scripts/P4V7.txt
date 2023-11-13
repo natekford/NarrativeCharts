@@ -34,7 +34,7 @@ $RA_DE=Cornelius
 
 
 
-#Sylvester’s Order
+#Sylvester's Order
 // Time: "I would start my mornings"
 // who knows, probably long enough for a timeskip
 >>>1
@@ -82,7 +82,7 @@ $T=Eckhart,Ferdinand,Justus
 // idk
 >>3,Morning
 $C=MYNE_ADULT_GUARDS,Cornelius,Eckhart,Ella,Ferdinand,Justus,Leonore
-// Time: "I went to the knights’ training grounds at third bell."
+// Time: "I went to the knights' training grounds at third bell."
 >>ThirdBell
 // myne shows syl/ferdi/boni water gun
 >
@@ -208,7 +208,7 @@ $Ditter=AubDitter
 
 
 
-#Hartmut’s Marriage Partner
+#Hartmut's Marriage Partner
 // Time: "No sooner had fifth bell rung"
 >
 

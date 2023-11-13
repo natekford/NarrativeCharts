@@ -45,7 +45,7 @@ $M=Lutz
 #Benno's Request
 >
 -$1
-// Time: "Three days later, Benno and Lutz visited the orphanage director’s chambers with Hugo in tow."
+// Time: "Three days later, Benno and Lutz visited the orphanage director's chambers with Hugo in tow."
 >>3,Lunch
 $T=Benno,Hugo,Lutz
 // myne hires hugo
@@ -236,7 +236,7 @@ $T=Benno,Brigitte,Damuel,Fran,Hugo,Monika,Myne
 
 #Mount Lohenberg
 // Time: "One day had passed"
-// "Ferdinand’s chambers at third bell"
+// "Ferdinand's chambers at third bell"
 >>ThirdBell
 >
 $T=Justus

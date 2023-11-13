@@ -45,7 +45,7 @@ $RA_SH=Pauline
 >
 -$2
 $RA_S=Pauline
-// Time: "We easily passed the next day’s written lessons as well."
+// Time: "We easily passed the next day's written lessons as well."
 >>ThirdBell
 +$3,RA_A=ALL_STUDENTS,Rihyarda
 $RA_SH=Charlotte
@@ -110,7 +110,7 @@ $RA_FH=Charlotte
 
 
 
-#Roderick’s Wish
+#Roderick's Wish
 $RA_DO=Hannelore,Ortwin
 $RA_DE=Judithe,Myne,Philine,Rihyarda,Roderick,Wilfried
 >
@@ -187,7 +187,7 @@ $RA_RV=Hildebrand
 
 
 
-#Professor Hirschur’s Laboratory
+#Professor Hirschur's Laboratory
 >
 -$11
 >>Morning
@@ -198,7 +198,7 @@ $RA_DO=Gundolf
 
 
 
-#Professor Hirschur’s Disciple
+#Professor Hirschur's Disciple
 -$12
 // Time: "Ferdinand is coming here tomorrow afternoon,"
 >>Lunch

@@ -13,7 +13,7 @@ $T=Ferdinand,Fran
 
 
 #Ingo and Improving the Printing Press
-// Time: "once he had finished today’s before-bed report"
+// Time: "once he had finished today's before-bed report"
 >Bed
 $T=Gil,Myne
 >>Lunch
@@ -63,7 +63,7 @@ $C=Ferdinand
 #The Baptism Ceremony and Our Winter Debut
 $C=Eckhart,Elvira,Justus,Karstedt
 $C=Philine
-// Time: "we’ve moved straight onto lunch"
+// Time: "we've moved straight onto lunch"
 >Lunch
 $C=Christine
 >
@@ -92,7 +92,7 @@ $RA=Angelica,Christine,Cornelius,Hartmut
 
 
 #A Tea Party
-// Time: "Around the time that the kids were getting used to the playroom’s schedule"
+// Time: "Around the time that the kids were getting used to the playroom's schedule"
 >>3,Morning
 // myne looks through meeting requests
 // sets up meetings with guards' families
@@ -107,10 +107,10 @@ $NQ=Henrik
 $C=Helfried
 >
 $NQ=Helfried
-// Time: "Next arrived the day I was scheduled to meet Angelica’s family"
+// Time: "Next arrived the day I was scheduled to meet Angelica's family"
 >>2,Meetings
 // they dont have names
-// Time: "Yet more days passed after meeting Angelica’s parents"
+// Time: "Yet more days passed after meeting Angelica's parents"
 >>4,Meetings
 // tea party with flor/elvira about the harspiel concert
 // scret ferdinand illustration
