@@ -1,6 +1,78 @@
 ﻿##P5V1
++%MYNE_GUARDS=Judithe,Leonore,Myne
++%MYNE_GUARDS_ALL=MYNE_GUARDS,Theodore
++%MYNE_SCHOLARS=Philine,Roderick
++%MYNE_ATTEND=Brunhilde,Lieseleta
++%MYNE_RETAINERS=MYNE_GUARDS_ALL,MYNE_SCHOLARS,MYNE_ATTEND,Rihyarda
++%WILF_RETAINERS=Alexis,Ignaz,Isidore,Oswald,Wilfried
++%CHAR_RETAINERS=Charlotte,Kathrein,Marianne,Natalie,Vanessa
++%FVF=Gretia,Laurenz,Matthias,Muriella
++%MISC_EHR=Traugott
++%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,FVF,MISC_EHR
++%OTHER_DUCHIES=Detlinde,Hannelore,Lestilaut,Luzinde,Martina,Ortwin,Raimund
++%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 
 #Prologue
+>
+
+
+
+#The Children of the Former Veronica Faction
+// Time: "the next day, Charlotte brought us his response"
+// 2nd years
+>>Morning
+$RA_DE=Charlotte,Vanessa
+$RA_DO=Luzinde
+// Time: "The next day, once the first-years had all arrived"
+>>Morning
+// i think theodore is a 1st year?
+>>Morning
+$RA_DE=Theodore
+// muriella gets introduced
+// idr if she was in RAS
+$RA_DE=Gretia,Muriella
+
+
+
+#The Fellowship Gatherings (Third Year)
+>
+$RA_DE=Hirschur
+>H1
+>
+$RA_S=Hirschur
+// Time: "The ceremonies are tomorrow"
+>>ThirdBell
++$1,RA_A=ALL_STUDENTS
+// "no students from the former Veronica faction will attend"
+$RA_DE=FVF
+>H1
+>
+$RA_SH=Brunhilde,Judithe,Leonore,Myne,Roderick,Theodore
+$RA_SH=Alexis,Charlotte,Natalie,Wilfried
+$RA_SH=Detlinde,Hannelore,Lestilaut,Luzinde,Ortwin
+>H1
+>
+
+
+
+#Passing Classes
+-$1
+$RA_RV=Hildebrand
+$RA_DE=Raimund
+>
+$RA_S=Raimund
+
+
+
+#The New Librarian
+
+
+
+
+
+
+
+
 
 
 

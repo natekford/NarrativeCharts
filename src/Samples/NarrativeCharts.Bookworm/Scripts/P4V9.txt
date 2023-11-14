@@ -185,7 +185,8 @@ $Ahrensbach=Sergius
 
 #The Start of a Busy Winter
 // Time: "Feast of Beginnings was soon to start."
->>6,Morning
+// from p5v1: "Winter socializing began not even five days after Ferdinand had departed"
+>>Morning
 +%W_LG=Bertilde,Claudio,GiebeLeisegang,GiebeGroschel,OldLeisegang
 +%W_SP=Bettina,Freuden,GiebeDahldolf,Grausam,Janrik,Jeremias,Laurenz,Matthias,Royella,Sidonius
 +%W_Other=Brigitte,Helfried,Nadine,Viktor,Volk,GiebeKirnberger,Theodore
@@ -206,28 +207,23 @@ $RA_DE=Alexis,Leonore,Lieseleta
 $RA_DO=Clarissa,Detlinde,Lestilaut
 // 5th years (and hugo usually goes ahead of myne, so throw him in here)
 >>Morning
-$RA_DE=Brunhilde,Hugo,Isidore,Kathrein,Matthias,Natalie
+$RA_DE=Brunhilde,Hugo,Isidore,Kathrein,Matthias,Natalie,Traugott
 $RA_DO=Martina
 // 4th years
 >>Morning
 $RA_DE=Ignaz,Judithe,Laurenz,Marianne
-$RA_DO=Kenntrips
-$RA_S=Raimund
+$RA_DO=Kenntrips,Raimund
 // 3rd years
 >>Morning
-$RA_DE=Ella,Myne,Philine,Rihyarda,Rosina
+$RA_DE=Ella,Myne,Philine,Rihyarda,Roderick,Rosina
 $RA_DE=Oswald,Wilfried
 $RA_DO=Hannelore,Ortwin
 $T=Damuel,Hartmut
-// 2nd years
-//>>Morning
-//$RA_DE=Charlotte,Vanessa
-//$RA_DO=Luzinde
 
 
 
 //#The New Children
-// Bertram gets introduced
+// Bertram gets introduced not even 10 days into winter socializing
 
 
 
