@@ -1,11 +1,7 @@
 ﻿using NarrativeCharts.Models;
-using NarrativeCharts.Time;
 
-using System;
 using System.Runtime.CompilerServices;
 using System.Text;
-
-using static System.Formats.Asn1.AsnWriter;
 
 namespace NarrativeCharts.Scripting;
 
@@ -50,7 +46,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void Add(Location location, IEnumerable<Character> characters)
 	{
-		DoThenWrite(() => base.Add(location, characters), sb => sb
+		DoThenWriteIfTopMethod(() => base.Add(location, characters), sb => sb
 			.Append($"{nameof(Add)}(")
 			.Append(ToProperty(location))
 			.Append(", ")
@@ -61,7 +57,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void AddHours(int amount = 1)
 	{
-		DoThenWrite(() => base.AddHours(amount), sb => sb
+		DoThenWriteIfTopMethod(() => base.AddHours(amount), sb => sb
 			.Append($"{nameof(AddHours)}(")
 			.Append(amount)
 			.AppendLine(");")
@@ -73,7 +69,7 @@ public abstract class ScriptConverter : ScriptParser
 		// this is probably some of the ugliest code i've ever written
 		Dictionary<Character, Location> dict = [];
 		var property = $"StoredScene{StoredSceneProperties.Count + 1}";
-		DoThenWrite(() => dict = base.AddR(location, characters), sb => sb
+		DoThenWriteIfTopMethod(() => dict = base.AddR(location, characters), sb => sb
 			.Append(property)
 			.Append($" = {nameof(AddR)}(")
 			.Append(ToProperty(location))
@@ -88,7 +84,7 @@ public abstract class ScriptConverter : ScriptParser
 	protected override void Event(string name)
 	{
 		Chapters.Add(new());
-		DoThenWrite(() => base.Event(name), sb => sb
+		DoThenWriteIfTopMethod(() => base.Event(name), sb => sb
 			.Append("// ")
 			.Append(Hour)
 			.AppendLine(" hours")
@@ -100,7 +96,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void Freeze(IEnumerable<Character> characters)
 	{
-		DoThenWrite(() => base.Freeze(characters), sb => sb
+		DoThenWriteIfTopMethod(() => base.Freeze(characters), sb => sb
 			.Append($"{nameof(Freeze)}(")
 			.AppendJoin(", ", ToProperties(characters))
 			.AppendLine(");")
@@ -109,7 +105,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void Jump(int amount = 1)
 	{
-		DoThenWrite(() => base.Jump(amount), sb => sb
+		DoThenWriteIfTopMethod(() => base.Jump(amount), sb => sb
 			.Append($"{nameof(Jump)}(")
 			.Append(amount)
 			.AppendLine(");")
@@ -118,7 +114,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void Kill(IEnumerable<Character> characters)
 	{
-		DoThenWrite(() => base.Kill(characters), sb => sb
+		DoThenWriteIfTopMethod(() => base.Kill(characters), sb => sb
 			.Append($"{nameof(Kill)}(")
 			.AppendJoin(", ", ToProperties(characters))
 			.AppendLine(");")
@@ -127,7 +123,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void Return(IEnumerable<KeyValuePair<Character, Location>> points)
 	{
-		DoThenWrite(() => base.Return(points), sb => sb
+		DoThenWriteIfTopMethod(() => base.Return(points), sb => sb
 			.Append($"{nameof(Return)}(")
 			.Append(StoredSceneProperties[points])
 			.AppendLine(");")
@@ -136,7 +132,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void SkipToCurrentDay(int unit)
 	{
-		DoThenWrite(() => base.SkipToCurrentDay(unit), sb => sb
+		DoThenWriteIfTopMethod(() => base.SkipToCurrentDay(unit), sb => sb
 			.Append($"{nameof(SkipToCurrentDay)}(")
 			.Append(ToUnitName(unit))
 			.AppendLine(");")
@@ -145,7 +141,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void SkipToDaysAhead(int days, int unit)
 	{
-		DoThenWrite(() => base.SkipToDaysAhead(days, unit), sb => sb
+		DoThenWriteIfTopMethod(() => base.SkipToDaysAhead(days, unit), sb => sb
 			.Append($"{nameof(SkipToDaysAhead)}(")
 			.Append(days)
 			.Append(", ")
@@ -156,7 +152,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void SkipToNextDay(int unit)
 	{
-		DoThenWrite(() => base.SkipToNextDay(unit), sb => sb
+		DoThenWriteIfTopMethod(() => base.SkipToNextDay(unit), sb => sb
 			.Append($"{nameof(SkipToNextDay)}(")
 			.Append(ToUnitName(unit))
 			.AppendLine(");")
@@ -165,7 +161,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void TimeSkip(int days)
 	{
-		DoThenWrite(() => base.TimeSkip(days), sb => sb
+		DoThenWriteIfTopMethod(() => base.TimeSkip(days), sb => sb
 			.Append($"{nameof(TimeSkip)}(")
 			.Append(days)
 			.AppendLine(");")
@@ -174,14 +170,14 @@ public abstract class ScriptConverter : ScriptParser
 
 	protected override void Update()
 	{
-		DoThenWrite(base.Update, sb => sb
+		DoThenWriteIfTopMethod(base.Update, sb => sb
 			.AppendLine($"{nameof(Update)}();")
 		);
 	}
 
 	#endregion NarrativeChart methods
 
-	protected virtual void DoThenWrite(
+	protected virtual void DoThenWriteIfTopMethod(
 		Action then,
 		Action<StringBuilder> modifyChapter,
 		[CallerMemberName] string name = "")
@@ -190,7 +186,7 @@ public abstract class ScriptConverter : ScriptParser
 		then.Invoke();
 		if (CallStack.Pop() != name)
 		{
-			throw new InvalidOperationException("Unexpected value in the method call stack while converting.");
+			throw new InvalidOperationException("Unexpected value in method call stack while converting.");
 		}
 		if (CallStack.Count == 0)
 		{

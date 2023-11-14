@@ -12,7 +12,7 @@
 
 #Rewarding Hartmut's Hard Work
 >>Morning
-$T=MYNE_GUARDS_ALL,MYNE_ATTEND,MYNE_SCHOLARS,FERDI_GUARDS
+$T=MYNE_GUARDS_ALL,MYNE_ATTEND,MYNE_SCHOLARS,FERDI_GUARDS,Rosina
 // Time: "before I knew it, the summer coming-of-age ceremony had arrived."
 // starbinding is mid summer and summer COA is final week of summer
 // only ~15 days accounted for, so timeskip time
@@ -59,19 +59,86 @@ $Klassenberg=Karin
 // Time: "Ten days from now"
 >>10,Lunch
 +$2,IR=MYNE_GUARDS_ALL,MYNE_ATTEND,MYNE_SCHOLARS,FERDI_GUARDS,Fran,Freida,Monika,Rosina,Zahm
->
->
--$2
+$T=Gloria
+>H1
+
 
 
 
 #Farewell Gifts
+// gifts, talking about the upcoming semester,
+// and about the fvf purge
+>
+$NQ=Gloria
 
 
 
+#A Stolen Book
+-$2
+$T=Lothar
+>H1
 
 
 
+#Commoner Testimonies
+>H1
+
+
+
+#Rescue
++$3,SmallTowns=Angelica,Cornelius,Damuel,Eckhart,Ferdinand,Judithe,Justus,Myne
+>H1
+>
+-$3
+
+
+
+#Evidence
+>H1
++$4,KO=Angelica,Judithe,Leonore,Myne
+$KO=Eckhart,Egmont,Ferdinand,Justus,Karstedt
+>H1
+-$4
+// not sure the exact hours the past 6 chapters take place
+// but they all happen on the same day
+
+
+
+#New Perspectives
+// Time: "the next day."
+>>Morning
+$T=Eckhart,Ferdinand,Justus
+$C=Karstedt
+>H1
+
+
+
+#Viscount Dahldolf’s Estate
+$NQ=MYNE_GUARDS_ALL,FERDI_GUARDS,Hartmut
+>H1
+@!Gloria
+>H1
+$C=MYNE_GUARDS,FERDI_GUARDS
+
+
+
+#Finding the Book
+>
+$NQ=MYNE_GUARDS,FERDI_GUARDS
++$5,NQ=GiebeDahldolf,Karstedt,Jeremias,Sylvester
+>H1
+$C=MYNE_GUARDS_ALL,FERDI_GUARDS,Hartmut
+>H1
+>H1
+// "We wasted no time in reporting our findings to Sylvester and Viscount Dahldolf."
+$NQ=MYNE_GUARDS_ALL,FERDI_GUARDS,Hartmut
+>H1
+$T=MYNE_GUARDS_ALL,FERDI_GUARDS,Hartmut
+-$5
+
+
+
+#A Change of Plans
 
 
 
