@@ -12,7 +12,7 @@
 
 #Rewarding Hartmut's Hard Work
 >>Morning
-$T=MYNE_GUARDS_ALL,MYNE_ATTEND,MYNE_SCHOLARS,FERDI_GUARDS,Rosina
+$T=MYNE_GUARDS_ALL,MYNE_ATTEND,MYNE_SCHOLARS,FERDI_GUARDS,Ella,Hugo,Rosina
 // Time: "before I knew it, the summer coming-of-age ceremony had arrived."
 // starbinding is mid summer and summer COA is final week of summer
 // only ~15 days accounted for, so timeskip time
@@ -139,8 +139,95 @@ $T=MYNE_GUARDS_ALL,FERDI_GUARDS,Hartmut
 
 
 #A Change of Plans
+// Time: "the autumn coming-of-age ceremony ended without incident."
+// 12 accounted for days
+// harvest festival is "late autumn", autumn COA is last week of autumn
+>>7,Morning
+// ymir gets name dropped in Memories and Farewells
+$T=Ymir
++$6,C=FERDI_GUARDS,Cornelius,Hartmut,Myne
+>
+>
 
 
+
+#Preparing to Leave
+-$6
+// Time: "The next day"
+>>Morning
+>
+>
+$FE=MYNE_GUARDS_ALL,FERDI_GUARDS,Hartmut,Philine
+>
+>
+$C=MYNE_GUARDS_ALL,MYNE_SCHOLARS,MYNE_ATTEND,FERDI_GUARDS,Ella,Hugo
+// Time: "Ferdinand was busy until the day he needed to leave."
+>>>1
+
+
+
+#Separation
+>>Lunch
++$7,SP=MYNE_GUARDS_ALL,MYNE_SCHOLARS,MYNE_ATTEND,FERDI_GUARDS,Alexis,Charlotte,Florencia,Karstedt,Letizia,Natalie,Sylvester,Wilfried
+>
+>
+
+
+
+#Epilogue
+-$7
+$Ahrensbach=FERDI_GUARDS
+// "After several days"
+>>3,Morning
+$Ahrensbach=Sergius
+
+
+
+#The Start of a Busy Winter
+// Time: "Feast of Beginnings was soon to start."
+>>6,Morning
++%W_LG=Bertilde,Claudio,GiebeLeisegang,GiebeGroschel,OldLeisegang
++%W_SP=Bettina,Freuden,GiebeDahldolf,Grausam,Janrik,Jeremias,Laurenz,Matthias,Royella,Sidonius
++%W_Other=Brigitte,Helfried,Nadine,Viktor,Volk,GiebeKirnberger,Theodore
++%W_ALL=W_LG,W_SP,W_Other
+$NQ=W_ALL
+>>Morning
++$8,C=W_ALL
+>
+>
+-$8
+>>Morning
+// playroom students
+$C=Bertilde,Nikolaus,Theodore
+// Time: "The day for Lady Rozemyne to leave for the Royal Academy came soon enough."
+// 6th years
+>>Morning
+$RA_DE=Alexis,Leonore,Lieseleta
+$RA_DO=Clarissa,Detlinde,Lestilaut
+// 5th years (and hugo usually goes ahead of myne, so throw him in here)
+>>Morning
+$RA_DE=Brunhilde,Hugo,Isidore,Kathrein,Matthias,Natalie
+$RA_DO=Martina
+// 4th years
+>>Morning
+$RA_DE=Ignaz,Judithe,Laurenz,Marianne
+$RA_DO=Kenntrips
+$RA_S=Raimund
+// 3rd years
+>>Morning
+$RA_DE=Ella,Myne,Philine,Rihyarda,Rosina
+$RA_DE=Oswald,Wilfried
+$RA_DO=Hannelore,Ortwin
+$T=Damuel,Hartmut
+// 2nd years
+//>>Morning
+//$RA_DE=Charlotte,Vanessa
+//$RA_DO=Luzinde
+
+
+
+//#The New Children
+// Bertram gets introduced
 
 
 

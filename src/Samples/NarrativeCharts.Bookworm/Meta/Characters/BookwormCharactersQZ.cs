@@ -34,6 +34,8 @@ public static partial class BookwormCharacters
 	public static Character Selim { get; } = new("Selim");
 	[Color(null)]
 	public static Character Seltier { get; } = new("Seltier");
+	[Color("#9ACD32")]
+	public static Character Sergius { get; } = new("Sergius");
 	[Color(null)]
 	public static Character Sidonius { get; } = new("Sidonius");
 	[Color("#DC143C")]
@@ -72,6 +74,8 @@ public static partial class BookwormCharacters
 	public static Character Wilfried { get; } = new("Wilfried");
 	[Color("#DF9139")]
 	public static Character Wilma { get; } = new("Wilma");
+	[Color("#ADD8E6")]
+	public static Character Ymir { get; } = new("Ymir");
 	[Color("#E05F0E")]
 	public static Character Zack { get; } = new("Zack");
 	[Color(null)]
