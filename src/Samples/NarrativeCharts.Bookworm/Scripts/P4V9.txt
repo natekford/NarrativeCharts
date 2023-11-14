@@ -58,7 +58,7 @@ $Klassenberg=Karin
 #The Farewell Dinner
 // Time: "Ten days from now"
 >>10,Lunch
-+$2,IR=MYNE_GUARDS_ALL,MYNE_ATTND,MYNE_SCHOLARS,FERDI_GUARDS,Fran,Freida,Monika,Rosina,Zahm
++$2,IR=MYNE_GUARDS_ALL,MYNE_ATTEND,MYNE_SCHOLARS,FERDI_GUARDS,Fran,Freida,Monika,Rosina,Zahm
 >
 >
 -$2

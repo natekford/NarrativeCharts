@@ -28,9 +28,8 @@ public abstract class ScriptConverter : ScriptParser
 	protected override void HandleAddCharacterGroup(string input)
 	{
 		// no code equivalent
-
-		LineConverted = true;
 		base.HandleAddCharacterGroup(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleAddHours(string input)
@@ -46,16 +45,15 @@ public abstract class ScriptConverter : ScriptParser
 
 			case 1:
 				Chapter
-					.Append($"{nameof(Time)}.{nameof(TimeTrackerUtils.AddHours)}")
-					.Append('(')
+					.Append($"{nameof(Time)}.{nameof(TimeTrackerUtils.AddHours)}(")
 					.Append(args[0])
 					.AppendLine(");")
 					.AppendLine($"{nameof(Update)}();");
 				break;
 		}
 
-		LineConverted = true;
 		base.HandleAddHours(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleAddReturnableScene(string input)
@@ -81,8 +79,8 @@ public abstract class ScriptConverter : ScriptParser
 				break;
 		}
 
-		LineConverted = true;
 		base.HandleAddReturnableScene(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleAddUnits(string input)
@@ -96,31 +94,29 @@ public abstract class ScriptConverter : ScriptParser
 
 			case 1:
 				Chapter
-					.Append(nameof(Jump))
-					.Append('(')
+					.Append($"{nameof(Jump)}(")
 					.Append(args[0])
 					.AppendLine(");");
 				break;
 		}
 
-		LineConverted = true;
 		base.HandleAddUnits(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleChapter(string input)
 	{
-		var sb = new StringBuilder()
+		Chapters.Add(new StringBuilder()
 			.Append("// ")
 			.Append(Hour)
 			.AppendLine(" hours")
-			.Append(nameof(Event))
-			.Append("(\"")
+			.Append($"{nameof(Event)}(\"")
 			.Append(input)
-			.AppendLine("\");");
-		Chapters.Add(sb);
+			.AppendLine("\");")
+		);
 
-		LineConverted = true;
 		base.HandleChapter(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleComment(string input)
@@ -129,32 +125,30 @@ public abstract class ScriptConverter : ScriptParser
 			.Append("//")
 			.AppendLine(input);
 
-		LineConverted = true;
 		base.HandleComment(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleFreeze(string input)
 	{
-		var characters = ToProperties(ParseCharacters(input));
 		Chapter
 			.Append($"{nameof(Freeze)}(")
-			.AppendJoin(", ", characters)
+			.AppendJoin(", ", ToProperties(ParseCharacters(input)))
 			.AppendLine(");");
 
-		LineConverted = true;
 		base.HandleFreeze(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleKill(string input)
 	{
-		var characters = ToProperties(ParseCharacters(input));
 		Chapter
 			.Append($"{nameof(Kill)}(")
-			.AppendJoin(", ", characters)
+			.AppendJoin(", ", ToProperties(ParseCharacters(input)))
 			.AppendLine(");");
 
-		LineConverted = true;
 		base.HandleKill(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleRemoveReturnableScene(string input)
@@ -170,8 +164,8 @@ public abstract class ScriptConverter : ScriptParser
 			}
 		}
 
-		LineConverted = true;
 		base.HandleRemoveReturnableScene(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleScene(string input)
@@ -187,8 +181,8 @@ public abstract class ScriptConverter : ScriptParser
 				break;
 		}
 
-		LineConverted = true;
 		base.HandleScene(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleSkipToCurrentDay(string input)
@@ -202,15 +196,14 @@ public abstract class ScriptConverter : ScriptParser
 
 			case 1:
 				Chapter
-					.Append(nameof(SkipToCurrentDay))
-					.Append('(')
+					.Append($"{nameof(SkipToCurrentDay)}(")
 					.Append(args[0])
 					.AppendLine(");");
 				break;
 		}
 
-		LineConverted = true;
 		base.HandleSkipToCurrentDay(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleSkipToNextDay(string input)
@@ -219,25 +212,19 @@ public abstract class ScriptConverter : ScriptParser
 		switch (args.Length)
 		{
 			case 0:
-				Chapter
-					.Append(nameof(SkipToNextDay))
-					.Append('(')
-					.Append(1)
-					.AppendLine(");");
+				Chapter.AppendLine($"{nameof(SkipToNextDay)}(1);");
 				break;
 
 			case 1:
 				Chapter
-					.Append(nameof(SkipToNextDay))
-					.Append('(')
+					.Append($"{nameof(SkipToNextDay)}(")
 					.Append(args[0])
 					.AppendLine(");");
 				break;
 
 			case 2:
 				Chapter
-					.Append(nameof(SkipToDaysAhead))
-					.Append('(')
+					.Append($"{nameof(SkipToDaysAhead)}(")
 					.Append(args[0])
 					.Append(", ")
 					.Append(args[1])
@@ -245,43 +232,41 @@ public abstract class ScriptConverter : ScriptParser
 				break;
 		}
 
-		LineConverted = true;
 		base.HandleSkipToNextDay(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleTimeSkip(string input)
 	{
 		Chapter
-			.Append(nameof(TimeSkip))
-			.Append('(')
+			.Append($"{nameof(TimeSkip)}(")
 			.Append(input)
 			.AppendLine(");");
 
-		LineConverted = true;
 		base.HandleTimeSkip(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleTitle(string input)
 	{
 		ClassName = input.Replace(" ", "");
 
-		LineConverted = true;
 		base.HandleTitle(input);
+		LineConverted = true;
 	}
 
 	protected override void HandleUpdate(string input)
 	{
 		Chapter.AppendLine($"{nameof(Update)}();");
 
-		LineConverted = true;
 		base.HandleUpdate(input);
+		LineConverted = true;
 	}
 
 	protected override void ProcessLine(string line)
 	{
 		LineConverted = false;
 		base.ProcessLine(line);
-
 		if (!LineConverted)
 		{
 			throw new InvalidOperationException("Line not converted from script to class.");
