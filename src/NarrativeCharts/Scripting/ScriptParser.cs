@@ -99,15 +99,12 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 		var args = SplitArgs(input);
 		switch (args.Length)
 		{
-			// Does the same thing as SkipToCurrentDay no args
 			case 0:
-				Time.AddHour();
-				Update();
+				AddHours(1);
 				return;
 
 			case 1:
-				Time.AddHours(int.Parse(args[0]));
-				Update();
+				AddHours(int.Parse(args[0]));
 				return;
 
 			default:
@@ -150,7 +147,6 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 		var args = SplitArgs(input);
 		switch (args.Length)
 		{
-			// Does the same thing as SkipToCurrentDay no args
 			case 0:
 				Jump();
 				return;

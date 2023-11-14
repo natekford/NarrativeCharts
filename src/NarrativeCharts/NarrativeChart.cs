@@ -77,6 +77,12 @@ public abstract class NarrativeChart : NarrativeChartData
 	protected virtual void Add(Location location, IEnumerable<Character> characters)
 		=> this.AddScene(new(Hour, location, characters));
 
+	protected virtual void AddHours(int amount = 1)
+	{
+		Time.AddHours(amount);
+		Update();
+	}
+
 	protected Dictionary<Character, Location> AddR(
 		Location location,
 		params Character[] characters)

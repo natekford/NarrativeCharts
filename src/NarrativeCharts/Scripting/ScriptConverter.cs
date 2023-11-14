@@ -38,17 +38,14 @@ public abstract class ScriptConverter : ScriptParser
 		switch (args.Length)
 		{
 			case 0:
-				Chapter
-					.AppendLine($"{nameof(Time)}.{nameof(TimeTrackerUtils.AddHour)}();")
-					.AppendLine($"{nameof(Update)}();");
+				Chapter.AppendLine($"{nameof(AddHours)}(1);");
 				break;
 
 			case 1:
 				Chapter
-					.Append($"{nameof(Time)}.{nameof(TimeTrackerUtils.AddHours)}(")
+					.Append($"{nameof(AddHours)}(")
 					.Append(args[0])
-					.AppendLine(");")
-					.AppendLine($"{nameof(Update)}();");
+					.AppendLine(");");
 				break;
 		}
 
