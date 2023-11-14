@@ -34,6 +34,14 @@ $@"
 			methods.Add($"{name}();", method);
 		}
 
+		var properties = new List<string>();
+		foreach (var (_, property) in StoredSceneProperties)
+		{
+			const string TYPE = $"{nameof(Dictionary<int, int>)}<{nameof(Character)}" +
+				$", {nameof(Location)}>";
+			properties.Add($"private {TYPE} {property} {{ get; set; }} = null!;");
+		}
+
 		// the string has bad formatting, but the ide will fix that
 		return
 $@"
@@ -45,6 +53,8 @@ namespace {nameof(NarrativeCharts)}.{nameof(Bookworm)}.*;
 
 public sealed class {ClassName} : {nameof(BookwormNarrativeChart)}
 {{
+	{string.Join($"{Environment.NewLine}\t", properties)}
+
 	public {ClassName}({nameof(TimeTrackerWithUnits)} time) : base(time)
 	{{
 		Name = nameof({ClassName});
@@ -52,7 +62,7 @@ public sealed class {ClassName} : {nameof(BookwormNarrativeChart)}
 
 	protected override void {nameof(ProtectedCreate)}()
 	{{
-		{string.Join("\r\n\t\t", methods.Keys)}
+		{string.Join($"{Environment.NewLine}\t\t", methods.Keys)}
 		{nameof(Update)}();
 	}}
 	{string.Join("\t", methods.Values)}
