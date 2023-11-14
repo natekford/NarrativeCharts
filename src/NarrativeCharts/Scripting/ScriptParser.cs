@@ -12,7 +12,7 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 	private ScriptSymbols? _Symbols;
 
 	public ScriptDefinitions Definitions { get; }
-	protected Dictionary<string, IEnumerable<Character>> CharacterGroups { get; } = [];
+	protected Dictionary<string, HashSet<Character>> CharacterGroups { get; } = [];
 	protected IEnumerable<string> Lines { get; }
 	protected Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; } = [];
 	// Sort in reverse order so something like "##" shows up before "#"

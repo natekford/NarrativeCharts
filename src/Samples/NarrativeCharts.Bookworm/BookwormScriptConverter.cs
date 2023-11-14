@@ -66,6 +66,9 @@ public sealed class {ClassName} : {nameof(BookwormNarrativeChart)}
 	protected override string ToProperty(Location location)
 		=> LocationProperties[location.Value];
 
+	protected override string ToUnitName(int unit)
+		=> ((BookwormBell)unit).ToString();
+
 	private static Dictionary<string, string> CreateDict<T>(
 		Type type,
 		Func<T, string> getValue)

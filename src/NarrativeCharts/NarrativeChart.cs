@@ -123,13 +123,13 @@ public abstract class NarrativeChart : NarrativeChartData
 
 	protected abstract void ProtectedCreate();
 
-	protected virtual void Return(Dictionary<Character, Location> scene)
+	protected virtual void Return(IEnumerable<KeyValuePair<Character, Location>> points)
 	{
-		foreach (var (character, y) in scene)
+		foreach (var (character, location) in points)
 		{
 			this.AddPoint(new(
 				Hour: Hour,
-				Location: y,
+				Location: location,
 				Character: character,
 				IsEnd: false,
 				IsTimeSkip: false
