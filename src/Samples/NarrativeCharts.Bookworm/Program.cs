@@ -97,13 +97,20 @@ public class Program
 
 	private async Task DrawChartsAsync()
 	{
+		// do this in a separate loop first because the tasks
+		// make printing look worse even though we aren't
+		// awaiting them sequentially
+		foreach (var book in Books)
+		{
+			PrintBookInfo(book);
+		}
+
 		var sw = Stopwatch.StartNew();
 		var tasks = new List<Task>();
 		foreach (var book in Books)
 		{
 			var outputPath = Path.Combine(ChartsDir, $"{book.Name}.png");
 			tasks.Add(Drawer.SaveChartAsync(book, outputPath));
-			PrintBookInfo(book);
 		}
 
 		await Task.WhenAll(tasks).ConfigureAwait(false);

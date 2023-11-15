@@ -118,13 +118,41 @@ $RA_S=Hirschur
 // Time: "Thus, time passed without incident, and the next week arrived."
 >>5,ThirdBell
 +$4,RA_A=ALL_STUDENTS
-$RA_ADC=Hannelore,Myne,Ortwin,Wilfried
+$RA_ADC=Eggy,Hannelore,Myne,Ortwin,Wilfried
 >H1
 >
 
 
 
 #Dedication Whirling (Third Year)
+$RA_SH=Charlotte,Detlinde,Eggy,Hannelore,Lestilaut,Luzinde,Myne,Ortwin,Wilfried
+>H1
+>
+-$4
+$RA_RV=Eggy
+
+
+
+#Hirschur’s Meeting with the Aub
+// Time: "two days from now"
+>>2,Morning
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
