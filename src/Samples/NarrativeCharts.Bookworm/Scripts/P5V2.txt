@@ -178,6 +178,7 @@ $RA_DE=Hartmut
 >>4,Morning
 +$10,RA_ST=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,Cordula,Hannelore,Hirschur,Kenntrips,Lestilaut,Rasantark
 // "Lahrtaruc" mentioned, either no wiki page or an alternate spelling of rasantark?
+// turns out it's an alternate spelling of "Rarstark"
 >
 
 
