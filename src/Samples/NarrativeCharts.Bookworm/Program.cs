@@ -189,7 +189,8 @@ public class Program
 			{
 				[RA_Royals] = ["RA_RV"],
 				[RA_FarthestHall] = ["RA_FH"],
-				[RA_DormSov] = ["RA_S"],
+				[RA_KnightBuilding] = ["RA_K"],
+				[RA_ScholarBuilding] = ["RA_S"],
 				[RA_Stadium] = ["RA_ST"],
 				[RA_Library] = ["RA_L"],
 				[RA_ADCClass] = ["RA_ADC"],

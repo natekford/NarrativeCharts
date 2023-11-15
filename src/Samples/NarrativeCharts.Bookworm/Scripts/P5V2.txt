@@ -12,6 +12,50 @@
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 
 #Prologue
+>
+
+
+
+#The Royal Family and the Library
+>>Morning
+// meeting with raimund/hirschur to buy schematic
+$RA_S=MYNE_RETAINERS
+>H1
+>
+$RA_DE=MYNE_RETAINERS
+// Time: "Come to my villa three days from now at third bell,"
+// from p5v1
+>>2,Morning
+$RA_RV=MYNE_RETAINERS
+>H1
+>
++$1,RA_L=Ana,Arthur,Hannelore,Oswin,Sigi,Hildebrand
+$RA_L=MYNE_RETAINERS
+>
+>
+-$1
+$RA_DE=MYNE_RETAINERS
+
+
+
+#Dunkelfelger’s Ritual
+// Time: "Several days after visiting the library’s archive"
+>>3,Morning
++$2,RA_K=MYNE_RETAINERS,CHAR_RETAINERS,WILF_RETAINERS,Clarissa,Hannelore,Lestilaut,Rauffen
+>H2
+>
+$RA_ST=2
+>H2
+>
+-$2
+
+
+
+#Talking and Tallying
+// Time: "“You will need to host Lady Hannelore tomorrow.”"
+>>ThirdBell
+
+
 
 
 

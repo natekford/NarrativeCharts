@@ -283,8 +283,6 @@ $RA_DO=Lueuradi
 >H1
 >
 -$10
-// Time: "Come to my villa three days from now at third bell,"
->>3,Morning
 
 
 
