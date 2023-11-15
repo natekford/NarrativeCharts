@@ -195,7 +195,6 @@ public class Program
 				[RA_Library] = ["RA_L"],
 				[RA_ADCClass] = ["RA_ADC"],
 				[RA_SmallHall] = ["RA_SH"],
-				[RA_AuditoriumShrine] = ["RA_AS"],
 				[RA_Auditorium] = ["RA_A"],
 				[RA_DormOther] = ["RA_DO"],
 				[RA_DormEhr] = ["RA_DE"],

@@ -9,7 +9,7 @@
 +%FVF=Barthold,Cassandra,Gretia,Laurenz,Matthias,Muriella
 +%MISC_EHR=Traugott
 +%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,FVF,MISC_EHR
-+%OTHER_DUCHIES=Clarissa,Detlinde,Hannelore,Kenntrips,Lestilaut,Luzinde,Martina,Ortwin,Raimund
++%OTHER_DUCHIES=Clarissa,Cordula,Detlinde,Hannelore,Kenntrips,Lestilaut,Luzinde,Martina,Ortwin,Raimund
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 
 #Prologue
@@ -83,8 +83,8 @@ $RA_L=Arthur,Eggy,Hildebrand,Hortensia
 #Practical: Divine Protections of the Gods
 $RA_RV=Arthur,Eggy,Hildebrand
 $RA_A=MYNE_RETAINERS
-$RA_AS=Hannelore,Myne,Ortwin,Philine,Roderick,Wilfried
-+$2b,RA_AS=Gundolf,Hirschur
+$RA_FH=Hannelore,Myne,Ortwin,Philine,Roderick,Wilfried
++$2b,RA_FH=Gundolf,Hirschur
 >
 
 

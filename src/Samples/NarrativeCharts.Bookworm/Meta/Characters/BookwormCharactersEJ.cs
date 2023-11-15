@@ -20,6 +20,8 @@ public static partial class BookwormCharacters
 	public static Character Elvira { get; } = new("Elvira");
 	[Color(null)]
 	public static Character Ernesta { get; } = new("Ernesta");
+	[Color(null)]
+	public static Character Fairziere { get; } = new("Fairziere");
 	[Color("#65B8DA")]
 	public static Character Ferdinand { get; } = new("Ferdinand");
 	[Color("#FBF6E0")]

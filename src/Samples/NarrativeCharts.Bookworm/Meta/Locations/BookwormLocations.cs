@@ -33,7 +33,6 @@ public static class BookwormLocations
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
 	public static Location RA_ADCClass { get; } = new("RA - ADC Classroom");
 	public static Location RA_Auditorium { get; } = new("RA - Auditorium");
-	public static Location RA_AuditoriumShrine { get; } = new("RA - Auditorium Shrine");
 	public static Location RA_DormEhr { get; } = new("RA - Ehrenfest Dorm");
 	public static Location RA_DormOther { get; } = new("RA - Other Duchy Dorms");
 	public static Location RA_DormWerk { get; } = new("RA - Werkestock Dorm");
@@ -67,7 +66,6 @@ public static class BookwormLocations
 			RA_Library,
 			RA_ADCClass,
 			RA_SmallHall,
-			RA_AuditoriumShrine,
 			RA_Auditorium,
 			RA_DormOther,
 			RA_DormEhr,

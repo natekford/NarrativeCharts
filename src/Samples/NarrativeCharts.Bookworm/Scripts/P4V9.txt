@@ -217,7 +217,7 @@ $RA_DO=Kenntrips,Raimund
 >>Morning
 $RA_DE=Ella,Myne,Philine,Rihyarda,Roderick,Rosina
 $RA_DE=Oswald,Wilfried
-$RA_DO=Hannelore,Ortwin
+$RA_DO=Cordula,Hannelore,Ortwin
 $T=Damuel,Hartmut
 
 

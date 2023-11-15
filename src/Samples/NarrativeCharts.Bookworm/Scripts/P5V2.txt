@@ -8,7 +8,7 @@
 +%CHAR_RETAINERS=Cassandra,Charlotte,Kathrein,Marianne,Natalie,Vanessa
 +%MISC_EHR=Traugott
 +%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,MISC_EHR
-+%OTHER_DUCHIES=Clarissa,Detlinde,Hannelore,Kenntrips,Lestilaut,Lueuradi,Luzinde,Martina,Ortwin,Raimund,Rasantark
++%OTHER_DUCHIES=Clarissa,Cordula,Detlinde,Hannelore,Kenntrips,Lestilaut,Lueuradi,Luzinde,Martina,Ortwin,Raimund,Rasantark
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 
 #Prologue
@@ -54,23 +54,158 @@ $RA_ST=2
 #Talking and Tallying
 // Time: "“You will need to host Lady Hannelore tomorrow.”"
 >>ThirdBell
++$3,RA_DE=Clarissa,Cordula,Hannelore
+>
+>
+-$3
 
 
 
+#A Frustrating Tea Party
+// no transition
+// unknown time
+>>Morning
+$RA_S=MYNE_RETAINERS
+>H1
+$RA_L=Raimund
+>H1
+>
+$RA_DE=MYNE_RETAINERS
+$RA_S=Raimund
+// Time: "I arranged for a meeting with Fraularm."
+// idk, a couple days
+>>2,Morning
++$4,RA_S=MYNE_GUARDS,Fraularm
+>
+-$4
+// Time: "Today, I was going to be attending tea parties with bottom-ranking duchies"
+>>2,ThirdBell
+// tea parties with lower duchies
+$RA_DO=MYNE_RETAINERS
+>
+$RA_DE=MYNE_RETAINERS
+// Time: "tea party four days from now"
+>>2,ThirdBell
++$5,RA_DO=MYNE_RETAINERS,CHAR_RETAINERS,WILF_RETAINERS
+// fvf stay behind
+$RA_DE=Gretia,Laurenz,Matthias,Muriella
+>
+>
+-$5
+// Time: "The tea parties didn’t end there"
+>>Morning
+$RA_DO=MYNE_RETAINERS
+>
+$RA_DE=MYNE_RETAINERS
 
 
 
+#Doing a Little Scheming
+// Time: "“Come to my villa tomorrow afternoon.”"
+>>Morning
++$6,RA_RV=MYNE_RETAINERS,Cordula,Hannelore,Hirschur,Rauffen
+>H1
+>
+-$6
 
 
 
+#Preparing for the Ritual
+// Time: "It was the day of the ritual."
+// who knows, probably a week?
+>>7,Morning
+$RA_DE=Hartmut
+>
++$7a,RA_FH=MYNE_RETAINERS,CHAR_RETAINERS,WILF_RETAINERS,Hartmut
++$7b,RA_FH=Arthur,Hildebrand
+>H1
+
+
+#The Royal Academy’s Dedication Ritual
+$RA_DO=Fairziere
++$7c,RA_FH=Adolphine,Ana,AnaFather,Clarissa,Cordula,Eggy,Fairziere,Hannelore,Lestilaut,Lueuradi,Nahelache,Ortwin,Raublut,Sigi
+// Loyalitat gets mentioned but idr if he shows up in the future
+>H1
+>
 
 
 
+#Using the Rest of the Mana
+-$7c
++$7d,RA_L=MYNE_GUARDS_ALL,Ana,Brunhilde,Cordula,Eggy,Gretia,Hannelore,Lieseleta,Rihyarda
+>H1
+$RA_FH=7d
+>H1
+-$7d,7b,7a
 
 
 
+#Tea Parties and Negotiations
+// Time: "It was only two days before I could move again;"
+>>2,Morning
+// Time: "And so came the day of our tea party with Dunkelfelger."
+// idk
+>>2,Morning
+$RA_DO=MYNE_RETAINERS,WILF_RETAINERS
+>
 
 
+
+#Confrontation
+>
+
+
+
+#Preparing for Ditter
+$RA_DE=MYNE_RETAINERS,WILF_RETAINERS
+// Time: "I made my way to the library the next morning"
+>>Morning
++$8,RA_L=MYNE_RETAINERS,Arthur,Cordula,Hannelore,Hildebrand
+>H1
+>
+-$8
+$RA_DE=Hartmut
+>
++$9,RA_GE=MYNE_GUARDS_ALL,Alexis,Wilfried
+>H1
+>
+-$9
+
+
+
+#Bride-Taking Ditter
+// Time: "The day has finally come!"
+>>4,Morning
++$10,RA_ST=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,Cordula,Hannelore,Hirschur,Kenntrips,Lestilaut,Rasantark
+// "Lahrtaruc" mentioned, either no wiki page or an alternate spelling of rasantark?
+>
+
+
+
+#Intruders
+>
+$RA_ST=Ana
+>H1
+$RA_DE=Lieseleta,Myne,Rihyarda
+
+
+
+#Epilogue
+>
+-$10
+$RA_RV=Ana
+
+
+
+//#The Saint's Ritual
+// takes places during the dedication ritual chapter:
+// Fairziere and Lustlaune mentioned
+// including Fairziere because she's Lueuradi's sister
+// not including lustlaune
+// takes place during the end of A Frustrating Tea Party:
+// Murrenrue is also mentioned
+// not including her because im lazy and dont want to add
+// more ADC
 
 
 
