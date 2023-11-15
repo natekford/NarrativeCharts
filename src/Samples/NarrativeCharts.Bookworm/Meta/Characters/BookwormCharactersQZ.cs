@@ -6,6 +6,8 @@ public static partial class BookwormCharacters
 {
 	[Color("#324C51")]
 	public static Character Raimund { get; } = new("Raimund");
+	[Color("#F08000")]
+	public static Character Rasantark { get; } = new("Rasantark");
 	[Color(null)]
 	public static Character Raublut { get; } = new("Raublut");
 	[Color("#F1B582")]

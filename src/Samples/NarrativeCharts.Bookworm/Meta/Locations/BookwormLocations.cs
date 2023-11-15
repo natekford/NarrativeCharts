@@ -19,6 +19,7 @@ public static class BookwormLocations
 	public static Location Hasse { get; } = new("Hasse");
 	public static Location Illgner { get; } = new("Illgner");
 	public static Location ItalianRestaurant { get; } = new("Italian Restaurant");
+	public static Location Jossbrenner { get; } = new("Jossbrenner");
 	public static Location KarstedtsHouse { get; } = new("Karstedt's Estate");
 	public static Location Kirnberger { get; } = new("Kirnberger");
 	public static Location Klassenberg { get; } = new("Klassenberg");
@@ -99,6 +100,7 @@ public static class BookwormLocations
 			Drewanchel,
 			Gilessenmeyer,
 			Ahrensbach,
+			Jossbrenner,
 			Frenbeltag,
 		}
 		.Reverse()

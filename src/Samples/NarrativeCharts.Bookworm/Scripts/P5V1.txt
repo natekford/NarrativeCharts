@@ -9,7 +9,7 @@
 +%FVF=Barthold,Cassandra,Gretia,Laurenz,Matthias,Muriella
 +%MISC_EHR=Traugott
 +%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,FVF,MISC_EHR
-+%OTHER_DUCHIES=Detlinde,Hannelore,Lestilaut,Luzinde,Martina,Ortwin,Raimund
++%OTHER_DUCHIES=Clarissa,Detlinde,Hannelore,Kenntrips,Lestilaut,Luzinde,Martina,Ortwin,Raimund
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 
 #Prologue
@@ -244,15 +244,52 @@ $RA_RV=Hannelore
 $RA_RV=Hortensia,Solange
 // hildebrand arrives but i dont have ana/eggy villa
 // and his villa as separate locations
-
-
-
-#Tea Party with Dunkelfelger
 >H2
 >
 $RA_L=Hortensia,Solange
 $RA_DE=MYNE_RETAINERS
 $RA_DO=Hannelore
+
+
+
+#Tea Party with Dunkelfelger
+// Time: "The day after our tea party for bookworms"
+>>Morning
+// Time: "I spent the run-up to our tea party deciding"
+// idk
+>>3,Morning
++$9,RA_DO=MYNE_RETAINERS,WILF_RETAINERS,Muriella
+>
+>
+-$9
+
+
+
+#Replies
+// Time: "Even after my fever went down,"
+>>3,Morning
+// muriella and gretia nameswearing
+// Time: "I was fully recovered, meaning I could finally return to Hirschur’s laboratory."
+>>Morning
+$RA_L=Lueuradi,Muriella,Philine
+>
+$RA_S=Lueuradi,Muriella
+>
+>
+$RA_DE=Muriella,Philine
+$RA_DO=Lueuradi
+>>Morning
++$10,RA_S=MYNE_RETAINERS,Gretia,Laurenz
+>H1
+>
+-$10
+// Time: "Come to my villa three days from now at third bell,"
+>>3,Morning
+
+
+
+#Epilogue
+$RA_DO=Rasantark
 
 
 

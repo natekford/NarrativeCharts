@@ -50,6 +50,8 @@ public static partial class BookwormCharacters
 	public static Character Linhardt { get; } = new("Linhardt");
 	[Color(null)]
 	public static Character Lothar { get; } = new("Lothar");
+	[Color("#FFD580")]
+	public static Character Lueuradi { get; } = new("Lueuradi");
 	[Color("#F7E3A8")]
 	public static Character Lutz { get; } = new("Lutz");
 	[Color(null)]
