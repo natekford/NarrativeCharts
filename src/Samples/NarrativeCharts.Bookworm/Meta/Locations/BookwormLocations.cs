@@ -30,8 +30,9 @@ public static class BookwormLocations
 	public static Location MynesHouse { get; } = new("Myne's Family's House");
 	public static Location NoblesForest { get; } = new("Noble's Forest");
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
+	public static Location RA_ADCClass { get; } = new("RA - ADC Classroom");
 	public static Location RA_Auditorium { get; } = new("RA - Auditorium");
-	public static Location RA_Classroom { get; } = new("RA - Small Hall");
+	public static Location RA_AuditoriumShrine { get; } = new("RA - Auditorium Shrine");
 	public static Location RA_DormEhr { get; } = new("RA - Ehrenfest Dorm");
 	public static Location RA_DormOther { get; } = new("RA - Other Duchy Dorms");
 	public static Location RA_DormSov { get; } = new("RA - Sovereignty Dorms");
@@ -40,6 +41,7 @@ public static class BookwormLocations
 	public static Location RA_GatherEhr { get; } = new("RA - Ehr. Gathering Spot");
 	public static Location RA_Library { get; } = new("RA - Library");
 	public static Location RA_Royals { get; } = new("RA - Royal Villas");
+	public static Location RA_SmallHall { get; } = new("RA - Small Hall");
 	public static Location RA_Stadium { get; } = new("RA - Stadium");
 	public static Location RoyalAcademy { get; } = new("Royal Academy");
 	public static Location RuelleTree { get; } = new("Ruelle Tree");
@@ -60,7 +62,9 @@ public static class BookwormLocations
 			RA_DormSov,
 			RA_Stadium,
 			RA_Library,
-			RA_Classroom,
+			RA_ADCClass,
+			RA_SmallHall,
+			RA_AuditoriumShrine,
 			RA_Auditorium,
 			RA_DormOther,
 			RA_DormEhr,

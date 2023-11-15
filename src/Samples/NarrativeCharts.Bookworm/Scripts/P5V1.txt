@@ -65,12 +65,66 @@ $RA_S=Raimund
 
 
 #The New Librarian
+// Time: "Every single Ehrenfest student attended their classes the next day"
+>>ThirdBell
++$2a,RA_A=ALL_STUDENTS
+>H1
+>
+$RA_L=MYNE_RETAINERS
+// he stays behind
+$RA_A=Theodore
+$RA_L=Arthur,Eggy,Hildebrand,Hortensia
+>H1
 
 
 
+#Practical: Divine Protections of the Gods
+$RA_RV=Arthur,Eggy,Hildebrand
+$RA_A=MYNE_RETAINERS
+$RA_AS=Hannelore,Myne,Ortwin,Philine,Roderick,Wilfried
++$2b,RA_AS=Gundolf,Hirschur
+>
 
 
 
+#Music and Everyone’s Rituals
+// Katinka gets mentioned (ehr student)
+// she's also apparently in RAS
+>
+-$2a,2b
+// Time: "The next day,"
+>>ThirdBell
++$3,RA_A=ALL_STUDENTS
+>H1
+>
+$RA_SH=Hannelore,Myne,Ortwin,Philine,Roderick,Wilfried
+>H1
+>
+-$3
+
+
+
+#Discussing Divine Protections with Hirschur
+// Time: "Come dinnertime"
+>Dinner
+$RA_DE=Hirschur
+>H1
+>
+
+
+
+#Beginning the Archduke Candidate Course
+$RA_S=Hirschur
+// Time: "Thus, time passed without incident, and the next week arrived."
+>>5,ThirdBell
++$4,RA_A=ALL_STUDENTS
+$RA_ADC=Hannelore,Myne,Ortwin,Wilfried
+>H1
+>
+
+
+
+#Dedication Whirling (Third Year)
 
 
 
