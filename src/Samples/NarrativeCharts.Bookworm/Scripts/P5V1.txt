@@ -139,10 +139,10 @@ $RA_RV=Eggy
 // Time: "two days from now"
 >>2,Morning
 $RA_GE=ALL_EHR
->
+>H2
 >
 $RA_DE=ALL_EHR
->
+>H1
 +$5,RA_DE=Elvira,Florencia,Sylvester
 // Constanze gets namedropped
 $Frenbeltag=Constanze
@@ -163,21 +163,96 @@ $RA_S=Hirschur
 $KO=Trudeliede
 // escaped
 $Ahrensbach=Grausam
+>H1
+-$5
 
 
 
+#Finishing the Archduke Candidate Lessons
+// Time: "The next day, after breakfast"
+>>Morning
+// matthias/laurenz give their names to myne
+>
++$6a,RA_A=ALL_STUDENTS
++$6b,RA_ADC=Eggy,Hannelore,Myne,Ortwin,Wilfried
 
 
 
+#Passing Professor Gundolf’s Classes
+>H1
+>
+-$6b
+// idk if myne goes to gundolf's lab on the same day or next day
+$RA_S=Gundolf,Myne,Philine,Roderick
+>H2
+>
+-$6a
+$RA_DO=Gundolf
 
 
 
+#Gretia’s Circumstances and Gathering Ingredients
+// Time: "And so came Earthday."
+// 3? days since "week started"
+>>4,Morning
+$RA_GE=ALL_EHR
+>U2
+>
+$RA_DE=ALL_EHR
 
 
 
+#Professor Fraularm’s Class
+// Time: "After breakfast but before our morning classes"
+>>Morning
+// Time: "I was clearing one scholar course exam after another"
+// "Fraularm ... my exam for tomorrow morning."
+// idk, a couple days later? less than a week probably
+>>3,Morning
++$7,RA_S=MYNE_GUARDS,Fraularm
+>H1
+>
+-$7
 
 
 
+#Hirschur’s Personal Librarian
+// Time: "from tomorrow onward"
+>>Morning
++$8,RA_S=Lieseleta,Myne,Matthias,Rihyarda,Roderick,Theodore
+>Lunch
+>
+-$8
+// Time: "The next day"
+>>Morning
+
+
+
+#A Request from Royalty
+// Time: "the day of our gathering arrived."
+// "today’s had been scheduled for fourth-and-a-half [bell]"
+// no exact amount of days stated
+>>5,FourthBell
+$RA_RV=MYNE_RETAINERS
+>H1
+$RA_RV=Hannelore
+
+
+
+#Tea Party for Bookworms
+>H1
+$RA_RV=Hortensia,Solange
+// hildebrand arrives but i dont have ana/eggy villa
+// and his villa as separate locations
+
+
+
+#Tea Party with Dunkelfelger
+>H2
+>
+$RA_L=Hortensia,Solange
+$RA_DE=MYNE_RETAINERS
+$RA_DO=Hannelore
 
 
 

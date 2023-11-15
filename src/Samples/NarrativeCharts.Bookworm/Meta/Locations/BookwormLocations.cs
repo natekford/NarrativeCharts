@@ -35,7 +35,7 @@ public static class BookwormLocations
 	public static Location RA_AuditoriumShrine { get; } = new("RA - Auditorium Shrine");
 	public static Location RA_DormEhr { get; } = new("RA - Ehrenfest Dorm");
 	public static Location RA_DormOther { get; } = new("RA - Other Duchy Dorms");
-	public static Location RA_DormSov { get; } = new("RA - Sovereignty Dorms");
+	public static Location RA_DormSov { get; } = new("RA - Scholar Building");
 	public static Location RA_DormWerk { get; } = new("RA - Werkestock Dorm");
 	public static Location RA_FarthestHall { get; } = new("RA - Farthest Hall");
 	public static Location RA_GatherEhr { get; } = new("RA - Ehr. Gathering Spot");
