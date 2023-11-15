@@ -10,6 +10,6 @@ public abstract class BookwormNarrativeChart : NarrativeChartWithUnits<BookwormB
 		YIndexes = new(BookwormLocations.YIndexes);
 	}
 
-	protected override int ConvertToInt(BookwormBell unit)
+	protected override int Convert(BookwormBell unit)
 		=> (int)unit;
 }

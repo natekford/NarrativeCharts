@@ -55,7 +55,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
-	protected override void AddHours(int amount = 1)
+	protected override void AddHours(float amount = 1)
 	{
 		DoThenWriteIfTopMethod(() => base.AddHours(amount), sb => sb
 			.Append($"{nameof(AddHours)}(")

@@ -246,13 +246,13 @@ public class Program
 	private void PrintBookInfo(NarrativeChartData chart)
 	{
 		var points = chart.Points.Sum(x => x.Value.Count);
-		int max = int.MinValue, min = int.MaxValue;
+		float max = float.MinValue, min = float.MaxValue;
 		foreach (var point in chart.GetAllNarrativePoints())
 		{
 			max = Math.Max(max, point.Hour);
 			min = Math.Min(min, point.Hour);
 		}
 		var days = (max - min) / Defs.Time.HoursPerDay;
-		Console.WriteLine($"{chart.Name}: Points={points}, Days={days}");
+		Console.WriteLine($"{chart.Name}: Points={points}, Days={days:#.#}");
 	}
 }

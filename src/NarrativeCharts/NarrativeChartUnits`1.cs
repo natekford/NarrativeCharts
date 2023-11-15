@@ -11,7 +11,7 @@ public abstract class NarrativeChartWithUnits<TUnit> : NarrativeChart
 		Time = time;
 	}
 
-	protected abstract int ConvertToInt(TUnit unit);
+	protected abstract int Convert(TUnit unit);
 
 	protected virtual void Jump(int amount = 1)
 	{
@@ -24,7 +24,7 @@ public abstract class NarrativeChartWithUnits<TUnit> : NarrativeChart
 
 	protected virtual void SkipToDaysAhead(int days, TUnit unit)
 	{
-		Time.SkipToDaysAheadStart(days).SetCurrentUnit(ConvertToInt(unit) - 1);
+		Time.SkipToDaysAheadStart(days).SetCurrentUnit(Convert(unit) - 1);
 		Jump();
 	}
 

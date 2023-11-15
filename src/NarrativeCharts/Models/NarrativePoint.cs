@@ -1,7 +1,7 @@
 ﻿namespace NarrativeCharts.Models;
 
 public sealed record NarrativePoint(
-	int Hour,
+	float Hour,
 	Location Location,
 	Character Character,
 	bool IsEnd,

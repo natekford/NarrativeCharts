@@ -90,14 +90,14 @@ public static class ChartUtils
 	}
 
 	public static void ModifyLastPoint(
-		this SortedList<int, NarrativePoint> points,
+		this SortedList<float, NarrativePoint> points,
 		Func<NarrativePoint, NarrativePoint> modification)
 	{
 		var lastPoint = points.Values[^1];
 		points[lastPoint.Hour] = modification.Invoke(lastPoint);
 	}
 
-	public static T Seed<T>(this T chart, NarrativeChartData other, int hour) where T : NarrativeChartData
+	public static T Seed<T>(this T chart, NarrativeChartData other, float hour) where T : NarrativeChartData
 	{
 		foreach (var (_, points) in other.Points)
 		{
@@ -115,12 +115,12 @@ public static class ChartUtils
 		return chart;
 	}
 
-	public static T UpdatePoints<T>(this T chart, int hour) where T : NarrativeChartData
+	public static T UpdatePoints<T>(this T chart, float hour) where T : NarrativeChartData
 		=> chart.UpdatePoints(hour, chart.Points.Keys);
 
 	public static T UpdatePoints<T>(
 		this T chart,
-		int hour,
+		float hour,
 		IEnumerable<Character> characters) where T : NarrativeChartData
 	{
 		foreach (var character in characters)

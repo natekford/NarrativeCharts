@@ -5,7 +5,7 @@ namespace NarrativeCharts;
 
 public abstract class NarrativeChart : NarrativeChartData
 {
-	protected int Hour => Time.CurrentTotalHours;
+	protected float Hour => Time.CurrentTotalHours;
 	protected bool IsInitialized { get; set; }
 	protected TimeTracker Time { get; }
 
@@ -77,7 +77,7 @@ public abstract class NarrativeChart : NarrativeChartData
 	protected virtual void Add(Location location, IEnumerable<Character> characters)
 		=> this.AddScene(new(Hour, location, characters));
 
-	protected virtual void AddHours(int amount = 1)
+	protected virtual void AddHours(float amount = 1)
 	{
 		Time.AddHours(amount);
 		Update();

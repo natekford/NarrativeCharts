@@ -1,7 +1,7 @@
 ﻿namespace NarrativeCharts.Models;
 
 public sealed record NarrativeScene(
-	int Hour,
+	float Hour,
 	Location Location,
 	IEnumerable<Character> Characters
 );

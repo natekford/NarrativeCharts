@@ -175,8 +175,8 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 	protected virtual YMap GetYMap(TChart chart)
 	{
-		int xMax = int.MinValue, xMin = int.MaxValue;
-		var timeSpent = new ConcurrentDictionary<Location, ConcurrentDictionary<Character, int>>();
+		float xMax = float.MinValue, xMin = float.MaxValue;
+		var timeSpent = new ConcurrentDictionary<Location, ConcurrentDictionary<Character, float>>();
 		foreach (var (character, temp) in chart.Points)
 		{
 			var points = temp.Values;
@@ -208,9 +208,9 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 			}
 		}
 
-		int y = 0, yMax = int.MinValue, yMin = int.MaxValue;
-		var cDict = new Dictionary<(Character, Location), int>();
-		var lDict = new Dictionary<Location, int>();
+		float y = 0, yMax = float.MinValue, yMin = float.MaxValue;
+		var cDict = new Dictionary<(Character, Location), float>();
+		var lDict = new Dictionary<Location, float>();
 		foreach (var (location, time) in timeSpent.OrderBy(x => chart.YIndexes[x.Key]))
 		{
 			lDict[location] = y;
@@ -253,7 +253,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 
 	protected readonly record struct Segment(
 		TChart Chart, TImage Canvas, Character Character,
-		int X0, int X1, int Y0, int Y1,
+		float X0, float X1, float Y0, float Y1,
 		bool IsMovement, bool IsFinal
 	);
 

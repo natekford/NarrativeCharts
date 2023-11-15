@@ -11,7 +11,7 @@ public static class TimeTrackerUtils
 	public static T AddHour<T>(this T time) where T : TimeTracker
 		=> time.AddHours(1);
 
-	public static T AddHours<T>(this T time, int hours) where T : TimeTracker
+	public static T AddHours<T>(this T time, float hours) where T : TimeTracker
 	{
 		time.SetTotalHours(time.CurrentTotalHours + hours);
 		return time;
@@ -36,7 +36,7 @@ public static class TimeTrackerUtils
 		return time;
 	}
 
-	public static T SetCurrentHour<T>(this T time, int hour) where T : TimeTracker
+	public static T SetCurrentHour<T>(this T time, float hour) where T : TimeTracker
 		=> time.AddHours(hour - time.CurrentHour);
 
 	public static T SetCurrentUnit<T>(this T time, int unit) where T : TimeTrackerWithUnits

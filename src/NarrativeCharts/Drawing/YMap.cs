@@ -3,14 +3,14 @@
 namespace NarrativeCharts.Drawing;
 
 public record YMap(
-	Dictionary<(Character, Location), int> Characters,
-	Dictionary<Location, int> Locations,
-	int XMax,
-	int XMin,
-	int YMax,
-	int YMin
+	Dictionary<(Character, Location), float> Characters,
+	Dictionary<Location, float> Locations,
+	float XMax,
+	float XMin,
+	float YMax,
+	float YMin
 )
 {
-	public int XRange => XMax - XMin;
-	public int YRange => YMax - YMin;
+	public float XRange => XMax - XMin;
+	public float YRange => YMax - YMin;
 }

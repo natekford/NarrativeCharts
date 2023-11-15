@@ -29,7 +29,7 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 		YIndexes = new(definitions.LocationYIndexes);
 	}
 
-	protected override int ConvertToInt(int unit)
+	protected override int Convert(int unit)
 		=> unit;
 
 	protected virtual void EnsureNameNotUsed(string name)
@@ -103,7 +103,7 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 				return;
 
 			case 1:
-				AddHours(int.Parse(args[0]));
+				AddHours(float.Parse(args[0]));
 				return;
 
 			default:

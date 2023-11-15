@@ -2,12 +2,12 @@
 
 public abstract class TimeTracker
 {
-	public int CurrentDay => CurrentTotalHours / HoursPerDay;
-	public int CurrentHour => CurrentTotalHours % HoursPerDay;
-	public int CurrentTotalHours { get; protected set; }
+	public int CurrentDay => (int)CurrentTotalHours / HoursPerDay;
+	public int CurrentHour => (int)CurrentTotalHours % HoursPerDay;
+	public float CurrentTotalHours { get; protected set; }
 	public abstract int HoursPerDay { get; }
 
-	public virtual void SetTotalHours(int totalHours, bool allowBackInTime = false)
+	public virtual void SetTotalHours(float totalHours, bool allowBackInTime = false)
 	{
 		if (totalHours < CurrentTotalHours && !allowBackInTime)
 		{
