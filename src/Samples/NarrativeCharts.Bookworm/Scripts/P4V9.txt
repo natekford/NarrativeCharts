@@ -207,11 +207,11 @@ $RA_DE=Alexis,Leonore,Lieseleta
 $RA_DO=Clarissa,Detlinde,Lestilaut
 // 5th years (and hugo usually goes ahead of myne, so throw him in here)
 >>Morning
-$RA_DE=Brunhilde,Hugo,Isidore,Kathrein,Matthias,Natalie,Traugott
+$RA_DE=Barthold,Brunhilde,Hugo,Isidore,Kathrein,Matthias,Natalie,Traugott
 $RA_DO=Martina
 // 4th years
 >>Morning
-$RA_DE=Ignaz,Judithe,Laurenz,Marianne
+$RA_DE=Cassandra,Ignaz,Judithe,Laurenz,Marianne
 $RA_DO=Kenntrips,Raimund
 // 3rd years
 >>Morning

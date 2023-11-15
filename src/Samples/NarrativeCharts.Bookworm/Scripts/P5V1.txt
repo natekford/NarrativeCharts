@@ -6,7 +6,7 @@
 +%MYNE_RETAINERS=MYNE_GUARDS_ALL,MYNE_SCHOLARS,MYNE_ATTEND,Rihyarda
 +%WILF_RETAINERS=Alexis,Ignaz,Isidore,Oswald,Wilfried
 +%CHAR_RETAINERS=Charlotte,Kathrein,Marianne,Natalie,Vanessa
-+%FVF=Gretia,Laurenz,Matthias,Muriella
++%FVF=Barthold,Cassandra,Gretia,Laurenz,Matthias,Muriella
 +%MISC_EHR=Traugott
 +%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,FVF,MISC_EHR
 +%OTHER_DUCHIES=Detlinde,Hannelore,Lestilaut,Luzinde,Martina,Ortwin,Raimund
@@ -68,6 +68,8 @@ $RA_S=Raimund
 // Time: "Every single Ehrenfest student attended their classes the next day"
 >>ThirdBell
 +$2a,RA_A=ALL_STUDENTS
+// i think at this point the The New Children from p4v9 has taken place
+$T=Bertram
 >H1
 >
 $RA_L=MYNE_RETAINERS
@@ -136,10 +138,31 @@ $RA_RV=Eggy
 #Hirschur’s Meeting with the Aub
 // Time: "two days from now"
 >>2,Morning
+$RA_GE=ALL_EHR
+>
+>
+$RA_DE=ALL_EHR
+>
++$5,RA_DE=Elvira,Florencia,Sylvester
+// Constanze gets namedropped
+$Frenbeltag=Constanze
+>
+$RA_DE=Hirschur
+>H2
+>
 
 
 
-
+#Researching Rituals and an Update on the Purge
+$RA_S=Hirschur
+// these character movements happen before this point
+// but putting them here anyways
+// dead
+@!Bettina,Freuden,Janrik,Royella,Sidonius
+// imprisoned
+$KO=Trudeliede
+// escaped
+$Ahrensbach=Grausam
 
 
 

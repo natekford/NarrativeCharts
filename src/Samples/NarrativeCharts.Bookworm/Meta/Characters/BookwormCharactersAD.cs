@@ -20,10 +20,14 @@ public static partial class BookwormCharacters
 	public static Character AubDunkelfelger { get; } = new("Aub Dunkelfelger");
 	[Color("#FFD700")]
 	public static Character Aurelia { get; } = new("Aurelia");
+	[Color(null)]
+	public static Character Barthold { get; } = new("Barthold");
 	[Color("#E8CB9F")]
 	public static Character Benno { get; } = new("Benno");
 	[Color("#FF66CC")]
 	public static Character Bertilde { get; } = new("Bertilde");
+	[Color(null)]
+	public static Character Bertram { get; } = new("Bertram");
 	[Color(null)]
 	public static Character Bettina { get; } = new("Bettina");
 	[Color("#BC9A9F")]
@@ -39,6 +43,8 @@ public static partial class BookwormCharacters
 	[Color(null)]
 	public static Character Carya { get; } = new("Carya");
 	[Color(null)]
+	public static Character Cassandra { get; } = new("Cassandra");
+	[Color(null)]
 	public static Character Catherine { get; } = new("Catherine");
 	[Color("#D3BD96")]
 	public static Character Charlotte { get; } = new("Charlotte");
@@ -48,6 +54,8 @@ public static partial class BookwormCharacters
 	public static Character Clarissa { get; } = new("Clarissa");
 	[Color("#012B32")]
 	public static Character Claudio { get; } = new("Claudio");
+	[Color("#F1CC8F")]
+	public static Character Constanze { get; } = new("Constanze");
 	[Color(null)]
 	public static Character Cordula { get; } = new("Cordula");
 	[Color("#A6B455")]
