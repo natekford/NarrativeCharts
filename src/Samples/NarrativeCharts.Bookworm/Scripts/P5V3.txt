@@ -1,4 +1,5 @@
 ﻿##P5V3
++%FERDI_GUARDS=Eckhart,Ferdinand,Justus,Sergius
 +%MYNE_GUARDS=Judithe,Leonore,Myne
 +%MYNE_GUARDS_ALL=MYNE_GUARDS,Laurenz,Matthias,Theodore
 +%MYNE_SCHOLARS=Muriella,Philine,Roderick
@@ -10,6 +11,10 @@
 +%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,MISC_EHR
 +%OTHER_DUCHIES=Clarissa,Cordula,Detlinde,Fairziere,Hannelore,Kenntrips,Lestilaut,Lueuradi,Luzinde,Martina,Ortwin,Raimund,Rasantark
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
++%TEACHERS=Fraularm,Gundolf,Hirschur,Primevere,Rauffen
++%TEACHERS_STUDENTS=ALL_STUDENTS,TEACHERS
++%IDT_EHR=Angelica,Cornelius,Hartmut,Sylvester
++%IDT_OTHER=AubDitter,AubFre,AubKla,Constanze,Georgine,Heisshitze,Sieglinde
 
 #Prologue
 >
@@ -23,8 +28,147 @@
 
 
 #Preparing for the Interduchy Tournament
+>
 
 
+
+#Raimund’s Research and Hirschur’s Warning
+// Time: "the very next morning"
+>>Morning
++$1,RA_S=Gretia,Laurenz,Lieseleta,Myne,Theodore
+>
+>
+-$1
+
+
+
+#The Interduchy Tournament (Third Year)
+// Time: "At lunchtime on the day before the Interduchy Tournament"
+// ~75 days have passed since the start of the RA
+// so not many days need to be added
+>>4,Lunch
+// Time: "It was the morning of the Interduchy Tournament'
+>>Morning
++$2a,RA_ST=TEACHERS_STUDENTS
+$RA_DE=MYNE_RETAINERS
+>H1
++$2b,RA_DE=IDT_EHR
+>H1
+$Klassenberg=AubKla
+$Frenbeltag=AubFre
++$2c,RA_ST=FERDI_GUARDS
++$2d,RA_ST=IDT_OTHER
+$RA_ST=MYNE_RETAINERS,2b
+
+
+
+#Socializing with Dunkelfelger
+>H1
+
+
+
+#Socializing with Ahrensbach
+>H1
+
+
+
+#Socializing with Royalty
++$2e,RA_ST=Ana,Eggy
+>H1
+
+
+
+#Socializing with Other Duchies
+>H1
+
+
+
+#Socializing with Frenbeltag
+>H1
+
+
+
+#Ditter and Dunkelfelger’s Demonstration
+>H1
+
+
+
+#My First Awards Ceremony
++$2f,RA_ST=Adolphine,AnaFather,Nahelache,Raublut,Sigi
+>H1
+>H1
+-$2a,2e,2f
+$RA_DE=2b,2c
+$RA_DO=2d,Adolphine
+
+
+
+#Dinner with Ferdinand
+>
+
+
+
+#Farewells and the Coming-of-Age Ceremony
+// Time: "The next day"
+>>Morning
+$RA_DO=FERDI_GUARDS
+>H1
+$RA_DE=Florencia
+>
++$3,RA_A=TEACHERS_STUDENTS,FERDI_GUARDS,IDT_EHR,IDT_OTHER,Adolphine,Florencia,Immanuel,Relichion
+
+
+
+#Detlinde’s Dedication Whirl
+>H1
+>
+-$3
+$RA_DE=Oswin
+>H1
+$RA_RV=Oswin
+$RA_DE=Karstedt
+>
++$4a,RA_A=TEACHERS_STUDENTS,FERDI_GUARDS,IDT_EHR,IDT_OTHER,Adolphine,Florencia,Immanuel,Relichion
+$RA_DO=Detlinde,Martina
++$4b,RA_RV=FERDI_GUARDS,Karstedt,Myne,Rihyarda
+
+
+
+#A Discussion with Eglantine
+>H1
+
+
+
+#Lending Books and a Place for One’s Heart
+-$4b
+>
+-$4a
+// Time: "The next day, Sylvester rushed a fairly sick-looking Florencia back to Ehrenfest."
+>>Morning
+// i assume karstedt would go back with them
+$C=Florencia,Karstedt,Sylvester
+// Time: "Another day passed, and it came time for our scheduled meeting with Hannelore."
+>>Morning
++$5a,RA_DE=Cordula,Hannelore
+// wilf visits ortwin at this point in time in Suspicions and Gewinnen
++$5b,RA_DO=WILF_RETAINERS
+>H1
+>
+-$5a,5b
+
+
+
+#Epilogue
+$RA_DO=Fatiehe
+>>Morning
+-$2b,2c,2d
+$Ditter=Clarissa,Cordula,Hannelore,Kenntrips,Lestilaut,Rasantark
+$Drewanchel=Adolphine,Ortwin
+$Gilessenmeyer=Luzinde
+$Ahrensbach=Detlinde,Fatiehe,Martina,Raimund
+$Jossbrenner=Fairziere,Lueuradi
+$C=ALL_EHR
+$KO=Traugott
 
 
 

@@ -59,11 +59,11 @@ public static class BookwormLocations
 		YIndexes = new[]
 		{
 			RA_Royals,
-			RA_FarthestHall,
-			RA_ScholarBuilding,
-			RA_KnightBuilding,
 			RA_Stadium,
+			RA_KnightBuilding,
+			RA_ScholarBuilding,
 			RA_Library,
+			RA_FarthestHall,
 			RA_ADCClass,
 			RA_SmallHall,
 			RA_Auditorium,

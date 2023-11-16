@@ -176,6 +176,7 @@ $C=MYNE_GUARDS_ALL,MYNE_SCHOLARS,MYNE_ATTEND,FERDI_GUARDS,Ella,Hugo
 
 #Epilogue
 -$7
+@!Gieselfried
 $Ahrensbach=FERDI_GUARDS
 // "After several days"
 >>3,Morning

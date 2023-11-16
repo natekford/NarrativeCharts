@@ -18,6 +18,10 @@ public static partial class BookwormCharacters
 	public static Character Arther { get; } = new("Arthur");
 	[Color(null)]
 	public static Character AubDunkelfelger { get; } = new("Aub Dunkelfelger");
+	[Color(null)]
+	public static Character AubFrenbeltag { get; } = new("Aub Frenbeltag");
+	[Color(null)]
+	public static Character AubKlassenberg { get; } = new("Aub Klassenberg");
 	[Color("#FFD700")]
 	public static Character Aurelia { get; } = new("Aurelia");
 	[Color(null)]

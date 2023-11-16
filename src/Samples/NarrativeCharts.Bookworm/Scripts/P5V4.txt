@@ -1,0 +1,14 @@
+﻿##P5V4
++%MYNE_GUARDS=Judithe,Leonore,Myne
++%MYNE_GUARDS_ALL=MYNE_GUARDS,Laurenz,Matthias,Theodore
++%MYNE_SCHOLARS=Muriella,Philine,Roderick
++%MYNE_ATTEND=Brunhilde,Gretia,Lieseleta
++%MYNE_RETAINERS=MYNE_GUARDS_ALL,MYNE_SCHOLARS,MYNE_ATTEND,Rihyarda
++%WILF_RETAINERS=Alexis,Barthold,Ignaz,Isidore,Oswald,Wilfried
++%CHAR_RETAINERS=Cassandra,Charlotte,Kathrein,Marianne,Natalie,Vanessa
+
+#Prologue
+
+
+
+>H24

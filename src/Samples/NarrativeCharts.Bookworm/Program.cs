@@ -164,6 +164,8 @@ public class Program
 			AddAliases(defs.CharacterAliases, new()
 			{
 				[AubDunkelfelger] = ["Werdekraf", "AubDitter"],
+				[AubFrenbeltag] = ["AubFre"],
+				[AubKlassenberg] = ["AubKla"],
 				[Anastasius] = ["Ana"],
 				[Eglantine] = ["Eggy"],
 				[GiebeDahldolf] = [nameof(GiebeDahldolf)],
