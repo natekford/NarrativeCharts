@@ -167,7 +167,8 @@ $Drewanchel=Adolphine,Ortwin
 $Gilessenmeyer=Luzinde
 $Ahrensbach=Detlinde,Fatiehe,Martina,Raimund
 $Jossbrenner=Fairziere,Lueuradi
-$C=ALL_EHR
+$C=ALL_EHR,Ella,Hugo,Rosina
+$NQ=Theodore
 $KO=Traugott
 
 

@@ -42,6 +42,8 @@ public static partial class BookwormCharacters
 	public static Character Sidonius { get; } = new("Sidonius");
 	[Color("#DC143C")]
 	public static Character Sieglinde { get; } = new("Sieglinde");
+	[Color(null)]
+	public static Character Siegrecht { get; } = new("Siegrecht");
 	[Color("#DABF78")]
 	public static Character Sigiswald { get; } = new("Sigiswald");
 	[Color("#A17CB2")]

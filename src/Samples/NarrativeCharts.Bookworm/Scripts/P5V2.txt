@@ -137,6 +137,7 @@ $RA_DO=Fairziere
 $RA_FH=7d
 >H1
 -$7d,7b,7a
+$T=Hartmut
 
 
 

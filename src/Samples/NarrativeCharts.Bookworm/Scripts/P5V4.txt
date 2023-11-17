@@ -1,13 +1,165 @@
 ﻿##P5V4
-+%MYNE_GUARDS=Judithe,Leonore,Myne
-+%MYNE_GUARDS_ALL=MYNE_GUARDS,Laurenz,Matthias,Theodore
-+%MYNE_SCHOLARS=Muriella,Philine,Roderick
-+%MYNE_ATTEND=Brunhilde,Gretia,Lieseleta
-+%MYNE_RETAINERS=MYNE_GUARDS_ALL,MYNE_SCHOLARS,MYNE_ATTEND,Rihyarda
-+%WILF_RETAINERS=Alexis,Barthold,Ignaz,Isidore,Oswald,Wilfried
++%MYNE_GUARDS=Angelica,Cornelius,Damuel,Judithe,Laurenz,Leonore,Matthias,Myne
++%MYNE_SCHOLARS=Hartmut,Muriella,Philine,Roderick
++%MYNE_ATTEND=Gretia,Lieseleta
++%MYNE_RETAINERS=MYNE_GUARDS,MYNE_SCHOLARS,MYNE_ATTEND
++%WILF_RETAINERS=Alexis,Barthold,Ignaz,Isidore,Wilfried
 +%CHAR_RETAINERS=Cassandra,Charlotte,Kathrein,Marianne,Natalie,Vanessa
 
 #Prologue
+>
+@!OldLeisegang
+$KE=Siegrecht
+
+
+
+#Returning Home and Everyone’s Situation
+$C=Damuel,Hartmut
+>>Morning
+
+
+
+#Lamprecht and Nikolaus
+>
+
+
+
+#Archducal Family Meeting
+// Time: "At third bell the next day"
+>>ThirdBell
+// oswald is said to have been fired 2 days after returning
+$NQ=Oswald
+
+
+
+#Melchior and Preparing for the Temple
+>
+
+
+
+#The Will of the Leisegangs
+>
+
+
+
+#Speaking with the Aub
+// Time: "The next day, Matthias and the others went with the Knight’s Order to investigate the giebes’ estates."
+>>Morning
++$1a,SP=Laurenz,Matthias,Muriella
+// Time: "The following days"
+>>3,ThirdBell
+
+
+
+#Brunhilde’s Suggestion
+>
++$1b,SP=Bonifatius
+
+
+
+#Changing Surroundings and the Feast Celebrating Spring
+// Time: "the next evening"
+>>FifthBell
+// brunilde gets summoned home, but since it's winter socializing
+// i assume that means NQ estate
+$NQ=Brunhilde
+// Time: "Two days after"
+>>2,Morning
+$C=Brunhilde
+// Time: "So arrived the feast celebrating spring."
+// ~91 days into winter, so less than a week?
+>>5,Morning
+-$1a,1b
+
+
+
+#Touring the Temple
+// Time: "she had left bright and early the day after the feast celebrating spring."
+// from Clarissa's Invasion
+// guess i don't really need to add this part here, since she probably
+// doesn't reach frenbeltag until 4? days after leaving
+>>Morning
+// Time: "It was the day of our tour"
+// idk
+>>2,Morning
+// winter socializing over, NQ people head home
+$Haldenzel=Claudio
+$Groschel=Bertilde,GiebeGroschel
+$Kirnberger=GiebeKirnberger,Theodore
+$Leisegang=GiebeLeisegang
+$Illgner=Helfried,Nadine,Viktor,Volk
+$SP=GiebeDahldolf,Jeremias
+// myne brings melchior and the playroom children to the temple
+// "my personal chefs had stayed behind in the castle."
+$T=MYNE_RETAINERS,Melchior,Nikolaus
+>
+
+
+
+#Preparing the Ritual
+>
+$C=MYNE_RETAINERS,Melchior
+// Time: "The day after"
+>>Morning
+$Frenbeltag=Clarissa
+$FE=MYNE_RETAINERS
+>
+
+
+
+#Reobtaining Divine Protections
+>
+>
+$C=MYNE_RETAINERS
+>>ThirdBell
+$T=MYNE_RETAINERS,Ella,Hugo,Rosina
+$C=Judithe,Leonore,Lieseleta
+>H1
+$C=Angelica
+>
+>H1
+$T=Bonifatius,Elvira
+>
+>H1
+$C=Bonifatius,Elvira
+$T=Angelica
+
+
+
+#Clarissa’s Invasion
+// "It was the day of our meeting with the lower city’s merchants"
+// said to be the day after the divine protections
+>>ThirdBell
++$2,T=Benno,Brunhilde,Freida,Gustav,Leise,Lutz,Mark,Melchior,Otto,Theo,Tuuli
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
