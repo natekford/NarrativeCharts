@@ -33,6 +33,8 @@ public static partial class BookwormCharacters
 	[Color("#634926")]
 	public static Character Schwartz { get; } = new("Schwartz");
 	[Color(null)]
+	public static Character Sead { get; } = new("Sead");
+	[Color(null)]
 	public static Character Selim { get; } = new("Selim");
 	[Color(null)]
 	public static Character Seltier { get; } = new("Seltier");

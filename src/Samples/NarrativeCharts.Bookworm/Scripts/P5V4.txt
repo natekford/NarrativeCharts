@@ -79,6 +79,7 @@ $C=Brunhilde
 // guess i don't really need to add this part here, since she probably
 // doesn't reach frenbeltag until 4? days after leaving
 >>Morning
+@?Clarissa
 // Time: "It was the day of our tour"
 // idk
 >>2,Morning
@@ -101,7 +102,6 @@ $T=MYNE_RETAINERS,Melchior,Nikolaus
 $C=MYNE_RETAINERS,Melchior
 // Time: "The day after"
 >>Morning
-$Frenbeltag=Clarissa
 $FE=MYNE_RETAINERS
 >
 
@@ -130,36 +130,113 @@ $T=Angelica
 // "It was the day of our meeting with the lower city’s merchants"
 // said to be the day after the divine protections
 >>ThirdBell
-+$2,T=Benno,Brunhilde,Freida,Gustav,Leise,Lutz,Mark,Melchior,Otto,Theo,Tuuli
++$2a,T=Benno,Freida,Gustav,Leise,Lutz,Mark,Otto,Theo,Tuuli
+>H1
++$2b,T=Brunhilde,Melchior
+>
+$WestGate=Clarissa,Griselda
+$C=Hartmut
 
 
 
+#She Arrived Immediately
+>H1
+$WestGate=Angelica,Damuel,Gunther
+>H1
+-$2a,2b
+$T=Hartmut,Leberecht,Ottilie
+>H1
+$WestGate=Myne
+>H1
+$FE=Angelica,Clarissa,Damuel,Griselda,Hartmut,Leberecht,Myne,Ottilie
+$MF=Gunther
+>H1
+>
+$T=Angelica,Damuel,Hartmut,Myne
+$C=Clarissa,Griselda,Leberecht,Ottilie,Philine
 
 
 
+#Melchior and Spring Prayer
+// Time: "On the day after the spring baptisms"
+// i think around a week
+>>7,ThirdBell
++$3,T=Corinna,Effa,Tuuli
+>
+-$3
+// Time: "As the days passed"
+// "Two days ago, I had received word that Melchior would be visiting"
+>>4,Morning
+$T=Melchior
+>
+$C=Melchior
+// Time: "Days after Melchior’s visit"
+>>3,Morning
+$KO=Angelica,Damuel,Myne
+>
+$T=Angelica,Damuel,Frietack,Myne
++$4,EhrFreGate=Clarissa,Griselda,Hartmut,Leberecht,Ottilie
+>>3,Morning
+$C=Nikolaus
+$T=Gunther
+@?Ella,Gunther,Hugo,Monika,Rosina
+>
+$Hasse=Angelica,Damuel,Myne,Fran
+>
+$Hasse=Ella,Gunther,Hugo,Melchior,Monika,Rosina
+$Leisegang=WILF_RETAINERS
+$SmallTowns=CHAR_RETAINERS
 
 
 
+#The Disciples of the Gutenbergs
+>
+$C=Melchior
+>>Morning
+@?Ella,Gunther,Hugo,Monika,Rosina
+>
+$SmallTowns=Angelica,Damuel,Myne,Fran
+>
+$MF=Gunther
+$SmallTowns=Ella,Hugo,Monika,Rosina
+>>3,Morning
+$T=Angelica,Damuel,Ella,Fran,Hugo,Monika,Myne,Rosina
+$C=CHAR_RETAINERS,WILF_RETAINERS
+// clarissa/hartmut probably back by now
+-$4
+// Time: "I was feeling right as rain after only two"
+>>2,ThirdBell
+$W=Dimo,Horace,Sead
++$5a,T=Benno,Danilo,Dimo,Horace,Johann,Lutz,Sead
++$5b,T=Ingo,Josef,Zack
+>
+-$5b
 
 
 
+#Kirnberger’s Country Gate
++$6,Kirnberger=Cornelius,Elvira,Ella,Fran,Gretia,Hartmut,Henrik,Hugo,Judithe,Leonore,Lieseleta,Monika,Muriella,Myne,Roderick
+$Kirnberger=5a
+// Time: "It soon came time for us to leave"
+// not stated how long myne spends in kirnberger, probably a few days
+>>3,Morning
+-$6
+$M=Benno
+>
+$T=Nikolaus
 
 
 
+#Epilogue
+$Kirnberger=Alexis
+>
+>
+$C=Alexis
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+//#Reflection and Envy
+// Lengurt (char knight) gets mentioned, not gonna bother
 
 
 

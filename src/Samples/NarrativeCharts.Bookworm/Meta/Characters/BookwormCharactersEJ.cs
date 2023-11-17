@@ -65,6 +65,8 @@ public static partial class BookwormCharacters
 	[Color("#808080")]
 	public static Character Gretia { get; } = new("Gretia");
 	[Color(null)]
+	public static Character Griselda { get; } = new("Griselda");
+	[Color(null)]
 	public static Character Gundolf { get; } = new("Gundolf");
 	[Color("#37527F")]
 	public static Character Gunther { get; } = new("Gunther");
@@ -88,6 +90,8 @@ public static partial class BookwormCharacters
 	public static Character Hildebrand { get; } = new("Hildebrand");
 	[Color("#4D4A41")]
 	public static Character Hirschur { get; } = new("Hirschur");
+	[Color(null)]
+	public static Character Horace { get; } = new("Horace");
 	[Color("#ADD8E6")]
 	public static Character Hortensia { get; } = new("Hortensia");
 	[Color("#7E5951")]

@@ -10,6 +10,7 @@ public static class BookwormLocations
 	public static Location Drewanchel { get; } = new("Drewanchel");
 	public static Location Dunkelfelger { get; } = new("Dunkelfelger");
 	public static Location EhrenfestCastle { get; } = new("Ehrenfest Castle");
+	public static Location EhrFreDuchyGate { get; } = new("Ehr/Fre Duchy Gate");
 	public static Location FerdinandsHouse { get; } = new("Ferdinand's Estate");
 	public static Location Frenbeltag { get; } = new("Frenbeltag");
 	public static Location Gilessenmeyer { get; } = new("Gilessenmeyer");
@@ -51,6 +52,7 @@ public static class BookwormLocations
 	public static Location SouthernProvinces { get; } = new("Southern Provinces");
 	public static Location Sovereignty { get; } = new("Sovereignty");
 	public static Location Temple { get; } = new("Temple");
+	public static Location WestGate { get; } = new("West Gate");
 	public static ImmutableDictionary<Location, int> YIndexes { get; }
 
 	static BookwormLocations()
@@ -85,10 +87,12 @@ public static class BookwormLocations
 			Temple,
 			ItalianRestaurant,
 			MerchantCompanies,
+			WestGate,
 			LowerCityWorkshops,
 			MynesHouse,
 			Hasse,
 			SmallTowns,
+			EhrFreDuchyGate,
 			RuelleTree,
 			GoddessesBath,
 			Leisegang,

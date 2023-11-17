@@ -160,7 +160,7 @@ $RA_S=Hirschur
 // dead
 @!Bettina,Freuden,Janrik,Royella,Sidonius
 // imprisoned
-$KO=Trudeliede
+$KO=Frietack,Trudeliede
 // escaped
 $Ahrensbach=Grausam
 >H1
