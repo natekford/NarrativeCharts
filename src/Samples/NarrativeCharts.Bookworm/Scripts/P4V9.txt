@@ -113,7 +113,7 @@ $C=Karstedt
 
 
 
-#Viscount Dahldolf’s Estate
+#Viscount Dahldolf's Estate
 $NQ=MYNE_GUARDS_ALL,FERDI_GUARDS,Hartmut
 >H1
 @!Gloria

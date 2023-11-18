@@ -32,7 +32,7 @@
 
 
 
-#Raimund’s Research and Hirschur’s Warning
+#Raimund's Research and Hirschur's Warning
 // Time: "the very next morning"
 >>Morning
 +$1,RA_S=Gretia,Laurenz,Lieseleta,Myne,Theodore
@@ -88,7 +88,7 @@ $RA_ST=MYNE_RETAINERS,2b
 
 
 
-#Ditter and Dunkelfelger’s Demonstration
+#Ditter and Dunkelfelger's Demonstration
 >H1
 
 
@@ -119,7 +119,7 @@ $RA_DE=Florencia
 
 
 
-#Detlinde’s Dedication Whirl
+#Detlinde's Dedication Whirl
 >H1
 >
 -$3
@@ -139,7 +139,7 @@ $RA_DO=Detlinde,Martina
 
 
 
-#Lending Books and a Place for One’s Heart
+#Lending Books and a Place for One's Heart
 -$4b
 >
 -$4a

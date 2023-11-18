@@ -13,7 +13,7 @@ $KE=Siegrecht
 
 
 
-#Returning Home and Everyone’s Situation
+#Returning Home and Everyone's Situation
 $C=Damuel,Hartmut
 >>Morning
 
@@ -43,7 +43,7 @@ $NQ=Oswald
 
 
 #Speaking with the Aub
-// Time: "The next day, Matthias and the others went with the Knight’s Order to investigate the giebes’ estates."
+// Time: "The next day, Matthias and the others went with the Knight's Order to investigate the giebes' estates."
 >>Morning
 +$1a,SP=Laurenz,Matthias,Muriella
 // Time: "The following days"
@@ -51,7 +51,7 @@ $NQ=Oswald
 
 
 
-#Brunhilde’s Suggestion
+#Brunhilde's Suggestion
 >
 +$1b,SP=Bonifatius
 
@@ -126,8 +126,8 @@ $T=Angelica
 
 
 
-#Clarissa’s Invasion
-// "It was the day of our meeting with the lower city’s merchants"
+#Clarissa's Invasion
+// "It was the day of our meeting with the lower city's merchants"
 // said to be the day after the divine protections
 >>ThirdBell
 +$2a,T=Benno,Freida,Gustav,Leise,Lutz,Mark,Otto,Theo,Tuuli
@@ -170,7 +170,7 @@ $C=Clarissa,Griselda,Leberecht,Ottilie,Philine
 $T=Melchior
 >
 $C=Melchior
-// Time: "Days after Melchior’s visit"
+// Time: "Days after Melchior's visit"
 >>3,Morning
 $KO=Angelica,Damuel,Myne
 >
@@ -214,7 +214,7 @@ $W=Dimo,Horace,Sead
 
 
 
-#Kirnberger’s Country Gate
+#Kirnberger's Country Gate
 +$6,Kirnberger=Cornelius,Elvira,Ella,Fran,Gretia,Hartmut,Henrik,Hugo,Judithe,Leonore,Lieseleta,Monika,Muriella,Myne,Roderick
 $Kirnberger=5a
 // Time: "It soon came time for us to leave"

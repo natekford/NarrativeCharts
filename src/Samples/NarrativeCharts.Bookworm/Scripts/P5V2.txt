@@ -38,8 +38,8 @@ $RA_DE=MYNE_RETAINERS
 
 
 
-#Dunkelfelger’s Ritual
-// Time: "Several days after visiting the library’s archive"
+#Dunkelfelger's Ritual
+// Time: "Several days after visiting the library's archive"
 >>3,Morning
 +$2,RA_K=MYNE_RETAINERS,CHAR_RETAINERS,WILF_RETAINERS,Clarissa,Hannelore,Lestilaut,Rauffen
 >H2
@@ -92,7 +92,7 @@ $RA_DE=Gretia,Laurenz,Matthias,Muriella
 >
 >
 -$5
-// Time: "The tea parties didn’t end there"
+// Time: "The tea parties didn't end there"
 >>Morning
 $RA_DO=MYNE_RETAINERS
 >
@@ -121,7 +121,7 @@ $RA_DE=Hartmut
 >H1
 
 
-#The Royal Academy’s Dedication Ritual
+#The Royal Academy's Dedication Ritual
 $RA_DO=Fairziere
 +$7c,RA_FH=Adolphine,Ana,AnaFather,Clarissa,Cordula,Eggy,Fairziere,Hannelore,Lestilaut,Lueuradi,Nahelache,Ortwin,Raublut,Sigi
 // Loyalitat gets mentioned but idr if he shows up in the future

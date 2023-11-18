@@ -3,6 +3,8 @@
 +%MYNE_SCHOLARS=Clarissa,Hartmut
 +%MYNE_ATTEND=Lieseleta,Ottilie
 +%MYNE_RETAINERS=MYNE_GUARDS,MYNE_SCHOLARS,MYNE_ATTEND
++%ARCHIVE_GROUP=MYNE_GUARDS,MYNE_ATTEND,Arthur,Cordula,Hildebrand,Hannelore,Magdalena
++%ANA_EGGY=Ana,Eggy,Oswin
 
 #Prologue
 >
@@ -27,7 +29,7 @@ $C=Bonifatius,Karstedt,Sylvester
 
 
 
-#The Archduke Conference’s Starbinding
+#The Archduke Conference's Starbinding
 // only ~55 days into the season, AD conf is "late spring"
 >>>1
 >>Morning
@@ -36,7 +38,8 @@ $C=MYNE_RETAINERS,Gretia,Hugo,Judithe,Laurenz,Matthias,Philine,Roderick,Rosina
 $T=Laurenz,Matthias,Philine,Roderick
 $C=Bertilde,Brunhilde
 +$1a,RA_DE=MYNE_RETAINERS,Elvira,Florencia,Hugo,Karstedt,Rihyarda,Rosina,Sylvester
-+$1b,RA_DO=Adolphine,AubDitter,AubFre,AubKla,Constanze,Detlinde,Georgine,Hannelore,Lestilaut,Sieglinde
++$1b,RA_DO=AubDitter,AubFre,AubKla,Constanze,Detlinde,Georgine,Hannelore,Lestilaut,Sieglinde
+$RA_RV=Adolphine
 >H1
 >
 $RA_GE=Angelica,Cornelius,Damuel
@@ -46,7 +49,7 @@ $RA_DE=Angelica,Cornelius,Damuel
 // Time: "The next day, after breakfast,"
 >>Morning
 >
-+$2,RA_A=1a,1b,Ana,AnaFather,Eggy,Fraularm,Immanuel,Sigi
++$2,RA_A=1a,1b,Adolphine,Ana,AnaFather,Eggy,Fraularm,Immanuel,Sigi
 $RA_DO=Hannelore
 >H1
 >
@@ -57,7 +60,7 @@ $RA_DO=Hannelore
 #Work in the Underground Archive
 // Time: "It was the start of a new day."
 >>Morning
-+$3,RA_L=MYNE_GUARDS,MYNE_ATTEND,Ana,Arthur,Eggy,Hildebrand,Hannelore,Magdalena,Oswin
++$3,RA_L=ARCHIVE_GROUP,ANA_EGGY
 >H2
 >
 $RA_L=Detlinde
@@ -75,6 +78,7 @@ $RA_L=Detlinde
 
 #The Locations of the Shrines
 -$4a,4b
+$RA_DO=Detlinde
 >H2
 >H1
 $RA_L=Sylvester
@@ -83,11 +87,11 @@ $RA_L=Sylvester
 $RA_DE=Sylvester
 // Time: "The next day, I returned to the underground archive."
 >>Morning
-+$5,RA_L=MYNE_GUARDS,MYNE_ATTEND,Ana,Arthur,Eggy,Hildebrand,Hannelore,Magdalena,Oswin
++$5,RA_L=ARCHIVE_GROUP,ANA_EGGY
 >H1
-$RA_G=Ana,Eggy,Oswin
+$RA_G=ANA_EGGY
 >H1
-$RA_L=Ana,Eggy,Oswin
+$RA_L=ANA_EGGY
 
 
 
@@ -109,20 +113,20 @@ $RA_DE=Cornelius,Leonore,Myne
 
 #Circling the Shrines
 >>Morning
-+$6,RA_L=MYNE_GUARDS,MYNE_ATTEND,Ana,Arthur,Eggy,Hildebrand,Hannelore,Magdalena,Oswin
++$6,RA_L=ARCHIVE_GROUP,ANA_EGGY
 >H1
 >
-$RA_G=MYNE_GUARDS,MYNE_ATTEND,Ana,Eggy,Oswin
+$RA_G=MYNE_GUARDS,MYNE_ATTEND,ANA_EGGY
 >H2
 >
-$RA_L=MYNE_GUARDS,MYNE_ATTEND,Ana,Eggy,Oswin
+$RA_L=MYNE_GUARDS,MYNE_ATTEND,ANA_EGGY
 
 
 
 #Deeper into the Underground Archive
 >H1
 >H1
-$RA_RV=Ana,Eggy
+$RA_RV=ANA_EGGY
 >
 $RA_L=Sylvester
 >H1
@@ -133,18 +137,92 @@ $RA_DE=Sylvester
 
 #Letters and a Discussion
 $RA_DE=Hirschur
+>
+$RA_S=Hirschur
+// read ferdi letter
+>>Morning
+// talk with syl/flor about zent stuff
 
 
 
+#The Merchant Saint
+// Time: "I went to the underground archive the next day."
+>>Morning
++$7,RA_L=ARCHIVE_GROUP
+>U2
+>H1
+$RA_L=Sigi
+$RA_DO=Hannelore
+>H1
 
 
 
+#Conditions for Being Adopted
+>
+$RA_L=Sylvester
+-$7
+$RA_DE=Sylvester
+$RA_RV=Sigi
 
 
 
+#Secured Conditions
+// Time: "He was to meet with them again in two days' time."
+>>2,ThirdBell
+$RA_RV=Sylvester
+>
+>
+$RA_DE=Sylvester
+// Time: "A few days later,"
+>>2,Morning
++$8,RA_L=ARCHIVE_GROUP
+>U3
+>
+-$8
 
 
 
+#The Archduke Conference's Dedication Ritual
+>>Morning
+$RA_DE=Hirschur
+>H1
+$RA_S=Hirschur
++$9,RA_L=ARCHIVE_GROUP
+>U3
+>
+-$9
+// Time: "In no time at all, it was the final day of the Archduke Conference."
+// should be ~7 days after sigi conversation
+>>Morning
++$9a,RA_A=MYNE_RETAINERS,Immanuel
+>H1
+// ahrensbach says they won't do the ritual
+// royal family sits it out too b/c myne said to
+// hannelore probably doesn't because she's not supposed to be at the AD conf
++$9b,RA_A=Gundolf,Hirschur,Pauline,Primevere,Rauffen
++$9c,RA_A=Adolphine,AnaFather,AubDitter,AubFre,AubKla,Constanze,Lestilaut,Magdalena,Sieglinde
+>
+>
+-$9a,9b,9c
+>H1
+>
+-$1a,1b
+
+
+
+#Epilogue
+$RA_RV=Raublut
+>
+>
+$Sovereignty=Raublut
+$Sovereignty=Hortensia
+>H1
+@!Hortensia
+
+
+
+//#An Unwanted Marriage
+// Oderkunst and Lisbeth mentioned (adolphine's new retainers)
 
 
 

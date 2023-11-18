@@ -89,7 +89,7 @@ $RA_FH=Hannelore,Myne,Ortwin,Philine,Roderick,Wilfried
 
 
 
-#Music and Everyone’s Rituals
+#Music and Everyone's Rituals
 // Katinka gets mentioned (ehr student)
 // she's also apparently in RAS
 >
@@ -135,7 +135,7 @@ $RA_RV=Eggy
 
 
 
-#Hirschur’s Meeting with the Aub
+#Hirschur's Meeting with the Aub
 // Time: "two days from now"
 >>2,Morning
 $RA_GE=ALL_EHR
@@ -178,7 +178,7 @@ $Ahrensbach=Grausam
 
 
 
-#Passing Professor Gundolf’s Classes
+#Passing Professor Gundolf's Classes
 >H1
 >
 -$6b
@@ -191,7 +191,7 @@ $RA_DO=Gundolf
 
 
 
-#Gretia’s Circumstances and Gathering Ingredients
+#Gretia's Circumstances and Gathering Ingredients
 // Time: "And so came Earthday."
 // 3? days since "week started"
 >>4,Morning
@@ -202,7 +202,7 @@ $RA_DE=ALL_EHR
 
 
 
-#Professor Fraularm’s Class
+#Professor Fraularm's Class
 // Time: "After breakfast but before our morning classes"
 >>Morning
 // Time: "I was clearing one scholar course exam after another"
@@ -216,7 +216,7 @@ $RA_DE=ALL_EHR
 
 
 
-#Hirschur’s Personal Librarian
+#Hirschur's Personal Librarian
 // Time: "from tomorrow onward"
 >>Morning
 +$8,RA_S=Lieseleta,Myne,Matthias,Rihyarda,Roderick,Theodore
@@ -230,7 +230,7 @@ $RA_DE=ALL_EHR
 
 #A Request from Royalty
 // Time: "the day of our gathering arrived."
-// "today’s had been scheduled for fourth-and-a-half [bell]"
+// "today's had been scheduled for fourth-and-a-half [bell]"
 // no exact amount of days stated
 >>5,FourthBell
 $RA_RV=MYNE_RETAINERS
@@ -269,7 +269,7 @@ $RA_DO=Hannelore
 // Time: "Even after my fever went down,"
 >>3,Morning
 // muriella and gretia nameswearing
-// Time: "I was fully recovered, meaning I could finally return to Hirschur’s laboratory."
+// Time: "I was fully recovered, meaning I could finally return to Hirschur's laboratory."
 >>Morning
 $RA_L=Lueuradi,Muriella,Philine
 >
