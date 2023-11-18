@@ -1,12 +1,150 @@
 ﻿##P5V5
-+%MYNE_GUARDS=Angelica,Cornelius,Damuel,Judithe,Laurenz,Leonore,Matthias,Myne
-+%MYNE_SCHOLARS=Hartmut,Muriella,Philine,Roderick
-+%MYNE_ATTEND=Gretia,Lieseleta
++%MYNE_GUARDS=Angelica,Cornelius,Damuel,Leonore,Myne
++%MYNE_SCHOLARS=Clarissa,Hartmut
++%MYNE_ATTEND=Lieseleta,Ottilie
 +%MYNE_RETAINERS=MYNE_GUARDS,MYNE_SCHOLARS,MYNE_ATTEND
-+%WILF_RETAINERS=Alexis,Barthold,Ignaz,Isidore,Wilfried
-+%CHAR_RETAINERS=Cassandra,Charlotte,Kathrein,Marianne,Natalie,Vanessa
 
 #Prologue
+>
+
+
+
+#Apprentice Blues and the Orphanage Children
+// Time: "By the time Spring Prayer was completely over, it was midway through the season."
+// idk
+>>Morning
+$T=Melchior
+>
+
+
+
+#Divine Protections All Around
+// i think this is the same day? no transition
+$T=Bonifatius,Karstedt,Sylvester
+>
+>
+$C=Bonifatius,Karstedt,Sylvester
+
+
+
+#The Archduke Conference’s Starbinding
+// only ~55 days into the season, AD conf is "late spring"
+>>>1
+>>Morning
+$C=MYNE_RETAINERS,Gretia,Hugo,Judithe,Laurenz,Matthias,Philine,Roderick,Rosina
+>>Morning
+$T=Laurenz,Matthias,Philine,Roderick
+$C=Bertilde,Brunhilde
++$1a,RA_DE=MYNE_RETAINERS,Elvira,Florencia,Hugo,Karstedt,Rihyarda,Rosina,Sylvester
++$1b,RA_DO=Adolphine,AubDitter,AubFre,AubKla,Constanze,Detlinde,Georgine,Hannelore,Lestilaut,Sieglinde
+>H1
+>
+$RA_GE=Angelica,Cornelius,Damuel
+>
+>H1
+$RA_DE=Angelica,Cornelius,Damuel
+// Time: "The next day, after breakfast,"
+>>Morning
+>
++$2,RA_A=1a,1b,Ana,AnaFather,Eggy,Fraularm,Immanuel,Sigi
+$RA_DO=Hannelore
+>H1
+>
+-$2
+
+
+
+#Work in the Underground Archive
+// Time: "It was the start of a new day."
+>>Morning
++$3,RA_L=MYNE_GUARDS,MYNE_ATTEND,Ana,Arthur,Eggy,Hildebrand,Hannelore,Magdalena,Oswin
+>H2
+>
+$RA_L=Detlinde
+
+
+
+#Zent Candidates
++$4a,RA_G=Arthur,Cornelius,Hannelore,Hildebrand,Leonore,Myne,Ottilie
+>H1
++$4b,RA_G=Angelica,Damuel
+>H1
+>
+
+
+
+#The Locations of the Shrines
+-$4a,4b
+>H2
+>H1
+$RA_L=Sylvester
+>H1
+-$3
+$RA_DE=Sylvester
+// Time: "The next day, I returned to the underground archive."
+>>Morning
++$5,RA_L=MYNE_GUARDS,MYNE_ATTEND,Ana,Arthur,Eggy,Hildebrand,Hannelore,Magdalena,Oswin
+>H1
+$RA_G=Ana,Eggy,Oswin
+>H1
+$RA_L=Ana,Eggy,Oswin
+
+
+
+#Consultation
+>U3
+>H1
+$RA_L=Sylvester
+>H1
+-$5
+$RA_DE=Sylvester
+// Time: "she wanted us to meet tomorrow morning"
+>>Morning
+// idk who goes with myne, not angelica/damuel tho
+$RA_RV=Cornelius,Leonore,Myne
+>
+$RA_DE=Cornelius,Leonore,Myne
+
+
+
+#Circling the Shrines
+>>Morning
++$6,RA_L=MYNE_GUARDS,MYNE_ATTEND,Ana,Arthur,Eggy,Hildebrand,Hannelore,Magdalena,Oswin
+>H1
+>
+$RA_G=MYNE_GUARDS,MYNE_ATTEND,Ana,Eggy,Oswin
+>H2
+>
+$RA_L=MYNE_GUARDS,MYNE_ATTEND,Ana,Eggy,Oswin
+
+
+
+#Deeper into the Underground Archive
+>H1
+>H1
+$RA_RV=Ana,Eggy
+>
+$RA_L=Sylvester
+>H1
+-$6
+$RA_DE=Sylvester
+
+
+
+#Letters and a Discussion
+$RA_DE=Hirschur
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

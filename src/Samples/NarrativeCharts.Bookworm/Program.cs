@@ -190,14 +190,15 @@ public class Program
 			AddAliases(defs.LocationAliases, new()
 			{
 				[RA_Royals] = ["RA_RV"],
-				[RA_FarthestHall] = ["RA_FH"],
-				[RA_KnightBuilding] = ["RA_K"],
-				[RA_ScholarBuilding] = ["RA_S"],
 				[RA_Stadium] = ["RA_ST"],
+				[RA_Grounds] = ["RA_G"],
 				[RA_Library] = ["RA_L"],
+				[RA_FarthestHall] = ["RA_FH"],
 				[RA_ADCClass] = ["RA_ADC"],
 				[RA_SmallHall] = ["RA_SH"],
 				[RA_Auditorium] = ["RA_A"],
+				[RA_KnightBuilding] = ["RA_K"],
+				[RA_ScholarBuilding] = ["RA_S"],
 				[RA_DormOther] = ["RA_DO"],
 				[RA_DormEhr] = ["RA_DE"],
 				[RA_DormWerk] = ["RA_DW"],

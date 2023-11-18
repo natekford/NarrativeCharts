@@ -39,6 +39,7 @@ public static class BookwormLocations
 	public static Location RA_DormWerk { get; } = new("RA - Werkestock Dorm");
 	public static Location RA_FarthestHall { get; } = new("RA - Farthest Hall");
 	public static Location RA_GatherEhr { get; } = new("RA - Ehr. Gathering Spot");
+	public static Location RA_Grounds { get; } = new("RA - Grounds");
 	public static Location RA_KnightBuilding { get; } = new("RA - Knight Building");
 	public static Location RA_Library { get; } = new("RA - Library");
 	public static Location RA_Royals { get; } = new("RA - Royal Villas");
@@ -64,6 +65,7 @@ public static class BookwormLocations
 			RA_Stadium,
 			RA_KnightBuilding,
 			RA_ScholarBuilding,
+			RA_Grounds,
 			RA_Library,
 			RA_FarthestHall,
 			RA_ADCClass,
