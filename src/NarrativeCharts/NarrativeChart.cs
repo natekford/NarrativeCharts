@@ -79,6 +79,7 @@ public abstract class NarrativeChart : NarrativeChartData
 
 	protected virtual void AddHours(float amount = 1)
 	{
+		Update();
 		Time.AddHours(amount);
 		Update();
 	}
