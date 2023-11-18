@@ -1,6 +1,249 @@
 ﻿##P5V6
++%MYNE_GUARDS=Angelica,Cornelius,Damuel,Judithe,Laurenz,Leonore,Matthias,Myne
++%MYNE_SCHOLARS=Hartmut,Philine,Roderick
++%MYNE_ATTEND=Gretia,Lieseleta
++%MYNE_RETAINERS=MYNE_GUARDS,MYNE_SCHOLARS,MYNE_ATTEND
++%WILF_RETAINERS=Alexis,Barthold,Ignaz,Isidore,Wilfried
++%CHAR_RETAINERS=Cassandra,Charlotte,Kathrein,Marianne,Natalie,Vanessa
 
 #Prologue
+>
+
+
+
+#Report on the Archduke Conference (Third Year)
+$T=Hugo
+// bring all of them to the castle, because idr who was in the temple
+$C=MYNE_RETAINERS
+$KE=Elvira,Muriella
+// Time: "archducal family meeting tomorrow afternoon,"
+>>FifthBell
+>
+
+
+
+#The Canceled Engagement and a Choice for the Future
+>
+
+
+
+#My Retainers’ Choices
+>
+
+
+
+#At Karstedt’s Estate
+>>Morning
+// Time: "dinner with her tomorrow"
+>>ThirdBell
++$1a,KE=Angelica,Karstedt,Leonore,Lieseleta
++$1b,KE=Bonifatius,Cornelius,Myne
+
+
+
+#Mother and Daughter
+>U2
+>
+-$1a
+
+
+
+#Magic Tools for Children
+>>ThirdBell
+-$1b
+>H1
+>
+$T=MYNE_RETAINERS,Melchior
+>
+$C=Melchior
+
+
+
+#Preparing Fey Paper
+>>Morning
+$T=Melchior
+>
+$C=Melchior
+>
+$T=Benno,Mark
+>H1
+>
+$M=Benno,Mark
+>SixthBell
+$T=Mark
+>
+$M=Mark
+// Time: "The next day,"
+>>Morning
+$C=MYNE_GUARDS,Clarissa,Hartmut,Lieseleta
+>
+$FE=MYNE_GUARDS,Clarissa,Hartmut
+
+
+
+#Making Maximal-Quality Samples
+// Time: "returned the next day with the required amount of gold dust"
+>>Morning
+>
+$C=Clarissa
+$T=MYNE_GUARDS,Hartmut
+
+
+
+#The Spring Coming-of-Age Ceremony and Sylvester’s Departure
+// Time: "The spring coming-of-age ceremony was tomorrow,"
+// 7 days have passed since coming back from AD conf
+// so a few days?
+>>4,Morning
+// Time: "So came the coming-of-age ceremony"
+>>Morning
+// ralph COA ceremony, i haven't included any of lutz' family 
+// tho since i only started the charts on p3
+// Time: "The summer baptism ceremony had concluded"
+>>9,Morning
+// Time: "Over dinner on the day before his departure,"
+>>Dinner
+$C=MYNE_GUARDS
+>>Morning
+$C=MYNE_RETAINERS
+$Ahrensbach=Karstedt,Sylvester
+
+
+
+#Kids’ Tea Party
+>
+$T=Hartmut,Philine
+>H1
+
+
+
+#The Leisegang Elders
+>
+$C=GiebeLeisegang
+>
+$Leisegang=GiebeLeisegang
+// Time: "Days later, I returned to the temple."
+// "I checked with Prince Sigiswald,"
+$Ahrensbach=Sigi
+>>4,Morning
+$RA_RV=Sigi
+$T=MYNE_GUARDS,Gretia,Hartmut,Roderick
+
+
+
+#Sylvester Returns
+// Time: "I spent my days working"
+>>>1
+>>Morning
+$T=Melchior
+// Time: "You are wanted back at the castle today for dinner."
+>FifthBell
+$C=MYNE_RETAINERS,Karstedt,Melchior,Sylvester
+>
+>
+
+
+
+#Letters from Ferdinand
+// Time: "The next day,"
+>>Morning
++$2,FE=MYNE_GUARDS,MYNE_SCHOLARS,Clarissa,Ella,Gretia,Hugo
+
+
+
+#The Trombe Hunt and the Starbind Ceremony
+>
+>
+-$2
+$T=MYNE_GUARDS,MYNE_SCHOLARS,Gretia
+// Time: "within a mere three days."
+>>3,Morning
+// Time: "The Starbind Ceremony came not long afterward."
+// only ~14 days are accounted for and starbind is "midsummer"
+// adding in a timeskip at the start of "Sylvester Returns"
+>>3,Morning
+// Time: "In the afternoon,"
+>FifthBell
++$3,C=MYNE_RETAINERS
+
+
+
+#Tuuli’s Coming-of-Age Ceremony
+// Time: "It was days later when I returned to the temple"
+>>3,Morning
+-$3
+$T=Melchior
+// myne finds out her retainers are desirable
+>
+$C=Melchior
+// Time: "It was three days later"
++$4,T=Corinna,Tuuli
+>
+-$4
+>>Morning
++$5,FE=MYNE_GUARDS,Clarissa,Hartmut
+>>4,Morning
+-$5
+// Time: "So came the day of the coming-of-age ceremony."
+>>>1
+>>Morning
+// fey is also there, but i still cba to add lutz' family
+// since i didnt make charts for p1 and p2
++$6,T=Effa,Gunther,Melchior,Tuuli
+>
+-$6
+
+
+
+#Interviews with the Aub
+// Time: "The autumn baptism ceremony ended without incident; "
+//>>2,Morning
+// Time: "We’d reached the time of year when everyone in the temple was preparing for the Harvest Festival."
+>>>1
+>>Morning
+$T=Melchior
+>
+$C=Melchior
+// Time: "I’ll come in three days’ time to conduct my interviews."
+>>3,Morning
+$T=Melchior,Sylvester
+// baby
+>
+$C=Melchior,Sylvester
+// Time: "Days later,"
+>>3,Morning
+$T=Melchior
+>
+$C=Melchior
+// Time: "And another week after that, I was summoned to the castle."
+>>7,Morning
++$7a,C=MYNE_RETAINERS
++$7b,Groschel=Clarissa,Cornelius,Hartmut,Leonore,Ottilie
+
+
+
+#The Harvest Festival and the Gutenbergs’ Choices
+>
+>
+-$7b
+>
+>
+-$7a
+// Time: "as the Harvest Festival grew near."
+>>>1
+>>Morning
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -25,7 +25,7 @@ $T=Melchior
 $T=Bonifatius,Karstedt,Sylvester
 >
 >
-$C=Bonifatius,Karstedt,Sylvester
+$C=Bonifatius,Karstedt,Sylvester,Melchior
 
 
 
