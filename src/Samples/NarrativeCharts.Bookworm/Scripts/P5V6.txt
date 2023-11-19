@@ -126,10 +126,10 @@ $C=GiebeLeisegang
 $Leisegang=GiebeLeisegang
 // Time: "Days later, I returned to the temple."
 // "I checked with Prince Sigiswald,"
-$Ahrensbach=Sigi
 >>4,Morning
-$RA_RV=Sigi
+$Ahrensbach=Raublut,Sigi
 $T=MYNE_GUARDS,Gretia,Hartmut,Roderick
+>
 
 
 
@@ -137,6 +137,8 @@ $T=MYNE_GUARDS,Gretia,Hartmut,Roderick
 // Time: "I spent my days working"
 >>>1
 >>Morning
+$RA_RV=Sigi
+$Sovereignty=Raublut
 $T=Melchior
 // Time: "You are wanted back at the castle today for dinner."
 >FifthBell

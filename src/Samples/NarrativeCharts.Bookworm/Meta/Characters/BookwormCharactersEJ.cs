@@ -21,6 +21,8 @@ public static partial class BookwormCharacters
 	[Color(null)]
 	public static Character Ernesta { get; } = new("Ernesta");
 	[Color(null)]
+	public static Character Fairseele { get; } = new("Fairseele");
+	[Color(null)]
 	public static Character Fairziere { get; } = new("Fairziere");
 	[Color(null)]
 	public static Character Fatiehe { get; } = new("Fatiehe");
@@ -40,6 +42,8 @@ public static partial class BookwormCharacters
 	public static Character Frietack { get; } = new("Frietack");
 	[Color("#351F19")]
 	public static Character Fritz { get; } = new("Fritz");
+	[Color("#BF8BFF")]
+	public static Character Gentiane { get; } = new("Gentiane");
 	[Color("#324AB2")]
 	public static Character Georgine { get; } = new("Georgine");
 	[Color(null)]

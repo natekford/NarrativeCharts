@@ -1,0 +1,105 @@
+﻿##P5V7
++%MYNE_GUARDS_EHR=Angelica,Cornelius,Damuel,Judithe,Laurenz,Leonore,Matthias,Myne
++%MYNE_SCHOLARS_EHR=Hartmut,Philine,Roderick
++%MYNE_ATTEND_EHR=Gretia,Lieseleta
++%MYNE_RETAINERS_EHR=MYNE_GUARDS_EHR,MYNE_SCHOLARS_EHR,MYNE_ATTEND_EHR
+
++%MYNE_GUARDS=Judithe,Laurenz,Matthias,Myne,Theodore
++%MYNE_ADULT_GUARDS=Angelica,Cornelius,Damuel,Hartmut,Leonore
++%MYNE_SCHOLARS=Muriella,Philine,Roderick
++%MYNE_ATTEND=Bertilde,Brunhilde,Gretia,Lieseleta
++%MYNE_RETAINERS=MYNE_GUARDS,MYNE_SCHOLARS,MYNE_ATTEND
+
++%WILF_RETAINERS=Barthold,Ignaz,Isidore,Wilfried
++%CHAR_RETAINERS=Cassandra,Charlotte,Kathrein,Marianne,Natalie,Vanessa
+
++%MISC_EHR=Nikolaus,Traugott
++%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,MISC_EHR
+
++%OTHER_DUCHIES=Cordula,Fairziere,Gentiane,Hannelore,Kenntrips,Lueuradi,Luzinde,Martina,Ortwin,Raimund,Rasantark
++%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
+
+#Prologue
+// Strahl gets named
+$Ahrensbach=Fairseele,Roswitha,Strahl
+>
+
+
+
+#Dirk’s and Bertram’s Baptisms
+$FE=MYNE_GUARDS_EHR,Clarissa,Hartmut
+// Time: "“Five, then. To give you time to rest.”"
+>>5,Morning
+$T=MYNE_GUARDS_EHR,Clarissa,Hartmut
+>>>1
+>>Morning
+$C=MYNE_RETAINERS_EHR,Ella,Hugo,Rosina
+$NQ=Claudio,GiebeDahldolf,GiebeGroschel,GiebeKirnberger,GiebeLeisegang,Helfried,Jeremias,Nadine,Viktor,Volk
+$C=Bertilde,Theodore
+>
+$T=Gretia
+>
+$C=Bertram,Dirk,Gretia,Nikolaus
+
+
+
+#The Winter Playroom and Another New Term
+>>Morning
+// 6th years
+$RA_DE=Barthold,Brunhilde,Isidore,Kathrein,Matthias,Natalie,Traugott
+$RA_DO=Martina
+>>Morning
+// 5th years (hugo usually gets sent early)
+$RA_DE=Cassandra,Gretia,Hugo,Ignaz,Judithe,Laurenz,Marianne,Muriella
+$RA_DO=Fairziere,Kenntrips,Raimund
+>>Morning
+// 4th years
+$RA_DE=Ella,Lieseleta,Myne,Philine,Roderick,Rosina,Wilfried
+$RA_DO=Cordula,Hannelore,Lueuradi,Ortwin,Rasantark
+>>Morning
+// 3rd years
+$RA_DE=Charlotte,Vanessa
+$RA_DO=Luzinde
+>>Morning
+// 2nd years
+$RA_DE=Theodore
+// Time: "We took a breather once the second-years had all arrived,"
+>
++$1,RA_GE=ALL_EHR
+$C=Bertilde,Nikolaus
+>
+>
+-$1
+>>Morning
+// 1st years
+$RA_DE=Bertilde,Nikolaus
+$RA_DO=Gentiane
+>H1
+$RA_DE=MYNE_ADULT_GUARDS
+>H1
+$RA_DE=Hirschur
+>
+$RA_S=Hirschur
+
+
+
+#The Fellowship Gatherings (Fourth Year)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>H24

@@ -27,6 +27,8 @@ public static partial class BookwormCharacters
 	[Color("#E09C5B")]
 	public static Character Rosina { get; } = new("Rosina");
 	[Color(null)]
+	public static Character Roswitha { get; } = new("Roswitha");
+	[Color(null)]
 	public static Character Royella { get; } = new("Royella");
 	[Color("#F1CC8F")]
 	public static Character Rudiger { get; } = new("Rudiger");
@@ -50,6 +52,8 @@ public static partial class BookwormCharacters
 	public static Character Sigiswald { get; } = new("Sigiswald");
 	[Color("#A17CB2")]
 	public static Character Solange { get; } = new("Solange");
+	[Color(null)]
+	public static Character Strahl { get; } = new("Strahl");
 	[Color("#5366AB")]
 	public static Character Sylvester { get; } = new("Sylvester");
 	[Color(null)]
