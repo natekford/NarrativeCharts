@@ -207,7 +207,7 @@ $C=CHAR_RETAINERS,WILF_RETAINERS
 // Time: "I was feeling right as rain after only two"
 >>2,ThirdBell
 $W=Dimo,Horace,Sead
-+$5a,T=Benno,Danilo,Dimo,Horace,Johann,Lutz,Sead
++$5a,T=Benno,Danilo,Dimo,Gil,Horace,Johann,Lutz,Sead
 +$5b,T=Ingo,Josef,Zack
 >
 -$5b

@@ -3,9 +3,11 @@ using NarrativeCharts.Models;
 
 using SkiaSharp;
 
+using System.Collections.Concurrent;
+
 namespace NarrativeCharts.Skia;
 
-public sealed class SKContext
+public sealed class SKContext : IDisposable
 {
 	public SKBitmap Bitmap { get; }
 	public SKCanvas Canvas { get; }
@@ -13,9 +15,13 @@ public sealed class SKContext
 	public SKRect Grid { get; }
 	public float GridHeight => Grid.Height;
 	public float GridWidth => Grid.Width;
-	public Dictionary<Character, List<SKPoint>> Labels { get; } = [];
+	public ConcurrentDictionary<Character, List<SKPoint>> Labels { get; } = [];
 	public float PaddingEnd { get; }
 	public float PaddingStart { get; }
+	// Cache Paint/Text here instead of in SKChartDrawer
+	// otherwise AccessViolationExceptions occur if Paralle.ForEachAsync is used
+	public ConcurrentDictionary<Hex, SKPaint> Paint { get; } = [];
+	public ConcurrentDictionary<string, SKTextBlob> Text { get; } = [];
 	public float XMult { get; }
 	public float XShift { get; }
 	public YMap YMap { get; }
@@ -52,6 +58,21 @@ public sealed class SKContext
 
 		XShift = (w - (yMap.XRange * XMult)) / 2;
 		YShift = (h - (yMap.YRange * YMult)) / 2;
+	}
+
+	public void Dispose()
+	{
+		Bitmap.Dispose();
+		Canvas.Dispose();
+
+		foreach (var (_, paint) in Paint)
+		{
+			paint.Dispose();
+		}
+		foreach (var (_, text) in Text)
+		{
+			text.Dispose();
+		}
 	}
 
 	public float X(float x)

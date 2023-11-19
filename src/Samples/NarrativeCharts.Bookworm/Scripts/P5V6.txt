@@ -12,7 +12,7 @@
 
 
 #Report on the Archduke Conference (Third Year)
-$T=Hugo
+$T=Hugo,Rosina
 // bring all of them to the castle, because idr who was in the temple
 $C=MYNE_RETAINERS
 $KE=Elvira,Muriella
@@ -95,6 +95,8 @@ $T=MYNE_GUARDS,Hartmut
 // 7 days have passed since coming back from AD conf
 // so a few days?
 >>4,Morning
+// from SS The Lanzenave Envoys, Leonzio gets namedropped so i guess i'll add him here
+$Ahrensbach=Leonzio
 // Time: "So came the coming-of-age ceremony"
 >>Morning
 // ralph COA ceremony, i haven't included any of lutz' family 
@@ -230,27 +232,51 @@ $C=Melchior
 >
 -$7a
 // Time: "as the Harvest Festival grew near."
+// "The day of departure was finally upon us."
 >>>1
 >>Morning
+$T=Gunther
+@?Ella,Gunther,Hugo,Monika,Rosina
+>
++$8a,Hasse=Angelica,Damuel,Melchior,Myne,Fran
++$8b,SmallTowns=CHAR_RETAINERS
++$8c,SmallTowns=WILF_RETAINERS,Frietack,Kampfer,Nikolaus
++$8d,Leisegang=Hartmut
+>
++$8e,Hasse=Ella,Hugo,Monika,Rosina
+$Hasse=Gunther
+>>Morning
+@?Ella,Gunther,Hugo,Monika,Rosina
+$SmallTowns=8a
+>
+$MF=Gunther
+$SmallTowns=8d
+>>3,Morning
+-$8a,8d,8e
+$T=Danilo,Dimo,Gil,Horace,Johann,Lutz,Sead
+>H1
+>
+$W=Danilo,Dimo,Horace,Johann,Sead
+$M=Lutz
+// Time: "Please return five days from now, at third bell."
+// "It was the day of our meeting"
+// "the same day that the blue priests had come back from the Harvest Festival."
+>>Morning
+-$8c
+>ThirdBell
++$9,T=Benno,Danilo,Dimo,Horace,Ingo,Johann,Josef,Lutz,Mark,Sead,Zack
+>H1
+>
+-$9
+$T=CHAR_RETAINERS
+>H2
+>
+-$8b
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#Epilogue
+>
 
 
 

@@ -15,6 +15,8 @@ namespace NarrativeCharts.Bookworm;
 
 public class Program
 {
+	public const int PARALLEL_CHART_COUNT = 10;
+
 	public List<NarrativeChartData> Books { get; } = [];
 	public string ChartsDir { get; }
 	public ScriptDefinitions Defs { get; private set; } = null!;
@@ -106,14 +108,81 @@ public class Program
 		}
 
 		var sw = Stopwatch.StartNew();
-		var tasks = new List<Task>();
+		var count = 0;
+
+		var books = new List<(NarrativeChartData, string)>();
 		foreach (var book in Books)
 		{
-			var outputPath = Path.Combine(ChartsDir, $"{book.Name}.png");
-			tasks.Add(Drawer.SaveChartAsync(book, outputPath));
+			var imagePath = Path.Combine(ChartsDir, $"{book.Name}.png");
+			if (book is BookwormScriptConverter scriptConverter)
+			{
+				var imageTime = File.GetLastWriteTimeUtc(imagePath);
+				var scriptTime = scriptConverter.LastWriteTimeUTC;
+				if (imageTime >= scriptTime)
+				{
+					Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
+						$"Not redrawing {imagePath}. " +
+						$"Image last drawn: {imageTime:T}, " +
+						$"script last edited: {scriptTime:T}.");
+					continue;
+				}
+			}
+
+			books.Add(new(book, imagePath));
 		}
 
-		await Task.WhenAll(tasks).ConfigureAwait(false);
+#if false
+		// Parallel.ForEachAsync is a lot simpler to write
+		var parallelOptions = new ParallelOptions
+		{
+			MaxDegreeOfParallelism = PARALLEL_CHART_COUNT,
+		};
+		await Parallel.ForEachAsync(books, parallelOptions, async (book, _) =>
+		{
+			var start = sw.Elapsed;
+
+			await Drawer.SaveChartAsync(book.Book, book.ImagePath).ConfigureAwait(false);
+
+			Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
+				$"Finished drawing {book.ImagePath} " +
+				$"in {(sw.Elapsed - start).TotalSeconds:#.##} seconds.");
+		}).ConfigureAwait(false);
+#else
+		// But manually doing the same thing as Parallel.ForEachAsync allows
+		// for potentially accounting for RAM usage instead of just task count
+		// Which probably is important considering how this program can regularly
+		// use up to 10GB+ of RAM
+		var queue = new Queue<(NarrativeChartData, string)>(books);
+		var active = new Dictionary<Task, (TimeSpan, string)>();
+		async Task WhenAnyDrawingAsync()
+		{
+			var task = await Task.WhenAny(active.Keys).ConfigureAwait(false);
+			active.Remove(task, out var item);
+			var (start, imagePath) = item;
+			Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
+				$"Finished drawing {imagePath} " +
+				$"in {(sw.Elapsed - start).TotalSeconds:#.##} seconds.");
+		}
+
+		while (queue.TryDequeue(out var item))
+		{
+			if (active.Count >= PARALLEL_CHART_COUNT)
+			{
+				await WhenAnyDrawingAsync().ConfigureAwait(false);
+			}
+
+			var (book, imagePath) = item;
+			active.Add(
+				key: Drawer.SaveChartAsync(book, imagePath),
+				value: new(sw.Elapsed, imagePath)
+			);
+		}
+		while (active.Any())
+		{
+			await WhenAnyDrawingAsync().ConfigureAwait(false);
+		}
+#endif
+
 		Console.WriteLine($"{Books.Count} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
 	}
 
@@ -130,7 +199,11 @@ public class Program
 			.OrderBy(x => x, NaturalSortStringComparer.Ordinal);
 		foreach (var script in scripts)
 		{
-			books.Add(new BookwormScriptConverter(Defs, File.ReadLines(script)));
+			books.Add(new BookwormScriptConverter(
+				definitions: Defs,
+				lastWriteTimeUtc: File.GetLastWriteTimeUtc(script),
+				lines: File.ReadLines(script)
+			));
 		}
 		return books;
 	}

@@ -6,12 +6,8 @@ using SkiaSharp;
 namespace NarrativeCharts.Skia;
 
 public sealed class SKChartDrawer
-	: ChartDrawer<NarrativeChartData, SKContext, SKColor>, IDisposable
+	: ChartDrawer<NarrativeChartData, SKContext, SKColor>
 {
-	private readonly Dictionary<Hex, SKPaint> _Paint = [];
-	private readonly Dictionary<string, SKTextBlob> _Text = [];
-	private bool _Disposed;
-
 	public Func<Hex, Hex>? CharacterLabelColorConverter { get; init; }
 	private static SKFont Font { get; } = new();
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
@@ -21,24 +17,6 @@ public sealed class SKChartDrawer
 		AxisLabelSize = 20;
 		LineWidth = 4;
 		LineMarkerDiameter = 8;
-	}
-
-	public void Dispose()
-	{
-		if (_Disposed)
-		{
-			return;
-		}
-
-		foreach (var (_, paint) in _Paint)
-		{
-			paint.Dispose();
-		}
-		foreach (var (_, text) in _Text)
-		{
-			text.Dispose();
-		}
-		_Disposed = true;
 	}
 
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
@@ -189,14 +167,8 @@ public sealed class SKChartDrawer
 		var canvas = context.Canvas;
 
 		var hex = segment.Chart.Colors[segment.Character];
-		if (!_Paint.TryGetValue(hex, out var paint))
-		{
-			_Paint[hex] = paint = GetPaint(GetColor(hex));
-		}
-		if (!context.Labels.TryGetValue(segment.Character, out var positions))
-		{
-			context.Labels[segment.Character] = positions = [];
-		}
+		var paint = context.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x)));
+		var positions = context.Labels.GetOrAdd(segment.Character, _ => []);
 
 		using (Restrict(context))
 		{
@@ -235,20 +207,13 @@ public sealed class SKChartDrawer
 
 			foreach (var (character, positions) in image.Labels)
 			{
-				var text = character.Value;
-				if (!_Text.TryGetValue(text, out var name))
-				{
-					_Text[text] = name = SKTextBlob.Create(text, Font);
-				}
+				var name = image.Text.GetOrAdd(character.Value, x => SKTextBlob.Create(x, Font));
 				var hex = image.Chart.Colors[character];
 				if (CharacterLabelColorConverter is not null)
 				{
 					hex = CharacterLabelColorConverter.Invoke(hex);
 				}
-				if (!_Paint.TryGetValue(hex, out var paint))
-				{
-					_Paint[hex] = paint = GetPaint(GetColor(hex));
-				}
+				var paint = image.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x)));
 
 				paint.IsAntialias = true;
 				paint.PathEffect = null;
@@ -309,8 +274,7 @@ public sealed class SKChartDrawer
 			}
 			finally
 			{
-				image.Bitmap.Dispose();
-				image.Canvas.Dispose();
+				image.Dispose();
 			}
 		});
 		return tcs.Task;

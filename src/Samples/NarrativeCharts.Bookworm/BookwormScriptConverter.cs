@@ -9,14 +9,20 @@ namespace NarrativeCharts.Bookworm;
 
 public sealed class BookwormScriptConverter : ScriptConverter
 {
+	public DateTime LastWriteTimeUTC { get; }
+
 	private static Dictionary<string, string> CharacterProperties { get; }
 		= CreateDict(typeof(BookwormCharacters), (Character x) => x.Value);
 
 	private static Dictionary<string, string> LocationProperties { get; }
 		= CreateDict(typeof(BookwormLocations), (Location x) => x.Value);
 
-	public BookwormScriptConverter(ScriptDefinitions definitions, IEnumerable<string> lines) : base(definitions, lines)
+	public BookwormScriptConverter(
+		ScriptDefinitions definitions,
+		DateTime lastWriteTimeUtc,
+		IEnumerable<string> lines) : base(definitions, lines)
 	{
+		LastWriteTimeUTC = lastWriteTimeUtc;
 	}
 
 	public string Write()

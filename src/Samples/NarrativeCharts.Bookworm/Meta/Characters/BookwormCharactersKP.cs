@@ -38,6 +38,8 @@ public static partial class BookwormCharacters
 	public static Character Leon { get; } = new("Leon");
 	[Color("#B5658A")]
 	public static Character Leonore { get; } = new("Leonore");
+	[Color("#F8BF33")]
+	public static Character Leonzio { get; } = new("Leonzio");
 	[Color("#D2C6C8")]
 	public static Character Lestilaut { get; } = new("Lestilaut");
 	[Color("#F1CC8F")]
