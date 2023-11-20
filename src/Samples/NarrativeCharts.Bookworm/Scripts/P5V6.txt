@@ -27,12 +27,12 @@ $KE=Elvira,Muriella
 
 
 
-#My Retainers’ Choices
+#My Retainers' Choices
 >
 
 
 
-#At Karstedt’s Estate
+#At Karstedt's Estate
 >>Morning
 // Time: "dinner with her tomorrow"
 >>ThirdBell
@@ -90,7 +90,7 @@ $T=MYNE_GUARDS,Hartmut
 
 
 
-#The Spring Coming-of-Age Ceremony and Sylvester’s Departure
+#The Spring Coming-of-Age Ceremony and Sylvester's Departure
 // Time: "The spring coming-of-age ceremony was tomorrow,"
 // 7 days have passed since coming back from AD conf
 // so a few days?
@@ -112,7 +112,7 @@ $Ahrensbach=Karstedt,Sylvester
 
 
 
-#Kids’ Tea Party
+#Kids' Tea Party
 >
 $T=Hartmut,Philine
 >H1
@@ -172,7 +172,7 @@ $T=MYNE_GUARDS,MYNE_SCHOLARS,Gretia
 
 
 
-#Tuuli’s Coming-of-Age Ceremony
+#Tuuli's Coming-of-Age Ceremony
 // Time: "It was days later when I returned to the temple"
 >>3,Morning
 -$3
@@ -202,13 +202,13 @@ $C=Melchior
 #Interviews with the Aub
 // Time: "The autumn baptism ceremony ended without incident; "
 //>>2,Morning
-// Time: "We’d reached the time of year when everyone in the temple was preparing for the Harvest Festival."
+// Time: "We'd reached the time of year when everyone in the temple was preparing for the Harvest Festival."
 >>>1
 >>Morning
 $T=Melchior
 >
 $C=Melchior
-// Time: "I’ll come in three days’ time to conduct my interviews."
+// Time: "I'll come in three days' time to conduct my interviews."
 >>3,Morning
 $T=Melchior,Sylvester
 // baby
@@ -226,7 +226,7 @@ $C=Melchior
 
 
 
-#The Harvest Festival and the Gutenbergs’ Choices
+#The Harvest Festival and the Gutenbergs' Choices
 >
 >
 -$7b

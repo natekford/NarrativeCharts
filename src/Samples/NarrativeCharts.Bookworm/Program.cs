@@ -306,6 +306,7 @@ public class Program
 				[MountLohenberg] = ["Lohenberg"],
 				[Ahr_Castle] = ["Ahr_C"],
 				[Ahr_NoblesQuarter] = ["Ahr_NQ"],
+				[Ahr_Temple] = ["Ahr_T"],
 				[Ahr_LanzEstate] = ["Ahr_LE"],
 				[Ahr_LanzShips] = ["Ahr_Ships"],
 				[Ahr_CountryGate] = ["Ahr_Gate"],

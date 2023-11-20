@@ -25,6 +25,109 @@ $MF=Damuel
 $FE=Angelica,Cornelius,Laurenz,Leonore,Matthias,Myne
 // Time: "here by sixth bell."
 >SixthBell
+$T=Judithe
+$FE=Eckhart,Justus
+
+
+
+#Their Information and Name Stones
+>H1
+
+
+
+#Teleporting
+// knights
++$1a,C=Angelica,Cornelius,Laurenz,Leonore,Matthias
+// scholars/myne/ferdi retainers
++$1b,C=Clarissa,Eckhart,Hartmut,Justus,Myne
++$1c,C=Karstedt,Sylvester
+>H1
+$Kirnberger=1a,1b,1c
+>H1
+
+
+
+#To Battle
+-$1c
+$Ditter_Gate=1a,1b,AubDitter,Hannelore,Heisshitze,Lestilaut,Sieglinde
+>H1
+>H0.5
+$Ahr_Gate=1a,1b,Hannelore,Heisshitze
+$Ditter=AubDitter,Lestilaut,Sieglinde
+
+
+
+#Ahrensbach's Temple
+>H1
+>H0.5
+$Ahr_T=1a,1b
+$Ahr_C=Clarissa,Hannelore,Heisshitze
+
+
+
+#Ahrensbach's Foundation and Replenishment Hall
+>H1
+>H0.5
+$Ahr_C=1a,1b
+
+
+
+#Rescue
+>H0.5
+
+
+
+#My Geduldh
+>H0.5
+
+
+
+#The Zent and the Grutrissheit
+>H1
+
+
+
+#The New Aub
+$Ahr_Ships=1a,1b,Ferdinand,Hannelore,Heisshitze
+// justus stays to gather intelligence
+// clarissa/hartmut stay to brainwash people
+$Ahr_C=Clarissa,Hartmut,Justus
+>H1
+
+
+
+#The Aub's Protection
+// Time: "now the sky was turning from purple to faint yellow"
+// currently at about 03:45, so close enough?
+>H1
+
+
+
+#Lanzenave's Ships
+$Ahr_Ships=Strahl
+>H1
+
+
+
+#Summoning Winter
+$Ahr_Ships=Hartmut
+>H1
+
+
+
+#Choices
+$Ahr_C=Fairseele,Letizia
+$Ahr_Gate=Angelica,Ferdinand,Leonore,Myne
+>H1
+
+
+
+
+
+
+
+
+
 
 
 

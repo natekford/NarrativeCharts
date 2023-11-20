@@ -88,7 +88,7 @@ $Haldenzel=Claudio
 $Groschel=Bertilde,GiebeGroschel
 $Kirnberger=GiebeKirnberger,Theodore
 $Leisegang=GiebeLeisegang
-$Illgner=Helfried,Nadine,Viktor,Volk
+$Illgner=Brigitte,Helfried,Nadine,Viktor,Volk
 $SP=GiebeDahldolf,Jeremias
 // myne brings melchior and the playroom children to the temple
 // "my personal chefs had stayed behind in the castle."

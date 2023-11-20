@@ -37,7 +37,7 @@ $Lanzenave=Leonzio
 
 
 
-#Dirk’s and Bertram’s Baptisms
+#Dirk's and Bertram's Baptisms
 $FE=MYNE_GUARDS_EHR,Clarissa,Hartmut
 // Time: "“Five, then. To give you time to rest.”"
 >>5,Morning
@@ -134,7 +134,7 @@ $RA_SH=Hannelore,Lueuradi,Myne,Ortwin,Philine,Rasantark,Roderick,Wilfried
 >H1
 >
 -$3a,3b
-// Time: "The next morning’s written lessons went as smoothly as ever."
+// Time: "The next morning's written lessons went as smoothly as ever."
 >>ThirdBell
 +$4a,RA_A=ALL_STUDENTS
 >H1
@@ -161,7 +161,7 @@ $RA_DE=Myne
 
 
 
-#The Royal Academy’s Dedication Rituals
+#The Royal Academy's Dedication Rituals
 // Time: "The day after my conversation with Eglantine"
 >>ThirdBell
 +$6,RA_A=ALL_STUDENTS
@@ -207,7 +207,7 @@ $RA_S=Hirschur
 >H1
 >
 -$Med1,Med2,Med3
-// Time: "The laynobles’ Dedication Ritual came and went"
+// Time: "The laynobles' Dedication Ritual came and went"
 >>7,ThirdBell
 +$Lay1,RA_A=MYNE_ADULT_GUARDS,Charlotte
 >H1
@@ -270,10 +270,17 @@ $Immerdink=Murrenreue
 $FE=Adrett
 // Time: "And a few days later, it happened."
 >>3,Morning
+// idk when the spring feast happens, gonna put it here
+$Haldenzel=Claudio
+$Groschel=GiebeGroschel
+$Kirnberger=GiebeKirnberger,Theodore
+$Leisegang=GiebeLeisegang
+$Illgner=Brigitte,Helfried,Nadine,Viktor,Volk
+$SP=GiebeDahldolf,Jeremias
 
 
 
-#I’m Back
+#I'm Back
 // Time: "it was nighttime."
 >SixthBell
 $RA_FH=Myne
@@ -296,7 +303,7 @@ $C=Gretia,Hugo,Matthias,Rosina
 
 
 
-#The Bible’s Key
+#The Bible's Key
 $T=Angelica,Damuel,Gretia,Hartmut,Hugo,Laurenz,Matthias,Myne,Philine
 >H1
 // boni and matthias check if magic tool cabins in gerlach have been accessed
@@ -326,7 +333,8 @@ $T=Melchior
 
 
 #Preparing for War
-// there isn't any date transitions in this chapter, but 
+$C=Bonifatius
+// there isn't any date transitions in this chapter 
 $T=MYNE_GUARDS_EHR,MYNE_SCHOLARS_EHR
 >
 +$10,FE=Angelica,Clarissa,Cornelius,Hartmut,Leonore,Myne
@@ -335,7 +343,7 @@ $T=MYNE_GUARDS_EHR,MYNE_SCHOLARS_EHR
 
 
 
-#Kamil’s Baptism
+#Kamil's Baptism
 // Time: "winter coming-of-age ceremony came and went"
 // "spring baptisms were soon to follow"
 -$10
