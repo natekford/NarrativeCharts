@@ -1,17 +1,30 @@
 ﻿##P5V8
++%MYNE_GUARDS=Angelica,Cornelius,Damuel,Judithe,Laurenz,Leonore,Matthias,Myne
++%MYNE_SCHOLARS=Clarissa,Hartmut,Philine,Roderick
++%MYNE_ATTEND=Bertilde,Gretia,Lieseleta
++%MYNE_RETAINERS=MYNE_GUARDS,MYNE_SCHOLARS,MYNE_ATTEND
+
++%CHAR_RETAINERS=Cassandra,Charlotte,Ediline,Kathrein,Marianne,Natalie,Vanessa
++%WILF_RETAINERS=Barthold,Ignaz,Isidore,Wilfried
 
 #Prologue
+$RA_DE=Sylvester
+>H0.25
+$C=Eckhart,Justus,Sylvester
 
 
 
-
-
-
-
-
-
-
-
+#Uniting
+$C=MYNE_RETAINERS
+$T=Philine,Roderick
+>H0.5
+$FE=Clarissa,Gretia,Hartmut,Lieseleta
+$C=Bertilde,Ottilie
+$MF=Damuel
+>H0.5
+$FE=Angelica,Cornelius,Laurenz,Leonore,Matthias,Myne
+// Time: "here by sixth bell."
+>SixthBell
 
 
 

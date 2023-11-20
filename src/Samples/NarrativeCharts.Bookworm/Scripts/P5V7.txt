@@ -341,7 +341,7 @@ $T=MYNE_GUARDS_EHR,MYNE_SCHOLARS_EHR
 -$10
 >H1
 +$11,T=Effa,Gunther,Kamil,Lutz,Tuuli
->
+>H1
 -$11
 $C=Cornelius,Hartmut,Judithe,Leonore,Lieseleta,Melchior,Myne
 $FE=Clarissa,Roderick
@@ -349,7 +349,7 @@ $FE=Clarissa,Roderick
 
 
 #Defense Meeting
->Dinner
+>H1
 
 
 
@@ -384,8 +384,8 @@ $Lanzenave=Gervasio
 //#The Royal Academy without My Sister
 // takes place during the week of myne's disappearance
 // Fonzell (char retainer) mentioned, not gonna include him
-// Ediline mentioned, i will include her because her age/profession/status
-// are all included
+// Ediline mentioned, i will include her because her
+// age/profession/status are all mentioned
 
 
 
@@ -393,10 +393,11 @@ $Lanzenave=Gervasio
 $Ahr_Ships=Fairseele,Letizia
 $Ahr_LE=Alstede,Blasius,Detlinde,Fatiehe,Giordano,Leonzio,Martina
 >H1
->H1
 $RA_AV=Alstede,Blasius,Detlinde,Fatiehe,Giordano,Leonzio,Martina,Raublut
+$Ahr_LE=Gervasio
 >H1
 $RA_AV=Gervasio
+
 
 
 // geez this was a long one

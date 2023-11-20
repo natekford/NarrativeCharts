@@ -11,6 +11,7 @@ public static class BookwormLocations
 	public static Location Ahr_LanzEstate { get; } = new("Ahr. Lanzenave Estate");
 	public static Location Ahr_LanzShips { get; } = new("Ahr. Lanzenave Ships");
 	public static Location Ahr_NoblesQuarter { get; } = new("Ahr. Noble's Quarter");
+	public static Location Ahr_Temple { get; } = new("Ahr. Temple");
 	public static Location Ahrensbach { get; } = new("Ahrensbach");
 	public static Location Drewanchel { get; } = new("Drewanchel");
 	public static Location Dunk_CountryGate { get; } = new("Dunkelfelger Country Gate");
@@ -115,6 +116,7 @@ public static class BookwormLocations
 			MountLohenberg,
 			Ahr_Castle,
 			Ahr_NoblesQuarter,
+			Ahr_Temple,
 			Ahr_LanzEstate,
 			Ahr_LanzShips,
 			Ahr_CountryGate,

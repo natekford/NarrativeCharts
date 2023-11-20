@@ -26,7 +26,30 @@ public abstract class NarrativeChartWithUnits<TUnit> : NarrativeChart
 	protected virtual void SkipToDaysAhead(int days, TUnit unit)
 	{
 		Update();
-		Time.SkipToDaysAheadStart(days).SetCurrentUnit(Convert(unit) - 1);
+		Time.SkipToDaysAheadStart(days);
+
+		var currentUnit = Time.CurrentUnit;
+		var desiredUnit = Convert(unit);
+		// If the desired unit is less than the current unit
+		// we'll want to always throw an exception because
+		// we don't allow going back in time
+		// If the desired unit is equal to the current unit
+		// we don't know if the hour is less than the current one
+		// so let it potentially throw
+		if (desiredUnit <= currentUnit)
+		{
+			Time.SetCurrentUnit(desiredUnit);
+			Update();
+			return;
+		}
+
+		// advance to the unit right before the desired one
+		// so the chart doesn't have a huge jump, just a 1 unit
+		// sized jump
+		if (currentUnit < desiredUnit - 1)
+		{
+			Time.SetCurrentUnit(desiredUnit - 1);
+		}
 		Jump();
 	}
 
