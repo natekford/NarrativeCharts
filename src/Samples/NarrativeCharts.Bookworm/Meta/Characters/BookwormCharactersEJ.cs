@@ -6,6 +6,8 @@ public static partial class BookwormCharacters
 {
 	[Color("#5F7D3F")]
 	public static Character Eckhart { get; } = new("Eckhart");
+	[Color(null)]
+	public static Character Ediline { get; } = new("Ediline");
 	[Color("#A0AA8F")]
 	public static Character Effa { get; } = new("Effa");
 	[Color("#F5DEAC")]
@@ -47,6 +49,8 @@ public static partial class BookwormCharacters
 	[Color("#324AB2")]
 	public static Character Georgine { get; } = new("Georgine");
 	[Color(null)]
+	public static Character Gervasio { get; } = new("Gervasio");
+	[Color(null)]
 	public static Character GiebeDahldolf { get; } = new("Giebe Dahldolf");
 	[Color(null)]
 	public static Character GiebeGroschel { get; } = new("Giebe Groschel");
@@ -62,6 +66,8 @@ public static partial class BookwormCharacters
 	public static Character Gieselfried { get; } = new("Gieselfried");
 	[Color("#F8EECB")]
 	public static Character Gil { get; } = new("Gil");
+	[Color(null)]
+	public static Character Giordano { get; } = new("Giordano");
 	[Color("#3B4834")]
 	public static Character Gloria { get; } = new("Gloria");
 	[Color("#A5629D")]

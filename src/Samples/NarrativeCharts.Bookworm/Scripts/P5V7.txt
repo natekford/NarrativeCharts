@@ -10,19 +10,30 @@
 +%MYNE_ATTEND=Bertilde,Brunhilde,Gretia,Lieseleta
 +%MYNE_RETAINERS=MYNE_GUARDS,MYNE_SCHOLARS,MYNE_ATTEND
 
++%CHAR_RETAINERS=Cassandra,Charlotte,Ediline,Kathrein,Marianne,Natalie,Vanessa
 +%WILF_RETAINERS=Barthold,Ignaz,Isidore,Wilfried
-+%CHAR_RETAINERS=Cassandra,Charlotte,Kathrein,Marianne,Natalie,Vanessa
 
 +%MISC_EHR=Nikolaus,Traugott
 +%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,MISC_EHR
 
-+%OTHER_DUCHIES=Cordula,Fairziere,Gentiane,Hannelore,Kenntrips,Lueuradi,Luzinde,Martina,Ortwin,Raimund,Rasantark
++%OTHER_DUCHIES=Cordula,Fairziere,Gentiane,Hannelore,Kenntrips,Lueuradi,Luzinde,Martina,Murrenreue,Ortwin,Raimund,Rasantark
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 
 #Prologue
 // Strahl gets named
-$Ahrensbach=Fairseele,Roswitha,Strahl
+$Ahr_C=Fairseele,Roswitha,Strahl
+// move characters to more specific locations
+$Ahr_C=Eckhart,Ferdinand,Justus,Sergius,Strahl
+$Ahr_C=Fairseele,Letizia,Roswitha
+$Ahr_C=Detlinde,Fatiehe,Martina
+$Ahr_C=Georgine,Seltier
+// he's probably not anywhere near the castle/nq, but im not making a "nothern provinces"
+// location for grausam/georgine
+$Ahr_NQ=Grausam
+$Ahr_NQ=Raimund
+$Ahr_LE=Leonzio
 >
+$Lanzenave=Leonzio
 
 
 
@@ -51,7 +62,7 @@ $RA_DO=Martina
 >>Morning
 // 5th years (hugo usually gets sent early)
 $RA_DE=Cassandra,Gretia,Hugo,Ignaz,Judithe,Laurenz,Marianne,Muriella
-$RA_DO=Fairziere,Kenntrips,Raimund
+$RA_DO=Fairziere,Kenntrips,Murrenreue,Raimund
 >>Morning
 // 4th years
 $RA_DE=Ella,Lieseleta,Myne,Philine,Roderick,Rosina,Wilfried
@@ -65,14 +76,15 @@ $RA_DO=Luzinde
 $RA_DE=Theodore
 // Time: "We took a breather once the second-years had all arrived,"
 >
+$C=Ediline
 +$1,RA_GE=ALL_EHR
-$C=Bertilde,Nikolaus
+$C=Bertilde,Ediline,Nikolaus
 >
 >
 -$1
 >>Morning
 // 1st years
-$RA_DE=Bertilde,Nikolaus
+$RA_DE=Bertilde,Ediline,Nikolaus
 $RA_DO=Gentiane
 >H1
 $RA_DE=MYNE_ADULT_GUARDS
@@ -84,22 +96,308 @@ $RA_S=Hirschur
 
 
 #The Fellowship Gatherings (Fourth Year)
+>>ThirdBell
++$1a,RA_RV=MYNE_ADULT_GUARDS,Immanuel
++$1b,RA_A=ALL_STUDENTS
+>H1
+>
+$RA_SH=Brunhilde,Matthias,Myne,Roderick
+$RA_SH=WILF_RETAINERS,Charlotte,Kathrein,Marianne,Natalie
+$RA_SH=Gentiane,Hannelore,Luzinde,Murrenreue,Ortwin
++$1c,RA_SH=Arthur,Hildebrand
+>H1
+>
+-$1a,1b,1c
+$RA_S=Raimund
 
 
 
+#The First Week of Classes
+// Time: "Classes were due to begin tomorrow,"
+>>ThirdBell
++$2,RA_A=ALL_STUDENTS
+>H1
+>
+$RA_SH=Hannelore,Lueuradi,Myne,Ortwin,Philine,Rasantark,Roderick,Wilfried
+>H1
+>
+-$2
+// Time: "The next day meant more written lessons"
+>>ThirdBell
++$3a,RA_A=ALL_STUDENTS
+>H1
+>
+$RA_L=MYNE_RETAINERS,Bertilde,Nikolaus
+>H1
+$RA_SH=Hannelore,Lueuradi,Myne,Ortwin,Philine,Rasantark,Roderick,Wilfried
++$3b,RA_SH=Pauline
+>H1
+>
+-$3a,3b
+// Time: "The next morning’s written lessons went as smoothly as ever."
+>>ThirdBell
++$4a,RA_A=ALL_STUDENTS
+>H1
+>
+$RA_SH=Hannelore,Lueuradi,Myne,Ortwin,Philine,Rasantark,Roderick,Wilfried
++$4b,RA_SH=Hirschur
+>H1
+>
+-$4a,4b
+// Time: "today was a new day."
+>>ThirdBell
++$5a,RA_A=ALL_STUDENTS
+>H1
+>
+$RA_SH=Hannelore,Myne,Ortwin,Wilfried
++$5b,RA_SH=Eggy
+>H1
+>H1
+-$5a
+$RA_SH=Myne
+>
+$RA_DE=Myne
+-$5b
 
 
 
+#The Royal Academy’s Dedication Rituals
+// Time: "The day after my conversation with Eglantine"
+>>ThirdBell
++$6,RA_A=ALL_STUDENTS
+>H1
+>
+$RA_SH=Hannelore,Lueuradi,Myne,Ortwin,Philine,Rasantark,Roderick,Wilfried
+>H1
+>
+-$6
+// Time: "And so came the day of the ritual."
+>>ThirdBell
++$7a,RA_A=MYNE_ADULT_GUARDS,Charlotte,Gentiane,Hildebrand,Immanuel,Wilfried
+>H1
++$7b,RA_A=Adolphine,Ana,AnaFather,Eggy,Sigi
++$7c,RA_A=Hannelore,Luzinde,Murrenreue,Myne,Ortwin
++$7d,RA_A=Bertilde,Brunhilde,Ediline,Fairziere,Ignaz,Isidore,Kenntrips,Lueuradi,Marianne,Martina,Nikolaus,Rasantark,Traugott
+>H1
+>
+-$7a,7b,7c,7d
+$RA_L=MYNE_ADULT_GUARDS,Sigi
+>
+$RA_RV=Sigi
+$RA_DE=MYNE_ADULT_GUARDS
+$Gods=Myne
 
 
 
+#Rozemyne's Disappearance and Return
+// Time: "Three whole days had passed"
+// "The day after my decision"
+// 3 + 1 = 4
+>>4,Morning
+$RA_DE=Hirschur
+>
+$RA_S=Hirschur
+// Time: "An entire week had passed."
+// mednoble ceremony
+>>3,ThirdBell
++$Med1,RA_A=MYNE_ADULT_GUARDS,Wilfried
+>H1
++$Med2,RA_A=Adolphine,Ana,AnaFather,Eggy,Hildebrand,Sigi
++$Med3,RA_A=Barthold,Cassandra,Gretia,Judithe,Kathrein,Laurenz,Lieseleta,Matthias,Muriella,Natalie,Raimund,Roderick,Theodore
+>H1
+>
+-$Med1,Med2,Med3
+// Time: "The laynobles’ Dedication Ritual came and went"
+>>7,ThirdBell
++$Lay1,RA_A=MYNE_ADULT_GUARDS,Charlotte
+>H1
++$Lay2,RA_A=Adolphine,Ana,AnaFather,Eggy,Sigi
+// philine is really the only named laynoble at the RA lmao
++$Lay3,RA_A=Philine
+>H1
+>
+-$Lay1,Lay2,Lay3
+// Time: "we invited all the blue-robed nobles who had participated to a tea party"
+// so a couple days away
+>>2,ThirdBell
+// "Their group comprised Hartmut, Cornelius, Leonore, Angelica, and four students."
+// so i guess damuel doesn't come? because he certainly wouldn't be described
+// as a student
++$TeaParty,RA_RV=MYNE_ADULT_GUARDS,Charlotte,Wilfried
+$RA_DE=Damuel
+>H1
+>
+-$TeaParty
+>>Morning
+$T=Hartmut
+$C=Angelica,Cornelius,Damuel,Leonore
+@?Leonzio
 
 
 
+#Meeting Gramps
+>>>3
+// he arrives during the IDT
+$Ahr_LE=Leonzio
 
 
 
+#The Book of Mestionora
+// Time: "the day after the graduation ceremony."
+>>Morning
++$Lib,RA_L=Eckhart,Ferdinand,Justus,Sigi
+>
+-$Lib
+// Time: "Once the students had all returned to their duchies,"
+>>2,Morning
+$RA_DE=Cornelius
+// end of RA semester
+$C=Bertilde,Brunhilde,Judithe,Laurenz,Muriella,Roderick,Theodore
+$C=CHAR_RETAINERS,WILF_RETAINERS
+// Hugo/Rosina are mentioned when Myne comes back, Ella isn't
+// I assume she would go home on time and not wait for Myne
+// because she had a baby recently
+$T=Ella,Nikolaus,Philine
+$NQ=Traugott
+$Klassenberg=Gentiane
+$Dunkelfelger=Cordula,Hannelore,Kenntrips,Rasantark
+$Drewanchel=Ortwin
+$Gilessenmeyer=Luzinde
+$Ahr_C=Martina
+$Ahr_NQ=Raimund
+$Jossbrenner=Fairziere,Lueuradi
+$Immerdink=Murrenreue
+$FE=Adrett
+// Time: "And a few days later, it happened."
+>>3,Morning
 
 
 
+#I’m Back
+// Time: "it was nighttime."
+>SixthBell
+$RA_FH=Myne
+>H1
++$8,RA_FH=Arthur,Cornelius,Gretia,Hildebrand,Lieseleta,Matthias,Sigi
+>
+-$8
+$RA_DE=Myne
+// Time: "After breakfast the next morning,"
+>>Morning
+$C=Hartmut,Philine
+$C=Cornelius,Lieseleta,Myne
+>H1
+$C=Gretia,Hugo,Matthias,Rosina
+
+
+
+#The Foundational Magic
+>
+
+
+
+#The Bible’s Key
+$T=Angelica,Damuel,Gretia,Hartmut,Hugo,Laurenz,Matthias,Myne,Philine
+>H1
+// boni and matthias check if magic tool cabins in gerlach have been accessed
+$SP=Bonifatius,Matthias
+$T=Judithe
+>H1
+
+
+
+#Anxiety and the Measuring
+$C=Myne
+>H1
+$C=Gretia
+$T=Melchior
+// Time: "Tomorrow,"
+>>ThirdBell
++$9,C=Corinna,Elvira,Tuuli
+>
+-$9
+
+
+
+#How to Protect Them
+// Time: "We had eaten dinner"
+>Dinner
+
+
+
+#Preparing for War
+// there isn't any date transitions in this chapter, but 
+$T=MYNE_GUARDS_EHR,MYNE_SCHOLARS_EHR
+>
++$10,FE=Angelica,Clarissa,Cornelius,Hartmut,Leonore,Myne
+// Time: "I spent the following days"
+>>4,Morning
+
+
+
+#Kamil’s Baptism
+// Time: "winter coming-of-age ceremony came and went"
+// "spring baptisms were soon to follow"
+-$10
+>H1
++$11,T=Effa,Gunther,Kamil,Lutz,Tuuli
+>
+-$11
+$C=Cornelius,Hartmut,Judithe,Leonore,Lieseleta,Melchior,Myne
+$FE=Clarissa,Roderick
+
+
+
+#Defense Meeting
+>Dinner
+
+
+
+#Danger Beheld
+// i think all 3 of these characters have been unnamed but
+// mentioned before this point, but they actually become plot
+// relevant now so I'll include them here
+$Ahr_NQ=Alstede,Benedikta,Blasius
+>H1
+$RA_DO=Eckhart,Justus
+
+
+
+#Temptation
+>H1
+$RA_DE=Eckhart,Justus
+
+
+
+#Faster than Steifebrise
+>H1
+
+
+
+#Epilogue
+@!Roswitha
+$Lanzenave=Gervasio
+>H1
+
+
+
+//#The Royal Academy without My Sister
+// takes place during the week of myne's disappearance
+// Fonzell (char retainer) mentioned, not gonna include him
+// Ediline mentioned, i will include her because her age/profession/status
+// are all included
+
+
+
+#Their Hopes and Dreams
+$Ahr_Ships=Fairseele,Letizia
+$Ahr_LE=Alstede,Blasius,Detlinde,Fatiehe,Giordano,Leonzio,Martina
+>H1
+>H1
+$RA_AV=Alstede,Blasius,Detlinde,Fatiehe,Giordano,Leonzio,Martina,Raublut
+>H1
+$RA_AV=Gervasio
+
+
+// geez this was a long one
 >H24

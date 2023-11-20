@@ -6,25 +6,34 @@ namespace NarrativeCharts.Bookworm;
 
 public static class BookwormLocations
 {
+	public static Location Ahr_Castle { get; } = new("Ahrensbach Castle");
+	public static Location Ahr_CountryGate { get; } = new("Ahr. Country Gate");
+	public static Location Ahr_LanzEstate { get; } = new("Ahr. Lanzenave Estate");
+	public static Location Ahr_LanzShips { get; } = new("Ahr. Lanzenave Ships");
+	public static Location Ahr_NoblesQuarter { get; } = new("Ahr. Noble's Quarter");
 	public static Location Ahrensbach { get; } = new("Ahrensbach");
 	public static Location Drewanchel { get; } = new("Drewanchel");
+	public static Location Dunk_CountryGate { get; } = new("Dunkelfelger Country Gate");
 	public static Location Dunkelfelger { get; } = new("Dunkelfelger");
-	public static Location EhrenfestCastle { get; } = new("Ehrenfest Castle");
+	public static Location EhrCastle { get; } = new("Ehrenfest Castle");
 	public static Location EhrFreDuchyGate { get; } = new("Ehr/Fre Duchy Gate");
 	public static Location FerdinandsHouse { get; } = new("Ferdinand's Estate");
 	public static Location Frenbeltag { get; } = new("Frenbeltag");
+	public static Location GardenOfBeginnings { get; } = new("Garden of Beginnings");
 	public static Location Gilessenmeyer { get; } = new("Gilessenmeyer");
 	public static Location GoddessesBath { get; } = new("Goddesses' Bath");
 	public static Location Groschel { get; } = new("Groschel");
 	public static Location Haldenzel { get; } = new("Haldenzel");
 	public static Location Hasse { get; } = new("Hasse");
 	public static Location Illgner { get; } = new("Illgner");
+	public static Location Immerdink { get; } = new("Immerdink");
 	public static Location ItalianRestaurant { get; } = new("Italian Restaurant");
 	public static Location Jossbrenner { get; } = new("Jossbrenner");
 	public static Location KarstedtsHouse { get; } = new("Karstedt's Estate");
 	public static Location Kirnberger { get; } = new("Kirnberger");
 	public static Location Klassenberg { get; } = new("Klassenberg");
 	public static Location KnightsOrder { get; } = new("Knight's Order");
+	public static Location Lanzenave { get; } = new("Lanzenave");
 	public static Location Leisegang { get; } = new("Leisegang");
 	public static Location LowerCityWorkshops { get; } = new("Lower City Workshops");
 	public static Location MerchantCompanies { get; } = new("Merchant Companies");
@@ -32,6 +41,7 @@ public static class BookwormLocations
 	public static Location MynesHouse { get; } = new("Myne's Family's House");
 	public static Location NoblesForest { get; } = new("Noble's Forest");
 	public static Location NoblesQuarter { get; } = new("Noble's Quarter");
+	public static Location RA_Adalgisa { get; } = new("RA - Adalgisa Villa");
 	public static Location RA_ADCClass { get; } = new("RA - ADC Classroom");
 	public static Location RA_Auditorium { get; } = new("RA - Auditorium");
 	public static Location RA_DormEhr { get; } = new("RA - Ehrenfest Dorm");
@@ -61,7 +71,9 @@ public static class BookwormLocations
 		// attributes don't work for this as well as they do for character colors
 		YIndexes = new[]
 		{
+			GardenOfBeginnings,
 			RA_Royals,
+			RA_Adalgisa,
 			RA_Grounds,
 			RA_Stadium,
 			RA_Library,
@@ -81,7 +93,7 @@ public static class BookwormLocations
 			Groschel,
 			Kirnberger,
 			NoblesForest,
-			EhrenfestCastle,
+			EhrCastle,
 			KnightsOrder,
 			FerdinandsHouse,
 			KarstedtsHouse,
@@ -101,13 +113,21 @@ public static class BookwormLocations
 			Illgner,
 			SouthernProvinces,
 			MountLohenberg,
-			Klassenberg,
-			Dunkelfelger,
-			Drewanchel,
-			Gilessenmeyer,
+			Ahr_Castle,
+			Ahr_NoblesQuarter,
+			Ahr_LanzEstate,
+			Ahr_LanzShips,
+			Ahr_CountryGate,
 			Ahrensbach,
-			Jossbrenner,
+			Drewanchel,
+			Dunk_CountryGate,
+			Dunkelfelger,
 			Frenbeltag,
+			Gilessenmeyer,
+			Immerdink,
+			Jossbrenner,
+			Klassenberg,
+			Lanzenave
 		}
 		.Reverse()
 		.Select((x, i) => (Item: x, Index: i))

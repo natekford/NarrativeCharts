@@ -8,8 +8,12 @@ public static partial class BookwormCharacters
 	public static Character Achim { get; } = new("Achim");
 	[Color("#D86C9D")]
 	public static Character Adolphine { get; } = new("Adolphine");
+	[Color("#90EE90")]
+	public static Character Adrett { get; } = new("Adrett");
 	[Color(null)]
 	public static Character Alexis { get; } = new("Alexis");
+	[Color(null)]
+	public static Character Alstede { get; } = new("Alstede");
 	[Color("#D7BE96")]
 	public static Character Anastasius { get; } = new("Anastasius");
 	[Color("#53B3DB")]
@@ -26,6 +30,8 @@ public static partial class BookwormCharacters
 	public static Character Aurelia { get; } = new("Aurelia");
 	[Color(null)]
 	public static Character Barthold { get; } = new("Barthold");
+	[Color(null)]
+	public static Character Benedikta { get; } = new("Benedikta");
 	[Color("#E8CB9F")]
 	public static Character Benno { get; } = new("Benno");
 	[Color("#FF66CC")]
@@ -38,6 +44,8 @@ public static partial class BookwormCharacters
 	public static Character Bezewanst { get; } = new("Bezewanst");
 	[Color("#B1C6C1")]
 	public static Character Bindewald { get; } = new("Bindewald");
+	[Color(null)]
+	public static Character Blasius { get; } = new("Blasius");
 	[Color("#BE856A")]
 	public static Character Bonifatius { get; } = new("Bonifatius");
 	[Color("#A54254")]

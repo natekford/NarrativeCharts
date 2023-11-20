@@ -8,7 +8,7 @@
 +%CHAR_RETAINERS=Cassandra,Charlotte,Kathrein,Marianne,Natalie,Vanessa
 +%MISC_EHR=Traugott
 +%ALL_EHR=MYNE_RETAINERS,WILF_RETAINERS,CHAR_RETAINERS,MISC_EHR
-+%OTHER_DUCHIES=Clarissa,Cordula,Detlinde,Hannelore,Kenntrips,Lestilaut,Lueuradi,Luzinde,Martina,Ortwin,Raimund,Rasantark
++%OTHER_DUCHIES=Clarissa,Cordula,Detlinde,Hannelore,Kenntrips,Lestilaut,Lueuradi,Luzinde,Martina,Murrenreue,Ortwin,Raimund,Rasantark
 +%ALL_STUDENTS=ALL_EHR,OTHER_DUCHIES
 
 #Prologue
@@ -81,7 +81,7 @@ $RA_S=Raimund
 // Time: "Today, I was going to be attending tea parties with bottom-ranking duchies"
 >>2,ThirdBell
 // tea parties with lower duchies
-$RA_DO=MYNE_RETAINERS
+$RA_DO=MYNE_RETAINERS,Murrenreue
 >
 $RA_DE=MYNE_RETAINERS
 // Time: "tea party four days from now"
@@ -206,8 +206,6 @@ $RA_RV=Ana
 // not including lustlaune
 // takes place during the end of A Frustrating Tea Party:
 // Murrenrue is also mentioned
-// not including her because im lazy and dont want to add
-// more ADC
 
 
 

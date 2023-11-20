@@ -111,10 +111,11 @@ public class Program
 		var count = 0;
 
 		var books = new List<(NarrativeChartData, string)>();
+		var shouldRedrawScripts = false;
 		foreach (var book in Books)
 		{
 			var imagePath = Path.Combine(ChartsDir, $"{book.Name}.png");
-			if (book is BookwormScriptConverter scriptConverter)
+			if (!shouldRedrawScripts && book is BookwormScriptConverter scriptConverter)
 			{
 				var imageTime = File.GetLastWriteTimeUtc(imagePath);
 				var scriptTime = scriptConverter.LastWriteTimeUTC;
@@ -125,6 +126,12 @@ public class Program
 						$"Image last drawn: {imageTime:T}, " +
 						$"script last edited: {scriptTime:T}.");
 					continue;
+				}
+				else
+				{
+					// redraw subsequent scripts because the editing of a previous script
+					// could change character seeding locations
+					shouldRedrawScripts = true;
 				}
 			}
 
@@ -262,7 +269,9 @@ public class Program
 
 			AddAliases(defs.LocationAliases, new()
 			{
+				[GardenOfBeginnings] = ["Gods"],
 				[RA_Royals] = ["RA_RV"],
+				[RA_Adalgisa] = ["RA_AV"],
 				[RA_Stadium] = ["RA_ST"],
 				[RA_Grounds] = ["RA_G"],
 				[RA_Library] = ["RA_L"],
@@ -278,7 +287,7 @@ public class Program
 				[RA_GatherEhr] = ["RA_GE"],
 				[RoyalAcademy] = ["RA"],
 				[NoblesForest] = ["NF"],
-				[EhrenfestCastle] = ["C"],
+				[EhrCastle] = ["C"],
 				[KnightsOrder] = ["KO"],
 				[FerdinandsHouse] = ["FE"],
 				[KarstedtsHouse] = ["KE"],
@@ -295,6 +304,12 @@ public class Program
 				[GoddessesBath] = ["GBath"],
 				[SouthernProvinces] = ["SP"],
 				[MountLohenberg] = ["Lohenberg"],
+				[Ahr_Castle] = ["Ahr_C"],
+				[Ahr_NoblesQuarter] = ["Ahr_NQ"],
+				[Ahr_LanzEstate] = ["Ahr_LE"],
+				[Ahr_LanzShips] = ["Ahr_Ships"],
+				[Ahr_CountryGate] = ["Ahr_Gate"],
+				[Dunk_CountryGate] = ["Ditter_Gate"],
 				[Dunkelfelger] = ["Ditter"],
 			});
 		}
