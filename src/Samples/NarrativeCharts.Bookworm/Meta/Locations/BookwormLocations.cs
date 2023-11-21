@@ -11,6 +11,7 @@ public static class BookwormLocations
 	public static Location Ahr_LanzEstate { get; } = new("Ahr. Lanzenave Estate");
 	public static Location Ahr_LanzShips { get; } = new("Ahr. Lanzenave Ships");
 	public static Location Ahr_NoblesQuarter { get; } = new("Ahr. Noble's Quarter");
+	public static Location Ahr_NorthernProvinces { get; } = new("Ahr. Northern Provinces");
 	public static Location Ahr_Temple { get; } = new("Ahr. Temple");
 	public static Location Ahrensbach { get; } = new("Ahrensbach");
 	public static Location Drewanchel { get; } = new("Drewanchel");
@@ -114,6 +115,7 @@ public static class BookwormLocations
 			Illgner,
 			SouthernProvinces,
 			MountLohenberg,
+			Ahr_NorthernProvinces,
 			Ahr_Castle,
 			Ahr_NoblesQuarter,
 			Ahr_Temple,

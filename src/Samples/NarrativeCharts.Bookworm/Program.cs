@@ -6,6 +6,7 @@ using NarrativeCharts.Time;
 using SkiaSharp;
 
 using System.Diagnostics;
+using System.Linq;
 
 using static NarrativeCharts.Bookworm.BookwormBell;
 using static NarrativeCharts.Bookworm.BookwormCharacters;
@@ -122,7 +123,7 @@ public class Program
 				if (imageTime >= scriptTime)
 				{
 					Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
-						$"Not redrawing {imagePath}. " +
+						$"Not redrawing {Path.GetFileName(imagePath)}. " +
 						$"Image last drawn: {imageTime:T}, " +
 						$"script last edited: {scriptTime:T}.");
 					continue;
@@ -167,7 +168,7 @@ public class Program
 			active.Remove(task, out var item);
 			var (start, imagePath) = item;
 			Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
-				$"Finished drawing {imagePath} " +
+				$"Finished drawing {Path.GetFileName(imagePath)} " +
 				$"in {(sw.Elapsed - start).TotalSeconds:#.##} seconds.");
 		}
 
@@ -304,6 +305,7 @@ public class Program
 				[GoddessesBath] = ["GBath"],
 				[SouthernProvinces] = ["SP"],
 				[MountLohenberg] = ["Lohenberg"],
+				[Ahr_NorthernProvinces] = ["Ahr_NP"],
 				[Ahr_Castle] = ["Ahr_C"],
 				[Ahr_NoblesQuarter] = ["Ahr_NQ"],
 				[Ahr_Temple] = ["Ahr_T"],
@@ -339,14 +341,29 @@ public class Program
 
 	private void PrintBookInfo(NarrativeChartData chart)
 	{
-		var points = chart.Points.Sum(x => x.Value.Count);
-		float max = float.MinValue, min = float.MaxValue;
-		foreach (var point in chart.GetAllNarrativePoints())
+		var properties = new Dictionary<string, string>();
+
 		{
-			max = Math.Max(max, point.Hour);
-			min = Math.Min(min, point.Hour);
+			properties["Character"] = chart.Points.Count.ToString();
 		}
-		var days = (max - min) / Defs.Time.HoursPerDay;
-		Console.WriteLine($"{chart.Name}: Points={points}, Days={days:#.#}");
+
+		{
+			var points = chart.Points.Sum(x => x.Value.Count);
+			properties["Points"] = points.ToString();
+		}
+
+		{
+			float max = float.MinValue, min = float.MaxValue;
+			foreach (var point in chart.GetAllNarrativePoints())
+			{
+				max = Math.Max(max, point.Hour);
+				min = Math.Min(min, point.Hour);
+			}
+			var days = (max - min) / Defs.Time.HoursPerDay;
+			properties["Days"] = days.ToString("#.#");
+		}
+
+		var joined = string.Join(", ", properties.Select(x => $"{x.Key}={x.Value}"));
+		Console.WriteLine($"{chart.Name}: {joined}");
 	}
 }

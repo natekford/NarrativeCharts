@@ -27,9 +27,8 @@ $Ahr_C=Eckhart,Ferdinand,Justus,Sergius,Strahl
 $Ahr_C=Fairseele,Letizia,Roswitha
 $Ahr_C=Detlinde,Fatiehe,Martina
 $Ahr_C=Georgine,Seltier
-// he's probably not anywhere near the castle/nq, but im not making a "nothern provinces"
-// location for grausam/georgine
-$Ahr_NQ=Grausam
+// he's probably not anywhere near the castle/nq
+$Ahr_NP=Grausam
 $Ahr_NQ=Raimund
 $Ahr_LE=Leonzio
 >
@@ -265,11 +264,16 @@ $Drewanchel=Ortwin
 $Gilessenmeyer=Luzinde
 $Ahr_C=Martina
 $Ahr_NQ=Raimund
+// she gets fired during the IDT
+$Ahr_NP=Fraularm
 $Jossbrenner=Fairziere,Lueuradi
 $Immerdink=Murrenreue
 $FE=Adrett
 // Time: "And a few days later, it happened."
 >>3,Morning
+// "“She left her villa about ten days ago to perform Spring Prayer.”"
+// from P5V8 prologue about Georgine
+$Ahr_NP=Georgine
 // idk when the spring feast happens, gonna put it here
 $Haldenzel=Claudio
 $Groschel=GiebeGroschel

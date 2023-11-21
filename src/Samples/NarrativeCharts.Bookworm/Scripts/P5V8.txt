@@ -6,6 +6,8 @@
 
 +%CHAR_RETAINERS=Cassandra,Charlotte,Ediline,Kathrein,Marianne,Natalie,Vanessa
 +%WILF_RETAINERS=Barthold,Ignaz,Isidore,Wilfried
++%FERDI_GUARDS=Eckhart,Ferdinand,Justus
++%MYNE_TEAM=Angelica,Clarissa,Cornelius,Hartmut,Laurenz,Leonore,Matthias,Myne
 
 #Prologue
 $RA_DE=Sylvester
@@ -36,23 +38,20 @@ $FE=Eckhart,Justus
 
 
 #Teleporting
-// knights
-+$1a,C=Angelica,Cornelius,Laurenz,Leonore,Matthias
-// scholars/myne/ferdi retainers
-+$1b,C=Clarissa,Eckhart,Hartmut,Justus,Myne
-+$1c,C=Karstedt,Sylvester
++$1a,C=MYNE_TEAM,Eckhart,Justus
++$1b,C=Karstedt,Sylvester
 >H1
-$Kirnberger=1a,1b,1c
+$Kirnberger=1a,1b
 >H1
 
 
 
 #To Battle
--$1c
-$Ditter_Gate=1a,1b,AubDitter,Hannelore,Heisshitze,Lestilaut,Sieglinde
+-$1b
+$Ditter_Gate=1a,AubDitter,Hannelore,Heisshitze,Lestilaut,Sieglinde
 >H1
 >H0.5
-$Ahr_Gate=1a,1b,Hannelore,Heisshitze
+$Ahr_Gate=1a,Hannelore,Heisshitze
 $Ditter=AubDitter,Lestilaut,Sieglinde
 
 
@@ -60,7 +59,8 @@ $Ditter=AubDitter,Lestilaut,Sieglinde
 #Ahrensbach's Temple
 >H1
 >H0.5
-$Ahr_T=1a,1b
+$Ahr_T=1a
+// dunk goes to castle as a diversion
 $Ahr_C=Clarissa,Hannelore,Heisshitze
 
 
@@ -68,7 +68,7 @@ $Ahr_C=Clarissa,Hannelore,Heisshitze
 #Ahrensbach's Foundation and Replenishment Hall
 >H1
 >H0.5
-$Ahr_C=1a,1b
+$Ahr_C=1a
 
 
 
@@ -88,7 +88,7 @@ $Ahr_C=1a,1b
 
 
 #The New Aub
-$Ahr_Ships=1a,1b,Ferdinand,Hannelore,Heisshitze
+$Ahr_Ships=MYNE_TEAM,FERDI_GUARDS,Hannelore,Heisshitze
 // justus stays to gather intelligence
 // clarissa/hartmut stay to brainwash people
 $Ahr_C=Clarissa,Hartmut,Justus
@@ -122,18 +122,30 @@ $Ahr_Gate=Angelica,Ferdinand,Leonore,Myne
 
 
 
+#Playground
+>H1
+>H1
+// everyone goes back to the castle after closing the gates
+$Ahr_C=MYNE_TEAM,FERDI_GUARDS,Fairseele,Hannelore,Heisshitze,Letizia,Strahl
+// myne sleeps
 
 
 
+#Rumors and a Departure
+>>FifthBell
+$Ahr_NP=FERDI_GUARDS,Heisshitze
+$SP=Georgine,Grausam
+// Time: "Two whole days have passed"
+>>Lunch
+>H1
 
 
 
-
-
-
-
-
-
+#Bindewald
+$Ahr_NP=MYNE_TEAM,Hannelore
+>H1
+>H1
+$SP=MYNE_TEAM,FERDI_GUARDS,Hannelore,Heisshitze
 
 
 
