@@ -14,7 +14,7 @@ namespace NarrativeCharts.Plot;
  * ScottPlot 5, and will probably remove this class eventually
  */
 
-public sealed class ScottPlotChartDrawer : ChartDrawer<NarrativeChartData, ScottPlot.Plot, Color>
+public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
 {
 	protected override ScottPlot.Plot CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
@@ -111,6 +111,7 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<NarrativeChartData, Scott
 		scatter.DataPointLabelFont.Color = color;
 
 		scatter.LineStyle = segment.IsMovement ? LineStyle.Dot : LineStyle.Solid;
+		scatter.DataPointLabelFont.Size = PointLabelSize;
 		scatter.DataPointLabels = new[]
 		{
 			segment.IsMovement ? string.Empty : segment.Character.Value,

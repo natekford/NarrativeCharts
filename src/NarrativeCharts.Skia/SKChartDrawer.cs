@@ -5,11 +5,15 @@ using SkiaSharp;
 
 namespace NarrativeCharts.Skia;
 
-public sealed class SKChartDrawer
-	: ChartDrawer<NarrativeChartData, SKContext, SKColor>
+public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 {
 	public Func<Hex, Hex>? CharacterLabelColorConverter { get; set; }
 	public SKFont Font { get; set; } = new();
+	public override int PointLabelSize
+	{
+		get => (int)Font.Size;
+		set => Font.Size = value;
+	}
 
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
 
@@ -17,7 +21,6 @@ public sealed class SKChartDrawer
 	{
 		AxisLabelSize = 20;
 		LineWidth = 4;
-		LineMarkerDiameter = 8;
 	}
 
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)

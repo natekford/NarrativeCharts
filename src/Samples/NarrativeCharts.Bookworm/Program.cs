@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Bookworm.P3;
+using NarrativeCharts.Drawing;
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 using NarrativeCharts.Time;
@@ -16,23 +17,22 @@ namespace NarrativeCharts.Bookworm;
 public class Program
 {
 	public const int PARALLEL_CHART_COUNT = 10;
-	public const bool REDRAW_ALL_SCRIPTS = false;
+	public const bool REDRAW_ALL_SCRIPTS = true;
 
 	public List<NarrativeChartData> Books { get; } = [];
 	public string ChartsDir { get; }
 	public ScriptDefinitions Defs { get; private set; } = null!;
 	public string Dir { get; }
-	public SKChartDrawer Drawer { get; } = new()
+	public SKChartDrawer Drawer { get; } = new SKChartDrawer()
 	{
 		ImageAspectRatio = 32f / 9f,
 		// smaller images in debug so they render faster
 #if DEBUG
-		ImageSizeMult = 3f,
-		//YSpacing = 6,
+		ImageSizeMult = 6f,
 #endif
 		IgnoreNonMovingCharacters = false,
 		CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
-	};
+	}.UseRecommendedYSpacing();
 	public string ScriptsDir { get; }
 
 	public Program(string dir)
