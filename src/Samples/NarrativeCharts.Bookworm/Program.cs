@@ -17,7 +17,7 @@ namespace NarrativeCharts.Bookworm;
 public class Program
 {
 	public const int PARALLEL_CHART_COUNT = 10;
-	public const bool REDRAW_ALL_SCRIPTS = true;
+	public const bool REDRAW_ALL_SCRIPTS = false;
 
 	public List<NarrativeChartData> Books { get; } = [];
 	public string ChartsDir { get; }
@@ -25,10 +25,10 @@ public class Program
 	public string Dir { get; }
 	public SKChartDrawer Drawer { get; } = new SKChartDrawer()
 	{
-		ImageAspectRatio = 32f / 9f,
+		ImageAspectRatio = 16f / 9f,
 		// smaller images in debug so they render faster
 #if DEBUG
-		ImageSizeMult = 6f,
+		ImageSizeMult = 3f,
 #endif
 		IgnoreNonMovingCharacters = false,
 		CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
@@ -322,7 +322,7 @@ public class Program
 		{
 			defs.Time = new TimeTrackerWithUnits(BookwormTime.Lengths);
 
-			AddAliases(defs.TimeAliases, new()
+			AddAliases(defs.TimeUnitAliases, new()
 			{
 				[0] = [nameof(Midnight)],
 				[1] = [nameof(FirstBell), nameof(EarlyMorning)],

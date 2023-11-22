@@ -3,17 +3,38 @@ using NarrativeCharts.Time;
 
 namespace NarrativeCharts;
 
+/// <summary>
+/// Base class for making charts.
+/// </summary>
 public abstract class NarrativeChart : NarrativeChartData
 {
+	/// <summary>
+	/// The current hour.
+	/// </summary>
 	protected float Hour => Time.CurrentTotalHours;
+	/// <summary>
+	/// Whether or not this chart has been created.
+	/// </summary>
 	protected bool IsInitialized { get; set; }
+	/// <summary>
+	/// The time of this chart.
+	/// </summary>
 	protected TimeTracker Time { get; }
 
+	/// <summary>
+	/// Creates a <see cref="NarrativeChart"/>.
+	/// </summary>
+	/// <param name="time"></param>
 	protected NarrativeChart(TimeTracker time)
 	{
 		Time = time;
 	}
 
+	/// <summary>
+	/// Seed this chart with <paramref name="seed"/>, handle any internal narrative
+	/// chart creation, then simplify the resulting data.
+	/// </summary>
+	/// <param name="seed"></param>
 	public virtual void Initialize(NarrativeChartData? seed)
 	{
 		if (IsInitialized)
@@ -27,10 +48,13 @@ public abstract class NarrativeChart : NarrativeChartData
 			this.Seed(seed, Hour);
 		}
 
-		ProtectedCreate();
+		AddNarrativeData();
 		Simplify();
 	}
 
+	/// <summary>
+	/// Remove unnecessary points and frozen points.
+	/// </summary>
 	public virtual void Simplify()
 	{
 		foreach (var points in Points.Values)
@@ -71,12 +95,23 @@ public abstract class NarrativeChart : NarrativeChartData
 		}
 	}
 
+	/// <inheritdoc cref="AddReturnable(Location, IEnumerable{Character})" />
 	protected void Add(Location location, params Character[] characters)
 		=> Add(location, (IEnumerable<Character>)characters);
 
+	/// <summary>
+	/// Adds new points at <paramref name="location"/> for every character
+	/// in <paramref name="characters"/>.
+	/// </summary>
+	/// <param name="location"></param>
+	/// <param name="characters"></param>
 	protected virtual void Add(Location location, IEnumerable<Character> characters)
 		=> this.AddScene(new(Hour, location, characters));
 
+	/// <summary>
+	/// Adds <paramref name="amount"/> to <see cref="Time"/>.
+	/// </summary>
+	/// <param name="amount"></param>
 	protected virtual void AddHours(float amount = 1)
 	{
 		Update();
@@ -84,12 +119,25 @@ public abstract class NarrativeChart : NarrativeChartData
 		Update();
 	}
 
-	protected Dictionary<Character, Location> AddR(
+	/// <summary>
+	/// Adds
+	/// </summary>
+	protected abstract void AddNarrativeData();
+
+	/// <inheritdoc cref="AddReturnable(Location, IEnumerable{Character})" />
+	protected Dictionary<Character, Location> AddReturnable(
 		Location location,
 		params Character[] characters)
-		=> AddR(location, (IEnumerable<Character>)characters);
+		=> AddReturnable(location, (IEnumerable<Character>)characters);
 
-	protected virtual Dictionary<Character, Location> AddR(
+	/// <summary>
+	/// Adds new points at <paramref name="location"/> for every character
+	/// in <paramref name="characters"/>, and then returns their previous locations.
+	/// </summary>
+	/// <param name="location"></param>
+	/// <param name="characters"></param>
+	/// <returns></returns>
+	protected virtual Dictionary<Character, Location> AddReturnable(
 		Location location,
 		IEnumerable<Character> characters)
 	{
@@ -98,21 +146,36 @@ public abstract class NarrativeChart : NarrativeChartData
 		return locations;
 	}
 
+	/// <summary>
+	/// Add a new <see cref="NarrativeEvent"/>.
+	/// </summary>
+	/// <param name="name"></param>
 	protected virtual void Event(string name)
 	{
 		this.AddEvent(new(Hour, name));
 		Update();
 	}
 
+	/// <inheritdoc cref="Freeze(IEnumerable{Character})" />
 	protected void Freeze(params Character[] characters)
 		=> Freeze((IEnumerable<Character>)characters);
 
+	/// <summary>
+	/// Adds new points at <see cref="Location.Frozen"/> for every character
+	/// in <paramref name="characters"/>.
+	/// </summary>
+	/// <param name="characters"></param>
 	protected virtual void Freeze(IEnumerable<Character> characters)
 		=> Add(Location.Frozen, characters);
 
+	/// <inheritdoc cref="Kill(IEnumerable{Character})" />
 	protected void Kill(params Character[] characters)
 		=> Kill((IEnumerable<Character>)characters);
 
+	/// <summary>
+	/// Mark each character's last point's <see cref="NarrativePoint.IsEnd"/> as true.
+	/// </summary>
+	/// <param name="characters"></param>
 	protected virtual void Kill(IEnumerable<Character> characters)
 	{
 		Update();
@@ -122,9 +185,13 @@ public abstract class NarrativeChart : NarrativeChartData
 		}
 	}
 
-	protected abstract void ProtectedCreate();
-
-	protected virtual void Return(IEnumerable<KeyValuePair<Character, Location>> points)
+	/// <summary>
+	/// Return characters to their original positions after
+	/// invoking <see cref="AddReturnable(Location, IEnumerable{Character})"/>.
+	/// </summary>
+	/// <param name="points"></param>
+	protected virtual void Return(
+		IEnumerable<KeyValuePair<Character, Location>> points)
 	{
 		foreach (var (character, location) in points)
 		{
@@ -138,6 +205,11 @@ public abstract class NarrativeChart : NarrativeChartData
 		}
 	}
 
+	/// <summary>
+	/// Mark each character's last point's <see cref="NarrativePoint.IsTimeSkip"/>
+	/// as true and then add <paramref name="days"/> to <see cref="Time"/>.
+	/// </summary>
+	/// <param name="days"></param>
 	protected virtual void TimeSkip(int days)
 	{
 		Update();
@@ -149,6 +221,9 @@ public abstract class NarrativeChart : NarrativeChartData
 		Update();
 	}
 
+	/// <summary>
+	/// Adds a point for every character at the current hour in their previous location.
+	/// </summary>
 	protected virtual void Update()
 		=> this.UpdatePoints(Hour);
 }

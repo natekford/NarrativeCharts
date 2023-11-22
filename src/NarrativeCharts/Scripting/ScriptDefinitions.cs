@@ -7,6 +7,9 @@ using System.Text.Json;
 
 namespace NarrativeCharts.Scripting;
 
+/// <summary>
+/// Definitions to use when parsing a script.
+/// </summary>
 public class ScriptDefinitions
 {
 	private static readonly JsonSerializerOptions _JsonOptions = new()
@@ -16,14 +19,36 @@ public class ScriptDefinitions
 		WriteIndented = true,
 	};
 
+	/// <summary>
+	/// The strings that map to a <see cref="Character"/>.
+	/// </summary>
 	public Dictionary<string, Character> CharacterAliases { get; set; } = [];
+	/// <inheritdoc cref="NarrativeChartData.Colors" />
 	public Dictionary<Character, Hex> CharacterColors { get; set; } = [];
+	/// <summary>
+	/// The strings that map to a <see cref="Location"/>.
+	/// </summary>
 	public Dictionary<string, Location> LocationAliases { get; set; } = [];
+	/// <inheritdoc cref="NarrativeChartData.YIndexes" />
 	public Dictionary<Location, int> LocationYIndexes { get; set; } = [];
+	/// <summary>
+	/// The symbols to use when parsing each line.
+	/// </summary>
 	public ScriptSymbols Symbols { get; set; } = new();
+	/// <summary>
+	/// The time to use for all scripts. This is reused and not reset to 0 each time.
+	/// </summary>
 	public TimeTrackerWithUnits Time { get; set; } = new(Enumerable.Repeat(1, 24));
-	public Dictionary<string, int> TimeAliases { get; set; } = [];
+	/// <summary>
+	/// The strings that map to a time unit for <see cref="Time"/>.
+	/// </summary>
+	public Dictionary<string, int> TimeUnitAliases { get; set; } = [];
 
+	/// <summary>
+	/// Load a <see cref="ScriptDefinitions"/> from <paramref name="path"/>.
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	public static async Task<ScriptDefinitions> LoadAsync(string path)
 	{
 		DefsJson json;
@@ -40,7 +65,7 @@ public class ScriptDefinitions
 				var aliased = json.Time[i];
 				foreach (var alias in aliased.Aliases.Prepend(i.ToString()))
 				{
-					defs.TimeAliases[alias] = i;
+					defs.TimeUnitAliases[alias] = i;
 				}
 			}
 
@@ -77,6 +102,11 @@ public class ScriptDefinitions
 		return defs;
 	}
 
+	/// <summary>
+	/// Save this to <paramref name="path"/>.
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	public async Task SaveAsync(string path)
 	{
 		var reverseCAliases = new ConcurrentDictionary<Character, List<string>>();
@@ -96,7 +126,7 @@ public class ScriptDefinitions
 				reverseLAliases.GetOrAdd(location, _ => []).Add(alias);
 			}
 		}
-		foreach (var (alias, unit) in TimeAliases)
+		foreach (var (alias, unit) in TimeUnitAliases)
 		{
 			if (alias != unit.ToString())
 			{

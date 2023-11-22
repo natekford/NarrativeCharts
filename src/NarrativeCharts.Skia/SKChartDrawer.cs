@@ -25,7 +25,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
-		var dims = CalculateDimensions(yMap);
+		var dims = GetDimensions(yMap);
 		// Default color type is Rgba8888 which is 32 bits, Rgb565 is 16 bits
 		// I don't use transparency in any of the drawing and the colors I use for
 		// characters don't include any alpha so there's no harm in ignoring alpha
@@ -165,21 +165,19 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		return context;
 	}
 
-	protected override void DrawSegment(Segment segment)
+	protected override void DrawSegment(SKContext image, Segment segment)
 	{
-		var context = segment.Canvas;
-		var canvas = context.Canvas;
-
+		var canvas = image.Canvas;
 		var hex = segment.Chart.Colors[segment.Character];
-		var paint = context.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x)));
-		var positions = context.Labels.GetOrAdd(segment.Character, _ => []);
+		var paint = image.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x)));
+		var positions = image.Labels.GetOrAdd(segment.Character, _ => []);
 
-		using (Restrict(context))
+		using (Restrict(image))
 		{
-			canvas.Translate(context.PaddingEnd, context.PaddingEnd);
+			canvas.Translate(image.PaddingEnd, image.PaddingEnd);
 
-			var p0 = new SKPoint(context.X(segment.X0), context.Y(segment.Y0));
-			var p1 = new SKPoint(context.X(segment.X1), context.Y(segment.Y1));
+			var p0 = new SKPoint(image.X(segment.X0), image.Y(segment.Y0));
+			var p1 = new SKPoint(image.X(segment.X1), image.Y(segment.Y1));
 			var labelOffset = new SKSize(LineMarkerDiameter / 4f, paint.TextSize);
 
 			if (!segment.IsMovement)

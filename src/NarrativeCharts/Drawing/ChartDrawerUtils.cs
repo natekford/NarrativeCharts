@@ -1,7 +1,17 @@
 ﻿namespace NarrativeCharts.Drawing;
 
+/// <summary>
+/// Utilities for <see cref="ChartDrawer"/>.
+/// </summary>
 public static class ChartDrawerUtils
 {
+	/// <summary>
+	/// Sets <see cref="ChartDrawer.YSpacing"/> to a value that should not result
+	/// in line/label overlap and should not result in a lot of space between lines.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="drawer"></param>
+	/// <returns></returns>
 	public static T UseRecommendedYSpacing<T>(this T drawer)
 		where T : ChartDrawer
 	{

@@ -2,15 +2,34 @@
 
 namespace NarrativeCharts.Time;
 
+/// <summary>
+/// Deals with arbitrary unit lengths (supports uniform and non-uniform lengths).
+/// </summary>
 public class TimeTrackerWithUnits : TimeTracker
 {
+	/// <summary>
+	/// The current unit retrieved from <see cref="TimeTracker.CurrentTotalHours"/>.
+	/// </summary>
 	public int CurrentUnit => HourToUnitMap[CurrentHour];
-	public override int HoursPerDay { get; }
+	/// <summary>
+	/// Maps hours to their respective units.
+	/// E.G. a unit start at 7h and ends at 10h: the hours 7, 8, and 9 map to that unit.
+	/// </summary>
 	public IReadOnlyDictionary<int, int> HourToUnitMap { get; }
+	/// <summary>
+	/// The index of the largest unit.
+	/// </summary>
 	public int LargestUnit { get; }
+	/// <summary>
+	/// Maps units to their respective start hour.
+	/// </summary>
 	public IReadOnlyDictionary<int, int> UnitToHourMap { get; }
 
-	public TimeTrackerWithUnits(IEnumerable<int> lengths)
+	/// <summary>
+	/// Creates an instance of <see cref="TimeTrackerWithUnits"/>.
+	/// </summary>
+	/// <param name="lengths"></param>
+	public TimeTrackerWithUnits(IEnumerable<int> lengths) : base(lengths.Sum())
 	{
 		var i = -1;
 		var sum = 0;
@@ -35,7 +54,6 @@ public class TimeTrackerWithUnits : TimeTracker
 			hourToUnitMap[hour] = unit - 1;
 		}
 
-		HoursPerDay = sum;
 		LargestUnit = i;
 		HourToUnitMap = hourToUnitMap.ToImmutableDictionary();
 		UnitToHourMap = unitToHourMap.ToImmutableDictionary();

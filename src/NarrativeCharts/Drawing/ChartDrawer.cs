@@ -4,6 +4,10 @@ using System.Collections.Concurrent;
 
 namespace NarrativeCharts.Drawing;
 
+/// <summary>
+/// Base class for drawing a <see cref="NarrativeChartData"/>, dealing with image
+/// formatting properties and calculating image dimensions.
+/// </summary>
 public abstract class ChartDrawer
 {
 	/// <summary>
@@ -65,7 +69,13 @@ public abstract class ChartDrawer
 	/// </summary>
 	public virtual int YTickSeperation { get; set; } = 25;
 
-	protected virtual Dimensions CalculateDimensions(YMap yMap)
+	/// <summary>
+	/// Gets the width and height to use for the image, along with the values to
+	/// multiply each X and Y value by.
+	/// </summary>
+	/// <param name="yMap"></param>
+	/// <returns></returns>
+	protected virtual Dimensions GetDimensions(YMap yMap)
 	{
 		// A default ImageSizeAddition is added because the ScottPlot Render method
 		// outputs a blank image if the dimensions are too small
@@ -98,6 +108,11 @@ public abstract class ChartDrawer
 		return new(widthF, widthMult, heightF, heightMult);
 	}
 
+	/// <summary>
+	/// Creates a <see cref="YMap"/> from <paramref name="chart"/>.
+	/// </summary>
+	/// <param name="chart"></param>
+	/// <returns></returns>
 	protected virtual YMap GetYMap(NarrativeChartData chart)
 	{
 		float xMax = float.MinValue, xMin = float.MaxValue;
@@ -166,11 +181,24 @@ public abstract class ChartDrawer
 		);
 	}
 
+	/// <summary>
+	/// Whether or not to ignore drawing <paramref name="character"/>.
+	/// </summary>
+	/// <param name="character"></param>
+	/// <param name="points"></param>
+	/// <returns></returns>
 	protected virtual bool ShouldIgnore(Character character, IList<NarrativePoint> points)
 	{
 		return IgnoreNonMovingCharacters
 			&& points.All(x => x.Location == points[0].Location);
 	}
 
+	/// <summary>
+	/// The calculated dimensions to use for the image.
+	/// </summary>
+	/// <param name="Width">The width to use.</param>
+	/// <param name="WidthMult">The value to multiply every X value in the grid by.</param>
+	/// <param name="Height">The height to use.</param>
+	/// <param name="HeightMult">The value to multiply every Y value in the grid by.</param>
 	protected record Dimensions(int Width, float WidthMult, int Height, float HeightMult);
 }

@@ -13,7 +13,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		Name = nameof(P3V1);
 	}
 
-	protected override void ProtectedCreate()
+	protected override void AddNarrativeData()
 	{
 		/* Daily schedule:
 		 * Once breakfast is done, I practice the harspiel until third bell,
@@ -351,7 +351,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Time: after lunch at the italian restaurant
 		Jump();
 		// hasse orphanage designed, fly over with highbeasts
-		var s1 = AddR(Hasse, Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester);
+		var s1 = AddReturnable(Hasse, Benno, Brigitte, Cornelius, Damuel, Eckhart, Ferdinand, Gustav, Karstedt, Mark, Myne, Sylvester);
 		// it didn't take this long in the book, but the chart looks really bad
 		// without this
 		Jump();
@@ -384,7 +384,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// Time: "I had been bedridden for two days since the tea party"
 		SkipToDaysAhead(2, Meetings);
 		// ferdi, elvira, flor visit sick myne
-		var s1 = AddR(EhrCastle, Elvira, Ferdinand);
+		var s1 = AddReturnable(EhrCastle, Elvira, Ferdinand);
 		Jump();
 		// ferdi leaves after agreeing to play harspiel
 		Return(s1);
@@ -441,13 +441,13 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 		SkipToDaysAhead(3, Lunch);
 		// johann and zack return with their blueprints for the wax stencil machine
-		var s2 = AddR(Temple, Johann, Lutz, Zack);
+		var s2 = AddReturnable(Temple, Johann, Lutz, Zack);
 		Jump();
 		Return(s2);
 
 		SkipToNextDay(Lunch);
 		// tuuli gives myne a hairpin
-		var s3 = AddR(Temple, Lutz, Tuuli);
+		var s3 = AddReturnable(Temple, Lutz, Tuuli);
 		Jump();
 		Return(s3);
 	}
@@ -456,14 +456,14 @@ public sealed class P3V1 : BookwormNarrativeChart
 	{
 		// Time: "It was the day after I had met with Tuuli."
 		SkipToNextDay(Lunch);
-		var s1 = AddR(Temple, Lutz);
+		var s1 = AddReturnable(Temple, Lutz);
 		Jump();
 		Return(s1);
 
 		// Time: 3 days later
 		SkipToDaysAhead(2, Meetings);
 		// elvira and lemprecht visit the temple to eat some of ella's food
-		var s2 = AddR(Temple, Elvira, Lamprecht);
+		var s2 = AddReturnable(Temple, Elvira, Lamprecht);
 		Jump();
 		Return(s2);
 
@@ -477,7 +477,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 	{
 		Jump();
 		// myne goes to the castle to make her highbeast
-		var s1 = AddR(KnightsOrder, Brigitte, Damuel, Ferdinand, Myne);
+		var s1 = AddReturnable(KnightsOrder, Brigitte, Damuel, Ferdinand, Myne);
 		Add(MerchantCompanies, Lutz);
 		Jump();
 		// they go back to the temple after myne creates lessy
@@ -489,13 +489,13 @@ public sealed class P3V1 : BookwormNarrativeChart
 		// so a 12 day timeskip at minimum
 		SkipToDaysAhead(12, MarketClose);
 		// lutz and smiths visit with a wax machine
-		var s2 = AddR(Temple, Lutz, Johann, Zack);
+		var s2 = AddReturnable(Temple, Lutz, Johann, Zack);
 		Jump();
 		Return(s2);
 
 		// Time: "“Good morning, Lady Rozemyne,”"
 		SkipToNextDay(Morning);
-		var s3 = AddR(Temple, Lutz);
+		var s3 = AddReturnable(Temple, Lutz);
 		Jump();
 		Return(s3);
 	}
@@ -506,11 +506,11 @@ public sealed class P3V1 : BookwormNarrativeChart
 		SkipToDaysAhead(3, Meetings);
 		// "We made our way to the castle. Ella and Rosina were in the carriage for attendants, while my two guard knights and I got into the carriage for nobles."
 		// "Elvira and Florencia were already waiting for me in the castle."
-		var s1 = AddR(EhrCastle, Brigitte, Damuel, Ella, Elvira, Florencia, Myne, Rosina);
+		var s1 = AddReturnable(EhrCastle, Brigitte, Damuel, Ella, Elvira, Florencia, Myne, Rosina);
 
 		// Time: "And so came the day of the concert." meeting time? afternoon time? no clue
 		SkipToNextDay(MarketClose);
-		var s2 = AddR(EhrCastle, Eckhart, Ferdinand, Karstedt);
+		var s2 = AddReturnable(EhrCastle, Eckhart, Ferdinand, Karstedt);
 		Jump();
 		Return(s1);
 		Return(s2);
@@ -533,7 +533,7 @@ public sealed class P3V1 : BookwormNarrativeChart
 
 		// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director's chambers."
 		SkipToDaysAhead(2, Lunch);
-		var s1 = AddR(Temple, Benno, Lutz, Tuuli);
+		var s1 = AddReturnable(Temple, Benno, Lutz, Tuuli);
 		Jump();
 		Return(s1);
 	}

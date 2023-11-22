@@ -67,7 +67,7 @@ public sealed class {ClassName} : {nameof(BookwormNarrativeChart)}
 		Name = nameof({ClassName});
 	}}
 
-	protected override void {nameof(ProtectedCreate)}()
+	protected override void {nameof(AddNarrativeData)}()
 	{{
 		{string.Join($"{nl}\t\t", methods.Keys)}
 		{nameof(Update)}();

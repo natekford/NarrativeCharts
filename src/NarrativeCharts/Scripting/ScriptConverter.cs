@@ -5,22 +5,44 @@ using System.Text;
 
 namespace NarrativeCharts.Scripting;
 
-/* Most of the script->code conversion is done by overriding NarrativeChart
- * methods, and to prevent writing inner methods a stack has to be used.
- * E.G. calling "Jump();" outputs "Jump();" instead of "Update();Jump();"
- * Overriding the HandleX methods from ScriptParser prevents having to make
- * sure we're only at the top most methods but involves parsing strings twice.
- */
-
+/// <summary>
+/// Converts a script to C# code.
+/// </summary>
+/// <remarks>
+/// Most of the script->code conversion is done by overriding NarrativeChart
+/// methods, and to prevent writing inner methods a stack has to be used.
+/// E.G.calling "Jump();" outputs "Jump();" instead of "Update();Jump();"
+/// Overriding the HandleX methods from ScriptParser prevents having to make
+/// sure we're only at the top most methods but involves parsing strings twice.
+/// </remarks>
 public abstract class ScriptConverter : ScriptParser
 {
+	/// <summary>
+	/// The class name to use when outputting.
+	/// </summary>
 	public string ClassName { get; protected set; } = "";
-	// use a stack to ensure we're only writing the top most methods
+	/// <summary>
+	/// Used to ensure we're only writing top level methods.
+	/// </summary>
 	protected Stack<string> CallStack { get; } = new();
+	/// <summary>
+	/// The current chapter.
+	/// </summary>
 	protected StringBuilder Chapter => Chapters[^1];
+	/// <summary>
+	/// The chapters of this script.
+	/// </summary>
 	protected List<StringBuilder> Chapters { get; } = [];
+	/// <summary>
+	/// Properties to use for stored scenes.
+	/// </summary>
 	protected Dictionary<IEnumerable<KeyValuePair<Character, Location>>, string> StoredSceneProperties { get; } = [];
 
+	/// <summary>
+	/// Creates an instance of <see cref="ScriptConverter" />.
+	/// </summary>
+	/// <param name="definitions"></param>
+	/// <param name="lines"></param>
 	protected ScriptConverter(ScriptDefinitions definitions, IEnumerable<string> lines)
 		: base(definitions, lines)
 	{
@@ -28,12 +50,14 @@ public abstract class ScriptConverter : ScriptParser
 
 	#region ScriptParser methods
 
+	/// <inheritdoc />
 	protected override void HandleComment(string input)
 	{
 		Chapter.Append("//").AppendLine(input);
 		base.HandleComment(input);
 	}
 
+	/// <inheritdoc />
 	protected override void HandleTitle(string input)
 	{
 		ClassName = input.Replace(" ", "");
@@ -44,6 +68,7 @@ public abstract class ScriptConverter : ScriptParser
 
 	#region NarrativeChart methods
 
+	/// <inheritdoc />
 	protected override void Add(Location location, IEnumerable<Character> characters)
 	{
 		DoThenWriteIfTopMethod(() => base.Add(location, characters), sb => sb
@@ -55,6 +80,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void AddHours(float amount = 1)
 	{
 		DoThenWriteIfTopMethod(() => base.AddHours(amount), sb => sb
@@ -64,14 +90,15 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
-	protected override Dictionary<Character, Location> AddR(Location location, IEnumerable<Character> characters)
+	/// <inheritdoc />
+	protected override Dictionary<Character, Location> AddReturnable(Location location, IEnumerable<Character> characters)
 	{
 		// this is probably some of the ugliest code i've ever written
 		Dictionary<Character, Location> dict = [];
 		var property = $"StoredScene{StoredSceneProperties.Count + 1}";
-		DoThenWriteIfTopMethod(() => dict = base.AddR(location, characters), sb => sb
+		DoThenWriteIfTopMethod(() => dict = base.AddReturnable(location, characters), sb => sb
 			.Append(property)
-			.Append($" = {nameof(AddR)}(")
+			.Append($" = {nameof(AddReturnable)}(")
 			.Append(ToProperty(location))
 			.Append(", ")
 			.AppendJoin(", ", ToProperties(characters))
@@ -81,6 +108,7 @@ public abstract class ScriptConverter : ScriptParser
 		return dict;
 	}
 
+	/// <inheritdoc />
 	protected override void Event(string name)
 	{
 		Chapters.Add(new());
@@ -94,6 +122,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void Freeze(IEnumerable<Character> characters)
 	{
 		DoThenWriteIfTopMethod(() => base.Freeze(characters), sb => sb
@@ -103,6 +132,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void Jump(int amount = 1)
 	{
 		DoThenWriteIfTopMethod(() => base.Jump(amount), sb => sb
@@ -112,6 +142,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void Kill(IEnumerable<Character> characters)
 	{
 		DoThenWriteIfTopMethod(() => base.Kill(characters), sb => sb
@@ -121,6 +152,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void Return(IEnumerable<KeyValuePair<Character, Location>> points)
 	{
 		DoThenWriteIfTopMethod(() => base.Return(points), sb => sb
@@ -130,6 +162,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void SkipToCurrentDay(int unit)
 	{
 		DoThenWriteIfTopMethod(() => base.SkipToCurrentDay(unit), sb => sb
@@ -139,6 +172,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void SkipToDaysAhead(int days, int unit)
 	{
 		DoThenWriteIfTopMethod(() => base.SkipToDaysAhead(days, unit), sb => sb
@@ -150,6 +184,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void SkipToNextDay(int unit)
 	{
 		DoThenWriteIfTopMethod(() => base.SkipToNextDay(unit), sb => sb
@@ -159,6 +194,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void TimeSkip(int days)
 	{
 		DoThenWriteIfTopMethod(() => base.TimeSkip(days), sb => sb
@@ -168,6 +204,7 @@ public abstract class ScriptConverter : ScriptParser
 		);
 	}
 
+	/// <inheritdoc />
 	protected override void Update()
 	{
 		DoThenWriteIfTopMethod(base.Update, sb => sb
@@ -177,6 +214,14 @@ public abstract class ScriptConverter : ScriptParser
 
 	#endregion NarrativeChart methods
 
+	/// <summary>
+	/// Invokes <paramref name="then"/>, and if this is a top level method adds
+	/// the invocation to the current output.
+	/// </summary>
+	/// <param name="then"></param>
+	/// <param name="modifyChapter"></param>
+	/// <param name="name"></param>
+	/// <exception cref="InvalidOperationException"></exception>
 	protected virtual void DoThenWriteIfTopMethod(
 		Action then,
 		Action<StringBuilder> modifyChapter,
@@ -194,9 +239,24 @@ public abstract class ScriptConverter : ScriptParser
 		}
 	}
 
+	/// <summary>
+	/// Converts <paramref name="characters"/> to their respective properties.
+	/// </summary>
+	/// <param name="characters"></param>
+	/// <returns></returns>
 	protected abstract IEnumerable<string> ToProperties(IEnumerable<Character> characters);
 
+	/// <summary>
+	/// Converts <paramref name="location"/> to their respective properties.
+	/// </summary>
+	/// <param name="location"></param>
+	/// <returns></returns>
 	protected abstract string ToProperty(Location location);
 
+	/// <summary>
+	/// Converts <paramref name="unit"/> to a name.
+	/// </summary>
+	/// <param name="unit"></param>
+	/// <returns></returns>
 	protected abstract string ToUnitName(int unit);
 }

@@ -13,7 +13,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Name = nameof(P3V2);
 	}
 
-	protected override void ProtectedCreate()
+	protected override void AddNarrativeData()
 	{
 		Event("Prologue");
 		P3V2C01();
@@ -76,7 +76,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "It's due in three days"
 		SkipToDaysAhead(3, Lunch);
 		Add(Temple, Damuel, Fran, Myne);
-		var s1 = AddR(Temple, Benno, Effa, Lutz, Tuuli);
+		var s1 = AddReturnable(Temple, Benno, Effa, Lutz, Tuuli);
 		Jump();
 		Return(s1);
 	}
@@ -114,7 +114,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToDaysAhead(2, Morning);
 		Add(Temple, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
-		var s1 = AddR(Hasse, Brigitte, Damuel, Ferdinand, Myne);
+		var s1 = AddReturnable(Hasse, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
 		Return(s1);
 
@@ -145,7 +145,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Temple, Brigitte, Damuel, Gil, Fran, Ferdinand, Myne, Nicola);
 
 		// "Ferdinand summoned Benno the second we got back to the temple;"
-		var s1 = AddR(Temple, Benno);
+		var s1 = AddReturnable(Temple, Benno);
 		Jump();
 		Return(s1);
 	}
@@ -181,7 +181,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Temple, Gil, Myne);
 		Add(Temple, Ferdinand, Myne);
 		Jump();
-		var s1 = AddR(EhrCastle, Brigitte, Damuel, Ferdinand, Myne);
+		var s1 = AddReturnable(EhrCastle, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
 		Add(EhrCastle, Myne, Rihyarda);
 		// Time: "a meeting had been arranged for teatime at fifth bell."
@@ -199,13 +199,13 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		// Time: "The day I could visit Hasse's orphanage had finally arrived."
 		SkipToNextDay(Meetings);
-		var s1 = AddR(Hasse, Brigitte, Damuel, Ferdinand, Fran, Gil, Myne);
+		var s1 = AddReturnable(Hasse, Brigitte, Damuel, Ferdinand, Fran, Gil, Myne);
 		Jump();
 		Return(s1);
 
 		// Time: "The day after visiting the orphans,"
 		SkipToNextDay(Lunch);
-		var s2 = AddR(Temple, Benno, Lutz, Mark);
+		var s2 = AddReturnable(Temple, Benno, Lutz, Mark);
 		Jump();
 		Return(s2);
 
@@ -213,7 +213,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// "spent the days leading up to the opening of the Italian restaurant relaxing,"
 		// "I started lunch early on the day of the Italian restaurant opening"
 		SkipToNextDay(Lunch);
-		var s3 = AddR(ItalianRestaurant, Benno, Brigitte, Damuel, Fran, Freida, Gustav, Myne);
+		var s3 = AddReturnable(ItalianRestaurant, Benno, Brigitte, Damuel, Fran, Freida, Gustav, Myne);
 		Jump();
 		Return(s3);
 
@@ -250,7 +250,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		// Time: "“Milady, it's dinner time!” Rihyarda declared"
 		SkipToCurrentDay(Dinner);
 		// ferdinand tells sylvester to disinherit wilf
-		var s1 = AddR(EhrCastle, Ferdinand);
+		var s1 = AddReturnable(EhrCastle, Ferdinand);
 		Jump();
 		Return(s1);
 
@@ -289,14 +289,14 @@ public sealed class P3V2 : BookwormNarrativeChart
 	{
 		Jump();
 		// myne updates gilberta company on hasse
-		var s1 = AddR(Temple, Benno, Lutz, Mark);
+		var s1 = AddReturnable(Temple, Benno, Lutz, Mark);
 		Jump();
 		Return(s1);
 
 		// Time: "Two days had passed since Mark was given permission to spread rumors."
 		// "Wine at noon?"
 		SkipToDaysAhead(2, Lunch);
-		var s2 = AddR(Hasse, Brigitte, Damuel, Ferdinand, Fran, Myne);
+		var s2 = AddReturnable(Hasse, Brigitte, Damuel, Ferdinand, Fran, Myne);
 		Add(Hasse, Richt);
 		Jump();
 		Return(s2);
@@ -358,7 +358,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		SkipToDaysAhead(3, Morning);
 		// Time: "would be going to look for a ruelle tree after lunch"
 		SkipToCurrentDay(Lunch);
-		var s1 = AddR(RuelleTree, Damuel, Eckhart, Justus);
+		var s1 = AddReturnable(RuelleTree, Damuel, Eckhart, Justus);
 		Jump();
 		Return(s1);
 		SkipToCurrentDay(Bed);
@@ -389,7 +389,7 @@ public sealed class P3V2 : BookwormNarrativeChart
 		Add(Temple, Kampfer, Frietack);
 
 		SkipToDaysAhead(2, Meetings);
-		var s1 = AddR(EhrCastle, Brigitte, Damuel, Ferdinand, Myne);
+		var s1 = AddReturnable(EhrCastle, Brigitte, Damuel, Ferdinand, Myne);
 		Jump();
 		Return(s1);
 	}

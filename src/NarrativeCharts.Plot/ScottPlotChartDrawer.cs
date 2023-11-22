@@ -18,7 +18,7 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
 {
 	protected override ScottPlot.Plot CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
-		var dims = CalculateDimensions(yMap);
+		var dims = GetDimensions(yMap);
 		var plot = new ScottPlot.Plot(dims.Width, dims.Height);
 
 		// To have the top and right axes show with the correct scale
@@ -94,11 +94,11 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
 		return plot;
 	}
 
-	protected override void DrawSegment(Segment segment)
+	protected override void DrawSegment(ScottPlot.Plot image, Segment segment)
 	{
 		var xs = new double[] { segment.X0, segment.X1 };
 		var ys = new double[] { segment.Y0, segment.Y1 };
-		var scatter = segment.Canvas.AddScatter(xs, ys);
+		var scatter = image.AddScatter(xs, ys);
 
 		var color = GetColor(segment.Chart.Colors[segment.Character]);
 		scatter.Label = segment.Character.Value;
