@@ -146,6 +146,7 @@ $Ahr_NP=MYNE_TEAM,Hannelore
 >H1
 >H1
 $SP=MYNE_TEAM,FERDI_GUARDS,Hannelore,Heisshitze
+$Ahr_C=Fraularm
 
 
 

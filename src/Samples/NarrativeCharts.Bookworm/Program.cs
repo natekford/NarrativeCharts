@@ -6,7 +6,6 @@ using NarrativeCharts.Time;
 using SkiaSharp;
 
 using System.Diagnostics;
-using System.Linq;
 
 using static NarrativeCharts.Bookworm.BookwormBell;
 using static NarrativeCharts.Bookworm.BookwormCharacters;
@@ -17,6 +16,7 @@ namespace NarrativeCharts.Bookworm;
 public class Program
 {
 	public const int PARALLEL_CHART_COUNT = 10;
+	public const bool REDRAW_ALL_SCRIPTS = false;
 
 	public List<NarrativeChartData> Books { get; } = [];
 	public string ChartsDir { get; }
@@ -28,6 +28,7 @@ public class Program
 		// smaller images in debug so they render faster
 #if DEBUG
 		ImageSizeMult = 3f,
+		//YSpacing = 6,
 #endif
 		IgnoreNonMovingCharacters = false,
 		CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
@@ -112,7 +113,7 @@ public class Program
 		var count = 0;
 
 		var books = new List<(NarrativeChartData, string)>();
-		var shouldRedrawScripts = false;
+		var shouldRedrawScripts = REDRAW_ALL_SCRIPTS;
 		foreach (var book in Books)
 		{
 			var imagePath = Path.Combine(ChartsDir, $"{book.Name}.png");
@@ -124,8 +125,8 @@ public class Program
 				{
 					Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
 						$"Not redrawing {Path.GetFileName(imagePath)}. " +
-						$"Image last drawn: {imageTime:T}, " +
-						$"script last edited: {scriptTime:T}.");
+						$"Drawn: {imageTime:G}, " +
+						$"edited: {scriptTime:G}.");
 					continue;
 				}
 				else

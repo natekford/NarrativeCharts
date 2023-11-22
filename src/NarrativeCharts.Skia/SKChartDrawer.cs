@@ -8,8 +8,9 @@ namespace NarrativeCharts.Skia;
 public sealed class SKChartDrawer
 	: ChartDrawer<NarrativeChartData, SKContext, SKColor>
 {
-	public Func<Hex, Hex>? CharacterLabelColorConverter { get; init; }
-	private static SKFont Font { get; } = new();
+	public Func<Hex, Hex>? CharacterLabelColorConverter { get; set; }
+	public SKFont Font { get; set; } = new();
+
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
 
 	public SKChartDrawer()

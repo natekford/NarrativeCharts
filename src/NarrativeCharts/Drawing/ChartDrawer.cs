@@ -9,57 +9,57 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 	/// <summary>
 	/// The text size to use for axes labels.
 	/// </summary>
-	public int AxisLabelSize { get; init; } = 10;
+	public int AxisLabelSize { get; set; } = 10;
 	/// <summary>
 	/// The pixel count to put on each side for axes.
 	/// </summary>
-	public int AxisPadding { get; init; } = 250;
+	public int AxisPadding { get; set; } = 250;
 	/// <summary>
 	/// Whether or not to draw characters that never move.
 	/// </summary>
-	public bool IgnoreNonMovingCharacters { get; init; }
+	public bool IgnoreNonMovingCharacters { get; set; }
 	/// <summary>
 	/// The desired aspect ratio to use. If null, no modifications are made to the
 	/// calculated size.
 	/// </summary>
-	public float? ImageAspectRatio { get; init; }
+	public float? ImageAspectRatio { get; set; }
 	/// <summary>
 	/// The pixel count to round down to the nearest value for each image dimension.
 	/// E.G. a value of 100 would round 1234 to 1200.
 	/// </summary>
-	public int ImageSizeFloor { get; init; } = 100;
+	public int ImageSizeFloor { get; set; } = 100;
 	/// <summary>
 	/// Every point in the image is multiplied by this value.
 	/// </summary>
-	public float ImageSizeMult { get; init; } = 6;
+	public float ImageSizeMult { get; set; } = 6;
 	/// <summary>
 	/// The pixel count to use for each segment start/end marker.
 	/// </summary>
-	public int LineMarkerDiameter { get; init; } = 6;
+	public int LineMarkerDiameter { get; set; } = 6;
 	/// <summary>
 	/// The pixel count to use for each segment width.
 	/// </summary>
-	public int LineWidth { get; init; } = 2;
+	public int LineWidth { get; set; } = 2;
 	/// <summary>
 	/// The pixel length of an axis tick.
 	/// </summary>
-	public int TickLength { get; init; } = 5;
+	public int TickLength { get; set; } = 5;
 	/// <summary>
 	/// The amount of space between a Y-tick and the first point.
 	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
-	public int YOffset { get; init; } = 2;
+	public int YOffset { get; set; } = 2;
 	/// <summary>
 	/// The amount of space between each point on the same Y-tick.
 	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
-	public int YSpacing { get; init; } = 3;
+	public int YSpacing { get; set; } = 3;
 	/// <summary>
 	/// The amount of space to put between the highest Y value of a
 	/// previous Y-tick and the next Y-tick.
 	/// This is NOT an exact amount of pixels, it is dynamically resized.
 	/// </summary>
-	public int YTickSeperation { get; init; } = 25;
+	public int YTickSeperation { get; set; } = 25;
 
 	public async Task SaveChartAsync(TChart chart, string path)
 	{
@@ -228,7 +228,7 @@ public abstract class ChartDrawer<TChart, TImage, TColor> where TChart : Narrati
 				++i;
 			}
 
-			y += (i * YSpacing) + YTickSeperation;
+			y = yMax + YTickSeperation;
 		}
 
 		return new(
