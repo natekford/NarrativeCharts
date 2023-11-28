@@ -1,5 +1,4 @@
-﻿using NarrativeCharts.Bookworm.P3;
-using NarrativeCharts.Drawing;
+﻿using NarrativeCharts.Drawing;
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 using NarrativeCharts.Time;
@@ -197,11 +196,7 @@ public class Program
 
 	private List<NarrativeChart> GetBooks()
 	{
-		var books = new List<NarrativeChart>()
-		{
-			new P3V1(Defs.Time),
-			new P3V2(Defs.Time),
-		};
+		var books = new List<NarrativeChart>();
 		// use a natural sort so V30 shows up between V29 and V31
 		// and not between V3 and V4
 		var scripts = Directory.GetFiles(ScriptsDir, "*.txt")

@@ -1,0 +1,383 @@
+﻿##P3V1
+
+#Prologue
+// Prologue starts with Karstedt seeing Sylvester off
+// Seed characters because I didn't bother doing narrative charts for P1 or P2
+$T=Ferdinand,Karstedt,Myne,Sylvester
+$KO=Bezewanst,Bindewald
+$KE=Elvira,Trudeliede
+$T=Damuel,Delia,Dirk,Egmont,Ella,Fran,Gil,Kai,Monika,Nicola,Rosina,Wilma,Zahm
+$IR=Hugo,Leise,Todd
+$M=Benno,Corinna,Freida,Gustav,Leon,Lutz,Mark,Otto
+$W=Deid,Heidi,Ingo,Johann,Josef
+$MF=Effa,Gunther,Kamil,Tuuli
+>
+// sylvester goes back to AD conf, not gonna bother with RA in this volume
+$C=Sylvester
+// karstedt and ferdi discuss myne
+>
+// he probably goes back to his house soon after the discussion, not stated
+$KE=Karstedt
+// Time: next morning
+>>Morning
+// karstedt interrogates bezewanst/bindewald
+$KO=Karstedt
+>Dinner
+// discussion about myne's baptism
+$KE=Elvira,Ferdinand,Karstedt
+>
+$T=Ferdinand
+>>Morning
+$KO=Karstedt
+>
+// myne's health checkup
+$T=Karstedt
+// SS1 of P3V1, no exact timeline but definitely in this 4 day period 
+// between kardstedt/ferdi discussion and myne arrive
+// "Mother ... gathered Eckhart and I at the dinner table to discuss ..."
+$KE=Cornelius,Eckhart
+
+
+
+#Examination Results and the Noble's Quarter
+>
+$KE=Karstedt
+// Time: next 3 days
+>>3,Morning
+>
+$T=Karstedt
+>
+$KE=Ella,Elvira,Ferdinand,Karstedt,Myne,Rosina
+
+
+
+#Preparing for the Baptism Ceremony
+// Karstedt and Cornelius commute to the Knight's Order every day
+// no idea if it should be added
+// Time: Ferdinand checks on Myne every 2 days
+// so probably stays like 6 hours each time?
+>U2
+>H1
+$T=Ferdinand
+>>2,Meetings
+$KE=Ferdinand
+>U2
+>H1
+$T=Ferdinand
+>>2,Meetings
+$KE=Ferdinand
+>U2
+>H1
+$T=Ferdinand
+// Time: on a day where ferdinand isn't there
+>>Meetings
+// gilberta company comes to sell some rinsham to myne
+$KE=Benno,Mark
+>
+$M=Benno,Mark
+>>Meetings
+$KE=Ferdinand
+>U2
+>H1
+$T=Ferdinand
+// Gil + Gilberta company go to hasse at some point
+$Hasse=Benno,Gil,Lutz
+>>2,Meetings
+$KE=Ferdinand
+>U2
+>H1
+$T=Ferdinand
+>>2,Meetings
+$KE=Ferdinand
+>U2
+>H1
+$T=Ferdinand
+// Time: the day before the baptism
+>>Meetings
+$KE=Eckhart,Lamprecht
+// Time: no exact time given, but before Myne gets inagurated as high bishop
+// Gil + Gilberta company comes back
+$T=Gil
+$M=Benno,Lutz
+
+
+
+#A Noble's Baptism Ceremony
+>>ThirdBell
+// everyone arrives for myne's baptism
+$KE=Ferdinand,Florencia,Sylvester,Wilfried
+
+
+
+#Adoption
+>
+// guard knights get introduced and wilf makes myne pass out
+$KE=Brigitte,Damuel
+>
+$T=Ferdinand
+$C=Florencia,Sylvester,Wilfried
+// no exact time given on when he's killed, but probably before inaguration ceremony
+@!Bezewanst
+
+
+
+#Inaguration Ceremony
+// Time: "Ferdinand had told me to use the day after my baptism ceremony to rest."
+>>Morning
+// lamprecht gives myne a book then goes back to the castle
+$C=Lamprecht
+// Time: the next day
+>>Morning
+$KO=Cornelius,Karstedt
+$T=Brigitte,Damuel,Ella,Myne,Rosina
+>
+
+
+
+#Reunited at Last
+// Time: "As I ate breakfast the next morning,"
+// "The Gilberta Company was due to arrive at third bell"
+>>ThirdBell
+// zahm gets introduced as arno's replacement
+$T=Benno,Lutz,Mark,Zahm
+
+
+
+#How to Make Fluffy Bread
+>
+$M=Benno,Lutz,Mark
+>
+
+
+
+#Starbind Ceremony in the Lower City
+// Time: "As the Starbind Ceremony approached,"
+// idk, a couple days later?
+>>3,ThirdBell
+// "Today was a day when Benno and Lutz were visiting from the Gilberta Company"
+$T=Benno,Lutz
+>
+$M=Benno,Lutz
+// Time: "And so, the day of the Starbind Ceremony arrived."
+>>2,Morning
+$T=Lutz
+$T=Effa,Gunther,Kamil,Tuuli
+
+
+
+#The Archduke's Castle
+>
+$MF=Effa,Gunther,Kamil,Tuuli
+$C=Brigitte,Damuel,Ferdinand,Fran,Myne,Rosina
+// myne gets introduced to castle attendants
+$C=Angelica,Cornelius,Norbert,Rihyarda
+// gil and lutz probably return from the forest fairly soon
+$T=Gil
+$M=Lutz
+>
+// kids say goodnight to aub
+$C=Charlotte,Melchior
+
+
+
+#Starbind Ceremony in the Noble's Quarter
+>
+$C=Karstedt,Ottilie
+>
+
+
+
+#The Archduke and the Italian Restaurant
+>>Morning
+$T=Fran,Rosina
+// Time: "later that afternoon that my fever finally went down."
+>>FifthBell
+$T=Brigitte,Damuel,Ferdinand,Myne
+$KO=Angelica
+>>ThirdBell
+// leon gets yeast
+$T=Leon
+>
+$M=Leon
+>>ThirdBell
++$1a,T=Cornelius,Eckhart,Karstedt,Sylvester
+>
+// rosina leaves early because she plays music
++$1b,IR=Rosina
+>
++$1c,IR=Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Fran,Karstedt,Myne,Sylvester,Zahm
++$1d,IR=Benno,Freida,Gustav,Leon,Mark
+
+
+
+#Making a Monastery
+>
++$2,Hasse=Benno,Brigitte,Cornelius,Damuel,Eckhart,Ferdinand,Gustav,Karstedt,Mark,Myne,Sylvester
+>
+>
+-$2
+>
+// ferdi hires todd as a chef to arrive in the temple 36 hours from now
+// sylvester hires hugo for the castle
+-$1d,1c,1b,1a
+$KO=Eckhart
+
+
+
+#How to Gather Donations
+// no transition between chapters so no idea the time difference between italian restaurant and donations chapter
+// but hugo is in the castle kitched at that point, and we can probably assume he goes at the same time
+// todd goes to ferdi's temple kitchen at 2nd bell
+>>2,Morning
+$T=Todd
+$C=Ella,Hugo
+// Time: during the day, has to be around 17 days letter since ella went to the castle for a month and this is the only
+// section that has an unknown timeskip (the accounted for time between now and when ella is back in the temple during
+// elvira/lamp's visit is ~13 days)
+>>17,ThirdBell
+$C=Angelica,Brigitte,Cornelius,Damuel,Elvira,Myne
+>
+$KE=Elvira
+// Time: "I had been bedridden for two days since the tea party"
+>>2,ThirdBell
++$3,C=Elvira,Ferdinand
+>
+-$3
+
+
+
+#My First Magic Training Regimen
+>>ThirdBell
+$C=Ferdinand
+>
++$4,KO=Angelica,Brigitte,Cornelius,Damuel,Ferdinand,Myne
+>U2
+>H1
+// myne blows up her feystone and reforms it
+-$4
+>
+$T=Ferdinand
+
+
+
+#Working Toward Wax Stencils
+// Time: "dinnertime was my one opportunity to talk to them."
+>>Dinner
+>>Morning
+$T=Brigitte,Damuel,Myne
+$KO=Angelica
+$KE=Cornelius
+>
+$T=Benno,Lutz
+>
+$M=Benno
+
+
+
+#An Illustration of Ferdinand
+>
+// myne has dirk drain his mana with a taue fruit and cuts some trombes
+>
+$M=Lutz
+
+
+
+#Johann and Zack
+>>Lunch
+$W=Johann,Zack
++$5,T=Johann,Lutz,Zack
+>
+-$5
+>>3,Lunch
++$7,T=Johann,Lutz,Zack
+>
+-$7
+>>Lunch
+// tuuli gives myne a hairpin
++$8,T=Lutz,Tuuli
+>
+-$8
+
+
+
+#Elvira and Lamprecht Attack
+// Time: roughly a month after the chefs get loaned out
+>>Morning
+$T=Ella
+// Hugo doesn't come back until v2 (todd isn't mentioned but ferdinand does say chef*s*)
+// but idk, myne only retrieves hugo and todd isn't mentioned once in p3v2
+// "I planned to retrieve Hugo as well. I couldn't foresee there being any issues with that since it was past the date we had agreed on anyway."
+$IR=Todd
+// Time: "It was the day after I had met with Tuuli."
+>>Lunch
+$T=Lutz
+>
+$M=Lutz
+// Time: 3 days later
+>>2,ThirdBell
++$9,T=Elvira,Lamprecht
+>
+-$9
+// Time: unknown, not the same day
+>>Lunch
+// lutz gives an update on johann and zack's progress
+$T=Lutz
+
+
+
+#Finishing My Highbeast and the Wax Stencils
+>
+$M=Lutz
++$10,KO=Brigitte,Damuel,Ferdinand,Myne
+// myne creates lessy
+>
+-$10
+// Time: "From there, I spent my days practicing ... "
+// "It was the evening five days before Ferdinand's concert."
+// 13 days since concert was said to be "in a month"
+// so a 12 day timeskip at minimum
+>>12,FifthBell
++$11,T=Lutz,Johann,Zack
+>
+-$11
+// Time: "“Good morning, Lady Rozemyne,”"
+>>Morning
+$T=Lutz
+>
+$M=Lutz
+
+
+
+#The Harspiel Concert
+// Time: "I returned to the castle the day before the concert."
+>>3,ThirdBell
+// "We made our way to the castle. Ella and Rosina were in the carriage for attendants, while my two guard knights and I got into the carriage for nobles."
+// "Elvira and Florencia were already waiting for me in the castle."
++$12a,C=Brigitte,Damuel,Ella,Elvira,Florencia,Myne,Rosina
+// Time: "And so came the day of the concert."
+// meeting time? afternoon time? no clue
+>>FifthBell
++$12b,C=Eckhart,Ferdinand,Karstedt
+>
+>
+-$12a,12b
+// Time: "It was several days after the concert,"
+>>3,ThirdBell
+
+
+
+#Epilogue
+// Time: some time after myne gets lectured
+// "“Lutz, the customers have all left,”"
+>>2,FifthBell
+$M=Benno,Leon,Lutz,Mark
+// some craftsmen go to hasse
+$Hasse=Deid,Ingo
+// Time: "Two days later, Lutz, Benno, and Tuuli went to the orphanage director's chambers."
++$13,T=Benno,Lutz,Tuuli
+>
+-$13
+
+
+
+>H24

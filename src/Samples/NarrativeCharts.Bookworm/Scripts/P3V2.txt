@@ -1,0 +1,300 @@
+﻿##P3V2
+
+#Prologue
+// Time: After the coming of age ceremony in summer, no clue about what exact day or time of day aside from not night
+>>2,Lunch
+// Time: "That night, while Gunther was drinking"
+>Bed
+// Time: "It's due in three days"
+>>3,Lunch
++$1,T=Benno,Effa,Lutz,Tuuli
+>
+-$1
+
+
+
+#Discussing the Harvest Festival
+// Time: "There will be a meeting at third bell today."
+// on the day after the autumn coming of age ceremony
+>>2,ThirdBell
+>
+>
+// lutz and myne talk about gunther being assigned as a guard knight for the hasse carriages
+$T=Lutz
+>
+$MF=Lutz
+>
+$M=Lutz
+
+
+
+#Hasse's Monastery
+// Ingo and Deid probably come back from Hasse since the priests are
+// able to move it, and Lutz/Myne never mention them being at the
+// monastery when they go there
+$W=Deid,Ingo
+// Time: probably the morning? no idea how many days later tho
+>>2,Lunch
++$2,T=Benno,Gunther,Lutz,Mark
+>
+$Hasse=2
+// Time: "I would be heading for Hasse three days from now"
+// said the day that the grays depart
+>>2,Morning
+>
++$3,Hasse=Brigitte,Damuel,Ferdinand,Myne
+>
+-$3
+>>2,ThirdBell
+-$2
+// Time: "The three days passed before I knew it"
+>>Morning
++$4,Hasse=Brigitte,Damuel,Gil,Fran,Ferdinand,Myne,Nicola
+>
+$Hasse=HasseMayor,Marthe,Nora,Rick,Thore
+
+
+
+#The New Orphans
+>Lunch
+// everyone eats at the monastery then the orphans get a tour of it
+>
+
+
+#The Orphan's Treatment and Investigating the City
+>
+-$4
+$T=Benno
+>
+$M=Benno
+
+
+
+#The Monastery's Barrier
+// Time: “We will visit again five days from now,” from c05
+// "There were three whole days before my next scheduled visit" from this chapter
+// so the attack on the monastery either occurs 1 day after or 2
+>>Morning
+>
+// hasse monastery attacked
+>>Morning
+// hasse mayor sends a board
+>
+
+
+
+#A New Task and Winter Preparations
+// Time: "before I returned to the monastery the day after tomorrow"
+>>Morning
+// Time: "time to go to the castle the next day, my exhaustion was weighing me down just as much as the fear was."
+>>Morning
+>
++$5,C=Brigitte,Damuel,Ferdinand,Myne
+// Time: "a meeting had been arranged for teatime at fifth bell."
+>FifthBell
+// wilfried "it's not fair" myne tells him to quit whining
+// myne shows sylvester lessy and gets sylvester to give hugo back
+>
+-$5
+$IR=Hugo
+
+
+
+#Opening the Italian Restaurant
+// Time: "The day I could visit Hasse's orphanage had finally arrived."
+>>ThirdBell
++$6,Hasse=Brigitte,Damuel,Ferdinand,Fran,Gil,Myne
+>
+-$6
+// Time: "The day after visiting the orphans,"
+>>Lunch
+$T=Benno,Lutz,Mark
+>
+$M=Benno,Lutz,Mark
+// Time: "That night, I slept well for the first time in days."
+// "spent the days leading up to the opening of the Italian restaurant relaxing,"
+// "I started lunch early on the day of the Italian restaurant opening"
+>>Lunch
++$7,IR=Benno,Brigitte,Damuel,Fran,Freida,Gustav,Myne
+>
+-$7
+// Time: "Lutz reported with a grin the next day."
+>>Lunch
+$T=Benno,Lutz,Mark
+
+
+
+#Discussing How to Improve Hasse
+>
+$M=Benno,Lutz,Mark
+// myne tells ferdi about the plain she came up with benno
+>
+
+
+
+#Switching Places
+// Time: unknown, no meeting was mentioned iirc
+// so several days after last chapter?
+>>3,ThirdBell
+// myne reports to sylvester and swaps places with wilfried for a day
++$8,C=Angelica,Brigitte,Cornelius,Damuel,Ferdinand,Karstedt,Myne
+>
+// myne has lunch with wilf and talks about what to do
+// brig/damuel go with wilf (from wilf's SS)
+// "Lamprecht and Damuel will accompany you as guards"
+// "Rozemyne's female knight who had entered with Ferdinand saluted and stepped aside."
+$T=Brigitte,Damuel,Ferdinand,Lamprecht,Wilfried
+$C=Moritz,Oswald
+// Time: "Fifth bell rang and there was still no sign of Rihyarda."
+>FifthBell
+// Time: "“Milady, it's dinner time!” Rihyarda declared"
+>Dinner
+$C=Ferdinand
+// ferdinand tells sylvester to disinherit wilfried
+>
+$T=Ferdinand
+>>Morning
+// myne shows people in the castle karuta/picture books
+// Time: "Shortly after fourth bell, Wilfried and Lamprecht entered the room"
+>FourthBell
+$C=Brigitte,Damuel,Ferdinand,Lamprecht,Wilfried
+
+
+
+#Preparing for the Harvest Festival
+$C=Eckhart,Justus
+>
+$KO=Eckhart
+// "I've been doing scholar work in the castle ever since Lord Ferdinand entered the temple"
+// so justus stays in the castle
+
+
+
+#Hasse's Contract
+$C=Kantna
+// Time: "A little before sixth bell, Rihyarda received an ordonnanz from Ferdinand"
+>SixthBell
+$NQ=Kantna
+-$8
+// Time: "The next day was a normal one; I practiced harspiel as I always did, then went to help Ferdinand."
+>>ThirdBell
+
+
+
+#Starting Merchant Activities
+>
+// myne updates gilberta company on hasse
+$T=Benno,Lutz,Mark
+>
+$M=Benno,Lutz,Mark
+// Time: "Two days had passed since Mark was given permission to spread rumors."
+// "Wine at noon?"
+>>2,Lunch
++$9,Hasse=Brigitte,Damuel,Ferdinand,Fran,Myne
+$Hasse=Richt
+>
+-$9
+
+
+
+#Hasse's Harvest Festival
+// Time: unknown, "On the morning of the Harvest Festival"
+>>5,Morning
+// via highbeast
+$Hasse=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Justus,Myne
+// via carriage
+@?Ella,Monika,Nicola,Rosina
+@?Benno,Gil,Gunther,Lutz,Mark
+>U2
+$Hasse=Ella,Monika,Nicola,Rosina
+$Hasse=Benno,Gil,Gunther,Lutz,Mark
+// Time: "Fifth bell rang just a second ago"
+>FifthBell
+>
+
+
+
+#The Harvest Festival
+// Time: "When dawn broke"
+>>Morning
+>U2
+$T=Gil,Marthe,Nora,Rick,Thore
+$MF=Gunther
+$M=Lutz
+// via highbeast
+$SmallTowns=Brigitte,Damuel,Eckhart,Ferdinand,Fran,Justus,Myne
+// via carriage
+@?Ella,Monika,Nicola,Rosina
+>
+// benno/mark spread rumours before leaving
+$M=Benno,Mark
+// via carriage
+$SmallTowns=Ella,Monika,Nicola,Rosina
+// Time: "Justus began his work as a tax official first thing in the morning."
+>>Morning
+// justus sends taxes back to the castle
+// Time: "Or so I thought until the third day."
+>>2,Morning
+
+
+
+#The Night of Schutzaria
+// Time: "Just as I was really getting exhausted from the quick succession of festivals, we arrived at Dorvan"
+// could be immediately after the end of the previous chapter, who knows?
+>>Lunch
+// They're at some town named Dorvan, but it doesn't need a location tbh
+// Time: "After informing Dorvan's mayor that we would be staying for a few days after the Harvest Festival"
+// "“Tonight is the Night of Schutzaria.” Justus explained as we ate breakfast together."
+>>3,Morning
+// Time: "would be going to look for a ruelle tree after lunch"
+>Lunch
++$10,RTree=Damuel,Eckhart,Justus
+>
+-$10
+>Bed
+// gathering ruelles, myne's gets eaten
+$RTree=Brigitte,Damuel,Eckhart,Justus,Myne
+
+
+
+#Aftermath
+>
+// ferdi is contacted, he tells myne to contains the goltze
+$RTree=Ferdinand
+>
+$SmallTowns=Brigitte,Damuel,Eckhart,Ferdinand,Justus,Myne
+// Time: "I ended up bedridden"
+>>2,ThirdBell
+
+
+
+#My Winter Preparations
+$T=Brigitte,Damuel,Ella,Ferdinand,Fran,Monika,Myne,Nicola,Rosina
+$KO=Eckhart
+$C=Justus
+// Time: "And so began a series of meetings with blue priests that continued day after day."
+>>2,ThirdBell
+$T=Kampfer,Frietack
+>>2,ThirdBell
++$11,C=Brigitte,Damuel,Ferdinand,Myne
+>
+-$11
+
+
+
+#Epilogue
+// Time: "Brigitte thanked her for her concern, then got into bed."
+>Bed
+$KO=Brigitte,Nadine
+// karstedt talks to her about stuff, but adding him in makes the graph
+// look very messy at that point
+>>FifthBell
+$KE=Brigitte,Nadine
+>
+$KO=Nadine
+$T=Brigitte
+>
+
+
+
+>H24
