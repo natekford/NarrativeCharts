@@ -132,11 +132,14 @@ $Ahr_C=MYNE_TEAM,FERDI_GUARDS,Fairseele,Hannelore,Heisshitze,Letizia,Strahl
 
 
 #Rumors and a Departure
+// "paused their journey to spend a night at an inn"
+$Leisegang=Georgine,Seltier
 >>FifthBell
+// freeze them because they take a boat
+@?Georgine,Seltier
 $Ahr_NP=FERDI_GUARDS,Heisshitze
-$SP=Georgine,Grausam
 // Time: "Two whole days have passed"
->>Lunch
+>>Morning
 >H1
 
 
@@ -150,4 +153,19 @@ $Ahr_C=Fraularm
 
 
 
->H24
+#Black Weapons and Chalices
+// Time: "you can expect to arrive at third bell"
+>ThirdBell
+$T=Georgine,Seltier
+// Time: "Fourth bell rang out from Giebe Gerlach’s estate"
+>FourthBell
+
+
+
+//#Epilogue
+// Takes place a couple days/hours before the previous chapters
+// Laugo mentioned, not gonna bother with him
+
+
+
+>H3
