@@ -7,12 +7,13 @@ namespace NarrativeCharts.Skia;
 
 public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 {
+	public SKFont AxisLabelFont { get; set; } = new();
 	public Func<Hex, Hex>? CharacterLabelColorConverter { get; set; }
-	public SKFont Font { get; set; } = new();
+	public SKFont PointLabelFont { get; set; } = new();
 	public override int PointLabelSize
 	{
-		get => (int)Font.Size;
-		set => Font.Size = value;
+		get => (int)PointLabelFont.Size;
+		set => PointLabelFont.Size = value;
 	}
 
 	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
@@ -29,10 +30,6 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		// Default color type is Rgba8888 which is 32 bits, Rgb565 is 16 bits
 		// I don't use transparency in any of the drawing and the colors I use for
 		// characters don't include any alpha so there's no harm in ignoring alpha
-		// The images this program creates are big, the Bookworm sample project
-		// (P3V1, P3V2, part P3V3 x2, combined) use the following memory + time:
-		// 1600mb when Rgba8888, 800mb when Rgb565
-		// 12.5s when Rgba8888, 9.5s when Rgb565
 		var info = new SKImageInfo(dims.Width, dims.Height, SKColorType.Rgb565);
 		var bitmap = new SKBitmap(info);
 		var canvas = new SKCanvas(bitmap);
@@ -51,7 +48,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 		// Title
 		using (Restrict(context, SKClipOperation.Difference))
-		using (var paint = GetPaint(SKColors.Black))
+		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
 			paint.TextSize = AxisPadding * 0.50f;
 			paint.TextAlign = SKTextAlign.Center;
@@ -64,7 +61,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 		// Y-Axes
 		using (Restrict(context, SKClipOperation.Difference))
-		using (var paint = GetPaint(SKColors.Black))
+		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
 			paint.TextSize = AxisLabelSize;
 
@@ -77,7 +74,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 		// X-Axes
 		using (Restrict(context, SKClipOperation.Difference))
-		using (var paint = GetPaint(SKColors.Black))
+		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
 			paint.TextSize = AxisLabelSize;
 			paint.TextAlign = SKTextAlign.Center;
@@ -139,7 +136,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 		// Grid lines
 		using (Restrict(context))
-		using (var paint = GetPaint(SKColors.LightGray))
+		using (var paint = GetPaint(SKColors.LightGray, AxisLabelFont))
 		{
 			canvas.Translate(context.PaddingEnd, context.PaddingEnd);
 			foreach (var yTick in yMap.Locations.Values)
@@ -155,7 +152,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		}
 
 		// Grid Border
-		using (var paint = GetPaint(SKColors.Black))
+		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
 			paint.Style = SKPaintStyle.Stroke;
 
@@ -167,14 +164,13 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 	protected override void DrawSegment(SKContext image, Segment segment)
 	{
-		var canvas = image.Canvas;
 		var hex = segment.Chart.Colors[segment.Character];
-		var paint = image.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x)));
+		var paint = image.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x), PointLabelFont));
 		var positions = image.Labels.GetOrAdd(segment.Character, _ => []);
 
 		using (Restrict(image))
 		{
-			canvas.Translate(image.PaddingEnd, image.PaddingEnd);
+			image.Canvas.Translate(image.PaddingEnd, image.PaddingEnd);
 
 			var p0 = new SKPoint(image.X(segment.X0), image.Y(segment.Y0));
 			var p1 = new SKPoint(image.X(segment.X1), image.Y(segment.Y1));
@@ -191,12 +187,12 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 			paint.IsAntialias = true;
 			paint.PathEffect = null;
-			canvas.DrawCircle(p0, LineMarkerDiameter / 2f, paint);
-			canvas.DrawCircle(p1, LineMarkerDiameter / 2f, paint);
+			image.Canvas.DrawCircle(p0, LineMarkerDiameter / 2f, paint);
+			image.Canvas.DrawCircle(p1, LineMarkerDiameter / 2f, paint);
 
 			paint.PathEffect = segment.IsMovement ? Movement : null;
 			paint.IsAntialias = segment.IsMovement;
-			canvas.DrawLine(p0, p1, paint);
+			image.Canvas.DrawLine(p0, p1, paint);
 		}
 	}
 
@@ -209,13 +205,17 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 			foreach (var (character, positions) in image.Labels)
 			{
-				var name = image.Text.GetOrAdd(character.Value, x => SKTextBlob.Create(x, Font));
-				var hex = image.Chart.Colors[character];
-				if (CharacterLabelColorConverter is not null)
-				{
-					hex = CharacterLabelColorConverter.Invoke(hex);
-				}
-				var paint = image.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x)));
+				var name = image.Text.GetOrAdd(
+					key: character.Value,
+					valueFactory: x => SKTextBlob.Create(x, PointLabelFont)
+				);
+				var hex = CharacterLabelColorConverter is null
+					? image.Chart.Colors[character]
+					: CharacterLabelColorConverter(image.Chart.Colors[character]);
+				var paint = image.Paint.GetOrAdd(
+					key: hex,
+					valueFactory: x => GetPaint(GetColor(x), PointLabelFont)
+				);
 
 				paint.IsAntialias = true;
 				paint.PathEffect = null;
@@ -251,23 +251,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 				 * consistent file type
 				 */
 
-#if true
 				image.Bitmap.Encode(fs, SKEncodedImageFormat.Png, 100);
-#else
-				// with 1, 2, or 3 compression: ~33% faster, file ~66% bigger
-				// with 0 it's actually slower probably because either my ram or
-				// ssd can't keep up with the 250x size increase
-				var options = new SKPngEncoderOptions(
-					filterFlags: SKPngEncoderFilterFlags.AllFilters,
-					zLibLevel: 3
-				);
-
-				using var pixmap = image.Bitmap.PeekPixels();
-				using var data = pixmap.Encode(options);
-				using var ds = data.AsStream();
-				ds.CopyTo(fs);
-#endif
-
 				tcs.SetResult();
 			}
 			catch (Exception e)
@@ -286,19 +270,17 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		SKContext context,
 		SKClipOperation op = SKClipOperation.Intersect)
 	{
-		var canvas = context.Canvas;
-		var autoRestore = new SKAutoCanvasRestore(canvas);
-		canvas.ClipRect(context.Grid, op);
+		var autoRestore = new SKAutoCanvasRestore(context.Canvas);
+		context.Canvas.ClipRect(context.Grid, op);
 		return autoRestore;
 	}
 
 	private void DrawYAxis(SKContext context, SKPaint paint, bool isLeftAxis)
 	{
-		var canvas = context.Canvas;
 		foreach (var (label, yTick) in context.YMap.Locations)
 		{
 			var y = context.Y(yTick);
-			canvas.DrawLine(0, y, TickLength, y, paint);
+			context.Canvas.DrawLine(0, y, TickLength, y, paint);
 
 			var x1 = isLeftAxis
 				? -(paint.MeasureText(label.Value) + (TickLength / 2f))
@@ -307,14 +289,14 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 			// so to balance it out we add 1/4 to the other side
 			var y1 = y + (paint.TextSize / 4f);
 			paint.IsAntialias = true;
-			canvas.DrawText(label.Value, x1, y1, paint);
+			context.Canvas.DrawText(label.Value, x1, y1, paint);
 			paint.IsAntialias = false;
 		}
 	}
 
-	private SKPaint GetPaint(SKColor color)
+	private SKPaint GetPaint(SKColor color, SKFont font)
 	{
-		return new(Font)
+		return new(font)
 		{
 			Color = color,
 			StrokeWidth = LineWidth,
