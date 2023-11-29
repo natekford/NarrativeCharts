@@ -63,6 +63,11 @@ public class Program
 			var path = Path.Combine(ScriptsDir, $"{scriptConverter.ClassName}.cs");
 			File.WriteAllText(path, scriptConverter.Write());
 		}
+
+		{
+			var path = Path.Combine(ScriptsDir, "ScriptDefinitions.cs");
+			File.WriteAllText(path, Defs.ConvertToCode());
+		}
 #endif
 
 #if false

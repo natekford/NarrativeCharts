@@ -149,7 +149,8 @@ public class ScriptDefinitions
 				Name: x.Key.Value,
 				Hex: x.Value == Hex.Unknown ? null : x.Value.Value,
 				Aliases: reverseCAliases.GetValueOrDefault(x.Key, [])
-			)).ToList());
+			)).ToList()
+		);
 
 		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 		using var fs = File.Create(path);
