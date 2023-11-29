@@ -16,6 +16,10 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 	/// <inheritdoc cref="ScriptDefinitions" />
 	public ScriptDefinitions Definitions { get; }
 	/// <summary>
+	/// The last time the script this is sourced from was edited.
+	/// </summary>
+	public DateTime LastWriteTimeUTC { get; }
+	/// <summary>
 	/// Stored groups of characters to easily allow referencing large groups without
 	/// mass duplication.
 	/// </summary>
@@ -41,11 +45,16 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 	/// Creates an instance of <see cref="ScriptParser"/>.
 	/// </summary>
 	/// <param name="definitions"></param>
+	/// <param name="lastWriteTimeUtc"></param>
 	/// <param name="lines"></param>
-	public ScriptParser(ScriptDefinitions definitions, IEnumerable<string> lines)
+	public ScriptParser(
+		ScriptDefinitions definitions,
+		DateTime lastWriteTimeUtc,
+		IEnumerable<string> lines)
 		: base(definitions.Time)
 	{
 		Definitions = definitions;
+		LastWriteTimeUTC = lastWriteTimeUtc;
 		Lines = lines;
 
 		Colors = new(definitions.CharacterColors);

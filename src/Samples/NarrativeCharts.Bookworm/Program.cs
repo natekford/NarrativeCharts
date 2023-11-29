@@ -55,7 +55,7 @@ public class Program
 #if true
 		foreach (var book in books)
 		{
-			if (book is not BookwormScriptConverter scriptConverter)
+			if (book is not ScriptConverter scriptConverter)
 			{
 				continue;
 			}
@@ -121,10 +121,10 @@ public class Program
 		foreach (var book in Books)
 		{
 			var imagePath = Path.Combine(ChartsDir, $"{book.Name}.png");
-			if (!shouldRedrawScripts && book is BookwormScriptConverter scriptConverter)
+			if (!shouldRedrawScripts && book is ScriptParser scriptParser)
 			{
 				var imageTime = File.GetLastWriteTimeUtc(imagePath);
-				var scriptTime = scriptConverter.LastWriteTimeUTC;
+				var scriptTime = scriptParser.LastWriteTimeUTC;
 				if (imageTime >= scriptTime)
 				{
 					Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
@@ -208,7 +208,7 @@ public class Program
 			.OrderBy(x => x, NaturalSortStringComparer.Ordinal);
 		foreach (var script in scripts)
 		{
-			books.Add(new BookwormScriptConverter(
+			books.Add(new ScriptConverter(
 				definitions: Defs,
 				lastWriteTimeUtc: File.GetLastWriteTimeUtc(script),
 				lines: File.ReadLines(script)
