@@ -10,13 +10,8 @@ namespace NarrativeCharts.Drawing;
 /// <typeparam name="TColor"></typeparam>
 public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 {
-	/// <summary>
-	/// Creates an image from <paramref name="chart"/> and saves it to <paramref name="path"/>.
-	/// </summary>
-	/// <param name="chart"></param>
-	/// <param name="path"></param>
-	/// <returns></returns>
-	public virtual async Task SaveChartAsync(NarrativeChartData chart, string path)
+	/// <inheritdoc />
+	public override async Task SaveChartAsync(NarrativeChartData chart, string path)
 	{
 		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 

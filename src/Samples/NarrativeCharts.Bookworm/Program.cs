@@ -5,219 +5,15 @@ using NarrativeCharts.Time;
 
 using SkiaSharp;
 
-using System.Diagnostics;
-
 using static NarrativeCharts.Bookworm.BookwormBell;
 using static NarrativeCharts.Bookworm.BookwormCharacters;
 using static NarrativeCharts.Bookworm.BookwormLocations;
 
 namespace NarrativeCharts.Bookworm;
 
-public class Program
+public static class Program
 {
-	public const int PARALLEL_CHART_COUNT = 10;
-	public const bool REDRAW_ALL_SCRIPTS = false;
-
-	public List<NarrativeChartData> Books { get; } = [];
-	public string ChartsDir { get; }
-	public ScriptDefinitions Defs { get; private set; } = null!;
-	public string Dir { get; }
-	public SKChartDrawer Drawer { get; } = new SKChartDrawer()
-	{
-		ImageAspectRatio = 16f / 9f,
-		// smaller images in debug so they render faster
-#if DEBUG
-		ImageSizeMult = 3f,
-#endif
-		IgnoreNonMovingCharacters = false,
-		CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
-	}.UseRecommendedYSpacing();
-	public string ScriptsDir { get; }
-
-	public Program(string dir)
-	{
-		Dir = dir;
-		ChartsDir = Path.Combine(Dir, "Charts");
-		ScriptsDir = Path.Combine(Dir, "Scripts");
-	}
-
-	public async Task RunAsync()
-	{
-		Defs = await GetScriptDefinitionsAsync().ConfigureAwait(false);
-
-		var books = GetBooks();
-		for (var i = 0; i < books.Count; ++i)
-		{
-			books[i].Initialize(i == 0 ? null : books[i - 1]);
-			Books.Add(books[i]);
-		}
-
-#if true
-		foreach (var book in books)
-		{
-			if (book is not ScriptConverter scriptConverter)
-			{
-				continue;
-			}
-
-			var path = Path.Combine(ScriptsDir, $"{scriptConverter.ClassName}.cs");
-			File.WriteAllText(path, scriptConverter.Write());
-		}
-
-		{
-			var path = Path.Combine(ScriptsDir, "ScriptDefinitions.cs");
-			File.WriteAllText(path, Defs.ConvertToCode());
-		}
-#endif
-
-#if false
-		var combined = books.Combine();
-		combined.Name = "Combined";
-		Books.Add(combined);
-#endif
-
-#if false
-		var kept = new HashSet<Models.Character>
-		{
-			BookwormCharacters.Ella,
-			BookwormCharacters.Hugo,
-			BookwormCharacters.Rosina,
-			BookwormCharacters.Myne
-		};
-		foreach (var book in books)
-		{
-			foreach (var key in book.Points.Keys.ToList())
-			{
-				if (!kept.Contains(key))
-				{
-					book.Points.Remove(key);
-				}
-			}
-		}
-#endif
-
-		await DrawChartsAsync().ConfigureAwait(false);
-		await Task.Delay(-1).ConfigureAwait(false);
-	}
-
-	private static Task Main()
-		=> new Program(Directory.GetCurrentDirectory()).RunAsync();
-
-	private async Task DrawChartsAsync()
-	{
-		// do this in a separate loop first because the tasks
-		// make printing look worse even though we aren't
-		// awaiting them sequentially
-		foreach (var book in Books)
-		{
-			PrintBookInfo(book);
-		}
-
-		var sw = Stopwatch.StartNew();
-		var count = 0;
-
-		var books = new List<(NarrativeChartData, string)>();
-		var shouldRedrawScripts = REDRAW_ALL_SCRIPTS;
-		foreach (var book in Books)
-		{
-			var imagePath = Path.Combine(ChartsDir, $"{book.Name}.png");
-			if (!shouldRedrawScripts && book is ScriptParser scriptParser)
-			{
-				var imageTime = File.GetLastWriteTimeUtc(imagePath);
-				var scriptTime = scriptParser.LastWriteTimeUTC;
-				if (imageTime >= scriptTime)
-				{
-					Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
-						$"Not redrawing {Path.GetFileName(imagePath)}. " +
-						$"Drawn: {imageTime:G}, " +
-						$"edited: {scriptTime:G}.");
-					continue;
-				}
-				else
-				{
-					// redraw subsequent scripts because the editing of a previous script
-					// could change character seeding locations
-					shouldRedrawScripts = true;
-				}
-			}
-
-			books.Add(new(book, imagePath));
-		}
-
-#if false
-		// Parallel.ForEachAsync is a lot simpler to write
-		var parallelOptions = new ParallelOptions
-		{
-			MaxDegreeOfParallelism = PARALLEL_CHART_COUNT,
-		};
-		await Parallel.ForEachAsync(books, parallelOptions, async (book, _) =>
-		{
-			var start = sw.Elapsed;
-
-			await Drawer.SaveChartAsync(book.Book, book.ImagePath).ConfigureAwait(false);
-
-			Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
-				$"Finished drawing {book.ImagePath} " +
-				$"in {(sw.Elapsed - start).TotalSeconds:#.##} seconds.");
-		}).ConfigureAwait(false);
-#else
-		// But manually doing the same thing as Parallel.ForEachAsync allows
-		// for potentially accounting for RAM usage instead of just task count
-		// Which probably is important considering how this program can regularly
-		// use up to 10GB+ of RAM
-		var queue = new Queue<(NarrativeChartData, string)>(books);
-		var active = new Dictionary<Task, (TimeSpan, string)>();
-		async Task WhenAnyDrawingAsync()
-		{
-			var task = await Task.WhenAny(active.Keys).ConfigureAwait(false);
-			active.Remove(task, out var item);
-			var (start, imagePath) = item;
-			Console.WriteLine($"[{Interlocked.Increment(ref count)}/{Books.Count}] " +
-				$"Finished drawing {Path.GetFileName(imagePath)} " +
-				$"in {(sw.Elapsed - start).TotalSeconds:#.##} seconds.");
-		}
-
-		while (queue.TryDequeue(out var item))
-		{
-			if (active.Count >= PARALLEL_CHART_COUNT)
-			{
-				await WhenAnyDrawingAsync().ConfigureAwait(false);
-			}
-
-			var (book, imagePath) = item;
-			active.Add(
-				key: Drawer.SaveChartAsync(book, imagePath),
-				value: new(sw.Elapsed, imagePath)
-			);
-		}
-		while (active.Any())
-		{
-			await WhenAnyDrawingAsync().ConfigureAwait(false);
-		}
-#endif
-
-		Console.WriteLine($"{Books.Count} charts created after {sw.Elapsed.TotalSeconds:#.##} seconds.");
-	}
-
-	private List<NarrativeChart> GetBooks()
-	{
-		var books = new List<NarrativeChart>();
-		// use a natural sort so V30 shows up between V29 and V31
-		// and not between V3 and V4
-		var scripts = Directory.GetFiles(ScriptsDir, "*.txt")
-			.OrderBy(x => x, NaturalSortStringComparer.Ordinal);
-		foreach (var script in scripts)
-		{
-			books.Add(new ScriptConverter(
-				definitions: Defs,
-				lastWriteTimeUtc: File.GetLastWriteTimeUtc(script),
-				lines: File.ReadLines(script)
-			));
-		}
-		return books;
-	}
-
-	private async Task<ScriptDefinitions> GetScriptDefinitionsAsync()
+	private static async Task<ScriptDefinitions> GetScriptDefinitionsAsync(string dir)
 	{
 		static void AddAliases<TKey, TValue>(
 			Dictionary<TKey, TValue> dest,
@@ -234,7 +30,12 @@ public class Program
 			}
 		}
 
-		var defs = new ScriptDefinitions();
+		var defs = new ScriptDefinitions
+		{
+			ConvertScripts = true,
+			RedrawUneditedScripts = true,
+			ScriptDirectory = Path.Combine(dir, "Scripts"),
+		};
 
 		// Characters
 		{
@@ -335,36 +136,61 @@ public class Program
 			});
 		}
 
-		var defsPath = Path.Combine(ScriptsDir, "ScriptDefinitions.json");
+		var defsPath = Path.Combine(defs.ScriptDirectory, "ScriptDefinitions.json");
 		await defs.SaveAsync(defsPath).ConfigureAwait(false);
 		return await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
 	}
 
-	private void PrintBookInfo(NarrativeChartData chart)
+	private static async Task Main()
 	{
-		var properties = new Dictionary<string, string>();
-
+		var dir = Directory.GetCurrentDirectory();
+		var defs = await GetScriptDefinitionsAsync(dir).ConfigureAwait(false);
+		var charts = ScriptingUtils.LoadScripts(defs).ToList<NarrativeChartData>();
+		var drawer = new SKChartDrawer()
 		{
-			properties["Character"] = chart.Points.Count.ToString();
-		}
+			ImageAspectRatio = 16f / 9f,
+			// smaller images in debug so they render faster
+#if DEBUG
+			ImageSizeMult = 3f,
+#endif
+			IgnoreNonMovingCharacters = false,
+			CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
+		}.UseRecommendedYSpacing();
 
-		{
-			var points = chart.Points.Sum(x => x.Value.Count);
-			properties["Points"] = points.ToString();
-		}
+#if false
+		var combined = charts.Combine();
+		combined.Name = "Combined";
+		charts.Add(combined);
+#endif
 
+#if false
+		var kept = new HashSet<Models.Character>
 		{
-			float max = float.MinValue, min = float.MaxValue;
-			foreach (var point in chart.GetAllNarrativePoints())
+			BookwormCharacters.Ella,
+			BookwormCharacters.Hugo,
+			BookwormCharacters.Rosina,
+			BookwormCharacters.Myne
+		};
+		foreach (var chart in charts)
+		{
+			foreach (var key in chart.Points.Keys.ToList())
 			{
-				max = Math.Max(max, point.Hour);
-				min = Math.Min(min, point.Hour);
+				if (!kept.Contains(key))
+				{
+					chart.Points.Remove(key);
+				}
 			}
-			var days = (max - min) / Defs.Time.HoursPerDay;
-			properties["Days"] = days.ToString("#.#");
 		}
+#endif
 
-		var joined = string.Join(", ", properties.Select(x => $"{x.Key}={x.Value}"));
-		Console.WriteLine($"{chart.Name}: {joined}");
+		var collection = new ScriptCollection
+		{
+			Charts = charts,
+			Defs = defs,
+			Drawer = drawer,
+		};
+
+		await collection.ProcessAsync().ConfigureAwait(false);
+		await Task.Delay(-1).ConfigureAwait(false);
 	}
 }

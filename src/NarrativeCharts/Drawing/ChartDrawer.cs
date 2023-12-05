@@ -70,6 +70,14 @@ public abstract class ChartDrawer
 	public virtual int YTickSeperation { get; set; } = 25;
 
 	/// <summary>
+	/// Creates an image from <paramref name="chart"/> and saves it to <paramref name="path"/>.
+	/// </summary>
+	/// <param name="chart"></param>
+	/// <param name="path"></param>
+	/// <returns></returns>
+	public abstract Task SaveChartAsync(NarrativeChartData chart, string path);
+
+	/// <summary>
 	/// Gets the width and height to use for the image, along with the values to
 	/// multiply each X and Y value by.
 	/// </summary>

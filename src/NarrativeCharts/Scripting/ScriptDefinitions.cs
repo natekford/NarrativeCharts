@@ -12,6 +12,7 @@ namespace NarrativeCharts.Scripting;
 /// </summary>
 public class ScriptDefinitions
 {
+	private const string SCRIPT_EXT = ".txt";
 	private static readonly JsonSerializerOptions _JsonOptions = new()
 	{
 		// so characters like > and + don't get escaped
@@ -26,11 +27,28 @@ public class ScriptDefinitions
 	/// <inheritdoc cref="NarrativeChartData.Colors" />
 	public Dictionary<Character, Hex> CharacterColors { get; set; } = [];
 	/// <summary>
+	///  Whether or not to convert parsed scripts to C#.
+	/// </summary>
+	public bool ConvertScripts { get; set; }
+	/// <summary>
 	/// The strings that map to a <see cref="Location"/>.
 	/// </summary>
 	public Dictionary<string, Location> LocationAliases { get; set; } = [];
 	/// <inheritdoc cref="NarrativeChartData.YIndexes" />
 	public Dictionary<Location, int> LocationYIndexes { get; set; } = [];
+	/// <summary>
+	/// Whether or not to redraw scripts that have not been edited since their chart
+	/// has been last drawn.
+	/// </summary>
+	public bool RedrawUneditedScripts { get; set; }
+	/// <summary>
+	/// The directory to load scripts from.
+	/// </summary>
+	public required string ScriptDirectory { get; set; } = null!;
+	/// <summary>
+	/// The extension that indicates a script.
+	/// </summary>
+	public string ScriptExtension { get; set; } = SCRIPT_EXT;
 	/// <summary>
 	/// The symbols to use when parsing each line.
 	/// </summary>
@@ -52,12 +70,25 @@ public class ScriptDefinitions
 	public static async Task<ScriptDefinitions> LoadAsync(string path)
 	{
 		DefsJson json;
-		using (var fs = File.OpenRead(path))
+		await using (var fs = File.OpenRead(path))
 		{
 			json = (await JsonSerializer.DeserializeAsync<DefsJson>(fs).ConfigureAwait(false))!;
 		}
 
-		var defs = new ScriptDefinitions();
+		var defs = new ScriptDefinitions
+		{
+			ConvertScripts = json.ConvertScriptsToCSharp,
+			RedrawUneditedScripts = json.RedrawUneditedScripts,
+			ScriptDirectory = Path.GetDirectoryName(path)!,
+		};
+		if (!string.IsNullOrEmpty(json.ScriptExtension))
+		{
+			defs.ScriptExtension = json.ScriptExtension;
+		}
+		if (json.Symbols is not null)
+		{
+			defs.Symbols = json.Symbols;
+		}
 		if (json.Time is not null)
 		{
 			for (var i = 0; i < json.Time.Count; ++i)
@@ -70,10 +101,6 @@ public class ScriptDefinitions
 			}
 
 			defs.Time = new(json.Time.Select(x => x.DurationInHours));
-		}
-		if (json.Symbols is not null)
-		{
-			defs.Symbols = json.Symbols;
 		}
 		foreach (var aliased in json.Characters)
 		{
@@ -135,7 +162,10 @@ public class ScriptDefinitions
 		}
 
 		var json = new DefsJson(
-			Symbols: new(),
+			ConvertScriptsToCSharp: ConvertScripts,
+			RedrawUneditedScripts: RedrawUneditedScripts,
+			ScriptExtension: ScriptExtension,
+			Symbols: Symbols,
 			Time: Time.UnitToHourMap.OrderBy(x => x.Key).Select(x => new TimeJson(
 				DurationInHours: (Time.UnitToHourMap.TryGetValue(x.Key + 1, out var end)
 					? end : Time.HoursPerDay) - Time.UnitToHourMap[x.Key],
@@ -153,11 +183,14 @@ public class ScriptDefinitions
 		);
 
 		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-		using var fs = File.Create(path);
+		await using var fs = File.Create(path);
 		await JsonSerializer.SerializeAsync(fs, json, _JsonOptions).ConfigureAwait(false);
 	}
 
 	private record DefsJson(
+		bool ConvertScriptsToCSharp,
+		bool RedrawUneditedScripts,
+		string ScriptExtension,
 		ScriptSymbols? Symbols,
 		List<TimeJson>? Time,
 		List<LocationJson> Locations,

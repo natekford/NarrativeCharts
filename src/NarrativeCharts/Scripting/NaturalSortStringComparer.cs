@@ -1,4 +1,4 @@
-﻿namespace NarrativeCharts.Bookworm;
+﻿namespace NarrativeCharts.Scripting;
 
 // Copied from https://stackoverflow.com/a/66354540/17760972
 internal class NaturalSortStringComparer : IComparer<string>
