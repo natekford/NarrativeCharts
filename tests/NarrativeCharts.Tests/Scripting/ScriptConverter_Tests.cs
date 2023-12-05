@@ -6,7 +6,17 @@ namespace NarrativeCharts.Tests.Scripting;
 public class ScriptConverter_Tests
 {
 	[Fact]
-	public void HandleAddScene_Test()
+	public void HandleAddScene_Invalid()
+	{
+		Action tooFew = () => ProcessText("$T,Ferdinand,Myne");
+		tooFew.Should().Throw<ArgumentException>();
+
+		Action tooMany = () => ProcessText("$T=Ferdinand=Myne");
+		tooMany.Should().Throw<ArgumentException>();
+	}
+
+	[Fact]
+	public void HandleAddScene_Valid()
 	{
 		var output = ProcessText("$T=Ferdinand,Myne");
 		output.Chapters.Single().Should().Be("Add(Temple, Ferdinand, Myne);");
@@ -46,6 +56,13 @@ public class ScriptConverter_Tests
 		output.Chapters.Single().Length.Should().Be(0);
 		output.ScriptConverter.Name.Should().Be("A SD F7");
 		output.ScriptConverter.ClassName.Should().Be("ASDF7");
+	}
+
+	[Fact]
+	public void ProcessLine_Invalid()
+	{
+		Action action = () => ProcessText("??not a valid symbol");
+		action.Should().Throw<ArgumentException>();
 	}
 
 	private static Output ProcessText(params string[] lines)
