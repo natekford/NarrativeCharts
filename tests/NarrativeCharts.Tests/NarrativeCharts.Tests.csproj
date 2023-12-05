@@ -38,6 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\samples\NarrativeCharts.Bookworm\NarrativeCharts.Bookworm.csproj" />
 		<ProjectReference Include="..\..\src\NarrativeCharts\NarrativeCharts.csproj" />
 	</ItemGroup>
 </Project>

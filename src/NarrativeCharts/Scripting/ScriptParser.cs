@@ -137,7 +137,7 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 			SymbolHandlers.Add(_Symbols.RemoveReturnableScene, HandleRemoveReturnableScene);
 			SymbolHandlers.Add(_Symbols.AddCharacterGroup, HandleAddCharacterGroup);
 		}
-		return SymbolHandlers!;
+		return SymbolHandlers;
 	}
 
 	/// <summary>

@@ -13,7 +13,7 @@ namespace NarrativeCharts.Bookworm;
 
 public static class Program
 {
-	private static async Task<ScriptDefinitions> GetScriptDefinitionsAsync(string dir)
+	internal static ScriptDefinitions CreateScriptDefinitions(string dir)
 	{
 		static void AddAliases<TKey, TValue>(
 			Dictionary<TKey, TValue> dest,
@@ -42,6 +42,7 @@ public static class Program
 			foreach (var (key, value) in BookwormCharacters.Colors)
 			{
 				defs.CharacterColors.Add(key, value);
+				defs.CharacterAliases.Add(key.Value, key);
 			}
 
 			AddAliases(defs.CharacterAliases, new()
@@ -68,6 +69,7 @@ public static class Program
 			foreach (var (key, value) in BookwormLocations.YIndexes)
 			{
 				defs.LocationYIndexes.Add(key, value);
+				defs.LocationAliases.Add(key.Value, key);
 			}
 
 			AddAliases(defs.LocationAliases, new()
@@ -122,6 +124,10 @@ public static class Program
 		// Time
 		{
 			defs.Time = new TimeTrackerWithUnits(BookwormTime.Lengths);
+			foreach (var (key, _) in defs.Time.UnitToHourMap)
+			{
+				defs.TimeUnitAliases.Add(key.ToString(), key);
+			}
 
 			AddAliases(defs.TimeUnitAliases, new()
 			{
@@ -136,6 +142,12 @@ public static class Program
 			});
 		}
 
+		return defs;
+	}
+
+	private static async Task<ScriptDefinitions> GetScriptDefinitionsAsync(string dir)
+	{
+		var defs = CreateScriptDefinitions(dir);
 		var defsPath = Path.Combine(defs.ScriptDirectory, "ScriptDefinitions.json");
 		await defs.SaveAsync(defsPath).ConfigureAwait(false);
 		return await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);

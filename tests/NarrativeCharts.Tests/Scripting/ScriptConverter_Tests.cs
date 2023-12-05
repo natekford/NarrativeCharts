@@ -1,9 +1,28 @@
-﻿using NarrativeCharts.Scripting;
+﻿using NarrativeCharts.Bookworm;
+using NarrativeCharts.Scripting;
 
 namespace NarrativeCharts.Tests.Scripting;
 
 public class ScriptConverter_Tests
 {
+	[Fact]
+	public void HandleAddScene_Test()
+	{
+		var output = ProcessText("$T=Ferdinand,Myne");
+		output.Chapters.Single().Should().Be("Add(Temple, Ferdinand, Myne);");
+		output.ScriptConverter.Points.Keys.Should().BeEquivalentTo(new[]
+		{
+			BookwormCharacters.Ferdinand,
+			BookwormCharacters.Myne
+		});
+		output.ScriptConverter.Points.Values.Should().AllSatisfy(x =>
+		{
+			var point = x.Single().Value;
+			point.Hour.Should().Be(0);
+			point.Location.Should().Be(BookwormLocations.Temple);
+		});
+	}
+
 	[Fact]
 	public void HandleComment_Test()
 	{
@@ -32,10 +51,7 @@ public class ScriptConverter_Tests
 	private static Output ProcessText(params string[] lines)
 	{
 		var converter = new ScriptConverter(
-			definitions: new()
-			{
-				ScriptDirectory = Directory.GetCurrentDirectory()
-			},
+			definitions: Program.CreateScriptDefinitions(Directory.GetCurrentDirectory()),
 			lastWriteTimeUtc: DateTime.UtcNow,
 			lines: lines
 		);
