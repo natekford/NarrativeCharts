@@ -19,6 +19,14 @@ namespace NarrativeCharts.Scripting;
 public class ScriptConverter : ScriptParser
 {
 	/// <summary>
+	/// The current chapter.
+	/// </summary>
+	public StringBuilder Chapter => Chapters[^1];
+	/// <summary>
+	/// The chapters of this script.
+	/// </summary>
+	public List<StringBuilder> Chapters { get; } = [new()];
+	/// <summary>
 	/// The class name to use when outputting.
 	/// </summary>
 	public string ClassName { get; protected set; } = "";
@@ -26,14 +34,6 @@ public class ScriptConverter : ScriptParser
 	/// Used to ensure we're only writing top level methods.
 	/// </summary>
 	protected Stack<string> CallStack { get; } = new();
-	/// <summary>
-	/// The current chapter.
-	/// </summary>
-	protected StringBuilder Chapter => Chapters[^1];
-	/// <summary>
-	/// The chapters of this script.
-	/// </summary>
-	protected List<StringBuilder> Chapters { get; } = [];
 	/// <summary>
 	/// Properties to use for stored scenes.
 	/// </summary>
@@ -65,7 +65,7 @@ public class ScriptConverter : ScriptParser
 	/// <inheritdoc />
 	protected override void HandleTitle(string input)
 	{
-		ClassName = input.Replace(" ", "");
+		ClassName = ScriptConverterUtils.ToValidProperty(input);
 		base.HandleTitle(input);
 	}
 
@@ -227,17 +227,19 @@ public class ScriptConverter : ScriptParser
 	{
 		var nl = Environment.NewLine;
 
+		var c = 1;
 		var methods = new Dictionary<string, string>();
-		for (var i = 0; i < Chapters.Count; ++i)
+		foreach (var chapter in Chapters.Where(x => x.Length > 0))
 		{
-			var name = $"Chapter_{i + 1:00}";
+			var name = $"Chapter_{c:00}";
 			var method =
 $@"
 	private void {name}()
 	{{
-		{Chapters[i].Replace(nl, $"{nl}\t\t").TrimEnd()}
+		{chapter.Replace(nl, $"{nl}\t\t").TrimEnd()}
 	}}";
 			methods.Add($"{name}();", method);
+			++c;
 		}
 
 		var properties = new StringBuilder();

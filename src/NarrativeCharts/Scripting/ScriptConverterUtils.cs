@@ -1,6 +1,7 @@
 ﻿using NarrativeCharts.Models;
 
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text;
 
@@ -116,6 +117,7 @@ using {nameof(System)}.{nameof(System.Collections)}.{nameof(System.Collections.I
 	}
 
 	// copied from https://stackoverflow.com/a/24769702
+	[return: NotNullIfNotNull(nameof(sb))]
 	internal static StringBuilder? TrimEnd(this StringBuilder sb)
 	{
 		if (sb == null || sb.Length == 0)

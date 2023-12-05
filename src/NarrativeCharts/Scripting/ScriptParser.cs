@@ -20,14 +20,14 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 	/// </summary>
 	public DateTime LastWriteTimeUTC { get; }
 	/// <summary>
+	/// The lines to parse.
+	/// </summary>
+	public IEnumerable<string> Lines { get; }
+	/// <summary>
 	/// Stored groups of characters to easily allow referencing large groups without
 	/// mass duplication.
 	/// </summary>
 	protected Dictionary<string, HashSet<Character>> CharacterGroups { get; } = [];
-	/// <summary>
-	/// The lines to parse.
-	/// </summary>
-	protected IEnumerable<string> Lines { get; }
 	/// <summary>
 	/// Stored returnable scenes to easily allow returning groups of characters
 	/// without having to remember where each individual character came from.
