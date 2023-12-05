@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts", "src\NarrativeCharts\NarrativeCharts.csproj", "{13908C1D-BA8B-4D29-AEB0-BAF401EDF615}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Bookworm", "src\Samples\NarrativeCharts.Bookworm\NarrativeCharts.Bookworm.csproj", "{683BA082-84B0-48A8-9DD3-411835270F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Bookworm", "samples\NarrativeCharts.Bookworm\NarrativeCharts.Bookworm.csproj", "{683BA082-84B0-48A8-9DD3-411835270F05}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Plot", "src\NarrativeCharts.Plot\NarrativeCharts.Plot.csproj", "{5D894EE9-1195-4020-8DD6-BA5FED8C1542}"
 EndProject

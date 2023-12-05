@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-
-using NarrativeCharts.Time;
+﻿using NarrativeCharts.Time;
 
 namespace NarrativeCharts.Tests.Time;
 
