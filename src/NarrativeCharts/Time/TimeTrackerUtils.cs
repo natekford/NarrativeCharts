@@ -43,6 +43,7 @@ public static class TimeTrackerUtils
 	public static T AddHours<T>(this T time, float hours) where T : TimeTracker
 	{
 		time.SetTotalHours(time.CurrentTotalHours + hours);
+
 		return time;
 	}
 
@@ -64,6 +65,11 @@ public static class TimeTrackerUtils
 	/// <returns></returns>
 	public static T AddUnits<T>(this T time, int units) where T : TimeTrackerWithUnits
 	{
+		if (units == 0)
+		{
+			return time;
+		}
+
 		var days = units / time.UnitToHourMap.Count;
 		if (days != 0)
 		{
@@ -75,6 +81,7 @@ public static class TimeTrackerUtils
 		{
 			time.SkipToUnit(time.CurrentUnit + units);
 		}
+
 		return time;
 	}
 
@@ -87,10 +94,11 @@ public static class TimeTrackerUtils
 	/// <returns></returns>
 	public static T SetCurrentHour<T>(this T time, float hour) where T : TimeTracker
 	{
-		if (hour > time.HoursPerDay)
+		if (hour < 0 || hour > time.HoursPerDay)
 		{
 			throw new ArgumentOutOfRangeException(nameof(hour));
 		}
+
 		return time.AddHours(hour - time.CurrentHour);
 	}
 
@@ -102,7 +110,14 @@ public static class TimeTrackerUtils
 	/// <param name="unit"></param>
 	/// <returns></returns>
 	public static T SetCurrentUnit<T>(this T time, int unit) where T : TimeTrackerWithUnits
-		=> time.SetCurrentHour(time.UnitToHourMap[unit]);
+	{
+		if (unit < 0 || unit > time.LargestUnit)
+		{
+			throw new ArgumentOutOfRangeException(nameof(unit));
+		}
+
+		return time.SetCurrentHour(time.UnitToHourMap[unit]);
+	}
 
 	/// <summary>
 	/// Skips to the start of the next day.
@@ -144,6 +159,7 @@ public static class TimeTrackerUtils
 			time.SkipToDayAheadStart();
 			unit -= time.UnitToHourMap.Count;
 		}
+
 		return time.SetCurrentUnit(unit);
 	}
 }

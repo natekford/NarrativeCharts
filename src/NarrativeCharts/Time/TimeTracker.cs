@@ -8,7 +8,7 @@ public class TimeTracker
 	/// <summary>
 	/// The current day retrieved from <see cref="CurrentTotalHours"/>.
 	/// </summary>
-	public int CurrentDay => (int)CurrentTotalHours / HoursPerDay;
+	public int CurrentDay => ((int)CurrentTotalHours / HoursPerDay) + 1;
 	/// <summary>
 	/// The current hour retrieved from <see cref="CurrentTotalHours"/>.
 	/// </summary>
@@ -28,6 +28,12 @@ public class TimeTracker
 	/// <param name="hoursPerDay"></param>
 	public TimeTracker(int hoursPerDay = 24)
 	{
+		if (hoursPerDay < 1)
+		{
+			throw new ArgumentOutOfRangeException(nameof(hoursPerDay),
+				"Cannot be less than 1.");
+		}
+
 		HoursPerDay = hoursPerDay;
 	}
 
