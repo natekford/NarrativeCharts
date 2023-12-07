@@ -1,7 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
-
-using NarrativeCharts.Bookworm;
-using NarrativeCharts.Models;
+﻿using NarrativeCharts.Models;
 using NarrativeCharts.Scripting;
 
 using static NarrativeCharts.Bookworm.BookwormCharacters;
@@ -16,6 +13,46 @@ namespace NarrativeCharts.Tests.Scripting;
 public class ScriptConverter_Tests
 {
 	private static string NL { get; } = Environment.NewLine;
+
+	[Fact]
+	public void EnsureNameNotUsed_Character()
+	{
+		var output = ProcessText("@");
+
+		Action inUse = () => output.ScriptConverter.EnsureNameNotUsed("Myne");
+		inUse.Should().Throw<ArgumentException>();
+	}
+
+	[Fact]
+	public void EnsureNameNotUsed_Group()
+	{
+		var output = ProcessText("@");
+		output.ScriptConverter.CharacterGroups.Add("Name1", []);
+
+		Action inUse = () => output.ScriptConverter.EnsureNameNotUsed("Name1");
+		inUse.Should().Throw<ArgumentException>();
+	}
+
+	[Fact]
+	public void EnsureNameNotUsed_Scene()
+	{
+		var output = ProcessText("@");
+		output.ScriptConverter.StoredScenes.Add("Name1", []);
+
+		Action inUse = () => output.ScriptConverter.EnsureNameNotUsed("Name1");
+		inUse.Should().Throw<ArgumentException>();
+	}
+
+	[Fact]
+	public void EnsureNameNotUsed_Valid()
+	{
+		var output = ProcessText("@");
+		output.ScriptConverter.CharacterGroups.Add("Name1", []);
+		output.ScriptConverter.StoredScenes.Add("Name2", []);
+		output.ScriptConverter.Definitions.CharacterAliases.Add("Name3", new());
+
+		output.ScriptConverter.EnsureNameNotUsed("Name4");
+	}
 
 	[Fact]
 	public void HandleAddCharacterGroup_TooFew()
@@ -328,12 +365,16 @@ public class ScriptConverter_Tests
 			">H1",
 			"+$1,C=Ferdinand,Myne",
 			">H1",
+			"$KO=1",
+			">H1",
 			"-$1"
 		);
 		output.Chapters.Single().Should().Be(
 			$"Add(Temple, Ferdinand, Myne);{NL}" +
 			$"AddHours(1f);{NL}" +
 			$"StoredScene1 = AddReturnable(EhrenfestCastle, Ferdinand, Myne);{NL}" +
+			$"AddHours(1f);{NL}" +
+			$"Add(KnightsOrder, Ferdinand, Myne);{NL}" +
 			$"AddHours(1f);{NL}" +
 			"Return(StoredScene1);"
 		);
@@ -344,13 +385,15 @@ public class ScriptConverter_Tests
 		});
 		output.ScriptConverter.Points.Values.Should().AllSatisfy(x =>
 		{
-			x.Values.Count.Should().Be(3);
+			x.Values.Count.Should().Be(4);
 			x.Values[0].Hour.Should().Be(0);
 			x.Values[0].Location.Should().Be(Temple);
 			x.Values[1].Hour.Should().Be(1);
 			x.Values[1].Location.Should().Be(EhrCastle);
 			x.Values[2].Hour.Should().Be(2);
-			x.Values[2].Location.Should().Be(Temple);
+			x.Values[2].Location.Should().Be(KnightsOrder);
+			x.Values[3].Hour.Should().Be(3);
+			x.Values[3].Location.Should().Be(Temple);
 		});
 
 		output.ScriptConverter.StoredScenes.Count.Should().Be(0);
@@ -545,7 +588,7 @@ public class ScriptConverter_Tests
 	private static Output ProcessText(params string[] lines)
 	{
 		var converter = new ScriptConverter(
-			definitions: Program.CreateScriptDefinitions(Directory.GetCurrentDirectory()),
+			definitions: TestUtils.ScriptDefinitions,
 			lastWriteTimeUtc: DateTime.UtcNow,
 			lines: lines
 		);
@@ -554,18 +597,11 @@ public class ScriptConverter_Tests
 		var chapters = converter.Chapters.ConvertAll(x => x.TrimEnd().ToString());
 		foreach (var chapter in chapters)
 		{
-			ValidSyntax(chapter);
+			TestUtils.ValidateSyntax(chapter);
 		}
-		ValidSyntax(converter.Write());
+		TestUtils.ValidateSyntax(converter.Write());
 
 		return new(converter, chapters);
-	}
-
-	private static void ValidSyntax(string text)
-	{
-		var tree = CSharpSyntaxTree.ParseText(text);
-		var diagnostics = tree.GetDiagnostics();
-		diagnostics.Should().BeEquivalentTo(Array.Empty<Microsoft.CodeAnalysis.Diagnostic>());
 	}
 
 	private record Output(ScriptConverter ScriptConverter, List<string> Chapters);

@@ -96,7 +96,7 @@ public class ScriptParser : NarrativeChart<int>
 	/// Throws an exception if <paramref name="name"/> is in use anywhere.
 	/// </summary>
 	/// <param name="name"></param>
-	protected virtual void EnsureNameNotUsed(string name)
+	protected internal virtual void EnsureNameNotUsed(string name)
 	{
 		static ArgumentException AlreadyInUse(string type, string name)
 			=> new($"There is already a {type} with the name '{name}'");
