@@ -1,4 +1,6 @@
-﻿using NarrativeCharts.Bookworm;
+﻿using Microsoft.CodeAnalysis.CSharp;
+
+using NarrativeCharts.Bookworm;
 using NarrativeCharts.Models;
 using NarrativeCharts.Scripting;
 
@@ -550,7 +552,20 @@ public class ScriptConverter_Tests
 		converter.Initialize(null);
 
 		var chapters = converter.Chapters.ConvertAll(x => x.TrimEnd().ToString());
+		foreach (var chapter in chapters)
+		{
+			ValidSyntax(chapter);
+		}
+		ValidSyntax(converter.Write());
+
 		return new(converter, chapters);
+	}
+
+	private static void ValidSyntax(string text)
+	{
+		var tree = CSharpSyntaxTree.ParseText(text);
+		var diagnostics = tree.GetDiagnostics();
+		diagnostics.Should().BeEquivalentTo(Array.Empty<Microsoft.CodeAnalysis.Diagnostic>());
 	}
 
 	private record Output(ScriptConverter ScriptConverter, List<string> Chapters);

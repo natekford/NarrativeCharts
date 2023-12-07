@@ -21,7 +21,8 @@ public class ScriptConverter : ScriptParser
 	/// <summary>
 	/// The class name to use when outputting.
 	/// </summary>
-	public string ClassName { get; protected set; } = "";
+	public string ClassName { get; protected set; }
+		= ScriptConverterUtils.ToValidProperty($"Generated_{Guid.NewGuid()}");
 	/// <summary>
 	/// Used to ensure we're only writing top level methods.
 	/// </summary>
