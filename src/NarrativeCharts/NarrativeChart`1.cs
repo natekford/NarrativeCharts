@@ -6,16 +6,16 @@ namespace NarrativeCharts;
 /// Base class for making charts that deal with arbitrary time.
 /// </summary>
 /// <typeparam name="TUnit"></typeparam>
-public abstract class NarrativeChartWithUnits<TUnit> : NarrativeChart
+public abstract class NarrativeChart<TUnit> : NarrativeChart
 {
 	/// <inheritdoc cref="NarrativeChart.Time" />
 	protected internal new TimeTrackerWithUnits Time { get; }
 
 	/// <summary>
-	/// Creates an instance of <see cref="NarrativeChartWithUnits{TUnit}"/>.
+	/// Creates an instance of <see cref="NarrativeChart{TUnit}"/>.
 	/// </summary>
 	/// <param name="time"></param>
-	protected NarrativeChartWithUnits(TimeTrackerWithUnits time) : base(time)
+	protected NarrativeChart(TimeTrackerWithUnits time) : base(time)
 	{
 		Time = time;
 	}

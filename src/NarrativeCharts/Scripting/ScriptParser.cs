@@ -5,7 +5,7 @@ namespace NarrativeCharts.Scripting;
 /// <summary>
 /// Parses a script out of strings.
 /// </summary>
-public class ScriptParser : NarrativeChartWithUnits<int>
+public class ScriptParser : NarrativeChart<int>
 {
 	private const StringSplitOptions SPLIT_OPTIONS = 0
 			| StringSplitOptions.RemoveEmptyEntries
@@ -79,7 +79,11 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 			}
 			catch (Exception e)
 			{
-				throw new ArgumentException($"Error occurred while processing line #{i}: {line}", e);
+				throw new ScriptParserException($"Error occurred while processing line #{i}: {line}", e)
+				{
+					Line = line,
+					LineNumber = i,
+				};
 			}
 		}
 	}
@@ -151,13 +155,14 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 		{
 			case 2:
 				var name = args[0];
-				var characters = ParseCharacters(args[1]);
 				EnsureNameNotUsed(name);
+
+				var characters = ParseCharacters(args[1]);
 				CharacterGroups.Add(name, characters);
 				return;
 
 			default:
-				throw new ArgumentException("Invalid character group assignment.");
+				throw new ArgumentException("Cannot handle argument count unequal to 2.");
 		}
 	}
 
@@ -213,7 +218,7 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 				}
 
 			default:
-				throw new ArgumentException("Invalid returnable scene, missing a scene assignment or name.");
+				throw new ArgumentException("Cannot handle argument count unequal to 2.");
 		}
 	}
 
@@ -309,7 +314,6 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 		var args = SplitArgs(input);
 		switch (args.Length)
 		{
-			// Does the same thing as AddUnits no args
 			case 0:
 				Jump();
 				return;

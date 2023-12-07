@@ -264,7 +264,7 @@ using static {ScriptConverterUtils.NAMESPACE}.{ScriptConverterUtils.TIME_CLASS};
 
 namespace {ScriptConverterUtils.NAMESPACE};
 
-public sealed class {ClassName} : {nameof(NarrativeChartWithUnits<int>)}<{ScriptConverterUtils.TIME_CLASS}>
+public sealed class {ClassName} : {nameof(NarrativeChart<int>)}<{ScriptConverterUtils.TIME_CLASS}>
 {{
 {properties}
 	public {ClassName}({nameof(TimeTrackerWithUnits)} time) : base(time)
