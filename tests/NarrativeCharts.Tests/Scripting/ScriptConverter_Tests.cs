@@ -92,12 +92,74 @@ public class ScriptConverter_Tests
 	[Fact]
 	public void HandleAddReturnableScene_TooFew()
 	{
-		Action noLocation = () => ProcessText(
+		Action tooFew = () => ProcessText(
 			"$T=Ferdinand,Myne",
 			"+$1=C=Ferdinand=Myne"
 		);
-		noLocation.Should().Throw<ScriptParserException>()
+		tooFew.Should().Throw<ScriptParserException>()
 			.WithInnerException<ArgumentException>();
+	}
+
+	[Fact]
+	public void HandleAddReturnableScene_TooFew2()
+	{
+		Action tooFew = () => ProcessText(
+			"$T=Ferdinand,Myne",
+			"+$1,C,Ferdinand,Myne"
+		);
+		tooFew.Should().Throw<ScriptParserException>()
+			.WithInnerException<ArgumentException>();
+	}
+
+	[Fact]
+	public void HandleAddReturnableScene_TooMany()
+	{
+		Action tooMany = () => ProcessText(
+			"$T=Ferdinand,Myne",
+			"+$1,C=Ferdinand=Myne"
+		);
+		tooMany.Should().Throw<ScriptParserException>()
+			.WithInnerException<ArgumentException>();
+	}
+
+	[Fact]
+	public void HandleAddReturnableScene_Valid()
+	{
+		var output = ProcessText(
+			"$T=Ferdinand,Myne",
+			">H1",
+			"+$1,C=Ferdinand,Myne"
+		);
+		output.Chapters.Single().Should().Be(
+			$"Add(Temple, Ferdinand, Myne);{NL}" +
+			$"AddHours(1f);{NL}" +
+			"StoredScene1 = AddReturnable(EhrenfestCastle, Ferdinand, Myne);"
+		);
+		output.ScriptConverter.Points.Keys.Should().BeEquivalentTo(new[]
+		{
+			Ferdinand,
+			Myne
+		});
+		output.ScriptConverter.Points.Values.Should().AllSatisfy(x =>
+		{
+			x.Values.Count.Should().Be(2);
+			x.Values[0].Hour.Should().Be(0);
+			x.Values[0].Location.Should().Be(Temple);
+			x.Values[1].Hour.Should().Be(1);
+			x.Values[1].Location.Should().Be(EhrCastle);
+		});
+
+		var storedScene = output.ScriptConverter.StoredScenes.Single();
+		storedScene.Key.Should().Be("1");
+		storedScene.Value.Should().BeEquivalentTo(new Dictionary<Character, Location>
+		{
+			[Ferdinand] = Temple,
+			[Myne] = Temple,
+		});
+
+		var storedSceneProperty = output.ScriptConverter.StoredSceneProperties.Single();
+		storedSceneProperty.Key.Should().BeSameAs(storedScene.Value);
+		storedSceneProperty.Value.Should().Be("StoredScene1");
 	}
 
 	[Fact]
@@ -254,6 +316,50 @@ public class ScriptConverter_Tests
 			point.Location.Should().Be(Ahrensbach);
 			point.IsEnd.Should().Be(true);
 		});
+	}
+
+	[Fact]
+	public void HandleRemoveRemovableScene_Valid()
+	{
+		var output = ProcessText(
+			"$T=Ferdinand,Myne",
+			">H1",
+			"+$1,C=Ferdinand,Myne",
+			">H1",
+			"-$1"
+		);
+		output.Chapters.Single().Should().Be(
+			$"Add(Temple, Ferdinand, Myne);{NL}" +
+			$"AddHours(1f);{NL}" +
+			$"StoredScene1 = AddReturnable(EhrenfestCastle, Ferdinand, Myne);{NL}" +
+			$"AddHours(1f);{NL}" +
+			"Return(StoredScene1);"
+		);
+		output.ScriptConverter.Points.Keys.Should().BeEquivalentTo(new[]
+		{
+			Ferdinand,
+			Myne
+		});
+		output.ScriptConverter.Points.Values.Should().AllSatisfy(x =>
+		{
+			x.Values.Count.Should().Be(3);
+			x.Values[0].Hour.Should().Be(0);
+			x.Values[0].Location.Should().Be(Temple);
+			x.Values[1].Hour.Should().Be(1);
+			x.Values[1].Location.Should().Be(EhrCastle);
+			x.Values[2].Hour.Should().Be(2);
+			x.Values[2].Location.Should().Be(Temple);
+		});
+
+		output.ScriptConverter.StoredScenes.Count.Should().Be(0);
+
+		var storedSceneProperty = output.ScriptConverter.StoredSceneProperties.Single();
+		storedSceneProperty.Key.Should().BeEquivalentTo(new Dictionary<Character, Location>
+		{
+			[Ferdinand] = Temple,
+			[Myne] = Temple,
+		});
+		storedSceneProperty.Value.Should().Be("StoredScene1");
 	}
 
 	[Fact]
