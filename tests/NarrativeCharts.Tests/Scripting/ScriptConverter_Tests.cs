@@ -181,7 +181,7 @@ public class ScriptConverter_Tests
 		});
 		output.ScriptConverter.Points.Values.Should().AllSatisfy(x =>
 		{
-			x.Values.Count.Should().Be(2);
+			x.Values.Should().HaveCount(2);
 			x.Values[0].Hour.Should().Be(0);
 			x.Values[0].Location.Should().Be(Temple);
 			x.Values[1].Hour.Should().Be(1);
@@ -287,7 +287,7 @@ public class ScriptConverter_Tests
 			"#Chapter 1",
 			"// comment"
 		);
-		output.Chapters.Count.Should().Be(2);
+		output.Chapters.Should().HaveCount(2);
 		output.Chapters[0].Should().Be(
 			$"// 0 hours{NL}" +
 			$"Event(\"Prologue\");{NL}" +
@@ -319,7 +319,7 @@ public class ScriptConverter_Tests
 		});
 		// Frozen points get removed in NarrativeChart.Simplify
 		output.ScriptConverter.Points.Values.Should().AllSatisfy(
-			x => x.Count.Should().Be(0)
+			x => x.Should().BeEmpty()
 		);
 	}
 
@@ -385,7 +385,7 @@ public class ScriptConverter_Tests
 		});
 		output.ScriptConverter.Points.Values.Should().AllSatisfy(x =>
 		{
-			x.Values.Count.Should().Be(4);
+			x.Values.Should().HaveCount(4);
 			x.Values[0].Hour.Should().Be(0);
 			x.Values[0].Location.Should().Be(Temple);
 			x.Values[1].Hour.Should().Be(1);
@@ -396,7 +396,7 @@ public class ScriptConverter_Tests
 			x.Values[3].Location.Should().Be(Temple);
 		});
 
-		output.ScriptConverter.StoredScenes.Count.Should().Be(0);
+		output.ScriptConverter.StoredScenes.Should().BeEmpty();
 
 		var storedSceneProperty = output.ScriptConverter.StoredSceneProperties.Single();
 		storedSceneProperty.Key.Should().BeEquivalentTo(new Dictionary<Character, Location>
@@ -538,7 +538,7 @@ public class ScriptConverter_Tests
 		output.ScriptConverter.Time.CurrentTotalHours.Should().Be(24);
 		output.ScriptConverter.Points.Values.Should().AllSatisfy(x =>
 		{
-			x.Count.Should().Be(2);
+			x.Should().HaveCount(2);
 			x.Values[0].IsTimeSkip.Should().Be(true);
 			x.Values[1].IsTimeSkip.Should().Be(false);
 		});

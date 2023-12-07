@@ -97,8 +97,12 @@ public static class ChartUtils
 		var combined = new CombinedNarrativeChart();
 		foreach (var chart in charts)
 		{
+			// Events/Points will throw if duplicate items are added at the same time
+			// because charts are unlikely to have duplicate items at a specific time
 			combined.AddChart(chart);
 
+			// Colors/YIndexes use TryAdd instead of Add because charts are likely
+			// to have the same Colors/Indexes, first come first serve
 			foreach (var (character, color) in chart.Colors)
 			{
 				combined.Colors.TryAdd(character, color);
