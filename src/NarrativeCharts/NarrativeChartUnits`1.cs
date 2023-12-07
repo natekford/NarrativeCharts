@@ -9,7 +9,7 @@ namespace NarrativeCharts;
 public abstract class NarrativeChartWithUnits<TUnit> : NarrativeChart
 {
 	/// <inheritdoc cref="NarrativeChart.Time" />
-	protected new TimeTrackerWithUnits Time { get; }
+	protected internal new TimeTrackerWithUnits Time { get; }
 
 	/// <summary>
 	/// Creates an instance of <see cref="NarrativeChartWithUnits{TUnit}"/>.

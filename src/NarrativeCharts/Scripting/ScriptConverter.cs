@@ -19,25 +19,25 @@ namespace NarrativeCharts.Scripting;
 public class ScriptConverter : ScriptParser
 {
 	/// <summary>
-	/// The current chapter.
-	/// </summary>
-	public StringBuilder Chapter => Chapters[^1];
-	/// <summary>
-	/// The chapters of this script.
-	/// </summary>
-	public List<StringBuilder> Chapters { get; } = [new()];
-	/// <summary>
 	/// The class name to use when outputting.
 	/// </summary>
 	public string ClassName { get; protected set; } = "";
 	/// <summary>
 	/// Used to ensure we're only writing top level methods.
 	/// </summary>
-	protected Stack<string> CallStack { get; } = new();
+	protected internal Stack<string> CallStack { get; } = new();
+	/// <summary>
+	/// The current chapter.
+	/// </summary>
+	protected internal StringBuilder Chapter => Chapters[^1];
+	/// <summary>
+	/// The chapters of this script.
+	/// </summary>
+	protected internal List<StringBuilder> Chapters { get; } = [new()];
 	/// <summary>
 	/// Properties to use for stored scenes.
 	/// </summary>
-	protected Dictionary<IEnumerable<KeyValuePair<Character, Location>>, string> StoredSceneProperties { get; } = [];
+	protected internal Dictionary<IEnumerable<KeyValuePair<Character, Location>>, string> StoredSceneProperties { get; } = [];
 
 	/// <summary>
 	/// Creates an instance of <see cref="ScriptConverter" />.
@@ -116,7 +116,10 @@ public class ScriptConverter : ScriptParser
 	/// <inheritdoc />
 	protected override void Event(string name)
 	{
-		Chapters.Add(new());
+		if (Chapter.Length > 0)
+		{
+			Chapters.Add(new());
+		}
 		DoThenWriteIfTopMethod(() => base.Event(name), sb => sb
 			.Append("// ")
 			.Append(Hour)
@@ -229,7 +232,7 @@ public class ScriptConverter : ScriptParser
 
 		var c = 1;
 		var methods = new Dictionary<string, string>();
-		foreach (var chapter in Chapters.Where(x => x.Length > 0))
+		foreach (var chapter in Chapters)
 		{
 			var name = $"Chapter_{c:00}";
 			var method =

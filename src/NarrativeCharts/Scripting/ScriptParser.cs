@@ -27,18 +27,18 @@ public class ScriptParser : NarrativeChartWithUnits<int>
 	/// Stored groups of characters to easily allow referencing large groups without
 	/// mass duplication.
 	/// </summary>
-	protected Dictionary<string, HashSet<Character>> CharacterGroups { get; } = [];
+	protected internal Dictionary<string, HashSet<Character>> CharacterGroups { get; } = [];
 	/// <summary>
 	/// Stored returnable scenes to easily allow returning groups of characters
 	/// without having to remember where each individual character came from.
 	/// </summary>
-	protected Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; } = [];
+	protected internal Dictionary<string, Dictionary<Character, Location>> StoredScenes { get; } = [];
 	/// <summary>
 	/// The handlers to use for any line where the start matches the key.
 	/// This is sorted in reverse alphabetical order, so something like "##"
 	/// shows up before "#", otherwise "#" would always steal "##" items
 	/// </summary>
-	protected SortedDictionary<string, Action<string>> SymbolHandlers { get; }
+	protected internal SortedDictionary<string, Action<string>> SymbolHandlers { get; }
 		= new(Comparer<string>.Create((a, b) => b.CompareTo(a)));
 
 	/// <summary>
