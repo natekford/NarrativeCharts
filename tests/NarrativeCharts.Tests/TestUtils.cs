@@ -14,6 +14,6 @@ public static class TestUtils
 	{
 		var tree = CSharpSyntaxTree.ParseText(text);
 		var diagnostics = tree.GetDiagnostics();
-		diagnostics.Should().BeEquivalentTo(Array.Empty<Microsoft.CodeAnalysis.Diagnostic>());
+		diagnostics.Should().BeEmpty();
 	}
 }

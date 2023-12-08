@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Models;
+using NarrativeCharts.Time;
 
 namespace NarrativeCharts;
 
@@ -85,16 +86,17 @@ public static class ChartUtils
 	}
 
 	/// <summary>
-	/// Creates an entirely new <see cref="NarrativeChartData"/> and adds everything
+	/// Creates an entirely new <see cref="NarrativeChart"/> and adds everything
 	/// to that chart. This includes <see cref="NarrativeChartData.Colors"/> and
 	/// <see cref="NarrativeChartData.YIndexes"/>.
 	/// </summary>
 	/// <param name="charts"></param>
 	/// <returns></returns>
-	public static NarrativeChartData Combine(
+	public static NarrativeChart Combine(
 		this IEnumerable<NarrativeChartData> charts)
 	{
-		var combined = new CombinedNarrativeChart();
+		var time = new TimeTracker();
+		var combined = new NarrativeChart(time);
 		foreach (var chart in charts)
 		{
 			// Events/Points will throw if duplicate items are added at the same time
@@ -113,6 +115,10 @@ public static class ChartUtils
 			}
 		}
 		combined.Initialize(null);
+
+		var extrema = combined.GetExtrema();
+		time.SetCurrentHour(extrema.Max);
+
 		return combined;
 	}
 
@@ -148,6 +154,28 @@ public static class ChartUtils
 			x => x,
 			x => chart.Points[x].Values[^1].Location
 		);
+	}
+
+	/// <summary>
+	/// Gets the time the earliest and lastest event/point happened.
+	/// </summary>
+	/// <param name="chart"></param>
+	/// <returns></returns>
+	public static Extrema GetExtrema(
+		this NarrativeChartData chart)
+	{
+		float max = float.MinValue, min = float.MaxValue;
+		foreach (var (hour, _) in chart.Events)
+		{
+			max = Math.Max(max, hour);
+			min = Math.Min(min, hour);
+		}
+		foreach (var point in chart.GetAllNarrativePoints())
+		{
+			max = Math.Max(max, point.Hour);
+			min = Math.Min(min, point.Hour);
+		}
+		return new(Min: min, Max: max);
 	}
 
 	/// <summary>
@@ -236,14 +264,16 @@ public static class ChartUtils
 		return chart;
 	}
 
-	private class CombinedNarrativeChart : NarrativeChart
+	/// <summary>
+	/// The earliest and latest times an event/point happened in a chart.
+	/// </summary>
+	/// <param name="Min"></param>
+	/// <param name="Max"></param>
+	public readonly record struct Extrema(float Min, float Max)
 	{
-		public CombinedNarrativeChart() : base(null!)
-		{
-		}
-
-		protected override void AddNarrativeData()
-		{
-		}
+		/// <summary>
+		/// The duration between <see cref="Min"/> and <see cref="Max"/>.
+		/// </summary>
+		public float Duration { get; } = Max - Min;
 	}
 }

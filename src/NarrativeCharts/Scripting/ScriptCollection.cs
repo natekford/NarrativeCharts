@@ -88,13 +88,8 @@ public class ScriptCollection
 			}
 
 			{
-				float max = float.MinValue, min = float.MaxValue;
-				foreach (var point in chart.GetAllNarrativePoints())
-				{
-					max = Math.Max(max, point.Hour);
-					min = Math.Min(min, point.Hour);
-				}
-				var days = (max - min) / Defs.Time.HoursPerDay;
+				var extrema = chart.GetExtrema();
+				var days = extrema.Duration / Defs.Time.HoursPerDay;
 				properties["Days"] = days.ToString("#.#");
 			}
 

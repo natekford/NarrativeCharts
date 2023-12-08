@@ -75,7 +75,7 @@ public class ScriptConverter : ScriptParser
 	#region NarrativeChart methods
 
 	/// <inheritdoc />
-	protected override void Add(Location location, IEnumerable<Character> characters)
+	public override void Add(Location location, IEnumerable<Character> characters)
 	{
 		DoThenWriteIfTopMethod(() => base.Add(location, characters), sb => sb
 			.Append($"{nameof(Add)}(")
@@ -87,7 +87,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void AddHours(float amount = 1)
+	public override void AddHours(float amount = 1)
 	{
 		DoThenWriteIfTopMethod(() => base.AddHours(amount), sb => sb
 			.Append($"{nameof(AddHours)}(")
@@ -97,7 +97,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override Dictionary<Character, Location> AddReturnable(Location location, IEnumerable<Character> characters)
+	public override Dictionary<Character, Location> AddReturnable(Location location, IEnumerable<Character> characters)
 	{
 		// this is probably some of the ugliest code i've ever written
 		Dictionary<Character, Location> dict = [];
@@ -115,7 +115,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void Event(string name)
+	public override void Event(string name)
 	{
 		if (Chapter.Length > 0)
 		{
@@ -132,7 +132,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void Freeze(IEnumerable<Character> characters)
+	public override void Freeze(IEnumerable<Character> characters)
 	{
 		DoThenWriteIfTopMethod(() => base.Freeze(characters), sb => sb
 			.Append($"{nameof(Freeze)}(")
@@ -142,7 +142,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void Jump(int amount = 1)
+	public override void Jump(int amount = 1)
 	{
 		DoThenWriteIfTopMethod(() => base.Jump(amount), sb => sb
 			.Append($"{nameof(Jump)}(")
@@ -152,7 +152,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void Kill(IEnumerable<Character> characters)
+	public override void Kill(IEnumerable<Character> characters)
 	{
 		DoThenWriteIfTopMethod(() => base.Kill(characters), sb => sb
 			.Append($"{nameof(Kill)}(")
@@ -162,7 +162,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void Return(IEnumerable<KeyValuePair<Character, Location>> points)
+	public override void Return(IEnumerable<KeyValuePair<Character, Location>> points)
 	{
 		DoThenWriteIfTopMethod(() => base.Return(points), sb => sb
 			.Append($"{nameof(Return)}(")
@@ -172,7 +172,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void SkipToCurrentDay(int unit)
+	public override void SkipToCurrentDay(int unit)
 	{
 		DoThenWriteIfTopMethod(() => base.SkipToCurrentDay(unit), sb => sb
 			.Append($"{nameof(SkipToCurrentDay)}(")
@@ -182,7 +182,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void SkipToDaysAhead(int days, int unit)
+	public override void SkipToDaysAhead(int days, int unit)
 	{
 		DoThenWriteIfTopMethod(() => base.SkipToDaysAhead(days, unit), sb => sb
 			.Append($"{nameof(SkipToDaysAhead)}(")
@@ -194,7 +194,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void SkipToNextDay(int unit)
+	public override void SkipToNextDay(int unit)
 	{
 		DoThenWriteIfTopMethod(() => base.SkipToNextDay(unit), sb => sb
 			.Append($"{nameof(SkipToNextDay)}(")
@@ -204,7 +204,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void TimeSkip(int days)
+	public override void TimeSkip(int days)
 	{
 		DoThenWriteIfTopMethod(() => base.TimeSkip(days), sb => sb
 			.Append($"{nameof(TimeSkip)}(")
@@ -214,7 +214,7 @@ public class ScriptConverter : ScriptParser
 	}
 
 	/// <inheritdoc />
-	protected override void Update()
+	public override void Update()
 	{
 		DoThenWriteIfTopMethod(base.Update, sb => sb
 			.AppendLine($"{nameof(Update)}();")
