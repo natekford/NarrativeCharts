@@ -13,8 +13,6 @@ public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 	/// <inheritdoc />
 	public override async Task SaveChartAsync(NarrativeChartData chart, string path)
 	{
-		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-
 		var yMap = GetYMap(chart);
 		var image = DrawChart(chart, yMap);
 		await SaveImageAsync(image, path).ConfigureAwait(false);
@@ -37,7 +35,7 @@ public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 	protected virtual TImage DrawChart(NarrativeChartData chart, YMap yMap)
 	{
 		var canvas = CreateCanvas(chart, yMap);
-		foreach (var (character, temp) in chart.Points.OrderBy(x => x.Key.Value))
+		foreach (var (character, temp) in chart.Points)
 		{
 			var points = temp.Values;
 			if (ShouldIgnore(character, points))
@@ -58,17 +56,27 @@ public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 				// Add the previous stationary segment
 				if (hasMovement || isFinal)
 				{
-					DrawSegment(canvas, new(
-						Chart: chart,
-						Character: character,
-						X0: stationaryStart,
-						// If we're at the last point don't stop before it
-						X1: isFinal && !hasMovement ? currX : prevX,
-						Y0: yMap.Characters[(character, prevY)],
-						Y1: yMap.Characters[(character, prevY)],
-						IsMovement: false,
-						IsFinal: isFinal && !hasMovement
-					));
+					// If we're in a movement segment this isn't actually
+					// the last segment that gets drawn
+					var isActuallyFinal = isFinal && !hasMovement;
+
+					var x0 = stationaryStart;
+					// If we're at the last point don't stop before it
+					var x1 = isActuallyFinal ? currX : prevX;
+					// Only bother attempting to draw if any time has passed
+					if (x0 != x1)
+					{
+						DrawSegment(canvas, new(
+							Chart: chart,
+							Character: character,
+							X0: x0,
+							X1: x1,
+							Y0: yMap.Characters[(character, prevY)],
+							Y1: yMap.Characters[(character, prevY)],
+							IsMovement: false,
+							IsFinal: isActuallyFinal
+						));
+					}
 				}
 				// Add the current movement segment
 				if (hasMovement)
@@ -96,7 +104,7 @@ public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 	/// </summary>
 	/// <param name="image"></param>
 	/// <param name="segment"></param>
-	protected abstract void DrawSegment(TImage image, Segment segment);
+	protected abstract void DrawSegment(TImage image, LineSegment segment);
 
 	/// <summary>
 	/// Draws any items after all of the segments have been drawn.
@@ -128,21 +136,4 @@ public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 	/// <param name="path"></param>
 	/// <returns></returns>
 	protected abstract Task SaveImageAsync(TImage image, string path);
-
-	/// <summary>
-	/// Information for drawing a segment.
-	/// </summary>
-	/// <param name="Chart">The chart that is being drawn.</param>
-	/// <param name="Character">The character this segment belongs to.</param>
-	/// <param name="X0">The starting X value.</param>
-	/// <param name="X1">The ending X value.</param>
-	/// <param name="Y0">The starting Y value.</param>
-	/// <param name="Y1">The ending Y value.</param>
-	/// <param name="IsMovement">Whether or not this segment is considered movement.</param>
-	/// <param name="IsFinal">Whether or not this segment is the final point of this character.</param>
-	protected readonly record struct Segment(
-		NarrativeChartData Chart, Character Character,
-		float X0, float X1, float Y0, float Y1,
-		bool IsMovement, bool IsFinal
-	);
 }

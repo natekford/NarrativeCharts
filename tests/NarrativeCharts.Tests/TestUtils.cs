@@ -7,6 +7,23 @@ namespace NarrativeCharts.Tests;
 
 public static class TestUtils
 {
+	public static NarrativeChartData Chart
+	{
+		get
+		{
+			var chart = new NarrativeChartData();
+			foreach (var (key, value) in BookwormCharacters.Colors)
+			{
+				chart.Colors.Add(key, value);
+			}
+			foreach (var (key, value) in BookwormLocations.YIndexes)
+			{
+				chart.YIndexes.Add(key, value);
+			}
+			return chart;
+		}
+	}
+
 	public static ScriptDefinitions ScriptDefinitions
 		=> Program.CreateScriptDefinitions(Directory.GetCurrentDirectory());
 

@@ -24,8 +24,8 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
 		// To have the top and right axes show with the correct scale
 		{
 			var hack = plot.AddScatter(
-				new double[] { yMap.XMin, yMap.XMax },
-				new double[] { yMap.YMin, yMap.YMax },
+				[yMap.XMin, yMap.XMax],
+				[yMap.YMin, yMap.YMax],
 				color: Color.Transparent
 			);
 			hack.XAxisIndex = plot.TopAxis.AxisIndex;
@@ -94,7 +94,7 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
 		return plot;
 	}
 
-	protected override void DrawSegment(ScottPlot.Plot image, Segment segment)
+	protected override void DrawSegment(ScottPlot.Plot image, LineSegment segment)
 	{
 		var xs = new double[] { segment.X0, segment.X1 };
 		var ys = new double[] { segment.Y0, segment.Y1 };
@@ -125,6 +125,8 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
 
 	protected override Task SaveImageAsync(ScottPlot.Plot image, string path)
 	{
+		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+
 		image.SaveFig(path);
 		return Task.CompletedTask;
 	}

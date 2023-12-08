@@ -83,7 +83,7 @@ public abstract class ChartDrawer
 	/// </summary>
 	/// <param name="yMap"></param>
 	/// <returns></returns>
-	protected virtual Dimensions GetDimensions(YMap yMap)
+	protected virtual ChartDimensions GetDimensions(YMap yMap)
 	{
 		// A default ImageSizeAddition is added because the ScottPlot Render method
 		// outputs a blank image if the dimensions are too small
@@ -172,7 +172,7 @@ public abstract class ChartDrawer
 				yMax = Math.Max(yMax, value);
 				yMin = Math.Min(yMin, value);
 
-				cDict[new(character, location)] = value;
+				cDict[(character, location)] = value;
 				++i;
 			}
 
@@ -200,13 +200,4 @@ public abstract class ChartDrawer
 		return IgnoreNonMovingCharacters
 			&& points.All(x => x.Location == points[0].Location);
 	}
-
-	/// <summary>
-	/// The calculated dimensions to use for the image.
-	/// </summary>
-	/// <param name="Width">The width to use.</param>
-	/// <param name="WidthMult">The value to multiply every X value in the grid by.</param>
-	/// <param name="Height">The height to use.</param>
-	/// <param name="HeightMult">The value to multiply every Y value in the grid by.</param>
-	protected record Dimensions(int Width, float WidthMult, int Height, float HeightMult);
 }

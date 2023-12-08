@@ -16,7 +16,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		set => PointLabelFont.Size = value;
 	}
 
-	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash(new[] { 4f, 6f }, 10f);
+	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash([4f, 6f], 10f);
 
 	public SKChartDrawer()
 	{
@@ -111,7 +111,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 				if (iterations > 0 && paint.PathEffect is null)
 				{
 					paint.PathEffect = SKPathEffect.CreateDash(
-						new float[] { TickLength, TickLength },
+						[TickLength, TickLength],
 						TickLength * 2
 					);
 				}
@@ -162,7 +162,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		return context;
 	}
 
-	protected override void DrawSegment(SKContext image, Segment segment)
+	protected override void DrawSegment(SKContext image, LineSegment segment)
 	{
 		var hex = segment.Chart.Colors[segment.Character];
 		var paint = image.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x), PointLabelFont));
@@ -232,6 +232,8 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 	protected override Task SaveImageAsync(SKContext image, string path)
 	{
+		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+
 		var tcs = new TaskCompletionSource();
 		_ = Task.Run(() =>
 		{
