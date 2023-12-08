@@ -6,11 +6,11 @@
 public static class ScriptingUtils
 {
 	/// <summary>
-	/// Loads all files with the specified extension then parses them.
+	/// Loads and parses all files with the specified extension.
 	/// </summary>
 	/// <param name="defs"></param>
 	/// <returns></returns>
-	public static IEnumerable<ScriptParser> LoadScripts(ScriptDefinitions defs)
+	public static IEnumerable<ScriptParser> LoadScripts(this ScriptDefinitions defs)
 	{
 		var previous = default(ScriptParser?);
 		// use a natural sort so V30 shows up between V29 and V31

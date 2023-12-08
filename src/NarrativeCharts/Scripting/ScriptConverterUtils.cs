@@ -88,7 +88,7 @@ using {nameof(System)}.{nameof(System.Collections)}.{nameof(System.Collections.I
 		for (var i = 0; i < value.Length; ++i)
 		{
 			var c = value[i];
-			// copied from https://stackoverflow.com/a/60820647
+			// Copied from https://stackoverflow.com/a/60820647
 			switch (char.GetUnicodeCategory(c))
 			{
 				case UnicodeCategory.UppercaseLetter:
@@ -117,7 +117,7 @@ using {nameof(System)}.{nameof(System.Collections)}.{nameof(System.Collections.I
 		return sb.ToString();
 	}
 
-	// copied from https://stackoverflow.com/a/24769702
+	// Copied from https://stackoverflow.com/a/24769702
 	[return: NotNullIfNotNull(nameof(sb))]
 	internal static StringBuilder? TrimEnd(this StringBuilder? sb)
 	{

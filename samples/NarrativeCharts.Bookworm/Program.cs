@@ -157,7 +157,7 @@ public static class Program
 	{
 		var dir = Directory.GetCurrentDirectory();
 		var defs = await GetScriptDefinitionsAsync(dir).ConfigureAwait(false);
-		var charts = ScriptingUtils.LoadScripts(defs).ToList<NarrativeChartData>();
+		var charts = defs.LoadScripts().ToList<NarrativeChart>();
 		var drawer = new SKChartDrawer()
 		{
 			ImageAspectRatio = 16f / 9f,
