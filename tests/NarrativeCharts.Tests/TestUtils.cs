@@ -24,8 +24,16 @@ public static class TestUtils
 		}
 	}
 
-	public static ScriptDefinitions ScriptDefinitions
-		=> Program.CreateScriptDefinitions(Directory.GetCurrentDirectory());
+	public static ScriptDefinitions Defs
+	{
+		get
+		{
+			var dir = Directory.GetCurrentDirectory();
+			var defs = Program.CreateScriptDefinitions(dir);
+			defs.RedrawUneditedScripts = true;
+			return defs;
+		}
+	}
 
 	public static void ValidateSyntax(string text)
 	{

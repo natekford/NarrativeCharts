@@ -33,7 +33,7 @@ public static class Program
 		var defs = new ScriptDefinitions
 		{
 			ConvertScripts = true,
-			RedrawUneditedScripts = true,
+			RedrawUneditedScripts = false,
 			ScriptDirectory = Path.Combine(dir, "Scripts"),
 			OnlyDrawTheseCharacters =
 			[
@@ -164,7 +164,7 @@ public static class Program
 	{
 		var dir = Directory.GetCurrentDirectory();
 		var defs = await GetScriptDefinitionsAsync(dir).ConfigureAwait(false);
-		var charts = defs.LoadScripts().ToList<NarrativeChart>();
+		var charts = defs.LoadScripts().ToList();
 		var drawer = new SKChartDrawer()
 		{
 			ImageAspectRatio = 16f / 9f,
@@ -182,14 +182,20 @@ public static class Program
 		charts.Add(combined);
 #endif
 
-		var collection = new ScriptCollection
+		foreach (var chart in charts)
 		{
-			Charts = charts,
-			Defs = defs,
-			Drawer = drawer,
-		};
+			Console.WriteLine(
+				$"Characters={chart.Points.Count}," +
+				$"Points={chart.Points.Sum(x => x.Value.Count)}," +
+				$"Days={chart.GetExtrema().Duration / defs.Time.HoursPerDay:#.#}"
+			);
+		}
+		defs.SaveConvertedScripts(charts.OfType<ScriptConverter>());
+		await foreach (var s in defs.DrawScriptsAsync(charts, drawer).ConfigureAwait(false))
+		{
+			Console.WriteLine(s);
+		}
 
-		await collection.ProcessAsync().ConfigureAwait(false);
 		await Task.Delay(-1).ConfigureAwait(false);
 	}
 }

@@ -204,7 +204,7 @@ public class ScriptConverter_Tests
 	[Fact]
 	public void HandleAddScene_LimitedCharacters()
 	{
-		var defs = TestUtils.ScriptDefinitions;
+		var defs = TestUtils.Defs;
 		defs.OnlyDrawTheseCharacters.Add(Myne);
 		var output = ProcessText(["$T=Ferdinand,Myne"], defs);
 		output.Chapters.Single().Should().Be("Add(Temple, Myne);");
@@ -605,7 +605,7 @@ public class ScriptConverter_Tests
 	}
 
 	private static Output ProcessText(params string[] lines)
-		=> ProcessText(lines, TestUtils.ScriptDefinitions);
+		=> ProcessText(lines, TestUtils.Defs);
 
 	private static Output ProcessText(string[] lines, ScriptDefinitions defs)
 	{
