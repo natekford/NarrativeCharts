@@ -202,6 +202,25 @@ public class ScriptConverter_Tests
 	}
 
 	[Fact]
+	public void HandleAddScene_LimitedCharacters()
+	{
+		var defs = TestUtils.ScriptDefinitions;
+		defs.OnlyDrawTheseCharacters.Add(Myne);
+		var output = ProcessText(["$T=Ferdinand,Myne"], defs);
+		output.Chapters.Single().Should().Be("Add(Temple, Myne);");
+		output.ScriptConverter.Points.Keys.Should().BeEquivalentTo(new[]
+		{
+			Myne
+		});
+		output.ScriptConverter.Points.Values.Should().AllSatisfy(x =>
+		{
+			var point = x.Single().Value;
+			point.Hour.Should().Be(0);
+			point.Location.Should().Be(Temple);
+		});
+	}
+
+	[Fact]
 	public void HandleAddScene_TooFew()
 	{
 		Action tooFew = () => ProcessText("$T,Ferdinand,Myne");
@@ -586,9 +605,12 @@ public class ScriptConverter_Tests
 	}
 
 	private static Output ProcessText(params string[] lines)
+		=> ProcessText(lines, TestUtils.ScriptDefinitions);
+
+	private static Output ProcessText(string[] lines, ScriptDefinitions defs)
 	{
 		var converter = new ScriptConverter(
-			definitions: TestUtils.ScriptDefinitions,
+			definitions: defs,
 			lastWriteTimeUtc: DateTime.UtcNow,
 			lines: lines
 		);

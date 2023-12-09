@@ -37,6 +37,10 @@ public class ScriptDefinitions
 	/// <inheritdoc cref="NarrativeChartData.YIndexes" />
 	public Dictionary<Location, int> LocationYIndexes { get; set; } = [];
 	/// <summary>
+	/// If there are items in this collection, only those characters will be drawn.
+	/// </summary>
+	public HashSet<Character> OnlyDrawTheseCharacters { get; set; } = [];
+	/// <summary>
 	/// Whether or not to redraw scripts that have not been edited since their chart
 	/// has been last drawn.
 	/// </summary>
@@ -80,14 +84,11 @@ public class ScriptDefinitions
 			ConvertScripts = json.ConvertScriptsToCSharp,
 			RedrawUneditedScripts = json.RedrawUneditedScripts,
 			ScriptDirectory = Path.GetDirectoryName(path)!,
+			Symbols = json.Symbols ?? new(),
 		};
 		if (!string.IsNullOrEmpty(json.ScriptExtension))
 		{
 			defs.ScriptExtension = json.ScriptExtension;
-		}
-		if (json.Symbols is not null)
-		{
-			defs.Symbols = json.Symbols;
 		}
 		if (json.Time is not null)
 		{
@@ -113,6 +114,10 @@ public class ScriptDefinitions
 			defs.CharacterColors[character] = aliased.Hex is string hex
 				? new(hex)
 				: Hex.Unknown;
+		}
+		foreach (var character in json.OnlyDrawTheseCharacters)
+		{
+			defs.OnlyDrawTheseCharacters.Add(defs.CharacterAliases[character]);
 		}
 		for (var i = 0; i < json.Locations.Count; ++i)
 		{
@@ -166,6 +171,7 @@ public class ScriptDefinitions
 			RedrawUneditedScripts: RedrawUneditedScripts,
 			ScriptExtension: ScriptExtension,
 			Symbols: Symbols,
+			OnlyDrawTheseCharacters: OnlyDrawTheseCharacters.Select(x => x.Value).ToList(),
 			Time: Time.UnitToHourMap.OrderBy(x => x.Key).Select(x => new TimeJson(
 				DurationInHours: (Time.UnitToHourMap.TryGetValue(x.Key + 1, out var end)
 					? end : Time.HoursPerDay) - Time.UnitToHourMap[x.Key],
@@ -192,6 +198,7 @@ public class ScriptDefinitions
 		bool RedrawUneditedScripts,
 		string ScriptExtension,
 		ScriptSymbols? Symbols,
+		List<string> OnlyDrawTheseCharacters,
 		List<TimeJson>? Time,
 		List<LocationJson> Locations,
 		List<CharacterJson> Characters

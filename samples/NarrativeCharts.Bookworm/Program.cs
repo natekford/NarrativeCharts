@@ -35,6 +35,13 @@ public static class Program
 			ConvertScripts = true,
 			RedrawUneditedScripts = true,
 			ScriptDirectory = Path.Combine(dir, "Scripts"),
+			OnlyDrawTheseCharacters =
+			[
+			//BookwormCharacters.Ella,
+			//BookwormCharacters.Hugo,
+			//BookwormCharacters.Rosina,
+			//BookwormCharacters.Myne
+			],
 		};
 
 		// Characters
@@ -173,26 +180,6 @@ public static class Program
 		var combined = charts.Combine();
 		combined.Name = "Combined";
 		charts.Add(combined);
-#endif
-
-#if false
-		var kept = new HashSet<Models.Character>
-		{
-			BookwormCharacters.Ella,
-			BookwormCharacters.Hugo,
-			BookwormCharacters.Rosina,
-			BookwormCharacters.Myne
-		};
-		foreach (var chart in charts)
-		{
-			foreach (var key in chart.Points.Keys.ToList())
-			{
-				if (!kept.Contains(key))
-				{
-					chart.Points.Remove(key);
-				}
-			}
-		}
 #endif
 
 		var collection = new ScriptCollection

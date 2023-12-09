@@ -2,6 +2,8 @@
 
 using System.Text.RegularExpressions;
 
+using static NarrativeCharts.Bookworm.BookwormCharacters;
+
 namespace NarrativeCharts.Tests.Scripting;
 
 /// <summary>
@@ -39,6 +41,7 @@ public partial class Scripting_Tests
 	public async Task ScriptDefinitions_SaveAndLoad()
 	{
 		var defs = TestUtils.ScriptDefinitions;
+		defs.OnlyDrawTheseCharacters = [Ferdinand, Myne];
 		var path = Path.Combine(defs.ScriptDirectory, nameof(Scripting_Tests), "TestDefs.json");
 		defs.ScriptDirectory = Path.GetDirectoryName(path)!;
 

@@ -104,7 +104,7 @@ public class ChartDrawer_Tests
 	}
 
 	[Fact]
-	public void RecommendedYSpacing()
+	public void UseRecommendedYSpacing()
 	{
 		Drawer.LineWidth = 5;
 		Drawer.PointLabelSize = 10;

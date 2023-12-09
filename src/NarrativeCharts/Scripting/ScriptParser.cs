@@ -61,6 +61,29 @@ public class ScriptParser : NarrativeChart<int>
 		YIndexes = new(definitions.LocationYIndexes);
 	}
 
+	/// <summary>
+	/// Throws an exception if <paramref name="name"/> is in use anywhere.
+	/// </summary>
+	/// <param name="name"></param>
+	protected internal virtual void EnsureNameNotUsed(string name)
+	{
+		static ArgumentException AlreadyInUse(string type, string name)
+			=> new($"There is already a {type} with the name '{name}'");
+
+		if (CharacterGroups.ContainsKey(name))
+		{
+			throw AlreadyInUse("character group", name);
+		}
+		if (StoredScenes.ContainsKey(name))
+		{
+			throw AlreadyInUse("stored scene", name);
+		}
+		if (Definitions.CharacterAliases.ContainsKey(name))
+		{
+			throw AlreadyInUse("character", name);
+		}
+	}
+
 	/// <inheritdoc />
 	protected override void AddNarrativeData()
 	{
@@ -91,29 +114,6 @@ public class ScriptParser : NarrativeChart<int>
 	/// <inheritdoc />
 	protected override int Convert(int unit)
 		=> unit;
-
-	/// <summary>
-	/// Throws an exception if <paramref name="name"/> is in use anywhere.
-	/// </summary>
-	/// <param name="name"></param>
-	protected internal virtual void EnsureNameNotUsed(string name)
-	{
-		static ArgumentException AlreadyInUse(string type, string name)
-			=> new($"There is already a {type} with the name '{name}'");
-
-		if (CharacterGroups.ContainsKey(name))
-		{
-			throw AlreadyInUse("character group", name);
-		}
-		if (StoredScenes.ContainsKey(name))
-		{
-			throw AlreadyInUse("stored scene", name);
-		}
-		if (Definitions.CharacterAliases.ContainsKey(name))
-		{
-			throw AlreadyInUse("character", name);
-		}
-	}
 
 	/// <summary>
 	/// Creates a collection of symbol handlers if any symbols have been changed.
@@ -403,6 +403,10 @@ public class ScriptParser : NarrativeChart<int>
 			{
 				set.Add(Definitions.CharacterAliases[arg]);
 			}
+		}
+		if (Definitions.OnlyDrawTheseCharacters.Count > 0)
+		{
+			set.IntersectWith(Definitions.OnlyDrawTheseCharacters);
 		}
 		return set;
 	}
