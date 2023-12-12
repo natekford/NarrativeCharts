@@ -22,7 +22,7 @@ $T=Philine,Roderick
 >H0.5
 $FE=Clarissa,Gretia,Hartmut,Lieseleta
 $C=Bertilde,Ottilie
-$MF=Damuel
+$T=Damuel
 >H0.5
 $FE=Angelica,Cornelius,Laurenz,Leonore,Matthias,Myne
 // Time: "here by sixth bell."
@@ -134,12 +134,30 @@ $Ahr_C=MYNE_TEAM,FERDI_GUARDS,Fairseele,Hannelore,Heisshitze,Letizia,Strahl
 #Rumors and a Departure
 // "paused their journey to spend a night at an inn"
 $Leisegang=Georgine,Seltier
->>FifthBell
+// Time: "during our patrol at noon the next day"
+// from Illgner's Battle
+>FourthBell
+// Time: "Expect us there at fifth bell"
+>FifthBell
+$Illgner=Bonifatius,Sylvester
+>>SecondBell
+// Time: "in Griebel the next day"
+// boni goes to griebel
+$SP=Bonifatius
+$Ahr_NP=FERDI_GUARDS,Heisshitze
+>FifthBell
 // freeze them because they take a boat
 @?Georgine,Seltier
-$Ahr_NP=FERDI_GUARDS,Heisshitze
 // Time: "Two whole days have passed"
 >>Morning
+$WestGate=Gunther
+// Time: "Lady Rozemyne is still unconscious, but Lord Ferdinand has set out"
+// it's a letter, so it is probably delayed by a day?
+// from Just like the Simulations
+// Dedryck, Fonsel, and Kazmiar get mentioned, not gonna bother with them
+$T=Judithe,Melchior,Philine,Roderick
+// gil goes to inform everyone to get ready to go to myne's library
+$W=Gil
 >H1
 
 
@@ -147,6 +165,7 @@ $Ahr_NP=FERDI_GUARDS,Heisshitze
 #Bindewald
 $Ahr_NP=MYNE_TEAM,Hannelore
 >H1
+$T=Gil
 >H1
 $SP=MYNE_TEAM,FERDI_GUARDS,Hannelore,Heisshitze
 $Ahr_C=Fraularm
@@ -155,7 +174,24 @@ $Ahr_C=Fraularm
 
 #Black Weapons and Chalices
 // Time: "you can expect to arrive at third bell"
+// Time: Strong Bonds, Strong Protection, "It was third bell"
 >ThirdBell
+// melchior probably goes back to the castle?
+// sylvester probably wouldn't want him in the temple
+// when georgine is trying to go through there
+$C=Melchior
+// Gunilla mentioned, not including
+// all of them meet at the gilberta company
++$2a,M=Effa,Kamil,Tuuli
++$2b,M=Benno,Corinna,Lutz,Mark
+// i think the rest of the temple attendants stay in the orphanage
++$2c,M=Ella,Hugo
++$2d,M=Danilo,Dimo,Heidi,Ingo,Johann,Josef,Zack
+>H0.5
+>H0.5
+$FE=2a,2b,2c,2d,Damuel
+>H0.5
+$WestGate=Damuel
 $T=Georgine,Seltier
 // Time: "Fourth bell rang out from Giebe Gerlach’s estate"
 >FourthBell

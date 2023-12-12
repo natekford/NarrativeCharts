@@ -372,6 +372,8 @@ $FE=Clarissa,Roderick
 $Ahr_NQ=Alstede,Benedikta,Blasius
 // These 3 enter southern provinces ~3 days before Georgine gets into the temple
 $SP=Georgine,Grausam,Seltier
+// P5V8 Illgner's Battle takes place around this time and introduces her kid
+$Illgner=Lilaroze
 >H1
 $RA_DO=Eckhart,Justus
 
