@@ -33,7 +33,7 @@ public static class Program
 		var defs = new ScriptDefinitions
 		{
 			ConvertScripts = true,
-			RedrawUneditedScripts = true,
+			RedrawUneditedScripts = false,
 			ScriptDirectory = Path.Combine(dir, "Scripts"),
 			OnlyDrawTheseCharacters =
 			[

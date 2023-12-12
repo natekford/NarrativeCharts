@@ -1,7 +1,7 @@
 ﻿namespace NarrativeCharts.Time;
 
 /// <summary>
-/// Deals with hours ellapsed and arbitrary day lengths.
+/// Deals with hours elapsed and arbitrary day lengths.
 /// </summary>
 public class TimeTracker
 {

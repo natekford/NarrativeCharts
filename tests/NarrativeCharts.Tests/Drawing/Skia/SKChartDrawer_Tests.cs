@@ -1,6 +1,7 @@
 ﻿using NarrativeCharts.Skia;
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Tests.Properties;
+using System.Diagnostics;
 
 namespace NarrativeCharts.Tests.Drawing.Skia;
 
@@ -20,7 +21,8 @@ public class SKChartDrawer_Tests
 
 		// If the file is marked as a png VS treats it as an image and converts it
 		// to a bitmap which we don't want
-		File.ReadAllBytes(path).Should().BeEquivalentTo(Resources.ExpectedP3V1,
-			x => x.WithStrictOrdering());
+		// Using FluentAssertions directly for equality makes this test take
+		// 5.5 seconds instead of 2.5 seconds
+		File.ReadAllBytes(path).SequenceEqual(Resources.ExpectedP3V1).Should().Be(true);
 	}
 }
