@@ -6,7 +6,6 @@ namespace NarrativeCharts.Skia;
 
 public static class SKColorConverters
 {
-	private static readonly Dictionary<SKColor, Hex> _Color = [];
 	private static readonly Dictionary<Hex, Hex> _Complementary = [];
 
 	public static Func<Hex, Hex> Complementary { get; } = hex =>
@@ -22,10 +21,7 @@ public static class SKColorConverters
 
 	public static Func<Hex, Hex> Color(SKColor color)
 	{
-		if (!_Color.TryGetValue(color, out var hex))
-		{
-			_Color[color] = hex = new(color.ToString());
-		}
+		var hex = new Hex(color.ToString());
 		return _ => hex;
 	}
 }

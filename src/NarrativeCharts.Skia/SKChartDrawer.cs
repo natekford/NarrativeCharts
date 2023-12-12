@@ -16,7 +16,8 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		set => PointLabelFont.Size = value;
 	}
 
-	private static SKPathEffect Movement { get; } = SKPathEffect.CreateDash([4f, 6f], 10f);
+	private static SKPathEffect Movement { get; }
+		= SKPathEffect.CreateDash([4f, 6f], 10f);
 
 	public SKChartDrawer()
 	{
@@ -235,12 +236,10 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
 		var tcs = new TaskCompletionSource();
-		_ = Task.Run(() =>
+		_ = Task.Run(async () =>
 		{
 			try
 			{
-				using var fs = File.Create(path);
-
 				/* Image format summaries:
 				 * Png, works for everything so far
 				 * Webp, ~25% faster than png but max size is 16k x 16k
@@ -252,8 +251,11 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 				 * is maybe worth it, but I think people would prefer to have a
 				 * consistent file type
 				 */
+				await using (var fs = File.Create(path))
+				{
+					image.Bitmap.Encode(fs, SKEncodedImageFormat.Png, 100);
+				}
 
-				image.Bitmap.Encode(fs, SKEncodedImageFormat.Png, 100);
 				tcs.SetResult();
 			}
 			catch (Exception e)

@@ -1,11 +1,5 @@
 ﻿using NarrativeCharts.Drawing;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using static NarrativeCharts.Bookworm.BookwormCharacters;
 using static NarrativeCharts.Bookworm.BookwormLocations;
 

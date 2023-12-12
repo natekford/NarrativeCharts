@@ -1,7 +1,4 @@
 ﻿using NarrativeCharts.Scripting;
-
-using System.IO;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using NarrativeCharts.Tests.Drawing;
 
