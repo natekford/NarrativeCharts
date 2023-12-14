@@ -20,7 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{4F36
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{47BFC64C-BD10-4028-A735-DEDB8471730B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarrativeCharts.Tests", "tests\NarrativeCharts.Tests\NarrativeCharts.Tests.csproj", "{A0812769-E99D-4516-9AE2-BD2EA578D852}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Tests", "tests\NarrativeCharts.Tests\NarrativeCharts.Tests.csproj", "{A0812769-E99D-4516-9AE2-BD2EA578D852}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarrativeCharts.Console", "src\NarrativeCharts.Console\NarrativeCharts.Console.csproj", "{9A57B871-240C-406A-AB59-29FC8F8809EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{A0812769-E99D-4516-9AE2-BD2EA578D852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0812769-E99D-4516-9AE2-BD2EA578D852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0812769-E99D-4516-9AE2-BD2EA578D852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A57B871-240C-406A-AB59-29FC8F8809EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A57B871-240C-406A-AB59-29FC8F8809EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A57B871-240C-406A-AB59-29FC8F8809EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A57B871-240C-406A-AB59-29FC8F8809EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

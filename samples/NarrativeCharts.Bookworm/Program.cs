@@ -155,7 +155,7 @@ public static class Program
 	private static async Task Main()
 	{
 		var defs = CreateScriptDefinitions(Directory.GetCurrentDirectory());
-		var charts = defs.LoadScripts().ToList();
+		var scripts = defs.LoadScripts().ToList();
 		var drawer = new SKChartDrawer()
 		{
 			ImageAspectRatio = 16f / 9f,
@@ -167,26 +167,7 @@ public static class Program
 			CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
 		}.UseRecommendedYSpacing();
 
-#if false
-		var combined = charts.Combine();
-		combined.Name = "Combined";
-		charts.Add(combined);
-#endif
-
-		foreach (var chart in charts)
-		{
-			Console.WriteLine(
-				$"Characters={chart.Points.Count}," +
-				$"Points={chart.Points.Sum(x => x.Value.Count)}," +
-				$"Days={chart.GetExtrema().Duration / defs.Time.HoursPerDay:#.#}"
-			);
-		}
-		_ = defs.SaveConvertedScripts(charts.OfType<ScriptConverter>());
-		await foreach (var info in defs.DrawScriptsAsync(charts, drawer).ConfigureAwait(false))
-		{
-			Console.WriteLine(info);
-		}
-
+		await ScriptingUtils.ProcessAsync(scripts, defs, drawer).ConfigureAwait(false);
 		await Task.Delay(-1).ConfigureAwait(false);
 	}
 }

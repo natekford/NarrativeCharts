@@ -1,7 +1,6 @@
 ﻿using NarrativeCharts.Skia;
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Tests.Properties;
-using System.Diagnostics;
 
 namespace NarrativeCharts.Tests.Drawing.Skia;
 

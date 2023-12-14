@@ -132,15 +132,52 @@ public static class ScriptingUtils
 	}
 
 	/// <summary>
+	/// Handles script conversion and chart drawing while outputting information
+	/// to the console.
+	/// </summary>
+	/// <param name="scripts"></param>
+	/// <param name="defs"></param>
+	/// <param name="drawer"></param>
+	/// <returns></returns>
+	public static async Task ProcessAsync(
+		IReadOnlyList<ScriptParser> scripts,
+		ScriptDefinitions defs,
+		ChartDrawer drawer
+	)
+	{
+		for (var i = 0; i < scripts.Count; ++i)
+		{
+			var script = scripts[i];
+			Console.WriteLine(
+				$"[{i + 1}/{scripts.Count}] {script.Name}: " +
+				$"Characters={script.Points.Count}," +
+				$"Points={script.Points.Sum(x => x.Value.Count)}," +
+				$"Days={script.GetExtrema().Duration / defs.Time.HoursPerDay:#.#}"
+			);
+		}
+		{
+			var count = defs.SaveConvertedScripts(
+				scripts: scripts.OfType<ScriptConverter>(),
+				saveDefinitions: true
+			).Count;
+			Console.WriteLine($"Converted {count - 1} scripts to C#.");
+		}
+		await foreach (var info in defs.DrawScriptsAsync(scripts, drawer).ConfigureAwait(false))
+		{
+			Console.WriteLine(info);
+		}
+	}
+
+	/// <summary>
 	/// Converts all scripts to C# and saves them to <see cref="ScriptDefinitions.ScriptDirectory"/>.
 	/// </summary>
 	/// <param name="defs"></param>
-	/// <param name="charts"></param>
+	/// <param name="scripts"></param>
 	/// <param name="saveDefinitions">Whether or not to also save <paramref name="defs"/>.</param>
 	/// <returns></returns>
 	public static IReadOnlyList<string> SaveConvertedScripts(
 		this ScriptDefinitions defs,
-		IEnumerable<ScriptConverter> charts,
+		IEnumerable<ScriptConverter> scripts,
 		bool saveDefinitions = true)
 	{
 		if (!defs.ConvertScripts)
@@ -152,7 +189,7 @@ public static class ScriptingUtils
 		Directory.CreateDirectory(dir);
 
 		var paths = new List<string>();
-		foreach (var chart in charts)
+		foreach (var chart in scripts)
 		{
 			var path = Path.Combine(dir, $"{chart.ClassName}.cs");
 			File.WriteAllText(path, chart.Write());
