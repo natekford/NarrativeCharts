@@ -152,18 +152,9 @@ public static class Program
 		return defs;
 	}
 
-	private static async Task<ScriptDefinitions> GetScriptDefinitionsAsync(string dir)
-	{
-		var defs = CreateScriptDefinitions(dir);
-		var defsPath = Path.Combine(defs.ScriptDirectory, "ScriptDefinitions.json");
-		await defs.SaveAsync(defsPath).ConfigureAwait(false);
-		return await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
-	}
-
 	private static async Task Main()
 	{
-		var dir = Directory.GetCurrentDirectory();
-		var defs = await GetScriptDefinitionsAsync(dir).ConfigureAwait(false);
+		var defs = CreateScriptDefinitions(Directory.GetCurrentDirectory());
 		var charts = defs.LoadScripts().ToList();
 		var drawer = new SKChartDrawer()
 		{
@@ -190,10 +181,10 @@ public static class Program
 				$"Days={chart.GetExtrema().Duration / defs.Time.HoursPerDay:#.#}"
 			);
 		}
-		defs.SaveConvertedScripts(charts.OfType<ScriptConverter>());
-		await foreach (var s in defs.DrawScriptsAsync(charts, drawer).ConfigureAwait(false))
+		_ = defs.SaveConvertedScripts(charts.OfType<ScriptConverter>());
+		await foreach (var info in defs.DrawScriptsAsync(charts, drawer).ConfigureAwait(false))
 		{
-			Console.WriteLine(s);
+			Console.WriteLine(info);
 		}
 
 		await Task.Delay(-1).ConfigureAwait(false);

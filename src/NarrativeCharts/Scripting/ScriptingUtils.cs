@@ -10,6 +10,15 @@ namespace NarrativeCharts.Scripting;
 public static class ScriptingUtils
 {
 	/// <summary>
+	/// Directory name that charts will be output to.
+	/// </summary>
+	public const string CHARTS_DIR = "Charts";
+	/// <summary>
+	/// Directory name that script conversion will be output to.
+	/// </summary>
+	public const string CONVERTED_DIR = "Converted";
+
+	/// <summary>
 	/// Draws and saves all charts.
 	/// </summary>
 	/// <param name="defs"></param>
@@ -23,7 +32,7 @@ public static class ScriptingUtils
 		ChartDrawer drawer,
 		int parallelChartCount = 10)
 	{
-		var dir = Path.Combine(defs.ScriptDirectory, "Charts");
+		var dir = Path.Combine(defs.ScriptDirectory, CHARTS_DIR);
 		Directory.CreateDirectory(dir);
 
 		var count = 0;
@@ -129,32 +138,35 @@ public static class ScriptingUtils
 	/// <param name="charts"></param>
 	/// <param name="saveDefinitions">Whether or not to also save <paramref name="defs"/>.</param>
 	/// <returns></returns>
-	public static IEnumerable<string> SaveConvertedScripts(
+	public static IReadOnlyList<string> SaveConvertedScripts(
 		this ScriptDefinitions defs,
 		IEnumerable<ScriptConverter> charts,
 		bool saveDefinitions = true)
 	{
 		if (!defs.ConvertScripts)
 		{
-			yield break;
+			return Array.Empty<string>();
 		}
 
-		var dir = Path.Combine(defs.ScriptDirectory, "Converted");
+		var dir = Path.Combine(defs.ScriptDirectory, CONVERTED_DIR);
 		Directory.CreateDirectory(dir);
 
+		var paths = new List<string>();
 		foreach (var chart in charts)
 		{
 			var path = Path.Combine(dir, $"{chart.ClassName}.cs");
 			File.WriteAllText(path, chart.Write());
-			yield return path;
+			paths.Add(path);
 		}
 
 		if (saveDefinitions)
 		{
 			var path = Path.Combine(dir, "ScriptDefinitions.cs");
 			File.WriteAllText(path, defs.ConvertToCode());
-			yield return path;
+			paths.Add(path);
 		}
+
+		return paths;
 	}
 
 	/// <summary>

@@ -43,7 +43,7 @@ public partial class Scripting_Tests
 		var scripts = Enumerable.Repeat(0, 5).Select(_ => new FakeScriptConverter()).ToList();
 		foreach (var script in scripts[..2])
 		{
-			var path = Path.Combine(defs.ScriptDirectory, "Charts", $"{script.Name}.png");
+			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
 			File.Create(path).Dispose();
 		}
 
@@ -65,7 +65,7 @@ public partial class Scripting_Tests
 			.ToList();
 		foreach (var script in scripts)
 		{
-			var path = Path.Combine(defs.ScriptDirectory, "Charts", $"{script.Name}.png");
+			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
 			File.Create(path).Dispose();
 		}
 
