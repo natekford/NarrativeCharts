@@ -1,5 +1,4 @@
-﻿using NarrativeCharts.Drawing;
-using NarrativeCharts.Scripting;
+﻿using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 
 using SkiaSharp;
@@ -10,7 +9,11 @@ namespace NarrativeCharts.Console;
 
 public class Program(ImmutableArray<string> Args)
 {
+	private const long DEFAULT_CHANGED = 0;
 	private const long TICKS_PER_SECOND = 10_000_000;
+
+	private long _Changed = DEFAULT_CHANGED;
+	private FileSystemWatcher? _FileSystemWatcher;
 
 	public bool IsCmd => Args.Length != 0;
 
@@ -24,25 +27,10 @@ public class Program(ImmutableArray<string> Args)
 
 		if (!IsCmd)
 		{
-			System.Console.WriteLine($"Started watching {directory} for changes.");
-
-			// just use fsw as an indicator that something was changed, we don't care
-			// about what was changed, and trying to do the async processing in
-			// the Changed event causes a lot of problems
-			var changed = 0L;
-			var watcher = new FileSystemWatcher()
-			{
-				Path = directory,
-				EnableRaisingEvents = true,
-				Filter = "*.*",
-			};
-			watcher.Changed += (_, _)
-				=> Interlocked.CompareExchange(ref changed, DateTime.UtcNow.Ticks, 0);
-
 			while (true)
 			{
-				var ticks = Interlocked.Exchange(ref changed, 0);
-				if (ticks != 0)
+				var ticks = Interlocked.Exchange(ref _Changed, DEFAULT_CHANGED);
+				if (ticks != DEFAULT_CHANGED)
 				{
 					// remove 1 second from the time we're using because of minor
 					// tick differences between what FSW event can get and what
@@ -100,15 +88,32 @@ public class Program(ImmutableArray<string> Args)
 		}
 		else
 		{
-			while (true)
+			string? directory;
+			do
 			{
 				System.Console.WriteLine("Enter a directory to parse scripts from: ");
-				var input = System.Console.ReadLine();
-				if (Directory.Exists(input))
-				{
-					return input;
-				}
+				directory = System.Console.ReadLine();
 			}
+			while (!Directory.Exists(directory));
+
+			// just use fsw as an indicator that something was changed, we don't care
+			// about what was changed, and trying to do the async processing in
+			// the Changed event causes a lot of problems
+			_FileSystemWatcher = new FileSystemWatcher()
+			{
+				Path = directory,
+				EnableRaisingEvents = true,
+				Filter = "*.*",
+			};
+			_FileSystemWatcher.Changed += OnChanged;
+
+			System.Console.WriteLine($"Started watching {directory} for changes.");
+			System.Console.WriteLine();
+
+			return directory;
 		}
 	}
+
+	private void OnChanged(object sender, FileSystemEventArgs e)
+		=> Interlocked.CompareExchange(ref _Changed, DateTime.UtcNow.Ticks, DEFAULT_CHANGED);
 }
