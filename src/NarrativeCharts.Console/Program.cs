@@ -17,8 +17,17 @@ public class Program(ImmutableArray<string> Args)
 
 	public bool IsCmd => Args.Length != 0;
 
-	public static Task Main(string[] args)
-		=> new Program(args.ToImmutableArray()).RunAsync();
+	public static async Task Main(string[] args)
+	{
+		try
+		{
+			await new Program(args.ToImmutableArray()).RunAsync().ConfigureAwait(false);
+		}
+		catch (Exception e)
+		{
+			System.Console.WriteLine(e);
+		}
+	}
 
 	public async Task RunAsync()
 	{
