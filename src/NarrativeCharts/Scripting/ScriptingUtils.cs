@@ -166,6 +166,7 @@ public static class ScriptingUtils
 		{
 			Console.WriteLine(info);
 		}
+		Console.WriteLine();
 	}
 
 	/// <summary>
