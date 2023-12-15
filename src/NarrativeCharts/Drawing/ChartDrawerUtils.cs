@@ -6,8 +6,8 @@
 public static class ChartDrawerUtils
 {
 	/// <summary>
-	/// Sets <see cref="ChartDrawer.YSpacing"/> to a value that should not result
-	/// in line/label overlap and should not result in a lot of space between lines.
+	/// Sets <see cref="ChartDrawer.YSpacing"/> to a value that should result in
+	/// no line/label overlap.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <param name="drawer"></param>

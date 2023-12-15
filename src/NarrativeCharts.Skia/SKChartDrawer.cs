@@ -8,7 +8,9 @@ namespace NarrativeCharts.Skia;
 public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 {
 	public SKFont AxisLabelFont { get; set; } = new();
+	// Default to Black because some colors are really hard to read on a white bg
 	public Func<Hex, Hex>? CharacterLabelColorConverter { get; set; }
+		= SKColorConverters.Color(SKColors.Black);
 	public SKFont PointLabelFont { get; set; } = new();
 	public override int PointLabelSize
 	{

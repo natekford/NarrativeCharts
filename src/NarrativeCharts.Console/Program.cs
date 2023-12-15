@@ -1,7 +1,6 @@
-﻿using NarrativeCharts.Scripting;
+﻿using NarrativeCharts.Drawing;
+using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
-
-using SkiaSharp;
 
 using System.Collections.Immutable;
 
@@ -50,9 +49,10 @@ public class Program(ImmutableArray<string> Args)
 			}
 
 			// There's a minor tick difference between File.LastWriteTimeUtc and
-			// the times we get from FSW.Changed (espeically because the event
+			// the times we get from FSW.Changed (especially because the event
 			// doesn't provide any times itself so we have to use DateTime.UtcNow)
 			// It's a ~10ms difference, so subtracting 1s is more than enough
+			// to get DrawScriptsAsync to redraw recently edited scripts
 			ticks -= TICKS_PER_SECOND;
 			// Don't reuse any script definitions or parsed scripts because they
 			// can be externally edited
@@ -69,11 +69,7 @@ public class Program(ImmutableArray<string> Args)
 			defs.ComparisonTimeUtc = comparisonTimeUtc;
 			var scripts = defs.LoadScripts().ToList();
 			// todo: put drawer properties into ScriptDefinitions
-			var drawer = new SKChartDrawer()
-			{
-				ImageAspectRatio = 16f / 9f,
-				CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
-			};
+			var drawer = new SKChartDrawer().UseRecommendedYSpacing();
 
 			await defs.ProcessAsync(scripts, drawer).ConfigureAwait(false);
 		}

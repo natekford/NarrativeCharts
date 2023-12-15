@@ -25,8 +25,9 @@ public abstract class ChartDrawer
 	/// <summary>
 	/// The desired aspect ratio to use. If null, no modifications are made to the
 	/// calculated size.
+	/// Default value is 16/9.
 	/// </summary>
-	public virtual float? ImageAspectRatio { get; set; }
+	public virtual float? ImageAspectRatio { get; set; } = 16f / 9f;
 	/// <summary>
 	/// The pixel count to round down to the nearest value for each image dimension.
 	/// E.G. a value of 100 would round 1234 to 1200.

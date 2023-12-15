@@ -3,8 +3,6 @@ using NarrativeCharts.Scripting;
 using NarrativeCharts.Skia;
 using NarrativeCharts.Time;
 
-using SkiaSharp;
-
 using static NarrativeCharts.Bookworm.BookwormBell;
 using static NarrativeCharts.Bookworm.BookwormCharacters;
 using static NarrativeCharts.Bookworm.BookwormLocations;
@@ -158,13 +156,10 @@ public static class Program
 		var scripts = defs.LoadScripts().ToList();
 		var drawer = new SKChartDrawer()
 		{
-			ImageAspectRatio = 16f / 9f,
-			// smaller images in debug so they render faster
 #if DEBUG
+			// Smaller images in debug so they render faster
 			ImageSizeMult = 3f,
 #endif
-			IgnoreNonMovingCharacters = false,
-			CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
 		}.UseRecommendedYSpacing();
 
 		await defs.ProcessAsync(scripts, drawer).ConfigureAwait(false);

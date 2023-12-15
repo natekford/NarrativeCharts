@@ -7,7 +7,11 @@ namespace NarrativeCharts.Tests.Drawing.Skia;
 [Trait("Category", "Integration")]
 public class SKChartDrawer_Tests
 {
-	private SKChartDrawer Drawer { get; } = new();
+	private SKChartDrawer Drawer { get; } = new()
+	{
+		ImageAspectRatio = null,
+		CharacterLabelColorConverter = null,
+	};
 
 	[Fact]
 	public async Task DrawImage_Valid()
