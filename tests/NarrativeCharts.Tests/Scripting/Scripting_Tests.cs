@@ -55,6 +55,45 @@ public partial class Scripting_Tests
 	}
 
 	[Fact]
+	public async Task DrawScripts_NoRedrawing_HighComparison()
+	{
+		RedrawUneditedScripts = false;
+		var defs = GetDefs();
+		defs.ComparisonTimeUtc = DateTime.MaxValue;
+		var scripts = Enumerable.Repeat(0, 5).Select(_ => new FakeScriptConverter()).ToList();
+		foreach (var script in scripts[..2])
+		{
+			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
+			File.Create(path).Dispose();
+		}
+
+		var info = await DrawAsync(defs, scripts).ConfigureAwait(false);
+
+		info.Should().HaveCount(5);
+		info[..2].Should().AllSatisfy(x => x.DrawTime.Should().BeNull());
+		info[2..].Should().AllSatisfy(x => x.DrawTime.Should().NotBeNull());
+	}
+
+	[Fact]
+	public async Task DrawScripts_NoRedrawing_LowComparison()
+	{
+		RedrawUneditedScripts = false;
+		var defs = GetDefs();
+		defs.ComparisonTimeUtc = DateTime.MinValue;
+		var scripts = Enumerable.Repeat(0, 5).Select(_ => new FakeScriptConverter()).ToList();
+		foreach (var script in scripts[..2])
+		{
+			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
+			File.Create(path).Dispose();
+		}
+
+		var info = await DrawAsync(defs, scripts).ConfigureAwait(false);
+
+		info.Should().HaveCount(5);
+		info.Should().AllSatisfy(x => x.DrawTime.Should().NotBeNull());
+	}
+
+	[Fact]
 	public async Task DrawScripts_RedrawIfFirstEdited()
 	{
 		RedrawUneditedScripts = false;

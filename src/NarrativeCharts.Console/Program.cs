@@ -10,6 +10,8 @@ namespace NarrativeCharts.Console;
 
 public class Program(ImmutableArray<string> Args)
 {
+	private const long TICKS_PER_SECOND = 10_000_000;
+
 	public bool IsCmd => Args.Length != 0;
 
 	public static Task Main(string[] args)
@@ -18,7 +20,7 @@ public class Program(ImmutableArray<string> Args)
 	public async Task RunAsync()
 	{
 		var directory = GetDirectory();
-		await ProcessAsync(directory).ConfigureAwait(false);
+		await ProcessAsync(directory, null).ConfigureAwait(false);
 
 		if (!IsCmd)
 		{
@@ -27,37 +29,53 @@ public class Program(ImmutableArray<string> Args)
 			// just use fsw as an indicator that something was changed, we don't care
 			// about what was changed, and trying to do the async processing in
 			// the Changed event causes a lot of problems
-			var reprocess = 0;
+			var changed = 0L;
 			var watcher = new FileSystemWatcher()
 			{
 				Path = directory,
 				EnableRaisingEvents = true,
 				Filter = "*.*",
 			};
-			watcher.Changed += (_, _) => Interlocked.Exchange(ref reprocess, 1);
+			watcher.Changed += (_, _)
+				=> Interlocked.CompareExchange(ref changed, DateTime.UtcNow.Ticks, 0);
 
 			while (true)
 			{
-				if (Interlocked.Exchange(ref reprocess, 0) == 1)
+				var ticks = Interlocked.Exchange(ref changed, 0);
+				if (ticks != 0)
 				{
+					// remove 1 second from the time we're using because of minor
+					// tick differences between what FSW event can get and what
+					// the file actually has as its timestamp
+					// it was only like .01 seconds difference but i dont think
+					// making it 1 second difference matters much
+					ticks -= TICKS_PER_SECOND;
 					try
 					{
-						await ProcessAsync(directory!).ConfigureAwait(false);
+						// always call this instead of reusing scripts/defs/drawer
+						// b/c scripts/defs are things that can be externally changed
+						await ProcessAsync(directory, new(ticks)).ConfigureAwait(false);
 					}
 					catch (Exception e)
 					{
 						System.Console.WriteLine(e);
 					}
 				}
-				await Task.Delay(500).ConfigureAwait(false);
+				else
+				{
+					// only need this delay if processasync isn't called because
+					// process async takes more than 250ms by itself usually
+					await Task.Delay(250).ConfigureAwait(false);
+				}
 			}
 		}
 	}
 
-	private static async Task ProcessAsync(string directory)
+	private static async Task ProcessAsync(string directory, DateTime? comparisonTimeUtc)
 	{
 		var defsPath = Path.Combine(directory, "ScriptDefinitions.json");
 		var defs = await ScriptDefinitions.LoadAsync(defsPath).ConfigureAwait(false);
+		defs.ComparisonTimeUtc = comparisonTimeUtc;
 		var scripts = defs.LoadScripts().ToList();
 		// todo: put drawer properties into ScriptDefinitions
 		var drawer = new SKChartDrawer()
@@ -66,7 +84,7 @@ public class Program(ImmutableArray<string> Args)
 			CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
 		};
 
-		await ScriptingUtils.ProcessAsync(scripts, defs, drawer).ConfigureAwait(false);
+		await defs.ProcessAsync(scripts, drawer).ConfigureAwait(false);
 	}
 
 	private string GetDirectory()

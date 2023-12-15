@@ -167,7 +167,7 @@ public static class Program
 			CharacterLabelColorConverter = SKColorConverters.Color(SKColors.Black),
 		}.UseRecommendedYSpacing();
 
-		await ScriptingUtils.ProcessAsync(scripts, defs, drawer).ConfigureAwait(false);
+		await defs.ProcessAsync(scripts, drawer).ConfigureAwait(false);
 		await Task.Delay(-1).ConfigureAwait(false);
 	}
 }

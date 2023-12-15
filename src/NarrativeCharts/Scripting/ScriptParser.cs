@@ -18,7 +18,7 @@ public class ScriptParser : NarrativeChart<int>
 	/// <summary>
 	/// The last time the script this is sourced from was edited.
 	/// </summary>
-	public DateTime LastWriteTimeUTC { get; }
+	public DateTime LastWriteTimeUtc { get; }
 	/// <summary>
 	/// The lines to parse.
 	/// </summary>
@@ -54,7 +54,7 @@ public class ScriptParser : NarrativeChart<int>
 		: base(definitions.Time)
 	{
 		Definitions = definitions;
-		LastWriteTimeUTC = lastWriteTimeUtc;
+		LastWriteTimeUtc = lastWriteTimeUtc;
 		Lines = lines;
 
 		Colors = new(definitions.CharacterColors);

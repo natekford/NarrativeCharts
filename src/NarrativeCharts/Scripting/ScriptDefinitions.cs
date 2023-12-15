@@ -27,6 +27,12 @@ public class ScriptDefinitions
 	/// <inheritdoc cref="NarrativeChartData.Colors" />
 	public Dictionary<Character, Hex> CharacterColors { get; set; } = [];
 	/// <summary>
+	/// If this is less than the last time the image was drawn this is used when
+	/// comparing to the script's last edited time.
+	/// If this is null it is not used at all.
+	/// </summary>
+	public DateTime? ComparisonTimeUtc { get; set; }
+	/// <summary>
 	///  Whether or not to convert parsed scripts to C#.
 	/// </summary>
 	public bool ConvertScripts { get; set; }

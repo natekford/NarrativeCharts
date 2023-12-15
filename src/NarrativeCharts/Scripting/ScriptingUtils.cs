@@ -38,21 +38,26 @@ public static class ScriptingUtils
 		var count = 0;
 		var queue = new Queue<(NarrativeChartData, string)>(scripts.Count);
 		var shouldRedraw = defs.RedrawUneditedScripts;
-		foreach (var chart in scripts)
+		foreach (var script in scripts)
 		{
-			var imagePath = Path.Combine(dir, $"{chart.Name}.png");
+			var imagePath = Path.Combine(dir, $"{script.Name}.png");
 			if (!shouldRedraw)
 			{
-				var imageTime = File.GetLastWriteTimeUtc(imagePath);
-				var scriptTime = chart.LastWriteTimeUTC;
-				if (imageTime >= scriptTime)
+				var comparisonTime = File.GetLastWriteTimeUtc(imagePath);
+				if (defs.ComparisonTimeUtc is DateTime dt && dt < comparisonTime)
+				{
+					comparisonTime = dt;
+				}
+
+				var scriptTime = script.LastWriteTimeUtc;
+				if (comparisonTime > scriptTime)
 				{
 					yield return new(
 						TotalCount: scripts.Count,
 						CurrentCount: Interlocked.Increment(ref count),
 						DrawTime: null,
 						OutputPath: imagePath,
-						Message: $"Not redrawing. Drawn: {imageTime:G}, edited: {scriptTime:G}."
+						Message: $"Not redrawing. Drawn: {comparisonTime:G}, edited: {scriptTime:G}."
 					);
 				}
 				else
@@ -65,7 +70,7 @@ public static class ScriptingUtils
 
 			if (shouldRedraw)
 			{
-				queue.Enqueue(new(chart, imagePath));
+				queue.Enqueue(new(script, imagePath));
 			}
 		}
 
@@ -135,13 +140,13 @@ public static class ScriptingUtils
 	/// Handles script conversion and chart drawing while outputting information
 	/// to the console.
 	/// </summary>
-	/// <param name="scripts"></param>
 	/// <param name="defs"></param>
+	/// <param name="scripts"></param>
 	/// <param name="drawer"></param>
 	/// <returns></returns>
 	public static async Task ProcessAsync(
+		this ScriptDefinitions defs,
 		IReadOnlyList<ScriptParser> scripts,
-		ScriptDefinitions defs,
 		ChartDrawer drawer
 	)
 	{
