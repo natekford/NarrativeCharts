@@ -340,19 +340,12 @@ public sealed class {ClassName} : {nameof(NarrativeChart<int>)}<{ScriptConverter
 	/// <returns></returns>
 	protected virtual string ToUnitName(int unit)
 	{
-		foreach (var (key, value) in Definitions.TimeUnitAliases)
-		{
-			if (value != unit)
-			{
-				continue;
-			}
-
-			var property = ScriptConverterUtils.ToValidProperty(key);
-			if (property.Length != 0)
-			{
-				return property;
-			}
-		}
-		throw new ArgumentException($"Unable to find a suitable unit name for '{unit}'", nameof(unit));
+		// Alphabetical order for consistency
+		return Definitions.TimeUnitAliases
+			.Where(x => x.Value == unit)
+			.OrderBy(x => x.Key)
+			.Select(x => ScriptConverterUtils.ToValidProperty(x.Key))
+			.FirstOrDefault(x => x.Length != 0) ??
+			throw new ArgumentException($"Unable to find a suitable unit name for '{unit}'", nameof(unit));
 	}
 }

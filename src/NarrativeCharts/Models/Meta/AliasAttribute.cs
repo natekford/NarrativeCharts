@@ -6,7 +6,7 @@ namespace NarrativeCharts.Models.Meta;
 /// Indicates other valid names for a character.
 /// </summary>
 /// <param name="aliases"></param>
-[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
 public sealed class AliasAttribute(params string[] aliases) : Attribute
 {
 	/// <summary>

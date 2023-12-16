@@ -454,8 +454,8 @@ public class ScriptConverter_Tests
 			">FirstBell"
 		);
 		output.Chapters.Single().Should().Be(
-			$"SkipToCurrentDay(FirstBell);{NL}" +
-			"SkipToCurrentDay(FirstBell);"
+			$"SkipToCurrentDay(EarlyMorning);{NL}" +
+			"SkipToCurrentDay(EarlyMorning);"
 		);
 		output.ScriptConverter.Time.CurrentUnit.Should().Be(1);
 	}
@@ -472,7 +472,7 @@ public class ScriptConverter_Tests
 	public void HandleSkipToCurrentDay_Valid()
 	{
 		var output = ProcessText(">SecondBell");
-		output.Chapters.Single().Should().Be("SkipToCurrentDay(SecondBell);");
+		output.Chapters.Single().Should().Be("SkipToCurrentDay(Morning);");
 		output.ScriptConverter.Time.CurrentUnit.Should().Be(2);
 	}
 
@@ -480,7 +480,7 @@ public class ScriptConverter_Tests
 	public void HandleSkipToNextDay_NoArgs()
 	{
 		var output = ProcessText(">>");
-		output.Chapters.Single().Should().Be("SkipToNextDay(FirstBell);");
+		output.Chapters.Single().Should().Be("SkipToNextDay(EarlyMorning);");
 		output.ScriptConverter.Time.CurrentUnit.Should().Be(1);
 		output.ScriptConverter.Time.CurrentTotalHours.Should().Be(28);
 	}
@@ -489,7 +489,7 @@ public class ScriptConverter_Tests
 	public void HandleSkipToNextDay_OneArg()
 	{
 		var output = ProcessText(">>SecondBell");
-		output.Chapters.Single().Should().Be("SkipToNextDay(SecondBell);");
+		output.Chapters.Single().Should().Be("SkipToNextDay(Morning);");
 		output.ScriptConverter.Time.CurrentUnit.Should().Be(2);
 		output.ScriptConverter.Time.CurrentTotalHours.Should().Be(31);
 	}
@@ -514,7 +514,7 @@ public class ScriptConverter_Tests
 	public void HandleSkipToNextDay_TwoArgs()
 	{
 		var output = ProcessText(">>3,SecondBell");
-		output.Chapters.Single().Should().Be("SkipToDaysAhead(3, SecondBell);");
+		output.Chapters.Single().Should().Be("SkipToDaysAhead(3, Morning);");
 		output.ScriptConverter.Time.CurrentUnit.Should().Be(2);
 		output.ScriptConverter.Time.CurrentTotalHours.Should().Be(79);
 	}

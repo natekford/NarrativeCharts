@@ -4,7 +4,7 @@
 /// Indicates a color to use for a character.
 /// </summary>
 /// <param name="hex"></param>
-[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
 public sealed class ColorAttribute(string? hex) : Attribute
 {
 	/// <summary>
