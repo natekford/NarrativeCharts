@@ -1,8 +1,7 @@
-﻿using NarrativeCharts.Bookworm.Meta;
-using NarrativeCharts.Models;
+﻿using NarrativeCharts.Models;
+using NarrativeCharts.Models.Meta;
 
 using System.Collections.Immutable;
-using System.Reflection;
 
 namespace NarrativeCharts.Bookworm;
 
@@ -15,22 +14,8 @@ public static partial class BookwormCharacters
 
 	static BookwormCharacters()
 	{
-		var properties = typeof(BookwormCharacters).GetMembers<Character>();
-		Colors = properties.ToImmutableDictionary(
-			keySelector: x => x.Value,
-			elementSelector: x => x.Member.GetCustomAttribute<ColorAttribute>()!.Hex
-		);
+		var properties = MetaUtils.GetMembers<Character>(typeof(BookwormCharacters));
+		Colors = properties.GetColors();
 		Aliases = properties.GetAliases(x => x.Value);
-	}
-
-	[AttributeUsage(AttributeTargets.Property)]
-	private class ColorAttribute : Attribute
-	{
-		public Hex Hex { get; }
-
-		public ColorAttribute(string? hex)
-		{
-			Hex = hex is string s ? new(s) : Hex.Unknown;
-		}
 	}
 }

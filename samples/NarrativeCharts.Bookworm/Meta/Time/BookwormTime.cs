@@ -1,4 +1,6 @@
-﻿using System.Collections.Immutable;
+﻿using NarrativeCharts.Models.Meta;
+
+using System.Collections.Immutable;
 
 namespace NarrativeCharts.Bookworm.Meta.Time;
 
@@ -29,8 +31,7 @@ public static class BookwormTime
 
 	static BookwormTime()
 	{
-		Aliases = typeof(BookwormBell)
-			.GetMembers<BookwormBell>()
+		Aliases = MetaUtils.GetMembers<BookwormBell>(typeof(BookwormBell))
 			.GetAliases(x => ((int)x).ToString())
 			.ToImmutableDictionary(x => x.Key, x => (int)x.Value);
 	}

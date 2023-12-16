@@ -1,5 +1,5 @@
-﻿using NarrativeCharts.Bookworm.Meta;
-using NarrativeCharts.Models;
+﻿using NarrativeCharts.Models;
+using NarrativeCharts.Models.Meta;
 
 namespace NarrativeCharts.Bookworm;
 

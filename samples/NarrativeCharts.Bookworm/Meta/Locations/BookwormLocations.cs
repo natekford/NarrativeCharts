@@ -1,4 +1,5 @@
 ﻿using NarrativeCharts.Models;
+using NarrativeCharts.Models.Meta;
 
 using System.Collections.Immutable;
 
@@ -179,8 +180,7 @@ public static class BookwormLocations
 		.Select((x, i) => (Item: x, Index: i))
 		.ToImmutableDictionary(x => x.Item, x => x.Index);
 
-		Aliases = typeof(BookwormLocations)
-			.GetMembers<Location>()
+		Aliases = MetaUtils.GetMembers<Location>(typeof(BookwormLocations))
 			.GetAliases(x => x.Value);
 	}
 }
