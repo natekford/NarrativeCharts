@@ -2,7 +2,7 @@
 using NarrativeCharts.Time;
 
 using static NarrativeCharts.Bookworm.BookwormCharacters;
-using static NarrativeCharts.Bookworm.BookwormLocations;
+using static NarrativeCharts.Bookworm.Meta.Locations.BookwormLocations;
 
 namespace NarrativeCharts.Tests;
 

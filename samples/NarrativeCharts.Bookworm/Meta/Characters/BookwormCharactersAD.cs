@@ -1,4 +1,5 @@
-﻿using NarrativeCharts.Models;
+﻿using NarrativeCharts.Bookworm.Meta;
+using NarrativeCharts.Models;
 
 namespace NarrativeCharts.Bookworm;
 
@@ -15,16 +16,20 @@ public static partial class BookwormCharacters
 	[Color(null)]
 	public static Character Alstede { get; } = new("Alstede");
 	[Color("#D7BE96")]
+	[Alias("Ana")]
 	public static Character Anastasius { get; } = new("Anastasius");
 	[Color("#53B3DB")]
 	public static Character Angelica { get; } = new("Angelica");
 	[Color(null)]
-	public static Character Arther { get; } = new("Arthur");
+	public static Character Arthur { get; } = new("Arthur");
 	[Color(null)]
+	[Alias("AubDitter", "Werdekraf")]
 	public static Character AubDunkelfelger { get; } = new("Aub Dunkelfelger");
 	[Color(null)]
+	[Alias("AubFre")]
 	public static Character AubFrenbeltag { get; } = new("Aub Frenbeltag");
 	[Color(null)]
+	[Alias("AubKla")]
 	public static Character AubKlassenberg { get; } = new("Aub Klassenberg");
 	[Color("#FFD700")]
 	public static Character Aurelia { get; } = new("Aurelia");

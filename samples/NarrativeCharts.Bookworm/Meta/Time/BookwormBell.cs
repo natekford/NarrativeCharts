@@ -1,4 +1,4 @@
-﻿namespace NarrativeCharts.Bookworm;
+﻿namespace NarrativeCharts.Bookworm.Meta.Time;
 
 public enum BookwormBell
 {

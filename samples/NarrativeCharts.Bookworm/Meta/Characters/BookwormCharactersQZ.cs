@@ -1,4 +1,5 @@
-﻿using NarrativeCharts.Models;
+﻿using NarrativeCharts.Bookworm.Meta;
+using NarrativeCharts.Models;
 
 namespace NarrativeCharts.Bookworm;
 
@@ -49,6 +50,7 @@ public static partial class BookwormCharacters
 	[Color(null)]
 	public static Character Siegrecht { get; } = new("Siegrecht");
 	[Color("#DABF78")]
+	[Alias("Sigi")]
 	public static Character Sigiswald { get; } = new("Sigiswald");
 	[Color("#A17CB2")]
 	public static Character Solange { get; } = new("Solange");
@@ -65,6 +67,7 @@ public static partial class BookwormCharacters
 	[Color(null)]
 	public static Character Todd { get; } = new("Todd");
 	[Color("#B2BAB3")]
+	[Alias("AnaFather")]
 	public static Character Trauerqual { get; } = new("Trauerqual");
 	[Color("#E1C178")]
 	public static Character Traugott { get; } = new("Traugott");

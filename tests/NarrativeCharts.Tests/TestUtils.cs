@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.CSharp;
 
 using NarrativeCharts.Bookworm;
+using NarrativeCharts.Bookworm.Meta.Locations;
 using NarrativeCharts.Scripting;
 
 namespace NarrativeCharts.Tests;

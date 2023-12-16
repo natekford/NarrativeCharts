@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 
 namespace NarrativeCharts.Console;
 
-public class Program(ImmutableArray<string> Args)
+public sealed class Program(ImmutableArray<string> Args)
 {
 	private const long DEFAULT_CHANGED = 0;
 	private const long TICKS_PER_SECOND = 10_000_000;
@@ -15,18 +15,6 @@ public class Program(ImmutableArray<string> Args)
 	private FileSystemWatcher? _FileSystemWatcher;
 
 	public bool IsCmd => Args.Length != 0;
-
-	public static async Task Main(string[] args)
-	{
-		try
-		{
-			await new Program(args.ToImmutableArray()).RunAsync().ConfigureAwait(false);
-		}
-		catch (Exception e)
-		{
-			System.Console.WriteLine(e);
-		}
-	}
 
 	public async Task RunAsync()
 	{
@@ -57,6 +45,18 @@ public class Program(ImmutableArray<string> Args)
 			// Don't reuse any script definitions or parsed scripts because they
 			// can be externally edited
 			await ProcessAsync(directory, new(ticks)).ConfigureAwait(false);
+		}
+	}
+
+	private static async Task Main(string[] args)
+	{
+		try
+		{
+			await new Program(args.ToImmutableArray()).RunAsync().ConfigureAwait(false);
+		}
+		catch (Exception e)
+		{
+			System.Console.WriteLine(e);
 		}
 	}
 

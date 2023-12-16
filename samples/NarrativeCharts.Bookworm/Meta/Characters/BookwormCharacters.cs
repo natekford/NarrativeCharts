@@ -1,4 +1,5 @@
-﻿using NarrativeCharts.Models;
+﻿using NarrativeCharts.Bookworm.Meta;
+using NarrativeCharts.Models;
 
 using System.Collections.Immutable;
 using System.Reflection;
@@ -9,17 +10,17 @@ namespace NarrativeCharts.Bookworm;
 // to alphabetize members does not like 150 properties in a single file.
 public static partial class BookwormCharacters
 {
+	public static ImmutableDictionary<string, Character> Aliases { get; }
 	public static ImmutableDictionary<Character, Hex> Colors { get; }
 
 	static BookwormCharacters()
 	{
-		Colors = typeof(BookwormCharacters)
-			.GetProperties(BindingFlags.Public | BindingFlags.Static)
-			.Where(x => x.PropertyType == typeof(Character))
-			.ToImmutableDictionary(
-				keySelector: x => (Character)x.GetValue(null)!,
-				elementSelector: x => x.GetCustomAttribute<ColorAttribute>()!.Hex
-			);
+		var properties = typeof(BookwormCharacters).GetMembers<Character>();
+		Colors = properties.ToImmutableDictionary(
+			keySelector: x => x.Value,
+			elementSelector: x => x.Member.GetCustomAttribute<ColorAttribute>()!.Hex
+		);
+		Aliases = properties.GetAliases(x => x.Value);
 	}
 
 	[AttributeUsage(AttributeTargets.Property)]

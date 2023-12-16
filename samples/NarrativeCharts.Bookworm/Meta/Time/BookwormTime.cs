@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace NarrativeCharts.Bookworm;
+namespace NarrativeCharts.Bookworm.Meta.Time;
 
 public static class BookwormTime
 {
@@ -13,6 +13,7 @@ public static class BookwormTime
 	// dinner at sixth bell.
 	// Seventh bell was curfew
 
+	public static ImmutableDictionary<string, int> Aliases { get; }
 	// source: https://w.atwiki.jp/booklove/pages/195.html#footnote_body_2
 	public static ImmutableArray<int> Lengths { get; } = new[]
 	{
@@ -25,4 +26,12 @@ public static class BookwormTime
 		3,
 		4,
 	}.ToImmutableArray();
+
+	static BookwormTime()
+	{
+		Aliases = typeof(BookwormBell)
+			.GetMembers<BookwormBell>()
+			.GetAliases(x => ((int)x).ToString())
+			.ToImmutableDictionary(x => x.Key, x => (int)x.Value);
+	}
 }
