@@ -75,9 +75,9 @@ public static partial class BookwormCharacters
 	public static Character Constanze { get; } = new("Constanze");
 	[Color(null)]
 	public static Character Cordula { get; } = new("Cordula");
-	[Color("#A6B455")]
-	public static Character Corinna { get; } = new("Corinna");
 	[Color("#F7E3C0")]
+	public static Character Corinna { get; } = new("Corinna");
+	[Color("#A6B455")]
 	public static Character Cornelius { get; } = new("Cornelius");
 	[Color("#96574E")]
 	public static Character Damian { get; } = new("Damian");
