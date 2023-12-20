@@ -5,13 +5,28 @@ using SkiaSharp;
 
 namespace NarrativeCharts.Skia;
 
+/// <summary>
+/// Draws a chart using Skia.
+/// </summary>
 public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 {
+	/// <summary>
+	/// The font to use for axis labels.
+	/// </summary>
 	public SKFont AxisLabelFont { get; set; } = new();
-	// Default to Black because some colors are really hard to read on a white bg
+	/// <summary>
+	/// If null, the color used for a character's label is the character's color.
+	/// If not null, modifies the passed in hex value and returns a new one.
+	/// Default value converts all colors to black since that's the easiest
+	/// color to see on a white background.
+	/// </summary>
 	public Func<Hex, Hex>? CharacterLabelColorConverter { get; set; }
 		= SKColorConverters.Color(SKColors.Black);
+	/// <summary>
+	/// The font to use for character names in the grid.
+	/// </summary>
 	public SKFont PointLabelFont { get; set; } = new();
+	/// <inheritdoc />
 	public override int PointLabelSize
 	{
 		get => (int)PointLabelFont.Size;
@@ -21,12 +36,16 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	private static SKPathEffect Movement { get; }
 		= SKPathEffect.CreateDash([4f, 6f], 10f);
 
+	/// <summary>
+	/// Creates a new instance of <see cref="SKChartDrawer"/>.
+	/// </summary>
 	public SKChartDrawer()
 	{
 		AxisLabelSize = 20;
 		LineWidth = 4;
 	}
 
+	/// <inheritdoc />
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
 		var dims = GetDimensions(yMap);
@@ -165,6 +184,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		return context;
 	}
 
+	/// <inheritdoc />
 	protected override void DrawSegment(SKContext image, LineSegment segment)
 	{
 		var hex = segment.Chart.Colors[segment.Character];
@@ -199,6 +219,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		}
 	}
 
+	/// <inheritdoc />
 	protected override void FinishImage(SKContext image)
 	{
 		// draw labels after all of the lines have been drawn
@@ -230,9 +251,11 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		}
 	}
 
+	/// <inheritdoc />
 	protected override SKColor ParseColor(Hex hex)
 		=> SKColor.Parse(hex.Value);
 
+	/// <inheritdoc />
 	protected override Task SaveImageAsync(SKContext image, string path)
 	{
 		Directory.CreateDirectory(Path.GetDirectoryName(path)!);

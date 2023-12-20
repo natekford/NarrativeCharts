@@ -42,7 +42,7 @@ public sealed class Program
 			// Smaller images in debug so they render faster
 			ImageSizeMult = 3f,
 #endif
-			CharacterLabelColorConverter = SKColorConverters.Darken
+			CharacterLabelColorConverter = SKColorConverters.Darken(0.75f)
 		}.UseRecommendedYSpacing();
 
 		await defs.ProcessAsync(scripts, drawer).ConfigureAwait(false);
