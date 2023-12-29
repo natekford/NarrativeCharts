@@ -14,9 +14,9 @@ namespace NarrativeCharts.Plot;
  * ScottPlot 5, and will probably remove this class eventually
  */
 
-public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
+public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlotContext, Color>
 {
-	protected override ScottPlot.Plot CreateCanvas(NarrativeChartData chart, YMap yMap)
+	protected override ScottPlotContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
 		var dims = GetDimensions(yMap);
 		var plot = new ScottPlot.Plot(dims.Width, dims.Height);
@@ -91,17 +91,17 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
 		}
 
 		plot.AxisAuto(0.015, 0.025);
-		return plot;
+		return new(plot, chart, yMap);
 	}
 
-	protected override void DrawSegment(ScottPlot.Plot image, LineSegment segment)
+	protected override void DrawSegment(ScottPlotContext image, Character character, LineSegment segment)
 	{
 		var xs = new double[] { segment.X0, segment.X1 };
 		var ys = new double[] { segment.Y0, segment.Y1 };
-		var scatter = image.AddScatter(xs, ys);
+		var scatter = image.Plot.AddScatter(xs, ys);
 
-		var color = GetColor(segment.Chart.Colors[segment.Character]);
-		scatter.Label = segment.Character.Value;
+		var color = GetColor(image.Chart.Colors[character]);
+		scatter.Label = character.Value;
 		scatter.Color = color;
 
 		scatter.LineWidth = LineWidth;
@@ -114,20 +114,20 @@ public sealed class ScottPlotChartDrawer : ChartDrawer<ScottPlot.Plot, Color>
 		scatter.DataPointLabelFont.Size = PointLabelSize;
 		scatter.DataPointLabels = new[]
 		{
-			segment.IsMovement ? string.Empty : segment.Character.Value,
+			segment.IsMovement ? string.Empty : character.Value,
 			// Show the character's name at their last point
-			segment.IsFinal ? segment.Character.Value : string.Empty,
+			segment.IsFinal ? character.Value : string.Empty,
 		};
 	}
 
 	protected override Color ParseColor(Hex hex)
 		=> ColorTranslator.FromHtml(hex.Value);
 
-	protected override Task SaveImageAsync(ScottPlot.Plot image, string path)
+	protected override Task SaveImageAsync(ScottPlotContext image, string path)
 	{
 		Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
-		image.SaveFig(path);
+		image.Plot.SaveFig(path);
 		return Task.CompletedTask;
 	}
 

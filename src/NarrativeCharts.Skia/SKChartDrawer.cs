@@ -90,7 +90,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 			canvas.Translate(context.PaddingStart - TickLength, context.PaddingEnd);
 			DrawYAxis(context, paint, isLeftAxis: true);
 
-			canvas.Translate(context.GridWidth + TickLength + LineWidth, 0);
+			canvas.Translate(context.Grid.Width + TickLength + LineWidth, 0);
 			DrawYAxis(context, paint, isLeftAxis: false);
 		}
 
@@ -115,7 +115,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 				paint.IsAntialias = false;
 			}
 
-			canvas.Translate(0, context.GridHeight + LineWidth);
+			canvas.Translate(0, context.Grid.Height + LineWidth);
 			int iterations = 0, processed = 0, queueCount = queue.Count;
 			float prevX = float.MinValue, prevLength = float.MinValue;
 			while (queue.TryDequeue(out var tuple))
@@ -164,12 +164,12 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 			foreach (var yTick in yMap.Locations.Values)
 			{
 				var y = context.Y(yTick);
-				canvas.DrawLine(-LineWidth, y, context.GridWidth + LineWidth, y, paint);
+				canvas.DrawLine(-LineWidth, y, context.Grid.Width + LineWidth, y, paint);
 			}
 			foreach (var xTick in chart.Events.Keys)
 			{
 				var x = context.X(xTick);
-				canvas.DrawLine(x, -LineWidth, x, context.GridHeight + LineWidth, paint);
+				canvas.DrawLine(x, -LineWidth, x, context.Grid.Height + LineWidth, paint);
 			}
 		}
 
@@ -185,11 +185,11 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	}
 
 	/// <inheritdoc />
-	protected override void DrawSegment(SKContext image, LineSegment segment)
+	protected override void DrawSegment(SKContext image, Character character, LineSegment segment)
 	{
-		var hex = segment.Chart.Colors[segment.Character];
-		var paint = image.Paint.GetOrAdd(hex, x => GetPaint(GetColor(x), PointLabelFont));
-		var positions = image.Labels.GetOrAdd(segment.Character, _ => []);
+		var hex = image.Chart.Colors[character];
+		var paint = image.Paint.GetOrAdd(hex, GetPaint);
+		var positions = image.Labels.GetOrAdd(character, _ => []);
 
 		using (Restrict(image))
 		{
@@ -229,17 +229,11 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 
 			foreach (var (character, positions) in image.Labels)
 			{
-				var name = image.Text.GetOrAdd(
-					key: character.Value,
-					valueFactory: x => SKTextBlob.Create(x, PointLabelFont)
-				);
+				var name = image.Text.GetOrAdd(character.Value, GetText);
 				var hex = CharacterLabelColorConverter is null
 					? image.Chart.Colors[character]
 					: CharacterLabelColorConverter(image.Chart.Colors[character]);
-				var paint = image.Paint.GetOrAdd(
-					key: hex,
-					valueFactory: x => GetPaint(GetColor(x), PointLabelFont)
-				);
+				var paint = image.Paint.GetOrAdd(hex, GetPaint);
 
 				paint.IsAntialias = true;
 				paint.PathEffect = null;
@@ -323,6 +317,9 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		}
 	}
 
+	private SKPaint GetPaint(Hex hex)
+		=> GetPaint(GetColor(hex), PointLabelFont);
+
 	private SKPaint GetPaint(SKColor color, SKFont font)
 	{
 		return new(font)
@@ -332,4 +329,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 			IsAntialias = false,
 		};
 	}
+
+	private SKTextBlob GetText(string text)
+		=> SKTextBlob.Create(text, PointLabelFont);
 }

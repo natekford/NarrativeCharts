@@ -96,7 +96,7 @@ public class ScriptDefinitions
 		{
 			defs.ScriptExtension = json.ScriptExtension;
 		}
-		if (json.Time is not null)
+		if (json.Time?.Count > 0)
 		{
 			for (var i = 0; i < json.Time.Count; ++i)
 			{
@@ -205,7 +205,7 @@ public class ScriptDefinitions
 		string ScriptExtension,
 		ScriptSymbols? Symbols,
 		List<string> OnlyDrawTheseCharacters,
-		List<TimeJson>? Time,
+		List<TimeJson> Time,
 		List<LocationJson> Locations,
 		List<CharacterJson> Characters
 	);

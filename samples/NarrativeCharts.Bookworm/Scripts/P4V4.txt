@@ -37,7 +37,7 @@ $Groschel=Bertilde,GiebeGroschel
 $Illgner=Brigitte,Helfried,Nadine,Viktor,Volk
 $SP=GiebeDahldolf,Gloria,Grausam,Jeremias,Laurenz,Royella
 $KE=Elvira,Nikolaus
-// ferdi thinks cinderella is shameless
+// ferdi thinks myne's shoujo story is shameless
 >
 
 

@@ -66,9 +66,7 @@ public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 					// Only bother attempting to draw if any time has passed
 					if (x0 != x1)
 					{
-						DrawSegment(canvas, new(
-							Chart: chart,
-							Character: character,
+						DrawSegment(canvas, character, new(
 							X0: x0,
 							X1: x1,
 							Y0: yMap.Characters[(character, prevY)],
@@ -81,9 +79,7 @@ public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 				// Add the current movement segment
 				if (hasMovement)
 				{
-					DrawSegment(canvas, new(
-						Chart: chart,
-						Character: character,
+					DrawSegment(canvas, character, new(
 						X0: prevX,
 						X1: currX,
 						Y0: yMap.Characters[(character, prevY)],
@@ -103,8 +99,9 @@ public abstract class ChartDrawer<TImage, TColor> : ChartDrawer
 	/// Draws <paramref name="segment"/> onto <paramref name="image"/>.
 	/// </summary>
 	/// <param name="image"></param>
+	/// <param name="character"></param>
 	/// <param name="segment"></param>
-	protected abstract void DrawSegment(TImage image, LineSegment segment);
+	protected abstract void DrawSegment(TImage image, Character character, LineSegment segment);
 
 	/// <summary>
 	/// Draws any items after all of the segments have been drawn.

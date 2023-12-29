@@ -11,7 +11,7 @@ public class FakeChartDrawer : ChartDrawer<FakeCanvas, Hex>
 	protected override FakeCanvas CreateCanvas(NarrativeChartData chart, YMap yMap)
 		=> new([], yMap, GetDimensions(yMap));
 
-	protected override void DrawSegment(FakeCanvas image, LineSegment segment)
+	protected override void DrawSegment(FakeCanvas image, Character character, LineSegment segment)
 		=> image.Segments.Add(segment);
 
 	protected override Hex ParseColor(Hex hex)
