@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 namespace NarrativeCharts.Skia;
 
 /// <summary>
-/// Holds the bitmap being drawn on and associated information for drawing it.
+/// Holds the bitmap being drawn and information for drawing it.
 /// </summary>
 public sealed class SKContext : IDisposable
 {
@@ -17,7 +17,7 @@ public sealed class SKContext : IDisposable
 	/// </summary>
 	public SKBitmap Bitmap { get; }
 	/// <summary>
-	/// The canvas used to drawn on <see cref="Bitmap"/>.
+	/// The canvas used to draw on <see cref="Bitmap"/>.
 	/// </summary>
 	public SKCanvas Canvas { get; }
 	/// <summary>
@@ -112,6 +112,18 @@ public sealed class SKContext : IDisposable
 
 		XShift = (w - (yMap.XRange * XMult)) / 2;
 		YShift = (h - (yMap.YRange * YMult)) / 2;
+	}
+
+	/// <summary>
+	/// Clips <see cref="Canvas"/> to <see cref="Grid"/>.
+	/// </summary>
+	/// <param name="operation"></param>
+	/// <returns></returns>
+	public SKAutoCanvasRestore ClipGrid(SKClipOperation operation)
+	{
+		var autoRestore = new SKAutoCanvasRestore(Canvas);
+		Canvas.ClipRect(Grid, operation);
+		return autoRestore;
 	}
 
 	/// <inheritdoc />

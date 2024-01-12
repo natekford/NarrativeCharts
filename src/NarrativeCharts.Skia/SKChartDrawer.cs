@@ -55,7 +55,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		var info = new SKImageInfo(dims.Width, dims.Height, SKColorType.Rgb565);
 		var bitmap = new SKBitmap(info);
 		var canvas = new SKCanvas(bitmap);
-		var context = new SKContext(
+		var image = new SKContext(
 			bitmap: bitmap,
 			canvas: canvas,
 			chart: chart,
@@ -69,7 +69,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		canvas.Clear(SKColors.White);
 
 		// Title
-		using (Restrict(context, SKClipOperation.Difference))
+		using (image.ClipGrid(SKClipOperation.Difference))
 		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
 			paint.TextSize = AxisPadding * 0.50f;
@@ -82,31 +82,31 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		}
 
 		// Y-Axes
-		using (Restrict(context, SKClipOperation.Difference))
+		using (image.ClipGrid(SKClipOperation.Difference))
 		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
 			paint.TextSize = AxisLabelSize;
 
-			canvas.Translate(context.PaddingStart - TickLength, context.PaddingEnd);
-			DrawYAxis(context, paint, isLeftAxis: true);
+			canvas.Translate(image.PaddingStart - TickLength, image.PaddingEnd);
+			DrawYAxis(image, paint, isLeftAxis: true);
 
-			canvas.Translate(context.Grid.Width + TickLength + LineWidth, 0);
-			DrawYAxis(context, paint, isLeftAxis: false);
+			canvas.Translate(image.Grid.Width + TickLength + LineWidth, 0);
+			DrawYAxis(image, paint, isLeftAxis: false);
 		}
 
 		// X-Axes
-		using (Restrict(context, SKClipOperation.Difference))
+		using (image.ClipGrid(SKClipOperation.Difference))
 		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
 			paint.TextSize = AxisLabelSize;
 			paint.TextAlign = SKTextAlign.Center;
 
-			canvas.Translate(context.PaddingEnd, context.PaddingStart);
+			canvas.Translate(image.PaddingEnd, image.PaddingStart);
 			var e = 0;
 			var queue = new Queue<(float, float, string)>(chart.Events.Count);
 			foreach (var (xTick, label) in chart.Events)
 			{
-				var x = context.X(xTick);
+				var x = image.X(xTick);
 				queue.Enqueue((x, paint.MeasureText(label.Name), label.Name));
 
 				canvas.DrawLine(x, 0, x, -TickLength, paint);
@@ -115,7 +115,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 				paint.IsAntialias = false;
 			}
 
-			canvas.Translate(0, context.Grid.Height + LineWidth);
+			canvas.Translate(0, image.Grid.Height + LineWidth);
 			int iterations = 0, processed = 0, queueCount = queue.Count;
 			float prevX = float.MinValue, prevLength = float.MinValue;
 			while (queue.TryDequeue(out var tuple))
@@ -157,19 +157,19 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		}
 
 		// Grid lines
-		using (Restrict(context))
+		using (image.ClipGrid(SKClipOperation.Intersect))
 		using (var paint = GetPaint(SKColors.LightGray, AxisLabelFont))
 		{
-			canvas.Translate(context.PaddingEnd, context.PaddingEnd);
+			canvas.Translate(image.PaddingEnd, image.PaddingEnd);
 			foreach (var yTick in yMap.Locations.Values)
 			{
-				var y = context.Y(yTick);
-				canvas.DrawLine(-LineWidth, y, context.Grid.Width + LineWidth, y, paint);
+				var y = image.Y(yTick);
+				canvas.DrawLine(-LineWidth, y, image.Grid.Width + LineWidth, y, paint);
 			}
 			foreach (var xTick in chart.Events.Keys)
 			{
-				var x = context.X(xTick);
-				canvas.DrawLine(x, -LineWidth, x, context.Grid.Height + LineWidth, paint);
+				var x = image.X(xTick);
+				canvas.DrawLine(x, -LineWidth, x, image.Grid.Height + LineWidth, paint);
 			}
 		}
 
@@ -178,10 +178,10 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		{
 			paint.Style = SKPaintStyle.Stroke;
 
-			canvas.DrawRect(context.Grid, paint);
+			canvas.DrawRect(image.Grid, paint);
 		}
 
-		return context;
+		return image;
 	}
 
 	/// <inheritdoc />
@@ -191,7 +191,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		var paint = image.Paint.GetOrAdd(hex, GetPaint);
 		var positions = image.Labels.GetOrAdd(character, _ => []);
 
-		using (Restrict(image))
+		using (image.ClipGrid(SKClipOperation.Intersect))
 		{
 			image.Canvas.Translate(image.PaddingEnd, image.PaddingEnd);
 
@@ -223,7 +223,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	protected override void FinishImage(SKContext image)
 	{
 		// draw labels after all of the lines have been drawn
-		using (Restrict(image))
+		using (image.ClipGrid(SKClipOperation.Intersect))
 		{
 			image.Canvas.Translate(image.PaddingEnd, image.PaddingEnd);
 
@@ -287,15 +287,6 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 			}
 		});
 		return tcs.Task;
-	}
-
-	private static SKAutoCanvasRestore Restrict(
-		SKContext context,
-		SKClipOperation op = SKClipOperation.Intersect)
-	{
-		var autoRestore = new SKAutoCanvasRestore(context.Canvas);
-		context.Canvas.ClipRect(context.Grid, op);
-		return autoRestore;
 	}
 
 	private void DrawYAxis(SKContext context, SKPaint paint, bool isLeftAxis)
