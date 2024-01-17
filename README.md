@@ -4,6 +4,6 @@
 
 See [here](https://github.com/natekford/NarrativeCharts/tree/master/samples/NarrativeCharts.Bookworm/Scripts) for examples of how scripts are written.
 
-[NarrativeCharts.Console](https://github.com/natekford/NarrativeCharts/blob/master/src/NarrativeCharts.Console/Program.cs) can produce charts for scripts in the supplied directory.
+[NarrativeCharts.Console](https://github.com/natekford/NarrativeCharts/blob/master/src/NarrativeCharts.Console/Program.cs) can produce charts for scripts in a supplied directory (ScriptDefinitions.json must exist and all scripts in the directory will be processed).
 
 Inspired by [XKCD 657: Movie Narrative Charts](https://xkcd.com/657/).
