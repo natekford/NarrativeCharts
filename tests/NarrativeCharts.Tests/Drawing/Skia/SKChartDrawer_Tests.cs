@@ -2,6 +2,7 @@
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Tests.Properties;
 using SkiaSharp;
+using System;
 
 namespace NarrativeCharts.Tests.Drawing.Skia;
 
@@ -23,9 +24,17 @@ public class SKChartDrawer_Tests
 		var path = Path.Combine(defs.ScriptDirectory, nameof(SKChartDrawer_Tests), "ActualP3V1.png");
 		await Drawer.SaveChartAsync(script, path).ConfigureAwait(true);
 
-		using var actual = SKBitmap.Decode(path);
-		using var expected = SKBitmap.Decode(Resources.ExpectedP3V1);
+		var actual = File.ReadAllBytes(path);
 
-		actual.Pixels.SequenceEqual(expected.Pixels).Should().Be(true);
+		// ExpectedP3V1 output is received when this test is run on Linux
+		// So we can reencode the bytes on Linux and it should then become the same
+		var expected = new byte[actual.Length];
+		using (var bm = SKBitmap.Decode(Resources.ExpectedP3V1))
+		await using (var ms = new MemoryStream(expected))
+		{
+			bm.Encode(ms, SKEncodedImageFormat.Png, 100);
+		}
+
+		actual.SequenceEqual(expected).Should().Be(true);
 	}
 }
