@@ -28,7 +28,9 @@ public partial class Scripting_Tests
 	public async Task DrawScripts_MoreScriptsThanParallel()
 	{
 		SaveDelay = TimeSpan.FromMilliseconds(100);
-		var scripts = Enumerable.Repeat(0, 11).Select(_ => new FakeScriptConverter()).ToList();
+		var scripts = Enumerable.Repeat(0, 11)
+			.Select(_ => new FakeScriptConverter())
+			.ToList();
 		var info = await DrawAsync(GetDefs(), scripts).ConfigureAwait(true);
 
 		info.Should().HaveCount(11);
@@ -40,13 +42,10 @@ public partial class Scripting_Tests
 	{
 		RedrawUneditedScripts = false;
 		var defs = GetDefs();
-		var scripts = Enumerable.Repeat(0, 5).Select(_ => new FakeScriptConverter()).ToList();
-		foreach (var script in scripts[..2])
-		{
-			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
-			Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-			File.Create(path).Dispose();
-		}
+		var scripts = Enumerable.Repeat(0, 5)
+			.Select(_ => new FakeScriptConverter())
+			.ToList();
+		CreateFakeFiles(defs, scripts[..2]);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
@@ -195,7 +194,7 @@ public partial class Scripting_Tests
 	}
 
 	private async Task<List<DrawInfo>> DrawAsync(
-			ScriptDefinitions defs,
+		ScriptDefinitions defs,
 		IReadOnlyList<ScriptParser> scripts)
 	{
 		var drawer = new FakeChartDrawer()
