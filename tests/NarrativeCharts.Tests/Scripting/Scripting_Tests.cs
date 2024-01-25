@@ -45,6 +45,8 @@ public partial class Scripting_Tests
 		var scripts = Enumerable.Repeat(0, 5)
 			.Select(_ => new FakeScriptConverter())
 			.ToList();
+		// because github actions runs very fast
+		await Task.Delay(5).ConfigureAwait(true);
 		CreateFakeFiles(defs, scripts[..2]);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);

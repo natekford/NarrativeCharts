@@ -50,7 +50,7 @@ public static class ScriptingUtils
 				}
 
 				var scriptTime = script.LastWriteTimeUtc;
-				if (comparisonTime >= scriptTime)
+				if (comparisonTime > scriptTime)
 				{
 					yield return new(
 						TotalCount: scripts.Count,
