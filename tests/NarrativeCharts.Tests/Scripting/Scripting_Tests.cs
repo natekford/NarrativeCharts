@@ -45,9 +45,7 @@ public partial class Scripting_Tests
 		var scripts = Enumerable.Repeat(0, 5)
 			.Select(_ => new FakeScriptConverter())
 			.ToList();
-		// because github actions runs very fast
-		await Task.Delay(5).ConfigureAwait(true);
-		CreateFakeFiles(defs, scripts[..2]);
+		await CreateFakeFilesAsync(defs, scripts[..2]).ConfigureAwait(true);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
@@ -65,7 +63,7 @@ public partial class Scripting_Tests
 		var scripts = Enumerable.Repeat(0, 5)
 			.Select(_ => new FakeScriptConverter())
 			.ToList();
-		CreateFakeFiles(defs, scripts[..2]);
+		await CreateFakeFilesAsync(defs, scripts[..2]).ConfigureAwait(true);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
@@ -83,7 +81,7 @@ public partial class Scripting_Tests
 		var scripts = Enumerable.Repeat(0, 5)
 			.Select(_ => new FakeScriptConverter())
 			.ToList();
-		CreateFakeFiles(defs, scripts[..2]);
+		await CreateFakeFilesAsync(defs, scripts[..2]).ConfigureAwait(true);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
@@ -100,7 +98,7 @@ public partial class Scripting_Tests
 			.Select(_ => new FakeScriptConverter())
 			.Prepend(new FakeScriptConverter(DateTime.UtcNow + TimeSpan.FromHours(1)))
 			.ToList();
-		CreateFakeFiles(defs, scripts);
+		await CreateFakeFilesAsync(defs, scripts).ConfigureAwait(true);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
@@ -183,10 +181,12 @@ public partial class Scripting_Tests
 	[GeneratedRegex(@"P(\d+)V(\d+)")]
 	private static partial Regex BookNumberRegex();
 
-	private void CreateFakeFiles(
+	private async Task CreateFakeFilesAsync(
 		ScriptDefinitions defs,
 		IEnumerable<FakeScriptConverter> scripts)
 	{
+		// because github actions runs very fast
+		await Task.Delay(5).ConfigureAwait(true);
 		foreach (var script in scripts)
 		{
 			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
