@@ -30,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: image-artifact
-        path: Scripts/SKChartDrawer_Tests/ActualP3V1.png
+        path: '**/ActualP3V1.png'
