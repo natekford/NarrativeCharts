@@ -24,19 +24,16 @@ public class SKChartDrawer_Tests
 		var path = Path.Combine(defs.ScriptDirectory, nameof(SKChartDrawer_Tests), "ActualP3V1.png");
 		await Drawer.SaveChartAsync(script, path).ConfigureAwait(true);
 
-		Console.WriteLine(path);
-
 		var actual = File.ReadAllBytes(path);
-		Console.WriteLine(actual.Length);
 		// Windows
 		if (actual.Length == 1085801)
 		{
 			actual.SequenceEqual(Resources.ExpectedP3V1Windows).Should().Be(true);
 		}
-		// Linux/Github Actions
+		// Github Actions
 		else if (actual.Length == 1098576)
 		{
-			actual.SequenceEqual(Resources.ExpectedP3V1Linux).Should().Be(true);
+			actual.SequenceEqual(Resources.ExpectedP3V1GithubActions).Should().Be(true);
 		}
 		else
 		{
