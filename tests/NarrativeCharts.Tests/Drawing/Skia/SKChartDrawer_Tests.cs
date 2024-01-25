@@ -25,6 +25,7 @@ public class SKChartDrawer_Tests
 		await Drawer.SaveChartAsync(script, path).ConfigureAwait(true);
 
 		var actual = File.ReadAllBytes(path);
+		Console.WriteLine(actual.Length);
 		// Windows
 		if (actual.Length == 1085801)
 		{
