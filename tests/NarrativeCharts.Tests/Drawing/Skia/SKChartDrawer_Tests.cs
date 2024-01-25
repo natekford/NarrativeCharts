@@ -24,6 +24,8 @@ public class SKChartDrawer_Tests
 		var path = Path.Combine(defs.ScriptDirectory, nameof(SKChartDrawer_Tests), "ActualP3V1.png");
 		await Drawer.SaveChartAsync(script, path).ConfigureAwait(true);
 
+		Console.WriteLine(path);
+
 		var actual = File.ReadAllBytes(path);
 		Console.WriteLine(actual.Length);
 		// Windows
