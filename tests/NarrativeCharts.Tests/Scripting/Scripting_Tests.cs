@@ -44,6 +44,7 @@ public partial class Scripting_Tests
 		foreach (var script in scripts[..2])
 		{
 			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
+			Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 			File.Create(path).Dispose();
 		}
 
@@ -60,12 +61,10 @@ public partial class Scripting_Tests
 		RedrawUneditedScripts = false;
 		var defs = GetDefs();
 		defs.ComparisonTimeUtc = DateTime.MaxValue;
-		var scripts = Enumerable.Repeat(0, 5).Select(_ => new FakeScriptConverter()).ToList();
-		foreach (var script in scripts[..2])
-		{
-			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
-			File.Create(path).Dispose();
-		}
+		var scripts = Enumerable.Repeat(0, 5)
+			.Select(_ => new FakeScriptConverter())
+			.ToList();
+		CreateFakeFiles(defs, scripts[..2]);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
@@ -80,12 +79,10 @@ public partial class Scripting_Tests
 		RedrawUneditedScripts = false;
 		var defs = GetDefs();
 		defs.ComparisonTimeUtc = DateTime.MinValue;
-		var scripts = Enumerable.Repeat(0, 5).Select(_ => new FakeScriptConverter()).ToList();
-		foreach (var script in scripts[..2])
-		{
-			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
-			File.Create(path).Dispose();
-		}
+		var scripts = Enumerable.Repeat(0, 5)
+			.Select(_ => new FakeScriptConverter())
+			.ToList();
+		CreateFakeFiles(defs, scripts[..2]);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
@@ -102,11 +99,7 @@ public partial class Scripting_Tests
 			.Select(_ => new FakeScriptConverter())
 			.Prepend(new FakeScriptConverter(DateTime.UtcNow + TimeSpan.FromHours(1)))
 			.ToList();
-		foreach (var script in scripts)
-		{
-			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
-			File.Create(path).Dispose();
-		}
+		CreateFakeFiles(defs, scripts);
 
 		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
@@ -189,8 +182,20 @@ public partial class Scripting_Tests
 	[GeneratedRegex(@"P(\d+)V(\d+)")]
 	private static partial Regex BookNumberRegex();
 
-	private async Task<List<DrawInfo>> DrawAsync(
+	private void CreateFakeFiles(
 		ScriptDefinitions defs,
+		IEnumerable<FakeScriptConverter> scripts)
+	{
+		foreach (var script in scripts)
+		{
+			var path = Path.Combine(defs.ScriptDirectory, CHARTS_DIR, $"{script.Name}.png");
+			Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+			File.Create(path).Dispose();
+		}
+	}
+
+	private async Task<List<DrawInfo>> DrawAsync(
+			ScriptDefinitions defs,
 		IReadOnlyList<ScriptParser> scripts)
 	{
 		var drawer = new FakeChartDrawer()

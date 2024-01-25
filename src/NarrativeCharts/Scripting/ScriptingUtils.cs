@@ -105,7 +105,7 @@ public static class ScriptingUtils
 			var (chart, path) = item;
 			active.Add(SaveChartAsync(chart, path));
 		}
-		while (active.Any())
+		while (active.Count != 0)
 		{
 			yield return await WhenAnyDrawingAsync().ConfigureAwait(false);
 		}
