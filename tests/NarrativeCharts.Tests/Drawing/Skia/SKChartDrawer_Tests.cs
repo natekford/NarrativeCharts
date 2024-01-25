@@ -25,18 +25,19 @@ public class SKChartDrawer_Tests
 		await Drawer.SaveChartAsync(script, path).ConfigureAwait(true);
 
 		var actual = File.ReadAllBytes(path);
-		Console.WriteLine(actual.Length);
-		actual.Length.Should().NotBe(0);
-
-		// ExpectedP3V1 output is received when this test is run on Linux
-		// So we can reencode the bytes on Linux and it should then become the same
-		var expected = new byte[actual.Length];
-		using (var bm = SKBitmap.Decode(Resources.ExpectedP3V1))
-		await using (var ms = new MemoryStream(expected))
+		// Windows
+		if (actual.Length == 1085801)
 		{
-			bm.Encode(ms, SKEncodedImageFormat.Png, 100);
+			actual.SequenceEqual(Resources.ExpectedP3V1Windows).Should().Be(true);
 		}
-
-		actual.SequenceEqual(expected).Should().Be(true);
+		// Linux/Github Actions
+		else if (actual.Length == 1098576)
+		{
+			actual.SequenceEqual(Resources.ExpectedP3V1Linux).Should().Be(true);
+		}
+		else
+		{
+			Assert.Fail("Unexpected drawn image length.");
+		}
 	}
 }
