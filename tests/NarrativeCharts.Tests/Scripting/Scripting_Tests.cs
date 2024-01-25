@@ -29,7 +29,7 @@ public partial class Scripting_Tests
 	{
 		SaveDelay = TimeSpan.FromMilliseconds(100);
 		var scripts = Enumerable.Repeat(0, 11).Select(_ => new FakeScriptConverter()).ToList();
-		var info = await DrawAsync(GetDefs(), scripts).ConfigureAwait(false);
+		var info = await DrawAsync(GetDefs(), scripts).ConfigureAwait(true);
 
 		info.Should().HaveCount(11);
 		info.Should().AllSatisfy(x => x.DrawTime.Should().NotBeNull());
@@ -47,7 +47,7 @@ public partial class Scripting_Tests
 			File.Create(path).Dispose();
 		}
 
-		var info = await DrawAsync(defs, scripts).ConfigureAwait(false);
+		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
 		info.Should().HaveCount(5);
 		info[..2].Should().AllSatisfy(x => x.DrawTime.Should().BeNull());
@@ -67,7 +67,7 @@ public partial class Scripting_Tests
 			File.Create(path).Dispose();
 		}
 
-		var info = await DrawAsync(defs, scripts).ConfigureAwait(false);
+		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
 		info.Should().HaveCount(5);
 		info[..2].Should().AllSatisfy(x => x.DrawTime.Should().BeNull());
@@ -87,7 +87,7 @@ public partial class Scripting_Tests
 			File.Create(path).Dispose();
 		}
 
-		var info = await DrawAsync(defs, scripts).ConfigureAwait(false);
+		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
 		info.Should().HaveCount(5);
 		info.Should().AllSatisfy(x => x.DrawTime.Should().NotBeNull());
@@ -108,7 +108,7 @@ public partial class Scripting_Tests
 			File.Create(path).Dispose();
 		}
 
-		var info = await DrawAsync(defs, scripts).ConfigureAwait(false);
+		var info = await DrawAsync(defs, scripts).ConfigureAwait(true);
 
 		info.Should().HaveCount(5);
 		info.Should().AllSatisfy(x => x.DrawTime.Should().NotBeNull());
@@ -118,7 +118,7 @@ public partial class Scripting_Tests
 	public async Task DrawScripts_Valid()
 	{
 		var scripts = new[] { new FakeScriptConverter() };
-		var info = await DrawAsync(GetDefs(), scripts).ConfigureAwait(false);
+		var info = await DrawAsync(GetDefs(), scripts).ConfigureAwait(true);
 
 		info.Should().HaveCount(1);
 		info.Should().AllSatisfy(x => x.DrawTime.Should().NotBeNull());
@@ -180,8 +180,8 @@ public partial class Scripting_Tests
 		defs.OnlyDrawTheseCharacters = [Ferdinand, Myne];
 
 		var path = Path.Combine(defs.ScriptDirectory, "TestDefs.json");
-		await defs.SaveAsync(path).ConfigureAwait(false);
-		var loadedDefs = await ScriptDefinitions.LoadAsync(path).ConfigureAwait(false);
+		await defs.SaveAsync(path).ConfigureAwait(true);
+		var loadedDefs = await ScriptDefinitions.LoadAsync(path).ConfigureAwait(true);
 
 		loadedDefs.Should().BeEquivalentTo(defs);
 	}

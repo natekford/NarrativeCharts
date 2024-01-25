@@ -12,7 +12,7 @@ public class ChartDrawer_Tests
 	[Fact]
 	public async Task Empty()
 	{
-		await Drawer.SaveChartAsync(new(), "").ConfigureAwait(false);
+		await Drawer.SaveChartAsync(new(), "").ConfigureAwait(true);
 
 		Drawer.Images.Single().Segments.Should().BeEmpty();
 	}
@@ -25,7 +25,7 @@ public class ChartDrawer_Tests
 		chart.AddScene(new(1, Temple, new[] { Myne }));
 		chart.AddScene(new(2, MynesHouse, new[] { Myne }));
 
-		await Drawer.SaveChartAsync(chart, "").ConfigureAwait(false);
+		await Drawer.SaveChartAsync(chart, "").ConfigureAwait(true);
 
 		var segments = Drawer.Images.Single().Segments;
 		segments.Should().HaveCount(2);
@@ -51,7 +51,7 @@ public class ChartDrawer_Tests
 		chart.AddScene(new(1, MynesHouse, new[] { Myne }));
 		chart.AddScene(new(2, MynesHouse, new[] { Myne }));
 
-		await Drawer.SaveChartAsync(chart, "").ConfigureAwait(false);
+		await Drawer.SaveChartAsync(chart, "").ConfigureAwait(true);
 
 		var segments = Drawer.Images.Single().Segments;
 		segments.Should().HaveCount(2);
@@ -78,7 +78,7 @@ public class ChartDrawer_Tests
 		chart.AddScene(new(2, Temple, new[] { Ferdinand, Myne }));
 
 		Drawer.IgnoreNonMovingCharacters = false;
-		await Drawer.SaveChartAsync(chart, "").ConfigureAwait(false);
+		await Drawer.SaveChartAsync(chart, "").ConfigureAwait(true);
 
 		Drawer.Images.Single().Segments.Should().HaveCount(2);
 	}
@@ -92,7 +92,7 @@ public class ChartDrawer_Tests
 		chart.AddScene(new(2, Temple, new[] { Ferdinand, Myne }));
 
 		Drawer.IgnoreNonMovingCharacters = true;
-		await Drawer.SaveChartAsync(chart, "").ConfigureAwait(false);
+		await Drawer.SaveChartAsync(chart, "").ConfigureAwait(true);
 
 		Drawer.Images.Single().Segments.Should().BeEmpty();
 	}
