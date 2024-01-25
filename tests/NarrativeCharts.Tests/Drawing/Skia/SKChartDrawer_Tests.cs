@@ -25,6 +25,8 @@ public class SKChartDrawer_Tests
 		await Drawer.SaveChartAsync(script, path).ConfigureAwait(true);
 
 		var actual = File.ReadAllBytes(path);
+		Console.WriteLine(actual.Length);
+		actual.Length.Should().NotBe(0);
 
 		// ExpectedP3V1 output is received when this test is run on Linux
 		// So we can reencode the bytes on Linux and it should then become the same
