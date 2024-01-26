@@ -181,7 +181,7 @@ public partial class Scripting_Tests
 	[GeneratedRegex(@"P(\d+)V(\d+)")]
 	private static partial Regex BookNumberRegex();
 
-	private async Task CreateFakeFilesAsync(
+	private static async Task CreateFakeFilesAsync(
 		ScriptDefinitions defs,
 		IEnumerable<FakeScriptConverter> scripts)
 	{

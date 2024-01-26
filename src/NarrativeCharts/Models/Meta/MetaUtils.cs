@@ -28,9 +28,7 @@ public static class MetaUtils
 				aliases.TryAdd(convertValue(value), value);
 			}
 
-			var cAliases = prop.GetCustomAttribute<AliasAttribute>()?.Aliases
-				?? ImmutableArray<string>.Empty;
-			foreach (var alias in cAliases)
+			foreach (var alias in prop.GetCustomAttribute<AliasAttribute>()?.Aliases ?? [])
 			{
 				aliases.Add(alias, value);
 			}

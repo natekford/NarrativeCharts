@@ -17,8 +17,8 @@ public static class BookwormTime
 
 	public static ImmutableDictionary<string, int> Aliases { get; }
 	// source: https://w.atwiki.jp/booklove/pages/195.html#footnote_body_2
-	public static ImmutableArray<int> Lengths { get; } = new[]
-	{
+	public static ImmutableArray<int> Lengths { get; } =
+	[
 		4,
 		3,
 		3,
@@ -27,7 +27,7 @@ public static class BookwormTime
 		2,
 		3,
 		4,
-	}.ToImmutableArray();
+	];
 
 	static BookwormTime()
 	{

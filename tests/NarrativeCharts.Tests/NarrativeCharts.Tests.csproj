@@ -17,6 +17,7 @@
 		<CollectCoverage>true</CollectCoverage>
 		<CoverletOutputFormat>lcov</CoverletOutputFormat>
 		<CoverletOutput>./lcov.info</CoverletOutput>
+		<NeutralLanguage>en-US</NeutralLanguage>
 	</PropertyGroup>
 
 	<ItemGroup>

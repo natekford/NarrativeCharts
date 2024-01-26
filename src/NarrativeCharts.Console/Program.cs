@@ -52,7 +52,7 @@ public sealed class Program(ImmutableArray<string> Args)
 	{
 		try
 		{
-			await new Program(args.ToImmutableArray()).RunAsync().ConfigureAwait(false);
+			await new Program([.. args]).RunAsync().ConfigureAwait(false);
 		}
 		catch (Exception e)
 		{

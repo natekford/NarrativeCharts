@@ -12,5 +12,5 @@ public sealed class AliasAttribute(params string[] aliases) : Attribute
 	/// <summary>
 	/// The aliases to use.
 	/// </summary>
-	public ImmutableArray<string> Aliases { get; } = aliases.ToImmutableArray();
+	public ImmutableArray<string> Aliases { get; } = [.. aliases];
 }
