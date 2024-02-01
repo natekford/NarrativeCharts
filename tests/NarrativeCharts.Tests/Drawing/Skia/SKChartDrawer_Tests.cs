@@ -25,7 +25,7 @@ public class SKChartDrawer_Tests
 	[Fact]
 	public async Task DrawImage_Valid()
 	{
-		_Output.WriteLine($"Installed fonts: {string.Join(", ", SKFontManager.Default.FontFamilies)}");
+		_Output.WriteLine($"Fonts: {string.Join(", ", _Fonts)}");
 
 		var defs = TestUtils.Defs;
 		var script = defs.LoadScripts().First();

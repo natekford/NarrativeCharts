@@ -24,7 +24,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --logger "console;verbosity=detailed"
     - name: Image Artifact
       if: '!cancelled()'
       uses: actions/upload-artifact@v4
