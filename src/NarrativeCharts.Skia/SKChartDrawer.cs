@@ -48,9 +48,9 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	/// <inheritdoc />
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
-		Console.WriteLine($"Axis type face: {AxisLabelFont.Typeface.FamilyName}");
-		Console.WriteLine($"Point type face: {PointLabelFont.Typeface.FamilyName}");
-		Console.WriteLine($"Default type face: {SKTypeface.Default.FamilyName}");
+		Console.WriteLine($"Axis type face: {AxisLabelFont?.Typeface?.FamilyName}");
+		Console.WriteLine($"Point type face: {PointLabelFont?.Typeface?.FamilyName}");
+		Console.WriteLine($"Default type face: {SKTypeface.Default?.FamilyName}");
 		var dims = GetDimensions(yMap);
 		// Default color type is Rgba8888 which is 32 bits, Rgb565 is 16 bits
 		// I don't use transparency in any of the drawing and the colors I use for
