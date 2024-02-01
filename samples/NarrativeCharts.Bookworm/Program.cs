@@ -15,7 +15,7 @@ public sealed class Program
 		{
 			ScriptDirectory = Path.Combine(dir, "Scripts"),
 			ConvertScripts = true,
-			RedrawUneditedScripts = false,
+			RedrawUneditedScripts = true,
 			CharacterColors = new(BookwormCharacters.Colors),
 			CharacterAliases = new(BookwormCharacters.Aliases),
 			LocationYIndexes = new(BookwormLocations.YIndexes),
