@@ -13,7 +13,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	/// <summary>
 	/// The font to use for axis labels.
 	/// </summary>
-	public SKFont AxisLabelFont { get; set; } = new(SKTypeface.Default);
+	public SKFont AxisLabelFont { get; set; } = new();
 	/// <summary>
 	/// If null, the color used for a character's label is the character's color.
 	/// If not null, modifies the passed in hex value and returns a new one.
@@ -25,7 +25,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	/// <summary>
 	/// The font to use for character names in the grid.
 	/// </summary>
-	public SKFont PointLabelFont { get; set; } = new(SKTypeface.Default);
+	public SKFont PointLabelFont { get; set; } = new();
 	/// <inheritdoc />
 	public override int PointLabelSize
 	{
@@ -48,8 +48,9 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	/// <inheritdoc />
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
-		Console.Write($"Axis type face: {AxisLabelFont.Typeface.FamilyName}");
-		Console.Write($"Point type face: {PointLabelFont.Typeface.FamilyName}");
+		Console.WriteLine($"Axis type face: {AxisLabelFont.Typeface.FamilyName}");
+		Console.WriteLine($"Point type face: {PointLabelFont.Typeface.FamilyName}");
+		Console.WriteLine($"Default type face: {SKTypeface.Default.FamilyName}");
 		var dims = GetDimensions(yMap);
 		// Default color type is Rgba8888 which is 32 bits, Rgb565 is 16 bits
 		// I don't use transparency in any of the drawing and the colors I use for
