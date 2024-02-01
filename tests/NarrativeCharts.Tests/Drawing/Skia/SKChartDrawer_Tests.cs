@@ -30,25 +30,20 @@ public class SKChartDrawer_Tests
 		// The size I get every time on my Windows desktop
 		if (actual.Length == 1_085_801)
 		{
-			actual.SequenceEqual(Resources.ExpectedP3V1Windows).Should().Be(true);
+			actual.SequenceEqual(Resources.ExpectedP3V1WindowsSegoeUI).Should().Be(true);
+		}
+		else if (actual.Length == 1_112_636)
+		{
+			actual.SequenceEqual(Resources.ExpectedP3V1LinuxLiberationMono).Should().Be(true);
 		}
 		else
 		{
-			// Github Actions doesn't result in a consistent image output
-			// Some lengths encountered: 1_098_576, 1_099_484, and 1_112_636
-			// I could probably fiddle around with creating an image inside
-			// the action, but this is way simpler
-			actual.Length.Should().BeCloseTo(1_100_000, 50_000);
-
 			var bounds = SKBitmap.DecodeBounds(actual);
 			bounds.Width.Should().Be(13_100);
 			bounds.Height.Should().Be(4_000);
 			bounds.ColorType.Should().Be(SKColorType.Rgb565);
 
-			// Since the images are big comparing pixels directly takes too long
-			// If the image has the correct size/color type it's /probably/ ok
-			Console.WriteLine("Only tested width/height/colortype. " +
-				"Image may be different than expected.");
+			Assert.Fail("Unexpected output length.");
 		}
 	}
 
@@ -58,17 +53,23 @@ public class SKChartDrawer_Tests
 
 		if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 		{
-			// I know not every Linux distro has the Ubuntu font.
-			// These tests will be run on Github Actions which uses Ubuntu
-			return SKTypeface.FromFamilyName("Ubuntu");
+			// Github Actions has this font, idk if other distros have it
+			return GetTypeFace("Liberation Mono");
 		}
 		else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 		{
-			return SKTypeface.FromFamilyName("Segoe UI");
+			return GetTypeFace("Segoe UI");
 		}
 		else
 		{
 			throw new InvalidOperationException("Only currently supports Ubuntu and Windows.");
 		}
+	}
+
+	private static SKTypeface GetTypeFace(string familyName)
+	{
+		var typeface = SKTypeface.FromFamilyName(familyName);
+		typeface.FamilyName.Should().Be(familyName);
+		return typeface;
 	}
 }

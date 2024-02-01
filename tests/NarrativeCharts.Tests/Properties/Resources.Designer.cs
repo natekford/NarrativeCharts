@@ -63,9 +63,19 @@ namespace NarrativeCharts.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ExpectedP3V1Windows {
+        internal static byte[] ExpectedP3V1LinuxLiberationMono {
             get {
-                object obj = ResourceManager.GetObject("ExpectedP3V1Windows", resourceCulture);
+                object obj = ResourceManager.GetObject("ExpectedP3V1LinuxLiberationMono", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ExpectedP3V1WindowsSegoeUI {
+            get {
+                object obj = ResourceManager.GetObject("ExpectedP3V1WindowsSegoeUI", resourceCulture);
                 return ((byte[])(obj));
             }
         }
