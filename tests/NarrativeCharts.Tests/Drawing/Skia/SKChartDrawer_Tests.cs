@@ -2,13 +2,14 @@
 using NarrativeCharts.Scripting;
 using NarrativeCharts.Tests.Properties;
 using SkiaSharp;
+using System.Runtime.InteropServices;
 
 namespace NarrativeCharts.Tests.Drawing.Skia;
 
 [Trait("Category", "Integration")]
 public class SKChartDrawer_Tests
 {
-	private SKChartDrawer Drawer { get; } = new()
+	private SKChartDrawer Drawer { get; } = new(GetTypeFace())
 	{
 		ImageAspectRatio = null,
 		CharacterLabelColorConverter = null,
@@ -46,6 +47,24 @@ public class SKChartDrawer_Tests
 			// If the image has the correct size/color type it's /probably/ ok
 			Console.WriteLine("Only tested width/height/colortype. " +
 				"Image may be different than expected.");
+		}
+	}
+
+	private static SKTypeface GetTypeFace()
+	{
+		if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+		{
+			// I know not every Linux distro has the Ubuntu font.
+			// These tests will be run on Github Actions which uses Ubuntu
+			return SKTypeface.FromFamilyName("Ubuntu");
+		}
+		else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+		{
+			return SKTypeface.FromFamilyName("Segoe UI");
+		}
+		else
+		{
+			throw new InvalidOperationException("Only currently supports Ubuntu and Windows.");
 		}
 	}
 }

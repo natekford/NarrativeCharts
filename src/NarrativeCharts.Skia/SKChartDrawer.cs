@@ -8,12 +8,21 @@ namespace NarrativeCharts.Skia;
 /// <summary>
 /// Draws a chart using Skia.
 /// </summary>
-public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
+public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 {
+	private static readonly SKPathEffect _MovementEffect
+		= SKPathEffect.CreateDash([4f, 6f], 10f);
+
 	/// <summary>
 	/// The font to use for axis labels.
 	/// </summary>
-	public SKFont AxisLabelFont { get; set; } = new();
+	public SKFont AxisLabelFont { get; set; }
+	/// <inheritdoc />
+	public override int AxisLabelSize
+	{
+		get => (int)AxisLabelFont.Size;
+		set => AxisLabelFont.Size = value;
+	}
 	/// <summary>
 	/// If null, the color used for a character's label is the character's color.
 	/// If not null, modifies the passed in hex value and returns a new one.
@@ -25,7 +34,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	/// <summary>
 	/// The font to use for character names in the grid.
 	/// </summary>
-	public SKFont PointLabelFont { get; set; } = new();
+	public SKFont PointLabelFont { get; set; }
 	/// <inheritdoc />
 	public override int PointLabelSize
 	{
@@ -33,24 +42,28 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		set => PointLabelFont.Size = value;
 	}
 
-	private static SKPathEffect Movement { get; }
-		= SKPathEffect.CreateDash([4f, 6f], 10f);
-
 	/// <summary>
 	/// Creates a new instance of <see cref="SKChartDrawer"/>.
 	/// </summary>
-	public SKChartDrawer()
+	public SKChartDrawer(SKTypeface? defaultTypeface = null)
 	{
+		AxisLabelFont = new(defaultTypeface);
+		PointLabelFont = new(defaultTypeface);
+
 		AxisLabelSize = 20;
 		LineWidth = 4;
 	}
 
 	/// <inheritdoc />
+	public void Dispose()
+	{
+		AxisLabelFont.Dispose();
+		PointLabelFont.Dispose();
+	}
+
+	/// <inheritdoc />
 	protected override SKContext CreateCanvas(NarrativeChartData chart, YMap yMap)
 	{
-		Console.WriteLine($"Axis type face: {AxisLabelFont?.Typeface?.FamilyName}");
-		Console.WriteLine($"Point type face: {PointLabelFont?.Typeface?.FamilyName}");
-		Console.WriteLine($"Default type face: {SKTypeface.Default?.FamilyName}");
 		var dims = GetDimensions(yMap);
 		// Default color type is Rgba8888 which is 32 bits, Rgb565 is 16 bits
 		// I don't use transparency in any of the drawing and the colors I use for
@@ -88,8 +101,6 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		using (image.ClipGrid(SKClipOperation.Difference))
 		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
-			paint.TextSize = AxisLabelSize;
-
 			canvas.Translate(image.PaddingStart - TickLength, image.PaddingEnd);
 			DrawYAxis(image, paint, isLeftAxis: true);
 
@@ -101,7 +112,6 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		using (image.ClipGrid(SKClipOperation.Difference))
 		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
 		{
-			paint.TextSize = AxisLabelSize;
 			paint.TextAlign = SKTextAlign.Center;
 
 			canvas.Translate(image.PaddingEnd, image.PaddingStart);
@@ -216,7 +226,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 			image.Canvas.DrawCircle(p0, LineMarkerDiameter / 2f, paint);
 			image.Canvas.DrawCircle(p1, LineMarkerDiameter / 2f, paint);
 
-			paint.PathEffect = segment.IsMovement ? Movement : null;
+			paint.PathEffect = segment.IsMovement ? _MovementEffect : null;
 			paint.IsAntialias = segment.IsMovement;
 			image.Canvas.DrawLine(p0, p1, paint);
 		}
