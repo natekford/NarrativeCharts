@@ -1,7 +1,9 @@
-﻿using NarrativeCharts.Skia;
-using NarrativeCharts.Scripting;
+﻿using NarrativeCharts.Scripting;
+using NarrativeCharts.Skia;
 using NarrativeCharts.Tests.Properties;
+
 using SkiaSharp;
+
 using System.Runtime.InteropServices;
 
 namespace NarrativeCharts.Tests.Drawing.Skia;
