@@ -32,10 +32,10 @@ public class SKChartDrawer_Tests
 		else
 		{
 			// Github Actions doesn't result in a consistent image output
-			// Some lengths encountered: 1_098_576, 1_099_484
+			// Some lengths encountered: 1_098_576, 1_099_484, and 1_112_636
 			// I could probably fiddle around with creating an image inside
 			// the action, but this is way simpler
-			actual.Length.Should().BeInRange(1_090_000, 1_110_000);
+			actual.Length.Should().BeCloseTo(1_100_000, 50_000);
 
 			var bounds = SKBitmap.DecodeBounds(actual);
 			bounds.Width.Should().Be(13_100);
