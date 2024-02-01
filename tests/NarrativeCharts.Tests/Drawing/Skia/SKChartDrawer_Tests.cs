@@ -54,6 +54,8 @@ public class SKChartDrawer_Tests
 
 	private static SKTypeface GetTypeFace()
 	{
+		Console.WriteLine($"Installed fonts: {string.Join(", ", SKFontManager.Default.FontFamilies)}");
+
 		if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 		{
 			// I know not every Linux distro has the Ubuntu font.
