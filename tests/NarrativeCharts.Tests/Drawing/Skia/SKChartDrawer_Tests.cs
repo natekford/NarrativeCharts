@@ -4,72 +4,89 @@ using NarrativeCharts.Tests.Properties;
 
 using SkiaSharp;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
+
+using Xunit.Abstractions;
 
 namespace NarrativeCharts.Tests.Drawing.Skia;
 
 [Trait("Category", "Integration")]
 public class SKChartDrawer_Tests
 {
-	private SKChartDrawer Drawer { get; } = new(GetTypeFace())
+	private readonly HashSet<string> _Fonts = SKFontManager.Default.FontFamilies.ToHashSet();
+	private readonly ITestOutputHelper _Output;
+
+	public SKChartDrawer_Tests(ITestOutputHelper output)
 	{
-		ImageAspectRatio = null,
-		CharacterLabelColorConverter = null,
-	};
+		_Output = output;
+	}
 
 	[Fact]
 	public async Task DrawImage_Valid()
 	{
+		_Output.WriteLine($"Installed fonts: {string.Join(", ", SKFontManager.Default.FontFamilies)}");
+
 		var defs = TestUtils.Defs;
 		var script = defs.LoadScripts().First();
+		using var expected = GetExpectedImage();
+		using var drawer = new SKChartDrawer(expected.Typeface)
+		{
+			ImageAspectRatio = null,
+			CharacterLabelColorConverter = null,
+		};
 
 		var path = Path.Combine(defs.ScriptDirectory, nameof(SKChartDrawer_Tests), "ActualP3V1.png");
-		await Drawer.SaveChartAsync(script, path).ConfigureAwait(true);
+		await drawer.SaveChartAsync(script, path).ConfigureAwait(true);
 
 		var actual = File.ReadAllBytes(path);
-		// The size I get every time on my Windows desktop
-		if (actual.Length == 1_085_801)
-		{
-			actual.SequenceEqual(Resources.ExpectedP3V1WindowsSegoeUI).Should().Be(true);
-		}
-		else if (actual.Length == 1_112_636)
-		{
-			actual.SequenceEqual(Resources.ExpectedP3V1LinuxLiberationMono).Should().Be(true);
-		}
-		else
-		{
-			var bounds = SKBitmap.DecodeBounds(actual);
-			bounds.Width.Should().Be(13_100);
-			bounds.Height.Should().Be(4_000);
-			bounds.ColorType.Should().Be(SKColorType.Rgb565);
-
-			Assert.Fail("Unexpected output length.");
-		}
+		actual.SequenceEqual(expected.ExpectedBytes).Should().Be(
+			expected: true,
+			because: "Drawn does not match expected. Likely character/location name change or font mismatch."
+		);
 	}
 
-	private static SKTypeface GetTypeFace()
+	private ExpectedImage GetExpectedImage()
 	{
-		Console.WriteLine($"Installed fonts: {string.Join(", ", SKFontManager.Default.FontFamilies)}");
-
+		// I'm not sure if the same font on a different operating system will
+		// produce different images, so that's why I'm checking both OS and font
 		if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 		{
-			// Github Actions has this font, idk if other distros have it
-			return GetTypeFace("Liberation Mono");
+			if (TryGetTypeface("Liberation Mono", out var typeface))
+			{
+				return new(typeface, Resources.ExpectedP3V1LinuxLiberationMono);
+			}
+			else if (TryGetTypeface("DejaVu Sans Mono", out typeface))
+			{
+				// TODO: if this ever gets reached by github actions put the
+				// created image in here
+				return new(typeface, []);
+			}
 		}
 		else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 		{
-			return GetTypeFace("Segoe UI");
+			if (TryGetTypeface("Segoe UI", out var typeface))
+			{
+				return new(typeface, Resources.ExpectedP3V1WindowsSegoeUI);
+			}
 		}
-		else
-		{
-			throw new InvalidOperationException("Only currently supports Ubuntu and Windows.");
-		}
+
+		throw new InvalidOperationException("Unable to find a supported typeface.");
 	}
 
-	private static SKTypeface GetTypeFace(string familyName)
+	private bool TryGetTypeface(string familyName, [NotNullWhen(true)] out SKTypeface? typeface)
 	{
-		var typeface = SKTypeface.FromFamilyName(familyName);
-		typeface.FamilyName.Should().Be(familyName);
-		return typeface;
+		var exists = _Fonts.Contains(familyName);
+		typeface = exists ? SKTypeface.FromFamilyName(familyName) : null;
+		typeface?.FamilyName.Should().Be(familyName);
+		return exists;
+	}
+
+	private record ExpectedImage(
+		SKTypeface Typeface,
+		byte[] ExpectedBytes
+	) : IDisposable
+	{
+		public void Dispose() => Typeface.Dispose();
 	}
 }
