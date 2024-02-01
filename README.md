@@ -8,7 +8,7 @@ Inspired by [XKCD 657: Movie Narrative Charts](https://xkcd.com/657/).
 
 For examples of how scripts are written, see [here](https://github.com/natekford/NarrativeCharts/tree/master/samples/NarrativeCharts.Bookworm/Scripts).
 
-For an example of processing scripts from a supplied directory, see [here](https://github.com/natekford/NarrativeCharts/blob/master/src/NarrativeCharts.Console/Program.cs).
+For an example of processing scripts from a supplied directory, see [here](https://github.com/natekford/NarrativeCharts/blob/master/samples/NarrativeCharts.Console/Program.cs).
 
 ## Compiling
 
