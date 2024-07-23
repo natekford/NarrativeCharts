@@ -101,39 +101,69 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 
 		// Y-Axes
 		using (image.ClipGrid(SKClipOperation.Difference))
-		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
+		using (var tickPaint = GetPaint(SKColors.Black, AxisLabelFont))
+		using (var labelPaint = GetPaint(SKColors.DarkGray, AxisLabelFont))
 		{
+			labelPaint.IsAntialias = true;
+
+			void DrawYAxis(bool isLeftAxis)
+			{
+				foreach (var (label, yTick) in image.YMap.Locations)
+				{
+					var y = image.Y(yTick);
+					image.Canvas.DrawLine(0, y, TickLength, y, tickPaint);
+
+					var x1 = isLeftAxis
+						? -(labelPaint.MeasureText(label.Value) + (TickLength / 2f))
+						: TickLength;
+					// at least with the default font, 3/4 is above the Y level
+					// so to balance it out we add 1/4 to the other side
+					var y1 = y + (labelPaint.TextSize / 4f);
+					image.Canvas.DrawText(label.Value, x1, y1, labelPaint);
+				}
+			}
+
 			canvas.Translate(image.PaddingStart - TickLength, image.PaddingEnd);
-			DrawYAxis(image, paint, isLeftAxis: true);
+			DrawYAxis(isLeftAxis: true);
 
 			canvas.Translate(image.Grid.Width + TickLength + LineWidth, 0);
-			DrawYAxis(image, paint, isLeftAxis: false);
+			DrawYAxis(isLeftAxis: false);
 		}
 
 		// X-Axes
 		using (image.ClipGrid(SKClipOperation.Difference))
-		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
+		using (var tickPaint = GetPaint(SKColors.Black, AxisLabelFont))
+		using (var labelPaint = GetPaint(SKColors.DarkGray, AxisLabelFont))
 		{
-			paint.TextAlign = SKTextAlign.Center;
+			labelPaint.TextAlign = SKTextAlign.Center;
+			labelPaint.IsAntialias = true;
 
 			canvas.Translate(image.PaddingEnd, image.PaddingStart);
 			var e = 0;
-			var queue = new Queue<(float, float, string)>(chart.Events.Count);
+			var events = new Queue<(float X, float Length, string Label)>(chart.Events.Count);
 			foreach (var (xTick, label) in chart.Events)
 			{
 				var x = image.X(xTick);
-				queue.Enqueue((x, paint.MeasureText(label.Name), label.Name));
+				events.Enqueue((x, tickPaint.MeasureText(label.Name), label.Name));
 
-				canvas.DrawLine(x, 0, x, -TickLength, paint);
-				paint.IsAntialias = true;
-				canvas.DrawText((++e).ToString(), x, -(TickLength + 2), paint);
-				paint.IsAntialias = false;
+				canvas.DrawLine(x, 0, x, -TickLength, tickPaint);
+				canvas.DrawText((++e).ToString(), x, -(TickLength + 2), labelPaint);
 			}
 
 			canvas.Translate(0, image.Grid.Height + LineWidth);
-			int iterations = 0, processed = 0, queueCount = queue.Count;
+			int iterations = 0, processed = 0, queueCount = events.Count;
 			float prevX = float.MinValue, prevLength = float.MinValue;
-			while (queue.TryDequeue(out var tuple))
+			var labels = new List<(float X, float Offset, string Label)>(events.Count);
+			// figure out where to draw labels
+			// x values remain constant
+			// ticks will always start at x,0 and go to x,labelY
+			// labels are centered at x, and their y value is determined by making sure
+			// there is no horizontal overlap between labels
+			// e.g.
+			//     |                |
+			//  1. Short Title      |
+			//       2. Longer Title That Would Overlap
+			while (events.TryDequeue(out var tuple))
 			{
 				var (x, length, label) = tuple;
 				if (processed == queueCount)
@@ -141,13 +171,13 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 					++iterations;
 					processed = 0;
 					// add 1 because if we're in the loop 1 has been taken out
-					queueCount = queue.Count + 1;
+					queueCount = events.Count + 1;
 					prevX = prevLength = float.MinValue;
 				}
 
-				if (iterations > 0 && paint.PathEffect is null)
+				if (iterations > 0 && tickPaint.PathEffect is null)
 				{
-					paint.PathEffect = SKPathEffect.CreateDash(
+					tickPaint.PathEffect = SKPathEffect.CreateDash(
 						[TickLength, TickLength],
 						TickLength * 2
 					);
@@ -157,17 +187,23 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 				// checking for any overlap
 				if (prevX + (prevLength / 2) + 10 >= x - (length / 2))
 				{
-					queue.Enqueue(tuple);
+					events.Enqueue(tuple);
 					continue;
 				}
 
-				var offset = (TickLength + paint.TextSize) * iterations;
-				canvas.DrawLine(x, 0, x, offset + TickLength, paint);
-				paint.IsAntialias = true;
-				canvas.DrawText(label, x, offset + paint.TextSize + 2, paint);
-				paint.IsAntialias = false;
+				// draw tick lines, but don't draw labels
+				// instead, draw labels after so tick lines will never be on top
+				var offset = (TickLength + tickPaint.TextSize) * iterations;
+				canvas.DrawLine(x, 0, x, offset + TickLength, tickPaint);
+				labels.Add((x, offset, label));
 				prevX = x;
 				prevLength = length;
+			}
+
+			// draw labels now that tick lines can't be drawn on top of them
+			foreach (var (x, offset, label) in labels)
+			{
+				canvas.DrawText(label, x, offset + tickPaint.TextSize + 2, labelPaint);
 			}
 		}
 
@@ -302,25 +338,6 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 			}
 		});
 		return tcs.Task;
-	}
-
-	private void DrawYAxis(SKContext context, SKPaint paint, bool isLeftAxis)
-	{
-		foreach (var (label, yTick) in context.YMap.Locations)
-		{
-			var y = context.Y(yTick);
-			context.Canvas.DrawLine(0, y, TickLength, y, paint);
-
-			var x1 = isLeftAxis
-				? -(paint.MeasureText(label.Value) + (TickLength / 2f))
-				: TickLength;
-			// at least with the default font, 3/4 is above the Y level
-			// so to balance it out we add 1/4 to the other side
-			var y1 = y + (paint.TextSize / 4f);
-			paint.IsAntialias = true;
-			context.Canvas.DrawText(label.Value, x1, y1, paint);
-			paint.IsAntialias = false;
-		}
 	}
 
 	private SKPaint GetPaint(Hex hex)
