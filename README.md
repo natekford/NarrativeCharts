@@ -1,6 +1,6 @@
 # Narrative Charts
 
-![Example chart output](https://github.com/natekford/NarrativeCharts/assets/22116714/85308e53-5506-4629-b1fe-1da12da555f8)
+![Example chart output](https://github.com/user-attachments/assets/863dab61-855d-4f56-80e4-cb1e1509c780)
 
 Inspired by [XKCD 657: Movie Narrative Charts](https://xkcd.com/657/).
 
