@@ -5,8 +5,6 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts", "src\NarrativeCharts\NarrativeCharts.csproj", "{13908C1D-BA8B-4D29-AEB0-BAF401EDF615}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Plot", "src\NarrativeCharts.Plot\NarrativeCharts.Plot.csproj", "{5D894EE9-1195-4020-8DD6-BA5FED8C1542}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Skia", "src\NarrativeCharts.Skia\NarrativeCharts.Skia.csproj", "{0EF44B4C-496B-41B6-9C09-0467264D0C9C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NarrativeCharts.Tests", "tests\NarrativeCharts.Tests\NarrativeCharts.Tests.csproj", "{A0812769-E99D-4516-9AE2-BD2EA578D852}"
@@ -35,14 +33,6 @@ Global
 		{13908C1D-BA8B-4D29-AEB0-BAF401EDF615}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13908C1D-BA8B-4D29-AEB0-BAF401EDF615}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13908C1D-BA8B-4D29-AEB0-BAF401EDF615}.Release|Any CPU.Build.0 = Release|Any CPU
-		{683BA082-84B0-48A8-9DD3-411835270F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{683BA082-84B0-48A8-9DD3-411835270F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{683BA082-84B0-48A8-9DD3-411835270F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{683BA082-84B0-48A8-9DD3-411835270F05}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D894EE9-1195-4020-8DD6-BA5FED8C1542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D894EE9-1195-4020-8DD6-BA5FED8C1542}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D894EE9-1195-4020-8DD6-BA5FED8C1542}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D894EE9-1195-4020-8DD6-BA5FED8C1542}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0EF44B4C-496B-41B6-9C09-0467264D0C9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0EF44B4C-496B-41B6-9C09-0467264D0C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EF44B4C-496B-41B6-9C09-0467264D0C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +41,10 @@ Global
 		{A0812769-E99D-4516-9AE2-BD2EA578D852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0812769-E99D-4516-9AE2-BD2EA578D852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0812769-E99D-4516-9AE2-BD2EA578D852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{683BA082-84B0-48A8-9DD3-411835270F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{683BA082-84B0-48A8-9DD3-411835270F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{683BA082-84B0-48A8-9DD3-411835270F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{683BA082-84B0-48A8-9DD3-411835270F05}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A57B871-240C-406A-AB59-29FC8F8809EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A57B871-240C-406A-AB59-29FC8F8809EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A57B871-240C-406A-AB59-29FC8F8809EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -60,8 +54,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{683BA082-84B0-48A8-9DD3-411835270F05} = {4F362A65-EA80-402E-937B-7515C97E9F17}
 		{A0812769-E99D-4516-9AE2-BD2EA578D852} = {47BFC64C-BD10-4028-A735-DEDB8471730B}
+		{683BA082-84B0-48A8-9DD3-411835270F05} = {4F362A65-EA80-402E-937B-7515C97E9F17}
 		{9A57B871-240C-406A-AB59-29FC8F8809EA} = {4F362A65-EA80-402E-937B-7515C97E9F17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

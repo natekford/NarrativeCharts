@@ -5,26 +5,18 @@ using SkiaSharp;
 
 using System.Diagnostics;
 
+using static System.Net.Mime.MediaTypeNames;
+
 namespace NarrativeCharts.Skia;
 
 /// <summary>
 /// Draws a chart using Skia.
 /// </summary>
-public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
+public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 {
 	private static readonly SKPathEffect _MovementEffect
 		= SKPathEffect.CreateDash([4f, 6f], 10f);
 
-	/// <summary>
-	/// The font to use for axis labels.
-	/// </summary>
-	public SKFont AxisLabelFont { get; set; }
-	/// <inheritdoc />
-	public override int AxisLabelSize
-	{
-		get => (int)AxisLabelFont.Size;
-		set => AxisLabelFont.Size = value;
-	}
 	/// <summary>
 	/// If null, the color used for a character's label is the character's color.
 	/// If not null, modifies the passed in hex value and returns a new one.
@@ -34,33 +26,24 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 	public Func<Hex, Hex>? CharacterLabelColorConverter { get; set; }
 		= SKColorConverters.Color(SKColors.Black);
 	/// <summary>
+	/// The font to use for axis labels.
+	/// </summary>
+	public Func<SKFont> CreateAxisLabelFont { get; set; }
+	/// <summary>
 	/// The font to use for character names in the grid.
 	/// </summary>
-	public SKFont PointLabelFont { get; set; }
-	/// <inheritdoc />
-	public override int PointLabelSize
-	{
-		get => (int)PointLabelFont.Size;
-		set => PointLabelFont.Size = value;
-	}
+	public Func<SKFont> CreatePointLabelFont { get; set; }
 
 	/// <summary>
 	/// Creates a new instance of <see cref="SKChartDrawer"/>.
 	/// </summary>
 	public SKChartDrawer(SKTypeface? defaultTypeface = null)
 	{
-		AxisLabelFont = new(defaultTypeface);
-		PointLabelFont = new(defaultTypeface);
+		CreateAxisLabelFont = () => new(defaultTypeface, size: AxisLabelSize);
+		CreatePointLabelFont = () => new(defaultTypeface, size: PointLabelSize);
 
 		AxisLabelSize = 20;
 		LineWidth = 4;
-	}
-
-	/// <inheritdoc />
-	public void Dispose()
-	{
-		AxisLabelFont.Dispose();
-		PointLabelFont.Dispose();
 	}
 
 	/// <inheritdoc />
@@ -76,6 +59,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 		var image = new SKContext(
 			bitmap: bitmap,
 			canvas: canvas,
+			pointLabelFont: CreatePointLabelFont(),
 			chart: chart,
 			yMap: yMap,
 			padding: AxisPadding,
@@ -88,21 +72,22 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 
 		// Title
 		using (image.ClipGrid(SKClipOperation.Difference))
-		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
+		using (var font = CreateAxisLabelFont())
+		using (var paint = GetPaint(SKColors.Black))
 		{
-			paint.TextSize = AxisPadding * 0.50f;
-			paint.TextAlign = SKTextAlign.Center;
+			font.Size = AxisPadding * 0.50f;
 			paint.IsAntialias = true;
 
 			var x = canvas.DeviceClipBounds.Width / 2;
-			var y = paint.TextSize;
-			canvas.DrawText(chart.Name, x, y, paint);
+			var y = font.Size;
+			canvas.DrawText(chart.Name, x, y, SKTextAlign.Center, font, paint);
 		}
 
 		// Y-Axes
 		using (image.ClipGrid(SKClipOperation.Difference))
-		using (var tickPaint = GetPaint(SKColors.Black, AxisLabelFont))
-		using (var labelPaint = GetPaint(SKColors.DarkGray, AxisLabelFont))
+		using (var font = CreateAxisLabelFont())
+		using (var tickPaint = GetPaint(SKColors.Black))
+		using (var labelPaint = GetPaint(SKColors.DarkGray))
 		{
 			labelPaint.IsAntialias = true;
 
@@ -114,12 +99,12 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 					image.Canvas.DrawLine(0, y, TickLength, y, tickPaint);
 
 					var x1 = isLeftAxis
-						? -(labelPaint.MeasureText(label.Value) + (TickLength / 2f))
+						? -(font.MeasureText(label.Value) + (TickLength / 2f))
 						: TickLength;
 					// at least with the default font, 3/4 is above the Y level
 					// so to balance it out we add 1/4 to the other side
-					var y1 = y + (labelPaint.TextSize / 4f);
-					image.Canvas.DrawText(label.Value, x1, y1, labelPaint);
+					var y1 = y + (font.Size / 4f);
+					image.Canvas.DrawText(label.Value, x1, y1, SKTextAlign.Left, font, labelPaint);
 				}
 			}
 
@@ -132,10 +117,10 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 
 		// X-Axes
 		using (image.ClipGrid(SKClipOperation.Difference))
-		using (var tickPaint = GetPaint(SKColors.Black, AxisLabelFont))
-		using (var labelPaint = GetPaint(SKColors.DarkGray, AxisLabelFont))
+		using (var font = CreateAxisLabelFont())
+		using (var tickPaint = GetPaint(SKColors.Black))
+		using (var labelPaint = GetPaint(SKColors.DarkGray))
 		{
-			labelPaint.TextAlign = SKTextAlign.Center;
 			labelPaint.IsAntialias = true;
 
 			canvas.Translate(image.PaddingEnd, image.PaddingStart);
@@ -144,10 +129,10 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 			foreach (var (xTick, label) in chart.Events)
 			{
 				var x = image.X(xTick);
-				events.Enqueue((x, tickPaint.MeasureText(label.Name), label.Name));
+				events.Enqueue((x, font.MeasureText(label.Name), label.Name));
 
 				canvas.DrawLine(x, 0, x, -TickLength, tickPaint);
-				canvas.DrawText((++e).ToString(), x, -(TickLength + 2), labelPaint);
+				canvas.DrawText((++e).ToString(), x, -(TickLength + 2), SKTextAlign.Center, font, labelPaint);
 			}
 
 			canvas.Translate(0, image.Grid.Height + LineWidth);
@@ -193,7 +178,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 
 				// draw tick lines, but don't draw labels
 				// instead, draw labels after so tick lines will never be on top
-				var offset = (TickLength + tickPaint.TextSize) * iterations;
+				var offset = (TickLength + font.Size) * iterations;
 				canvas.DrawLine(x, 0, x, offset + TickLength, tickPaint);
 				labels.Add((x, offset, label));
 				prevX = x;
@@ -203,13 +188,13 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 			// draw labels now that tick lines can't be drawn on top of them
 			foreach (var (x, offset, label) in labels)
 			{
-				canvas.DrawText(label, x, offset + tickPaint.TextSize + 2, labelPaint);
+				canvas.DrawText(label, x, offset + font.Size + 2, SKTextAlign.Center, font, labelPaint);
 			}
 		}
 
 		// Grid lines
 		using (image.ClipGrid(SKClipOperation.Intersect))
-		using (var paint = GetPaint(SKColors.LightGray, AxisLabelFont))
+		using (var paint = GetPaint(SKColors.LightGray))
 		{
 			canvas.Translate(image.PaddingEnd, image.PaddingEnd);
 			foreach (var yTick in yMap.Locations.Values)
@@ -225,7 +210,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 		}
 
 		// Grid Border
-		using (var paint = GetPaint(SKColors.Black, AxisLabelFont))
+		using (var paint = GetPaint(SKColors.Black))
 		{
 			paint.Style = SKPaintStyle.Stroke;
 
@@ -239,7 +224,11 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 	protected override void DrawSegment(SKContext image, Character character, LineSegment segment)
 	{
 		var hex = image.Chart.Colors[character];
-		var paint = image.Paint.GetOrAdd(hex, GetPaint);
+		var paint = image.Paint.GetOrAdd(
+			key: hex,
+			valueFactory: (hex, inst) => inst.GetPaint(GetColor(hex)),
+			factoryArgument: this
+		);
 		var positions = image.Labels.GetOrAdd(character, _ => []);
 
 		using (image.ClipGrid(SKClipOperation.Intersect))
@@ -248,7 +237,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 
 			var p0 = new SKPoint(image.X(segment.X0), image.Y(segment.Y0));
 			var p1 = new SKPoint(image.X(segment.X1), image.Y(segment.Y1));
-			var labelOffset = new SKSize(LineMarkerDiameter / 4f, paint.TextSize);
+			var labelOffset = new SKSize(LineMarkerDiameter / 4f, image.PointLabelFont.Size);
 
 			if (!segment.IsMovement)
 			{
@@ -280,11 +269,15 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 
 			foreach (var (character, positions) in image.Labels)
 			{
-				var name = image.Text.GetOrAdd(character.Value, GetText);
+				var name = image.Text.GetOrAdd(
+					key: character.Value,
+					valueFactory: (text, font) => SKTextBlob.Create(text, font)!,
+					factoryArgument: image.PointLabelFont
+				);
 				var hex = CharacterLabelColorConverter is null
 					? image.Chart.Colors[character]
 					: CharacterLabelColorConverter(image.Chart.Colors[character]);
-				var paint = image.Paint.GetOrAdd(hex, GetPaint);
+				var paint = image.Paint[hex];
 
 				paint.IsAntialias = true;
 				paint.PathEffect = null;
@@ -340,19 +333,13 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>, IDisposable
 		return tcs.Task;
 	}
 
-	private SKPaint GetPaint(Hex hex)
-		=> GetPaint(GetColor(hex), PointLabelFont);
-
-	private SKPaint GetPaint(SKColor color, SKFont font)
+	private SKPaint GetPaint(SKColor color)
 	{
-		return new(font)
+		return new()
 		{
 			Color = color,
 			StrokeWidth = LineWidth,
 			IsAntialias = false,
 		};
 	}
-
-	private SKTextBlob GetText(string text)
-		=> SKTextBlob.Create(text, PointLabelFont);
 }

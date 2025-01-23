@@ -30,7 +30,7 @@ public class SKChartDrawer_Tests
 		var defs = TestUtils.Defs;
 		var script = defs.LoadScripts().First();
 		using var expected = GetExpectedImage();
-		using var drawer = new SKChartDrawer(expected.Typeface)
+		var drawer = new SKChartDrawer(expected.Typeface)
 		{
 			ImageAspectRatio = null,
 			CharacterLabelColorConverter = null,

@@ -4,7 +4,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\NarrativeCharts.Plot\NarrativeCharts.Plot.csproj" />
 		<ProjectReference Include="..\..\src\NarrativeCharts.Skia\NarrativeCharts.Skia.csproj" />
 		<ProjectReference Include="..\..\src\NarrativeCharts\NarrativeCharts.csproj" />
 	</ItemGroup>

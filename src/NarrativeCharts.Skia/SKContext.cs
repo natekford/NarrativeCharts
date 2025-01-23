@@ -45,6 +45,10 @@ public sealed class SKContext : IDisposable
 	/// </summary>
 	public ConcurrentDictionary<Hex, SKPaint> Paint { get; } = [];
 	/// <summary>
+	/// The font to draw character labels with.
+	/// </summary>
+	public SKFont PointLabelFont { get; }
+	/// <summary>
 	/// Cached text for the current image.
 	/// </summary>
 	public ConcurrentDictionary<string, SKTextBlob> Text { get; } = [];
@@ -76,6 +80,7 @@ public sealed class SKContext : IDisposable
 	/// </summary>
 	/// <param name="bitmap"></param>
 	/// <param name="canvas"></param>
+	/// <param name="pointLabelFont"></param>
 	/// <param name="chart"></param>
 	/// <param name="yMap"></param>
 	/// <param name="padding"></param>
@@ -85,6 +90,7 @@ public sealed class SKContext : IDisposable
 	public SKContext(
 		SKBitmap bitmap,
 		SKCanvas canvas,
+		SKFont pointLabelFont,
 		NarrativeChartData chart,
 		YMap yMap,
 		float padding,
@@ -94,6 +100,7 @@ public sealed class SKContext : IDisposable
 	{
 		Bitmap = bitmap;
 		Canvas = canvas;
+		PointLabelFont = pointLabelFont;
 		Chart = chart;
 		YMap = yMap;
 
@@ -131,6 +138,7 @@ public sealed class SKContext : IDisposable
 	{
 		Bitmap.Dispose();
 		Canvas.Dispose();
+		PointLabelFont.Dispose();
 
 		foreach (var (_, paint) in Paint)
 		{
