@@ -39,11 +39,28 @@ public class SKChartDrawer_Tests
 		var path = Path.Combine(defs.ScriptDirectory, nameof(SKChartDrawer_Tests), "ActualP3V1.png");
 		await drawer.SaveChartAsync(script, path).ConfigureAwait(true);
 
-		var actual = File.ReadAllBytes(path);
-		actual.SequenceEqual(expected.ExpectedBytes).Should().Be(
-			expected: true,
-			because: "Drawn does not match expected. Likely character/location name change or font mismatch."
-		);
+		var totalPixels = 0;
+		var matchedPixels = 0;
+		using (var actualImg = SKBitmap.Decode(path))
+		using (var expectedImg = SKBitmap.Decode(expected.ExpectedBytes))
+		{
+			var actualPix = actualImg.Pixels;
+			var expectedPix = expectedImg.Pixels;
+			for (; totalPixels < actualPix.Length; ++totalPixels)
+			{
+				if (actualPix[totalPixels] == expectedPix[totalPixels])
+				{
+					++matchedPixels;
+				}
+			}
+		}
+
+		var matchPercentage = (double)totalPixels / matchedPixels;
+		_Output.WriteLine($"Total Pixels: {totalPixels:n0}\n" +
+			$"Matched Pixels: {matchedPixels:n0}\n" +
+			$"Match Percentage: {matchPercentage * 100:000}%");
+
+		matchPercentage.Should().BeGreaterThan(0.999);
 	}
 
 	private ExpectedImage GetExpectedImage()

@@ -224,11 +224,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 	protected override void DrawSegment(SKContext image, Character character, LineSegment segment)
 	{
 		var hex = image.Chart.Colors[character];
-		var paint = image.Paint.GetOrAdd(
-			key: hex,
-			valueFactory: (hex, inst) => inst.GetPaint(GetColor(hex)),
-			factoryArgument: this
-		);
+		var paint = image.Paint.GetOrAdd(hex, GetPaint);
 		var positions = image.Labels.GetOrAdd(character, _ => []);
 
 		using (image.ClipGrid(SKClipOperation.Intersect))
@@ -277,7 +273,7 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 				var hex = CharacterLabelColorConverter is null
 					? image.Chart.Colors[character]
 					: CharacterLabelColorConverter(image.Chart.Colors[character]);
-				var paint = image.Paint[hex];
+				var paint = image.Paint.GetOrAdd(hex, GetPaint);
 
 				paint.IsAntialias = true;
 				paint.PathEffect = null;
@@ -332,6 +328,9 @@ public sealed class SKChartDrawer : ChartDrawer<SKContext, SKColor>
 		});
 		return tcs.Task;
 	}
+
+	private SKPaint GetPaint(Hex hex)
+		=> GetPaint(GetColor(hex));
 
 	private SKPaint GetPaint(SKColor color)
 	{
