@@ -55,10 +55,10 @@ public class SKChartDrawer_Tests
 			}
 		}
 
-		var matchPercentage = (double)totalPixels / matchedPixels;
+		var matchPercentage = (double)matchedPixels / totalPixels;
 		_Output.WriteLine($"Total Pixels: {totalPixels:n0}\n" +
 			$"Matched Pixels: {matchedPixels:n0}\n" +
-			$"Match Percentage: {matchPercentage * 100:000}%");
+			$"Match Percentage: {matchPercentage:P2}");
 
 		matchPercentage.Should().BeGreaterThan(0.999);
 	}
